@@ -1,0 +1,15 @@
+.dropdown-menu {
+    display: flex;
+
+    &__open {
+        max-width: 250px;
+        right: 10px;
+        top: 80px;
+        background-color: white;
+    }
+
+    &__logout {
+        padding: 12px 24px;
+    }
+
+}
