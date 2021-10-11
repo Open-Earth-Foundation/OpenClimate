@@ -1,0 +1,22 @@
+.widget__transfers-content {
+    height: 344px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .widget__transfers-header {
+        display: flex;
+        padding: 10px 24px;
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 15px;
+    
+        &-from {
+            margin-right: 172px;
+        }
+        &-to {
+            margin-right: 100px;
+        }
+    }
+    
+}

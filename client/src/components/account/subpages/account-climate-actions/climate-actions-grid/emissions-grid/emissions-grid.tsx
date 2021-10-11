@@ -1,0 +1,44 @@
+import React, { FunctionComponent } from 'react'
+import { useState } from 'react';
+import ArrowUp from '../../../../img/arrow up.png';
+import ArrowRight from '../../../../img/arrow right.png';
+import EmissionsGridRow from './emissions-grid-row/emissions-grid-row';
+import './emissions-grid.scss';
+
+interface IProps  {
+}
+
+const EmissionsGrid: FunctionComponent<IProps> = (props) => {
+
+    const [showEmissions, setShowEmissions] = useState(true);
+
+    const arrowIcon = showEmissions ? ArrowUp : ArrowRight;
+    const alt = showEmissions ? "hide" : "show";
+
+    return (
+        <div className="emissions-grid">
+                <div className="emissions-grid__hide-section">
+                    
+                    <button onClick={() => setShowEmissions(!showEmissions)}>
+                        Hide emissions
+                        <img src={arrowIcon} alt={alt} className="emissions-grid__collapse-icon" />
+                    </button>
+                    <span className="emissions-grid__separate-line"></span>
+                </div>
+                {showEmissions ? 
+                <div className="emissions-grid__grid">
+                    <EmissionsGridRow amount={350} verified={true} />
+                    <EmissionsGridRow amount={350} verified={false} />
+                    <EmissionsGridRow amount={350} verified={true} />
+                    <EmissionsGridRow amount={350} verified={false} />
+                    <EmissionsGridRow amount={350} verified={true} />
+                </div>
+                : ""
+                }
+
+        </div>
+    );
+}
+
+export default EmissionsGrid;
+ 

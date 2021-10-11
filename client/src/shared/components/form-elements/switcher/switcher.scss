@@ -1,0 +1,25 @@
+.switcher {
+
+    margin-right: 24px;
+
+    &__option_active {
+        color: var(--black-color);
+    }
+
+    .climate-actions-switcher {
+        width: 218px;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        color: var(--grey3-color);
+        line-height: 28px;
+        font-size: 14px;
+
+    }
+
+    &__right-option {
+        margin-left: 10px;
+    }
+
+}

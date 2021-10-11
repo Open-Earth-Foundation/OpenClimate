@@ -1,0 +1,11 @@
+.review-tile__transfer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border: 1px solid var(--grey1-color);
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 17px;
+    margin-bottom: 8px;
+    height: 66px;
+}

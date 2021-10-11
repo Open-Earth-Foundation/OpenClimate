@@ -1,0 +1,32 @@
+.button {
+    
+    &__element {
+        width: 100%;
+        height: 48px;
+        border-radius: 4px;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        line-height: 28px;
+        font-size: 16px;
+    }
+
+    &__element:disabled {
+        opacity: 0.6;
+    }
+/*
+    &__element:hover{
+        opacity: 0.9;
+    }*/
+
+    &__element_white {
+        background: var(--white-color);
+        border: 1px solid var(--primary-color);
+    }
+
+    &__element_primary {
+        background: var(--primary-color);
+        color: var(--white-color);
+    }
+
+}
