@@ -1,0 +1,161 @@
+version: '3'
+services:
+
+#***************************************************************
+# Hub Services
+#***************************************************************
+
+  # Nginx Service
+  hub-webserver:
+    image: nginx:alpine
+    build:
+      context: nginx
+      dockerfile: Dockerfile-nginx    
+    hostname: hub-webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./OpenClimate-hub-ui/build:/var/www/ui:consistent
+      - ./nginx/hub-ssl:/etc/nginx/ssl:consistent
+      - ./OpenClimate-hub-controller:/var/www/api:consistent
+      - ./nginx/hub-conf.d/:/etc/nginx/conf.d/
+      - ./nginx/docker-entrypoint.d/create-self-signed.sh:/docker-entrypoint.d/10-create-self-signed.sh
+    depends_on:
+      - "hub-api"
+      - "hub-ui"
+    networks:
+      - app-network
+
+  # Hub PostgreSQL Service
+  hub-db:
+    image: postgres:9.5
+    hostname: hub-db
+    restart: always
+    # ports: # Uncomment to access postgres outside of containers
+    #   - "5432:5432"
+    environment:
+      POSTGRES_USER: development
+      POSTGRES_PASSWORD: development
+    networks:
+      - app-network
+
+  # Hub MongoDB Service
+  hub-mongo:
+    image: mongo
+    hostname: hub-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    # environment:
+    #   MONGO_USER: mongodb
+    #   MONGO_PASSWORD: mongodb
+    networks:
+      - app-network
+
+  hub-api:
+    image: node:12-stretch 
+    hostname: hub-api
+    restart: unless-stopped
+    user: root # we want to run with write permissions for dev, so run as root.
+    working_dir: /home/node/app
+    environment: 
+      - NODE_ENV=development
+      - CONTROLLERPORT=3100
+      - AGENTADDRESS=http://agent-hub:8150
+      - WEB_ROOT=https://localhost
+      - JWT_SECRET=ZBVgToVv72zffZE2ksUYNAhYmNCXwgKp
+      - SESSION_SECRET=aZj6iXNkrtmLrAT0HsTrp7dRR7r4U7P0
+      - SCHEMA_=
+    volumes:
+      - ./OpenClimate-hub-controller:/home/node/app:consistent
+      - ./wait-for-it:/home/node/wait-for-it
+    expose:
+      - "3100"
+    command: >
+      sh -c "npm install && /home/node/wait-for-it/wait-for-it.sh hub-db:5432 && npm run migrate_up_all && npm run dev"
+    networks:
+      - app-network
+    depends_on:
+      - "hub-db"
+      - "hub-mongo"
+
+  hub-ui:
+    image: node:12-stretch
+    hostname: hub-ui
+    restart: unless-stopped
+    user: root # To write to ui folder, we need write permissions. node user does not have this.
+    tty: true # keep react from stopping development server
+    working_dir: /home/node/app
+    environment: 
+      - NODE_ENV=development
+      - BROWSER=none  # don't open the web browser
+    volumes:
+      - ./OpenClimate-hub-ui:/home/node/app:rw
+    expose:
+      - "3000"
+    command: >
+      sh -c "npm install && npm start"
+    networks:
+      - app-network
+    depends_on:
+      - "hub-db"
+
+  tunnel-hub:
+    image: reflectivedevelopment/agent-tunnel
+    command: "agent-hub:3005 -p 4040 --host ${AGENT_TUNNEL_HOST}"
+    networks:
+      - app-network      
+  agent-hub:
+    build: aries-acapy-plugin-toolbox
+    environment:
+      TUNNEL_HOST: tunnel-hub
+      AGENT_NAME: Hub
+      PORT: 3005
+      ADMIN_PORT: 8150
+      WEBHOOK_ADDRESS: http://hub-api:3100/api/controller-webhook
+    volumes:
+      - ./aries-acapy-plugin-toolbox-startup:/home/indy/aries-acapy-plugin-toolbox-startup:consistent
+    command: >
+      sh -c "./wait.sh /home/indy/aries-acapy-plugin-toolbox-startup/startup.sh"
+    ports:
+     - "3005:3005"
+     - "8150:8150"
+    networks:
+      - app-network
+
+
+#***************************************************************
+# Dev Services
+#***************************************************************
+
+  tunnel-test:
+    image: reflectivedevelopment/agent-tunnel
+    command: "agent-test:3009 -p 4040 --host ${AGENT_TUNNEL_HOST}"
+    networks:
+      - app-network
+  agent-test:
+    build: aries-acapy-plugin-toolbox
+    environment:
+      TUNNEL_HOST: tunnel-test
+      AGENT_NAME: Test
+      PORT: 3009
+      ADMIN_PORT: 8154
+    volumes:
+      - ./aries-acapy-plugin-toolbox-startup:/home/indy/aries-acapy-plugin-toolbox-startup:consistent
+    command: >
+      sh -c "./wait.sh /home/indy/aries-acapy-plugin-toolbox-startup/startup.sh"
+    ports:
+     - "3009:3009"
+     - "8154:8154"
+    networks:
+      - app-network
+
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+
