@@ -1,0 +1,129 @@
+.home {
+  padding: 20px !important;
+  /* background-image: url('../assets/bg.jpg'); */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh !important;
+}
+
+.img-fluid {
+  /* position: sticky; */
+  background: transparent;
+  z-index: 1;
+  height: 60px;
+  padding: 5px;
+}
+
+.avatar {
+  height: 94%;
+}
+
+.right-fold {
+  background-color: rgba(0, 149, 235, 0.9);
+  border-radius: 25px;
+  text-align: center;
+  padding: 20px;
+  justify-content: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  color: white;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 43px;
+  letter-spacing: 0px;
+  font-family: 'Montserrat', Arial, Tahoma, sans-serif;
+}
+.head {
+  color: white;
+  font-size: 22px;
+  font-family: 'Montserrat', Arial, Tahoma, sans-serif;
+  line-height: 30px;
+}
+.para {
+  color: white;
+  font-size: 26px;
+  font-family: 'Montserrat', Arial, Tahoma, sans-serif;
+}
+
+.landing-row {
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.landing-col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  margin: 0 auto;
+}
+.landing-col {
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+.landing-container-fluid,
+.landing-container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.avatar-container.inline {
+  display: none;
+}
+
+@media only screen and (max-device-width: 1366px) {
+  .upper-fold {
+    background-attachment: scroll;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .left-fold {
+    display: none;
+  }
+
+  .avatar-container.inline {
+    display: flex;
+    height: 200px;
+    align-self: center;
+  }
+
+  .landing-col-6 {
+    flex: 1;
+    max-width: 80%;
+  }
+}
+
+@media (min-width: 576px) {
+  .landing-container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .landing-container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .landing-container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .landing-container {
+    max-width: 1140px;
+  }
+}

@@ -1,0 +1,64 @@
+.review__wrapper {
+
+    background-color: rgba(230, 231, 232, 0.4);
+    min-height: calc(100vh - 80px);
+
+    .review__top-wrapper {
+        background-color: var(--white-color);
+        padding-top: 40px;
+        padding-bottom: 42px;
+    }
+
+    .review__filters-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        //margin-bottom: 42px;
+    }
+    
+    .review__selected-entity {
+        display: flex;
+        justify-content: space-between;
+        margin-top:42px;
+        //margin-bottom: 42px;
+
+        .review__entity-title {
+            vertical-align: middle;
+            height: 100%;
+            display: inline-block;
+            margin-left: 16px;
+        }
+
+        .review__explore-link {
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 24px;
+            color: var(--blue-color);
+
+            :-webkit-any-link {
+                color: var(--blue-color);
+            }
+        }
+    }
+
+    .review__content {
+        padding-top: 40px;
+    }
+
+    .loader {
+        position: fixed;
+        top: 80px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: var(--grey1-color);
+        opacity: 0.5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .review__switcher {
+        width: 362px;
+    }
+    
+}

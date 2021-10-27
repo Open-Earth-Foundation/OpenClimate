@@ -1,0 +1,22 @@
+.context-bar__item {
+    position: relative;
+    width: 200px;
+    color: var(--black-color);
+    white-space: pre-line;
+
+    &:last-child {
+        margin-right: 90px;
+    }
+
+
+    &-content {
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    .context-bar__arrow-icon {
+        position: absolute;
+        top: 8px;
+        left: -15px;
+    }
+}
