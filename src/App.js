@@ -41,6 +41,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IUser } from './api/models/User/IUser';
 
+import Account from './UI/Account'
 import Contact from './UI/Contact'
 import Contacts from './UI/Contacts'
 import Credential from './UI/Credential'
@@ -1189,6 +1190,32 @@ const App: FunctionComponent<Props> = (props) => {
                             logo={image}
                             organizationName={organizationName}
                             history={history}
+                          />
+                        </Main>
+                      </Frame>
+                    )
+                  }}
+                />
+                <Route
+                  path="/admin/account"
+                  render={({ match, history }) => {
+                    return (
+                      <Frame id="app-frame">
+                        <AppHeader
+                          loggedInUserState={loggedInUserState}
+                          loggedInUsername={loggedInUsername}
+                          logo={image}
+                          organizationName={organizationName}
+                          match={match}
+                        />
+                        <Main>
+                          <Account
+                            logo={image}
+                            organizationName={organizationName}
+                            history={history}
+                            sendRequest={sendMessage}
+                            QRCodeURL={QRCodeURL}
+                            userID={loggedInUserId}
                           />
                         </Main>
                       </Frame>
