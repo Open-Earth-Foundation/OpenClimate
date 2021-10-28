@@ -9,8 +9,8 @@ import ClimateActionsPanel from './climate-actions-panel/climate-actions.panel';
 import ArrowBackIcon from '../../img/arrow-panel-back.png';
 import ISite from '../../../../api/models/DTO/Site/ISite';
 import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
-import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateAction';
 import './account-sites.scss';
+import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 
 interface IProps  {
     sites?: Array<ISite>,

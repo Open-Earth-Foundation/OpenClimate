@@ -75,7 +75,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                     <input 
                         className="form-input"
                         type="text"
-                        placeholder="Name"
+                        placeholder="Facility Name"
                         onChange={e => formChangeHandler("facility_name", e.target.value)}
                     />
                  </div>
@@ -84,7 +84,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                          withSearch={false}
                          options={typesOptions}
                          title=""
-                         emptyPlaceholder="Type"
+                         emptyPlaceholder="Facility Type"
                          onSelect={(option:DropdownOption) => {formChangeHandler("facility_type", option.value)}}
                      />
                  </div>
@@ -93,7 +93,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                          withSearch={true}
                          options={countryOptions}
                          title=""
-                         emptyPlaceholder="Country"
+                         emptyPlaceholder="Facility Country"
                          onSelect={countryChangeHandler}
                      />
                  </div>
@@ -102,7 +102,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                          withSearch={false}
                          options={subnationalOptions}
                          title=""
-                         emptyPlaceholder="Subnational"
+                         emptyPlaceholder="Facility Jurisdiction"
                          onSelect={(option:DropdownOption) => {formChangeHandler("facility_jurisdiction", option.value)}}
                      />
                  </div>
@@ -110,7 +110,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                     <input 
                         className="form-input"
                         type="text"
-                        placeholder="Location"
+                        placeholder="Facility Location"
                         onChange={e => formChangeHandler("facility_location", e.target.value)}
                     />
                  </div>
@@ -118,7 +118,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                     <input 
                         className="form-input"
                         type="text"
-                        placeholder="IPCC Category"
+                        placeholder="Facility IPCC Category"
                         onChange={e => formChangeHandler("facility_sector_ipcc_category", e.target.value)}
                     />
                  </div>
@@ -126,7 +126,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                     <input 
                         className="form-input"
                         type="text"
-                        placeholder="IPCC Activity"
+                        placeholder="Facility IPCC Activity"
                         onChange={e => formChangeHandler("facility_sector_ipcc_activity", e.target.value)}
                     />
                  </div>
@@ -134,7 +134,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                     <input 
                         className="form-input"
                         type="text"
-                        placeholder="Sector naics"
+                        placeholder="Facility NAICS Sector"
                         onChange={e => formChangeHandler("facility_sector_naics", e.target.value)}
                     />
                  </div>

@@ -1,6 +1,6 @@
 import { ClimateActionScopes } from "../../api/models/DTO/ClimateAction/climate-action-scopes";
 import { ClimateActionTypes } from "../../api/models/DTO/ClimateAction/climate-action-types";
-import IClimateAction from "../../api/models/DTO/ClimateAction/IClimateAction";
+import IClimateAction from "../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction";
 
 const GetClimateActions = (climateActions: Array<IClimateAction>, scope: ClimateActionScopes, type: ClimateActionTypes) => {
     const scopeStr = ClimateActionScopes[scope];

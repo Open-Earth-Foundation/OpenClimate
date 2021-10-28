@@ -36,15 +36,6 @@ const RegistrationModal: FunctionComponent<Props> = (props) => {
             if(response.ok)
                 onModalShow('login');
         });
-
-        /*fetch('http://localhost:3001/api/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newUser),
-        }).then(response => {
-            if(response.ok)
-                onModalShow('login');
-        })*/
     }
 
     return (

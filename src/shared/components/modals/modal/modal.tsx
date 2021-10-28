@@ -26,8 +26,8 @@ import * as accountSelectors from '../../../../store/account/account.selectors';
 import AddClimateActionModal from '../add-climate-action/add-climate-action.modal';
 import { IUser } from '../../../../api/models/User/IUser';
 import ISite from '../../../../api/models/DTO/Site/ISite';
-import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateAction';
 import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
+import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 
 
 interface IStateProps  {

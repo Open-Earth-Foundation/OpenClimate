@@ -5,8 +5,6 @@ import DropdownOpen from './dropdown-open/dropdown-open';
 import './dropdown.scss';
 import DropdownArrow from '../../../img/form-elements/dropdown/dropdown-arrow.png';
 import DropdownClose from '../../../img/form-elements/dropdown/dropdown-close.png';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
-import { IFormValues } from '../../modals/add-pledge/add-pledge.modal';
 
 interface Props {
     options: Array<DropdownOption> | null;
@@ -16,18 +14,19 @@ interface Props {
     withSearch: boolean,
     emptyPlaceholder?: string,
     selectedValue?: string | null,
-    register?: UseFormRegister<IFormValues>,
+    required?: boolean,
     onSelect?: (option: DropdownOption) => void,
-    onDeSelect?: () => void
+    onDeSelect?: (error?: boolean) => void
 }
 
 const Dropdown = ((props: Props) => {
 
-        let { register, options, searchPlaceholder, title, disabled, withSearch, emptyPlaceholder, selectedValue, onSelect, onDeSelect } = props;
+        let { options, required, searchPlaceholder, title, disabled, withSearch, emptyPlaceholder, selectedValue, onSelect, onDeSelect } = props;
 
         const [open, setOpen] = useState(false);
         const [search, setSearch] = useState("");
         const [selected, setSelected] = useState<DropdownOption | null>(null);
+        const [error, setError] = useState<boolean>(false);
 
         const emptyTitle = emptyPlaceholder ?? "No items selected";
 
@@ -44,6 +43,8 @@ const Dropdown = ((props: Props) => {
 
                 if (onSelect)
                     onSelect(option);
+
+                setError(false);
             }
         }
 
@@ -52,8 +53,12 @@ const Dropdown = ((props: Props) => {
 
             setSelected(null);
             setOpen(false);
+
+            const err = !!required;
+            setError(err);
+
             if (onDeSelect)
-                onDeSelect();
+                onDeSelect(err);
         }
 
         const openHandler = (open: boolean) => {
@@ -96,25 +101,19 @@ const Dropdown = ((props: Props) => {
                     <label>{title}</label>
                 </div>
 
-                <div className="dropdown__selected input-wrapper" onClick={() => openHandler(!open)}>
+                <div 
+                    className={`${error ? 'field-error' : ''} dropdown__selected input-wrapper`} 
+                    onClick={() => openHandler(!open)}
+                >
                     <div className="dropdown__selected-text">
                         <div className="selected-area">
-                        {
-                                register ? 
-                                    <input
-                                    className="selected-area__option"
-                                    defaultValue={selected ? selected.name : ""}
-                                    placeholder={emptyTitle}
-                                    {...register("Target")}
-                                    />
-                                :
-                                    <input
-                                        className="selected-area__option"
-                                        value={selected ? selected.name : ""}
-                                        placeholder={emptyTitle}
-                                        onChange={() => false}
-                                    />
-                            }
+
+                            <input
+                                className='selected-area__option'
+                                value={selected ? selected.name : ""}
+                                placeholder={emptyTitle}
+                                onChange={() => false}
+                            />
 
                             {selected ?
 

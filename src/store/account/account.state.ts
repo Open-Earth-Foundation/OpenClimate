@@ -1,5 +1,5 @@
 import IAggregatedEmission from "../../api/models/DTO/AggregatedEmission/IAggregatedEmission";
-import IClimateAction from "../../api/models/DTO/ClimateAction/IClimateAction";
+import IClimateAction from "../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction";
 import IPledge from "../../api/models/DTO/Pledge/IPledge";
 import ISite from "../../api/models/DTO/Site/ISite";
 import ITransfer from "../../api/models/DTO/Transfer/ITransfer";

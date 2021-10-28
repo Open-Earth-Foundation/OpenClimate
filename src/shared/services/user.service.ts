@@ -1,4 +1,3 @@
-import { ServerUrls } from "../environments/server.environments";
 import { ICompany } from "../../api/models/User/ICompany";
 import { IUser } from "../../api/models/User/IUser";
 
@@ -11,7 +10,7 @@ export const userService = {
 
 function register(user: IUser)
 {
-    return fetch(`${ServerUrls.api}/register`, {
+    return fetch('http://localhost:3001/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user),
@@ -26,7 +25,7 @@ function login(email: string, password: string) {
         body: JSON.stringify({ email, password })
     };
 
-    return fetch(`${ServerUrls.api}/login`, requestOptions)
+    return fetch(`http://localhost:3001/api/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -38,7 +37,7 @@ function login(email: string, password: string) {
 }
 
 function logout() {
-    return fetch(`${ServerUrls.api}/logout`)
+    return fetch(`http://localhost:3001/api/logout`)
         .then(resposne => {
             sessionStorage.removeItem('user');
         });

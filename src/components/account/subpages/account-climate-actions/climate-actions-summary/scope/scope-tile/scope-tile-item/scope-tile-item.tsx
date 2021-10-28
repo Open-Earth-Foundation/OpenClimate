@@ -2,7 +2,9 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import { ClimateActionScopes } from '../../../../../../../../api/models/DTO/ClimateAction/climate-action-scopes';
 import { ClimateActionTypes } from '../../../../../../../../api/models/DTO/ClimateAction/climate-action-types';
 import { ClimateActionVerified } from '../../../../../../../../api/models/DTO/ClimateAction/climate-action-verified';
-import IClimateAction from '../../../../../../../../api/models/DTO/ClimateAction/IClimateAction';
+import IClimateAction from '../../../../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
+import IEmissions from '../../../../../../../../api/models/DTO/ClimateAction/IClimateActions/IEmissions';
+import IMitigations from '../../../../../../../../api/models/DTO/ClimateAction/IClimateActions/IMitigations';
 import { ClimateActionHelper } from '../../../../../../../../shared/helpers/climate-action.helper';
 import VerifiedIcon from '../../../../../../img/check.png';
 import UnverifiedIcon from '../../../../../../img/unverified.svg';
@@ -10,33 +12,25 @@ import './scope-tile-item.scss';
 
 interface IProps  {
     climateAction: IClimateAction,
-    type?: ClimateActionTypes,
-    scope: ClimateActionScopes,
     fontSize?: number,
     titleAmount? : string
 }
 
 const ScopeTileItem: FunctionComponent<IProps> = (props) => {
 
-    const { climateAction, scope, type, fontSize, titleAmount } = props;
+    const { climateAction, fontSize, titleAmount } = props;
 
     const [amount, setAmount] = useState(0);
     const [verified, setVerified] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         if(climateAction) {
-            //const prop = ClimateActionHelper.GetPropByScope(scope);
-            //const a = (climateAction as any)[prop]
 
-            //todo
-            let amount = 0;
-            if(type == ClimateActionTypes.Emissions)
-                amount = climateAction.facility_emissions_co2e ?? 0;
-            else if (type == ClimateActionTypes.Mitigations)
-                amount = climateAction.facility_mitigations_co2e ?? 0;
+            const cType = ClimateActionTypes[climateAction.climate_action_type as keyof typeof ClimateActionTypes];
+            const amount = cType === ClimateActionTypes.Emissions ? 
+                                    (climateAction as IEmissions).facility_emissions_co2e :
+                                    (climateAction as IMitigations).facility_mitigations_co2e;
 
-
-            //const amount = climateAction.facility_emissions_co2e ? climateAction.facility_emissions_co2e : 0;
             if(amount)
                 setAmount(amount);
 

@@ -1,41 +1,41 @@
-import React, { FunctionComponent, useState } from 'react'
-import Dropdown from '../../../form-elements/dropdown/dropdown';
-import Button from '../../../form-elements/button/button';
-import { DropdownOption } from '../../../../interfaces/dropdown/dropdown-option';
-import ISite from '../../../../../api/models/DTO/Site/ISite';
-import { ClimateActionScopes } from '../../../../../api/models/DTO/ClimateAction/climate-action-scopes';
-import { ClimateActionTypes } from '../../../../../api/models/DTO/ClimateAction/climate-action-types';
-import InputText from '../../../form-elements/input-text/input.text';
-import { ClimateActionVerified } from '../../../../../api/models/DTO/ClimateAction/climate-action-verified';
-import IMitigations from '../../../../../api/models/DTO/ClimateAction/IClimateActions/IMitigations';
-import IClimateAction from '../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
-import FormDatePicker from '../../../form-elements/datepicker/datepicker';
-
+import { FunctionComponent, useState } from 'react'
+import { DropdownOption } from '../../../../../interfaces/dropdown/dropdown-option';
+import { ClimateActionScopes } from '../../../../../../api/models/DTO/ClimateAction/climate-action-scopes';
+import { ClimateActionTypes } from '../../../../../../api/models/DTO/ClimateAction/climate-action-types';
+import { ClimateActionVerified } from '../../../../../../api/models/DTO/ClimateAction/climate-action-verified';
+import Dropdown from '../../../../form-elements/dropdown/dropdown';
+import Button from '../../../../form-elements/button/button';
+import ISite from '../../../../../../api/models/DTO/Site/ISite';
+import FormDatePicker from '../../../../form-elements/datepicker/datepicker';
+import InputText from '../../../../form-elements/input-text/input.text';
+import IEmissionsScope2 from '../../../../../../api/models/DTO/ClimateAction/IClimateActions/IEmissions.scope2';
+import IClimateAction from '../../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
+import IEmissionsScope3 from '../../../../../../api/models/DTO/ClimateAction/IClimateActions/IEmissions.scope3';
 
 interface Props {
     scopeOptions: Array<DropdownOption>,
     typeOptions: Array<DropdownOption>,
     sites: Array<ISite>,
-    defaultScope: ClimateActionScopes,
+    saveClimateAction: (action?: IClimateAction) => void,
     typeChangedHandler: (name: string, value: string) => void,
-    scopeChangedHandler: (value: string) => void
-    onModalHide: () => void,
-    saveClimateAction: (aciton: IClimateAction) => void
+    scopeChangedHandler: (value: string) => void,
+    onModalHide: () => void
 }
 
-const MitigationsForm: FunctionComponent<Props> = (props) => {
+const EmissionsScope3Form: FunctionComponent<Props> = (props) => {
 
-    const { scopeOptions, typeOptions, sites, defaultScope, 
-        typeChangedHandler, scopeChangedHandler,  onModalHide, saveClimateAction } = props;
+    const { scopeOptions, typeOptions, sites,   
+        saveClimateAction, scopeChangedHandler, typeChangedHandler, onModalHide } = props;
 
-    const [climateActionMitigations, setClimateActionMitigations] = useState<IMitigations>({
+
+    const [climateActionScope3, setClimateActionScope3] = useState<IEmissionsScope3>({
         credential_category: `Climate Action`,
-        climate_action_type: ClimateActionTypes[ClimateActionTypes.Mitigations],
-        climate_action_scope: ClimateActionScopes[defaultScope],
+        climate_action_type: ClimateActionTypes[ClimateActionTypes.Emissions],
+        climate_action_scope: ClimateActionScopes[ClimateActionScopes.Scope3]
     });
 
     const formChangeHandler = (name: string, value: string) => {
-        setClimateActionMitigations(prevState => ({
+        setClimateActionScope3(prevState => ({
             ...prevState,
             [name]: value
         }));
@@ -44,8 +44,8 @@ const MitigationsForm: FunctionComponent<Props> = (props) => {
     const submitHandler = (e: any) => {
         e.preventDefault();
         
-        if(climateActionMitigations)
-            saveClimateAction(climateActionMitigations);
+        if(climateActionScope3)
+            saveClimateAction(climateActionScope3)
     }
 
     return (
@@ -57,20 +57,21 @@ const MitigationsForm: FunctionComponent<Props> = (props) => {
                             options={typeOptions}
                             title=""
                             emptyPlaceholder="Credential Type"
-                            selectedValue={ClimateActionTypes[ClimateActionTypes.Mitigations]}
+                            selectedValue={ClimateActionTypes[ClimateActionTypes.Emissions]}
                             onSelect={(option: DropdownOption) => typeChangedHandler("climate_action_type", option.value)}
                     /> 
-                </div>
+                </div>  
                 <div className="modal__row modal__row_content">
                     <Dropdown
                             withSearch={false}
                             options={scopeOptions}
                             title=""
                             emptyPlaceholder="Climate Action Scope"
-                            selectedValue={defaultScope!== undefined ? ClimateActionScopes[defaultScope] : null}
+                            selectedValue={ClimateActionScopes[ClimateActionScopes.Scope3]}
                             onSelect={(option: DropdownOption) => scopeChangedHandler(option.value)}
+
                     /> 
-                </div>   
+                </div> 
                 <div className="modal__row modal__row_content">
                     <Dropdown
                             withSearch={false}
@@ -93,13 +94,14 @@ const MitigationsForm: FunctionComponent<Props> = (props) => {
                     />
                 </div>  
                 <div className="modal__row modal__row_content">
-                        <InputText
-                            type="text"
-                            placeholder="Facility CO2e mitigations" 
-                            onChange={(value: string) => formChangeHandler("facility_mitigations_co2e", value)}
+                    <InputText
+                        type="text"
+                        placeholder="Facility CO2e emissions" 
+                        onChange={(value: string) => formChangeHandler("facility_emissions_co2e", value)}
 
-                        />
-                </div> 
+                    />
+                </div>
+
                 <div className="modal__row modal__row_content">
                     <InputText
                         type="text"
@@ -151,4 +153,4 @@ const MitigationsForm: FunctionComponent<Props> = (props) => {
 }
 
 
-export default MitigationsForm;
+export default EmissionsScope3Form;

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import IClimateAction from '../../../../../api/models/DTO/ClimateAction/IClimateAction';
+import IClimateAction from '../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import { CommonHelper } from '../../../../../shared/helpers/common.helper';
 import './climate-actions-grid.scss';
 import EmissionsCard from './emissions-card/emissions-card';

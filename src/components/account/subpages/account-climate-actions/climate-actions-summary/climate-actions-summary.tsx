@@ -1,15 +1,15 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
-import ScopeHeader from './scope/scope-header/scopre-header';
-import './climate-actions-summary.scss';
-import ScopeTile from './scope/scope-tile/scope-tile';
-import ScopeTileCentered from './scope/scope-tile-centered/scope-tile-centered';
+import { FunctionComponent, useEffect, useState } from 'react'
 import { ScopeType } from '../../../../../api/models/shared/emission/scope-filters';
 import { EmissionIcon } from '../../../../../api/models/shared/emission/emission-icon';
-import IClimateAction from '../../../../../api/models/DTO/ClimateAction/IClimateAction';
 import { ClimateActionHelper } from '../../../../../shared/helpers/climate-action.helper';
 import { ClimateActionTypes } from '../../../../../api/models/DTO/ClimateAction/climate-action-types';
 import { ClimateActionScopes } from '../../../../../api/models/DTO/ClimateAction/climate-action-scopes';
+import ScopeHeader from './scope/scope-header/scopre-header';
+import ScopeTile from './scope/scope-tile/scope-tile';
+import ScopeTileCentered from './scope/scope-tile-centered/scope-tile-centered';
 import ClimateActionTile from '../../../../../api/models/DTO/ClimateAction/IClimateActionTile';
+import IClimateAction from '../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
+import './climate-actions-summary.scss';
 
 
 interface IProps  {

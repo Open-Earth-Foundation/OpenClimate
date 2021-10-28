@@ -1,10 +1,13 @@
 import IAggregatedEmission from "../../api/models/DTO/AggregatedEmission/IAggregatedEmission";
 import { ClimateActionScopes } from "../../api/models/DTO/ClimateAction/climate-action-scopes";
 import { ClimateActionTypes } from "../../api/models/DTO/ClimateAction/climate-action-types";
-import IClimateAction from "../../api/models/DTO/ClimateAction/IClimateAction";
+import IClimateAction from "../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction";
+import IEmissions from "../../api/models/DTO/ClimateAction/IClimateActions/IEmissions";
+import IMitigations from "../../api/models/DTO/ClimateAction/IClimateActions/IMitigations";
 import { IUser } from "../../api/models/User/IUser";
 
 const CalculateAggregatedEmission = (cUser: IUser | null, climateActions: Array<IClimateAction>, newClimateAction: IClimateAction ) => {
+
     const aggEmission: IAggregatedEmission = {
         credential_category: 'Climate Action',
         credential_type: 'Aggregated',
@@ -41,7 +44,7 @@ const CalculateAggregatedEmission = (cUser: IUser | null, climateActions: Array<
     let scope1Ids: Array<string> = [], scope2Ids: Array<string> = [], scope3Ids: Array<string> = [];
     let grossTotal = 0, sinksTotal = 0;
 
-    actionsByFacility.map(a => {
+    actionsByFacility.forEach(a => {
         switch(a.climate_action_scope?.toString())
         {
             case ClimateActionScopes[ClimateActionScopes.Scope1]:
@@ -56,8 +59,8 @@ const CalculateAggregatedEmission = (cUser: IUser | null, climateActions: Array<
         }
     });
 
-    emissionsByFacility.map(e => grossTotal += e.facility_emissions_co2e ? +e.facility_emissions_co2e : 0);
-    mitigationsByFacility.map(e => sinksTotal += e.facility_mitigations_co2e ? +e.facility_mitigations_co2e : 0);
+    emissionsByFacility.map(e => grossTotal += Number((e as IEmissions)?.facility_emissions_co2e ?? 0));
+    mitigationsByFacility.map(e => sinksTotal += Number((e as IMitigations)?.facility_mitigations_co2e ?? 0));
 
     aggEmission.facility_ghg_total_net_co2e = grossTotal - sinksTotal;
     aggEmission.facility_ghg_total_gross_co2e = grossTotal;
@@ -82,7 +85,7 @@ const CalculateAggregatedEmission = (cUser: IUser | null, climateActions: Array<
 }
 
 const GetSummaryAggregatedEmissions = (aggregatedEmissions: Array<IAggregatedEmission>) => {
-    
+
     const gross = aggregatedEmissions.reduce((a: number, n: IAggregatedEmission) => {
         return a += n.facility_ghg_total_gross_co2e ? Number(n.facility_ghg_total_gross_co2e) : 0;
     }, 0);

@@ -18,8 +18,8 @@ import * as userSelectors from '../../store/user/user.selectors';
 import * as accountSelectors from '../../store/account/account.selectors';
 import * as accountActions from '../../store/account/account.actions';
 import ISite from '../../api/models/DTO/Site/ISite';
-import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateAction';
 import IAggregatedEmission from '../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
+import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 
 
 interface IStateProps  {

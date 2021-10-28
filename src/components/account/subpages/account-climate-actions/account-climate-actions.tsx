@@ -2,8 +2,8 @@ import React, { FunctionComponent, useState } from 'react'
 import Switcher from '../../../../shared/components/form-elements/switcher/switcher';
 import ClimateActionsGrid from './climate-actions-grid/climate-actions-grid';
 import ClimateActionsSummary from './climate-actions-summary/climate-actions-summary';
+import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import './account-climate-actions.scss';
-import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateAction';
 
 interface IProps  {
     climateActions: Array<IClimateAction>,

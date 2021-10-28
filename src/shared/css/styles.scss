@@ -143,6 +143,10 @@ button {
       }
 }
 
+.field-error {
+    border: 1px solid var(--red-color);
+}
+
 /*widgets*/
 .widget {
     border: 1px solid var(--grey1-color);
@@ -308,3 +312,4 @@ button {
 .hidden {
     display: none;
 }
+

@@ -11,6 +11,7 @@ import ITransfer from '../../../../api/models/DTO/Transfer/ITransfer';
 import ISite from '../../../../api/models/DTO/Site/ISite';
 import { CountryCodesHelper } from '../../../helpers/country-codes.helper';
 import { FilterTypes } from '../../../../api/models/review/dashboard/filterTypes';
+import { useForm } from 'react-hook-form';
 
 interface Props {
     user: IUser | null,
@@ -26,6 +27,18 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
 
     const [countryOptions, setCountryOptions] = useState<Array<DropdownOption>>([]);
     const [subnationalOptions, setSubnationalOptions] = useState<Array<DropdownOption>>([]);
+    const [agreed, setAgreed] = useState(false);
+
+    const [errors, setErrors] = useState<Array<any>>([
+        "facility_name",
+        "transfer_date",
+        "transfer_goods",
+        "transfer_quantity",
+        "transfer_quantity_unit",
+        "transfer_carbon_associated",
+        "transfer_receiver_country",
+        "transfer_receiver_organization"
+    ]);
 
     const [transferData, setTransferData] = useState<ITransfer>({
         credential_category: "Transfers",
@@ -33,7 +46,15 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
         credential_issuer: "OpenClimate"
     });
 
-    const formChangeHandler = (name: string, value: string) => {
+    const formChangeHandler = (name: string, value: string, err?: boolean) => {
+
+        if(err && !errors.includes(name))
+            setErrors([...errors, name]);
+        else {
+            const updErrors = errors.filter(e => e !== name);
+            setErrors(updErrors);
+        }
+
         setTransferData(prevState => ({
             ...prevState,
             [name]: value
@@ -84,50 +105,62 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
         setSubnationalOptions(suboptions);
     }
 
+    const countryDeselectHandler = (name: string, err?: boolean) => {
+        formChangeHandler(name, '', err);
+        setSubnationalOptions([]);
+    }
+
     return (
         <form action="/" className="transfer-form" onSubmit={submitHandler}>
              <div className="modal__content modal__content-btm-mrg">
                 <div className="modal__row modal__row_content">
                     <Dropdown
-                            withSearch={false}
-                            options={sites.map(s=> {return {name: s.facility_name, value: s.facility_name} as DropdownOption})}
-                            title=""
-                            emptyPlaceholder="Site"
-                            onSelect={(option: DropdownOption) => formChangeHandler("facility_name", option.value)}
+                        withSearch={false}
+                        options={sites.map(s=> {return {name: s.facility_name, value: s.facility_name} as DropdownOption})}
+                        title=""
+                        emptyPlaceholder="* Facility name"
+                        onSelect={(option: DropdownOption) => formChangeHandler("facility_name", option.value)}
+                        onDeSelect={(err?: boolean) => formChangeHandler("facility_name", '', err)}
+                        required
                     /> 
                 </div> 
                 <div className="modal__row modal__row_content">
                     <FormDatePicker 
-                      placeholder="Date"
-                      onChange={(dateStr: string) => formChangeHandler("transfer_date", dateStr)}
+                      placeholder="* Date"
+                      onChange={(dateStr: string, err?: boolean) => formChangeHandler("transfer_date", dateStr, err)}
+                      required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
                     <InputText 
                         type="text"
-                        placeholder="Type" 
-                        onChange={(value: string) => formChangeHandler("transfer_goods", value)}
+                        placeholder="* Type" 
+                        onChange={(value: string, err?: boolean) => formChangeHandler("transfer_goods", value, err)}
+                        required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
                     <InputText 
                         type="text"
-                        placeholder="Quantity" 
-                        onChange={(value: string) => formChangeHandler("transfer_quantity", value)}
+                        placeholder="* Quantity" 
+                        onChange={(value: string, err?: boolean) => formChangeHandler("transfer_quantity", value, err)}
+                        required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
                     <InputText 
                         type="text"
-                        placeholder="Unit" 
-                        onChange={(value: string) => formChangeHandler("transfer_quantity_unit", value)}
+                        placeholder="* Unit" 
+                        onChange={(value: string, err?: boolean) => formChangeHandler("transfer_quantity_unit", value, err)}
+                        required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
                     <InputText 
                         type="text"
-                        placeholder="Carbon associated (tn CO2eq)" 
-                        onChange={(value: string) => formChangeHandler("transfer_carbon_associated", value)}
+                        placeholder="* Carbon associated (tn CO2eq)" 
+                        onChange={(value: string, err?: boolean) => formChangeHandler("transfer_carbon_associated", value, err)}
+                        required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
@@ -147,8 +180,9 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
                 <div className="modal__row modal__row_content">
                     <InputText 
                         type="text"
-                        placeholder="Reciever" 
-                        onChange={(value: string) => formChangeHandler("transfer_receiver_organization", value)}
+                        placeholder="* Receiver organization" 
+                        onChange={(value: string, err?: boolean) => formChangeHandler("transfer_receiver_organization", value, err)}
+                        required
                     />
                     
                     <a href="#" className="transfer-form__link modal__link modal__link_blue modal__form-link">
@@ -160,8 +194,10 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
                         withSearch={true}
                         options={countryOptions}
                         title=""
-                        emptyPlaceholder="Country"
+                        emptyPlaceholder="* Receiver Country"
                         onSelect={countryChangeHandler}
+                        onDeSelect={(err?: boolean) => countryDeselectHandler("transfer_receiver_country", err)}
+                        required
                     /> 
                 </div>
                 <div className="modal__row modal__row_content">
@@ -169,12 +205,12 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
                          withSearch={false}
                          options={subnationalOptions}
                          title=""
-                         emptyPlaceholder="Subnational"
+                         emptyPlaceholder="Receiver Jurisdiction"
                          onSelect={(option:DropdownOption) => {formChangeHandler("transfer_receiver_jurisdiction", option.value)}}
                      />
                  </div>
                 <div className="transfer-form__sign-as modal__row modal__row_content">
-                    <input type="checkbox" className="transfer-form__checkbox checkbox-primary" />
+                    <input type="checkbox" className="transfer-form__checkbox checkbox-primary" onChange={() => setAgreed(!agreed)} />
                     Sign as 
                     <a href="#"> {user?.email} </a>
                     in representation of 
@@ -186,6 +222,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
                 <Button color="primary"
                         text="Submit Transfer"
                         type="submit"
+                        disabled={errors.length > 0 || !agreed}
                         />
             </div>
             <div className="modal__row modal__row_btn">

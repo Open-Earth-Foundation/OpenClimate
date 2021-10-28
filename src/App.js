@@ -1142,6 +1142,7 @@ const App: FunctionComponent<Props> = (props) => {
                   }}
                 />
                 <Route
+                  exact
                   path="/admin/users"
                   render={({ match, history }) => {
                     return (

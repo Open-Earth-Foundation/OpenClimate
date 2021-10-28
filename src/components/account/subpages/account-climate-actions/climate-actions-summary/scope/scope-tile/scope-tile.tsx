@@ -1,12 +1,12 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useStore } from 'react-redux';
 import { ClimateActionScopes } from '../../../../../../../api/models/DTO/ClimateAction/climate-action-scopes';
-import IClimateAction from '../../../../../../../api/models/DTO/ClimateAction/IClimateAction';
 import { ClimateActionHelper } from '../../../../../../../shared/helpers/climate-action.helper';
 import ScopeTileItem from './scope-tile-item/scope-tile-item';
 import IClimateActionTile from '../../../../../../../api/models/DTO/ClimateAction/IClimateActionTile';
 import { ClimateActionTypes } from '../../../../../../../api/models/DTO/ClimateAction/climate-action-types';
 import './scope-tile.scss';
+import IClimateAction from '../../../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 
 interface IProps  {
     climateActionTile?: IClimateActionTile,
@@ -31,6 +31,10 @@ const ScopeTile: FunctionComponent<IProps> = (props) => {
     let hiddenTilesCount = 0;
     if(climateActionTile?.climateActions && climateActionTile?.climateActions.length > 2)
         hiddenTilesCount = climateActionTile?.climateActions.length - 2;
+
+    useEffect(() => {
+
+    },);
 
     return (
         <div className={`scope-tile ${centeredClass}`}>
@@ -59,8 +63,6 @@ const ScopeTile: FunctionComponent<IProps> = (props) => {
                                     <ScopeTileItem
                                         key={`${c?.facility_name}_${index}`}
                                         climateAction={c}
-                                        scope={scope}
-                                        type={type}
                                      />
                                 )
                             })

@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 import IAggregatedEmission from '../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
-import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateAction';
+import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import ISite from '../../api/models/DTO/Site/ISite';
 import ITransfer from '../../api/models/DTO/Transfer/ITransfer';
 import { aggregatedEmissionService } from '../../shared/services/aggregated-emission.service';

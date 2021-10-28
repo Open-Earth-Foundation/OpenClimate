@@ -1,28 +1,40 @@
-import React, { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 import DatePicker from "react-datepicker";
 
 interface Props {
     placeholder: string,
-    onChange?: (value:string) => void,
+    required?: boolean,
+    onChange: (value:string, error?: boolean) => void
 }
 
 const FormDatePicker: FunctionComponent<Props> = (props) => {
 
-    const { placeholder, onChange } = props;
+    const { placeholder, required, onChange } = props;
 
     const [startDate, setStartDate] = useState<Date>();
 
-    const changeHandler = (date: Date) => {
-        setStartDate(date);
+    const [error, setError] = useState<boolean>(false);
 
-        if(onChange)
-            onChange(date.toString());
+    const changeHandler = (date: Date) => {
+
+        const dateValue = date ?? '';
+
+        setStartDate(dateValue);
+
+        if(required) {
+            const err = !dateValue;
+            setError(err);
+
+            onChange(dateValue.toString(), err);
+        }
+        else
+            onChange(dateValue.toString());
     }
 
     return (
         <div className="datepicker">
             <DatePicker
-                className="input-text__element"
+                className={`${error ? 'field-error' : ''} input-text__element`} 
                 placeholderText={placeholder}
                 selected={startDate} 
                 onChange={changeHandler} 

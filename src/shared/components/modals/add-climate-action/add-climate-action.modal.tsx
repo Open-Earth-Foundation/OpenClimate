@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import { climateActionService } from '../../../services/climate-action';
 import { toast } from 'react-toastify';
 import { DropdownOption } from '../../../interfaces/dropdown/dropdown-option';
-import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateAction';
+import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import { ClimateActionTypes } from '../../../../api/models/DTO/ClimateAction/climate-action-types';
 import { ClimateActionScopes } from '../../../../api/models/DTO/ClimateAction/climate-action-scopes';
 import ISite from '../../../../api/models/DTO/Site/ISite';
@@ -29,15 +29,13 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
     
     const { user, climateActions, sites, defaultScope, defaultType, 
         addClimateAction, onModalHide, addAggregatedEmission } = props;
-
-    const [climateAction, setClimateAction] = useState<IClimateAction>({
-        credential_category: `Climate Action`,
-    });
     
     const [climateActionType, setClimateActionType] = useState<ClimateActionTypes>();
+    const [climateActionScope, setClimateActionScope] = useState<ClimateActionScopes>(ClimateActionScopes.Scope1);
+
     const [typeOptions, setTypeOptions] = useState<DropdownOption[]>([]);
     const [scopeOptions, setScopeOptions] = useState<DropdownOption[]>([]);
-
+    
     useEffect(()=>{
 
         setTypeOptions([
@@ -50,23 +48,20 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
             {name: ClimateActionScopes[ClimateActionScopes.Scope2], value: ClimateActionScopes[ClimateActionScopes.Scope2]},
             {name: ClimateActionScopes[ClimateActionScopes.Scope3], value: ClimateActionScopes[ClimateActionScopes.Scope3]},
         ]);
-
-        if(defaultType !== undefined)
-            formChangeHandler("climate_action_type" , ClimateActionTypes[defaultType]);
-        else
-            formChangeHandler("climate_action_type" , ClimateActionTypes[ClimateActionTypes.Emissions]);
-
-        if(defaultScope !== undefined) 
-            formChangeHandler("climate_action_scope" , ClimateActionScopes[defaultScope]);
-
-
-        if(defaultType)
-            setClimateActionType(defaultType);
     },[]);
 
-    const submitHandler = (e: any) => {
+    useEffect(() => {
 
-        e.preventDefault();
+        if(defaultType !== undefined)
+            setClimateActionType(defaultType);
+        if(defaultScope !== undefined)
+            setClimateActionScope(defaultScope);
+
+    }, [defaultScope, defaultType]);
+
+    const saveClimateAction = (climateAction?: IClimateAction) => {      
+        if(!climateAction)
+            return;
 
         climateAction.credential_issue_date = Date.now();
         climateAction.organization_name = user?.company?.name;
@@ -97,23 +92,15 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
         return;
     }
 
-    const formChangeHandler = (name: string, value: string) => {
-        setClimateAction(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    }
-
     const typeChangedHandler = (name: string, type: string) => 
     {
-        setClimateAction({
-            credential_category: `Climate Action`
-        });
-
         const key = type as keyof typeof ClimateActionTypes;
         setClimateActionType(ClimateActionTypes[key]);
+    }
 
-        formChangeHandler(name, type);
+    const scopeChangedHandler = (scope: string) => {
+        const key = scope as keyof typeof ClimateActionScopes;
+        setClimateActionScope(ClimateActionScopes[key]);
     }
 
     return (
@@ -121,23 +108,23 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
         climateActionType === ClimateActionTypes.Mitigations ? 
         <MitigationsForm 
             sites={sites}
-            defaultScope={defaultScope}
+            defaultScope={climateActionScope}
             onModalHide={onModalHide}
-            formChangeHandler={formChangeHandler}
-            scopeOptions={scopeOptions}
-            submitHandler={submitHandler}
+            saveClimateAction={saveClimateAction}
             typeChangedHandler={typeChangedHandler}
+            scopeChangedHandler={scopeChangedHandler}
+            scopeOptions={scopeOptions}
             typeOptions={typeOptions}
         />
         : 
         <EmissionsForm 
             sites={sites}
-            defaultScope={defaultScope}
+            defaultScope={climateActionScope}
             onModalHide={onModalHide}
-            formChangeHandler={formChangeHandler}
-            scopeOptions={scopeOptions}
-            submitHandler={submitHandler}
+            saveClimateAction={saveClimateAction}
             typeChangedHandler={typeChangedHandler}
+            scopeChangedHandler={scopeChangedHandler}
+            scopeOptions={scopeOptions}
             typeOptions={typeOptions}
         />
     )

@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { ClimateActionScopes } from '../../../../api/models/DTO/ClimateAction/climate-action-scopes';
 import { ClimateActionTypes } from '../../../../api/models/DTO/ClimateAction/climate-action-types';
-import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateAction';
+import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import SiteFilter from '../../../../shared/components/widgets/sites-filters/site-filter/site-filter';
 import ScopeTileItem from '../account-climate-actions/climate-actions-summary/scope/scope-tile/scope-tile-item/scope-tile-item';
 import './emission-filters.scss';
@@ -127,14 +127,12 @@ const EmissionFilters: FunctionComponent<IProps> = (props) => {
                         {
                             displayItems.map((di: IClimateAction, index: number) => {
 
-                                const scope = di.climate_action_scope ? Number(ClimateActionScopes[di.climate_action_scope])  : ClimateActionScopes.Scope1;
+                                const scope = ClimateActionScopes[di.climate_action_scope as keyof typeof ClimateActionScopes];
 
                                 return (
                                     <ScopeTileItem 
                                         key={`${di.facility_name}_${index}`}
                                         climateAction={di}
-                                        scope={scope}
-                                        type={type}
                                     />
                                 )
                             })

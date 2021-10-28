@@ -23,12 +23,6 @@ const SiteCollapsible: FunctionComponent<Props> = (props) => {
     const iconAlt = expanded ? "collapse" : "expand";
     const bottomBorderClassName = addBottomBorder? "bottom-border" : "";
 
-    useEffect(()=>{
-        return () => {
-            console.log('unmount');
-        }
-    });
-
     return (
         <div className="site-collapsible">
             <div className="site-collapsible__location">
@@ -48,7 +42,7 @@ const SiteCollapsible: FunctionComponent<Props> = (props) => {
                                 return (
                                     <SiteElement 
                                         isVisible = {expanded}
-                                        key={`${site.facility_name} + ${index}`}
+                                        key={`${site.id}_${index}`}
                                         name={site.facility_name ? site.facility_name : ''} 
                                         location={location} 
                                         onClick={onClickItem}

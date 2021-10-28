@@ -27,37 +27,55 @@ const SitesFiltersWidget: FunctionComponent<Props> = (props) => {
     const [sitesSelectedManually, setSitesSelectedManually] = useState<Array<ISite>>([]);
 
     useEffect(() => {
-        
         const grSitesByCountry = getGroupedSites(displaySites, "facility_country");
-
+        
         const tiles: Array<any> = [];
-            Object.keys(grSitesByCountry).map((country: string) => {
-                tiles.push({
-                    country: country,
-                    opened: true,
-                    sites: grSitesByCountry[country],
-                    visible: true
-                });
+
+        const selectedCntrKey = countryFilters.find((cf: any) => cf.selected)?.key;
+        const selectedTypesKey = typeFilters.find((cf: any) => cf.selected)?.key;
+
+        Object.keys(grSitesByCountry).forEach((country: string) => {
+            const cSites: Array<ISite> = grSitesByCountry[country];
+            let key = '';
+            cSites.forEach(s => key += s.id);
+
+            tiles.push({
+                key: `${selectedCntrKey}_${selectedTypesKey}_${key}`,
+                country: country,
+                opened: true,
+                sites: cSites,
+                visible: true
             });
-
+        });
+        
         setCountryTiles(tiles);
-
+        
     }, [displaySites]);
-
+    
     useEffect(() => {
+
         if(sites)
         {
             setDisplaySites(sites);
 
             const grSites = getGroupedSites(sites, "facility_country");
 
+            let siteskey = '';
+            sites.forEach(s => siteskey += s.id);
+
             const cntrFilters = [
-                { name: `All countries`, elementsNumber: sites.length,sites: sites, selected: true }
+                { name: `All countries`, key: `countries_${siteskey}`, elementsNumber: sites.length,sites: sites, selected: true }
             ];
-            Object.keys(grSites).map((country: string) => {
+
+            Object.keys(grSites).forEach((country: string) => {
+                const cSites: Array<ISite> = grSites[country];
+                let key = '';
+                cSites.forEach(s => key += s.id);
+
                 cntrFilters.push({
+                    key: key,
                     name: country,
-                    sites: grSites[country],
+                    sites: cSites,
                     selected: false,
                     elementsNumber: grSites[country].length
                 });
@@ -66,15 +84,20 @@ const SitesFiltersWidget: FunctionComponent<Props> = (props) => {
             setCountryFilters(cntrFilters);
 
             const typeFilters = [
-                { name: `All types`, elementsNumber: sites.length, sites: sites, selected: true }
+                { name: `All types`, key: `filters_${siteskey}`, elementsNumber: sites.length, sites: sites, selected: true }
             ];
 
             const grSitesByType = getGroupedSites(sites, "facility_type");
 
-            Object.keys(grSitesByType).map((type: string) => {
+            Object.keys(grSitesByType).forEach((type: string) => {
+                const cSites: Array<ISite> = grSitesByType[type];
+                let key = '';
+                cSites.forEach(s => key += s.id);
+
                 typeFilters.push({
+                    key: key,
                     name: type,
-                    sites: grSitesByType[type],
+                    sites: cSites,
                     selected: false,
                     elementsNumber: grSitesByType[type].length
                 });
@@ -92,9 +115,9 @@ const SitesFiltersWidget: FunctionComponent<Props> = (props) => {
         let selectedSites:Array<ISite> = sites ? [...sites] : [];
 
         if(selectedCountryFilter.name !== "All countries")
-            selectedSites = sites ? sites.filter(s => s.facility_country == selectedCountryFilter.name) : [];
+            selectedSites = sites ? sites.filter(s => s.facility_country === selectedCountryFilter.name) : [];
         if(selectedTypeFilter.name !== "All types")
-            selectedSites = selectedSites.filter(s => s.facility_type == selectedTypeFilter.name);
+            selectedSites = selectedSites.filter(s => s.facility_type === selectedTypeFilter.name);
 
         return selectedSites;
     }
@@ -127,6 +150,7 @@ const SitesFiltersWidget: FunctionComponent<Props> = (props) => {
         
         const filteredSites = getFilteredSites();
 
+        setSitesSelectedManually([]);
         setDisplaySites(filteredSites);
         displaySitesChangedHandler(filteredSites);
 
@@ -180,7 +204,7 @@ const SitesFiltersWidget: FunctionComponent<Props> = (props) => {
                             countryFilters.map((countryFilter: any, index : number) => {
                                 
                                 return (<SiteFilter 
-                                    key={index} 
+                                    key={countryFilter.key} 
                                     name={countryFilter.name}
                                     elementsCount={countryFilter.elementsNumber}
                                     selected={countryFilter.selected}
@@ -195,7 +219,7 @@ const SitesFiltersWidget: FunctionComponent<Props> = (props) => {
                         typeFilters.map((typeFilter: any, index : number) => {
                             
                             return (<SiteFilter 
-                                key={index} 
+                                key={typeFilter.key} 
                                 name={typeFilter.name}
                                 elementsCount={typeFilter.elementsNumber}
                                 selected={typeFilter.selected}
@@ -213,7 +237,7 @@ const SitesFiltersWidget: FunctionComponent<Props> = (props) => {
                             countryTiles.filter((tile: any) => tile.visible)
                                         ?.map((tile: any, index: number) =>
                                 <SiteCollapsible 
-                                    key={`${Date.now()}_${index}`}
+                                    key={tile.key}
                                     country={tile.country} 
                                     sites={tile.sites} 
                                     addBottomBorder={true}

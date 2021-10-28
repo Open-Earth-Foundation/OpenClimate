@@ -1,4 +1,4 @@
-import IClimateAction from "../../api/models/DTO/ClimateAction/IClimateAction";
+import IClimateAction from "../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction";
 import { ServerUrls } from "../environments/server.environments";
 import { CommonHelper } from "../helpers/common.helper";
 

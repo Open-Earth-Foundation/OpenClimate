@@ -3,8 +3,8 @@ import { useState } from 'react';
 import ArrowUp from '../../../../img/arrow up.png';
 import ArrowRight from '../../../../img/arrow right.png';
 import EmissionsGridRow from './emissions-grid-row/emissions-grid-row';
+import IClimateAction from '../../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import './emissions-grid.scss';
-import IClimateAction from '../../../../../../api/models/DTO/ClimateAction/IClimateAction';
 
 interface IProps  {
     climateActions: Array<IClimateAction>

@@ -15,7 +15,6 @@ const SiteElement: FunctionComponent<Props> = (props) => {
     const [selected, setSelected] = useState(false);
 
     const onClickHandler = () => {
-
         const newState = !selected;
 
         if(onClick)

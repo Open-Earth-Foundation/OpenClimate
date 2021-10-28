@@ -1,6 +1,6 @@
 import { ClimateActionScopes } from "./climate-action-scopes";
 import { ClimateActionTypes } from "./climate-action-types";
-import IClimateAction from "./IClimateAction";
+import IClimateAction from "./IClimateActions/IClimateAction";
 
 export default interface ClimateActionTile {
     scope: ClimateActionScopes,
