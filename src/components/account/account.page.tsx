@@ -20,9 +20,11 @@ import * as accountActions from '../../store/account/account.actions';
 import ISite from '../../api/models/DTO/Site/ISite';
 import IAggregatedEmission from '../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
 import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
+import { IUser } from '../../api/models/User/IUser';
 
 
 interface IStateProps  {
+    user: IUser | null,
     pledges: Array<any>,
     transfers: Array<any>,
     sites: Array<ISite>,
@@ -37,11 +39,11 @@ interface IStateProps  {
 
 interface IDispatchProps {
     showModal: (type: string, parameters?: object) => void,
-    loadPledges: () => void,
-    loadTransfers: () => void,
-    loadSites: () => void,
-    loadClimateActions: () => void,
-    loadAggregatedEmissions: () => void,
+    loadPledges: (orgId: string) => void,
+    loadTransfers: (orgId: string) => void,
+    loadSites: (orgId: string) => void,
+    loadClimateActions: (orgId: string) => void,
+    loadAggregatedEmissions: (orgId: string) => void,
 }
 
 interface IProps extends IStateProps, IDispatchProps {
@@ -49,26 +51,31 @@ interface IProps extends IStateProps, IDispatchProps {
 
 const AccountPage: FunctionComponent<IProps> = (props) => {
 
-    const { pledges, transfers, sites, climateActions, pledgesLoaded, 
+    const { user, pledges, transfers, sites, climateActions, pledgesLoaded, 
         transfersLoaded, sitesLoaded, climateActionsLoaded, aggregatedEmissions, aggregatedEmissionsLoaded,
         showModal, loadPledges, loadTransfers, loadSites, loadClimateActions, loadAggregatedEmissions } = props;
 
     useEffect(() => {
-        if(!pledgesLoaded)
-            loadPledges();
 
-        if(!transfersLoaded)
-            loadTransfers();
+        if(user && user.company && user.company.id)
+        {
+            if(!pledgesLoaded)
+                loadPledges(user.company.id);
 
-        if(!sitesLoaded)
-            loadSites();
+            if(!transfersLoaded)
+                loadTransfers(user.company.id);
 
-        if(!climateActionsLoaded)
-            loadClimateActions();
+            if(!sitesLoaded)
+                loadSites(user.company.id);
 
-        if(!aggregatedEmissionsLoaded)
-            loadAggregatedEmissions();
-    }, []);
+            if(!climateActionsLoaded)
+                loadClimateActions(user.company.id);
+
+            if(!aggregatedEmissionsLoaded)
+                loadAggregatedEmissions(user.company.id);
+        }
+
+    }, [user]);
 
     const getClimateActionsBySite = (sites: Array<ISite>) => {
         const sitesStr = sites.map(s => s.facility_name);
@@ -143,20 +150,20 @@ const mapStateToProps = (state: RootState) => {
       showModal: (type:string, parameters?: object) => {
         dispatch(showModal(type, parameters))
       },
-      loadPledges: () => {
-        dispatch(accountActions.doLoadPledges())
+      loadPledges: (orgId: string) => {
+        dispatch(accountActions.doLoadPledges(orgId))
       },
-      loadTransfers: () => {
-        dispatch(accountActions.doLoadTransfers())
+      loadTransfers: (orgId: string) => {
+        dispatch(accountActions.doLoadTransfers(orgId))
       },
-      loadSites: () => {
-        dispatch(accountActions.doLoadSites())
+      loadSites: (orgId: string) => {
+        dispatch(accountActions.doLoadSites(orgId))
       },
-      loadClimateActions: () => {
-        dispatch(accountActions.doLoadClimateActions())
+      loadClimateActions: (orgId: string) => {
+        dispatch(accountActions.doLoadClimateActions(orgId))
       },
-      loadAggregatedEmissions: () => {
-        dispatch(accountActions.doLoadAggregatedEmissions())
+      loadAggregatedEmissions: (orgId: string) => {
+        dispatch(accountActions.doLoadAggregatedEmissions(orgId))
       }
     }
   }

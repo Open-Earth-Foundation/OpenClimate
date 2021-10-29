@@ -1,5 +1,8 @@
+import IOrganization from "../../api/models/DTO/Organization/IOrganization";
 import { ICompany } from "../../api/models/User/ICompany";
+import { ServerUrls } from "../environments/server.environments";
 import { IUser } from "../../api/models/User/IUser";
+import { organizationService } from "./organization.service";
 
 export const userService = {
     register,
@@ -10,7 +13,7 @@ export const userService = {
 
 function register(user: IUser)
 {
-    return fetch('http://localhost:3001/api/register', {
+    return fetch(`${ServerUrls.api}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user),
@@ -25,11 +28,11 @@ function login(email: string, password: string) {
         body: JSON.stringify({ email, password })
     };
 
-    return fetch(`http://localhost:3001/api/login`, requestOptions)
+    return fetch(`${ServerUrls.api}/login`, requestOptions)
         .then(handleResponse)
-        .then(user => {
+        .then(async user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            user.company = userService.getCompany();
+            user.company = await userService.getCompany("12345");
             
             sessionStorage.setItem('user', JSON.stringify(user));
             return user;
@@ -37,18 +40,28 @@ function login(email: string, password: string) {
 }
 
 function logout() {
-    return fetch(`http://localhost:3001/api/logout`)
+    return fetch(`${ServerUrls.api}/logout`)
         .then(resposne => {
             sessionStorage.removeItem('user');
         });
 }
 
-function getCompany() {
-    const companyData: ICompany = {
-        name: "Test company"
+async function getCompany(credentialId: string) {
+    
+    let org = await organizationService.getByCredentialId(credentialId);
+    if(Object.keys(org).length === 0)
+    {
+        //fetch orgData?
+        const orgData: IOrganization = {
+            organization_credential_id: credentialId,
+            organization_name: "Test company"
+        }
+
+        await organizationService.saveOrganization(orgData);
+        org = orgData;
     }
 
-    return companyData;
+    return org;
 }
 
 function handleResponse(response: any) {

@@ -2,18 +2,18 @@ import IPledge from "../../api/models/DTO/Pledge/IPledge";
 import { ServerUrls } from "../environments/server.environments";
 import { CommonHelper } from "../helpers/common.helper";
 
-function savePledge(pledge: any)
+function savePledge(orgId: string, pledge: any)
 {
-    return fetch(`${ServerUrls.api}/pledge`, {
+    return fetch(`${ServerUrls.api}/${orgId}/pledge`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pledge),
     }).then(CommonHelper.HandleResponse);
 }
 
-function allPledges()
+function allPledges(orgId: string)
 {
-    return fetch(`${ServerUrls.api}/pledge/all`, {
+    return fetch(`${ServerUrls.api}/${orgId}/pledge/all`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((pledges: Array<IPledge>) => pledges);

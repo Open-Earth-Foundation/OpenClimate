@@ -23,6 +23,8 @@ interface Props {
 
 const AddTransferModal: FunctionComponent<Props> = (props) => {
 
+    console.log(props.loggedInUserState)
+
     const { user, sites, onModalHide, addTransfer } = props;
 
     const [countryOptions, setCountryOptions] = useState<Array<DropdownOption>>([]);
@@ -64,17 +66,17 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
     const submitHandler = (e: any) => {
         e.preventDefault();
         
+        if(!user || !user.company || !user.company.id)
+            return;
+
         const transfer = {
             ...transferData,
             credential_issue_date: Date.now()
         }
 
-        if(user)
-        {
-            transfer.organization_name = user.company?.name;
-            transfer.signature_name = `${user.name}`;
-            //todo
-        }
+        transfer.organization_name = user.company?.organization_name;
+        transfer.signature_name = `${user.name}`;
+        //todo
 
         const foundSite = sites.find(f => f.facility_name === transfer.facility_name);
         if (foundSite) {
@@ -87,7 +89,135 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
             transfer.facility_type = foundSite.facility_type;
         }
 
-        transferService.saveTransfer(transfer).then(transfer => {
+        const attributes = [
+            {
+                name: 'credential_category',
+                value: 'Transfers',
+            },
+            {
+                name: 'credential_type',
+                value: 'Transfer Report',
+            },
+            {
+                name: 'credential_name',
+                value: 'Transfers',
+            },
+            {
+                name: 'credential_schema_id',
+                value: 'WFZtS6jVBp23b4oDQo6JXP:2:Transfers:1.0',
+            },
+            {
+                name: 'credential_issuer',
+                value: 'OpenClimate',
+            },
+            {
+                name: 'credential_issue_date',
+                value: transfer.credential_issue_date,
+            },
+            {
+                name: 'organization_name',
+                value: transfer.organization_name,
+            },
+            {
+                name: 'organization_category',
+                value: '',
+            },
+            {
+                name: 'organization_type',
+                value: '',
+            },
+            {
+                name: 'organization_credential_id',
+                value: '',
+            },
+            {
+                name: 'facility_name',
+                value: transfer.facility_name,
+            },
+            {
+                name: 'facility_country',
+                value: transfer.facility_country,
+            },
+            {
+                name: 'facility_jurisdiction',
+                value: transfer.facility_jurisdiction,
+            },
+            {
+                name: 'facility_location',
+                value: transfer.facility_location,
+            },
+            {
+                name: 'facility_sector_ipcc_category',
+                value: transfer.facility_sector_ipcc_category,
+            },
+            {
+                name: 'facility_sector_ipcc_activity',
+                value: transfer.facility_sector_ipcc_activity,
+            },
+            {
+                name: 'facility_sector_naics',
+                value: transfer.facility_sector_naics,
+            },
+            {
+                name: 'transfer_date',
+                value: transfer.transfer_date,
+            },
+            {
+                name: 'transfer_goods',
+                value: transfer.transfer_goods,
+            },
+            {
+                name: 'transfer_quantity',
+                value: transfer.transfer_quantity,
+            },
+            {
+                name: 'transfer_quantity_unit',
+                value: transfer.transfer_quantity_unit,
+            },
+            {
+                name: 'transfer_carbon_intensity',
+                value: transfer.transfer_carbon_intensity,
+            },
+            {
+                name: 'transfer_carbon_intensity_credential_id',
+                value: transfer.transfer_carbon_intensity_credential_id,
+            },
+            {
+                name: 'transfer_carbon_associated',
+                value: transfer.transfer_carbon_associated,
+            },
+            {
+                name: 'transfer_receiver_organization',
+                value: transfer.transfer_receiver_organization,
+            },
+            {
+                name: 'transfer_receiver_country',
+                value: transfer.transfer_receiver_country,
+            },
+            {
+                name: 'transfer_receiver_jurisdiction',
+                value: transfer.transfer_receiver_jurisdiction,
+            },
+            {
+                name: 'signature_name',
+                value: transfer.signature_name,
+            }
+        ]
+        
+        let newCredential = {
+          connectionID: props.contactSelected.Connections[0].connection_id,
+          schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Transfers:1.0',
+          schemaVersion: '1.0',
+          schemaName: 'Transfers',
+          schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
+          comment: '',
+          attributes: attributes,
+        }
+        
+        props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+        
+
+        transferService.saveTransfer(user.company.id, transfer).then(transfer => {
             addTransfer(transfer);
             onModalHide();
             toast("Transfer successfully created");
@@ -214,7 +344,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
                     Sign as 
                     <a href="#"> {user?.email} </a>
                     in representation of 
-                    <a href="#"> {user?.company?.name}</a>
+                    <a href="#"> {user?.company?.organization_name}</a>
                 </div>
             </div>
 

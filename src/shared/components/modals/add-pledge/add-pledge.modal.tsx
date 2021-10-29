@@ -66,12 +66,19 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
         setTarget(option.value);
     }
 
-    const submitHandler = (data: any) => {
+    const submitHandler = (e: any) => {
+
+        e.preventDefault();
+        
+        if(!user || !user.company || !user.company.id)
+            return;
 
         pledge.credential_issue_date = Date.now();
         pledge.credential_issuer = "OpenClimate";
+        pledge.organization_name = user.company.organization_name;
+        pledge.signature_name = `${user.name}`;
 
-        pledgeService.savePledge(pledge).then(pledge => {
+        pledgeService.savePledge(user.company.id, pledge).then(pledge => {
             addPledge(pledge);
             onModalHide();
             toast("Pledge successfully created");
@@ -138,7 +145,7 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
                         Sign as 
                         <a href="#"> {user?.email} </a>
                         in representation of 
-                        <a href="#"> {user?.company?.name}</a>
+                        <a href="#"> {user?.company?.organization_name}</a>
                     </div>
                     : ""
                 }

@@ -2,18 +2,18 @@ import IAggregatedEmission from "../../api/models/DTO/AggregatedEmission/IAggreg
 import { ServerUrls } from "../environments/server.environments";
 import { CommonHelper } from "../helpers/common.helper";
 
-function updateAggregatedEmission(aggregatedEmission: IAggregatedEmission)
+function updateAggregatedEmission(orgId: string, aggregatedEmission: IAggregatedEmission)
 {
-    return fetch(`${ServerUrls.api}/aggregated-emission`, {
+    return fetch(`${ServerUrls.api}/${orgId}/aggregated-emission`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(aggregatedEmission),
     }).then(CommonHelper.HandleResponse);
 }
 
-function allAggregatedEmissions()
+function allAggregatedEmissions(orgId: string)
 {
-    return fetch(`${ServerUrls.api}/aggregated-emission/all`, {
+    return fetch(`${ServerUrls.api}/${orgId}/aggregated-emission/all`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((aggregated: Array<IAggregatedEmission>) => aggregated);

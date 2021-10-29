@@ -105,7 +105,8 @@ const Modal: FunctionComponent<IProps> = (props) => {
             break;
         case 'add-site-credential':
             title = "Add site credential"
-            component = <AddSiteCredentialModal 
+            component = <AddSiteCredentialModal
+                            user={user} 
                             addSite={addSite}
                             onModalHide={hideModal} 
                             submitButtonText="Submit Site Credential" />
@@ -114,7 +115,9 @@ const Modal: FunctionComponent<IProps> = (props) => {
             title = "Add transfer"
             component = <AddTransferModal 
                         onModalHide={hideModal} 
-                        addTransfer={addTransfer} 
+                        addTransfer={addTransfer}
+                        sendRequest={props.sendRequest}
+                        loggedInUserState={props.loggedInUserState}
                         sites={sites}
                         user={user} />
             break;

@@ -101,50 +101,50 @@ export const addAggregatedEmission = (aggregatedEmission: IAggregatedEmission) =
     }
 }
 
-export const doLoadPledges = () => {
+export const doLoadPledges = (orgId: string) => {
     return (dispatch: Dispatch) => {
 
-        pledgeService.allPledges().then(pledges => {
+        pledgeService.allPledges(orgId).then(pledges => {
             dispatch(loadPledges(pledges));
         });
 
     }
 }
  
-export const doLoadTransfers = () => {
+export const doLoadTransfers = (orgId: string) => {
     return (dispatch: Dispatch) => {
 
-        transferService.allTransfers().then(transfers => {
+        transferService.allTransfers(orgId).then(transfers => {
             dispatch(loadTransfers(transfers));
         });
 
     }
 }
 
-export const doLoadSites = () => {
+export const doLoadSites = (orgId: string) => {
     return (dispatch: Dispatch) => {
 
-        siteService.allSites().then(sites => {
+        siteService.allSites(orgId).then(sites => {
             dispatch(loadSites(sites));
         });
 
     }
 }
  
-export const doLoadClimateActions = () => {
+export const doLoadClimateActions = (orgId: string) => {
     return (dispatch: Dispatch) => {
 
-        climateActionService.allClimateAction().then(climateActions => {
+        climateActionService.allClimateAction(orgId).then(climateActions => {
             dispatch(loadClimateActions(climateActions));
         });
 
     }
 }
  
-export const doLoadAggregatedEmissions = () => {
+export const doLoadAggregatedEmissions = (orgId: string) => {
     return (dispatch: Dispatch) => {
 
-        aggregatedEmissionService.allAggregatedEmissions().then(aggregatedEmission => {
+        aggregatedEmissionService.allAggregatedEmissions(orgId).then(aggregatedEmission => {
             dispatch(loadAggregatedEmission(aggregatedEmission));
         });
 

@@ -65,7 +65,7 @@ function AppHeader(props) {
     }
   }, [logo])
 
-  const handleLogout = () => {
+  const handleUILogout = () => {
     // Log out
     Axios({
       method: 'POST',
@@ -89,7 +89,7 @@ function AppHeader(props) {
         <UserName onClick={handleUserProfile}>
           {props.loggedInUsername}
         </UserName>
-        <Logout onClick={handleLogout}>Log Out</Logout>
+        <Logout onClick={handleUILogout}>Log Out</Logout>
       </LogoutWrapper>
       <AppMenu match={props.match} userRole={props.userRole} />
     </Header>

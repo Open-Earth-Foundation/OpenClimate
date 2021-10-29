@@ -7,10 +7,12 @@ import { DropdownOption } from '../../../interfaces/dropdown/dropdown-option';
 import { FilterTypes } from '../../../../api/models/review/dashboard/filterTypes';
 import { siteService } from '../../../services/site.service';
 import { toast } from 'react-toastify';
-import ISite from '../../../../api/models/DTO/Site/ISite';
 import { SiteTypes } from '../../../../api/data/shared/site-types';
+import { IUser } from '../../../../api/models/User/IUser';
+import ISite from '../../../../api/models/DTO/Site/ISite';
 
 interface Props {
+    user: IUser | null,
     onModalHide: () => void,
     addSite: (site: ISite) => void,
     submitButtonText: string
@@ -18,11 +20,14 @@ interface Props {
 
 const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
 
-    const { submitButtonText, onModalHide, addSite } = props;
+    const { user, submitButtonText, onModalHide, addSite } = props;
 
     const [subnationalOptions, setSubnationalOptions] = useState<Array<DropdownOption>>([]);
 
-    const [site, setSite] = useState<ISite>({ credential_category: "Facility" });
+    const [site, setSite] = useState<ISite>({ 
+        credential_category: "Facility",
+        credential_type: "Facility Information"
+    });
 
     const countryOptions = CountryCodesHelper.GetContryOptions();
 
@@ -52,13 +57,18 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
 
         e.preventDefault();
         
+        if(!user || !user.company || !user.company.id)
+            return;
+
         setSite({
             ...site,
             credential_issue_date: Date.now(),
-            credential_issuer: "OpenClimate"
+            credential_issuer: "OpenClimate",
+            organization_name: user.company.organization_name,
+            signature_name: `${user.name}`
         });
 
-        siteService.saveSite(site).then(site => {
+        siteService.saveSite(user.company.id, site).then(site => {
             addSite(site);
             onModalHide();
             toast("Site successfully created");

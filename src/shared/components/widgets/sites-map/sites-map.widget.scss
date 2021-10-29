@@ -9,12 +9,14 @@
 .sites-map__sites {
     width: 282px;
     float: left;
+    height: 100%;
 
     .sites-filters {
         width: auto;
         border: none;
         margin-bottom: 0px;
         padding-bottom: 10px;
+        min-height: 90%;
         //max-height: 250px;
     }
 

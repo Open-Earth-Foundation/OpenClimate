@@ -60,12 +60,16 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
     }, [defaultScope, defaultType]);
 
     const saveClimateAction = (climateAction?: IClimateAction) => {      
+        
         if(!climateAction)
             return;
 
+        if(!user || !user.company || !user.company.id)
+            return;
+
         climateAction.credential_issue_date = Date.now();
-        climateAction.organization_name = user?.company?.name;
-        climateAction.signature_name = `${user?.firstName} ${user?.lastName}`;
+        climateAction.organization_name = user.company.organization_name;
+        climateAction.signature_name = `${user.firstName} ${user.lastName}`;
         //climateAction.credential_issuer = "OpenClimate";
 
         const foundSite=  sites.find(f => f.facility_name === climateAction.facility_name);
@@ -79,11 +83,13 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
             climateAction.facility_type = foundSite.facility_type;
         }
 
-        climateActionService.saveClimateAction(climateAction).then(ca => {
+        const userCompanyId = user.company.id;
+
+        climateActionService.saveClimateAction(userCompanyId, climateAction).then(ca => {
             addClimateAction(ca);
 
             const aggrEmission = AggregatedEmissionHelper.CalculateAggregatedEmission(user, climateActions, ca);
-            aggregatedEmissionService.updateAggregatedEmission(aggrEmission);
+            aggregatedEmissionService.updateAggregatedEmission(userCompanyId, aggrEmission);
             addAggregatedEmission(aggrEmission);
 
             onModalHide();

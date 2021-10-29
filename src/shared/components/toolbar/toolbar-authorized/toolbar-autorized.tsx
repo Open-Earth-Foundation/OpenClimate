@@ -1,8 +1,8 @@
-import React, { FunctionComponent, useState } from 'react'
+import { FunctionComponent } from 'react'
 import AvaIcon from '../../../img/toolbar/ava.png';
-import './toolbar-autorized.scss';
 import MenuDropdown from '../../form-elements/menu-dropdown/menu-dropdown';
 import { IUser } from '../../../../api/models/User/IUser';
+import './toolbar-autorized.scss';
 
 interface Props {
     user: IUser | null,
@@ -13,7 +13,7 @@ const ToolbarAutorized: FunctionComponent<Props> = (props) => {
 
     const { user, doLogout } = props;
 
-    const companyName = user?.company?.name;
+    const companyName = user?.company?.organization_name;
 
     return (
 

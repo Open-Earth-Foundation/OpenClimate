@@ -8,6 +8,9 @@ import { IUser } from "../../api/models/User/IUser";
 
 const CalculateAggregatedEmission = (cUser: IUser | null, climateActions: Array<IClimateAction>, newClimateAction: IClimateAction ) => {
 
+    if(!cUser || !cUser.company)
+        return {};
+
     const aggEmission: IAggregatedEmission = {
         credential_category: 'Climate Action',
         credential_type: 'Aggregated',
@@ -18,7 +21,7 @@ const CalculateAggregatedEmission = (cUser: IUser | null, climateActions: Array<
         credential_issue_date: new Date(),//?
         //credential_reporting_date_start:,
         //credential_reporting_date_end:
-        organization_name: cUser?.company?.name,
+        organization_name: cUser.company.organization_name,
         //organization_category,
         //organization_type,
         //organization_credential_id:4d385596-04fc-4dd8-b8ae-ddd1b79d6742,

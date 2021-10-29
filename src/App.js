@@ -1184,6 +1184,7 @@ const App: FunctionComponent<Props> = (props) => {
                           logo={image}
                           organizationName={organizationName}
                           match={match}
+                          handleLogout={handleLogout}
                         />
                         <Main>
                           <User
@@ -1207,6 +1208,7 @@ const App: FunctionComponent<Props> = (props) => {
                           logo={image}
                           organizationName={organizationName}
                           match={match}
+                          handleLogout={handleLogout}
                         />
                         <Main>
                           <Account
@@ -1255,13 +1257,13 @@ const App: FunctionComponent<Props> = (props) => {
                     )
                   }}
                 />
-                {/* <Route path="/" exact>
-                  <ReviewPage />
-                </Route> */}
                 {/* Redirect to root if no route match is found */}
                 <Redirect to={"/"}/>
               </Switch>
-                <Modal />
+                <Modal
+                  sendRequest={sendMessage}
+                  loggedInUserState={loggedInUserState}
+                />
                 <ToastContainer 
                   position="bottom-right"
                   autoClose={2000}

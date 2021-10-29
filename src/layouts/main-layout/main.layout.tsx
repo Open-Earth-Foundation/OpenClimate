@@ -47,7 +47,7 @@ const MainLayout: FunctionComponent<Props> = (props) => {
           {
           currentUser && ( 
           <Route path="/account">
-            <AccountPage />
+            <AccountPage user={currentUser}/>
           </Route>
           )}
           <Route path="/">
