@@ -56,9 +56,10 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
     const submitHandler = (e: any) => {
 
         e.preventDefault();
-        
+        console.log ("User before", user)
         if(!user || !user.company || !user.company.id)
             return;
+        console.log ("User after", user)
 
         setSite({
             ...site,

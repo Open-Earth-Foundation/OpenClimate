@@ -71,7 +71,7 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
         e.preventDefault();
         
         if(!user || !user.company || !user.company.id)
-            return;
+           return;
 
         pledge.credential_issue_date = Date.now();
         pledge.credential_issuer = "OpenClimate";

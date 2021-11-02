@@ -74,7 +74,7 @@ const Main = styled.main`
 `
 
 // Envision Interface
-interface Props  {
+interface Props {
   currentUser: IUser | null,
   loading: boolean,
   doLoginClick: (email: string, password: string) => void,
@@ -937,7 +937,7 @@ const App: FunctionComponent<Props> = (props) => {
                 {
                   currentUser && ( 
                     <Route path="/account">
-                      <AccountPage />
+                      <AccountPage user={currentUser} />
                     </Route>
                   )
                 }

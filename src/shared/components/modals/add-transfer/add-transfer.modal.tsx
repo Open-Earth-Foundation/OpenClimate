@@ -23,8 +23,6 @@ interface Props {
 
 const AddTransferModal: FunctionComponent<Props> = (props) => {
 
-    console.log(props.loggedInUserState)
-
     const { user, sites, onModalHide, addTransfer } = props;
 
     const [countryOptions, setCountryOptions] = useState<Array<DropdownOption>>([]);
@@ -67,7 +65,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
         e.preventDefault();
         
         if(!user || !user.company || !user.company.id)
-            return;
+           return;
 
         const transfer = {
             ...transferData,
@@ -112,7 +110,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
             },
             {
                 name: 'credential_issue_date',
-                value: transfer.credential_issue_date,
+                value: transfer.credential_issue_date.toString(),
             },
             {
                 name: 'organization_name',
@@ -140,7 +138,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
             },
             {
                 name: 'facility_jurisdiction',
-                value: transfer.facility_jurisdiction,
+                value: transfer.facility_jurisdiction || '',
             },
             {
                 name: 'facility_location',
@@ -148,19 +146,19 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
             },
             {
                 name: 'facility_sector_ipcc_category',
-                value: transfer.facility_sector_ipcc_category,
+                value: transfer.facility_sector_ipcc_category || '',
             },
             {
                 name: 'facility_sector_ipcc_activity',
-                value: transfer.facility_sector_ipcc_activity,
+                value: transfer.facility_sector_ipcc_activity || '',
             },
             {
                 name: 'facility_sector_naics',
-                value: transfer.facility_sector_naics,
+                value: transfer.facility_sector_naics || '',
             },
             {
                 name: 'transfer_date',
-                value: transfer.transfer_date,
+                value: transfer.transfer_date.toString(),
             },
             {
                 name: 'transfer_goods',
@@ -196,16 +194,18 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
             },
             {
                 name: 'transfer_receiver_jurisdiction',
-                value: transfer.transfer_receiver_jurisdiction,
+                value: transfer.transfer_receiver_jurisdiction || '',
             },
             {
                 name: 'signature_name',
-                value: transfer.signature_name,
+                value: transfer.signature_name || '',
             }
         ]
+
+        console.log(JSON.stringify(attributes))
         
         let newCredential = {
-          connectionID: props.contactSelected.Connections[0].connection_id,
+          connectionID: props.loggedInUserState.connection_id,
           schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Transfers:1.0',
           schemaVersion: '1.0',
           schemaName: 'Transfers',
@@ -214,9 +214,10 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
           attributes: attributes,
         }
         
-        props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+        if (props.loggedInUserState.connection_id) {
+            props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+        }
         
-
         transferService.saveTransfer(user.company.id, transfer).then(transfer => {
             addTransfer(transfer);
             onModalHide();

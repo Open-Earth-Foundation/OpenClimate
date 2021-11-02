@@ -56,7 +56,7 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
         showModal, loadPledges, loadTransfers, loadSites, loadClimateActions, loadAggregatedEmissions } = props;
 
     useEffect(() => {
-
+        console.log(user)
         if(user && user.company && user.company.id)
         {
             if(!pledgesLoaded)
@@ -64,7 +64,8 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
 
             if(!transfersLoaded)
                 loadTransfers(user.company.id);
-
+            console.log(user)
+            console.log(sitesLoaded)
             if(!sitesLoaded)
                 loadSites(user.company.id);
 
