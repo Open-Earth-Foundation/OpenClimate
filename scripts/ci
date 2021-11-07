@@ -27,7 +27,7 @@ do_teardown() {
 
 
 display_usage() {
-    echo "Continuous Integration (CI) helper for UGIH-mvp-hub-ui"
+    echo "Continuous Integration (CI) helper for openclimate-hub-ui"
     echo
     echo "Usage:"
     echo

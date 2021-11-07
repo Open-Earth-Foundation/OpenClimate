@@ -1,8 +1,10 @@
 import countryCodesJson from "../../api/data/review/data/country-codes";
 import organizations from "../../api/data/review/data/subnationals";
+import IOrganization from "../../api/models/DTO/Organization/IOrganization";
 import ICountry from "../../api/models/review/country";
 import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
 import { DropdownOption } from "../interfaces/dropdown/dropdown-option";
+import { organizationService } from "../services/organization.service";
 
 const GetCountryCodes = () => {
     let countryParsed = <any[]>JSON.parse(countryCodesJson);
@@ -41,19 +43,9 @@ const GetSubnationalsByCountry = (selectedCountryAlpha2: string) => {
     const options = filteredSubnationals.map(sn => {
         return {
             name: sn.organization,
-            value: sn.organization
+            value: `${countryName},${sn.organization}`
         }
     });
-
-    return options;
-}
-
-const GetOptions = (filterType: FilterTypes, value: string) => {
-    let options: Array<DropdownOption> = [];
-    switch(filterType) {
-        case FilterTypes.SubNational:
-            options = GetSubnationalsByCountry(value);
-    }
 
     return options;
 }
@@ -61,6 +53,5 @@ const GetOptions = (filterType: FilterTypes, value: string) => {
 export const CountryCodesHelper = {
     GetCountryCodes,
     GetContryOptions,
-    GetSubnationalsByCountry,
-    GetOptions
+    GetSubnationalsByCountry
 };

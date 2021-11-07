@@ -1,7 +1,6 @@
 import IOrganization from "../../api/models/DTO/Organization/IOrganization";
-import { ICompany } from "../../api/models/User/ICompany";
-import { ServerUrls } from "../environments/server.environments";
 import { IUser } from "../../api/models/User/IUser";
+import { ServerUrls } from "../environments/server.environments";
 import { organizationService } from "./organization.service";
 
 export const userService = {
@@ -40,7 +39,7 @@ function login(email: string, password: string) {
 }
 
 function logout() {
-    return fetch(`${ServerUrls.api}/logout`)
+    return fetch(`${ServerUrls.api}}/logout`)
         .then(resposne => {
             sessionStorage.removeItem('user');
         });
@@ -54,7 +53,9 @@ async function getCompany(credentialId: string) {
         //fetch orgData?
         const orgData: IOrganization = {
             organization_credential_id: credentialId,
-            organization_name: "Test company"
+            organization_name: "Test company",
+            organization_country: "Poland",
+            organization_jurisdiction: "Opole Voivodeship"
         }
 
         await organizationService.saveOrganization(orgData);

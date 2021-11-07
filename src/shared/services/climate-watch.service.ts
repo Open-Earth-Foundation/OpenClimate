@@ -1,16 +1,6 @@
 import { ClimateWatchUrls } from "../environments/climate-watch.environments";
 import { ClimateWatchHelper } from "../helpers/climate-watch.helper";
 
-export const climateWatchService = {
-    fetchIndicators,
-    fetchPledgesCountry,
-    fetchCategories,
-    fetchTreatiesCountry,
-    fetchSectors,
-    fetchGases,
-    fetchEmissionsCountry
-};
-
 async function fetchIndicators() {
     const response = await fetch(ClimateWatchUrls.indicators);
     return await response.json();
@@ -51,3 +41,13 @@ async function fetchPledgesCountry(countryCode: string) {
     var response = await fetch(url);
     return await response.json();
 }
+
+export const climateWatchService = {
+    fetchIndicators,
+    fetchPledgesCountry,
+    fetchCategories,
+    fetchTreatiesCountry,
+    fetchSectors,
+    fetchGases,
+    fetchEmissionsCountry
+};

@@ -14,13 +14,13 @@ const Transfer: FunctionComponent<Props> = (props) => {
 
     return (
         <div className="review-tile__transfer">
-            <div className="review-tile__transfer-column">
+            <div className="review-tile__transfer-column review-tile__transfer-column_data">
                 <TransferItem title={transfer.facility_name} description={transfer.facility_jurisdiction} />
             </div>
             <div className="review-tile__transfer-column">
                 <img src={TransferArrow} alt="arrow" />
             </div>
-            <div className="review-tile__transfer-column">
+            <div className="review-tile__transfer-column review-tile__transfer-column_data">
                 <TransferItem title={transfer.transfer_receiver_organization} description={transfer.transfer_receiver_jurisdiction} />
             </div>
             {

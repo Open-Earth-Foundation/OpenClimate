@@ -12,6 +12,7 @@ import ISite from '../../../../api/models/DTO/Site/ISite';
 import { CountryCodesHelper } from '../../../helpers/country-codes.helper';
 import { FilterTypes } from '../../../../api/models/review/dashboard/filterTypes';
 import { useForm } from 'react-hook-form';
+import { ReviewHelper } from '../../../helpers/review.helper';
 
 interface Props {
     user: IUser | null,
@@ -230,11 +231,11 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
 
     }, []);
 
-    const countryChangeHandler = (option:DropdownOption) => {
-        formChangeHandler("transfer_receiver_country", option.name);
-        const suboptions = CountryCodesHelper.GetOptions(FilterTypes.SubNational, option.value);
-        setSubnationalOptions(suboptions);
-    }
+    const countryChangeHandler = async (option:DropdownOption) => {
+      formChangeHandler("transfer_receiver_country", option.name);
+      const suboptions = await ReviewHelper.GetOptions(FilterTypes.SubNational, option.value);
+      setSubnationalOptions(suboptions);
+  }
 
     const countryDeselectHandler = (name: string, err?: boolean) => {
         formChangeHandler(name, '', err);

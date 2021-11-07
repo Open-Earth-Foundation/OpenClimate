@@ -122,6 +122,7 @@ const App: FunctionComponent<Props> = (props) => {
   // Check for local state copy of theme, otherwise use default hard coded here in App.js
   const localTheme = JSON.parse(localStorage.getItem('recentTheme'))
   const [theme, setTheme] = useState(localTheme ? localTheme : defaultTheme)
+  const [schemas, setSchemas] = useState({})
 
   // Styles to change array
   const [stylesArray, setStylesArray] = useState([])
@@ -241,6 +242,8 @@ const App: FunctionComponent<Props> = (props) => {
 
         sendMessage('SETTINGS', 'GET_THEME', {})
         addLoadingProcess('THEME')
+        sendMessage('SETTINGS', 'GET_SCHEMAS', {})
+        addLoadingProcess('SCHEMAS')
 
         if (
           check(rules, loggedInUserState, 'contacts:read', 'demographics:read')
@@ -649,6 +652,11 @@ const App: FunctionComponent<Props> = (props) => {
               removeLoadingProcess('THEME')
               break
 
+            case 'SETTINGS_SCHEMAS':
+              setSchemas(data)
+              removeLoadingProcess('SCHEMAS')
+              break;
+
             case 'LOGO':
               setImage(data)
               removeLoadingProcess('LOGO')
@@ -1045,6 +1053,7 @@ const App: FunctionComponent<Props> = (props) => {
                             contactId={match.params.contactId}
                             contacts={contacts}
                             credentials={credentials}
+                            schemas={schemas}
                           />
                         </Main>
                       </Frame>

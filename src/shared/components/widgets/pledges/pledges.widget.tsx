@@ -24,9 +24,12 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
 
     let pledgeItems;
     if(pledges?.length) {
-        pledgeItems = pledges.map((p: IPledge) => (
-            <PledgeItem pledge={p} key={p.id} voluntary={voluntary} />
-        ));
+        pledgeItems = pledges.map((p: IPledge, index: number) => {
+            const key = p.id ?? index;
+            return (
+                <PledgeItem pledge={p} key={key} voluntary={voluntary} />
+            )
+        });
 
         //{Moment(lastUpdated).format('MMMM yyyy')}
         //lastUpdated = pledges[pledges.length-1]["Updated"];

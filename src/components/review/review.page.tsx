@@ -41,8 +41,10 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
     if(dashboardEntityType !== null)
     {
-        dashboardEntity = selectedEntities.find(se => se.type == dashboardEntityType) ?? null;
+        dashboardEntity = selectedEntities.find(se => se.type === dashboardEntityType) ?? null;
         collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);
+
+        debugger; 
     }
 
    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
@@ -51,6 +53,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
             selectedNational = selectedEntities.find(se => se.type === FilterTypes.National) ?? null;
         selectFilter(filterType, option, selectedNational);
     }
+
+    
 
     return (
         <div className="review">

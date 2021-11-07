@@ -83,11 +83,11 @@ html {
   padding: 0;
   width: 100%;
   font-family: 'Source Sans Pro';
-  background-image: radial-gradient(
+  /* background-image: radial-gradient(
     farthest-side at 95% 90%,
     #f8f8f8 0%,
     #d1d1d1 100%
-  );
+  ); */
 }
 
 *,

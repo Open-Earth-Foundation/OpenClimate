@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { SiteTypes } from '../../../../api/data/shared/site-types';
 import { IUser } from '../../../../api/models/User/IUser';
 import ISite from '../../../../api/models/DTO/Site/ISite';
+import { ReviewHelper } from '../../../helpers/review.helper';
 
 interface Props {
     user: IUser | null,
@@ -38,9 +39,9 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
         }
     });
 
-    const countryChangeHandler = (option:DropdownOption) => {
+    const countryChangeHandler = async (option:DropdownOption) => {
         formChangeHandler("facility_country", option.name);
-        const suboptions = CountryCodesHelper.GetOptions(FilterTypes.SubNational, option.value);
+        const suboptions = await ReviewHelper.GetOptions(FilterTypes.SubNational, option.value);
         setSubnationalOptions(suboptions);
     }
 
@@ -56,10 +57,9 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
     const submitHandler = (e: any) => {
 
         e.preventDefault();
-        console.log ("User before", user)
+        
         if(!user || !user.company || !user.company.id)
             return;
-        console.log ("User after", user)
 
         setSite({
             ...site,

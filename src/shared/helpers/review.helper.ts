@@ -8,15 +8,12 @@ import { climateWatchService } from "../services/climate-watch.service";
 import IPledge from "../../api/models/DTO/Pledge/IPledge";
 import ITreaties from "../../api/models/DTO/Treaties/ITreaties";
 import IAggregatedEmission from "../../api/models/DTO/AggregatedEmission/IAggregatedEmission";
-
-export const ReviewHelper = {
-    LoadEmissionsCountry,
-    LoadEmissionsSubnational,
-    LoadPledgesSubnational,
-    LoadPledgesCountry,
-    LoadTreatiesCountry,
-    GetTrackedEntity
-};
+import { aggregatedEmissionService } from "../services/aggregated-emission.service";
+import {AggregatedEmissionHelper} from "./aggregated-emission.helper";
+import { transferService } from "../services/transfer.service";
+import { CountryCodesHelper } from "./country-codes.helper";
+import { organizationService } from "../services/organization.service";
+import IOrganization from "../../api/models/DTO/Organization/IOrganization";
 
 async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
 {
@@ -169,15 +166,68 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
             
             break;
         case FilterTypes.SubNational:
-            await ReviewHelper.LoadEmissionsSubnational(option.value, trackedEntity);
-            await ReviewHelper.LoadPledgesSubnational(option.value, trackedEntity);
+
+            const jurisdiction = option.value.split(',')[1];
+
+            await ReviewHelper.LoadEmissionsSubnational(jurisdiction, trackedEntity);
+            await ReviewHelper.LoadPledgesSubnational(jurisdiction, trackedEntity);
 
             if(selectedEntity && selectedEntity.countryCode3)
                 await ReviewHelper.LoadTreatiesCountry(selectedEntity.countryCode3, trackedEntity);
+            break;
+        case FilterTypes.Organization:
 
+            const aggrEmissions = await aggregatedEmissionService.allAggregatedEmissions(option.value);
+            trackedEntity.aggregatedEmission = AggregatedEmissionHelper.GetSummaryAggregatedEmissions(aggrEmissions);
+            const pledges = await pledgeService.allPledges(option.value);
+            trackedEntity.pledges = pledges.slice(Math.max(pledges.length - 3, 0)).reverse();
+            trackedEntity.transfers = await transferService.allTransfers(option.value);
+            trackedEntity.countryCode3 = '';
+            trackedEntity.countryCode = '';
             break;
     }
 
 
     return trackedEntity;
 }
+
+const GetOrganizations = async (location: string) => {
+    
+    const country = location.split(',')[0];
+    const jurisdiction = location.split(',')[1];
+    
+    const organizations = await organizationService.getByLocation(country, jurisdiction);
+    
+    const options = organizations.map((org: IOrganization) => {
+        return {
+            name: org.organization_name,
+            value: org.id
+        }
+    });
+
+    return options;
+}
+
+const GetOptions = async (filterType: FilterTypes, value: string) => {
+    let options: Array<DropdownOption> = [];
+    switch(filterType) {
+        case FilterTypes.SubNational:
+            options = await CountryCodesHelper.GetSubnationalsByCountry(value);
+            break;
+        case FilterTypes.Organization:
+            options = await GetOrganizations(value);
+            break;
+    }
+
+    return options;
+}
+
+export const ReviewHelper = {
+    LoadEmissionsCountry,
+    LoadEmissionsSubnational,
+    LoadPledgesSubnational,
+    LoadPledgesCountry,
+    LoadTreatiesCountry,
+    GetTrackedEntity,
+    GetOptions
+};

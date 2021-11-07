@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import FormContacts from './FormContacts'
-import FormTestID from './FormTestID'
-import FormTestResult from './FormTestResult'
+import FormOrganization from './FormOrganization'
 import { useNotification } from './NotificationProvider'
 import PageHeader from './PageHeader.js'
 import PageSection from './PageSection.js'
@@ -71,12 +70,10 @@ function Contact(props) {
 
   // Modal state
   const [contactModalIsOpen, setContactModalIsOpen] = useState(false)
-  const [testIDModalIsOpen, setTestIDModalIsOpen] = useState(false)
-  const [testResultModalIsOpen, setTestResultModalIsOpen] = useState(false)
+  const [organizationModalIsOpen, setOrganizationModalIsOpen] = useState(false)
 
   const closeContactModal = () => setContactModalIsOpen(false)
-  const closeTestIDModal = () => setTestIDModalIsOpen(false)
-  const closeTestResultModal = () => setTestResultModalIsOpen(false)
+  const closeOrganizationModal = () => setOrganizationModalIsOpen(false)
 
   const [contactSelected, setContactSelected] = useState(contactToSelect)
 
@@ -417,19 +414,8 @@ function Contact(props) {
             user={localUser}
             perform="credentials:issue"
             yes={() => (
-              <IssueCredential
-                onClick={() => setTestResultModalIsOpen((o) => !o)}
-              >
-                Issue Test Result Credential
-              </IssueCredential>
-            )}
-          />
-          <CanUser
-            user={localUser}
-            perform="credentials:issue"
-            yes={() => (
-              <IssueCredential onClick={() => setTestIDModalIsOpen((o) => !o)}>
-                Issue Test ID Credential
+              <IssueCredential onClick={() => setOrganizationModalIsOpen((o) => !o)}>
+                Issue Organization Credential
               </IssueCredential>
             )}
           />
@@ -450,17 +436,12 @@ function Contact(props) {
           closeContactModal={closeContactModal}
           submitContact={updateContact}
         />
-        <FormTestID
+        <FormOrganization
           contactSelected={contactSelected}
-          credentialModalIsOpen={testIDModalIsOpen}
-          closeCredentialModal={closeTestIDModal}
+          credentialModalIsOpen={organizationModalIsOpen}
+          closeCredentialModal={closeOrganizationModal}
           submitCredential={submitNewCredential}
-        />
-        <FormTestResult
-          contactSelected={contactSelected}
-          credentialModalIsOpen={testResultModalIsOpen}
-          closeCredentialModal={closeTestResultModal}
-          submitCredential={submitNewCredential}
+          schemas={props.schemas}
         />
       </div>
     </>

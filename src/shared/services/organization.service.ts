@@ -19,7 +19,21 @@ async function saveOrganization(orgData: IOrganization)
     }).then(CommonHelper.HandleResponse);
 }
 
+async function getByLocation(country: string, jurisdiction: string)
+{
+    return fetch(`${ServerUrls.api}/organization/byLocation`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            country,
+            jurisdiction
+        }),
+    }).then(CommonHelper.HandleResponse);
+}
+
+
 export const organizationService = {
     getByCredentialId,
+    getByLocation,
     saveOrganization
 };

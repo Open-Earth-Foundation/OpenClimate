@@ -64,12 +64,11 @@ export const doSelectFilter = (filterType: FilterTypes, option: DropdownOption, 
             )
 
             const nextIndex = filterType + 1;
-            
             if(FilterTypes[nextIndex])
             {
                 let loadOptionsType = FilterTypes[FilterTypes[nextIndex] as keyof typeof FilterTypes];
 
-                const loadedOptions = CountryCodesHelper.GetOptions(loadOptionsType, option.value);
+                const loadedOptions = await ReviewHelper.GetOptions(loadOptionsType, option.value);
                 dispatch(updateFilterOptions(loadOptionsType, loadedOptions));
             }
         }, 500);
