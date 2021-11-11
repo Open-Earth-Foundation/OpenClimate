@@ -108,7 +108,9 @@ const Modal: FunctionComponent<IProps> = (props) => {
             component = <AddSiteCredentialModal
                             user={user} 
                             addSite={addSite}
-                            onModalHide={hideModal} 
+                            onModalHide={hideModal}
+                            sendRequest={props.sendRequest}
+                            loggedInUserState={props.loggedInUserState}
                             submitButtonText="Submit Site Credential" />
             break;
         case 'add-transfer':
@@ -116,10 +118,10 @@ const Modal: FunctionComponent<IProps> = (props) => {
             component = <AddTransferModal 
                         onModalHide={hideModal} 
                         addTransfer={addTransfer}
-                        sendRequest={props.sendRequest}
-                        loggedInUserState={props.loggedInUserState}
                         sites={sites}
-                        user={user} />
+                        user={user}
+                        sendRequest={props.sendRequest}
+                        loggedInUserState={props.loggedInUserState} />
             break;
         case 'add-climate-action':
             title = "Add climate action"
@@ -132,6 +134,8 @@ const Modal: FunctionComponent<IProps> = (props) => {
                             sites={sites}
                             defaultScope={modalConfig.parameters['Scope']}
                             defaultType={modalConfig.parameters['Type']}
+                            sendRequest={props.sendRequest}
+                            loggedInUserState={props.loggedInUserState}
                             submitButtonText="Submit Climate Action" />
             break;
         case 'information-agreements':

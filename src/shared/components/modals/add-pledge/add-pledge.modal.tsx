@@ -24,23 +24,23 @@ export interface IFormValues {
 const AddPledgeModal: FunctionComponent<Props> = (props) => {
 
     const { user, onModalHide, addPledge } = props;
-    
+
     const [target, setTarget] = useState("");
     const [pledgeSchemas, setPledgeSchemas] = useState<any>([]);
     const [targetOptions, setTargetOptions] = useState<Array<DropdownOption>>([]);
 
     const [pledge, setPledge] = useState<IPledge>({ credential_category: "Pledges" });
-    
+
     const [errors, setErrors] = useState<Array<any>>([
         "pledge_target_year",
         "pledge_target"
     ]);
 
     useEffect(() => {
-        if(!pledgeSchemas.length) {
+        if (!pledgeSchemas.length) {
 
             setPledgeSchemas(PledgeSchemas);
-            const options = PledgeSchemas?.map((rf:any) => {
+            const options = PledgeSchemas?.map((rf: any) => {
                 return {
                     name: rf["display_name"],
                     value: rf["type"],
@@ -69,14 +69,97 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
     const submitHandler = (e: any) => {
 
         e.preventDefault();
-        
-        if(!user || !user.company || !user.company.id)
-           return;
+
+        if (!user || !user.company || !user.company.id)
+            return;
 
         pledge.credential_issue_date = Date.now();
         pledge.credential_issuer = "OpenClimate";
         pledge.organization_name = user.company.organization_name;
         pledge.signature_name = `${user.name}`;
+
+        const attributes = [
+            {
+                name: 'credential_category',
+                value: 'Pledges',
+            },
+            {
+                name: 'credential_type',
+                value: 'Pledge Information',
+            },
+            {
+                name: 'credential_schema_id',
+                value: 'WFZtS6jVBp23b4oDQo6JXP:2:Carbon_Intensity:1.0',
+            },
+            {
+                name: 'credential_issuer',
+                value: 'OpenClimate',
+            },
+            {
+                name: 'credential_issue_date',
+                value: pledge.credential_issue_date.toString(),
+            },
+            {
+                name: 'organization_name',
+                value: pledge.organization_name,
+            },
+            {
+                name: 'organization_category',
+                value: '',
+            },
+            {
+                name: 'organization_type',
+                value: '',
+            },
+            {
+                name: 'organization_credential_id',
+                value: '',
+            },
+            {
+                name: 'pledge_target_year',
+                value: pledge.pledge_target_year,
+            },
+            {
+                name: 'pledge_target',
+                value: '',
+            },
+            {
+                name: 'pledge_base_year',
+                value: pledge.pledge_base_year,
+            },
+            {
+                name: 'pledge_base_level',
+                value: pledge.pledge_base_level,
+            },
+            {
+                name: 'pledge_plan_details',
+                value: pledge.pledge_plan_details,
+            },
+            {
+                name: 'pledge_public_statement',
+                value: pledge.pledge_public_statement,
+            },
+            {
+                name: 'signature_name',
+                value: pledge.signature_name || '',
+            }
+        ]
+
+        console.log(JSON.stringify(attributes))
+
+        let newCredential = {
+            connectionID: props.loggedInUserState.connection_id,
+            schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Carbon_Intensity:1.0',
+            schemaVersion: '1.0',
+            schemaName: 'Pledges',
+            schemaIssuerDID: '',
+            comment: '',
+            attributes: attributes,
+        }
+
+        if (props.loggedInUserState.connection_id) {
+            props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+        }
 
         pledgeService.savePledge(user.company.id, pledge).then(pledge => {
             addPledge(pledge);
@@ -89,62 +172,62 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
     }
 
     let extraFields = [];
-    if(pledgeSchemas.length && target) {
-        
+    if (pledgeSchemas.length && target) {
+
         const pledgeSchema = pledgeSchemas.find((ps: any) => ps["type"] === target);
 
         extraFields = pledgeSchema["fields"]?.map((ps: any, index: number) => {
 
-        return (
-            <div className="modal__row modal__row_content" key={index}>
-            {ps.type === "text" ?
-                <input 
-                    className="form-input"
-                    type="text"
-                    placeholder={ps.placeholder}
-                    onChange={e => formChangeHandler(ps.name, e.target.value)}
-                />
-                :""
-            }
-            
-        </div>
-        );
-    });
+            return (
+                <div className="modal__row modal__row_content" key={index}>
+                    {ps.type === "text" ?
+                        <input
+                            className="form-input"
+                            type="text"
+                            placeholder={ps.placeholder}
+                            onChange={e => formChangeHandler(ps.name, e.target.value)}
+                        />
+                        : ""
+                    }
+
+                </div>
+            );
+        });
     }
-    
+
     return (
 
         <form action="/" className="pledge-form" onSubmit={submitHandler} noValidate>
 
             <div className="modal__content modal__content-btm-mrg">
                 <div className="modal__row modal__row_content">
-                    <InputText 
+                    <InputText
                         type="text"
                         placeholder="Target year"
-                        onChange={(value: string)=> formChangeHandler("pledge_target_year", value)}
+                        onChange={(value: string) => formChangeHandler("pledge_target_year", value)}
                         required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
-                    <Dropdown 
+                    <Dropdown
                         withSearch={false}
                         options={targetOptions}
                         title=""
                         emptyPlaceholder="Target"
                         onSelect={(option: DropdownOption) => targetChangedHandler(option)}
-                        onDeSelect={() => setTarget("")} 
+                        onDeSelect={() => setTarget("")}
                         required
                     />
-                    
-                </div>
-                {extraFields}            
 
-                {extraFields.length ? 
+                </div>
+                {extraFields}
+
+                {extraFields.length ?
                     <div className="transfer-form__sign-as modal__row modal__row_content">
                         <input type="checkbox" className="transfer-form__checkbox checkbox-primary" />
-                        Sign as 
+                        Sign as
                         <a href="#"> {user?.email} </a>
-                        in representation of 
+                        in representation of
                         <a href="#"> {user?.company?.organization_name}</a>
                     </div>
                     : ""
@@ -154,17 +237,17 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
 
             <div className="modal__row modal__row_btn">
                 <Button color="primary"
-                        text="Save"
-                        type="submit"
-                        />
+                    text="Save"
+                    type="submit"
+                />
             </div>
             <div className="modal__row modal__row_btn">
                 <Button color="white"
-                        text="Cancel"
-                        type="button"
-                        click={onModalHide}
+                    text="Cancel"
+                    type="button"
+                    click={onModalHide}
 
-                        />
+                />
             </div>
         </form>
     );

@@ -49,7 +49,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
 
     const formChangeHandler = (name: string, value: string, err?: boolean) => {
 
-        if(err && !errors.includes(name))
+        if (err && !errors.includes(name))
             setErrors([...errors, name]);
         else {
             const updErrors = errors.filter(e => e !== name);
@@ -64,9 +64,9 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
 
     const submitHandler = (e: any) => {
         e.preventDefault();
-        
-        if(!user || !user.company || !user.company.id)
-           return;
+
+        if (!user || !user.company || !user.company.id)
+            return;
 
         const transfer = {
             ...transferData,
@@ -80,8 +80,8 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
         const foundSite = sites.find(f => f.facility_name === transfer.facility_name);
         if (foundSite) {
             transfer.facility_country = foundSite.facility_country;
-            transfer.facility_jurisdiction = foundSite.facility_jurisdiction; 
-            transfer.facility_location = foundSite.facility_location; 
+            transfer.facility_jurisdiction = foundSite.facility_jurisdiction;
+            transfer.facility_location = foundSite.facility_location;
             transfer.facility_sector_ipcc_activity = foundSite.facility_sector_ipcc_activity;
             transfer.facility_sector_ipcc_category = foundSite.facility_sector_ipcc_category;
             transfer.facility_sector_naics = foundSite.facility_sector_naics;
@@ -204,21 +204,21 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
         ]
 
         console.log(JSON.stringify(attributes))
-        
+
         let newCredential = {
-          connectionID: props.loggedInUserState.connection_id,
-          schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Transfers:1.0',
-          schemaVersion: '1.0',
-          schemaName: 'Transfers',
-          schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
-          comment: '',
-          attributes: attributes,
+            connectionID: props.loggedInUserState.connection_id,
+            schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Transfers:1.0',
+            schemaVersion: '1.0',
+            schemaName: 'Transfers',
+            schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
+            comment: '',
+            attributes: attributes,
         }
-        
+
         if (props.loggedInUserState.connection_id) {
             props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
         }
-        
+
         transferService.saveTransfer(user.company.id, transfer).then(transfer => {
             addTransfer(transfer);
             onModalHide();
@@ -226,7 +226,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
         });
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setCountryOptions(CountryCodesHelper.GetContryOptions());
 
     }, []);
@@ -235,7 +235,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
       formChangeHandler("transfer_receiver_country", option.name);
       const suboptions = await ReviewHelper.GetOptions(FilterTypes.SubNational, option.value);
       setSubnationalOptions(suboptions);
-  }
+    }
 
     const countryDeselectHandler = (name: string, err?: boolean) => {
         formChangeHandler(name, '', err);
@@ -244,79 +244,79 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
 
     return (
         <form action="/" className="transfer-form" onSubmit={submitHandler}>
-             <div className="modal__content modal__content-btm-mrg">
+            <div className="modal__content modal__content-btm-mrg">
                 <div className="modal__row modal__row_content">
                     <Dropdown
                         withSearch={false}
-                        options={sites.map(s=> {return {name: s.facility_name, value: s.facility_name} as DropdownOption})}
+                        options={sites.map(s => { return { name: s.facility_name, value: s.facility_name } as DropdownOption })}
                         title=""
                         emptyPlaceholder="* Facility name"
                         onSelect={(option: DropdownOption) => formChangeHandler("facility_name", option.value)}
                         onDeSelect={(err?: boolean) => formChangeHandler("facility_name", '', err)}
                         required
-                    /> 
-                </div> 
-                <div className="modal__row modal__row_content">
-                    <FormDatePicker 
-                      placeholder="* Date"
-                      onChange={(dateStr: string, err?: boolean) => formChangeHandler("transfer_date", dateStr, err)}
-                      required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
-                    <InputText 
+                    <FormDatePicker
+                        placeholder="* Date"
+                        onChange={(dateStr: string, err?: boolean) => formChangeHandler("transfer_date", dateStr, err)}
+                        required
+                    />
+                </div>
+                <div className="modal__row modal__row_content">
+                    <InputText
                         type="text"
-                        placeholder="* Type" 
+                        placeholder="* Type"
                         onChange={(value: string, err?: boolean) => formChangeHandler("transfer_goods", value, err)}
                         required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
-                    <InputText 
+                    <InputText
                         type="text"
-                        placeholder="* Quantity" 
+                        placeholder="* Quantity"
                         onChange={(value: string, err?: boolean) => formChangeHandler("transfer_quantity", value, err)}
                         required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
-                    <InputText 
+                    <InputText
                         type="text"
-                        placeholder="* Unit" 
+                        placeholder="* Unit"
                         onChange={(value: string, err?: boolean) => formChangeHandler("transfer_quantity_unit", value, err)}
                         required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
-                    <InputText 
+                    <InputText
                         type="text"
-                        placeholder="* Carbon associated (tn CO2eq)" 
+                        placeholder="* Carbon associated (tn CO2eq)"
                         onChange={(value: string, err?: boolean) => formChangeHandler("transfer_carbon_associated", value, err)}
                         required
                     />
                 </div>
                 <div className="modal__row modal__row_content">
-                    <InputText 
+                    <InputText
                         type="text"
-                        placeholder="Carbon intensity credential" 
+                        placeholder="Carbon intensity credential"
                         onChange={(value: string) => formChangeHandler("transfer_carbon_intensity", value)}
                     />
                 </div>
                 <div className="modal__row modal__row_content">
-                    <InputText 
+                    <InputText
                         type="text"
-                        placeholder="Carbon intensity credential Id" 
+                        placeholder="Carbon intensity credential Id"
                         onChange={(value: string) => formChangeHandler("transfer_carbon_intensity_credential_id", value)}
                     />
                 </div>
                 <div className="modal__row modal__row_content">
-                    <InputText 
+                    <InputText
                         type="text"
-                        placeholder="* Receiver organization" 
+                        placeholder="* Receiver organization"
                         onChange={(value: string, err?: boolean) => formChangeHandler("transfer_receiver_organization", value, err)}
                         required
                     />
-                    
+
                     <a href="#" className="transfer-form__link modal__link modal__link_blue modal__form-link">
                         Invite to connect through Open Climate (coming soon)
                     </a>
@@ -330,40 +330,40 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
                         onSelect={countryChangeHandler}
                         onDeSelect={(err?: boolean) => countryDeselectHandler("transfer_receiver_country", err)}
                         required
-                    /> 
+                    />
                 </div>
                 <div className="modal__row modal__row_content">
-                     <Dropdown
-                         withSearch={false}
-                         options={subnationalOptions}
-                         title=""
-                         emptyPlaceholder="Receiver Jurisdiction"
-                         onSelect={(option:DropdownOption) => {formChangeHandler("transfer_receiver_jurisdiction", option.value)}}
-                     />
-                 </div>
+                    <Dropdown
+                        withSearch={false}
+                        options={subnationalOptions}
+                        title=""
+                        emptyPlaceholder="Receiver Jurisdiction"
+                        onSelect={(option: DropdownOption) => { formChangeHandler("transfer_receiver_jurisdiction", option.value) }}
+                    />
+                </div>
                 <div className="transfer-form__sign-as modal__row modal__row_content">
                     <input type="checkbox" className="transfer-form__checkbox checkbox-primary" onChange={() => setAgreed(!agreed)} />
-                    Sign as 
+                    Sign as
                     <a href="#"> {user?.email} </a>
-                    in representation of 
+                    in representation of
                     <a href="#"> {user?.company?.organization_name}</a>
                 </div>
             </div>
 
             <div className="modal__row modal__row_btn">
                 <Button color="primary"
-                        text="Submit Transfer"
-                        type="submit"
-                        disabled={errors.length > 0 || !agreed}
-                        />
+                    text="Submit Transfer"
+                    type="submit"
+                    disabled={errors.length > 0 || !agreed}
+                />
             </div>
             <div className="modal__row modal__row_btn">
                 <Button color="white"
-                        text="Cancel"
-                        type="button"
-                        click={onModalHide}
+                    text="Cancel"
+                    type="button"
+                    click={onModalHide}
 
-                        />
+                />
             </div>
         </form>
     );
