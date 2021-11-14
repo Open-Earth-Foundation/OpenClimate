@@ -7,7 +7,8 @@ export const userService = {
     register,
     login,
     logout,
-    getCompany
+    getCompany,
+    getUserByEmail
 };
 
 function register(user: IUser)
@@ -32,7 +33,7 @@ function login(email: string, password: string) {
         .then(async user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             user.company = await userService.getCompany("12345");
-            
+
             sessionStorage.setItem('user', JSON.stringify(user));
             return user;
         });
@@ -40,7 +41,7 @@ function login(email: string, password: string) {
 
 function logout() {
     return fetch(`${ServerUrls.api}}/logout`)
-        .then(resposne => {
+        .then(response => {
             sessionStorage.removeItem('user');
         });
 }
@@ -63,6 +64,24 @@ async function getCompany(credentialId: string) {
     }
 
     return org;
+}
+
+async function getUserByEmail(email: string) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+    };
+
+    return fetch(`${ServerUrls.api}/get-user-by-email`, requestOptions)
+        .then(handleResponse)
+        .then(async user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            user.company = await userService.getCompany("12345");
+            
+            sessionStorage.setItem('user', JSON.stringify(user));
+            return user;
+        });
 }
 
 function handleResponse(response: any) {

@@ -65,7 +65,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
     const submitHandler = (e: any) => {
         e.preventDefault();
 
-        if (!user || !user.company || !user.company.id)
+        if (!user || !user.company || !user.company.organization_credential_id)
             return;
 
         const transfer = {
@@ -203,7 +203,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
             }
         ]
 
-        console.log(JSON.stringify(attributes))
+        // console.log(JSON.stringify(attributes))
 
         let newCredential = {
             connectionID: props.loggedInUserState.connection_id,

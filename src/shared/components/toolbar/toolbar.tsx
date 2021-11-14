@@ -14,7 +14,7 @@ interface Props {
 
 const MainToolbar: FunctionComponent<Props> = (props) => {
 
-    const { user, doLogout, showLoginModal } = props;
+    const { user, handleLogout, doLogout, showLoginModal } = props;
 
     return (
         <React.Fragment>
@@ -32,7 +32,7 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
                         <div className="toolbar__right-area">
                             <SearchToolbar />
                                 {user ?
-                                    <ToolbarAutorized user={user} doLogout={doLogout} />
+                                    <ToolbarAutorized user={user} handleLogout={handleLogout} doLogout={doLogout} />
                                 :
                                     <div className="toolbar__login">
                                         <button 

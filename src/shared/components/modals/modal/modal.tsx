@@ -53,31 +53,36 @@ interface IProps extends IStateProps, IDispatchProps {
 }
 
 const Modal: FunctionComponent<IProps> = (props) => {
-
     const modalRef = useRef(null);
 
     const { user, modalConfig, sites, climateActions,
         showModal, hideModal, doLogin, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission } = props;
 
-    if(modalConfig.entityType === '')
+    if (modalConfig.entityType === '')
         return null;
 
     let component = null;
     let title = "";
 
+    if (props.verificationStatus) {
+      props.setVerificationStatus(false)
+      hideModal()
+    }
+    console.log(user)
+
     switch(modalConfig.entityType)
     {
         case 'login': 
             title= "Login"
-            component = <LoginModal onModalShow={showModal} onLogin={doLogin}/>
+            component = <LoginModal handlePasswordlessLogin={props.handlePasswordlessLogin} onModalShow={showModal} onLogin={doLogin} />
             break;
         case 'login-credential':
             title = "Link with your company credential"
-            component = <LoginCredentialModal onModalShow={showModal} />
+            component = <LoginCredentialModal QRCodeURL={props.QRCodeURL} sendRequest={props.sendRequest} onModalShow={showModal} />
             break;
         case 'registration':
             title = "Sign up"
-            component = <RegistrationModal onModalShow={showModal} />
+            component = <RegistrationModal sendRequest={props.sendRequest} onModalShow={showModal} />
             break;
         case 'verify-information':
             title = "Sign up"

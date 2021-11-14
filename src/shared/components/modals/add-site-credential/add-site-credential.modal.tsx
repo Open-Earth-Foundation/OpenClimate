@@ -57,8 +57,8 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
     const submitHandler = (e: any) => {
 
         e.preventDefault();
-        
-        if(!user || !user.company || !user.company.id)
+        console.log(user)
+        if (!user || !user.company || !user.company.organization_credential_id)
             return;
 
         const credential_issue_date = Date.now()
@@ -84,7 +84,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
             },
             {
                 name: 'credential_schema_id',
-                value: 'UXLEGGyTRzXznW26upB1u:2:Site/Facility:1.0',
+                value: '5cmzU3vtyQAXcRqerHikmM:2:Site_Facility:1.0',
             },
             {
                 name: 'credential_issuer',
@@ -148,15 +148,15 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
             }
         ]
 
-        console.log(JSON.stringify(attributes))
+        // console.log(JSON.stringify(attributes))
 
         let newCredential = {
             connectionID: props.loggedInUserState.connection_id,
-            schemaID: 'UXLEGGyTRzXznW26upB1u:2:Site/Facility:1.0',
+            schemaID: '5cmzU3vtyQAXcRqerHikmM:2:Site_Facility:1.0',
             schemaVersion: '1.0',
-            schemaName: 'Site/Facility',
-            schemaIssuerDID: 'UXLEGGyTRzXznW26upB1u',
-            comment: 'Site/Facility',
+            schemaName: 'Site_Facility',
+            schemaIssuerDID: '5cmzU3vtyQAXcRqerHikmM',
+            comment: 'Site_Facility',
             attributes: attributes,
         }
 

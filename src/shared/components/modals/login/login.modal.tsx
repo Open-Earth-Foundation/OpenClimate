@@ -15,6 +15,12 @@ const LoginModal: FunctionComponent<Props> = (props) => {
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
 
+    const dualLogin = async (userEmail, userPassword) => {
+      onLogin(userEmail, userPassword)
+      // TO DO: Make sure that onLogin is successful before using passwordless login
+      props.handlePasswordlessLogin(userEmail)
+    }
+
     return (
         <form action="/" className="login-form">
             <div className="modal__content modal__content-btm-mrg">
@@ -38,7 +44,7 @@ const LoginModal: FunctionComponent<Props> = (props) => {
                 <Button color="primary"
                         text="Log In"
                         type="button"
-                        click={() => onLogin(userEmail, userPassword)}
+                        click={() => dualLogin(userEmail, userPassword)}
                         />
             </div>
             <div className="modal__row modal__row_btn">

@@ -29,7 +29,7 @@ import './layouts/main-layout/main.layout.scss';
 // Envision imports
 import ReviewPage from  './components/review/review.page';
 import { DispatchThunk, RootState } from './store/root-state';
-import { doLogin, doLogout } from './store/user/user.actions';
+import { doLogin, loginSuccess, doLogout } from './store/user/user.actions';
 import { connect } from 'react-redux'
 import AccountPage from './components/account/account.page';
 import VerifyInformationModal from './shared/components/modals/verify-information/verify-information.modal';
@@ -40,6 +40,7 @@ import Modal from './shared/components/modals/modal/modal';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IUser } from './api/models/User/IUser';
+import { userService } from './shared/services/user.service';
 
 import Account from './UI/Account'
 import Contact from './UI/Contact'
@@ -78,13 +79,14 @@ interface Props {
   currentUser: IUser | null,
   loading: boolean,
   doLoginClick: (email: string, password: string) => void,
+  doLoginSuccess: (user: IUser | null) => void,
   showModal: (type: string) => void,
   doLogout: () => void
 }
 
 const App: FunctionComponent<Props> = (props) => {
   // Envision props
-  const { currentUser, loading, doLoginClick, showModal, doLogout } = props;
+  const { currentUser, loading, doLoginClick, doLoginSuccess, showModal, doLogout } = props;
 
   const defaultTheme = {
     primary_color: '#5191CE',
@@ -151,6 +153,7 @@ const App: FunctionComponent<Props> = (props) => {
   const [focusedConnectionID, setFocusedConnectionID] = useState('')
   const [verificationStatus, setVerificationStatus] = useState()
   const [verifiedCredential, setVerifiedCredential] = useState('')
+  const [accountCredentialIssued, setAccountCredentialIssued] = useState(false)
 
   // (JamesKEbert) Note: We may want to abstract the websockets out into a high-order component for better abstraction, especially potentially with authentication/authorization
 
@@ -227,6 +230,27 @@ const App: FunctionComponent<Props> = (props) => {
       }
     })
   }, [loggedIn])
+
+  const handlePasswordlessLogin = (email) => {
+    Axios({
+      method: 'POST',
+      data: {
+        email: email
+      },
+      url: '/api/user/passwordless-log-in',
+    }).then((res) => {
+      if (res.data.error) {
+        setNotification(res.data.error, 'error')
+      } else {
+        // Setting a session cookie this way doesn't seem to be the best way
+        cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
+
+        // console.log("Setting up the user now")
+        setLoggedIn(true)
+        setUpUser(res.data.id, res.data.username, res.data.roles)
+      }
+    })
+  }
 
   // Define Websocket event listeners
   useEffect(() => {
@@ -603,6 +627,12 @@ const App: FunctionComponent<Props> = (props) => {
               removeLoadingProcess('CREDENTIALS')
               break
 
+            case 'ACCOUNT_CREDENTIAL_ISSUED':
+              setQRCodeURL('')
+              setAccountCredentialIssued(true)
+
+              break
+
             case 'CREDENTIALS_ERROR':
               console.log('Credentials Error:', data.error)
 
@@ -624,7 +654,11 @@ const App: FunctionComponent<Props> = (props) => {
             case 'VERIFIED':
               setVerifiedCredential(data.address.raw)
               setVerificationStatus(true)
+              handlePasswordlessLogin(data.address.raw)
 
+              const envisionUser = await userService.getUserByEmail(data.address.raw)
+              doLoginSuccess(envisionUser)
+              sessionStorage.setItem('user', JSON.stringify(envisionUser));
               break
 
             case 'VERIFICATION_FAILED':
@@ -814,8 +848,11 @@ const App: FunctionComponent<Props> = (props) => {
     cookies.remove('sessionId')
     cookies.remove('user')
 
+    // Envision log out
+    doLogout()
+
     if (history !== undefined) {
-      history.push('/login')
+      history.push('/')
     }
   }
 
@@ -831,6 +868,12 @@ const App: FunctionComponent<Props> = (props) => {
       <ThemeProvider theme={theme}>
         <NotificationProvider>
           <Router>
+            <div className="main-layout">
+              <MainToolbar
+                showLoginModal = {() => showModal('login') }
+                user={currentUser}
+                doLogout={doLogout}
+              />
             <Switch>
               <Route
                 path="/forgot-password"
@@ -877,7 +920,9 @@ const App: FunctionComponent<Props> = (props) => {
                         <AccountSetup
                           logo={image}
                           history={history}
-                          sendRequest={sendMessage}
+                          QRCodeURL={QRCodeURL}
+                          accountCredentialIssued={accountCredentialIssued}
+                          sendRequest={sendAnonMessage}
                           messageHandler={messageHandler}
                           user={user}
                           users={users}
@@ -909,8 +954,27 @@ const App: FunctionComponent<Props> = (props) => {
                   )
                 }}
               />
-              <Redirect to={"/login"}/>
+              <Route path="/" exact>
+                <ReviewPage />
+              </Route>
+              <Redirect to={"/"}/>
             </Switch>
+              <Modal
+                QRCodeURL={QRCodeURL}
+                verificationStatus={verificationStatus}
+                setVerificationStatus={setVerificationStatus}
+                handlePasswordlessLogin={handlePasswordlessLogin}
+                sendRequest={sendAnonMessage}
+                loggedInUserState={loggedInUserState}
+              />
+              <ToastContainer
+                position="bottom-right"
+                autoClose={2000}
+                hideProgressBar={true}
+                newestOnTop={true}
+                toastStyle={{ backgroundColor: "#007568", color: "white" }}
+              />
+            </div>
           </Router>
         </NotificationProvider>
       </ThemeProvider>
@@ -923,10 +987,11 @@ const App: FunctionComponent<Props> = (props) => {
           <SessionProvider logout={handleLogout} sessionTimer={sessionTimer}>
             <Router>
             <div className="main-layout">
-              <MainToolbar 
+              <MainToolbar
                 showLoginModal = {() => showModal('login') }
-                user = {currentUser}
-                doLogout= {doLogout}
+                user={currentUser}
+                handleLogout={handleLogout}
+                doLogout={doLogout}
               />
               <Switch>  
                 <Route exact path="/forgot-password">
@@ -1270,10 +1335,13 @@ const App: FunctionComponent<Props> = (props) => {
                 <Redirect to={"/"}/>
               </Switch>
                 <Modal
+                  QRCodeURL={QRCodeURL}
+                  verificationStatus={verificationStatus}
+                  setVerificationStatus={setVerificationStatus}
                   sendRequest={sendMessage}
                   loggedInUserState={loggedInUserState}
                 />
-                <ToastContainer 
+                <ToastContainer
                   position="bottom-right"
                   autoClose={2000}
                   hideProgressBar={true}
@@ -1301,6 +1369,9 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
   return {
     doLoginClick: (userName: string, password: string ) => {
       dispatch(doLogin(userName, password))
+    },
+    doLoginSuccess: (user) => {
+      dispatch(loginSuccess(user))
     },
     showModal: (type:string) => {
       dispatch(showModal(type))

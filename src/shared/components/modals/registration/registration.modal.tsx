@@ -33,8 +33,17 @@ const RegistrationModal: FunctionComponent<Props> = (props) => {
         }
 
         userService.register(newUser).then(response => {
-            if(response.ok)
-                onModalShow('login');
+            if(response.ok) {
+              // TO DO: Retrieve roles from session
+              const indicioUser = {
+                email: newUser.email,
+                roles: [1]
+              }
+
+              props.sendRequest('USERS', 'CREATE', indicioUser)
+
+              onModalShow('login');
+            }
         });
     }
 
