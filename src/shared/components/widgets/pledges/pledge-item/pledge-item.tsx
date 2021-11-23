@@ -21,7 +21,7 @@ const PledgeItem: FunctionComponent<Props> = (props) => {
     let reductionStr = "";
 
     switch (pledge.credential_type) {
-        case  "Target emission level pledge":
+        case  "Target Emission Level Pledge":
             pledgeTarget = "EMISSION TARGET";
             reductionStr = `${pledge.pledge_emission_target ?? 0}`;
             break;
@@ -29,7 +29,7 @@ const PledgeItem: FunctionComponent<Props> = (props) => {
             pledgeTarget = "CARBON INTENSITY TARGET";
             reductionStr = `${pledge.pledge_carbon_intensity_target ?? 0}`;
             break;
-        case  "Target Emission Reduction pledge":
+        case  "Target Emission Reduction Pledge":
             pledgeTarget = "EMISSION REDUCTION";
             reductionStr = `${pledge.pledge_emission_reduction ?? 0} %`;
             break;

@@ -71,7 +71,7 @@ export const CancelBtn = styled.button`
   color: ${(props) => props.theme.text_light};
   background: ${(props) => props.theme.negative_color};
   padding: 5px;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: ${(props) => props.theme.drop_shadow};
   padding: 10px;
   width: 25%;
   font-size: 1.3em;
@@ -108,9 +108,12 @@ export const InputFieldModal = styled.input`
 `
 
 export const Select = styled.select`
+  padding:3px;
+  width: 90%;
   color: ${(props) => props.theme.text_color};
-  font-size: 1.5em;
-  width: 50%;
+  font-size: 1.025em;
+  border: 1px solid ${(props) => props.theme.text_color};
+  background: #fff;
 `
 
 export const CheckboxHolder = styled.div`
@@ -138,7 +141,7 @@ export const ModalContent = styled.div`
   padding: 10px 5px;
   overflow-y: auto;
   padding-right: 17px;
-  box-sizing: content-box;
+  /*box-sizing: content-box;*/
 `
 
 export const QRModalContent = styled.div`

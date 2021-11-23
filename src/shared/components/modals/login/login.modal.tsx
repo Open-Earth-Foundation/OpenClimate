@@ -56,13 +56,13 @@ const LoginModal: FunctionComponent<Props> = (props) => {
             </div>
 
             <div className="modal__row modal__row_btn modal__options">
-                <div>
+                {/* <div>
                     <span>No account?</span>
                     <a 
                             onClick={()=>onModalShow('registration')}
                             className="modal__link modal__link_blue">Register
                     </a>
-                </div>
+                </div> */}
                 <div> 
                     <a 
                         className="modal__link modal__link_black">Forgot password?

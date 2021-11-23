@@ -17,6 +17,9 @@ const rules = {
     'invitations:create',
     'invitations:accept',
     'invitations:delete',
+    'organizations:create',
+    'organizations:read',
+    'organizations:update',
     'roles:read',
     'settings:read',
     'settings:update',
@@ -27,22 +30,13 @@ const rules = {
     'users:updatePassword',
     'users:updateRoles',
   ],
-  technician: [
+  "demo user": [
     'basicMessages:create',
     'basicMessages:read',
-    'contacts:create',
-    'contacts:read',
-    'contacts:update',
     'credentials:issue',
     'credentials:read',
     'credentials:reissue',
-    'credentials:revoke',
-    'demographics:create',
-    'demographics:read',
-    'demographics:update',
-    'invitations:create',
-    'invitations:accept',
   ],
 }
 
-export default rules
+module.exports = rules

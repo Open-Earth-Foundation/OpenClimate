@@ -75,10 +75,12 @@ function Login(props) {
     e.preventDefault()
     const form = new FormData(loginForm.current)
 
+    props.doLogin(form.get('email'), form.get('password'))
+
     Axios({
       method: 'POST',
       data: {
-        username: form.get('user'),
+        email: form.get('email'),
         password: form.get('password'),
       },
       url: '/api/user/log-in',
@@ -87,35 +89,37 @@ function Login(props) {
       else {
         props.setLoggedIn(true)
 
-        props.setUpUser(res.data.id, res.data.username, res.data.roles)
+        props.setUpUser(res.data.id, res.data.email, res.data.roles)
       }
     })
   }
 
-  const handlePasswordlessSubmit = () => {
-    Axios({
-      method: 'POST',
-      data: {
-        email: props.verifiedCredential
-      },
-      url: '/api/user/passwordless-log-in',
-    }).then((res) => {
+  // This passwordless login will basically be for the admin user...
+  // But the admin won't usually have a login credential, so we only need the form on this page.
+  // const handlePasswordlessSubmit = () => {
+  //   Axios({
+  //     method: 'POST',
+  //     data: {
+  //       email: props.verifiedCredential
+  //     },
+  //     url: '/api/user/passwordless-log-in',
+  //   }).then((res) => {
 
-      if (res.data.error) {
-        setNotification(res.data.error, 'error')
-      } else {
-        // Setting a session cookie this way doesn't seem to be the best way
-        cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
+  //     if (res.data.error) {
+  //       setNotification(res.data.error, 'error')
+  //     } else {
+  //       // Setting a session cookie this way doesn't seem to be the best way
+  //       cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
 
-        props.setLoggedIn(true)
-        props.setUpUser(res.data.id, res.data.username, res.data.roles)
+  //       props.setLoggedIn(true)
+  //       props.setUpUser(res.data.id, res.data.email, res.data.roles)
 
-        setWaitingForInvitation(false)
-        setWaitingForConnection(false)
-        setConnected(false)
-      }
-    })
-  }
+  //       setWaitingForInvitation(false)
+  //       setWaitingForConnection(false)
+  //       setConnected(false)
+  //     }
+  //   })
+  // }
 
   const handleForgot = (e) => {
     e.preventDefault()
@@ -137,11 +141,11 @@ function Login(props) {
                       </LogoHolder>
                       <Form id="form" onSubmit={handleSubmit} ref={loginForm}>
                         <InputBox>
-                          <Label htmlFor="user">User Name</Label>
+                          <Label htmlFor="email">Email</Label>
                           <InputField
                             type="text"
-                            name="user"
-                            id="user"
+                            name="email"
+                            id="email"
                             required
                           />
                         </InputBox>
@@ -161,7 +165,7 @@ function Login(props) {
                       </ForgotPasswordLink>
                     </FormContainer>
                   </div>
-                  {connected ? (
+                  {/* {connected ? (
                     props.verificationStatus !== undefined ? (
                       props.verificationStatus ? (
                         props.verifiedCredential ? (
@@ -223,7 +227,7 @@ function Login(props) {
                         </p>
                       )}
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
@@ -233,4 +237,5 @@ function Login(props) {
     </>
   )
 }
+
 export default Login

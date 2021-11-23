@@ -12,6 +12,7 @@ const Header = styled.header`
   min-width: 240px;
   max-width: 240px;
   min-height: 100vh;
+  border-right: 1px solid ${(props) => props.theme.border};
   background: ${(props) => props.theme.background_primary};
 `
 
@@ -87,7 +88,7 @@ function AppHeader(props) {
       <OrganizationName>{organizationName}</OrganizationName>
       <LogoutWrapper>
         <UserName onClick={handleUserProfile}>
-          {props.loggedInUsername}
+          {props.loggedInEmail}
         </UserName>
         <Logout onClick={handleUILogout}>Log Out</Logout>
       </LogoutWrapper>

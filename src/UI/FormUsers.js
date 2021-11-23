@@ -15,6 +15,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalLabel,
+  Select,
   StyledPopup,
   SubmitBtnModal,
 } from './CommonStylesForms'
@@ -24,13 +25,15 @@ import { IconHelp } from './CommonStylesTables'
 import ReactTooltip from 'react-tooltip'
 
 function FormUsers(props) {
-  const [options, setOptions] = useState([])
-
   const roles = props.roles
+  const organizations = props.organizations
   const error = props.error
 
   const userForm = useRef()
   const submitBtn = useRef()
+
+  const [options, setOptions] = useState([])
+  const [organizationState, setOrganizationState] = useState(organizations[0].organization_id)
 
   useEffect(() => {
     if (error && submitBtn.current) {
@@ -51,9 +54,14 @@ function FormUsers(props) {
 
     const form = new FormData(userForm.current)
     const email = form.get('email')
+    const first_name = form.get('first_name')
+    const last_name = form.get('last_name')
 
     const user = {
+      organization_id: organizationState,
       email: email,
+      first_name: first_name,
+      last_name: last_name,
       roles: options,
     }
 
@@ -65,6 +73,12 @@ function FormUsers(props) {
     props.closeUserModal()
   }
 
+  const handleSelectChange = (event) => {
+    setOrganizationState(event.target.value)
+    console.log(organizationState)
+    console.log("Handle Select")
+  }
+
   const handleCheckboxChange = (event) => {
     let newArray = [...options, event.target.value]
     if (options.includes(event.target.value)) {
@@ -72,6 +86,14 @@ function FormUsers(props) {
     }
     setOptions(newArray)
   }
+
+  const organizationOptions = organizations.map((organization) => {
+    return (
+      <option key={organization.organization_id} value={organization.organization_id}>
+        {organization.name}
+      </option>
+    )
+  })
 
   const rolesOptions = roles.map((role) => {
     return (
@@ -99,12 +121,40 @@ function FormUsers(props) {
           <ModalContent>
             <form id="form" onSubmit={handleSubmit} ref={userForm}>
               <InputBox>
+                <ModalLabel htmlFor="organization_id">Organization</ModalLabel>
+                <CheckboxHolder>
+                  <Select id="organization_id" defaultValue={organizationState} onChange={handleSelectChange}>
+                    {organizationOptions}
+                  </Select>
+                </CheckboxHolder>
+              </InputBox>
+              <InputBox>
+                <ModalLabel htmlFor="first_name">First Name</ModalLabel>
+                <InputFieldModal
+                  type="text"
+                  name="first_name"
+                  id="first_name"
+                  placeholder="John"
+                  required
+                />
+              </InputBox>
+              <InputBox>
+                <ModalLabel htmlFor="last_name">Last Name</ModalLabel>
+                <InputFieldModal
+                  type="text"
+                  name="last_name"
+                  id="last_name"
+                  placeholder="Doe"
+                  required
+                />
+              </InputBox>
+              <InputBox>
                 <ModalLabel htmlFor="email">Email</ModalLabel>
                 <InputFieldModal
                   type="email"
                   name="email"
                   id="email"
-                  placeholder="foo@bar.com"
+                  placeholder="name@email.com"
                   required
                 />
               </InputBox>

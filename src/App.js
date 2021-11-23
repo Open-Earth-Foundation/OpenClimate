@@ -55,6 +55,7 @@ import {
   useNotification,
   NotificationProvider,
 } from './UI/NotificationProvider'
+import Organizations from './UI/Organizations'
 import PasswordReset from './UI/PasswordReset'
 import Settings from './UI/Settings'
 import User from './UI/User'
@@ -136,21 +137,24 @@ const App: FunctionComponent<Props> = (props) => {
   const [roles, setRoles] = useState([])
   const [users, setUsers] = useState([])
   const [user, setUser] = useState({})
+  const [organizations, setOrganizations] = useState({})
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
   const [organizationName, setOrganizationName] = useState(null)
 
-  // session states
+  // Session states
   const [session, setSession] = useState('')
   const [loggedInUserId, setLoggedInUserId] = useState('')
   const [loggedInUserState, setLoggedInUserState] = useState(null)
-  const [loggedInUsername, setLoggedInUsername] = useState('')
+  const [loggedInEmail, setLoggedInEmail] = useState('')
   const [loggedInRoles, setLoggedInRoles] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [sessionTimer, setSessionTimer] = useState(60)
 
   const [QRCodeURL, setQRCodeURL] = useState('')
   const [focusedConnectionID, setFocusedConnectionID] = useState('')
+  const [emailStatus, setEmailStatus] = useState()
+  const [organizationStatus, setOrganizationStatus] = useState()
   const [verificationStatus, setVerificationStatus] = useState()
   const [verifiedCredential, setVerifiedCredential] = useState('')
   const [accountCredentialIssued, setAccountCredentialIssued] = useState(false)
@@ -203,13 +207,10 @@ const App: FunctionComponent<Props> = (props) => {
 
   // TODO: Setting logged-in user and session states on app mount
   useEffect(() => {
-    console.log('refreshed')
-
     Axios({
       method: 'GET',
       url: '/api/session',
     }).then((res) => {
-      console.log(res)
       if (res.status) {
         // Check for a session and then set up the session state based on what we found
         setSession(cookies.get('sessionId'))
@@ -222,14 +223,21 @@ const App: FunctionComponent<Props> = (props) => {
             const userCookie = cookies.get('user')
             setLoggedInUserState(userCookie)
             setLoggedInUserId(userCookie.id)
-            setLoggedInUsername(userCookie.username)
-            console.log(userCookie.roles)
+            setLoggedInEmail(userCookie.email)
             setLoggedInRoles(userCookie.roles)
           } else setAppIsLoaded(true)
         } else setAppIsLoaded(true)
       }
     })
   }, [loggedIn])
+
+  useEffect(() => {
+    if (emailStatus && organizationStatus) {
+      setVerifiedCredential(emailStatus)
+      setVerificationStatus(true)
+      handlePasswordlessLogin(emailStatus)
+    }
+  }, [emailStatus, organizationStatus])
 
   const handlePasswordlessLogin = (email) => {
     Axios({
@@ -238,16 +246,24 @@ const App: FunctionComponent<Props> = (props) => {
         email: email
       },
       url: '/api/user/passwordless-log-in',
-    }).then((res) => {
+    }).then(async (res) => {
       if (res.data.error) {
-        setNotification(res.data.error, 'error')
+        // setNotification isn't defined everywhere we need to use it, so we can't display the error this way
+        // setNotification(res.data.error, 'error')
+        // We don't want to redirect to the home page in every case, we shouldn't do this, either.
+        // history.push('/')
       } else {
         // Setting a session cookie this way doesn't seem to be the best way
         cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
 
         // console.log("Setting up the user now")
         setLoggedIn(true)
-        setUpUser(res.data.id, res.data.username, res.data.roles)
+        setUpUser(res.data.id, res.data.email, res.data.roles)
+
+        // Envision login
+        const envisionUser = await userService.getUserByEmail(res.data.email)
+        doLoginSuccess(envisionUser)
+        sessionStorage.setItem('user', JSON.stringify(envisionUser));
       }
     })
   }
@@ -294,10 +310,14 @@ const App: FunctionComponent<Props> = (props) => {
         sendMessage('IMAGES', 'GET_ALL', {})
         addLoadingProcess('LOGO')
 
-        // This is the example of atuthorizing websockets
         if (check(rules, loggedInUserState, 'users:read')) {
           sendMessage('USERS', 'GET_ALL', {})
           addLoadingProcess('USERS')
+        }
+
+        if (check(rules, loggedInUserState, 'organizations:read')) {
+          sendMessage('ORGANIZATIONS', 'GET_ALL', {})
+          addLoadingProcess('ORGANIZATIONS')
         }
       }
 
@@ -388,7 +408,6 @@ const App: FunctionComponent<Props> = (props) => {
               console.log(data.error)
               console.log('Invitations Error')
               setErrorMessage(data.error)
-
               break
 
             default:
@@ -418,7 +437,6 @@ const App: FunctionComponent<Props> = (props) => {
               console.log(data.error)
               console.log('Contacts Error')
               setErrorMessage(data.error)
-
               break
 
             default:
@@ -436,14 +454,12 @@ const App: FunctionComponent<Props> = (props) => {
               console.log(data.error)
               console.log('Demographics Error')
               setErrorMessage(data.error)
-
               break
 
             case 'CONTACTS_ERROR':
               console.log(data.error)
               console.log('CONTACTS ERROR')
               setErrorMessage(data.error)
-
               break
 
             default:
@@ -522,7 +538,6 @@ const App: FunctionComponent<Props> = (props) => {
 
               setUsers(updatedUsers)
               removeLoadingProcess('USERS')
-
               break
 
             case 'USER':
@@ -556,7 +571,6 @@ const App: FunctionComponent<Props> = (props) => {
               let oldUsers2 = users
               oldUsers2.push(newUser)
               setUsers(oldUsers2)
-              setUser(data.user[0])
               break
 
             case 'USER_DELETED':
@@ -565,20 +579,16 @@ const App: FunctionComponent<Props> = (props) => {
               let alteredUsers = [...users]
               alteredUsers.splice(index, 1)
               setUsers(alteredUsers)
-
               break
 
             case 'USER_ERROR':
               console.log('User Error', data.error)
-
               setErrorMessage(data.error)
-
               break
 
             case 'USER_SUCCESS':
               console.log('USER SUCCESS')
               setSuccessMessage(data)
-
               break
 
             default:
@@ -646,19 +656,18 @@ const App: FunctionComponent<Props> = (props) => {
               )
               break
           }
-
           break
 
         case 'PRESENTATIONS':
           switch (type) {
             case 'VERIFIED':
-              setVerifiedCredential(data.address.raw)
-              setVerificationStatus(true)
-              handlePasswordlessLogin(data.address.raw)
-
-              const envisionUser = await userService.getUserByEmail(data.address.raw)
-              doLoginSuccess(envisionUser)
-              sessionStorage.setItem('user', JSON.stringify(envisionUser));
+              if (data.address && data.address.raw)
+              {
+                setEmailStatus(data.address.raw)
+              }
+              if (data.organization_name && data.organization_name.raw) {
+                setOrganizationStatus(data.organization_name.raw)
+              }
               break
 
             case 'VERIFICATION_FAILED':
@@ -673,7 +682,6 @@ const App: FunctionComponent<Props> = (props) => {
               )
               break
           }
-
           break
 
         case 'SETTINGS':
@@ -742,12 +750,38 @@ const App: FunctionComponent<Props> = (props) => {
           }
           break
 
-        case 'ORGANIZATION':
+        case 'ORGANIZATIONS':
           switch (type) {
-            case 'ORGANIZATION_NAME':
-              setOrganizationName(data[0].value.name)
+            case 'ORGANIZATIONS':
+              let updatedOrganizations = data.organizations
 
-              removeLoadingProcess('ORGANIZATION')
+              // (mikekebert) Sort the array by data created, newest on top
+              updatedOrganizations.sort((a, b) =>
+                a.created_at < b.created_at ? 1 : -1
+              )
+
+              setOrganizations(updatedOrganizations)
+              removeLoadingProcess('ORGANIZATIONS')
+              break
+
+            // Need a strategy for updating users who had this organization...
+            // So we're waiting to handle this scenario later
+            // case 'ORGANIZATION_DELETED':
+            //   console.log('ORGANIZATION DELETED')
+            //   const index = organizations.findIndex((v) => v.organization_id === data)
+            //   let alteredOrganizations = [...organizations]
+            //   alteredOrganizations.splice(index, 1)
+            //   setOrganizations(alteredOrganizations)
+            //   break
+
+            case 'ORGANIZATION_ERROR':
+              console.log('ORGANIZATION ERROR', data.error)
+              setErrorMessage(data.error)
+              break
+
+            case 'ORGANIZATION_SUCCESS':
+              console.log('ORGANIZATION SUCCESS')
+              setSuccessMessage(data)
               break
 
             default:
@@ -788,10 +822,10 @@ const App: FunctionComponent<Props> = (props) => {
     }
   }
 
-  function setUpUser(id, username, roles) {
+  function setUpUser(id, email, roles) {
     setSession(cookies.get('sessionId'))
     setLoggedInUserId(id)
-    setLoggedInUsername(username)
+    setLoggedInEmail(email)
     setLoggedInRoles(roles)
   }
 
@@ -945,6 +979,7 @@ const App: FunctionComponent<Props> = (props) => {
                           setLoggedIn={setLoggedIn}
                           QRCodeURL={QRCodeURL}
                           sendRequest={sendAnonMessage}
+                          doLogin={doLoginClick}
                           contacts={contacts}
                           verificationStatus={verificationStatus}
                           verifiedCredential={verifiedCredential}
@@ -1029,7 +1064,7 @@ const App: FunctionComponent<Props> = (props) => {
                           loggedInUserState={loggedInUserState}
                           logo={image}
                           organizationName={organizationName}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           match={match}
                           history={history}
                           handleLogout={handleLogout}
@@ -1053,7 +1088,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}
@@ -1075,7 +1110,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}
@@ -1103,7 +1138,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}
@@ -1133,7 +1168,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}
@@ -1157,7 +1192,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}
@@ -1181,7 +1216,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}
@@ -1202,7 +1237,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}
@@ -1224,7 +1259,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}
@@ -1234,9 +1269,10 @@ const App: FunctionComponent<Props> = (props) => {
                         <Main>
                           <Users
                             loggedInUserState={loggedInUserState}
-                            roles={roles}
-                            users={users}
                             user={user}
+                            users={users}
+                            roles={roles}
+                            organizations={organizations}
                             successMessage={successMessage}
                             errorMessage={errorMessage}
                             clearResponseState={clearResponseState}
@@ -1254,10 +1290,11 @@ const App: FunctionComponent<Props> = (props) => {
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}
+                          history={history}
                           handleLogout={handleLogout}
                         />
                         <Main>
@@ -1272,13 +1309,43 @@ const App: FunctionComponent<Props> = (props) => {
                   }}
                 />
                 <Route
+                  exact
+                  path="/admin/organizations"
+                  render={({ match, history }) => {
+                    return (
+                      <Frame id="app-frame">
+                        <AppHeader
+                          loggedInUserState={loggedInUserState}
+                          loggedInEmail={loggedInEmail}
+                          logo={image}
+                          organizationName={organizationName}
+                          match={match}
+                          history={history}
+                          handleLogout={handleLogout}
+                        />
+                        <Main>
+                          <Organizations
+                            loggedInUserState={loggedInUserState}
+                            organizations={organizations}
+                            user={user}
+                            successMessage={successMessage}
+                            errorMessage={errorMessage}
+                            clearResponseState={clearResponseState}
+                            sendRequest={sendMessage}
+                          />
+                        </Main>
+                      </Frame>
+                    )
+                  }}
+                />
+                <Route
                   path="/admin/account"
                   render={({ match, history }) => {
                     return (
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}
@@ -1305,7 +1372,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <Frame id="app-frame">
                         <AppHeader
                           loggedInUserState={loggedInUserState}
-                          loggedInUsername={loggedInUsername}
+                          loggedInEmail={loggedInEmail}
                           logo={image}
                           organizationName={organizationName}
                           match={match}

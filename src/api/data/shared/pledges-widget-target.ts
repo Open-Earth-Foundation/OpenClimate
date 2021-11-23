@@ -1,6 +1,6 @@
 export const PledgesWidgetTarget = {
-    "Target emission level pledge": "EMISSION TARGET",
+    "Target Emission Level Pledge": "EMISSION TARGET",
     "Target Carbon Intensity Level Pledge": "CARBON INTENSITY TARGET",
-    "Target Emission Reduction pledge": "EMISSION REDUCTION",
+    "Target Emission Reduction Pledge": "EMISSION REDUCTION",
     "Target Carbon Intensity Reduction Pledge": "CARBON INTENSITY REDUCTION"
 }

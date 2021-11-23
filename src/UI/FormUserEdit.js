@@ -50,12 +50,10 @@ function FormUserEdit(props) {
   const submitBtn = useRef()
 
   let userEmail = ''
-  let userName = ''
 
   // Check if user is selected
   if (listUser) {
     userEmail = listUser.email
-    userName = listUser.username
 
     // Get the user selected roles
     listUser.Roles.forEach((element) =>
@@ -81,14 +79,12 @@ function FormUserEdit(props) {
 
     const form = new FormData(userForm.current)
     const email = form.get('email')
-    const username = form.get('username')
 
-    listUser.username = username
     listUser.email = email
     listUser.roles = options
 
-    if (listUser && loggedInUserState.id === listUser.user_id && !username)
-      setNotification('You are not allowed to remove your username.', 'error')
+    if (listUser && loggedInUserState.id === listUser.user_id && !email)
+      setNotification('You are not allowed to remove your email.', 'error')
     else props.sendRequest('USERS', 'UPDATE', listUser)
   }
 
@@ -143,15 +139,6 @@ function FormUserEdit(props) {
                   id="email"
                   placeholder="foo@bar.com"
                   required
-                />
-              </InputBox>
-              <InputBox>
-                <ModalLabel htmlFor="Username">Username</ModalLabel>
-                <InputFieldModal
-                  type="username"
-                  name="username"
-                  defaultValue={userName}
-                  id="username"
                 />
               </InputBox>
               <InputBox>

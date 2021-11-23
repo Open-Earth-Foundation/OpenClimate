@@ -68,7 +68,6 @@ const Modal: FunctionComponent<IProps> = (props) => {
       props.setVerificationStatus(false)
       hideModal()
     }
-    console.log(user)
 
     switch(modalConfig.entityType)
     {
@@ -106,7 +105,12 @@ const Modal: FunctionComponent<IProps> = (props) => {
             break;
         case 'add-pledge':
             title = "Add new pledge"
-            component = <AddPledgeModal onModalHide={hideModal} addPledge={addPledge} user={user} />
+            component = <AddPledgeModal
+                            user={user}
+                            addPledge={addPledge}
+                            onModalHide={hideModal}
+                            sendRequest={props.sendRequest}
+                            loggedInUserState={props.loggedInUserState} />
             break;
         case 'add-site-credential':
             title = "Add site credential"
@@ -121,12 +125,12 @@ const Modal: FunctionComponent<IProps> = (props) => {
         case 'add-transfer':
             title = "Add transfer"
             component = <AddTransferModal 
-                        onModalHide={hideModal} 
-                        addTransfer={addTransfer}
-                        sites={sites}
-                        user={user}
-                        sendRequest={props.sendRequest}
-                        loggedInUserState={props.loggedInUserState} />
+                            onModalHide={hideModal}
+                            addTransfer={addTransfer}
+                            sites={sites}
+                            user={user}
+                            sendRequest={props.sendRequest}
+                            loggedInUserState={props.loggedInUserState} />
             break;
         case 'add-climate-action':
             title = "Add climate action"

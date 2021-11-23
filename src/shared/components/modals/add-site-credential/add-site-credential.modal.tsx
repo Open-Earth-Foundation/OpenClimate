@@ -68,7 +68,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
             credential_issue_date: credential_issue_date,
             credential_issuer: "OpenClimate",
             organization_name: user.company.organization_name,
-            signature_name: `${user.name}`
+            signature_name: `${user.firstName} ${user.lastName}`,
         });
 
         console.log(site)
@@ -81,6 +81,10 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
             {
                 name: 'credential_type',
                 value: 'Facility Information',
+            },
+            {
+                name: 'credential_name',
+                value: 'Site_Facility'
             },
             {
                 name: 'credential_schema_id',
@@ -96,7 +100,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
             },
             {
                 name: 'organization_name',
-                value: site.organization_name,
+                value: site.organization_name || '',
             },
             {
                 name: 'organization_category',
@@ -128,7 +132,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
             },
             {
                 name: 'facility_type',
-                value: site.facility_type
+                value: site.facility_type,
             },
             {
                 name: 'facility_sector_ipcc_category',
@@ -147,8 +151,6 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                 value: site.signature_name || '',
             }
         ]
-
-        // console.log(JSON.stringify(attributes))
 
         let newCredential = {
             connectionID: props.loggedInUserState.connection_id,

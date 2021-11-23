@@ -61,8 +61,10 @@ function Users(props) {
 
   const loggedInUserState = props.loggedInUserState
 
-  const roles = props.roles
   const users = props.users
+  const roles = props.roles
+  const organizations = props.organizations
+  console.log(organizations)
 
   const closeUserModal = () => setUserModalIsOpen(false)
   const closeUserEditModal = () => setUserEditModalIsOpen(false)
@@ -98,9 +100,6 @@ function Users(props) {
         if (user.user_id) {
           userId = user.user_id
         }
-        if (user.username) {
-          userName = user.username
-        }
         if (user.email) {
           userEmail = user.email
         }
@@ -112,7 +111,6 @@ function Users(props) {
 
       return (
         <DataRow key={user.user_id} onClick={() => {}}>
-          <DataCell>{userName}</DataCell>
           <DataCell>{userEmail}</DataCell>
           <DataCell>{userRoles}</DataCell>
 
@@ -161,14 +159,14 @@ function Users(props) {
                   >
                     <IconEmail
                       disabled={buttonDisabled}
-                      alt="Re-send confirmation email"
+                      alt="Send account setup email"
                     />
                   </IconCell>
                 ) : (
                   <IconCell>
                     <IconEmail
                       disabled={buttonDisabled}
-                      alt="Re-send confirmation email"
+                      alt="Send account setup email"
                     />
                   </IconCell>
                 )
@@ -190,7 +188,6 @@ function Users(props) {
           <DataTable>
             <thead>
               <DataRow>
-                <DataHeader>Username</DataHeader>
                 <DataHeader>Email</DataHeader>
                 <DataHeader>Roles</DataHeader>
                 <CanUser
@@ -231,6 +228,7 @@ function Users(props) {
         <FormUsers
           sendRequest={props.sendRequest}
           error={index}
+          organizations={organizations}
           roles={roles}
           userModalIsOpen={userModalIsOpen}
           closeUserModal={closeUserModal}

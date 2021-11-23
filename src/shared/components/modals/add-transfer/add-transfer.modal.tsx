@@ -74,7 +74,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
         }
 
         transfer.organization_name = user.company?.organization_name;
-        transfer.signature_name = `${user.name}`;
+        transfer.signature_name = `${user.firstName} ${user.lastName}`;
         //todo
 
         const foundSite = sites.find(f => f.facility_name === transfer.facility_name);
@@ -202,8 +202,6 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
                 value: transfer.signature_name || '',
             }
         ]
-
-        // console.log(JSON.stringify(attributes))
 
         let newCredential = {
             connectionID: props.loggedInUserState.connection_id,

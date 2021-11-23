@@ -1,7 +1,7 @@
 export const PledgeSchemas = [
     {
         "category": "Pledges",
-        "type": "Target Emission Reduction pledge",
+        "type": "Target Emission Reduction Pledge",
         "display_name": "Target emission reduction",
         "fields": [
             {
@@ -87,7 +87,7 @@ export const PledgeSchemas = [
     },
     {
         "category": "Pledges",
-        "type": "Target emission level pledge",
+        "type": "Target Emission Level Pledge",
         "display_name": "Target emission",
         "fields": [
             {

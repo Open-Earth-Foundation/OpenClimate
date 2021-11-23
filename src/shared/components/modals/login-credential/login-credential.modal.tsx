@@ -10,8 +10,11 @@ interface Props {
 }
 
 const LoginCredentialModal: FunctionComponent<Props> = (props) => {
-    if (!props.QRCodeURL) {
+    const [requestedInvitation, setRequestedInvitation] = useState(false)
+
+    if (!props.QRCodeURL && !requestedInvitation) {
       props.sendRequest('INVITATIONS', 'CREATE_SINGLE_USE', {})
+      setRequestedInvitation(true)
     }
 
     const { onModalShow } = props;
@@ -66,21 +69,19 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
 
 export default LoginCredentialModal;
 /*
-
-
-                        <div className="modal__row  modal__options login-credential-form__options">
-                            <div>
-                                <span>No credential?</span>
-                                <a 
-                                        onClick={onRegistrationShow}
-                                        className="modal__link modal__link_blue">Register
-                                </a>
-                            </div>
-                            <div>
-                                <a 
-                                    onClick={onLoginShow}
-                                    className="modal__link modal__link_black">Log In with password
-                                </a>
-                            </div>
-                        </div>
+                <div className="modal__row  modal__options login-credential-form__options">
+                    <div>
+                        <span>No credential?</span>
+                        <a
+                                onClick={onRegistrationShow}
+                                className="modal__link modal__link_blue">Register
+                        </a>
+                    </div>
+                    <div>
+                        <a
+                            onClick={onLoginShow}
+                            className="modal__link modal__link_black">Log In with password
+                        </a>
+                    </div>
+                </div>
 */

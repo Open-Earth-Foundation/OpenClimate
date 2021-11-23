@@ -49,7 +49,6 @@ export const loginSuccess = (user: IUser) => {
 
 export const doLogin = (email: string, password: string) => {
     return async (dispatch: Dispatch) => {
-
         dispatch(startLoading())
         userService.login(email, password).then( (user: IUser) =>{
             dispatch(loginSuccess(user));

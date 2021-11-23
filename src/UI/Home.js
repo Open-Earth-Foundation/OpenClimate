@@ -30,7 +30,7 @@ const DashboardButton = styled.div`
 
   :hover {
     cursor: pointer;
-    background: ${(props) => props.theme.background_primary};
+    background: ${(props) => props.theme.background_secondary};
     color: ${(props) => props.theme.text_color};
   }
 `

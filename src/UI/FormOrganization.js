@@ -16,51 +16,30 @@ import {
   TextItem,
 } from './CommonStylesForms'
 
+import { useNotification } from './NotificationProvider'
+
 function FormOrganization(props) {
   const credentialForm = useRef(null)
   const dateValidated = new Date()
-  console.log(props.schemas)
+
+  const setNotification = useNotification()
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const form = new FormData(credentialForm.current)
 
-    let attributes = [
-      {
-        name: 'organization_name',
-        value: form.get('organization_name'),
-      },
-      {
-        name: 'organization_category',
-        value: form.get('organization_category'),
-      },
-      {
-        name: 'organization_type',
-        value: form.get('organization_type'),
-      },
-      {
-        name: 'organization_country',
-        value: form.get('organization_country'),
-      },
-      {
-        name: 'organization_jurisdiction',
-        value: form.get('organization_jurisdiction'),
-      }
-    ]
-console.log(props.schemas)
-    let schema = props.schemas.SCHEMA_CLIMATE_ORGANIZATION
-    let schemaParts = schema.split(':')
-
-    let newCredential = {
-      connectionID: props.contactSelected.Connections[0].connection_id,
-      schemaID: schema,
-      schemaVersion: schemaParts[3],
-      schemaName: schemaParts[2],
-      schemaIssuerDID: schemaParts[0],
-      comment: 'Climate Organization',
-      attributes: attributes,
+    let newOrganization = {
+      name: form.get('name'),
+      category: form.get('category'),
+      type: form.get('type'),
+      country: form.get('country'),
+      jurisdiction: form.get('jurisdiction'),
     }
 
-    props.submitCredential(newCredential, e)
+    // Submits the organization form and shows notification
+    props.sendRequest('ORGANIZATIONS', 'CREATE', newOrganization)
+    setNotification('Organization was successfully added!', 'notice')
+
     props.closeCredentialModal()
   }
 
@@ -75,52 +54,52 @@ console.log(props.schemas)
       onClose={closeModal}
     >
       <Modal className="agent-modal">
-        <ModalHeader>Issue Climate Organization</ModalHeader>
+        <ModalHeader>Create Climate Organization</ModalHeader>
         <ModalContentWrapper>
           <ModalContent>
             <form onSubmit={handleSubmit} ref={credentialForm}>
               <InputBox>
-                <ModalLabel htmlFor="organization_name">Name</ModalLabel>
+                <ModalLabel htmlFor="name">Name</ModalLabel>
                 <InputFieldModal
                   type="text"
-                  name="organization_name"
-                  id="organization_name"
-                  placeholder="example"
+                  name="name"
+                  id="name"
+                  placeholder="Acme Co."
                 />
               </InputBox>
               <InputBox>
-                <ModalLabel htmlFor="organization_type">Type</ModalLabel>
+                <ModalLabel htmlFor="type">Type</ModalLabel>
                 <InputFieldModal
                   type="text"
-                  name="organization_type"
-                  id="organization_type"
-                  placeholder=""
+                  name="type"
+                  id="type"
+                  placeholder="Industrial"
                 />
               </InputBox>
               <InputBox>
-                <ModalLabel htmlFor="organization_category">Category</ModalLabel>
+                <ModalLabel htmlFor="category">Category</ModalLabel>
                 <InputFieldModal
                   type="text"
-                  name="organization_category"
-                  id="organization_category"
-                  placeholder=""
+                  name="category"
+                  id="category"
+                  placeholder="Manufacturing"
                 />
               </InputBox>
               <InputBox>
-                <ModalLabel htmlFor="organization_country">Country</ModalLabel>
+                <ModalLabel htmlFor="country">Country</ModalLabel>
                 <InputFieldModal
                   type="text"
-                  name="organization_country"
-                  id="organization_country"
+                  name="country"
+                  id="country"
                   placeholder="United States"
                 />
               </InputBox>
               <InputBox>
-                <ModalLabel htmlFor="organization_jurisdiction">Jurisdiction</ModalLabel>
+                <ModalLabel htmlFor="jurisdiction">Jurisdiction</ModalLabel>
                 <InputFieldModal
                   type="text"
-                  name="organization_jurisdiction"
-                  id="organization_jurisdiction"
+                  name="jurisdiction"
+                  id="jurisdiction"
                   placeholder="California"
                 />
               </InputBox>

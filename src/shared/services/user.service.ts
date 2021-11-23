@@ -40,7 +40,7 @@ function login(email: string, password: string) {
 }
 
 function logout() {
-    return fetch(`${ServerUrls.api}}/logout`)
+    return fetch(`${ServerUrls.api}/logout`)
         .then(response => {
             sessionStorage.removeItem('user');
         });
