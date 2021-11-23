@@ -68,7 +68,7 @@ services:
       - WEB_ROOT=https://localhost
       - JWT_SECRET=ZBVgToVv72zffZE2ksUYNAhYmNCXwgKp
       - SESSION_SECRET=aZj6iXNkrtmLrAT0HsTrp7dRR7r4U7P0
-      - SCHEMA_=
+      - SCHEMA_CLIMATE_ORGANIZATION=XSYhjGtcha6oCAzaVg34df:2:Climate_Organization:1.1
     volumes:
       - ./OpenClimate-hub-controller:/home/node/app:consistent
       - ./wait-for-it:/home/node/wait-for-it
@@ -154,7 +154,7 @@ services:
       - app-network
 
 
-#Docker Networks
+# Docker Networks
 networks:
   app-network:
     driver: bridge

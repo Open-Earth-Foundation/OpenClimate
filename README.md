@@ -16,7 +16,7 @@ Then get the git submodules
 
     git submodule update --init
 
-It can be helpful to go into the following submodule's folders and get the latest commit or switch to the branch you want to work on, such as:
+It can be helpful to go into the following submodule's folders and get the latest commit or switch to the branch you want to work on:
 
     cd OpenClimate-hub-controller
     git checkout main
@@ -43,8 +43,7 @@ We can finally start the docker containers by runnning
 
 The first time you bring up the containers and agent(in a container or separate) or reset them, you must run the following script after the controller api containers have started:
 
-    docker-compose exec government-api npm run first-time-setup
-    docker-compose exec lab-api npm run first-time-setup
+    docker-compose exec hub-api npm run first-time-setup
 
 You also want to log in and configure the SMTP settings before you attempt any process that sends emails (such as user creation or email verification). Here are some sample settings:
 
