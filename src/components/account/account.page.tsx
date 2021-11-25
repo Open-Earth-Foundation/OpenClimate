@@ -23,7 +23,7 @@ import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateActions/I
 import { IUser } from '../../api/models/User/IUser';
 
 
-interface IStateProps  {
+interface IStateProps {
     user: IUser | null,
     pledges: Array<any>,
     transfers: Array<any>,
@@ -91,8 +91,8 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
                     <Switch>
                         <Route path="/account/climate-actions">
                             <ClimateActions 
+                                showModal={showModal}
                                 climateActions={climateActions}
-                                showModal={showModal} 
                             />
                         </Route>
                         <Route path="/account/pledges">

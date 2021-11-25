@@ -69,6 +69,9 @@ const Modal: FunctionComponent<IProps> = (props) => {
       hideModal()
     }
 
+    if (props.loggedInUserState) console.log(props.loggedInUserState)
+    else console.log('No logged in user state')
+
     switch(modalConfig.entityType)
     {
         case 'login': 
@@ -192,7 +195,6 @@ const Modal: FunctionComponent<IProps> = (props) => {
 };
 
 const mapStateToProps = (state: RootState, ownProps: any) => {
-
     return {
         user: userSelectors.getCurrentUser(state),
         modalConfig: state.app.modalConfig,

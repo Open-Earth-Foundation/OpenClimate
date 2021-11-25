@@ -61,6 +61,10 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
 
     const saveClimateAction = (climateAction?: IClimateAction) => {
 
+        console.log(climateAction)
+        console.log(climateAction.climate_action_type)
+        console.log(climateAction.climate_action_scope)
+
         if (!climateAction)
             return;
 
@@ -85,22 +89,21 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
 
         const userCompanyId = user.company.id;
 
-        const attributes = [
+        const credential_issue_date = Date.now()
+
+        if (climateAction.climate_action_type && climateAction.climate_action_type === 'Emissions') {
+          const attributes_1 = [
             {
                 name: 'credential_category',
-                value: 'Mitigations',
+                value: climateAction.credential_category || '',
             },
             {
                 name: 'credential_type',
-                value: 'Mitigation Report',
+                value: climateAction.climate_action_type || '',
             },
             {
                 name: 'climate_action_scope',
-                value: '',
-            },
-            {
-                name: 'credential_schema_id',
-                value: 'WFZtS6jVBp23b4oDQo6JXP:2:Facility_Scope_1_Mitigations:1.0',
+                value: climateAction.climate_action_scope || '',
             },
             {
                 name: 'credential_issuer',
@@ -108,19 +111,19 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
             },
             {
                 name: 'credential_issue_date',
-                value: mitigations.credential_issue_date.toString(),
+                value: credential_issue_date.toString(),
             },
             {
                 name: 'credential_reporting_date_start',
-                value: '',
+                value: climateAction.credential_reporting_date_start.toString()
             },
             {
                 name: 'credential_reporting_date_end',
-                value: '',
+                value: climateAction.credential_reporting_date_end.toString()
             },
             {
                 name: 'organization_name',
-                value: mitigations.organization_name,
+                value: climateAction.organization_name || '',
             },
             {
                 name: 'organization_category',
@@ -136,72 +139,423 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
             },
             {
                 name: 'facility_name',
-                value: mitigations.facility_name,
+                value: climateAction.facility_name,
             },
             {
                 name: 'facility_credential_id',
-                value: mitigations.facility_country,
+                value: climateAction.facility_country,
             },
             {
                 name: 'facility_country',
-                value: mitigations.facility_country,
+                value: climateAction.facility_country,
             },
             {
                 name: 'facility_jurisdiction',
-                value: mitigations.facility_jurisdiction || '',
+                value: climateAction.facility_jurisdiction || '',
             },
             {
                 name: 'facility_location',
-                value: mitigations.facility_location,
+                value: climateAction.facility_location,
             },
             {
                 name: 'facility_sector_ipcc_category',
-                value: mitigations.facility_sector_ipcc_category || '',
+                value: climateAction.facility_sector_ipcc_category || '',
             },
             {
                 name: 'facility_sector_ipcc_activity',
-                value: mitigations.facility_sector_ipcc_activity || '',
+                value: climateAction.facility_sector_ipcc_activity || '',
             },
             {
                 name: 'facility_sector_naics',
-                value: mitigations.facility_sector_naics || '',
+                value: climateAction.facility_sector_naics || '',
+            },
+          ]
+
+          if (climateAction.climate_action_scope && climateAction.climate_action_scope === 'Scope1') {
+            const attributes_2 = [
+              {
+                  name: 'credential_name',
+                  value: 'Facility_Scope_1'
+              },
+              {
+                  name: 'credential_schema_id',
+                  value: 'WFZtS6jVBp23b4oDQo6JXP:2:Facility_Scope_1:1.0',
+              },
+              {
+                  name: 'facility_emissions_scope1_co2e',
+                  value: climateAction.facility_emissions_co2e || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_co2_fossil',
+                  value: climateAction.facility_emissions_co2_fossil || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_co2_biomass',
+                  value: climateAction.facility_emissions_co2_biomass || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_ch4',
+                  value: climateAction.facility_emissions_ch4 || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_n2o',
+                  value: climateAction.facility_emissions_n2o || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_hfc',
+                  value: climateAction.facility_emissions_hfc || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_pfc',
+                  value: climateAction.facility_emissions_pfc || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_sf6',
+                  value: climateAction.facility_emissions_sf6 || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_combustion_co2e',
+                  value: climateAction.facility_emissions_combustion_co2e || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_combustion_co2_fossil',
+                  value: climateAction.facility_emissions_combustion_co2_fossil || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_combustion_co2_biomass',
+                  value: climateAction.facility_emissions_combustion_co2_biomass || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_combustion_ch4',
+                  value: climateAction.facility_emissions_combustion_ch4 || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_combustion_n2o',
+                  value: climateAction.facility_emissions_combustion_n2o || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_fvpwt_co2e',
+                  value: climateAction.facility_emissions_fvpwt_co2e || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_fvpwt_co2_fossil',
+                  value: climateAction.facility_emissions_fvpwt_co2_fossil || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_fvpwt_co2_biomass',
+                  value: climateAction.facility_emissions_fvpwt_co2_biomass || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_fvpwt_ch4',
+                  value: climateAction.facility_emissions_fvpwt_ch4 || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_fvpwt_n2o',
+                  value: climateAction.facility_emissions_fvpwt_n2o || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_fvpwt_hfc',
+                  value: climateAction.facility_emissions_fvpwt_hfc || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_fvpwt_pfc',
+                  value: climateAction.facility_emissions_fvpwt_pfc || '',
+              },
+              {
+                  name: 'facility_emissions_scope1_fvpwt_sf6',
+                  value: climateAction.facility_emissions_fvpwt_sf6 || '',
+              },
+              {
+                  name: 'verification_body',
+                  value: climateAction.verification_body || ''
+              },
+              {
+                  name: 'verification_result',
+                  value: climateAction.verification_result || ''
+              },
+              {
+                  name: 'verification_credential_id',
+                  value: climateAction.verification_credential_id || ''
+              },
+              {
+                  name: 'signature_name',
+                  value: climateAction.signature_name || '',
+              }
+            ]
+            console.log(attributes_1)
+            console.log(attributes_2)
+            const attributes = attributes_1.concat(attributes_2)
+            console.log(attributes)
+            let newCredential = {
+                connectionID: props.loggedInUserState.connection_id,
+                schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Facility_Scope_1:1.0',
+                schemaVersion: '1.0',
+                schemaName: 'Facility_Scope_1',
+                schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
+                comment: 'Facility_Scope_1',
+                attributes: attributes,
+            }
+            console.log(newCredential)
+
+            if (props.loggedInUserState.connection_id) {
+                props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+            }
+          } else if (climateAction.climate_action_scope && climateAction.climate_action_scope === 'Scope2') {
+            const attributes_2 = [
+              {
+                  name: 'credential_name',
+                  value: 'Facility_Scope_2'
+              },
+              {
+                  name: 'credential_schema_id',
+                  value: 'WFZtS6jVBp23b4oDQo6JXP:2:Facility_Scope_2:1.0',
+              },
+              {
+                  name: 'facility_energy_grid_operator_name',
+                  value: climateAction.facility_energy_grid_operator_name || '',
+              },
+              {
+                  name: 'facility_energy_consumption',
+                  value: climateAction.facility_energy_consumption || '',
+              },
+              {
+                  name: 'facility_emissions_scope2_co2e',
+                  value: climateAction.facility_emissions_co2e || '',
+              },
+              {
+                  name: 'facility_emissions_scope2_market_based_co2e',
+                  value: climateAction.facility_emissions_market_based_co2e || '',
+              },
+              {
+                  name: 'facility_emissions_scope2_location_based_co2e',
+                  value: climateAction.facility_emissions_location_based_co2e || '',
+              },
+              {
+                  name: 'facility_energy_grid_operator_co2_rate',
+                  value: climateAction.facility_energy_grid_operator_co2_rate || '',
+              },
+              {
+                  name: 'facility_energy_grid_operator_ch4_rate',
+                  value: climateAction.facility_energy_grid_operator_ch4_rate || '',
+              },
+              {
+                  name: 'facility_energy_grid_operator_n2o_rate',
+                  value: climateAction.facility_energy_grid_operator_n2o_rate || '',
+              },
+              {
+                  name: 'facility_emissions_scope2_location_based_co2',
+                  value: climateAction.facility_emissions_location_based_co2 || '',
+              },
+              {
+                  name: 'facility_emissions_scope2_location_based_ch4',
+                  value: climateAction.facility_emissions_location_based_ch4 || '',
+              },
+              {
+                  name: 'facility_emissions_scope2_location_based_n2o',
+                  value: climateAction.facility_emissions_location_based_n2o || '',
+              },
+              {
+                  name: 'verification_body',
+                  value: climateAction.verification_body || ''
+              },
+              {
+                  name: 'verification_result',
+                  value: climateAction.verification_result || ''
+              },
+              {
+                  name: 'verification_credential_id',
+                  value: climateAction.verification_credential_id || ''
+              },
+              {
+                  name: 'signature_name',
+                  value: climateAction.signature_name || '',
+              }
+            ]
+
+            const attributes = attributes_1.concat(attributes_2)
+
+            let newCredential = {
+                connectionID: props.loggedInUserState.connection_id,
+                schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Facility_Scope_2:1.0',
+                schemaVersion: '1.0',
+                schemaName: 'Facility_Scope_2',
+                schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
+                comment: 'Facility_Scope_2',
+                attributes: attributes,
+            }
+
+            if (props.loggedInUserState.connection_id) {
+                props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+            }
+          } else if (climateAction.climate_action_scope && climateAction.climate_action_scope === 'Scope3') {
+            const attributes_2 = [
+              {
+                  name: 'credential_name',
+                  value: 'Facility_Scope_3'
+              },
+              {
+                  name: 'credential_schema_id',
+                  value: 'WFZtS6jVBp23b4oDQo6JXP:2:Facility_Scope_3:1.0',
+              },
+              {
+                  name: 'facility_emissions_scope3_co2e',
+                  value: climateAction.facility_emissions_scope3_co2e || '',
+              },
+              {
+                  name: 'verification_body',
+                  value: climateAction.verification_body || ''
+              },
+              {
+                  name: 'verification_result',
+                  value: climateAction.verification_result || ''
+              },
+              {
+                  name: 'verification_credential_id',
+                  value: climateAction.verification_credential_id || ''
+              },
+              {
+                  name: 'signature_name',
+                  value: climateAction.signature_name || '',
+              }
+            ]
+
+            const attributes = attributes_1.concat(attributes_2)
+
+            let newCredential = {
+                connectionID: props.loggedInUserState.connection_id,
+                schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Facility_Scope_3:1.0',
+                schemaVersion: '1.0',
+                schemaName: 'Facility_Scope_3',
+                schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
+                comment: 'Facility_Scope_3',
+                attributes: attributes,
+            }
+
+            if (props.loggedInUserState.connection_id) {
+                props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+            }
+          }
+        } else if (climateAction.climate_action_type && climateAction.climate_action_type === 'Mitigations') {
+          const attributes = [
+            {
+                name: 'credential_category',
+                value: climateAction.credential_category || '',
             },
             {
-                name: 'facility_mitigations_co2e',
-                value: mitigations.facility_mitigations_co2e || '',
+                name: 'credential_type',
+                value: climateAction.climate_action_type || '',
+            },
+            {
+                name: 'credential_name',
+                value: 'Facility_Scope_1_Mitigations'
+            },
+            {
+                name: 'climate_action_scope',
+                value: climateAction.climate_action_scope
+            },
+            {
+                name: 'credential_schema_id',
+                value: 'WFZtS6jVBp23b4oDQo6JXP:2:Facility_Scope_1_Mitigations:1.0',
+            },
+            {
+                name: 'credential_issuer',
+                value: 'OpenClimate',
+            },
+            {
+                name: 'credential_issue_date',
+                value: credential_issue_date.toString(),
+            },
+            {
+                name: 'credential_reporting_date_start',
+                value: climateAction.credential_reporting_date_start.toString()
+            },
+            {
+                name: 'credential_reporting_date_end',
+                value: climateAction.credential_reporting_date_end.toString()
+            },
+            {
+                name: 'organization_name',
+                value: climateAction.organization_name || '',
+            },
+            {
+                name: 'organization_category',
+                value: '',
+            },
+            {
+                name: 'organization_type',
+                value: '',
+            },
+            {
+                name: 'organization_credential_id',
+                value: '',
+            },
+            {
+                name: 'facility_name',
+                value: climateAction.facility_name,
+            },
+            {
+                name: 'facility_credential_id',
+                value: climateAction.facility_country,
+            },
+            {
+                name: 'facility_country',
+                value: climateAction.facility_country,
+            },
+            {
+                name: 'facility_jurisdiction',
+                value: climateAction.facility_jurisdiction || '',
+            },
+            {
+                name: 'facility_location',
+                value: climateAction.facility_location,
+            },
+            {
+                name: 'facility_sector_ipcc_category',
+                value: climateAction.facility_sector_ipcc_category || '',
+            },
+            {
+                name: 'facility_sector_ipcc_activity',
+                value: climateAction.facility_sector_ipcc_activity || '',
+            },
+            {
+                name: 'facility_sector_naics',
+                value: climateAction.facility_sector_naics || '',
+            },
+            {
+                name: 'facility_mitigations_scope1_co2e',
+                value: climateAction.facility_mitigations_co2e || '',
             },
             {
                 name: 'verification_body',
-                value: mitigations.verification_body,
+                value: climateAction.verification_body || ''
             },
             {
                 name: 'verification_result',
-                value: mitigations.verification_result,
+                value: climateAction.verification_result || ''
             },
             {
                 name: 'verification_credential_id',
-                value: mitigations.verification_credential_id,
+                value: climateAction.verification_credential_id || ''
             },
             {
                 name: 'signature_name',
-                value: mitigations.signature_name || '',
+                value: climateAction.signature_name || '',
             }
-        ]
+          ]
 
-        console.log(JSON.stringify(attributes))
+          let newCredential = {
+              connectionID: props.loggedInUserState.connection_id,
+              schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Facility_Scope_1_Mitigations:1.0',
+              schemaVersion: '1.0',
+              schemaName: 'Facility_Scope_1_Mitigations',
+              schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
+              comment: 'Facility_Scope_1_Mitigations',
+              attributes: attributes,
+          }
 
-        let newCredential = {
-            connectionID: props.loggedInUserState.connection_id,
-            schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Facility_Scope_1_Mitigations:1.0',
-            schemaVersion: '1.0',
-            schemaName: 'Mitigations',
-            schemaIssuerDID: '',
-            comment: '',
-            attributes: attributes,
-        }
-
-        if (props.loggedInUserState.connection_id) {
-            props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+          if (props.loggedInUserState.connection_id) {
+              props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+          }
         }
 
         climateActionService.saveClimateAction(userCompanyId, climateAction).then(ca => {
@@ -239,6 +593,8 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
                 scopeChangedHandler={scopeChangedHandler}
                 scopeOptions={scopeOptions}
                 typeOptions={typeOptions}
+                sendRequest={props.sendRequest}
+                loggedInUserState={props.loggedInUserState}
             />
             :
             <EmissionsForm
@@ -250,6 +606,8 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
                 scopeChangedHandler={scopeChangedHandler}
                 scopeOptions={scopeOptions}
                 typeOptions={typeOptions}
+                sendRequest={props.sendRequest}
+                loggedInUserState={props.loggedInUserState}
             />
     )
 }

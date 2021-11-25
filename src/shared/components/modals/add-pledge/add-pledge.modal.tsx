@@ -70,22 +70,29 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
 
         e.preventDefault();
 
-        if (!user || !user.company || !user.company.id)
+        if (!user || !user.company || !user.company.organization_credential_id)
             return;
 
         pledge.credential_issue_date = Date.now();
         pledge.credential_issuer = "OpenClimate";
         pledge.organization_name = user.company.organization_name;
-        pledge.signature_name = `${user.name}`;
+        pledge.signature_name = `${user.firstName} ${user.lastName}`;
 
-        const attributes = [
+        console.log(pledge)
+        console.log(pledge.credential_type)
+
+        let attributes_1 = [
             {
                 name: 'credential_category',
                 value: 'Pledges',
             },
             {
                 name: 'credential_type',
-                value: 'Pledge Information',
+                value: pledge.credential_type || '',
+            },
+            {
+                name: 'credential_name',
+                value: 'Site_Facility'
             },
             {
                 name: 'credential_schema_id',
@@ -101,7 +108,7 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
             },
             {
                 name: 'organization_name',
-                value: pledge.organization_name,
+                value: pledge.organization_name || '',
             },
             {
                 name: 'organization_category',
@@ -122,43 +129,167 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
             {
                 name: 'pledge_target',
                 value: '',
-            },
-            {
-                name: 'pledge_base_year',
-                value: pledge.pledge_base_year,
-            },
-            {
-                name: 'pledge_base_level',
-                value: pledge.pledge_base_level,
-            },
-            {
-                name: 'pledge_plan_details',
-                value: pledge.pledge_plan_details,
-            },
-            {
-                name: 'pledge_public_statement',
-                value: pledge.pledge_public_statement,
-            },
-            {
-                name: 'signature_name',
-                value: pledge.signature_name || '',
             }
         ]
 
-        console.log(JSON.stringify(attributes))
+        let attributes_2 = []
 
-        let newCredential = {
-            connectionID: props.loggedInUserState.connection_id,
-            schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Carbon_Intensity:1.0',
-            schemaVersion: '1.0',
-            schemaName: 'Pledges',
-            schemaIssuerDID: '',
-            comment: '',
-            attributes: attributes,
-        }
+        if (pledge.credential_type === 'Target Emission Reduction Pledge') {
+            attributes_2 = [
+                {
+                    name: 'pledge_base_year',
+                    value: pledge.pledge_base_year,
+                },
+                {
+                    name: 'pledge_base_level',
+                    value: pledge.pledge_base_level,
+                },
+                {
+                    name: 'pledge_plan_details',
+                    value: pledge.pledge_plan_details,
+                },
+                {
+                    name: 'pledge_public_statement',
+                    value: pledge.pledge_public_statement,
+                },
+                {
+                    name: 'signature_name',
+                    value: pledge.signature_name || '',
+                }
+            ]
 
-        if (props.loggedInUserState.connection_id) {
-            props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+            const attributes = attributes_1.concat(attributes_2)
+
+            let newCredential = {
+                connectionID: props.loggedInUserState.connection_id,
+                schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Pledge_Target_emission_reduction:1.0',
+                schemaVersion: '1.0',
+                schemaName: 'Pledge_Target_emission_reduction',
+                schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
+                comment: '',
+                attributes: attributes,
+            }
+
+            console.log(newCredential)
+            console.log(newCredential.attributes)
+
+            if (props.loggedInUserState.connection_id) {
+                props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+            }
+        } else if (pledge.credential_type === 'Target Carbon Intensity Reduction Pledge') {
+            attributes_2 = [
+                {
+                    name: 'pledge_base_year',
+                    value: pledge.pledge_base_year,
+                },
+                {
+                    name: 'pledge_base_level',
+                    value: pledge.pledge_base_level,
+                },
+                {
+                    name: 'pledge_plan_details',
+                    value: pledge.pledge_plan_details,
+                },
+                {
+                    name: 'pledge_public_statement',
+                    value: pledge.pledge_public_statement,
+                },
+                {
+                    name: 'signature_name',
+                    value: pledge.signature_name || '',
+                }
+            ]
+
+            const attributes = attributes_1.concat(attributes_2)
+
+            let newCredential = {
+                connectionID: props.loggedInUserState.connection_id,
+                schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Pledge_Carbon_Intensity_Reduction:1.0',
+                schemaVersion: '1.0',
+                schemaName: 'Pledge_Carbon_Intensity_Reduction',
+                schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
+                comment: '',
+                attributes: attributes,
+            }
+
+            console.log(newCredential)
+            console.log(newCredential.attributes)
+
+            if (props.loggedInUserState.connection_id) {
+                props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+            }
+        } else if (pledge.credential_type === 'Target Carbon Intensity Level Pledge') {
+            attributes_2 = [
+                {
+                    name: 'pledge_plan_details',
+                    value: pledge.pledge_plan_details,
+                },
+                {
+                    name: 'pledge_public_statement',
+                    value: pledge.pledge_public_statement,
+                },
+                {
+                    name: 'signature_name',
+                    value: pledge.signature_name || '',
+                }
+            ]
+
+            const attributes = attributes_1.concat(attributes_2)
+
+            let newCredential = {
+                connectionID: props.loggedInUserState.connection_id,
+                schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Pledge_Carbon_Intensity_level:1.0',
+                schemaVersion: '1.0',
+                schemaName: 'Pledge_Carbon_Intensity_level',
+                schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
+                comment: '',
+                attributes: attributes,
+            }
+
+            console.log(newCredential)
+            console.log(newCredential.attributes)
+
+            if (props.loggedInUserState.connection_id) {
+                props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+            }
+        } else if (pledge.credential_type === 'Target Emission Level Pledge') {
+            attributes_2 = [
+                {
+                    name: 'pledge_commitment_type',
+                    value: pledge.pledge_commitment_type || '',
+                },
+                {
+                    name: 'pledge_plan_details',
+                    value: pledge.pledge_plan_details,
+                },
+                {
+                    name: 'pledge_public_statement',
+                    value: pledge.pledge_public_statement,
+                },
+                {
+                    name: 'signature_name',
+                    value: pledge.signature_name || '',
+                }
+            ]
+
+            const attributes = attributes_1.concat(attributes_2)
+
+            let newCredential = {
+                connectionID: props.loggedInUserState.connection_id,
+                schemaID: 'WFZtS6jVBp23b4oDQo6JXP:2:Pledge_Target_emission_level:1.0',
+                schemaVersion: '1.0',
+                schemaName: 'Pledge_Target_emission_level',
+                schemaIssuerDID: 'WFZtS6jVBp23b4oDQo6JXP',
+                comment: '',
+                attributes: attributes,
+            }
+
+            console.log(newCredential)
+            console.log(newCredential.attributes)
+
+            if (props.loggedInUserState.connection_id) {
+                props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+            }
         }
 
         pledgeService.savePledge(user.company.id, pledge).then(pledge => {

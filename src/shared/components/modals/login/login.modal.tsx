@@ -17,8 +17,6 @@ const LoginModal: FunctionComponent<Props> = (props) => {
 
     const dualLogin = async (userEmail, userPassword) => {
       onLogin(userEmail, userPassword)
-      // TO DO: Make sure that onLogin is successful before using passwordless login
-      props.handlePasswordlessLogin(userEmail)
     }
 
     return (

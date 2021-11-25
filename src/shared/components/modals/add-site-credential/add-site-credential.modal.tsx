@@ -71,8 +71,6 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
             signature_name: `${user.firstName} ${user.lastName}`,
         });
 
-        console.log(site)
-
         const attributes = [
             {
                 name: 'credential_category',
