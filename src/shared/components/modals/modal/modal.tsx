@@ -76,7 +76,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
     {
         case 'login': 
             title= "Login"
-            component = <LoginModal handlePasswordlessLogin={props.handlePasswordlessLogin} onModalShow={showModal} onLogin={doLogin} />
+            component = <LoginModal onLogin={doLogin} onModalShow={showModal} />
             break;
         case 'login-credential':
             title = "Link with your company credential"

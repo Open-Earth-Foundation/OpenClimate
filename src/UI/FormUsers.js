@@ -33,7 +33,7 @@ function FormUsers(props) {
   const submitBtn = useRef()
 
   const [options, setOptions] = useState([])
-  const [organizationState, setOrganizationState] = useState(organizations[0].organization_id)
+  const [organizationState, setOrganizationState] = useState(1)
 
   useEffect(() => {
     if (error && submitBtn.current) {
@@ -56,9 +56,10 @@ function FormUsers(props) {
     const email = form.get('email')
     const first_name = form.get('first_name')
     const last_name = form.get('last_name')
+    const organization_id = form.get('organization_id')
 
     const user = {
-      organization_id: organizationState,
+      organization_id: organization_id,
       email: email,
       first_name: first_name,
       last_name: last_name,
@@ -74,9 +75,9 @@ function FormUsers(props) {
   }
 
   const handleSelectChange = (event) => {
+    // console.log(event.target.value)
     setOrganizationState(event.target.value)
-    console.log(organizationState)
-    console.log("Handle Select")
+    // console.log("Handle Select")
   }
 
   const handleCheckboxChange = (event) => {
@@ -87,13 +88,17 @@ function FormUsers(props) {
     setOptions(newArray)
   }
 
-  const organizationOptions = organizations.map((organization) => {
-    return (
-      <option key={organization.organization_id} value={organization.organization_id}>
-        {organization.name}
-      </option>
-    )
-  })
+  let organizationOptions = ''
+  
+  if (organizations.length > 0) {
+    organizationOptions = organizations.map((organization) => {
+      return (
+        <option key={organization.organization_id} value={organization.organization_id}>
+          {organization.name}
+        </option>
+      )
+    })
+  }
 
   const rolesOptions = roles.map((role) => {
     return (
@@ -123,7 +128,7 @@ function FormUsers(props) {
               <InputBox>
                 <ModalLabel htmlFor="organization_id">Organization</ModalLabel>
                 <CheckboxHolder>
-                  <Select id="organization_id" defaultValue={organizationState} onChange={handleSelectChange}>
+                  <Select name="organization_id" id="organization_id" defaultValue={organizationState} onChange={handleSelectChange}>
                     {organizationOptions}
                   </Select>
                 </CheckboxHolder>

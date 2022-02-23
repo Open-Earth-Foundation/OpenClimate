@@ -33,7 +33,6 @@ function login(email: string, password: string, company:ICompany) {
         .then(handleResponse)
         .then(async user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            
             fetch(`${ServerUrls.api}/user/log-in`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -43,7 +42,7 @@ function login(email: string, password: string, company:ICompany) {
               }),
             }).then(handleResponse)
             .then(async response => {
-              user.company = await userService.getCompany(response.company);
+              user.company = await userService.getCompany({organization_id: user.organizationId});
 
               sessionStorage.setItem('user', JSON.stringify(user));
               return user;
@@ -59,12 +58,10 @@ function logout() {
 }
 
 async function getCompany(companyData: any) {
-    
     let org = await organizationService.getByCredentialId(companyData.organization_id);
-    console.log(org)
-    if(Object.keys(org).length === 0)
+
+    if (Object.keys(org).length === 0 && companyData.name && companyData.country && companyData.jurisdiction)
     {
-        //fetch orgData?
         const orgData: IOrganization = {
             organization_credential_id: companyData.organization_id.toString(),
             organization_name: companyData.name,
@@ -90,7 +87,7 @@ async function getUserByEmail(email: string) {
         .then(handleResponse)
         .then(async user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            user.company = await userService.getCompany("12345");
+            user.company = await userService.getCompany({organization_id: user.organizationId});
             
             sessionStorage.setItem('user', JSON.stringify(user));
             return user;

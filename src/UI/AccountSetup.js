@@ -120,7 +120,8 @@ function AccountSetup(props) {
           firstName: res.data.user.first_name,
           lastName: res.data.user.last_name,
           email: res.data.user.email,
-          password: res.data.user.password
+          password: res.data.user.password,
+          organizationId: res.data.user.organization_id,
         }
         userService.register(newUser)
 

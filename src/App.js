@@ -452,7 +452,7 @@ const App: FunctionComponent<Props> = (props) => {
           switch (type) {
             case 'DEMOGRAPHICS_ERROR':
               console.log(data.error)
-              console.log('Demographics Error')
+              console.log('DEMOGRAPHICS ERROR')
               setErrorMessage(data.error)
               break
 
@@ -582,7 +582,7 @@ const App: FunctionComponent<Props> = (props) => {
               break
 
             case 'USER_ERROR':
-              console.log('User Error', data.error)
+              console.log('USER ERROR', data.error)
               setErrorMessage(data.error)
               break
 
@@ -754,11 +754,12 @@ const App: FunctionComponent<Props> = (props) => {
           switch (type) {
             case 'ORGANIZATIONS':
               let updatedOrganizations = data.organizations
-
               // (mikekebert) Sort the array by data created, newest on top
-              updatedOrganizations.sort((a, b) =>
-                a.created_at < b.created_at ? 1 : -1
-              )
+              if (updatedOrganizations) {
+                updatedOrganizations.sort((a, b) =>
+                  a.created_at < b.created_at ? 1 : -1
+                )
+              }
 
               setOrganizations(updatedOrganizations)
               removeLoadingProcess('ORGANIZATIONS')
@@ -906,6 +907,7 @@ const App: FunctionComponent<Props> = (props) => {
               <MainToolbar
                 showLoginModal = {() => showModal('login') }
                 user={currentUser}
+                handleLogout={handleLogout}
                 doLogout={doLogout}
               />
             <Switch>
