@@ -313,3 +313,20 @@ button {
     display: none;
 }
 
+.leaflet-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.loader {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--grey1-color);
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

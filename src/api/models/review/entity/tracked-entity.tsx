@@ -1,5 +1,6 @@
 import IAggregatedEmission from "../../DTO/AggregatedEmission/IAggregatedEmission";
 import IPledge from "../../DTO/Pledge/IPledge";
+import ISite from "../../DTO/Site/ISite";
 import ITransfer from "../../DTO/Transfer/ITransfer";
 import ITreaties from "../../DTO/Treaties/ITreaties";
 import { FilterTypes } from "../dashboard/filterTypes";
@@ -10,12 +11,13 @@ export default interface ITrackedEntity {
     type?: FilterTypes,
     title: string,
     countryCode?: string,
-    //icon: string,
+    jurisdiction?: string,
     aggregatedEmission?: IAggregatedEmission,
     retiredUnits?: Array<RetiredUnits>
     pledges?: Array<IPledge>,
     transfers?: Array<ITransfer>
     agreement?: boolean,
     treaties?: ITreaties,
-    countryCode3?:string
+    countryCode3?:string,
+    sites?: Array<ISite>
 }

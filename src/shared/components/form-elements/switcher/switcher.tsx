@@ -8,7 +8,7 @@ interface Props {
     title?: string,
     leftOption: string,
     rightOption: string,
-    className: string,
+    className?: string,
     leftOptionChosen?:boolean,
     onChange?: () => void
 }

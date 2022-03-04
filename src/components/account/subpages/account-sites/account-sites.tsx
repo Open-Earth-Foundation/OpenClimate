@@ -45,7 +45,6 @@ const AccountSites: FunctionComponent<IProps> = (props) => {
     const mapWidth = panel ? "50%" : "100%";
 
     const showClimateActionsPanel = () => {
-        //const actions = getClimateActionsBySite(displaySites);
         const cPanel = <ClimateActionsPanel 
             climateActions={climateActions}
             showModal={showModal}

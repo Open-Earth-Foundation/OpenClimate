@@ -19,5 +19,6 @@ export default interface ISite {
     facility_sector_ipcc_activity?: string,
     facility_sector_naics?: string,
     facility_type?: string,
+    facility_bounds?: string,
     signature_name?: string
 }

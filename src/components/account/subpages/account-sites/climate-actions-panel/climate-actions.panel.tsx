@@ -5,7 +5,7 @@ import './climate-actions.panel.scss';
 
 interface IProps  {
     climateActions: Array<IClimateAction>,
-    showModal: (modalType: string) => void
+    showModal?: (modalType: string) => void
 }
 
 const ClimateActionsPanel: FunctionComponent<IProps> = (props) => {

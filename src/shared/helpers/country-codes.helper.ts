@@ -1,10 +1,6 @@
 import countryCodesJson from "../../api/data/review/data/country-codes";
 import organizations from "../../api/data/review/data/subnationals";
-import IOrganization from "../../api/models/DTO/Organization/IOrganization";
 import ICountry from "../../api/models/review/country";
-import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
-import { DropdownOption } from "../interfaces/dropdown/dropdown-option";
-import { organizationService } from "../services/organization.service";
 
 const GetCountryCodes = () => {
     let countryParsed = <any[]>JSON.parse(countryCodesJson);
@@ -17,6 +13,11 @@ const GetCountryCodes = () => {
     });
 
     return countries;
+}
+
+const GetCountryAlpha3 = (alpha2: string) => {
+    let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
+    return  countryParsed.find(c => c["alpha-2"] === alpha2)['alpha-3'];
 }
 
 const GetContryOptions = () => {
@@ -53,5 +54,6 @@ const GetSubnationalsByCountry = (selectedCountryAlpha2: string) => {
 export const CountryCodesHelper = {
     GetCountryCodes,
     GetContryOptions,
-    GetSubnationalsByCountry
+    GetSubnationalsByCountry,
+    GetCountryAlpha3
 };

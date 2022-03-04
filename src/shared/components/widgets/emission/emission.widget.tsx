@@ -25,6 +25,13 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     if(!isVisible)
         return null;
 
+    let showDetails = false;
+    if(aggregatedEmission)
+        showDetails = aggregatedEmission.facility_ghg_total_gross_co2e !== 0 ||
+                        aggregatedEmission.facility_ghg_total_sinks_co2e !== 0 ||
+                        aggregatedEmission.facility_ghg_total_net_co2e !== 0;
+    
+    
     return (
         <div className="widget" style={{width: width, height: height}}>
             <div className="widget__wrapper" >
@@ -33,10 +40,16 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                         <h3 className="widget__title">
                             {title}
                         </h3> 
-                        {detailsLink ?
-                            <NavLink to={detailsLink} className="widget__link">Details</NavLink>
-                            :
-                            <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
+                        {
+                            showDetails ?
+                            <>
+                            {detailsLink ?
+                                <NavLink to={detailsLink} className="widget__link">Details</NavLink>
+                                :
+                                <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
+                            }
+                            </>
+                            : ''         
                         }
                     </div>
 

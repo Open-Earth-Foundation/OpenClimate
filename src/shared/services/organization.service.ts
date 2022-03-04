@@ -4,7 +4,14 @@ import { CommonHelper } from "../helpers/common.helper";
 
 async function getByCredentialId(credentialId: string)
 {
-    return fetch(`${ServerUrls.api}/organization/${credentialId}`, {
+    return fetch(`${ServerUrls.api}/organization/credentials/${credentialId}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(CommonHelper.HandleResponse).then((organization: IOrganization) => organization);
+}
+async function getById(id: string)
+{
+    return fetch(`${ServerUrls.api}/organization/${id}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((organization: IOrganization) => organization);
@@ -35,5 +42,6 @@ async function getByLocation(country: string, jurisdiction: string)
 export const organizationService = {
     getByCredentialId,
     getByLocation,
-    saveOrganization
+    saveOrganization,
+    getById
 };

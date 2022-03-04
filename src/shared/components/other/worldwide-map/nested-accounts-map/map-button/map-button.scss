@@ -1,0 +1,20 @@
+.map-button {
+    background-color: var(--primary-color);
+    border: 1px solid #007568;
+    box-sizing: border-box;
+    border-radius: 24px;
+    color: #FFFFFF;
+    padding: 8.5px 50px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    margin-left: 5px;
+    z-index: 1000;
+    position: relative;
+
+    &_img {
+        position: absolute;
+        left: 22px;
+        top: 6px;
+    }
+}

@@ -14,6 +14,7 @@ import { transferService } from "../services/transfer.service";
 import { CountryCodesHelper } from "./country-codes.helper";
 import { organizationService } from "../services/organization.service";
 import IOrganization from "../../api/models/DTO/Organization/IOrganization";
+import { siteService } from "../services/site.service";
 
 async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
 {
@@ -136,25 +137,29 @@ async function LoadTreatiesCountry(country: string, entity: ITrackedEntity)
     }
 }
 
-async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, selectedEntity: ITrackedEntity | null) {
+async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) {
 
     let trackedEntity: ITrackedEntity = {
         title: option.name, 
         type: type
     }
 
-    let countryParsed: Array<any> = JSON.parse(countryCodesJson);
-    const foundCountry = countryParsed.find(c => c["alpha-3"] === option.value);
-    const countryCode =  foundCountry ? foundCountry["alpha-2"] : option.value ;
+    let previousSelectedEntity = null;
+    if(selectedEntities.length)
+        previousSelectedEntity = selectedEntities[selectedEntities.length-1];
 
-    if(selectedEntity == null)
+    if(previousSelectedEntity)
     {
+        trackedEntity.countryCode3 = previousSelectedEntity.countryCode3;
+        trackedEntity.countryCode = previousSelectedEntity.countryCode;
+    }
+        else
+    {
+        let countryParsed: Array<any> = JSON.parse(countryCodesJson);
+        const foundCountry = countryParsed.find(c => c["alpha-3"] === option.value);
+        const countryCode =  foundCountry ? foundCountry["alpha-2"] : option.value ;
         trackedEntity.countryCode = countryCode.toLowerCase();
         trackedEntity.countryCode3 = option.value;
-    }
-    else {
-        trackedEntity.countryCode3 = selectedEntity.countryCode3;
-        trackedEntity.countryCode = selectedEntity.countryCode;
     }
 
     switch (type)
@@ -163,7 +168,7 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
             await ReviewHelper.LoadEmissionsCountry(option.value, trackedEntity);
             await ReviewHelper.LoadPledgesCountry(option.value, trackedEntity);
             await ReviewHelper.LoadTreatiesCountry(option.value, trackedEntity);
-            
+            trackedEntity.sites = await siteService.allSitesByCountry(option.name)
             break;
         case FilterTypes.SubNational:
 
@@ -172,18 +177,28 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
             await ReviewHelper.LoadEmissionsSubnational(jurisdiction, trackedEntity);
             await ReviewHelper.LoadPledgesSubnational(jurisdiction, trackedEntity);
 
-            if(selectedEntity && selectedEntity.countryCode3)
-                await ReviewHelper.LoadTreatiesCountry(selectedEntity.countryCode3, trackedEntity);
+            if(previousSelectedEntity && previousSelectedEntity.countryCode3)
+            await ReviewHelper.LoadTreatiesCountry(previousSelectedEntity.countryCode3, trackedEntity);
+            trackedEntity.jurisdiction = jurisdiction;
+            trackedEntity.sites = await siteService.allSitesByJurisdtiction(option.value)
             break;
         case FilterTypes.Organization:
 
-            const aggrEmissions = await aggregatedEmissionService.allAggregatedEmissions(option.value);
+            const aggrEmissions = await aggregatedEmissionService.allAggregatedEmissionsByOrg(option.value);
             trackedEntity.aggregatedEmission = AggregatedEmissionHelper.GetSummaryAggregatedEmissions(aggrEmissions);
             const pledges = await pledgeService.allPledges(option.value);
             trackedEntity.pledges = pledges.slice(Math.max(pledges.length - 3, 0)).reverse();
             trackedEntity.transfers = await transferService.allTransfers(option.value);
-            trackedEntity.countryCode3 = '';
-            trackedEntity.countryCode = '';
+            //for nation state
+            const org = await organizationService.getById(option.value);
+            const orgSites = await siteService.allSitesByOrg(option.value);
+
+            const orgJurisdiction = `${org.organization_country},${org.organization_jurisdiction}`;
+            trackedEntity.sites = orgSites.filter(s => s.facility_jurisdiction === orgJurisdiction);
+
+            if(previousSelectedEntity)
+                trackedEntity.jurisdiction = previousSelectedEntity.jurisdiction;
+
             break;
     }
 

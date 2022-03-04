@@ -25,7 +25,7 @@ interface IStateProps  {
 }
 
 interface IDispatchProps {
-    selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedNation: ITrackedEntity | null) => void,
+    selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => void,
     deselectFilter: (filterType: FilterTypes) => void,
     showModal: (type: string) => void
 }
@@ -44,14 +44,14 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         dashboardEntity = selectedEntities.find(se => se.type === dashboardEntityType) ?? null;
         collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);
 
-        debugger; 
+        // debugger; 
     }
 
    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
-       let selectedNational:ITrackedEntity | null = null;
-       if(filterType == FilterTypes.SubNational)
-            selectedNational = selectedEntities.find(se => se.type === FilterTypes.National) ?? null;
-        selectFilter(filterType, option, selectedNational);
+    //    let selectedNational:ITrackedEntity | null = null;
+    //    if(filterType == FilterTypes.SubNational)
+    //         selectedNational = selectedEntities.find(se => se.type === FilterTypes.National) ?? null;
+        selectFilter(filterType, option, selectedEntities);
     }
 
     
@@ -150,8 +150,8 @@ const mapStateToProps = (state: RootState, ownProps: any) => {
 
 const mapDispatchToProps = (dispatch: DispatchThunk) => {
     return {
-        selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedNation: ITrackedEntity | null) => 
-            dispatch(reviewActions.doSelectFilter(filterType, option, selectedNation)),
+        selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => 
+            dispatch(reviewActions.doSelectFilter(filterType, option, selectedEntities)),
         deselectFilter: (filterType: FilterTypes) => dispatch(reviewActions.deselectFilter(filterType)),
         showModal: (type:string) => {
             dispatch(appActions.showModal(type))

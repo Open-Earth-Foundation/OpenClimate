@@ -221,6 +221,14 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                     />
                 </div>
                 <div className="modal__row modal__row_content">
+                    <input 
+                        className="form-input"
+                        type="text"
+                        placeholder="Facility Bounds"
+                        onChange={e => formChangeHandler("facility_bounds", e.target.value)}
+                    />
+                 </div>
+                <div className="modal__row modal__row_content">
                     <input
                         className="form-input"
                         type="text"

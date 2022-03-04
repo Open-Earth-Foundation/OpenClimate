@@ -22,6 +22,7 @@ import Modal from '../../shared/components/modals/modal/modal';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IUser } from '../../api/models/User/IUser';
+import NestedAccountsPage from '../../components/nested-accounts/nested-accounts.page';
 
 interface Props  {
   currentUser: IUser | null,
@@ -50,6 +51,9 @@ const MainLayout: FunctionComponent<Props> = (props) => {
             <AccountPage user={currentUser}/>
           </Route>
           )}
+          <Route path="/nested-accounts">
+            <NestedAccountsPage />
+          </Route>
           <Route path="/">
             <ReviewPage />
           </Route>
@@ -91,5 +95,3 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);
-
-//showLoginHandler

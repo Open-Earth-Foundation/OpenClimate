@@ -50,13 +50,13 @@ export const updateFilterOptions = (filterType: FilterTypes, options: Array<Drop
     }
 }
 
-export const doSelectFilter = (filterType: FilterTypes, option: DropdownOption, selectedEntity: ITrackedEntity | null) => {
+export const doSelectFilter = (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => {
     return (dispatch: Dispatch) => {
         dispatch(startLoading());
 
         setTimeout(async () => {
 
-            await ReviewHelper.GetTrackedEntity(filterType, option, selectedEntity).then(trackedEntity => 
+            await ReviewHelper.GetTrackedEntity(filterType, option, selectedEntities).then(trackedEntity => 
                 {
                     dispatch(selectFilter(filterType, option.value, trackedEntity));
                     dispatch(stopLoading());

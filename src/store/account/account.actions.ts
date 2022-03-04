@@ -124,7 +124,7 @@ export const doLoadTransfers = (orgId: string) => {
 export const doLoadSites = (orgId: string) => {
     return (dispatch: Dispatch) => {
 
-        siteService.allSites(orgId).then(sites => {
+        siteService.allSitesByOrg(orgId).then(sites => {
             dispatch(loadSites(sites));
         });
 

@@ -6,6 +6,9 @@ import EmissionWidget from '../../../shared/components/widgets/emission/emission
 import ClimateUnitsWidget from '../../../shared/components/widgets/climate-units/climate-units.widget';
 import AgreementWidget from '../../../shared/components/widgets/agreement/agreement.widget';
 import './review-dashboard.scss';
+import NestedAccountsWidget from '../../../shared/components/widgets/nested-accounts/nested-accounts.widget';
+import { FilterTypes } from '../../../api/models/review/dashboard/filterTypes';
+import { useHistory } from 'react-router-dom'
 
 interface Props {
     selectedEntity: ITrackedEntity,
@@ -17,7 +20,20 @@ const Dashboard: FunctionComponent<Props> = (props) => {
 
     const pledgesHeight = selectedEntity.pledges && selectedEntity.pledges.length ? 490 : 250;
     const transfersHeight = selectedEntity.transfers ? 490 : 250;
+    const nestedAccountsHeight = selectedEntity.sites ? 490 : 250;
 
+    const history = useHistory();
+
+    const redirectToNestedAccounts = () => {
+        let params = '';
+
+        if(selectedEntity.type === FilterTypes.National)
+            params = `?country=${selectedEntity.countryCode3}`;
+        else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
+            params = `?country=${selectedEntity.countryCode3}&jurisdiction=${selectedEntity.jurisdiction}`;
+
+        history.push(`/nested-accounts${params}`);
+    }
     return (
         <div className="review__dashboard">
             <EmissionWidget 
@@ -53,6 +69,11 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                 showModal={showModal}
                 detailsClick={() => showModal('information-transfers')}
                 showAddBtn={false}
+            />
+            <NestedAccountsWidget 
+                detailsClick={redirectToNestedAccounts}
+                height={nestedAccountsHeight}
+                sites={selectedEntity.sites}
             />
         </div>
     ); 
