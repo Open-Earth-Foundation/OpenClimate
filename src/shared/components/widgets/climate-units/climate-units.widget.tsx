@@ -69,7 +69,7 @@ const ClimateUnitsWidget: FunctionComponent<Props> = (props) => {
                     </div>
                     :
                     <div className="widget__no-data">
-                        No any data
+                        No data yet
                     </div>
                     }
                 </div>

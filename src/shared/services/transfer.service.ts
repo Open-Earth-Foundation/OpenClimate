@@ -19,7 +19,25 @@ function allTransfers(orgId: string)
     }).then(CommonHelper.HandleResponse).then((transfers:Array<ITransfer>) => transfers);
 }
 
+function allTransfersByCountry(countryName: string)
+{
+    return fetch(`${ServerUrls.api}/transfer/byCountry/${countryName}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(CommonHelper.HandleResponse).then((transfers:Array<ITransfer>) => transfers);
+}
+
+function allTransfersByJurisdiction(countryName: string, jurisdiction: string)
+{
+    return fetch(`${ServerUrls.api}/transfer/byJurisdiction/${countryName}/${jurisdiction}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(CommonHelper.HandleResponse).then((transfers:Array<ITransfer>) => transfers);
+}
+
 export const transferService = {
     saveTransfer,
-    allTransfers
+    allTransfers,
+    allTransfersByCountry,
+    allTransfersByJurisdiction
 };

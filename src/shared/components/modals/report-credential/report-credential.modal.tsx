@@ -8,7 +8,7 @@ const ReportCredentialModal: FunctionComponent<Props> = (props) => {
 
 
     return (
-        <form action="/" className="report-credential-form">
+        <form autoComplete="off" action="/" className="report-credential-form">
             <div className="modal__content report-credential-form__content">
                 <div className="modal__row">
                     Please, contact  <a href="#" className="modal__link modal__link_blue">openclimate@openearth.org </a><br/>               

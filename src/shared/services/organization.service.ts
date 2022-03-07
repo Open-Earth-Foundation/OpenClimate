@@ -9,6 +9,7 @@ async function getByCredentialId(credentialId: string)
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((organization: IOrganization) => organization);
 }
+
 async function getById(id: string)
 {
     return fetch(`${ServerUrls.api}/organization/${id}`, {
@@ -16,6 +17,7 @@ async function getById(id: string)
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((organization: IOrganization) => organization);
 }
+
 
 async function saveOrganization(orgData: IOrganization)
 {
@@ -40,8 +42,8 @@ async function getByLocation(country: string, jurisdiction: string)
 
 
 export const organizationService = {
+    getById,
     getByCredentialId,
     getByLocation,
-    saveOrganization,
-    getById
+    saveOrganization
 };

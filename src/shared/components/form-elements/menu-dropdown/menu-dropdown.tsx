@@ -49,12 +49,6 @@ const MenuDropdown: FunctionComponent<Props> = (props) => {
 
             { open ? 
                 <div className="dropdown-menu__open dropdown-open">
-                    <DropdownItem option={{name:"User settings", value: "User settings"}} selectHandler={selectHandler}/>
-                    <DropdownItem option={{name:"Company settings", value: "Company settings"}} selectHandler={selectHandler}/>
-                    <DropdownItem option={{name:"Manage Integrations", value: "Manage Integrations"}} selectHandler={selectHandler}/>
-                    <DropdownItem option={{name:"Security", value: "Security"}} selectHandler={selectHandler}/>
-                    <DropdownItem option={{name:"Subscriptions", value: "Subscriptions"}} selectHandler={selectHandler}/>
-                    
                     <div className="dropdown-menu__logout">
                         <Button 
                             color="white"
@@ -75,4 +69,3 @@ const MenuDropdown: FunctionComponent<Props> = (props) => {
 
 
 export default MenuDropdown;
- 

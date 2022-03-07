@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { GoogleMap, LoadScript , Marker } from '@react-google-maps/api';
 import ISite from '../../../../api/models/DTO/Site/ISite';
+import { Map } from '../../../environments/map.environments';
 
 interface Props {
     sites?: Array<ISite>,
@@ -49,7 +50,7 @@ const WorldwideMap: FunctionComponent<Props> = (props) => {
 
     return (
         <LoadScript
-            googleMapsApiKey="AIzaSyAfIvsuIw9Kg3z8iWuiyYk55yfjbIFYUSo"
+            googleMapsApiKey={Map.googleMapApiKey}
         >
             <GoogleMap
                 key={new Date().getTime()}

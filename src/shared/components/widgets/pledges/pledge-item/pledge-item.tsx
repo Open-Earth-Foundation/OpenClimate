@@ -20,20 +20,20 @@ const PledgeItem: FunctionComponent<Props> = (props) => {
     let pledgeTarget = "";
     let reductionStr = "";
 
-    switch (pledge.credential_type) {
-        case  "Target Emission Level Pledge":
+    switch (pledge.credential_type?.toLowerCase()) {
+        case  "target emission":
             pledgeTarget = "EMISSION TARGET";
             reductionStr = `${pledge.pledge_emission_target ?? 0}`;
             break;
-        case  "Target Carbon Intensity Level Pledge":
+        case  "target carbon intensity":
             pledgeTarget = "CARBON INTENSITY TARGET";
             reductionStr = `${pledge.pledge_carbon_intensity_target ?? 0}`;
             break;
-        case  "Target Emission Reduction Pledge":
+        case  "target emission reduction":
             pledgeTarget = "EMISSION REDUCTION";
             reductionStr = `${pledge.pledge_emission_reduction ?? 0} %`;
             break;
-        case  "Target Carbon Intensity Reduction Pledge":
+        case  "target carbon intensity reduction":
             pledgeTarget = "CARBON INTENSITY REDUCTION";
             reductionStr = `${pledge.pledge_carbon_intensity_reduction ?? 0} %`;
             break;
@@ -69,10 +69,3 @@ const PledgeItem: FunctionComponent<Props> = (props) => {
 
 
 export default PledgeItem;
-
-/*
-{`${pledge.goal}%`}
-by {pledge.goalBy.getFullYear()} relative to {pledge.relativeTo.getFullYear()}
-
-relative to {pledge.relativeTo.getFullYear()}
-*/

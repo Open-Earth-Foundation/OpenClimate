@@ -32,6 +32,7 @@
 
         tbody tr {
             outline: 1px solid var(--grey1-color);
+            white-space: nowrap;
         }
 
         thead tr td {
@@ -39,7 +40,7 @@
         }
 
         tbody tr td {
-            min-width: 140px;
+            min-width: 50px;
             padding: 12px 16px 12px 24px;
         }
 

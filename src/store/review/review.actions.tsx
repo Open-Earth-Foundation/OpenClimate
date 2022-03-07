@@ -6,6 +6,14 @@ import { ReviewHelper } from '../../shared/helpers/review.helper'
 import ITrackedEntity from '../../api/models/review/entity/tracked-entity'
 import * as reviewActionTypes from './review.action-types'
 
+export const reviewClearState = () => {
+    return {
+        type: reviewActionTypes.REVIEW_CLEAR_STATE,
+        payload: {
+        }
+    }
+}
+
 export const startLoading = () => {
     return {
         type: reviewActionTypes.START_LOADING,
@@ -56,19 +64,18 @@ export const doSelectFilter = (filterType: FilterTypes, option: DropdownOption, 
 
         setTimeout(async () => {
 
-            await ReviewHelper.GetTrackedEntity(filterType, option, selectedEntities).then(trackedEntity => 
-                {
-                    dispatch(selectFilter(filterType, option.value, trackedEntity));
-                    dispatch(stopLoading());
-                }
-            )
+            const trackedEntity = await ReviewHelper.GetTrackedEntity(filterType, option, selectedEntities);
+            dispatch(selectFilter(filterType, option.value, trackedEntity));
+            dispatch(stopLoading());
 
             const nextIndex = filterType + 1;
             if(FilterTypes[nextIndex])
             {
                 let loadOptionsType = FilterTypes[FilterTypes[nextIndex] as keyof typeof FilterTypes];
 
-                const loadedOptions = await ReviewHelper.GetOptions(loadOptionsType, option.value);
+                const countryCode = selectedEntities[0]?.countryCode ?? option.value;
+ 
+                const loadedOptions = await ReviewHelper.GetOptions(loadOptionsType, countryCode, trackedEntity);
                 dispatch(updateFilterOptions(loadOptionsType, loadedOptions));
             }
         }, 500);

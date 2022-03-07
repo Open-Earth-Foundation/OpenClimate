@@ -2,8 +2,8 @@
 
     display: flex;
     position: relative;
-    height: 80vh;
-
+    height: calc(100vh - 205px);
+    
     &__map {
         transition: all 300ms ease-out 0s;
     }
@@ -15,32 +15,5 @@
 
     &__widgets {
         display: flex;
-    }
-
-    &__panel {
-        width: 50%;
-        overflow-x: hidden;
-
-        &-wrapper {
-            padding: 0 17px 0 40px;
-        }
-
-        &-back {
-            margin-bottom: 40px;
-
-            &_icon {
-                position: relative;
-                top: 2px;
-                margin-right: 12px;
-            }
-
-            &_link {
-                cursor: pointer;
-                color: var(--blue-color);
-                font-weight: 500;
-                font-size: 10px;
-                line-height: 15px;
-            }
-        }
     }
 }

@@ -77,6 +77,8 @@ export const accountReducer = ( state = initialState, action: any ) => {
                 ...state,
                 aggregatedEmissions: [...updatedAggrEmission, newAggrEmission]
             };
+        case accountActionTypes.ACCOUNT_CLEAR_STATE: return initialState;
+        
         default: return state;
     }
 }

@@ -3,7 +3,6 @@ import { climateWatchService } from '../services/climate-watch.service';
 
 async function GetPledgeCountryUrl(countryCode: string)
 {
-    //save to sessionStorage
     const indicators = await climateWatchService.fetchIndicators();
 
     const baseYear = GetIndicatorBySlug(indicators?.data, "pledge_base_year");

@@ -27,7 +27,6 @@ function allAggregatedEmissions()
     }).then(CommonHelper.HandleResponse).then((aggregated: Array<IAggregatedEmission>) => aggregated);
 }
 
-
 export const aggregatedEmissionService = {
     updateAggregatedEmission,
     allAggregatedEmissionsByOrg,

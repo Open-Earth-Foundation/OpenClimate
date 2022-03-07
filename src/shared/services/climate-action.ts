@@ -18,6 +18,7 @@ function allClimateAction(orgId: string)
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((actions: Array<IClimateAction>) => actions);
 }
+
 function getClimateActionsBySite(siteName: string)
 {
     return fetch(`${ServerUrls.api}/climate-action/${siteName}`, {

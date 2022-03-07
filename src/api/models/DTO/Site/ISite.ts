@@ -6,6 +6,7 @@ export default interface ISite {
     credential_issuer?: string,
     credential_issue_date?: number,
 
+    organization_id?: string,
     organization_name?: string,
     organization_category?: string,
     organization_type?: string,

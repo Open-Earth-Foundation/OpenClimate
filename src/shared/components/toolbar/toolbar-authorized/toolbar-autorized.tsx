@@ -15,11 +15,6 @@ const ToolbarAutorized: FunctionComponent<Props> = (props) => {
 
     const companyName = user?.company?.organization_name;
 
-    const dualLogout = async () => {
-      doLogout()
-      props.handleLogout()
-    }
-
     return (
 
         <div className="toolbar__autorized">
@@ -27,7 +22,7 @@ const ToolbarAutorized: FunctionComponent<Props> = (props) => {
                 <img src={AvaIcon} alt={companyName}/>
             </div>
             <div className="toolbar__user-menu">
-                <MenuDropdown title={companyName} doLogout={dualLogout} />
+                <MenuDropdown title={companyName} doLogout={doLogout} />
             </div>
         </div>
         

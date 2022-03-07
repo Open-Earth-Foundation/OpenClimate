@@ -43,18 +43,11 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     {
         dashboardEntity = selectedEntities.find(se => se.type === dashboardEntityType) ?? null;
         collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);
-
-        // debugger; 
     }
 
    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
-    //    let selectedNational:ITrackedEntity | null = null;
-    //    if(filterType == FilterTypes.SubNational)
-    //         selectedNational = selectedEntities.find(se => se.type === FilterTypes.National) ?? null;
         selectFilter(filterType, option, selectedEntities);
     }
-
-    
 
     return (
         <div className="review">
@@ -76,6 +69,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                     <ContextBars 
                         entitySelected={dashboardEntity ? true : false}
                         collapceEntities={collapceEntities}
+                        deselectFilter={deselectFilter}
                      />
                     {
                         dashboardEntity ? "" : 
@@ -87,14 +81,6 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                     }
 
                     <div className="review__filters-wrapper">
-                        <div className="review__switcher">
-                            <Switcher 
-                                leftOptionChosen={true}
-                                className = "input-wrapper"
-                                title = "State Option"
-                                leftOption="Nation State"
-                                rightOption = "Multinationals (MNC)" />
-                        </div>
                         <ReviewFilters
                             nationState={true} 
                             selectFilter={selectFilterHandler}
@@ -127,7 +113,13 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
                 <div className="review__content content-wrapper">
                     {
-                        dashboardEntity ? <Dashboard selectedEntity={dashboardEntity} showModal={showModal} /> : ""
+                        dashboardEntity ? 
+                        <>
+
+
+                            <Dashboard selectedEntity={dashboardEntity} showModal={showModal} /> 
+                        </>
+                        : ''
                     }
                 </div>
             </div>
@@ -160,4 +152,3 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewPage);
- 
