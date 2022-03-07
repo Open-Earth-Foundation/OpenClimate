@@ -8,7 +8,8 @@ export const userService = {
     register,
     login,
     logout,
-    getCompany
+    getCompany,
+    getUserByEmail
 };
 
 function register(user: IUser)
@@ -20,7 +21,7 @@ function register(user: IUser)
     })
 }
 
-function login(email: string, password: string, demo: boolean) {
+function login(email: string, password: string, company:ICompany) {
 
     const requestOptions = {
         method: 'POST',
@@ -32,19 +33,20 @@ function login(email: string, password: string, demo: boolean) {
         .then(handleResponse)
         .then(async user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            if(demo && DemoData.DemoOrganization.organization_credential_id)
-            {
-                user.company = await organizationService.getByCredentialId(DemoData.DemoOrganization.organization_credential_id);
-                user.demo = true;
-            }
-            else
-            {
-                user.company = await userService.getCompany("12345");
-                user.demo = false;
-            }
-            
-            localStorage.setItem('user', JSON.stringify(user));
-            return user;
+            fetch(`${ServerUrls.api}/user/log-in`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: email,
+                password: password
+              }),
+            }).then(handleResponse)
+            .then(async response => {
+              user.company = await userService.getCompany({organization_id: user.organizationId});
+
+              sessionStorage.setItem('user', JSON.stringify(user));
+              return user;
+            })
         });
 }
 
@@ -54,18 +56,16 @@ function logout() {
             localStorage.removeItem('user');
         });
 }
+async function getCompany(companyData: any) {
+    let org = await organizationService.getByCredentialId(companyData.organization_id);
 
-async function getCompany(credentialId: string) {
-    
-    let org = await organizationService.getByCredentialId(credentialId);
-    if(Object.keys(org).length === 0)
+    if (Object.keys(org).length === 0 && companyData.name && companyData.country && companyData.jurisdiction)
     {
-        //fetch orgData?
         const orgData: IOrganization = {
-            organization_credential_id: credentialId,
-            organization_name: "Test company",
-            organization_country: "Poland",
-            organization_jurisdiction: "Opole Voivodeship"
+            organization_credential_id: companyData.organization_id.toString(),
+            organization_name: companyData.name,
+            organization_country: companyData.country,
+            organization_jurisdiction: companyData.jurisdiction
         }
 
         await organizationService.saveOrganization(orgData);
@@ -91,4 +91,23 @@ function handleResponse(response: any) {
 
         return data;
     });
+}
+
+
+async function getUserByEmail(email: string) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+    };
+
+    return fetch(`${ServerUrls.api}/get-user-by-email`, requestOptions)
+        .then(handleResponse)
+        .then(async user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            user.company = await userService.getCompany({organization_id: user.organizationId});
+            
+            sessionStorage.setItem('user', JSON.stringify(user));
+            return user;
+        });
 }

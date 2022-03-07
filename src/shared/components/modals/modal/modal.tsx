@@ -74,7 +74,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
             break;
         case 'login-credential':
             title = "Link with your company credential"
-            component = <LoginCredentialModal onModalShow={showModal} />
+            component = <LoginCredentialModal QRCodeURL={props.QRCodeURL} sendRequest={props.sendRequest} onModalShow={showModal} />
             break;
         case 'registration':
             title = "Sign up"
