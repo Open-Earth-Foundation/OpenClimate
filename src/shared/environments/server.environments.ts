@@ -1,3 +1,3 @@
 export const ServerUrls = {
-    api: 'http://localhost:3002/api'
+    api: 'http://localhost/api'
 }
