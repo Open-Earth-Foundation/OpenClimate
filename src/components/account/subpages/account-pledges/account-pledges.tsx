@@ -2,16 +2,18 @@ import { FunctionComponent } from 'react'
 import Moment from 'moment'
 import IPledge from '../../../../api/models/DTO/Pledge/IPledge';
 import './account-pledges.scss';
+import { IUser } from '../../../../api/models/User/IUser';
 
 
 interface IProps  {
+    user: IUser,
     showModal: (modalType: string) => void,
     pledges: Array<IPledge>
 }
 
 const AccountPledges: FunctionComponent<IProps> = (props) => {
 
-    const { pledges, showModal } = props;
+    const { pledges, user, showModal } = props;
     
     const pledgesRows = pledges.map((pledge: IPledge) => {
         
@@ -20,19 +22,19 @@ const AccountPledges: FunctionComponent<IProps> = (props) => {
     
     switch(pledge.credential_type?.toLowerCase())
     {
-        case 'target carbon intensity level pledge':
+        case 'target carbon intensity':
             pledgeType = 'Target carbon intensity level';
             target = pledge.pledge_carbon_intensity_target + ' MtCO2';
             break;
-        case 'target carbon intensity reduction pledge':
+        case 'target carbon intensity reduction':
             pledgeType = 'Target carbon intensity reduction';
             target = pledge.pledge_carbon_intensity_reduction + ' %';
             break;
-        case 'target emission level pledge':
+        case 'target emission':
             pledgeType = 'Target emission level';
             target = pledge.pledge_emission_target + ' MtCO2';
             break;
-        case 'target emission reduction pledge':
+        case 'target emission reduction':
             pledgeType = 'Target emission reduction';
             target = pledge.pledge_emission_reduction + ' %';
             break;
@@ -53,7 +55,10 @@ const AccountPledges: FunctionComponent<IProps> = (props) => {
     return (
         <div className="account-pledges">
             <div className="account-pledges__add">
-                <button className="add-new" onClick={() => showModal('add-pledge')}>Add new pledge</button>
+                {
+                    user?.demo ? '' :
+                    <button className="add-new" onClick={() => showModal('add-pledge')}>Add new pledge</button>
+                }
             </div>
 
             <table className="account-pledges__table account-table">

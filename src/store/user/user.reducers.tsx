@@ -2,7 +2,7 @@ import * as userActionTypes from "./user.action-types"
 import { UserState } from './user.state'
 
 const getUserFromStorage = () => {
-    const cUser = sessionStorage.getItem('user');
+    const cUser = localStorage.getItem('user');
     if(cUser)
         return JSON.parse(cUser);
     return null;
@@ -20,7 +20,8 @@ export const userReducer = ( state = initialState, action: any ) => {
         case userActionTypes.START_LOADING: 
             return {
                 ...state,
-                loading: true
+                loading: true,
+                loginError: ""
             };
         case userActionTypes.LOGIN_SUCCESS: 
             return {
@@ -39,8 +40,11 @@ export const userReducer = ( state = initialState, action: any ) => {
             return {
                 ...state,
                 currentUser: null,
-                loading: false
+                loading: false,
+                loginError: ""
             }
+        case userActionTypes.USERS_CLEAR_STATE:
+            return initialState;
 
         default: return state;
     }

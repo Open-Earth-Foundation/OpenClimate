@@ -7,5 +7,6 @@ export interface IUser {
     name?: string;
     email: string;
     password: string;
-    company?: IOrganization
+    company?: IOrganization,
+    demo?: boolean
 }

@@ -23,9 +23,9 @@ const EmissionsCard: FunctionComponent<IProps> = (props) => {
         const amount = climateActions.reduce((a: number, n: IClimateAction) => {
 
             let value = 0;
-            if(n.climate_action_type)
+            if(n.credential_type)
             {
-                const cType = ClimateActionTypes[n.climate_action_type as keyof typeof ClimateActionTypes];
+                const cType = ClimateActionTypes[n.credential_type as keyof typeof ClimateActionTypes];
 
                 if(cType === ClimateActionTypes.Emissions)
                     value = Math.abs((n as IEmissions)?.facility_emissions_co2e ?? 0);
@@ -34,9 +34,6 @@ const EmissionsCard: FunctionComponent<IProps> = (props) => {
 
                 
             }
-
-           /* const value = n.climate_action_type?.toString() == ClimateActionTypes[ClimateActionTypes.Mitigations] ? 
-                -Math.abs(n.facility_mitigations_co2e ?? 0) : Math.abs(n.facility_emissions_co2e ?? 0);*/
 
             return a += value ? Number(value) : 0;
         }, 0);

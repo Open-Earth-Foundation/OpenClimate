@@ -32,9 +32,7 @@ const ScopeTile: FunctionComponent<IProps> = (props) => {
     if(climateActionTile?.climateActions && climateActionTile?.climateActions.length > 2)
         hiddenTilesCount = climateActionTile?.climateActions.length - 2;
 
-    useEffect(() => {
-
-    },);
+    let addTitle = climateActionTile?.type === ClimateActionTypes.Emissions ? "emissions" : "mitigations";
 
     return (
         <div className={`scope-tile ${centeredClass}`}>
@@ -42,7 +40,11 @@ const ScopeTile: FunctionComponent<IProps> = (props) => {
                 hideTile? '' :
                 showEmptyTile ?
                     <div className="scope-tile__add-offset_centered">
-                        <button className="scope-tile__add-offset-btn scope-item-btn" onClick={() => showModal('add-climate-action', { Scope: scope, Type: type })}>Add offset</button>
+                        {
+                            addOffset ?
+                            <button className="scope-tile__add-offset-btn scope-item-btn" onClick={() => showModal('add-climate-action', { Scope: scope, Type: type })}>Add {addTitle}</button>
+                            : ""
+                        }
                     </div>
                 :
                 <React.Fragment>
@@ -56,7 +58,7 @@ const ScopeTile: FunctionComponent<IProps> = (props) => {
                                 }
                             </div>
                     </div>
-                    <div className="scope-title__content">
+                    <div className="scope-tile__content">
                         {
                             visibleTiles?.reverse().map((c: IClimateAction, index: number) => {
                                 return (

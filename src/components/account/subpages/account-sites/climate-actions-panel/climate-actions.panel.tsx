@@ -21,6 +21,7 @@ const ClimateActionsPanel: FunctionComponent<IProps> = (props) => {
             </div>
             <div>
             {
+                climateActions?.length ? 
                 climateActions.map((a: IClimateAction, index: number) => {
                     return (
                         <EmissionsGridRow 
@@ -30,6 +31,7 @@ const ClimateActionsPanel: FunctionComponent<IProps> = (props) => {
 
                     )
                 })
+                :''
             }
             </div>
 

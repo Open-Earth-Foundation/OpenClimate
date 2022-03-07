@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
 import ISite from '../../../../api/models/DTO/Site/ISite';
+import { IUser } from '../../../../api/models/User/IUser';
 import ClimateAccountabilityWidget from '../../../../shared/components/widgets/climate-accountability/climate-accountability.widget';
 import EmissionWidget from '../../../../shared/components/widgets/emission/emission.widget';
 import PledgesWidget from '../../../../shared/components/widgets/pledges/pledges.widget';
@@ -11,6 +12,7 @@ import './account-dashboard.scss';
 
 
 interface IProps  {
+    user: IUser, 
     aggregatedEmissions?: Array<IAggregatedEmission>,
     pledges?: Array<any>,
     sites?: Array<ISite>,
@@ -19,7 +21,7 @@ interface IProps  {
 
 const AccountDashboard: FunctionComponent<IProps> = (props) => {
 
-    const { aggregatedEmissions, pledges, sites, showModal} = props;
+    const { aggregatedEmissions, pledges, sites, user, showModal} = props;
 
     const [ summaryEmissions, setSummaryEmissions] = useState<IAggregatedEmission>();
 
@@ -38,16 +40,16 @@ const AccountDashboard: FunctionComponent<IProps> = (props) => {
 
     return (
         <div className="account-dasboard">
+            <SitesMapWidget 
+                sites={sites}
+                detailsLink="account/sites"
+            />
             <EmissionWidget
                 isVisible={true}
                 title="Climate actions"
                 height={284}
                 detailsLink="account/climate-actions"
                 aggregatedEmission={summaryEmissions}
-            />
-            <SitesMapWidget 
-                sites={sites}
-                detailsLink="account/sites"
             />
             <ClimateAccountabilityWidget
                 height={490}
@@ -56,17 +58,12 @@ const AccountDashboard: FunctionComponent<IProps> = (props) => {
             <PledgesWidget
                 pledges={widgetPledges} 
                 detailsLink="account/pledges"
-                height={490}
                 showModal={showModal}
-                showAddBtn={true}
+                showAddBtn={!user.demo}
                 voluntary={true}
-            />
-            <ReportsWidget
-                height={490}
             />
         </div>
     );
 }
 
 export default AccountDashboard;
- 

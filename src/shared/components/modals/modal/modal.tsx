@@ -34,13 +34,14 @@ interface IStateProps  {
     user: IUser | null,
     modalConfig: ModalConfig,
     sites: Array<ISite>,
-    climateActions: Array<IClimateAction>
+    climateActions: Array<IClimateAction>,
+    loginError: string
 }
 
 interface IDispatchProps {
     showModal: (entityType:string) => void,
     hideModal: () => void,
-    doLogin: (email: string, password: string) => void,
+    doLogin: (email: string, password: string, demo: boolean) => void,
     addPledge: (pledge: any) => void,
     addTransfer: (transfer: any) => void,
     addSite: (site: ISite) => void,
@@ -53,38 +54,31 @@ interface IProps extends IStateProps, IDispatchProps {
 }
 
 const Modal: FunctionComponent<IProps> = (props) => {
+
     const modalRef = useRef(null);
 
-    const { user, modalConfig, sites, climateActions,
+    const { user, modalConfig, sites, climateActions, loginError,
         showModal, hideModal, doLogin, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission } = props;
 
-    if (modalConfig.entityType === '')
+    if(modalConfig.entityType === '')
         return null;
 
     let component = null;
     let title = "";
 
-    if (props.verificationStatus) {
-      props.setVerificationStatus(false)
-      hideModal()
-    }
-
-    if (props.loggedInUserState) console.log(props.loggedInUserState)
-    else console.log('No logged in user state')
-
     switch(modalConfig.entityType)
     {
         case 'login': 
             title= "Login"
-            component = <LoginModal onLogin={doLogin} onModalShow={showModal} />
+            component = <LoginModal onModalShow={showModal} onLogin={doLogin} loginError={loginError} />
             break;
         case 'login-credential':
             title = "Link with your company credential"
-            component = <LoginCredentialModal QRCodeURL={props.QRCodeURL} sendRequest={props.sendRequest} onModalShow={showModal} />
+            component = <LoginCredentialModal onModalShow={showModal} />
             break;
         case 'registration':
             title = "Sign up"
-            component = <RegistrationModal sendRequest={props.sendRequest} onModalShow={showModal} />
+            component = <RegistrationModal onModalShow={showModal} />
             break;
         case 'verify-information':
             title = "Sign up"
@@ -96,7 +90,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
             break;
         case 'demo-info':
             title = "Demo Account"
-            component = <DemoInfoModal onModalHide={hideModal} />
+            component = <DemoInfoModal onModalHide={hideModal} doDemoLogin={doLogin} />
             break;
         case 'emission-filters':
             title = ""
@@ -108,32 +102,23 @@ const Modal: FunctionComponent<IProps> = (props) => {
             break;
         case 'add-pledge':
             title = "Add new pledge"
-            component = <AddPledgeModal
-                            user={user}
-                            addPledge={addPledge}
-                            onModalHide={hideModal}
-                            sendRequest={props.sendRequest}
-                            loggedInUserState={props.loggedInUserState} />
+            component = <AddPledgeModal onModalHide={hideModal} addPledge={addPledge} user={user} />
             break;
         case 'add-site-credential':
             title = "Add site credential"
             component = <AddSiteCredentialModal
                             user={user} 
                             addSite={addSite}
-                            onModalHide={hideModal}
-                            sendRequest={props.sendRequest}
-                            loggedInUserState={props.loggedInUserState}
+                            onModalHide={hideModal} 
                             submitButtonText="Submit Site Credential" />
             break;
         case 'add-transfer':
             title = "Add transfer"
             component = <AddTransferModal 
-                            onModalHide={hideModal}
-                            addTransfer={addTransfer}
-                            sites={sites}
-                            user={user}
-                            sendRequest={props.sendRequest}
-                            loggedInUserState={props.loggedInUserState} />
+                        onModalHide={hideModal} 
+                        addTransfer={addTransfer} 
+                        sites={sites}
+                        user={user} />
             break;
         case 'add-climate-action':
             title = "Add climate action"
@@ -146,8 +131,6 @@ const Modal: FunctionComponent<IProps> = (props) => {
                             sites={sites}
                             defaultScope={modalConfig.parameters['Scope']}
                             defaultType={modalConfig.parameters['Type']}
-                            sendRequest={props.sendRequest}
-                            loggedInUserState={props.loggedInUserState}
                             submitButtonText="Submit Climate Action" />
             break;
         case 'information-agreements':
@@ -195,11 +178,13 @@ const Modal: FunctionComponent<IProps> = (props) => {
 };
 
 const mapStateToProps = (state: RootState, ownProps: any) => {
+
     return {
         user: userSelectors.getCurrentUser(state),
         modalConfig: state.app.modalConfig,
         sites: accountSelectors.getSites(state),
-        climateActions: accountSelectors.getClimateActions(state)
+        climateActions: accountSelectors.getClimateActions(state),
+        loginError: userSelectors.getLoginError(state)
     }
 }
 
@@ -207,7 +192,7 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
     return {
         showModal: (modalEntityType: string) => dispatch(appActions.showModal(modalEntityType)),
         hideModal: () => dispatch(appActions.hideModal()),
-        doLogin: (email: string, password: string) => dispatch(userActions.doLogin(email, password)),
+        doLogin: (email: string, password: string, demo: boolean) => dispatch(userActions.doLogin(email, password, demo)),
         addPledge: (pledge: any) => dispatch(accountActions.addPledge(pledge)),
         addTransfer: (transfer: any) => dispatch(accountActions.addTransfer(transfer)),
         addSite: (site: ISite) => dispatch(accountActions.addSite(site)),

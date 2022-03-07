@@ -2,17 +2,19 @@ import React, { FunctionComponent } from 'react'
 import ITransfer from '../../../../api/models/DTO/Transfer/ITransfer';
 import TransferItem from '../../../../shared/components/widgets/transfers/transfer-item/transfer-item';
 import TransferArrow from '../../img/transferArrow.png';
+import { IUser } from '../../../../api/models/User/IUser';
 import Moment from 'moment'
 import './account-transfers.scss';
 
 interface IProps  {
+    user: IUser,
     transfers: Array<any>,
     showModal: (modalType: string) => void
 }
 
 const AccountTransfers: FunctionComponent<IProps> = (props) => {
 
-    const { transfers, showModal } = props;
+    const { transfers, user, showModal } = props;
 
     const transferRows = transfers.map( (t: ITransfer) => {
         
@@ -54,7 +56,11 @@ const AccountTransfers: FunctionComponent<IProps> = (props) => {
     return (
         <div className="account-transfers">
              <div className="account-transfers__add">
-                <button className="add-new" onClick={() => showModal('add-transfer')}>Add new transfer</button>
+                {
+                    user?.demo ? '' :
+                    <button className="add-new" onClick={() => showModal('add-transfer')}>Add new transfer</button>
+
+                }
             </div>
 
             <table className="account-transfers__table account-table">

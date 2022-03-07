@@ -2,9 +2,10 @@ import React, { ForwardedRef, forwardRef, FunctionComponent, useEffect } from 'r
 import { useState } from 'react';
 import { DropdownOption } from '../../../interfaces/dropdown/dropdown-option';
 import DropdownOpen from './dropdown-open/dropdown-open';
-import './dropdown.scss';
 import DropdownArrow from '../../../img/form-elements/dropdown/dropdown-arrow.png';
 import DropdownClose from '../../../img/form-elements/dropdown/dropdown-close.png';
+import { Path, UseFormRegister, FieldError } from "react-hook-form";
+import './dropdown.scss';
 
 interface Props {
     options: Array<DropdownOption> | null;
@@ -16,12 +17,19 @@ interface Props {
     selectedValue?: string | null,
     required?: boolean,
     onSelect?: (option: DropdownOption) => void,
-    onDeSelect?: (error?: boolean) => void
+    onDeSelect?: (error?: boolean) => void,
+    label?: Path<any>,
+    register?: UseFormRegister<any>,
+    errors?: FieldError,
+    setValue?: any
 }
 
 const Dropdown = ((props: Props) => {
 
-        let { options, required, searchPlaceholder, title, disabled, withSearch, emptyPlaceholder, selectedValue, onSelect, onDeSelect } = props;
+        let { register, setValue, label,  errors,
+            options, required, searchPlaceholder, title, 
+            disabled, withSearch, emptyPlaceholder, selectedValue, 
+            onSelect, onDeSelect } = props;
 
         const [open, setOpen] = useState(false);
         const [search, setSearch] = useState("");
@@ -35,6 +43,7 @@ const Dropdown = ((props: Props) => {
         }
 
         const selectHandler = (option: DropdownOption) => {
+            
             if (options && options.includes(option)) {
 
                 setSelected(option);
@@ -45,20 +54,23 @@ const Dropdown = ((props: Props) => {
                     onSelect(option);
 
                 setError(false);
+
+                if(setValue)
+                    setValue(label, option.value, { shouldValidate: true });
             }
         }
 
         const deselectHandler = (e: any) => {
             e.stopPropagation();
-
+            
             setSelected(null);
             setOpen(false);
+            
+            if(setValue)
+                setValue(label, '', {shouldValidate: true});
 
-            const err = !!required;
-            setError(err);
-
-            if (onDeSelect)
-                onDeSelect(err);
+            if(onDeSelect)
+                onDeSelect();
         }
 
         const openHandler = (open: boolean) => {
@@ -81,9 +93,14 @@ const Dropdown = ((props: Props) => {
                     setSelected(null);
                 else {
                     const foundOption = options.find(o => o.value === selectedValue);
-    
+
                     if (foundOption)
+                    {
                         setSelected(foundOption);
+                        if(setValue)
+                            setValue(label, foundOption.value, { shouldValidate: true });
+                        selectedValue=null;
+                    }
                 }
             }
 
@@ -108,12 +125,27 @@ const Dropdown = ((props: Props) => {
                     <div className="dropdown__selected-text">
                         <div className="selected-area">
 
-                            <input
-                                className='selected-area__option'
-                                value={selected ? selected.name : ""}
-                                placeholder={emptyTitle}
-                                onChange={() => false}
-                            />
+
+                            {
+                                register && label ? 
+                                <>
+                                <input
+                                    autoComplete='off'
+                                    className='selected-area__option'
+                                    value={selected ? selected.name : ""}
+                                    placeholder={emptyTitle}
+                                    {...register(label, { required })}
+                                />
+                                </>
+                                :
+                                <input
+                                    autoComplete='off'                                
+                                    className='selected-area__option'
+                                    value={selected ? selected.name : ""}
+                                    placeholder={emptyTitle}
+                                    onChange={() => false}
+                                />
+                            }
 
                             {selected ?
 
@@ -132,6 +164,12 @@ const Dropdown = ((props: Props) => {
                         <img src={DropdownArrow} alt="Arrow" className="dropdown__arrow-pic center-pic" />
                     </div>
                 </div>
+
+                {errors  && (
+                                    <span role="alert">
+                                    This field is required
+                                    </span>
+                                )}
 
                 {open ?
                     <DropdownOpen

@@ -6,9 +6,10 @@ import EmissionsScope1Form from './emissions-scope1-form/emissions-scope1-form';
 import IClimateAction from '../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import EmissionsScope2Form from './emissions-scope2-form/emissions-scope2-form';
 import EmissionsScope3Form from './emissions-scope3-form/emissions-scope3-form';
-
+import { IUser } from '../../../../../api/models/User/IUser';
 
 interface Props {
+    user: IUser | null,
     scopeOptions: Array<DropdownOption>,
     typeOptions: Array<DropdownOption>,
     sites: Array<ISite>,

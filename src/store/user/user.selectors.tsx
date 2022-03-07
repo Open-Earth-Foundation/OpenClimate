@@ -12,3 +12,8 @@ export const getCurrentUser = createSelector(
     users,
     items => items.currentUser
 );
+
+export const getLoginError = createSelector(
+    users,
+    items => items.loginError
+);

@@ -18,6 +18,7 @@ function allSitesByOrg(orgId: string)
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => sites);
 }
+
 function allSitesByCountry(countryName: string)
 {
     return fetch(`${ServerUrls.api}/site/byCountry/${countryName}`, {
@@ -26,9 +27,9 @@ function allSitesByCountry(countryName: string)
     }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => sites);
 }
 
-function allSitesByJurisdtiction(jurisdiction: string)
+function allSitesByJurisdtiction(countryName: string, jurisdiction: string)
 {
-    return fetch(`${ServerUrls.api}/site/byJurisdiction/${jurisdiction}`, {
+    return fetch(`${ServerUrls.api}/site/byJurisdiction/${countryName}/${jurisdiction}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => sites);
@@ -41,6 +42,7 @@ function allSites()
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => sites);
 }
+
 export const siteService = {
     saveSite,
     allSitesByOrg,

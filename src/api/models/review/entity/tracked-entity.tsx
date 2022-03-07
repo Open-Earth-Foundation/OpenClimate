@@ -10,14 +10,16 @@ export default interface ITrackedEntity {
     //id: string,
     type?: FilterTypes,
     title: string,
+    countryName?: string,
     countryCode?: string,
-    jurisdiction?: string,
+    countryCode3?:string,
+    jurisdictionName?: string,
+    jurisdictionCode?: string,
     aggregatedEmission?: IAggregatedEmission,
     retiredUnits?: Array<RetiredUnits>
     pledges?: Array<IPledge>,
     transfers?: Array<ITransfer>
     agreement?: boolean,
     treaties?: ITreaties,
-    countryCode3?:string,
     sites?: Array<ISite>
 }

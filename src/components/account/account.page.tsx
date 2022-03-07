@@ -23,8 +23,8 @@ import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateActions/I
 import { IUser } from '../../api/models/User/IUser';
 
 
-interface IStateProps {
-    user: IUser | null,
+interface IStateProps  {
+    user: IUser,
     pledges: Array<any>,
     transfers: Array<any>,
     sites: Array<ISite>,
@@ -56,7 +56,7 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
         showModal, loadPledges, loadTransfers, loadSites, loadClimateActions, loadAggregatedEmissions } = props;
 
     useEffect(() => {
-        console.log(user)
+
         if(user && user.company && user.company.id)
         {
             if(!pledgesLoaded)
@@ -64,8 +64,7 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
 
             if(!transfersLoaded)
                 loadTransfers(user.company.id);
-            console.log(user)
-            console.log(sitesLoaded)
+
             if(!sitesLoaded)
                 loadSites(user.company.id);
 
@@ -91,24 +90,28 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
                     <Switch>
                         <Route path="/account/climate-actions">
                             <ClimateActions 
-                                showModal={showModal}
+                                user={user}
                                 climateActions={climateActions}
+                                showModal={showModal} 
                             />
                         </Route>
                         <Route path="/account/pledges">
                             <AccountPledges 
+                                user={user}
                                 showModal={showModal} 
                                 pledges={pledges} 
                             />
                         </Route>
                         <Route path="/account/transfers">
                             <AccountTransfers 
+                                user={user}
                                 showModal={showModal} 
                                 transfers={transfers} 
                             />
                         </Route>
                         <Route path="/account/sites"
                              render = { props => <AccountSites 
+                                            user={user}
                                             aggregatedEmissions={aggregatedEmissions}
                                             showModal={showModal} 
                                             sites={sites}
@@ -122,6 +125,7 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
                                 showModal={showModal}
                                 sites={sites}
                                 aggregatedEmissions={aggregatedEmissions}
+                                user={user}
                             />
                         </Route>
                     </Switch>
