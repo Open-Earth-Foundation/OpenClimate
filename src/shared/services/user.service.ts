@@ -25,29 +25,21 @@ function login(email: string, password: string, company:ICompany) {
 
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    };
-
-    return fetch(`${ServerUrls.api}/login`, requestOptions)
-        .then(handleResponse)
-        .then(async user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            fetch(`${ServerUrls.api}/user/log-in`, {
-              method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 email: email,
                 password: password
               }),
-            }).then(handleResponse)
+    };
+    console.log("Login addr", `${ServerUrls.api}/user/log-in`)
+    return fetch(`${ServerUrls.api}/user/log-in`, requestOptions)
+            .then(handleResponse)
             .then(async response => {
-              user.company = await userService.getCompany({organization_id: user.organizationId});
-
-              sessionStorage.setItem('user', JSON.stringify(user));
-              return user;
+                console.log(response)
+                response.company = await userService.getCompany({organization_id: response.company.organizationId});
+                sessionStorage.setItem('user', JSON.stringify(response));
+                return response;
             })
-        });
 }
 
 function logout() {

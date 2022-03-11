@@ -29,7 +29,7 @@ import './layouts/main-layout/main.layout.scss';
 // Envision imports
 import ReviewPage from  './components/review/review.page';
 import { DispatchThunk, RootState } from './store/root-state';
-import { doLogin, loginSuccess, doLogout } from './store/user/user.actions';
+import { doLogin, loginSuccess, doLogout, doPaswordlessLoginSucess } from './store/user/user.actions';
 import { connect } from 'react-redux'
 import AccountPage from './components/account/account.page';
 import VerifyInformationModal from './shared/components/modals/verify-information/verify-information.modal';
@@ -997,6 +997,8 @@ const App: FunctionComponent<Props> = (props) => {
               <Redirect to={"/"}/>
             </Switch>
               <Modal
+                setUpUser={setUpUser}
+                setLoggedIn={setLoggedIn}
                 QRCodeURL={QRCodeURL}
                 verificationStatus={verificationStatus}
                 setVerificationStatus={setVerificationStatus}
@@ -1404,6 +1406,8 @@ const App: FunctionComponent<Props> = (props) => {
                 <Redirect to={"/"}/>
               </Switch>
                 <Modal
+                  setUpUser={setUpUser}
+                  setLoggedIn={setLoggedIn}
                   QRCodeURL={QRCodeURL}
                   verificationStatus={verificationStatus}
                   setVerificationStatus={setVerificationStatus}
@@ -1440,7 +1444,7 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
       dispatch(doLogin(userName, password))
     },
     doLoginSuccess: (user) => {
-      dispatch(loginSuccess(user))
+      dispatch(doPaswordlessLoginSucess(user))
     },
     showModal: (type:string) => {
       dispatch(showModal(type))

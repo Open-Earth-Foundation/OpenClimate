@@ -46,7 +46,9 @@ interface IDispatchProps {
     addTransfer: (transfer: any) => void,
     addSite: (site: ISite) => void,
     addClimateAction: (action: IClimateAction) => void,
-    addAggregatedEmission: (aggregatedEmission: IAggregatedEmission) => void
+    addAggregatedEmission: (aggregatedEmission: IAggregatedEmission) => void,
+    setLoggedIn:  (e: boolean) => void,
+    setUpUser: (id: string, email: string, roles: any) => void
 }
 
 interface IProps extends IStateProps, IDispatchProps {
@@ -58,7 +60,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
     const modalRef = useRef(null);
 
     const { user, modalConfig, sites, climateActions, loginError,
-        showModal, hideModal, doLogin, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission } = props;
+        showModal, hideModal, doLogin, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission, setLoggedIn, setUpUser} = props;
 
     if(modalConfig.entityType === '')
         return null;
@@ -70,7 +72,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
     {
         case 'login': 
             title= "Login"
-            component = <LoginModal onModalShow={showModal} onLogin={doLogin} loginError={loginError} />
+            component = <LoginModal hideModal={hideModal} setUpUser={setUpUser} setLoggedIn={setLoggedIn} onModalShow={showModal} onLogin={doLogin} loginError={loginError} />
             break;
         case 'login-credential':
             title = "Link with your company credential"

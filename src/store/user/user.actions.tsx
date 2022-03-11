@@ -97,3 +97,10 @@ export const doLoadCompany = (user: IUser) => {
         }, 300)
     }
 }*/
+
+export const doPaswordlessLoginSucess = (user: IUser) => {
+    return async (dispatch: Dispatch) => {
+        dispatch(loginSuccess(user));
+        dispatch(hideModal());
+    }
+}
