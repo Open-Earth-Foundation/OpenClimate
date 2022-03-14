@@ -2,7 +2,10 @@ import React, { FunctionComponent, useState } from 'react'
 import Button from '../../form-elements/button/button';
 import InputText from '../../form-elements/input-text/input.text';
 import './login.modal.scss';
-import Axios from 'axios'
+import Axios from 'axios';
+import {
+    useNotification
+  } from '../../../../UI/NotificationProvider';
 
 interface Props {
     onModalShow: (modalType: string) => void,
@@ -15,7 +18,7 @@ interface Props {
 
 const LoginModal: FunctionComponent<Props> = (props) => {
     const { onModalShow, onLogin, loginError, setLoggedIn, setUpUser, hideModal} = props;
-
+    const setNotification = useNotification()
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
     const [showErrors, setShowErrors] = useState<boolean>(false);
