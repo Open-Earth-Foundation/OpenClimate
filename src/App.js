@@ -908,7 +908,6 @@ const App: FunctionComponent<Props> = (props) => {
                 showLoginModal = {() => showModal('login') }
                 user={currentUser}
                 handleLogout={handleLogout}
-                doLogout={doLogout}
               />
             <Switch>
               <Route
@@ -1030,7 +1029,6 @@ const App: FunctionComponent<Props> = (props) => {
                 showLoginModal = {() => showModal('login') }
                 user={currentUser}
                 handleLogout={handleLogout}
-                doLogout={doLogout}
               />
               <Switch>  
                 <Route exact path="/forgot-password">

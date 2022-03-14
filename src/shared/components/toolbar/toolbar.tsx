@@ -8,17 +8,13 @@ import './toolbar.scss';
 
 interface Props {
     user: IUser | null,
-    doLogout: () => void,
-    showLoginModal: () => void
+    showLoginModal: () => void,
+    handleLogout: () => void
 }
 
 const MainToolbar: FunctionComponent<Props> = (props) => {
 
-    const { user, doLogout, showLoginModal } = props;
-
-    const logOut = () => {
-        doLogout();
-    }
+    const { user, showLoginModal, handleLogout } = props;
 
     return (
         <React.Fragment>
@@ -35,7 +31,7 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
 
                         <div className="toolbar__right-area">
                                 {user ?
-                                    <ToolbarAutorized user={user} doLogout={logOut} />
+                                    <ToolbarAutorized user={user} doLogout={handleLogout} />
                                 :
                                     <div className="toolbar__login">
                                         <button 
