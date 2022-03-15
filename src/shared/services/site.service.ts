@@ -16,7 +16,10 @@ function allSitesByOrg(orgId: string)
     return fetch(`${ServerUrls.api}/${orgId}/site/all`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
-    }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => sites);
+    }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => {
+    console.log(sites);
+    return sites;
+    });
 }
 
 function allSitesByCountry(countryName: string)

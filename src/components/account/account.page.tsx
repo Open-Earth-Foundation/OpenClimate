@@ -57,22 +57,22 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
 
     useEffect(() => {
 
-        if(user && user.company && user.company.id)
+        if(user && user.company && user.company.organization_id)
         {
             if(!pledgesLoaded)
-                loadPledges(user.company.id);
+                loadPledges(user.company.organization_id);
 
             if(!transfersLoaded)
-                loadTransfers(user.company.id);
+                loadTransfers(user.company.organization_id);
 
             if(!sitesLoaded)
-                loadSites(user.company.id);
+                loadSites(user.company.organization_id);
 
             if(!climateActionsLoaded)
-                loadClimateActions(user.company.id);
+                loadClimateActions(user.company.organization_id);
 
             if(!aggregatedEmissionsLoaded)
-                loadAggregatedEmissions(user.company.id);
+                loadAggregatedEmissions(user.company.organization_id);
         }
 
     }, [user]);

@@ -17,13 +17,13 @@ const WorldwideMap: FunctionComponent<Props> = (props) => {
     const [markerPositions, setMarkerPositions] = useState<Array<any>>([]);
 
     useEffect(() => {
-
+        console.log("WW sites", sites)
         const positions:Array<any> = [];
         sites?.map((site: ISite) => {
-    
-            if(site.facility_location && site.facility_location.includes(','))
+            const siteData = JSON.parse(site.data)
+            if(siteData.facility_location && siteData.facility_location.includes(','))
             {
-                const splittedLocation = site.facility_location.split(',');
+                const splittedLocation = siteData.facility_location.split(',');
                 const markerPosition = {
                     lat: Number(splittedLocation[0]),
                     lng: Number(splittedLocation[1])

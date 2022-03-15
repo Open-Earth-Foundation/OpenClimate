@@ -56,8 +56,8 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
     }
 
     const submitHandler = (data: any) => {
-
-        if(!user || !user.company || !user.company.id)
+        console.log("Submit click", user)
+        if(!user || !user.company || !user.company.organization_id)
             return;
 
         delete data['form-signed']
@@ -74,10 +74,10 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
         dbSite.credential_type = "Facility Information";
         dbSite.credential_issue_date = Date.now();
         dbSite.credential_issuer = "OpenClimate";
-        dbSite.organization_name = user.company.organization_name;
-        dbSite.signature_name =  `${user.firstName} ${user.lastName}`;
+        dbSite.organization_name = user.company.name;
+        dbSite.signature_name =  `${user.email}`;
 
-        siteService.saveSite(user.company.id, dbSite).then(site => {
+        siteService.saveSite(user.company.organization_id, dbSite).then(site => {
             addSite(site);
             onModalHide();
             toast("Site successfully created");
@@ -198,9 +198,9 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
                             {...register('form-signed', { required: true })}
                         />
                         Sign as 
-                        <a href="#"> {user?.firstName} {user?.lastName} </a>
+                        <a href="#"> {user?.email} </a>
                         in representation of 
-                        <a href="#"> {user?.company?.organization_name}</a>
+                        <a href="#"> {user?.company?.name}</a>
                 </div>
              </div>
          <div className="modal__row modal__row_btn">

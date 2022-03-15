@@ -212,7 +212,6 @@ const App: FunctionComponent<Props> = (props) => {
       url: '/api/session',
     }).then((res) => {
       if (res.status) {
-        console.log("Cookies response", cookies.get('sessionId'))
         // Check for a session and then set up the session state based on what we found
         setSession(cookies.get('sessionId'))
 
