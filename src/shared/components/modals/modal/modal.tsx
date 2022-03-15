@@ -41,14 +41,12 @@ interface IStateProps  {
 interface IDispatchProps {
     showModal: (entityType:string) => void,
     hideModal: () => void,
-    doLogin: (email: string, password: string, demo: boolean) => void,
     addPledge: (pledge: any) => void,
     addTransfer: (transfer: any) => void,
     addSite: (site: ISite) => void,
     addClimateAction: (action: IClimateAction) => void,
     addAggregatedEmission: (aggregatedEmission: IAggregatedEmission) => void,
-    setLoggedIn:  (e: boolean) => void,
-    setUpUser: (id: string, email: string, roles: any) => void
+    handlePasswordLogin: (email: string, password: string, setNotification: any) => void,
 }
 
 interface IProps extends IStateProps, IDispatchProps {
@@ -60,7 +58,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
     const modalRef = useRef(null);
 
     const { user, modalConfig, sites, climateActions, loginError,
-        showModal, hideModal, doLogin, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission, setLoggedIn, setUpUser} = props;
+        showModal, hideModal, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission, handlePasswordLogin} = props;
 
     if(modalConfig.entityType === '')
         return null;
@@ -72,7 +70,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
     {
         case 'login': 
             title= "Login"
-            component = <LoginModal hideModal={hideModal} setUpUser={setUpUser} setLoggedIn={setLoggedIn} onModalShow={showModal} onLogin={doLogin} loginError={loginError} />
+            component = <LoginModal hideModal={hideModal} handlePasswordLogin={handlePasswordLogin} onModalShow={showModal} loginError={loginError} />
             break;
         case 'login-credential':
             title = "Link with your company credential"
@@ -92,7 +90,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
             break;
         case 'demo-info':
             title = "Demo Account"
-            component = <DemoInfoModal onModalHide={hideModal} doDemoLogin={doLogin} />
+            component = <DemoInfoModal onModalHide={hideModal} />
             break;
         case 'emission-filters':
             title = ""
@@ -194,7 +192,6 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
     return {
         showModal: (modalEntityType: string) => dispatch(appActions.showModal(modalEntityType)),
         hideModal: () => dispatch(appActions.hideModal()),
-        doLogin: (email: string, password: string, demo: boolean) => dispatch(userActions.doLogin(email, password, demo)),
         addPledge: (pledge: any) => dispatch(accountActions.addPledge(pledge)),
         addTransfer: (transfer: any) => dispatch(accountActions.addTransfer(transfer)),
         addSite: (site: ISite) => dispatch(accountActions.addSite(site)),

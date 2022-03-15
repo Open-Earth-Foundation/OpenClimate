@@ -13,34 +13,20 @@ interface Props {
     setLoggedIn: (e: boolean) => void,
     setUpUser: (id: any, email: any, roles: any) => void,
     hideModal: () => void,
+    handlePasswordLogin: (email: string, password: string, setNotification: any) => void,
     loginError: string
 }
 
 const LoginModal: FunctionComponent<Props> = (props) => {
-    const { onModalShow, onLogin, loginError, setLoggedIn, setUpUser, hideModal} = props;
+    const { onModalShow, onLogin, loginError, setLoggedIn, setUpUser, hideModal, handlePasswordLogin} = props;
     const setNotification = useNotification()
     const [userEmail, setUserEmail] = useState<string>('');
     const [userPassword, setUserPassword] = useState<string>('');
     const [showErrors, setShowErrors] = useState<boolean>(false);
-
-    const loginHandler = () => {
-        onLogin(userEmail, userPassword)
-        Axios({
-            method: 'POST',
-            data: {
-              email: userEmail,
-              password: userPassword,
-            },
-            url: '/api/user/log-in',
-          }).then((res) => {
-            if (res.data.error) setNotification(res.data.error, 'error')
-            else {
-            console.log("Response ", res)
-              setLoggedIn(true)
-              setUpUser(res.data.id, res.data.email, res.data.roles)
-              hideModal()
-            }
-          })
+    let err = ''
+    const loginHandler = async () => {
+        await handlePasswordLogin(userEmail, userPassword, setNotification)
+        hideModal()
     }
 
     return (

@@ -58,18 +58,18 @@ export const loginSuccess = (user: IUser) => {
     }
 }
 
-export const doLogin = (email: string, password: string, demo: boolean) => {
-    return async (dispatch: Dispatch) => {
+// export const doLogin = (email: string, password: string, demo: boolean) => {
+//     return async (dispatch: Dispatch) => {
 
-        dispatch(startLoading())
-        userService.login(email, password, demo).then( (user: IUser) =>{
-            dispatch(loginSuccess(user));
-            dispatch(hideModal());
-        }).catch(err => {
-            dispatch(loginFailed(err));
-        });
-    }
-}
+//         dispatch(startLoading())
+//         userService.login(email, password, demo).then( (user: IUser) =>{
+//             dispatch(loginSuccess(user));
+//             dispatch(hideModal());
+//         }).catch(err => {
+//             dispatch(loginFailed(err));
+//         });
+//     }
+// }
 
 export const doLogout = () => {
     return (dispatch: Dispatch) => {

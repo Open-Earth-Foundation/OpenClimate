@@ -6,7 +6,7 @@ import { organizationService } from "./organization.service";
 
 export const userService = {
     register,
-    login,
+    // login,
     logout,
     getCompany,
     getUserByEmail
@@ -21,26 +21,22 @@ function register(user: IUser)
     })
 }
 
-function login(email: string, password: string, company:ICompany) {
+// function login(email: string, password: string) {
 
-    const requestOptions = {
-        method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                email: email,
-                password: password
-              }),
-    };
-    console.log("Login addr", `${ServerUrls.api}/user/log-in`)
-    return fetch(`${ServerUrls.api}/user/log-in`, requestOptions)
-            .then(handleResponse)
-            .then(async response => {
-                console.log(response)
-                response.company = await userService.getCompany({organization_id: response.company.organizationId});
-                sessionStorage.setItem('user', JSON.stringify(response));
-                return response;
-            })
-}
+//     const requestOptions = {
+//         method: 'POST',
+//               headers: { 'Content-Type': 'application/json' },
+//               body: JSON.stringify({
+//                 email: email,
+//                 password: password
+//               }),
+//     };
+//     return fetch(`${ServerUrls.api}/user/log-in`, requestOptions)
+//             .then(handleResponse)
+//             .then(response => {
+//                 return response;
+//             })
+// }
 
 function logout() {
     return fetch(`${ServerUrls.api}/logout`)
@@ -55,7 +51,7 @@ async function getCompany(companyData: any) {
     {
         const orgData: IOrganization = {
             organization_credential_id: companyData.organization_id.toString(),
-            organization_name: companyData.name,
+            name: companyData.name,
             organization_country: companyData.country,
             organization_jurisdiction: companyData.jurisdiction
         }

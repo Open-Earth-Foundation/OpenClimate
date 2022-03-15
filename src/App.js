@@ -212,6 +212,7 @@ const App: FunctionComponent<Props> = (props) => {
       url: '/api/session',
     }).then((res) => {
       if (res.status) {
+        console.log("Cookies response", cookies.get('sessionId'))
         // Check for a session and then set up the session state based on what we found
         setSession(cookies.get('sessionId'))
 
@@ -261,9 +262,40 @@ const App: FunctionComponent<Props> = (props) => {
         setUpUser(res.data.id, res.data.email, res.data.roles)
 
         // Envision login
-        const envisionUser = await userService.getUserByEmail(res.data.email)
-        doLoginSuccess(envisionUser)
-        sessionStorage.setItem('user', JSON.stringify(envisionUser));
+        // const envisionUser = await userService.getUserByEmail(res.data.email)
+        doLoginSuccess(res.data)
+        localStorage.setItem('user', JSON.stringify(res.data));
+      }
+    })
+  }
+
+  const handlePasswordLogin = (email, userPassword, setNotification) => {
+    Axios({
+      method: 'POST',
+      data: {
+        email: email,
+        password: userPassword
+      },
+      url: '/api/user/log-in',
+    }).then(async (res) => {
+      console.log("Response ", res)
+      if (res.data.error) {
+        // setNotification isn't defined everywhere we need to use it, so we can't display the error this way
+        setNotification(res.data.error, 'error')
+        // We don't want to redirect to the home page in every case, we shouldn't do this, either.
+        // history.push('/')
+      } else {
+        // Setting a session cookie this way doesn't seem to be the best way
+        cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
+
+        // console.log("Setting up the user now")
+        setLoggedIn(true)
+        setUpUser(res.data.id, res.data.email, res.data.roles)
+
+        // Envision login
+        // const envisionUser = await userService.getUserByEmail(res.data.email)
+        doLoginSuccess(res.data)
+        localStorage.setItem('user', JSON.stringify(res.data));
       }
     })
   }
@@ -996,8 +1028,7 @@ const App: FunctionComponent<Props> = (props) => {
               <Redirect to={"/"}/>
             </Switch>
               <Modal
-                setUpUser={setUpUser}
-                setLoggedIn={setLoggedIn}
+                handlePasswordLogin={handlePasswordLogin}
                 QRCodeURL={QRCodeURL}
                 verificationStatus={verificationStatus}
                 setVerificationStatus={setVerificationStatus}
@@ -1404,8 +1435,7 @@ const App: FunctionComponent<Props> = (props) => {
                 <Redirect to={"/"}/>
               </Switch>
                 <Modal
-                  setUpUser={setUpUser}
-                  setLoggedIn={setLoggedIn}
+                  handlePasswordLogin={handlePasswordLogin}
                   QRCodeURL={QRCodeURL}
                   verificationStatus={verificationStatus}
                   setVerificationStatus={setVerificationStatus}
@@ -1438,9 +1468,6 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch: DispatchThunk) => {
   return {
-    doLoginClick: (userName: string, password: string ) => {
-      dispatch(doLogin(userName, password))
-    },
     doLoginSuccess: (user) => {
       dispatch(doPaswordlessLoginSucess(user))
     },

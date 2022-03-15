@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect } from 'react'
 import AvaIcon from '../../../img/toolbar/ava.png';
 import MenuDropdown from '../../form-elements/menu-dropdown/menu-dropdown';
 import { IUser } from '../../../../api/models/User/IUser';
@@ -13,8 +13,10 @@ const ToolbarAutorized: FunctionComponent<Props> = (props) => {
 
     const { user, doLogout } = props;
 
-    const companyName = user?.company?.organization_name;
-
+    const companyName = user?.company?.name;
+    useEffect(() => {
+        console.log("User ",user)
+      }, [])
     return (
 
         <div className="toolbar__autorized">
