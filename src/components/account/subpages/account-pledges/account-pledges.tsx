@@ -14,7 +14,7 @@ interface IProps  {
 const AccountPledges: FunctionComponent<IProps> = (props) => {
 
     const { pledges, user, showModal } = props;
-    
+    console.log("Pledges", pledges)
     const pledgesRows = pledges.map((pledge: IPledge) => {
         
     let pledgeType = '';

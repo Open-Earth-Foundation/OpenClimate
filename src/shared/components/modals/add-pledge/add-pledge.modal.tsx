@@ -33,6 +33,7 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
         if(!pledgeSchemas.length) {
 
             setPledgeSchemas(PledgeSchemas);
+            console.log("Pledges",PledgeSchemas)
             const options = PledgeSchemas?.map((rf:any) => {
                 return {
                     name: rf["display_name"],
@@ -63,7 +64,7 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
 
     const submitHandler = (data: any) => {
 
-        if(!user || !user.company || !user.company.id)
+        if(!user || !user.company || !user.company.organization_id)
             return;
             
         delete data['form-signed']
@@ -73,9 +74,9 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
         dbPledge.credential_category = "Pledges";
         dbPledge.credential_issuer = "OpenClimate";
         dbPledge.organization_name = user.company.organization_name;
-        dbPledge.signature_name = `${user.firstName} ${user.lastName}`;
+        dbPledge.signature_name = `${user.email}`;
 
-        pledgeService.savePledge(user.company.id, dbPledge).then(pledge => {
+        pledgeService.savePledge(user.company.organization_id, dbPledge).then(pledge => {
             addPledge(pledge);
             onModalHide();
             toast("Pledge successfully created");
@@ -142,9 +143,9 @@ const AddPledgeModal: FunctionComponent<Props> = (props) => {
                         />
 
                         Sign as 
-                        <a href="#"> {user?.firstName} {user?.lastName} </a>
+                        <a href="#"> {user?.email}</a>
                         in representation of 
-                        <a href="#"> {user?.company?.organization_name}</a>
+                        <a href="#"> {user?.company?.name}</a>
                     </div>
                     : ""
                 }
