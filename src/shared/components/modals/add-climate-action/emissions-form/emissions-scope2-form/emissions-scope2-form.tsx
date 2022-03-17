@@ -278,9 +278,9 @@ const EmissionsScope2Form: FunctionComponent<Props> = (props) => {
                     />
 
                     Sign as 
-                    <a href="#"> {user?.firstName} {user?.lastName} </a>
+                    <a href="#"> {user?.email} </a>
                     in representation of 
-                    <a href="#"> {user?.company?.organization_name}</a>
+                    <a href="#"> {user?.company?.name}</a>
                 </div>
             </div>
 

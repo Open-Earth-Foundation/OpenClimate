@@ -64,14 +64,14 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
         if(!climateAction)
             return;
 
-        if(!user || !user.company || !user.company.id)
+        if(!user || !user.company || !user.company.organization_id)
             return;
 
         climateAction.credential_issue_date = Date.now();
         climateAction.credential_category = "Climate Action";
         climateAction.credential_issuer = "OpenClimate";
-        climateAction.organization_name = user.company.organization_name;
-        climateAction.signature_name = `${user.firstName} ${user.lastName}`;
+        climateAction.organization_name = user.company.name;
+        climateAction.signature_name = `${user.email}`;
 
         const foundSite=  sites.find(f => f.facility_name === climateAction.facility_name);
         if (foundSite) {
@@ -84,7 +84,7 @@ const AddClimateActionModal: FunctionComponent<Props> = (props) => {
             climateAction.facility_type = foundSite.facility_type;
         }
 
-        const userCompanyId = user.company.id;
+        const userCompanyId = user.company.organization_id;
 
         climateActionService.saveClimateAction(userCompanyId, climateAction).then(ca => {
             addClimateAction(ca);
