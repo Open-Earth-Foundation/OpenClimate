@@ -33,7 +33,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
 
     const submitHandler = (data: any) => {
         
-        if(!user || !user.company || !user.company.id)
+        if(!user || !user.company || !user.company.organization_id)
             return;
 
         delete data['form-signed']
@@ -50,8 +50,8 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
         transfer.credential_type = "Transfer Report";
         transfer.credential_issuer = "OpenClimate";
         transfer.credential_issue_date = Date.now();
-        transfer.organization_name = user.company?.organization_name;
-        transfer.signature_name = `${user.firstName} ${user.lastName}`;
+        transfer.organization_name = user.company?.name;
+        transfer.signature_name = `${user.email}`;
         //todo
 
         const foundSite = sites.find(f => f.facility_name === transfer.facility_name);
@@ -65,7 +65,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
             transfer.facility_type = foundSite.facility_type;
         }
 
-        transferService.saveTransfer(user.company.id, transfer).then(transfer => {
+        transferService.saveTransfer(user.company.organization_id, transfer).then(transfer => {
             addTransfer(transfer);
             onModalHide();
             toast("Transfer successfully created");
@@ -233,9 +233,9 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
                             {...register('form-signed', { required: true })}
                         />
                         Sign as 
-                        <a href="#"> {user?.firstName} {user?.lastName} </a>
+                        <a href="#"> {user?.email} </a>
                         in representation of 
-                        <a href="#"> {user?.company?.organization_name}</a>
+                        <a href="#"> {user?.company?.name}</a>
                 </div>
             </div>
 
