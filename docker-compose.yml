@@ -42,18 +42,18 @@ services:
     networks:
       - app-network
 
-  # Hub MongoDB Service
-  hub-mongo:
-    image: mongo
-    hostname: hub-mongodb
-    restart: always
-    ports:
-      - "27017:27017"
-    # environment:
-    #   MONGO_USER: mongodb
-    #   MONGO_PASSWORD: mongodb
-    networks:
-      - app-network
+  # # Hub MongoDB Service
+  # hub-mongo:
+  #   image: mongo
+  #   hostname: hub-mongodb
+  #   restart: always
+  #   ports:
+  #     - "27017:27017"
+  #   # environment:
+  #   #   MONGO_USER: mongodb
+  #   #   MONGO_PASSWORD: mongodb
+  #   networks:
+  #     - app-network
 
   hub-api:
     image: node:12-stretch 
@@ -80,7 +80,7 @@ services:
       - app-network
     depends_on:
       - "hub-db"
-      - "hub-mongo"
+      # - "hub-mongo"
 
   hub-ui:
     image: node:12-stretch
