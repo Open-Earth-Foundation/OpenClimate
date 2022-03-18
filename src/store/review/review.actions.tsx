@@ -6,6 +6,14 @@ import { ReviewHelper } from '../../shared/helpers/review.helper'
 import ITrackedEntity from '../../api/models/review/entity/tracked-entity'
 import * as reviewActionTypes from './review.action-types'
 
+export const reviewClearState = () => {
+    return {
+        type: reviewActionTypes.REVIEW_CLEAR_STATE,
+        payload: {
+        }
+    }
+}
+
 export const startLoading = () => {
     return {
         type: reviewActionTypes.START_LOADING,
@@ -50,25 +58,24 @@ export const updateFilterOptions = (filterType: FilterTypes, options: Array<Drop
     }
 }
 
-export const doSelectFilter = (filterType: FilterTypes, option: DropdownOption, selectedEntity: ITrackedEntity | null) => {
+export const doSelectFilter = (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => {
     return (dispatch: Dispatch) => {
         dispatch(startLoading());
 
         setTimeout(async () => {
 
-            await ReviewHelper.GetTrackedEntity(filterType, option, selectedEntity).then(trackedEntity => 
-                {
-                    dispatch(selectFilter(filterType, option.value, trackedEntity));
-                    dispatch(stopLoading());
-                }
-            )
+            const trackedEntity = await ReviewHelper.GetTrackedEntity(filterType, option, selectedEntities);
+            dispatch(selectFilter(filterType, option.value, trackedEntity));
+            dispatch(stopLoading());
 
             const nextIndex = filterType + 1;
             if(FilterTypes[nextIndex])
             {
                 let loadOptionsType = FilterTypes[FilterTypes[nextIndex] as keyof typeof FilterTypes];
 
-                const loadedOptions = await ReviewHelper.GetOptions(loadOptionsType, option.value);
+                const countryCode = selectedEntities[0]?.countryCode ?? option.value;
+ 
+                const loadedOptions = await ReviewHelper.GetOptions(loadOptionsType, countryCode, trackedEntity);
                 dispatch(updateFilterOptions(loadOptionsType, loadedOptions));
             }
         }, 500);

@@ -9,10 +9,12 @@ import ClimateActionsPanel from './climate-actions-panel/climate-actions.panel';
 import ArrowBackIcon from '../../img/arrow-panel-back.png';
 import ISite from '../../../../api/models/DTO/Site/ISite';
 import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
-import './account-sites.scss';
 import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
+import { IUser } from '../../../../api/models/User/IUser';
+import './account-sites.scss';
 
 interface IProps  {
+    user: IUser,
     sites?: Array<ISite>,
     aggregatedEmissions?: Array<IAggregatedEmission>,
     credentials?: Array<string>,
@@ -22,7 +24,7 @@ interface IProps  {
 
 const AccountSites: FunctionComponent<IProps> = (props) => {
 
-    const { sites, aggregatedEmissions, credentials, showModal, getClimateActionsBySite } = props;
+    const { user, sites, aggregatedEmissions, credentials, showModal, getClimateActionsBySite } = props;
 
     const [panel, setPanel] = useState<any>(null);
     const [displaySites, setDisplaySites] = useState<Array<ISite>>([]);
@@ -45,7 +47,6 @@ const AccountSites: FunctionComponent<IProps> = (props) => {
     const mapWidth = panel ? "50%" : "100%";
 
     const showClimateActionsPanel = () => {
-        //const actions = getClimateActionsBySite(displaySites);
         const cPanel = <ClimateActionsPanel 
             climateActions={climateActions}
             showModal={showModal}
@@ -77,7 +78,7 @@ const AccountSites: FunctionComponent<IProps> = (props) => {
             </div>
                 {
                     panel ?
-                    <div className="account-sites__panel">
+                    <div className="map-panel">
                         <Fade 
                             direction="right"
                             cascade={true}
@@ -85,10 +86,10 @@ const AccountSites: FunctionComponent<IProps> = (props) => {
                             damping={1}
                             fraction={0.2}
                         >
-                            <div className="account-sites__panel-wrapper">
-                                <div className="account-sites__panel-back">
-                                    <div className="account-sites__panel-back_link" onClick={() => { setPanel(null); }}>
-                                        <img src={ArrowBackIcon} alt="back" className="account-sites__panel-back_icon" />
+                            <div className="map-panel__wrapper ">
+                                <div className="map-panel__back">
+                                    <div className="map-panel__back_link" onClick={() => { setPanel(null); }}>
+                                        <img src={ArrowBackIcon} alt="back" className="map-panel__back_icon" />
                                         Back to all widgets
                                     </div>
                                 </div>  
@@ -106,7 +107,7 @@ const AccountSites: FunctionComponent<IProps> = (props) => {
                                 aggregatedEmission={summaryEmissions}
                                 title="Climate actions"
                                 className="sites-climate-action"
-                                width={320}
+                                width={330}
                                 height={185}
                                 detailsClick={showClimateActionsPanel}
                             />
@@ -122,7 +123,7 @@ const AccountSites: FunctionComponent<IProps> = (props) => {
                         <div className="account-sites__sites-widget-wrapper">
                             <SitesFiltersWidget 
                                 isVisible={true}
-                                showModal={showModal}
+                                showModal={user.demo ? undefined : showModal}
                                 sites={sites} 
                                 displaySitesChangedHandler = {filterChangedHandler}
                                 showCountriesSection={true}

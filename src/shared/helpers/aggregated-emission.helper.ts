@@ -41,8 +41,8 @@ const CalculateAggregatedEmission = (cUser: IUser | null, climateActions: Array<
     const actionsByFacility = climateActions.filter(a => a.facility_name === newClimateAction.facility_name); //facility_credential_id
     actionsByFacility.push(newClimateAction);
 
-    const emissionsByFacility = actionsByFacility.filter(a => a.climate_action_type?.toString()  == ClimateActionTypes[ClimateActionTypes.Emissions]);
-    const mitigationsByFacility = actionsByFacility.filter(a =>  a.climate_action_type?.toString() == ClimateActionTypes[ClimateActionTypes.Mitigations]);
+    const emissionsByFacility = actionsByFacility.filter(a => a.credential_type?.toString()  == ClimateActionTypes[ClimateActionTypes.Emissions]);
+    const mitigationsByFacility = actionsByFacility.filter(a =>  a.credential_type?.toString() == ClimateActionTypes[ClimateActionTypes.Mitigations]);
     
     let scope1Ids: Array<string> = [], scope2Ids: Array<string> = [], scope3Ids: Array<string> = [];
     let grossTotal = 0, sinksTotal = 0;
@@ -80,11 +80,25 @@ const CalculateAggregatedEmission = (cUser: IUser | null, climateActions: Array<
     const acitonsIndirect = actionsByFacility.filter(a => a.verification_body && !a.verification_credential_id);
     const actionsNoTracking = actionsByFacility.filter(a => !a.verification_body && !a.verification_credential_id);
     
-    aggEmission.verification_accountability_direct = actionsDirect.length / actionsByFacility.length * 100;
-    aggEmission.verification_accountability_indirect = acitonsIndirect.length / actionsByFacility.length * 100;
-    aggEmission.verification_accountability_no_tracking = actionsNoTracking.length / actionsByFacility.length * 100;
+    aggEmission.verification_accountability_direct = GetSumEmissions(actionsDirect);
+    aggEmission.verification_accountability_indirect = GetSumEmissions(acitonsIndirect);
+    aggEmission.verification_accountability_no_tracking = GetSumEmissions(actionsNoTracking);
 
     return aggEmission;
+}
+
+const GetSumEmissions = (climateActions: Array<IClimateAction>) => {
+    let grossTotal = 0;
+    let sinksTotal = 0;
+    
+    const emissionsByFacility = climateActions.filter(a => a.credential_type?.toString()  === ClimateActionTypes[ClimateActionTypes.Emissions]);
+    const mitigationsByFacility = climateActions.filter(a =>  a.credential_type?.toString() === ClimateActionTypes[ClimateActionTypes.Mitigations]);
+  
+    emissionsByFacility.map(e => grossTotal += Number((e as IEmissions)?.facility_emissions_co2e ?? 0));
+    mitigationsByFacility.map(e => sinksTotal += Number((e as IMitigations)?.facility_mitigations_co2e ?? 0));
+
+    return grossTotal + sinksTotal;
+
 }
 
 const GetSummaryAggregatedEmissions = (aggregatedEmissions: Array<IAggregatedEmission>) => {
@@ -114,9 +128,9 @@ const GetSummaryAggregatedEmissions = (aggregatedEmissions: Array<IAggregatedEmi
         facility_ghg_total_gross_co2e: gross,
         facility_ghg_total_net_co2e: net,
         facility_ghg_total_sinks_co2e: gross-net,
-        verification_accountability_direct: trackedSum ? trackedSum/ aggregatedEmissions.length : 0,
-        verification_accountability_indirect: indirectSum ? indirectSum / aggregatedEmissions.length : 0,
-        verification_accountability_no_tracking: untrackedSum ? untrackedSum / aggregatedEmissions.length : 0
+        verification_accountability_direct: trackedSum,
+        verification_accountability_indirect: indirectSum,
+        verification_accountability_no_tracking: untrackedSum
     }
 
     return summaryAggr;

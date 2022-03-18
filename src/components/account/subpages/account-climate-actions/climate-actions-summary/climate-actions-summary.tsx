@@ -9,17 +9,19 @@ import ScopeTile from './scope/scope-tile/scope-tile';
 import ScopeTileCentered from './scope/scope-tile-centered/scope-tile-centered';
 import ClimateActionTile from '../../../../../api/models/DTO/ClimateAction/IClimateActionTile';
 import IClimateAction from '../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
+import { IUser } from '../../../../../api/models/User/IUser';
 import './climate-actions-summary.scss';
 
 
 interface IProps  {
+    user: IUser,
     climateActions: Array<IClimateAction>,
     showModal: (modalType: string, parameters?: object) => void
 }
 
 const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
 
-    const { climateActions, showModal } = props;
+    const { climateActions, user, showModal } = props;
 
     const [tiles, setTiles] = useState<ClimateActionTile[]>([]);
 
@@ -119,7 +121,7 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 climateActionTile={tiles.find(t => t.scope == ClimateActionScopes.Scope1 && t.type == ClimateActionTypes.Emissions)}
                                 scope={ClimateActionScopes.Scope1}
                                 type={ClimateActionTypes.Emissions}
-                                addOffset={true}
+                                addOffset={!user.demo}
                                 showModal={showModal} 
                             />
                         </td>
@@ -128,7 +130,7 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                             climateActionTile={tiles.find(t => t.scope == ClimateActionScopes.Scope2 && t.type == ClimateActionTypes.Emissions)}
                                 scope={ClimateActionScopes.Scope2}
                                 type={ClimateActionTypes.Emissions}
-                                addOffset={true}
+                                addOffset={!user.demo}
                                 showModal={showModal} 
                             />
                         </td>
@@ -137,7 +139,7 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 climateActionTile={tiles.find(t => t.scope == ClimateActionScopes.Scope3 && t.type == ClimateActionTypes.Emissions)}
                                 scope={ClimateActionScopes.Scope3}
                                 type={ClimateActionTypes.Emissions}
-                                addOffset={true}
+                                addOffset={!user.demo}
                                 showModal={showModal} 
                             />
                         </td>
@@ -157,7 +159,7 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 climateActionTile={tiles.find(t => t.scope == ClimateActionScopes.Scope1 && t.type == ClimateActionTypes.Mitigations)}
                                 scope={ClimateActionScopes.Scope1}
                                 type={ClimateActionTypes.Mitigations}
-                                addOffset={true}
+                                addOffset={!user.demo}
                                 showModal={showModal} 
                             />
                         </td>
@@ -166,7 +168,7 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 climateActionTile={tiles.find(t => t.scope == ClimateActionScopes.Scope2 && t.type == ClimateActionTypes.Mitigations)}
                                 scope={ClimateActionScopes.Scope2}
                                 type={ClimateActionTypes.Mitigations}
-                                addOffset={true}
+                                addOffset={!user.demo}
                                 showModal={showModal} 
                             />
                         </td>
@@ -175,7 +177,7 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 climateActionTile={tiles.find(t => t.scope == ClimateActionScopes.Scope3 && t.type == ClimateActionTypes.Mitigations)}
                                 scope={ClimateActionScopes.Scope3}
                                 type={ClimateActionTypes.Mitigations}
-                                addOffset={true}
+                                addOffset={!user.demo}
                                 showModal={showModal} 
                             />
                         </td>

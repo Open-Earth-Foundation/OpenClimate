@@ -7,10 +7,8 @@
         margin-left: 14px;
     }
     &__data {
-        //height: 54px;
         width: 100%;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         border: 1px solid var(--grey1-color);
         padding: 12px 16px;
@@ -36,6 +34,11 @@
         //padding-top: 2px;
         position:absolute;
     }
+
+    &__timeline-circle-end {
+        position: relative;
+        left: -8px;
+    }
     
     &__timeline-date {
         font-weight: 600;
@@ -45,6 +48,14 @@
         text-transform: uppercase;
         color: #BDBDBD;
         margin-bottom: 4px;
+    }
+
+    &_small {
+        width: 20%;
+    }
+
+    &_large {
+        width: 40%;
     }
 
     .scope-item-signedby-header, .scope-item-signedby {

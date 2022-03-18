@@ -6,6 +6,7 @@ export default interface ISite {
     credential_issuer?: string,
     credential_issue_date?: number,
 
+    organization_id?: string,
     organization_name?: string,
     organization_category?: string,
     organization_type?: string,
@@ -19,5 +20,6 @@ export default interface ISite {
     facility_sector_ipcc_activity?: string,
     facility_sector_naics?: string,
     facility_type?: string,
+    facility_bounds?: string,
     signature_name?: string
 }

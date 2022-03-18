@@ -20,10 +20,17 @@ interface Props {
 
 const EmissionWidget: FunctionComponent<Props> = (props) => {
 
-    const { title, className, width, height, detailsLink, aggregatedEmission, isVisible, detailsClick } = props;
+    const { title, className, width, height, detailsLink, aggregatedEmission, isVisible,  detailsClick } = props;
 
     if(!isVisible)
         return null;
+
+
+    let showDetails = false;
+    if(aggregatedEmission)
+        showDetails = aggregatedEmission.facility_ghg_total_gross_co2e !== 0 ||
+                      aggregatedEmission.facility_ghg_total_sinks_co2e !== 0 ||
+                      aggregatedEmission.facility_ghg_total_net_co2e !== 0;
 
     return (
         <div className="widget" style={{width: width, height: height}}>
@@ -33,11 +40,18 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                         <h3 className="widget__title">
                             {title}
                         </h3> 
-                        {detailsLink ?
-                            <NavLink to={detailsLink} className="widget__link">Details</NavLink>
-                            :
-                            <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
+                        {
+                            showDetails ?
+                            <>
+                            {detailsLink ?
+                                <NavLink to={detailsLink} className="widget__link">Details</NavLink>
+                                :
+                                <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
+                            }
+                            </>
+                            : ''
                         }
+
                     </div>
 
                     <span className="widget__updated">Last Updated June 2020</span>     
@@ -76,7 +90,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                     </div>
                     : 
                     <div className="widget__no-data">
-                        No any data
+                        No data sourced yet. Have any suggestions, contact ux@openearth.org!
                     </div>
                     }
                 </div>

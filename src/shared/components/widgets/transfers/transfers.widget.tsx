@@ -6,7 +6,6 @@ import './transfers.widget.scss';
 
 interface Props {
     transfers?: Array<ITransfer>,
-    height: number,
     showAddBtn: boolean,
     showModal?: (entityType: string) => void,
     detailsClick?: () => void
@@ -14,11 +13,11 @@ interface Props {
 
 const TransfersWidget: FunctionComponent<Props> = (props) => {
 
-    const { transfers, height, showAddBtn, showModal, detailsClick } = props;
+    const { transfers, showAddBtn, showModal, detailsClick } = props;
 
     let transferItems;
 
-    if(transfers)
+    if(transfers && transfers.length)
         transferItems = transfers.map((t,i) => (
             <Transfer transfer={t} key={i} />
         ));
@@ -29,7 +28,7 @@ const TransfersWidget: FunctionComponent<Props> = (props) => {
     }
 
     return (
-        <div className="widget" style={{height: height}}>
+        <div className="widget">
         <div className="widget__wrapper" >
             <div className="widget__header">
                 <div className="widget__title-wrapper">
@@ -42,8 +41,8 @@ const TransfersWidget: FunctionComponent<Props> = (props) => {
                 <span className="widget__updated">Last Updated June 2020</span>     
 
             </div>
-            <div className="widget__content" style={{height: `calc(${height}px - 90px)`}}>
-                { transfers ?
+            <div className="widget__content">
+                { transferItems ?
                 <React.Fragment>
                     <div className="widget__transfers-content">
                         <div className="widget__transfers-header">
@@ -64,7 +63,7 @@ const TransfersWidget: FunctionComponent<Props> = (props) => {
                 :
                 <div className="widget__no-data">
                     <div className="widget__no-data-title">
-                        No any pledges yet
+                        No data yet
                     </div>
                     {showAddBtn ?
                         <AddNewBtn onClick={handlerAddTransfer}/>

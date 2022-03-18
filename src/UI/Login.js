@@ -88,7 +88,6 @@ function Login(props) {
       if (res.data.error) setNotification(res.data.error, 'error')
       else {
         props.setLoggedIn(true)
-
         props.setUpUser(res.data.id, res.data.email, res.data.roles)
       }
     })

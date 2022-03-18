@@ -5,11 +5,10 @@ import './climate-actions.panel.scss';
 
 interface IProps  {
     climateActions: Array<IClimateAction>,
-    showModal: (modalType: string) => void
+    showModal?: (modalType: string) => void
 }
 
 const ClimateActionsPanel: FunctionComponent<IProps> = (props) => {
-
     const { climateActions, showModal } = props;
     
     return (
@@ -21,15 +20,19 @@ const ClimateActionsPanel: FunctionComponent<IProps> = (props) => {
             </div>
             <div>
             {
+                climateActions?.length ? 
                 climateActions.map((a: IClimateAction, index: number) => {
                     return (
                         <EmissionsGridRow 
                             key={`${a.facility_name}_${index}`}
                             climateAction={a} 
-                            timeline={true}/>
+                            timeline={true}
+                            timelineEndCircle={index === climateActions.length-1 }
+                        />
 
                     )
                 })
+                : ''
             }
             </div>
 
@@ -38,10 +41,3 @@ const ClimateActionsPanel: FunctionComponent<IProps> = (props) => {
 }
 
 export default ClimateActionsPanel;
-
-/*
-
-                <div className="climate-actions-panel__add">
-                    <button className="climate-actions-panel__add-btn add-new" onClick={() => showModal('add-climate-action')} >Add climate action</button>
-                </div>
-*/

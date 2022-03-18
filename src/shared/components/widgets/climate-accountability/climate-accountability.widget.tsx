@@ -14,10 +14,11 @@ const ClimateAccountabilityWidget: FunctionComponent<Props> = (props) => {
     const { height, aggregatedEmission } = props;
 
     const reportDataOptions: ApexOptions = {
+        colors:['#007568', '#03AA6F', '#E6E7E8'],
         fill: {
             colors:['#007568', '#03AA6F', '#E6E7E8'],
         },
-        labels: ["Direct tracking & accounting", "Indirect tracking", "Untrackable"],
+        labels: ["Direct tracking & Verification", "Verified", "Self reported"],
         legend: {
             floating: false,
             horizontalAlign:'left',
@@ -30,42 +31,60 @@ const ClimateAccountabilityWidget: FunctionComponent<Props> = (props) => {
             },
             markers: {
                 fillColors: ['#007568', '#03AA6F', '#E6E7E8'],
+
                 width: 8,
                 height:8,
                 radius: 8,
                 offsetX: -4
             },
             itemMargin: {
-                horizontal: 8,
-                vertical: 4
+                horizontal: 0,
+                vertical: 0
             }
         },
         dataLabels: {
-            textAnchor:'end',
+            offsetY: 50,
+            textAnchor: "middle",
             style: {
                 fontSize: "14px",
-                fontWeight: "500px",
+                fontWeight: "bold",
                 fontFamily: "Poppins",
-                colors: ['#007568', '#03AA6F', '#E6E7E8']
-              }
-              
+                colors: ['#007568', '#03AA6F', '#E6E7E8'],
+              },
+            dropShadow: {
+                enabled: false
+            },
+            background: {
+                borderRadius: 0.2,
+                dropShadow: {}
+            }
         },
         plotOptions: {
             pie: {
-                startAngle:20,
+                offsetY: 5,
                 dataLabels:{
-                    offset: 45
+                    offset: 42
+                },
+                donut: {
+                    size: '60%'
                 },
                 customScale: 0.8
+            },
+            
+        },
+        tooltip: {
+            fillSeriesColor: true,
+            y: {
+                formatter: value => (value.toFixed(2))
             }
         }
         
     }
-
+     
     const tracking = aggregatedEmission?.verification_accountability_direct ?? 0;
     const indirect = aggregatedEmission?.verification_accountability_indirect ?? 0;
     const untrackable = aggregatedEmission?.verification_accountability_no_tracking ?? 0;
-
+    
     return (
         <div className="widget" style={{ height: height}}>
             <div className="widget__wrapper" >
@@ -74,7 +93,6 @@ const ClimateAccountabilityWidget: FunctionComponent<Props> = (props) => {
                         <h3 className="widget__title">
                             Climate accountability
                         </h3> 
-                        <a href="#" className="widget__link">Details</a>         
                     </div>
 
                     <span className="widget__updated">Last Updated June 2020</span>     

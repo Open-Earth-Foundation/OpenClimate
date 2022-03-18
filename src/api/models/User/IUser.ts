@@ -2,10 +2,11 @@ import IOrganization from "../DTO/Organization/IOrganization";
 
 export interface IUser {
     id?: string;
-    firstName: string;
-    lastName: string;
+    firstName?: string;
+    lastName?: string;
     name?: string;
     email: string;
     password: string;
-    company?: IOrganization
+    company?: IOrganization,
+    demo?: boolean
 }

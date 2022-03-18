@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react'
 import { GoogleMap, LoadScript , Marker } from '@react-google-maps/api';
 import ISite from '../../../../api/models/DTO/Site/ISite';
+import { Map } from '../../../environments/map.environments';
 
 interface Props {
     sites?: Array<ISite>,
@@ -16,10 +17,9 @@ const WorldwideMap: FunctionComponent<Props> = (props) => {
     const [markerPositions, setMarkerPositions] = useState<Array<any>>([]);
 
     useEffect(() => {
-
+        console.log("Sites", sites)
         const positions:Array<any> = [];
         sites?.map((site: ISite) => {
-    
             if(site.facility_location && site.facility_location.includes(','))
             {
                 const splittedLocation = site.facility_location.split(',');
@@ -49,7 +49,7 @@ const WorldwideMap: FunctionComponent<Props> = (props) => {
 
     return (
         <LoadScript
-            googleMapsApiKey="AIzaSyAfIvsuIw9Kg3z8iWuiyYk55yfjbIFYUSo"
+            googleMapsApiKey={Map.googleMapApiKey}
         >
             <GoogleMap
                 key={new Date().getTime()}

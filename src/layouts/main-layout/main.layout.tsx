@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import LoginCredential from '../../shared/components/modals/login-credential/login-credential.modal';
 import LoginModal from '../../shared/components/modals/login/login.modal';
 import RegistrationModal from '../../shared/components/modals/registration/registration.modal';
@@ -22,19 +22,33 @@ import Modal from '../../shared/components/modals/modal/modal';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IUser } from '../../api/models/User/IUser';
+import NestedAccountsPage from '../../components/nested-accounts/nested-accounts.page';
 
 interface Props  {
   currentUser: IUser | null,
   loading: boolean,
-  doLoginClick: (email: string, password: string) => void,
   showModal: (type: string) => void,
   doLogout: () => void
 }
 
 const MainLayout: FunctionComponent<Props> = (props) => {
 
-  const { currentUser, loading, doLoginClick, showModal, doLogout } = props;
+  const { currentUser, loading, showModal, doLogout } = props;
   
+  useEffect(() => {
+    document.addEventListener("wheel", function(event) {
+        if(document)
+        {
+          if(document.activeElement instanceof HTMLInputElement)
+          {
+            const element = document.activeElement as HTMLInputElement;
+            if(element.type === "number")
+              element.blur();
+          }
+        }
+    });
+  }, []);
+
   return (
     <div className="main-layout">
       <MainToolbar 
@@ -50,6 +64,9 @@ const MainLayout: FunctionComponent<Props> = (props) => {
             <AccountPage user={currentUser}/>
           </Route>
           )}
+          <Route path="/nested-accounts">
+            <NestedAccountsPage />
+          </Route>
           <Route path="/">
             <ReviewPage />
           </Route>
@@ -78,9 +95,6 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch: DispatchThunk) => {
   return {
-    doLoginClick: (userName: string, password: string ) => {
-      dispatch(doLogin(userName, password))
-    },
     showModal: (type:string) => {
       dispatch(showModal(type))
     },
@@ -91,5 +105,3 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);
-
-//showLoginHandler

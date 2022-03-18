@@ -2,7 +2,8 @@
     height: 250px;
     border-left: 1px solid rgba(0, 117, 104, 0.1);
     padding: 32px;
-
+    position: relative;
+    overflow: hidden;
     
     &__title {
         display: flex;
@@ -35,6 +36,7 @@
         font-size: 12px;
         line-height: 28px;
         color: var(--blue-color);
-
+        position: absolute;
+        bottom: -5px;
     }
 }

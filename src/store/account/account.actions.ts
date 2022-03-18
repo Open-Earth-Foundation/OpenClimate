@@ -10,6 +10,14 @@ import { siteService } from '../../shared/services/site.service';
 import { transferService } from '../../shared/services/transfer.service';
 import * as accountActionTypes from './account.action-types';
 
+export const accountClearState = () => {
+    return {
+        type: accountActionTypes.ACCOUNT_CLEAR_STATE,
+        payload: {
+        }
+    }
+}
+
 
 export const loadPledges = (pledges: Array<any>) => {
     return {
@@ -124,7 +132,7 @@ export const doLoadTransfers = (orgId: string) => {
 export const doLoadSites = (orgId: string) => {
     return (dispatch: Dispatch) => {
 
-        siteService.allSites(orgId).then(sites => {
+        siteService.allSitesByOrg(orgId).then(sites => {
             dispatch(loadSites(sites));
         });
 
@@ -144,7 +152,7 @@ export const doLoadClimateActions = (orgId: string) => {
 export const doLoadAggregatedEmissions = (orgId: string) => {
     return (dispatch: Dispatch) => {
 
-        aggregatedEmissionService.allAggregatedEmissions(orgId).then(aggregatedEmission => {
+        aggregatedEmissionService.allAggregatedEmissionsByOrg(orgId).then(aggregatedEmission => {
             dispatch(loadAggregatedEmission(aggregatedEmission));
         });
 

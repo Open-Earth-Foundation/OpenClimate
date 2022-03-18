@@ -5,8 +5,12 @@ import thunk from 'redux-thunk'
 import { RootState } from './root-state'
 import { appReducer } from './app/app.reducers'
 import { accountReducer } from './account/account.reducers'
+import { nestedAccountsReducer } from './nested-accounts/nested-accounts.reducers'
 
- const rootReducer = combineReducers<RootState>({ app: appReducer, users: userReducer, review: reviewReducer, account: accountReducer })
+ const rootReducer = combineReducers<RootState>({ app: appReducer, 
+    users: userReducer, review: reviewReducer, 
+    account: accountReducer, nestedAccounts: nestedAccountsReducer })
+    
  const store = createStore(rootReducer, {}, applyMiddleware(thunk));
 
 

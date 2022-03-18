@@ -29,7 +29,7 @@ import './layouts/main-layout/main.layout.scss';
 // Envision imports
 import ReviewPage from  './components/review/review.page';
 import { DispatchThunk, RootState } from './store/root-state';
-import { doLogin, loginSuccess, doLogout } from './store/user/user.actions';
+import { doLogin, loginSuccess, doLogout, doPaswordlessLoginSucess } from './store/user/user.actions';
 import { connect } from 'react-redux'
 import AccountPage from './components/account/account.page';
 import VerifyInformationModal from './shared/components/modals/verify-information/verify-information.modal';
@@ -261,9 +261,40 @@ const App: FunctionComponent<Props> = (props) => {
         setUpUser(res.data.id, res.data.email, res.data.roles)
 
         // Envision login
-        const envisionUser = await userService.getUserByEmail(res.data.email)
-        doLoginSuccess(envisionUser)
-        sessionStorage.setItem('user', JSON.stringify(envisionUser));
+        // const envisionUser = await userService.getUserByEmail(res.data.email)
+        doLoginSuccess(res.data)
+        localStorage.setItem('user', JSON.stringify(res.data));
+      }
+    })
+  }
+
+  const handlePasswordLogin = (email, userPassword, setNotification) => {
+    Axios({
+      method: 'POST',
+      data: {
+        email: email,
+        password: userPassword
+      },
+      url: '/api/user/log-in',
+    }).then(async (res) => {
+      console.log("Response ", res)
+      if (res.data.error) {
+        // setNotification isn't defined everywhere we need to use it, so we can't display the error this way
+        setNotification(res.data.error, 'error')
+        // We don't want to redirect to the home page in every case, we shouldn't do this, either.
+        // history.push('/')
+      } else {
+        // Setting a session cookie this way doesn't seem to be the best way
+        cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
+
+        // console.log("Setting up the user now")
+        setLoggedIn(true)
+        setUpUser(res.data.id, res.data.email, res.data.roles)
+
+        // Envision login
+        // const envisionUser = await userService.getUserByEmail(res.data.email)
+        doLoginSuccess(res.data)
+        localStorage.setItem('user', JSON.stringify(res.data));
       }
     })
   }
@@ -908,7 +939,6 @@ const App: FunctionComponent<Props> = (props) => {
                 showLoginModal = {() => showModal('login') }
                 user={currentUser}
                 handleLogout={handleLogout}
-                doLogout={doLogout}
               />
             <Switch>
               <Route
@@ -997,6 +1027,7 @@ const App: FunctionComponent<Props> = (props) => {
               <Redirect to={"/"}/>
             </Switch>
               <Modal
+                handlePasswordLogin={handlePasswordLogin}
                 QRCodeURL={QRCodeURL}
                 verificationStatus={verificationStatus}
                 setVerificationStatus={setVerificationStatus}
@@ -1028,7 +1059,6 @@ const App: FunctionComponent<Props> = (props) => {
                 showLoginModal = {() => showModal('login') }
                 user={currentUser}
                 handleLogout={handleLogout}
-                doLogout={doLogout}
               />
               <Switch>  
                 <Route exact path="/forgot-password">
@@ -1404,6 +1434,7 @@ const App: FunctionComponent<Props> = (props) => {
                 <Redirect to={"/"}/>
               </Switch>
                 <Modal
+                  handlePasswordLogin={handlePasswordLogin}
                   QRCodeURL={QRCodeURL}
                   verificationStatus={verificationStatus}
                   setVerificationStatus={setVerificationStatus}
@@ -1436,11 +1467,8 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch: DispatchThunk) => {
   return {
-    doLoginClick: (userName: string, password: string ) => {
-      dispatch(doLogin(userName, password))
-    },
     doLoginSuccess: (user) => {
-      dispatch(loginSuccess(user))
+      dispatch(doPaswordlessLoginSucess(user))
     },
     showModal: (type:string) => {
       dispatch(showModal(type))

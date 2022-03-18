@@ -12,14 +12,12 @@
     .review__filters-wrapper {
         display: flex;
         flex-wrap: wrap;
-        //margin-bottom: 42px;
     }
     
     .review__selected-entity {
         display: flex;
         justify-content: space-between;
         margin-top:42px;
-        //margin-bottom: 42px;
 
         .review__entity-title {
             vertical-align: middle;
@@ -38,23 +36,6 @@
                 color: var(--blue-color);
             }
         }
-    }
-
-    .review__content {
-        padding-top: 40px;
-    }
-
-    .loader {
-        position: fixed;
-        top: 80px;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: var(--grey1-color);
-        opacity: 0.5;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .review__switcher {

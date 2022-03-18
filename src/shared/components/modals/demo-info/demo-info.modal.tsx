@@ -1,14 +1,22 @@
 import React, { FunctionComponent, useState } from 'react'
+import { DemoData } from '../../../../api/data/demo/entities.demo';
+import { DemoHelper } from '../../../helpers/demo-account.helper';
 import Button from '../../form-elements/button/button';
 import './demo-info.modal.scss';
 
 interface Props {
-    onModalHide: () => void
+    onModalHide: () => void,
+    doDemoLogin: (email: string, password: string, demo: boolean) => void
 }
 
 const DemoInfoModal: FunctionComponent<Props> = (props) => {
 
-    const { onModalHide } = props;
+    const { onModalHide, doDemoLogin } = props;
+
+    const clickHandler = async () => {
+        await DemoHelper.PrepareDemoAccount();
+        doDemoLogin(DemoData.DemoUser.email, DemoData.DemoUser.password, true);
+    }
 
     return (
         <div className="demo-info">
@@ -20,7 +28,7 @@ const DemoInfoModal: FunctionComponent<Props> = (props) => {
             </div>
             <div className="modal__row modal__row_btn">
                     <Button 
-                            click={onModalHide}
+                            click={clickHandler}
                             color="primary"
                             text="Continue"
                             type="button"

@@ -1,14 +1,14 @@
 import React, { FunctionComponent } from 'react'
 import { useState } from 'react';
 import './switcher.scss';
-import LeftChosenPic from '../../../img/form-elements/switcher/left-option.png';
-import RightChosenPic from '../../../img/form-elements/switcher/right-option.png';
+import LeftChosenPic from '../../../img/form-elements/switcher/left.svg';
+import RightChosenPic from '../../../img/form-elements/switcher/right.svg';
 
 interface Props {
     title?: string,
     leftOption: string,
     rightOption: string,
-    className: string,
+    className?: string,
     leftOptionChosen?:boolean,
     onChange?: () => void
 }
@@ -29,8 +29,6 @@ const Switcher: FunctionComponent<Props> = (props) => {
             onChange();
     }
 
-    //const switcherClassName = className ? className : "";
-//input-wrapper
     return (
         <div className="switcher">
             <div className="switcher__title title-label">
