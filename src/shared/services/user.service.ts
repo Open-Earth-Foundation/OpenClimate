@@ -39,19 +39,22 @@ function register(user: IUser)
 // }
 
 function logout() {
-    return fetch(`${ServerUrls.api}/logout`)
-    .then(resposne => {
-            localStorage.removeItem('user');
-        });
+   return localStorage.removeItem('user');
 }
-async function getCompany(companyData: any) {
+interface CompanyData {
+    organization_id: number
+    name: string,
+    country: string,
+    jurisdiction: string
+}
+async function getCompany(companyData: CompanyData) {
     let org = await organizationService.getByCredentialId(companyData.organization_id);
 
     if (Object.keys(org).length === 0 && companyData.name && companyData.country && companyData.jurisdiction)
     {
         const orgData: IOrganization = {
             organization_credential_id: companyData.organization_id.toString(),
-            name: companyData.name,
+            organization_name: companyData.name,
             organization_country: companyData.country,
             organization_jurisdiction: companyData.jurisdiction
         }

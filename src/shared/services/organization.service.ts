@@ -2,7 +2,7 @@ import IOrganization from "../../api/models/DTO/Organization/IOrganization";
 import { ServerUrls } from "../environments/server.environments";
 import { CommonHelper } from "../helpers/common.helper";
 
-async function getByCredentialId(credentialId: string)
+async function getByCredentialId(credentialId: number)
 {
     return fetch(`${ServerUrls.api}/organization/credentials/${credentialId}`, {
         method: 'GET',

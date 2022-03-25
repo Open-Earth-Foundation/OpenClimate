@@ -432,6 +432,7 @@ const App: FunctionComponent<Props> = (props) => {
         case 'INVITATIONS':
           switch (type) {
             case 'INVITATION':
+              console.log("QR", data.invitation_record.invitation_url)
               setQRCodeURL(data.invitation_record.invitation_url)
               break
 

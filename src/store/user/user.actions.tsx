@@ -74,13 +74,11 @@ export const loginSuccess = (user: IUser) => {
 export const doLogout = () => {
     return (dispatch: Dispatch) => {
         dispatch(startLoading())
-        
-        userService.logout().then(_ => {
-            dispatch(reviewClearState());
-            dispatch(nestedAccountsClearState());
-            dispatch(accountClearState());
-            dispatch(logout())
-        });
+        dispatch(reviewClearState());
+        dispatch(nestedAccountsClearState());
+        dispatch(accountClearState());
+        dispatch(logout())
+        userService.logout()
     }
 }
 /* todo
