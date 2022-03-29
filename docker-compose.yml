@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
 
 #***************************************************************
@@ -8,6 +8,7 @@ services:
   # Nginx Service
   hub-webserver:
     image: nginx:alpine
+    profiles: ["oc"] 
     build:
       context: nginx
       dockerfile: Dockerfile-nginx    
@@ -32,6 +33,7 @@ services:
   # Hub PostgreSQL Service
   hub-db:
     image: postgres:9.5
+    profiles: ["oc"] 
     hostname: hub-db
     restart: always
     # ports: # Uncomment to access postgres outside of containers
@@ -42,21 +44,9 @@ services:
     networks:
       - app-network
 
-  # # Hub MongoDB Service
-  # hub-mongo:
-  #   image: mongo
-  #   hostname: hub-mongodb
-  #   restart: always
-  #   ports:
-  #     - "27017:27017"
-  #   # environment:
-  #   #   MONGO_USER: mongodb
-  #   #   MONGO_PASSWORD: mongodb
-  #   networks:
-  #     - app-network
-
   hub-api:
     image: node:12-stretch 
+    profiles: ["oc"] 
     hostname: hub-api
     restart: unless-stopped
     user: root # we want to run with write permissions for dev, so run as root.
@@ -84,6 +74,7 @@ services:
 
   hub-ui:
     image: node:12-stretch
+    profiles: ["oc"] 
     hostname: hub-ui
     restart: unless-stopped
     user: root # To write to ui folder, we need write permissions. node user does not have this.
@@ -105,11 +96,13 @@ services:
 
   tunnel-hub:
     image: reflectivedevelopment/agent-tunnel
+    profiles: ["oc"] 
     command: "agent-hub:3005 -p 4040 --host ${AGENT_TUNNEL_HOST}"
     networks:
       - app-network      
   agent-hub:
     build: aries-acapy-plugin-toolbox
+    profiles: ["oc"] 
     environment:
       TUNNEL_HOST: tunnel-hub
       AGENT_NAME: Hub
@@ -133,11 +126,13 @@ services:
 
   tunnel-test:
     image: reflectivedevelopment/agent-tunnel
+    profiles: ["test"] 
     command: "agent-test:3009 -p 4040 --host ${AGENT_TUNNEL_HOST}"
     networks:
       - app-network
   agent-test:
     build: aries-acapy-plugin-toolbox
+    profiles: ["test"]
     environment:
       TUNNEL_HOST: tunnel-test
       AGENT_NAME: Test
@@ -152,6 +147,10 @@ services:
      - "8154:8154"
     networks:
       - app-network
+
+#***************************************************************
+# Traction Services
+#***************************************************************
 
 
 # Docker Networks
