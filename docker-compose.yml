@@ -8,7 +8,6 @@ services:
   # Nginx Service
   hub-webserver:
     image: nginx:alpine
-    profiles: ["oc"] 
     build:
       context: nginx
       dockerfile: Dockerfile-nginx    
@@ -28,12 +27,11 @@ services:
       - "hub-api"
       - "hub-ui"
     networks:
-      - app-network
+      - oc-network
 
   # Hub PostgreSQL Service
   hub-db:
     image: postgres:9.5
-    profiles: ["oc"] 
     hostname: hub-db
     restart: always
     # ports: # Uncomment to access postgres outside of containers
@@ -42,11 +40,10 @@ services:
       POSTGRES_USER: development
       POSTGRES_PASSWORD: development
     networks:
-      - app-network
+      - oc-network
 
   hub-api:
-    image: node:12-stretch 
-    profiles: ["oc"] 
+    image: node:12-alpine 
     hostname: hub-api
     restart: unless-stopped
     user: root # we want to run with write permissions for dev, so run as root.
@@ -65,16 +62,15 @@ services:
     expose:
       - "3100"
     command: >
-      sh -c "npm install && /home/node/wait-for-it/wait-for-it.sh hub-db:5432 && npm run migrate_up_all && npm run dev"
+       sh -c "apk add --update python3 cmake bash && rm -rf /var/cache/apk/* && npm install -g nodemon ts-node && npm install && /home/node/wait-for-it/wait-for-it.sh hub-db:5432 && npm run migrate_up_all && npm run dev"
     networks:
-      - app-network
+      - oc-network
     depends_on:
       - "hub-db"
       # - "hub-mongo"
 
   hub-ui:
     image: node:12-stretch
-    profiles: ["oc"] 
     hostname: hub-ui
     restart: unless-stopped
     user: root # To write to ui folder, we need write permissions. node user does not have this.
@@ -90,19 +86,17 @@ services:
     command: >
       sh -c "npm install && npm start"
     networks:
-      - app-network
+      - oc-network
     depends_on:
       - "hub-db"
 
   tunnel-hub:
     image: reflectivedevelopment/agent-tunnel
-    profiles: ["oc"] 
     command: "agent-hub:3005 -p 4040 --host ${AGENT_TUNNEL_HOST}"
     networks:
-      - app-network      
+      - oc-network     
   agent-hub:
     build: aries-acapy-plugin-toolbox
-    profiles: ["oc"] 
     environment:
       TUNNEL_HOST: tunnel-hub
       AGENT_NAME: Hub
@@ -117,7 +111,7 @@ services:
      - "3005:3005"
      - "8150:8150"
     networks:
-      - app-network
+      - oc-network
 
 
 #***************************************************************
@@ -126,13 +120,11 @@ services:
 
   tunnel-test:
     image: reflectivedevelopment/agent-tunnel
-    profiles: ["test"] 
     command: "agent-test:3009 -p 4040 --host ${AGENT_TUNNEL_HOST}"
     networks:
-      - app-network
+      - oc-network
   agent-test:
     build: aries-acapy-plugin-toolbox
-    profiles: ["test"]
     environment:
       TUNNEL_HOST: tunnel-test
       AGENT_NAME: Test
@@ -146,15 +138,10 @@ services:
      - "3009:3009"
      - "8154:8154"
     networks:
-      - app-network
-
-#***************************************************************
-# Traction Services
-#***************************************************************
-
+      - oc-network
 
 # Docker Networks
 networks:
-  app-network:
+  oc-network:
     driver: bridge
 
