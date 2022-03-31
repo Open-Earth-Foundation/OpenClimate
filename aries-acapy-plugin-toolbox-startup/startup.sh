@@ -1,7 +1,7 @@
 aca-py start \
     -it acapy_plugin_toolbox.http_ws 0.0.0.0 "$PORT" \
     -ot http \
-    -e "$ACAPY_ENDPOINT" "${ACAPY_ENDPOINT/http/ws}" \
+    -e "$ACAPY_ENDPOINT" \
     --label "$AGENT_NAME" \
     --auto-accept-requests --auto-ping-connection \
     --auto-respond-credential-proposal --auto-respond-credential-offer --auto-respond-credential-request --auto-store-credential \
