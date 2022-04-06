@@ -351,9 +351,62 @@ services:
     networks:
       - oc-network
 
+#***************************************************************
+# Traction Showcase Demo
+#***************************************************************
+  traction-showcase:
+    build:
+      context: ./traction/services/showcase
+      dockerfile: Dockerfile
+    depends_on:
+      showcase-db:
+        condition: service_healthy
+    entrypoint: bash -c "alembic upgrade head && uvicorn api.main:app --reload --host 0.0.0.0 --port 5000 --log-level info"
+    environment:
+      - POSTGRESQL_HOST=showcase-db
+      - POSTGRESQL_PORT=5432
+      - POSTGRESQL_DB=${SHOWCASE_PSQL_DB}
+      - SHOWCASE_DB_ADMIN=${SHOWCASE_PSQL_ADMIN}
+      - SHOWCASE_DB_ADMIN_PWD=${SHOWCASE_PSQL_ADMIN_PWD}
+      - SHOWCASE_DB_USER=${SHOWCASE_PSQL_USER}
+      - SHOWCASE_DB_USER_PWD=${SHOWCASE_PSQL_USER_PWD}
+      - SHOWCASE_ENDPOINT=${SHOWCASE_ENDPOINT}
+      - SHOWCASE_STATIC_FILES=${SHOWCASE_STATIC_FILES}
+      - SHOWCASE_CORS_URLS=${SHOWCASE_CORS_URLS}
+      - TRACTION_ENDPOINT=${TRACTION_ENDPOINT}
+      - TRACTION_API_ADMIN_USER=${TRACTION_API_ADMIN_USER}
+      - TRACTION_API_ADMIN_KEY=${TRACTION_API_ADMIN_KEY}
+      - ENVIRONMENT=production
+      - WEB_CONCURRENCY=${WEB_CONCURRENCY}
+    ports:
+      - ${SHOWCASE_SERVICE_PORT}:5000
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ./traction/services/showcase:/traction/app:rw
+    networks:
+      - oc-network
+
+  showcase-db:
+    image: "postgres:12"
+    environment:
+      - POSTGRES_PASSWORD=${SHOWCASE_POSTGRESQL_PASSWORD}
+    ports:
+      - ${SHOWCASE_POSTGRESQL_PORT}:5432
+    volumes:
+      - traction-showcase:/var/lib/postgresql/data
+      - ./traction/scripts/db_init.showcase.sql:/docker-entrypoint-initdb.d/1-init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - oc-network
 volumes:
   traction-wallet:
   endorser-wallet:
+  traction-showcase:
 
 # Docker Networks
 networks:

@@ -1,4 +1,3 @@
 *.swp
-.env
 aca-py-*
 nginx/*ssl*
