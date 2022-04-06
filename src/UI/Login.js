@@ -75,7 +75,7 @@ function Login(props) {
     e.preventDefault()
     const form = new FormData(loginForm.current)
 
-    props.doLogin(form.get('email'), form.get('password'))
+    // props.doLogin(form.get('email'), form.get('password'))
 
     Axios({
       method: 'POST',
