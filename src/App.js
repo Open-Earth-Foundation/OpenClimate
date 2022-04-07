@@ -433,6 +433,8 @@ const App: FunctionComponent<Props> = (props) => {
           switch (type) {
             case 'INVITATION':
               console.log("QR", data.invitation_record.invitation_url)
+              let decoded_qr = Buffer.from(data.invitation_record.invitation_url.split('=')[1], 'base64').toString()
+              console.log("Decoded QR", decoded_qr)
               setQRCodeURL(data.invitation_record.invitation_url)
               break
 
