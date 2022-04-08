@@ -41,6 +41,10 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
                     )}
                 </div>
                 <div className="modal__row modal__row_content-center login-credential-form__qr-content">
+                    <button onClick={() => {navigator.clipboard.writeText(props.QRCodeURL) 
+                    alert("Link copied to clipboard!")}} >Click to copy link!</button>
+                </div>
+                <div className="modal__row modal__row_content-center login-credential-form__qr-content">
                     Scan QR code with your credential wallet
                 </div>
                 <div className="modal__row modal__row_content-center login-credential-form__tutorial-link">

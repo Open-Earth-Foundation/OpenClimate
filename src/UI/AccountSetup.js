@@ -157,6 +157,10 @@ function AccountSetup(props) {
                   receive an email credential,
                   and finalize your account.
                 </p>
+                <button onClick={() => {
+                        navigator.clipboard.writeText(props.QRCodeURL)
+                        alert("Link copied to clipboard!")}
+                        } >Click to copy link!</button>
                 <QR value={props.QRCodeURL} size={300} renderAs="svg" />
                 </QRHolder>
             ) : (
