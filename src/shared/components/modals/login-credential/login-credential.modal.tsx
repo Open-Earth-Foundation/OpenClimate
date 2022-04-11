@@ -41,8 +41,14 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
                     )}
                 </div>
                 <div className="modal__row modal__row_content-center login-credential-form__qr-content">
-                    <button onClick={() => {navigator.clipboard.writeText(props.QRCodeURL) 
-                    alert("Link copied to clipboard!")}} >Click to copy link!</button>
+                    To use Traction Business Wallet please copy link
+                </div>
+                <div className="modal__row modal__row_content-center login-credential-form__qr-content">
+                    <a onClick={() => {
+                        navigator.clipboard.writeText(props.QRCodeURL) 
+                        alert("Link copied to clipboard!")}} 
+                        className="modal__link modal__link_black"
+                        >Click to copy link!</a>
                 </div>
                 <div className="modal__row modal__row_content-center login-credential-form__qr-content">
                     Scan QR code with your credential wallet
