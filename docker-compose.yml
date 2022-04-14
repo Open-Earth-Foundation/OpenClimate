@@ -109,12 +109,14 @@ services:
       PORT: 3005
       ADMIN_PORT: 8150
       WEBHOOK_ADDRESS: http://hub-api:3100/api/controller-webhook
-      ACAPY_ENDPOINT: http://agent-hub:3005
+      # ACAPY_ENDPOINT: http://agent-hub:3005
       # ACAPY_ENDPOINT_WS: ws://2aa2-92-124-161-161.ngrok.io
     volumes:
       - ./aries-acapy-plugin-toolbox-startup:/home/indy/aries-acapy-plugin-toolbox-startup:consistent
     command: >
-      sh -c "/home/indy/aries-acapy-plugin-toolbox-startup/startup.sh"
+      sh -c "./wait.sh /home/indy/aries-acapy-plugin-toolbox-startup/startup.sh"
+    # command: >
+    #   sh -c "/home/indy/aries-acapy-plugin-toolbox-startup/startup.sh"
     ports:
      - "3005:3005"
      - "8150:8150"
@@ -370,7 +372,7 @@ services:
     build:
       context: ./traction/services/showcase
       dockerfile: Dockerfile
-    profiles: ["traction"]
+    profiles: ["showcase"]
     depends_on:
       showcase-db:
         condition: service_healthy
@@ -402,7 +404,7 @@ services:
 
   showcase-db:
     image: "postgres:12"
-    profiles: ["traction"]
+    profiles: ["showcase"]
     environment:
       - POSTGRES_PASSWORD=${SHOWCASE_POSTGRESQL_PASSWORD}
     ports:
