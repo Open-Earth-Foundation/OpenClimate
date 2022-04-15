@@ -4,24 +4,54 @@ import Modal from '../modal/modal';
 // import CredentialPic from '../../../img/modals/credential-qrcode.png';
 import QR from 'qrcode.react'
 import './login-credential.modal.scss';
+import InputText from '../../form-elements/input-text/input.text';
+import {
+    useNotification
+  } from '../../../../UI/NotificationProvider';
 
 interface Props {
-    onModalShow: (modalType: string) => void
+    onModalShow: (modalType: string) => void,
+    hideModal: () => void,
 }
 
 const LoginCredentialModal: FunctionComponent<Props> = (props) => {
     const [requestedInvitation, setRequestedInvitation] = useState(false)
+    const [userEmail, setUserEmail] = useState<string>('');
 
     if (!props.QRCodeURL && !requestedInvitation) {
       props.sendRequest('INVITATIONS', 'CREATE_SINGLE_USE', {})
       setRequestedInvitation(true)
     }
-
-    const { onModalShow } = props;
+    const setNotification = useNotification()
+    const { onModalShow, hideModal} = props;
+    async function pushPresentationRequestHandler() {
+        const user = {
+            email: userEmail,
+        }
+        console.log("User email", user)
+        props.sendRequest('PRESENTATION', 'PUSH', {email: userEmail})
+    }
 
     return (
         <form action="/" className="login-credential-form">
             <div className="modal__content login-credential-form__qr-content">
+                <div className="modal__row modal__row_content-center login-credential-form__qr-content">
+                        If your agent is already connected please enter email
+                </div>
+                <div className="modal__row modal__row_content">
+                    <InputText 
+                        type="email"
+                        placeholder="Email" 
+                        onChange={setUserEmail}
+                        />
+                </div>
+                <div className="modal__row modal__row_btn">
+                <Button color="primary"
+                        text="Sent request"
+                        type="button"
+                        click={()=>pushPresentationRequestHandler()}
+                        />
+                </div>
                 <div className="modal__row modal__row_content-center login-credential-form__qrcode">
                     {/* <img src={CredentialPic} alt="QRcode" /> */}
                     {props.QRCodeURL ? (
