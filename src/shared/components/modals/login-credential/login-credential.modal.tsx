@@ -2,7 +2,8 @@ import React, { FunctionComponent, useState } from 'react'
 import Button from '../../form-elements/button/button';
 import Modal from '../modal/modal';
 // import CredentialPic from '../../../img/modals/credential-qrcode.png';
-import QR from 'qrcode.react'
+import InfoIcon from '../../../../shared/img/widgets/info.png';
+import QR from 'qrcode.react';
 import './login-credential.modal.scss';
 import InputText from '../../form-elements/input-text/input.text';
 import {
@@ -35,34 +36,26 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
     return (
         <form action="/" className="login-credential-form">
             <div className="modal__content login-credential-form__qr-content">
-                <div className="modal__row modal__row_content-center login-credential-form__qr-content">
-                        If your agent is already connected please enter email
+                <div className="modal__row modal__row_content-center login-credential-form__qr-content login-credential-form__subheader">
+                        Scan this QR with your digital wallet to login. You will have to complete the request for proof of credentials
                 </div>
-                <div className="modal__row modal__row_content">
-                    <InputText 
-                        type="email"
-                        placeholder="Email" 
-                        onChange={setUserEmail}
-                        />
+
+                <div className="modal__row modal__row_content-center login-credential-form__tutorial-link">
+                    <a href="#" className="modal__link modal__link_blue">
+                    <img src={InfoIcon} alt="info" className="login-credential-form__info-icon"/>How does this work?
+                    </a>
                 </div>
-                <div className="modal__row modal__row_btn">
-                <Button color="primary"
-                        text="Sent request"
-                        type="button"
-                        click={()=>pushPresentationRequestHandler()}
-                        />
-                </div>
-                <div className="modal__row modal__row_content-center login-credential-form__qrcode">
+                
+                
+                <div className="modal__row modal__row_content-center">
                     {/* <img src={CredentialPic} alt="QRcode" /> */}
                     {props.QRCodeURL ? (
-                    <div className="qr">
-                        <p>
+                    <div className="login-credential-form__qrcode">
                         <QR
                             value={props.QRCodeURL}
-                            size={300}
+                            size={250}
                             renderAs="svg"
                         />
-                        </p>
                     </div>
                     ) : (
                     <p>
@@ -70,24 +63,18 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
                     </p>
                     )}
                 </div>
-                <div className="modal__row modal__row_content-center login-credential-form__qr-content">
-                    To use Traction Business Wallet please copy link
+
+                <div className="modal__row modal__row_content-center login-credential-form__qr-content login-credential-form__subheader login-credential-form__second-subheader">
+                        or you can use the Demo Access if you don't have a verified credential yet.
                 </div>
-                <div className="modal__row modal__row_content-center login-credential-form__qr-content">
+                {/* <div className="modal__row modal__row_content-center login-credential-form__qr-content">
                     <a onClick={() => {
                         navigator.clipboard.writeText(props.QRCodeURL) 
                         alert("Link copied to clipboard!")}} 
                         className="modal__link modal__link_black"
                         >Click to copy link!</a>
-                </div>
-                <div className="modal__row modal__row_content-center login-credential-form__qr-content">
-                    Scan QR code with your credential wallet
-                </div>
-                <div className="modal__row modal__row_content-center login-credential-form__tutorial-link">
-                    <a href="#" className="modal__link modal__link_blue">
-                        How does it work?
-                    </a>
-                </div>
+                </div> */}
+                
                 <div className="modal__row modal__row_btn">
                     <Button color="white"
                             click={() => onModalShow('demo-info')}
@@ -95,12 +82,12 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
                             type="button"
                             />
                 </div>
-                <div className="modal__row modal__row_content-center">
+                {/* <div className="modal__row modal__row_content-center">
                     <a
                         onClick={() => onModalShow('verify-information')}
                         className="modal__link modal__link_black">Skip for later
                     </a>
-                </div>
+                </div> */}
             </div>
         </form>
     );

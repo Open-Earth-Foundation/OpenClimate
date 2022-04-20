@@ -73,7 +73,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
             component = <LoginModal hideModal={hideModal} handlePasswordLogin={handlePasswordLogin} onModalShow={showModal} loginError={loginError} />
             break;
         case 'login-credential':
-            title = "Link with your company credential"
+            title = "Login with your digital wallet"
             component = <LoginCredentialModal QRCodeURL={props.QRCodeURL} sendRequest={props.sendRequest} onModalShow={showModal} />
             break;
         case 'registration':
@@ -164,7 +164,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
                     </button>
                 </div>
                 {title ?
-                <div className="modal__title modal__row_content-center">
+                <div className={modalConfig.entityType === 'login-credential' ? "modal__title modal__title-register modal__row_content-center" : "modal__title modal__row_content-center"} >
                     {title}
                 </div>
                 : ""

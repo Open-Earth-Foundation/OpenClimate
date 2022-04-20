@@ -27,6 +27,13 @@
         line-height: 28px;
     }
 
+    &__title-register {
+        font-size: 24px;
+        color: var(--primary-color);
+        line-height: 30px;
+
+    }
+
     &__close {
         position: absolute;
         cursor: pointer;
@@ -85,6 +92,8 @@
 
     &__link_blue {
         text-decoration: none;
+        display: flex;
+        align-items: center;
         color: var(--blue-color);
         margin-left: 4px;
     }
