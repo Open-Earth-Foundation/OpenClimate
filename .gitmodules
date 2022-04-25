@@ -6,7 +6,7 @@
 	url = git@github.com:Open-Earth-Foundation/OpenClimate-hub-ui.git
 [submodule "aries-acapy-plugin-toolbox"]
 	path = aries-acapy-plugin-toolbox
-	url = git@github.com:Indicio-tech/aries-acapy-plugin-toolbox.git
+	url = git@github.com:Open-Earth-Foundation/aries-acapy-plugin-toolbox.git
 [submodule "traction"]
 	path = traction
 	url = git@github.com:Open-Earth-Foundation/traction.git
