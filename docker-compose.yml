@@ -102,7 +102,9 @@ services:
     networks:
       - oc-network     
   agent-hub:
-    build: aries-acapy-plugin-toolbox
+    build:
+      context: ./aries-acapy-plugin-toolbox
+      dockerfile: Dockerfile.local
     profiles: ["oc"]
     environment:
       TUNNEL_HOST: tunnel-hub
