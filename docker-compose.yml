@@ -31,18 +31,18 @@ services:
       - oc-network
 
   # Hub PostgreSQL Service
-  hub-db:
-    image: postgres:9.5
-    profiles: ["oc"]
-    hostname: hub-db
-    restart: always
-    # ports: # Uncomment to access postgres outside of containers
-    #   - "5432:5432"
-    environment:
-      POSTGRES_USER: development
-      POSTGRES_PASSWORD: development
-    networks:
-      - oc-network
+  # hub-db:
+  #   image: postgres:9.5
+  #   profiles: ["oc"]
+  #   hostname: hub-db
+  #   restart: always
+  #   # ports: # Uncomment to access postgres outside of containers
+  #   #   - "5432:5432"
+  #   environment:
+  #     POSTGRES_USER: development
+  #     POSTGRES_PASSWORD: development
+  #   networks:
+  #     - oc-network
 
   hub-api:
     image: node:12-alpine
@@ -52,14 +52,18 @@ services:
     user: root # we want to run with write permissions for dev, so run as root.
     working_dir: /home/node/app
     environment: 
-      - NODE_ENV=development
-      - CONTROLLERPORT=3100
-      - AGENTADDRESS=http://agent-hub:8150
-      - WEB_ROOT=https://localhost
-      - JWT_SECRET=ZBVgToVv72zffZE2ksUYNAhYmNCXwgKp
-      - SESSION_SECRET=aZj6iXNkrtmLrAT0HsTrp7dRR7r4U7P0
+      - NODE_ENV=${NODE_ENV}
+      - CONTROLLERPORT=${CONTROLLERPORT}
+      - AGENTADDRESS=${AGENTADDRESS}
+      - WEB_ROOT=${WEB_ROOT}
+      - JWT_SECRET=${JWT_SECRET}
+      - SESSION_SECRET=${SESSION_SECRET}
       # - SCHEMA_CLIMATE_ORGANIZATION=XSYhjGtcha6oCAzaVg34df:2:Climate_Organization:1.1
-      - SCHEMA_VERIFIED_EMPLOYEE=7bT765Cj813b4WrEpjHMjG:2:Verified_Employee:1.0
+      - SCHEMA_VERIFIED_EMPLOYEE=${SCHEMA_VERIFIED_EMPLOYEE}
+      - POSGRES_ADDRESS=${POSGRES_ADDRESS}
+      - POSGRES_DB=${POSGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSGRES_PASSWORD=${POSGRES_PASSWORD}
     volumes:
       - ./OpenClimate-hub-controller:/home/node/app:consistent
       - ./wait-for-it:/home/node/wait-for-it
