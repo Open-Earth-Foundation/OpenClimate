@@ -97,6 +97,10 @@
         color: var(--blue-color);
         margin-left: 4px;
     }
+
+    &__link_primary {
+        color: var(--primary-color)
+    }
     
     &__link_black {
         color: var(--black-color);

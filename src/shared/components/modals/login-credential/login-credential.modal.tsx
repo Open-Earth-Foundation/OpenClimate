@@ -1,8 +1,10 @@
 import React, { FunctionComponent, useState } from 'react'
 import Button from '../../form-elements/button/button';
+import { useTheme } from 'styled-components'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Modal from '../modal/modal';
 // import CredentialPic from '../../../img/modals/credential-qrcode.png';
-import InfoIcon from '../../../../shared/img/widgets/info.png';
 import QR from 'qrcode.react';
 import './login-credential.modal.scss';
 import InputText from '../../form-elements/input-text/input.text';
@@ -13,7 +15,7 @@ import {
 interface Props {
     onModalShow: (modalType: string) => void,
     hideModal: () => void,
-}
+}  
 
 const LoginCredentialModal: FunctionComponent<Props> = (props) => {
     const [requestedInvitation, setRequestedInvitation] = useState(false)
@@ -42,7 +44,7 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
 
                 <div className="modal__row modal__row_content-center login-credential-form__tutorial-link">
                     <a href="#" className="modal__link modal__link_blue">
-                    <img src={InfoIcon} alt="info" className="login-credential-form__info-icon"/>How does this work?
+                    <InfoOutlinedIcon className={"login-credential-form__info-icon"} fontSize="inherit" />How does this work?
                     </a>
                 </div>
                 
@@ -64,16 +66,22 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
                     )}
                 </div>
 
-                <div className="modal__row modal__row_content-center login-credential-form__qr-content login-credential-form__subheader login-credential-form__second-subheader">
-                        or you can use the Demo Access if you don't have a verified credential yet.
-                </div>
-                {/* <div className="modal__row modal__row_content-center login-credential-form__qr-content">
+                <div className="modal__row modal__row_content-center login-credential-form__qr-content">
                     <a onClick={() => {
                         navigator.clipboard.writeText(props.QRCodeURL) 
                         alert("Link copied to clipboard!")}} 
-                        className="modal__link modal__link_black"
-                        >Click to copy link!</a>
-                </div> */}
+                        className="modal__link modal__link_primary"
+                        >
+                            <div className="login-credential-form__copy-link">
+                                <ContentCopyIcon className={"login-credential-form__info-icon"} />Copy link
+                            </div>
+                    </a>
+                </div>
+
+                <div className="modal__row modal__row_content-center login-credential-form__qr-content login-credential-form__subheader login-credential-form__second-subheader">
+                        or you can use the Demo Access if you don't have a verified credential yet.
+                </div>
+                
                 
                 <div className="modal__row modal__row_btn">
                     <Button color="white"
