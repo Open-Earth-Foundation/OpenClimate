@@ -165,7 +165,7 @@ const App: FunctionComponent<Props> = (props) => {
 
   // Always configure the anon websocket
   if (!anonwebsocket) {
-    let url = new URL('/api/anon/ws', window.location.href)
+    let url = new URL('/api/anon/ws', process.env.REACT_APP_CONTROLLER)
     url.protocol = url.protocol.replace('http', 'ws')
     controllerAnonSocket.current = new WebSocket(url.href)
     setAnonWebsocket(true)
@@ -198,7 +198,7 @@ const App: FunctionComponent<Props> = (props) => {
   // Setting up websocket and controllerSocket
   useEffect(() => {
     if (session && loggedIn && websocket) {
-      let url = new URL('/api/admin/ws', window.location.href)
+      let url = new URL('/api/admin/ws', process.env.REACT_APP_CONTROLLER)
       url.protocol = url.protocol.replace('http', 'ws')
       controllerSocket.current = new WebSocket(url.href)
       setWebsocket(true)
@@ -209,7 +209,7 @@ const App: FunctionComponent<Props> = (props) => {
   useEffect(() => {
     Axios({
       method: 'GET',
-      url: '/api/session',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/session`,
     }).then((res) => {
       if (res.status) {
         // Check for a session and then set up the session state based on what we found
@@ -245,7 +245,7 @@ const App: FunctionComponent<Props> = (props) => {
       data: {
         email: email
       },
-      url: '/api/user/passwordless-log-in',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/passwordless-log-in`,
     }).then(async (res) => {
       if (res.data.error) {
         // setNotification isn't defined everywhere we need to use it, so we can't display the error this way
@@ -275,7 +275,7 @@ const App: FunctionComponent<Props> = (props) => {
         email: email,
         password: userPassword
       },
-      url: '/api/user/log-in',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-in`,
     }).then(async (res) => {
       console.log("Response ", res)
       if (res.data.error) {
