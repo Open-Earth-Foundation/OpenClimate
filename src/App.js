@@ -165,6 +165,7 @@ const App: FunctionComponent<Props> = (props) => {
 
   // Always configure the anon websocket
   if (!anonwebsocket) {
+    console.log("Controller address ", process.env.REACT_APP_CONTROLLER)
     let url = new URL('/api/anon/ws', process.env.REACT_APP_CONTROLLER)
     url.protocol = url.protocol.replace('http', 'ws')
     controllerAnonSocket.current = new WebSocket(url.href)
@@ -211,6 +212,7 @@ const App: FunctionComponent<Props> = (props) => {
       method: 'GET',
       url: `${process.env.REACT_APP_CONTROLLER}/api/session`,
     }).then((res) => {
+      console.log("/api/session response", res)
       if (res.status) {
         // Check for a session and then set up the session state based on what we found
         setSession(cookies.get('sessionId'))
@@ -221,6 +223,7 @@ const App: FunctionComponent<Props> = (props) => {
 
           if (cookies.get('user')) {
             const userCookie = cookies.get('user')
+            console.log("User from cookies", userCookie)
             setLoggedInUserState(userCookie)
             setLoggedInUserId(userCookie.id)
             setLoggedInEmail(userCookie.email)
@@ -255,7 +258,7 @@ const App: FunctionComponent<Props> = (props) => {
       } else {
         // Setting a session cookie this way doesn't seem to be the best way
         cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
-
+        cookies.set('user', res.data);
         // console.log("Setting up the user now")
         setLoggedIn(true)
         setUpUser(res.data.id, res.data.email, res.data.roles)
@@ -286,7 +289,7 @@ const App: FunctionComponent<Props> = (props) => {
       } else {
         // Setting a session cookie this way doesn't seem to be the best way
         cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
-
+        cookies.set('user', res.data);
         // console.log("Setting up the user now")
         setLoggedIn(true)
         setUpUser(res.data.id, res.data.email, res.data.roles)

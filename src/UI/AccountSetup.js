@@ -60,7 +60,7 @@ function AccountSetup(props) {
       data: {
         token: token,
       },
-      url: '/api/user/token/validate',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/token/validate`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')
@@ -77,7 +77,7 @@ function AccountSetup(props) {
     // Fetch the logo
     Axios({
       method: 'GET',
-      url: '/api/logo',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/logo`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')
@@ -112,7 +112,7 @@ function AccountSetup(props) {
           token: token,
           flag: 'set-up user',
         },
-        url: '/api/user/update',
+        url: `${process.env.REACT_APP_CONTROLLER}/api/user/update`,
       }).then((res) => {
         console.log(res)
         // Envision user creation
