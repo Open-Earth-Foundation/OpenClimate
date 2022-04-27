@@ -840,7 +840,7 @@ const App: FunctionComponent<Props> = (props) => {
       }
     } catch (error) {
       console.log('Error caught:', error)
-      setNotification('Client Error - Websockets', 'error')
+      // setNotification('Client Error - Websockets', 'error')
     }
   }
 

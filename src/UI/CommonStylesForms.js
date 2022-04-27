@@ -153,6 +153,11 @@ export const QRHolder = styled.div`
 `
 
 // Full-screen forms
+
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 export const FormContainer = styled.div`
   margin: auto;
   padding: 0 0 20px 0;
@@ -160,6 +165,15 @@ export const FormContainer = styled.div`
   width: 75%;
   text-align: center;
   background: ${(props) => props.theme.background_primary};
+`
+
+export const StepperContainer = styled.div`
+  margin: auto;
+  padding: 0 0 20px 0;
+  min-width: 200px;
+  width: 25%%;
+  text-align: center;
+  background: white;
 `
 export const SubmitBtn = styled.button`
   margin: auto;

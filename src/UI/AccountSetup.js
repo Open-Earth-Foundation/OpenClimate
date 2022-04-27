@@ -4,6 +4,11 @@ import { Redirect } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import styled from 'styled-components'
 import QRCode from 'qrcode.react'
+import Stepper from '@mui/material/Stepper'
+import Step from '@mui/material/Step'
+import StepLabel from '@mui/material/StepLabel'
+import StepContent from '@mui/material/StepContent'
+import Typography from '@mui/material/Typography';
 
 import { useNotification } from './NotificationProvider'
 import { handleImageSrc } from './util'
@@ -14,6 +19,8 @@ import { IUser } from '../api/models/User/IUser';
 
 import {
   FormContainer,
+  PageContainer,
+  StepperContainer,
   InputBox,
   LogoHolder,
   Logo,
@@ -36,9 +43,32 @@ const QR = styled(QRCode)`
   width: 300px;
 `
 
+const steps = [
+  {
+    label: 'Scan the QR code with a digital wallet. We recommend using Trinsic.'
+  },
+  {
+    label: 'You will get an invite in the app. You need to accept the invitation from our site.'
+  },
+  {
+    label: 'On the home page, within “Connections” you will see your credential offers.'
+  },
+  {
+    label: 'You will have to accept the Climate Organization credential offer.'
+  },
+  {
+    label: 'You will have to accept the Validated Email credential offer.'
+  },
+  {
+    label: 'You’re done! Now you can login using your digital wallet credential.'
+  },
+];
+
 function AccountSetup(props) {
   const [accountPasswordSet, setAccountPasswordSet] = useState(false)
   const token = window.location.hash.substring(1)
+
+  const activeStep = 6;
 
   const [id, setId] = useState({})
 
@@ -141,9 +171,10 @@ function AccountSetup(props) {
   }
 
   return (
+    <PageContainer>
     <FormContainer>
       <LogoHolder>
-        {logo ? <Logo src={logo} alt="Logo" /> : <Logo />}
+        {logo && !accountPasswordSet ? <Logo src={logo} alt="Logo" /> : <Logo />}
       </LogoHolder>
       {token ? (
         accountPasswordSet ? (
@@ -153,9 +184,7 @@ function AccountSetup(props) {
             props.QRCodeURL ? (
               <QRHolder>
                 <p>
-                  Please scan the QR code below to connect your mobile device,
-                  receive an email credential,
-                  and finalize your account.
+                  Please scan the QR with your digital wallet
                 </p>
                 <button onClick={() => {
                         navigator.clipboard.writeText(props.QRCodeURL)
@@ -199,6 +228,22 @@ function AccountSetup(props) {
         <p>There was a problem with your invitation. Please request a new one.</p>
       )}
     </FormContainer>
+    <StepperContainer>
+      { accountPasswordSet && 
+      <Stepper activeStep={-1} orientation="vertical">
+          {steps.map((step, index) => (
+            <Step key={step.label}>
+              <StepLabel
+              >
+                {step.label}
+              </StepLabel>
+              <StepContent></StepContent>
+              </Step>
+          ))}
+        </Stepper>
+         }
+      </StepperContainer>
+    </PageContainer>
   )
 }
 
