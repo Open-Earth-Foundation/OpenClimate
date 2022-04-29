@@ -59,7 +59,7 @@ services:
       - JWT_SECRET=ZBVgToVv72zffZE2ksUYNAhYmNCXwgKp
       - SESSION_SECRET=aZj6iXNkrtmLrAT0HsTrp7dRR7r4U7P0
       # - SCHEMA_CLIMATE_ORGANIZATION=XSYhjGtcha6oCAzaVg34df:2:Climate_Organization:1.1
-      - SCHEMA_VERIFIED_EMPLOYEE=7bT765Cj813b4WrEpjHMjG:2:Verified_Employee:1.0
+      - SCHEMA_VERIFIED_EMPLOYEE=RSaZ64jxn2NbpH8MgBdy4C:2:Verified_Employee:1.0
       - POSGRES_ADDRESS=hub-db
       - POSGRES_DB=development
       - POSTGRES_USER=development
