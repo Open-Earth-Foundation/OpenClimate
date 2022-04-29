@@ -47,6 +47,8 @@ services:
       - host.docker.internal:host-gateway
     volumes:
       - ./traction/services/traction:/app:rw
+    networks:
+      - traction-network
 
   traction-agent:
     image: bcgovimages/aries-cloudagent:py36-1.16-1_0.7.3
@@ -96,6 +98,8 @@ services:
       - "./traction/scripts/acapy-static-args.yml:/home/indy/acapy-static-args.yml"
     extra_hosts:
       - host.docker.internal:host-gateway
+    networks:
+      - traction-network
 
   traction-db:
     image: "postgres:12"
@@ -112,6 +116,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - traction-network
 
   endorser-api:
     build:
@@ -145,6 +151,8 @@ services:
       - host.docker.internal:host-gateway
     volumes:
       - ./traction/services/endorser:/app:rw
+    networks:
+      - traction-network
 
   endorser-agent:
     image: bcgovimages/aries-cloudagent:py36-1.16-1_0.7.3
@@ -185,6 +193,8 @@ services:
       - "./traction/scripts/endorser-acapy-args.yml:/home/indy/endorser-acapy-args.yml"
     extra_hosts:
       - host.docker.internal:host-gateway
+    networks:
+      - traction-network
 
   endorser-db:
     image: "postgres:12"
@@ -201,6 +211,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - traction-network
 
 #***************************************************************
 # Traction Showcase Demo
@@ -236,6 +248,8 @@ services:
       - host.docker.internal:host-gateway
     volumes:
       - ./traction/services/showcase:/traction/app:rw
+    networks:
+      - traction-network
 
   showcase-db:
     image: "postgres:12"
@@ -252,9 +266,15 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
+    networks:
+      - traction-network
 volumes:
   traction-wallet:
   endorser-wallet:
   traction-showcase:
+
+# Docker Networks
+networks:
+  traction-network:
+    driver: bridge
 
