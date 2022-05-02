@@ -15,8 +15,8 @@ services:
         condition: service_started
       traction-agent:
         condition: service_started
-      traction-db:
-        condition: service_healthy
+      # traction-db:
+      #   condition: service_healthy
     entrypoint: bash -c "alembic upgrade head && uvicorn api.main:app --reload --host 0.0.0.0 --port 5000 --log-level info"
     environment:
       - POSTGRESQL_HOST=${POSTGRESQL_HOST}
@@ -56,8 +56,8 @@ services:
     depends_on:
       endorser-agent:
         condition: service_started
-      traction-db:
-        condition: service_healthy
+      # traction-db:
+      #   condition: service_healthy
     ports:
       - ${ACAPY_ADMIN_PORT}:${ACAPY_ADMIN_PORT}
       - ${ACAPY_HTTP_PORT}:${ACAPY_HTTP_PORT}
@@ -101,23 +101,23 @@ services:
     networks:
       - traction-network
 
-  traction-db:
-    image: "postgres:12"
-    profiles: ["traction"]
-    environment:
-      - POSTGRES_PASSWORD=${POSTGRESQL_PASSWORD}
-    ports:
-      - ${POSTGRESQL_PORT}:5432
-    volumes:
-      - traction-wallet:/var/lib/postgresql/data
-      - ./traction/scripts/db_init.sql:/docker-entrypoint-initdb.d/1-init.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - traction-network
+  # traction-db:
+  #   image: "postgres:12"
+  #   profiles: ["traction"]
+  #   environment:
+  #     - POSTGRES_PASSWORD=${POSTGRESQL_PASSWORD}
+  #   ports:
+  #     - ${POSTGRESQL_PORT}:5432
+  #   volumes:
+  #     - traction-wallet:/var/lib/postgresql/data
+  #     - ./traction/scripts/db_init.sql:/docker-entrypoint-initdb.d/1-init.sql
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - traction-network
 
   endorser-api:
     build:
@@ -127,8 +127,8 @@ services:
     depends_on:
       endorser-agent:
         condition: service_started
-      endorser-db:
-        condition: service_healthy
+      # endorser-db:
+      #   condition: service_healthy
     environment:
       - POSTGRESQL_HOST=${ENDORSER_POSTGRESQL_HOST}
       - POSTGRESQL_PORT=${ENDORSER_POSTGRESQL_PORT}
@@ -157,9 +157,9 @@ services:
   endorser-agent:
     image: bcgovimages/aries-cloudagent:py36-1.16-1_0.7.3
     profiles: ["traction"]
-    depends_on:
-      endorser-db:
-        condition: service_healthy
+    # depends_on:
+    #   endorser-db:
+    #     condition: service_healthy
     ports:
       - ${ACAPY_ENDORSER_ADMIN_PORT}:${ACAPY_ENDORSER_ADMIN_PORT}
       - ${ACAPY_ENDORSER_HTTP_PORT}:${ACAPY_ENDORSER_HTTP_PORT}
@@ -196,23 +196,23 @@ services:
     networks:
       - traction-network
 
-  endorser-db:
-    image: "postgres:12"
-    profiles: ["traction"]
-    environment:
-      - POSTGRES_PASSWORD=${ENDORSER_POSTGRESQL_PASSWORD}
-    ports:
-      - ${ENDORSER_POSTGRESQL_PORT}:5432
-    volumes:
-      - endorser-wallet:/var/lib/postgresql/data
-      - ./traction/scripts/db_init.sql:/docker-entrypoint-initdb.d/1-init.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - traction-network
+  # endorser-db:
+  #   image: "postgres:12"
+  #   profiles: ["traction"]
+  #   environment:
+  #     - POSTGRES_PASSWORD=${ENDORSER_POSTGRESQL_PASSWORD}
+  #   ports:
+  #     - ${ENDORSER_POSTGRESQL_PORT}:5432
+  #   volumes:
+  #     - endorser-wallet:/var/lib/postgresql/data
+  #     - ./traction/scripts/db_init.sql:/docker-entrypoint-initdb.d/1-init.sql
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - traction-network
 
 #***************************************************************
 # Traction Showcase Demo
@@ -222,12 +222,12 @@ services:
       context: ./traction/services/showcase
       dockerfile: Dockerfile
     profiles: ["showcase"]
-    depends_on:
-      showcase-db:
-        condition: service_healthy
+    # depends_on:
+    #   showcase-db:
+    #     condition: service_healthy
     entrypoint: bash -c "alembic upgrade head && uvicorn api.main:app --reload --host 0.0.0.0 --port 5000 --log-level info"
     environment:
-      - POSTGRESQL_HOST=showcase-db
+      - POSTGRESQL_HOST=host.docker.internal
       - POSTGRESQL_PORT=5432
       - POSTGRESQL_DB=${SHOWCASE_PSQL_DB}
       - SHOWCASE_DB_ADMIN=${SHOWCASE_PSQL_ADMIN}
@@ -251,23 +251,23 @@ services:
     networks:
       - traction-network
 
-  showcase-db:
-    image: "postgres:12"
-    profiles: ["showcase"]
-    environment:
-      - POSTGRES_PASSWORD=${SHOWCASE_POSTGRESQL_PASSWORD}
-    ports:
-      - ${SHOWCASE_POSTGRESQL_PORT}:5432
-    volumes:
-      - traction-showcase:/var/lib/postgresql/data
-      - ./traction/scripts/db_init.showcase.sql:/docker-entrypoint-initdb.d/1-init.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - traction-network
+  # showcase-db:
+  #   image: "postgres:12"
+  #   profiles: ["showcase"]
+  #   environment:
+  #     - POSTGRES_PASSWORD=${SHOWCASE_POSTGRESQL_PASSWORD}
+  #   ports:
+  #     - ${SHOWCASE_POSTGRESQL_PORT}:5432
+  #   volumes:
+  #     - traction-showcase:/var/lib/postgresql/data
+  #     - ./traction/scripts/db_init.showcase.sql:/docker-entrypoint-initdb.d/1-init.sql
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - traction-network
 volumes:
   traction-wallet:
   endorser-wallet:
