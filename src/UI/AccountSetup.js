@@ -7,15 +7,27 @@ import QRCode from 'qrcode.react'
 import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
-import StepContent from '@mui/material/StepContent'
-import Typography from '@mui/material/Typography';
+
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
+
 
 import { useNotification } from './NotificationProvider'
 import { handleImageSrc } from './util'
 
 // Envision imports
-import { userService } from '../shared/services/user.service';
-import { IUser } from '../api/models/User/IUser';
+import { userService } from '../shared/services/user.service'
+import { IUser } from '../api/models/User/IUser'
+
+import { 
+  HeaderText,
+  CopyText,
+  InfoText,
+  Clickable,
+  ItalicText,
+  PrimaryColor
+} from './CommonStyles'
 
 import {
   FormContainer,
@@ -30,22 +42,68 @@ import {
   InputField,
 } from './CommonStylesForms'
 
+
+
+const QRContainer = styled.div`
+  padding: 150px 30px 0px 30px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+`
 const QRHolder = styled.div`
-  margin: 30px auto;
+  border-radius: 4px;
+  border: 1px solid rgba(162, 151, 151, 0.35);
+  padding: 25px;
+  margin-bottom: 16px;
+  margin-top: 50px;
   width: 300px;
   height: 300px;
+  background: ${(props) => props.theme.background_primary}
 `
 
 const QR = styled(QRCode)`
   display: block;
   margin: auto;
   padding: 10px;
-  width: 300px;
+  width: 250px;
+  height: 250px;
+`
+
+const SubContainer = styled.div`
+  display: flex;
+  padding-bottom: 24px;
+`
+
+const CopyIcon = styled(ContentCopyIcon)`
+  margin-right: 4px;
+`
+
+const InfoIcon = styled(InfoOutlinedIcon)`
+margin-right: 4px;
+`
+
+const InlineClickable = styled.a`
+  padding: 0 4px;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: Lato;
+  font-size: 16px;
+  color: ${(props) => props.theme.primary_color};
+`
+
+const HeaderInfoText = styled(InfoText)`
+  padding: 16px 0px 40px;
+`
+
+const StepInfoText = styled(InfoText)`
+  color: black;
+  padding-left: 12px;
 `
 
 const steps = [
   {
-    label: 'Scan the QR code with a digital wallet. We recommend using Trinsic.'
+    label: <>Scan the QR code with a digital wallet. <ItalicText>We recommend using Trinsic.</ItalicText></>
   },
   {
     label: 'You will get an invite in the app. You need to accept the invitation from our site.'
@@ -60,15 +118,13 @@ const steps = [
     label: 'You will have to accept the Validated Email credential offer.'
   },
   {
-    label: 'You’re done! Now you can login using your digital wallet credential.'
+    label: <><PrimaryColor>You’re done!</PrimaryColor>Now you can login using your digital wallet credential.</>
   },
 ];
 
 function AccountSetup(props) {
   const [accountPasswordSet, setAccountPasswordSet] = useState(false)
   const token = window.location.hash.substring(1)
-
-  const activeStep = 6;
 
   const [id, setId] = useState({})
 
@@ -172,7 +228,7 @@ function AccountSetup(props) {
 
   return (
     <PageContainer>
-    <FormContainer>
+    <FormContainer isQRStep={accountPasswordSet}>
       <LogoHolder>
         {logo && !accountPasswordSet ? <Logo src={logo} alt="Logo" /> : <Logo />}
       </LogoHolder>
@@ -182,16 +238,26 @@ function AccountSetup(props) {
             <Redirect to={"/"} />
           ) : (
             props.QRCodeURL ? (
-              <QRHolder>
-                <p>
-                  Please scan the QR with your digital wallet
-                </p>
-                <button onClick={() => {
-                        navigator.clipboard.writeText(props.QRCodeURL)
-                        alert("Link copied to clipboard!")}
-                        } >Click to copy link!</button>
-                <QR value={props.QRCodeURL} size={300} renderAs="svg" />
+              <QRContainer>
+                <HeaderText>Please scan this QR with your digital wallet</HeaderText>
+                <QRHolder>
+                  <QR value={props.QRCodeURL} size={300} renderAs="svg" />
                 </QRHolder>
+                  <Clickable onClick={() => { navigator.clipboard.writeText(props.QRCodeURL); alert("Link copied to clipboard!");}} >
+                      <SubContainer>
+                          <CopyIcon />
+                          <CopyText>Copy link</CopyText>
+                      </SubContainer>
+                  </Clickable>
+                  <SubContainer>
+                    <InfoIcon />
+                    <>
+                      <InfoText>We recommend using
+                      <InlineClickable href="https://apps.apple.com/us/app/trinsic-wallet/id1475160728">Trinsic</InlineClickable> 
+                      but you can use any digital wallet you currently use.</InfoText>
+                    </>
+                  </SubContainer>
+              </QRContainer>
             ) : (
               <QRHolder><p>Loading...</p></QRHolder>
             )
@@ -228,21 +294,38 @@ function AccountSetup(props) {
         <p>There was a problem with your invitation. Please request a new one.</p>
       )}
     </FormContainer>
-    <StepperContainer>
-      { accountPasswordSet && 
-      <Stepper activeStep={-1} orientation="vertical">
-          {steps.map((step, index) => (
-            <Step key={step.label}>
-              <StepLabel
-              >
-                {step.label}
-              </StepLabel>
-              <StepContent></StepContent>
-              </Step>
-          ))}
-        </Stepper>
+      { accountPasswordSet &&
+      <StepperContainer>
+        <HeaderText>Steps to complete verification</HeaderText>
+        <HeaderInfoText>Here's what you can expect from this process of verification</HeaderInfoText>
+        <Stepper 
+          activeStep={0} 
+          orientation="vertical"
+          sx={{
+                  '& .MuiStepConnector-root .MuiStepConnector-line': {
+                    borderColor: '#007567',
+                  },
+                }}
+          >
+            {steps.map((step) => (
+              <Step 
+                key={step.label} 
+                active
+                sx={{
+                  '& .MuiStepLabel-root .Mui-active': {
+                    color: '#007567',
+                  },
+                }}>
+                <StepLabel>
+                  <StepInfoText>
+                    {step.label}
+                  </StepInfoText>
+                </StepLabel>
+                </Step>
+            ))}
+          </Stepper>
+        </StepperContainer>
          }
-      </StepperContainer>
     </PageContainer>
   )
 }
