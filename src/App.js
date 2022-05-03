@@ -72,7 +72,7 @@ const Frame = styled.div`
 `
 const Main = styled.main`
   flex: 9;
-  padding: 30px;
+  padding: ${(props) => props?.hasBackgroundColor ? '0px' : '30px' ?? '30px' };
 `
 
 // Envision Interface
@@ -988,7 +988,7 @@ const App: FunctionComponent<Props> = (props) => {
                 render={({ match, history }) => {
                   return (
                     <Frame id="app-frame">
-                      <Main>
+                      <Main hasBackgroundColor>
                         <AccountSetup
                           logo={image}
                           history={history}
