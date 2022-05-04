@@ -42,7 +42,7 @@ const ScopeTile: FunctionComponent<IProps> = (props) => {
                     <div className="scope-tile__add-offset_centered">
                         {
                             addOffset ?
-                            <button className="scope-tile__add-offset-btn scope-item-btn" onClick={() => showModal('add-climate-action', { Scope: scope, Type: type })}>Add {addTitle}</button>
+                            <button className="scope-tile__add-offset-btn scope-item-btn" onClick={() => showModal('add-ghg-cred', { Scope: scope, Type: type })}>Add {addTitle}</button>
                             : ""
                         }
                     </div>
@@ -53,7 +53,7 @@ const ScopeTile: FunctionComponent<IProps> = (props) => {
                             <div className="scope-tile__header scope-item-header">MtCO2e/year</div>
                             <div className="scope-tile__add-offset_right">
                                 {addOffset ?
-                                    <button className="scope-tile__add-offset-btn scope-item-btn" onClick={() => showModal('add-climate-action', { Scope: scope, Type: type })}>Add</button>
+                                    <button className="scope-tile__add-offset-btn scope-item-btn" onClick={() => showModal('add-ghg-cred', { Scope: scope, Type: type })}>Add</button>
                                     : ""
                                 }
                             </div>

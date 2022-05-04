@@ -5,10 +5,13 @@ import CloseButtonIcon from '../../../img/modals/close-button.png';
 import ModalConfig from '../../../../api/models/shared/modal/modal-config';
 import LoginModal from '../login/login.modal';
 import LoginCredentialModal from '../login-credential/login-credential.modal';
+import GHGCredentialModal from '../ghg-credential/ghg-credential.modal';
 import RegistrationModal from '../registration/registration.modal';
 import VerifyInformationModal from '../verify-information/verify-information.modal';
 import ReportCredentialModal from '../report-credential/report-credential.modal';
 import DemoInfoModal from '../demo-info/demo-info.modal';
+import AddGHGModal from '../add-ghg-cred/add-ghg-cred';
+import SendGHGProof from '../send-ghg-proof/send-ghg-proof';
 import EmissionFilters from '../../../../components/account/subpages/account-emission-filters/emission-filters';
 import './modal.scss';
 import AddPledgeModal from '../add-pledge/add-pledge.modal';
@@ -91,6 +94,14 @@ const Modal: FunctionComponent<IProps> = (props) => {
         case 'demo-info':
             title = "Demo Account"
             component = <DemoInfoModal onModalHide={hideModal} />
+            break;
+        case 'add-ghg-cred':
+                title = "Add Scope 1 GHG emissions"
+                component = <AddGHGModal onModalHide={hideModal} onModalShow={showModal} />
+                break;
+        case 'send-ghg-proof':
+            title = "Send proof notification for a Scope 1 GHG emissions credential"
+            component = <SendGHGProof onModalHide={hideModal} onModalShow={showModal} sendRequest={props.sendRequest} />
             break;
         case 'emission-filters':
             title = ""

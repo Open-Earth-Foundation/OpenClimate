@@ -1,0 +1,23 @@
+.add-ghg-cred {
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        line-height: 16px;
+    }
+    &__content_row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    &__btn_row {
+        font-size: 12px;
+        max-width: 400px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin: 25px;
+    }
+}
+

@@ -830,6 +830,25 @@ const App: FunctionComponent<Props> = (props) => {
               break
           }
           break
+        case 'EMISSIONS':
+            switch (type) {
+              case 'RECEIVED':
+                if (data.CO2)
+                {
+                  console.log('Recieved CO2 verified report',data.CO2)
+                }
+                
+                break
+  
+              default:
+                setNotification(
+                  `Error - Unrecognized Websocket Message Type: ${type}`,
+                  'error'
+                )
+                break
+            }
+            break
+  
 
         default:
           setNotification(

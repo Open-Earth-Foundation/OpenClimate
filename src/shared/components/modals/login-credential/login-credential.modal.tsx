@@ -27,13 +27,6 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
     }
     const setNotification = useNotification()
     const { onModalShow, hideModal} = props;
-    async function pushPresentationRequestHandler() {
-        const user = {
-            email: userEmail,
-        }
-        console.log("User email", user)
-        props.sendRequest('PRESENTATION', 'PUSH', {email: userEmail})
-    }
 
     return (
         <form action="/" className="login-credential-form">
