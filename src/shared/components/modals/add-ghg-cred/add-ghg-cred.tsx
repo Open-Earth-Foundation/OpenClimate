@@ -17,7 +17,6 @@ const AddGHGModal: FunctionComponent<Props> = (props) => {
 
     const { onModalHide, scope, type, onModalShow } = props;
 
-    
 
     return (
         <div className="add-ghg-cred__content">
@@ -34,7 +33,9 @@ const AddGHGModal: FunctionComponent<Props> = (props) => {
                             text="Add from business wallet"
                             type="button"
                     />
-                    <p>Send proof of your emissions directly from your linked Business Wallet. This data will be of higher quality since it is validated by a trusted issuer.</p>
+                    <div className="add-ghg-cred__btn_row">
+                        <p>Send proof of your emissions directly from your linked Business Wallet. This data will be of higher quality since it is validated by a trusted issuer.</p>
+                    </div>
                 </div>
                 <div className="add-ghg-cred__btn_row">
                     <Button 
@@ -43,7 +44,9 @@ const AddGHGModal: FunctionComponent<Props> = (props) => {
                             text="Self-reported"
                             type="button"
                     />
-                    <p>Self report your emissions by completing a form. This data will be of lower quality since it is not validated by a trusted issuer.</p>
+                    <div className="add-ghg-cred__btn_row">
+                        <p>Self report your emissions by completing a form. This data will be of lower quality since it is not validated by a trusted issuer.</p>
+                    </div>
                 </div>
             </div>
         </div>

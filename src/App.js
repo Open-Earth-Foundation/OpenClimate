@@ -158,6 +158,7 @@ const App: FunctionComponent<Props> = (props) => {
   const [verificationStatus, setVerificationStatus] = useState()
   const [verifiedCredential, setVerifiedCredential] = useState('')
   const [accountCredentialIssued, setAccountCredentialIssued] = useState(false)
+  const [scope1, setScope1] = useState()
 
   // (JamesKEbert) Note: We may want to abstract the websockets out into a high-order component for better abstraction, especially potentially with authentication/authorization
 
@@ -833,9 +834,10 @@ const App: FunctionComponent<Props> = (props) => {
         case 'EMISSIONS':
             switch (type) {
               case 'RECEIVED':
-                if (data.CO2)
+                if (data.facility_emissions_scope1_co2e)
                 {
-                  console.log('Recieved CO2 verified report',data.CO2)
+                  console.log('Recieved facility_emissions_scope1_co2e verified report',data.facility_emissions_scope1_co2e)
+                  setScope1(data.facility_emissions_scope1_co2e)
                 }
                 
                 break
@@ -1461,6 +1463,7 @@ const App: FunctionComponent<Props> = (props) => {
                 <Modal
                   handlePasswordLogin={handlePasswordLogin}
                   QRCodeURL={QRCodeURL}
+                  scope1={scope1}
                   verificationStatus={verificationStatus}
                   setVerificationStatus={setVerificationStatus}
                   sendRequest={sendMessage}

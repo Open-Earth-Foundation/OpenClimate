@@ -5,13 +5,13 @@ import CloseButtonIcon from '../../../img/modals/close-button.png';
 import ModalConfig from '../../../../api/models/shared/modal/modal-config';
 import LoginModal from '../login/login.modal';
 import LoginCredentialModal from '../login-credential/login-credential.modal';
-import GHGCredentialModal from '../ghg-credential/ghg-credential.modal';
 import RegistrationModal from '../registration/registration.modal';
 import VerifyInformationModal from '../verify-information/verify-information.modal';
 import ReportCredentialModal from '../report-credential/report-credential.modal';
 import DemoInfoModal from '../demo-info/demo-info.modal';
 import AddGHGModal from '../add-ghg-cred/add-ghg-cred';
 import SendGHGProof from '../send-ghg-proof/send-ghg-proof';
+import AcceptGHGProof from '../accept-ghg-proof/accept-ghg-proof';
 import EmissionFilters from '../../../../components/account/subpages/account-emission-filters/emission-filters';
 import './modal.scss';
 import AddPledgeModal from '../add-pledge/add-pledge.modal';
@@ -38,7 +38,8 @@ interface IStateProps  {
     modalConfig: ModalConfig,
     sites: Array<ISite>,
     climateActions: Array<IClimateAction>,
-    loginError: string
+    loginError: string,
+    scope1: any
 }
 
 interface IDispatchProps {
@@ -61,7 +62,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
     const modalRef = useRef(null);
 
     const { user, modalConfig, sites, climateActions, loginError,
-        showModal, hideModal, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission, handlePasswordLogin} = props;
+        showModal, hideModal, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission, handlePasswordLogin, scope1} = props;
 
     if(modalConfig.entityType === '')
         return null;
@@ -98,10 +99,14 @@ const Modal: FunctionComponent<IProps> = (props) => {
         case 'add-ghg-cred':
                 title = "Add Scope 1 GHG emissions"
                 component = <AddGHGModal onModalHide={hideModal} onModalShow={showModal} />
-                break;
+            break;
         case 'send-ghg-proof':
             title = "Send proof notification for a Scope 1 GHG emissions credential"
-            component = <SendGHGProof onModalHide={hideModal} onModalShow={showModal} sendRequest={props.sendRequest} />
+            component = <SendGHGProof onModalHide={hideModal} onModalShow={showModal} sendRequest={props.sendRequest} QRCodeURL={props.QRCodeURL} scope1={props.scope1}/>
+            break;
+        case 'accept-ghg-proof':
+                title = "Review imported data"
+                component = <AcceptGHGProof onModalHide={hideModal} onModalShow={showModal} scope1={props.scope1}/>
             break;
         case 'emission-filters':
             title = ""

@@ -1,23 +1,21 @@
-.add-ghg-cred {
+.accept-ghg-proof {
 
     &__content {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
         line-height: 26px;
     }
     &__content_row {
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        flex-direction: column;
     }
     &__btn_row {
         font-size: 12px;
         max-width: 400px;
-        text-align: center;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         margin: 25px;
+        justify-content: flex-end
     }
 }
 

@@ -1,20 +1,29 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import Button from '../../form-elements/button/button';
 import './send-ghg-proof.modal.scss';
 import Dropdown from '../../form-elements/dropdown/dropdown';
 import { DropdownOption } from '../../../interfaces/dropdown/dropdown-option';
 import { useForm, Controller } from "react-hook-form";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 interface Props {
     onModalHide: () => void,
     onModalShow: (entityType: string, parameters?: object) => void,
+    scope1: any
 }
 
 const SendGHGCredModal: FunctionComponent<Props> = (props) => {
 
-    const { onModalHide, onModalShow } = props;
+    const { onModalHide, onModalShow, scope1 } = props;
     const [userEmail, setUserEmail] = useState<string>('');
     const [userWallet, setUserWallet] = useState<string>('');
+    const [requestedInvitation, setRequestedInvitation] = useState(false)
+
+    if (!props.QRCodeURL && !requestedInvitation) {
+        props.sendRequest('INVITATIONS', 'CREATE_SINGLE_USE', {})
+        setRequestedInvitation(true)
+      }
+
     async function pushPresentationRequestHandler() {
         const user = {
             email: userEmail,
@@ -24,6 +33,11 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
     }
     const wallets = [{'name':'did:sov:1234'}, {'name':'did:sov:4321'}]
     const { formState, register,  handleSubmit, setValue, control } = useForm();
+    
+    if (props.scope1) {
+        console.log("Scope 1", props.scope1)
+        onModalShow('accept-ghg-proof', { scope1: props.scope1 })
+      }
 
     return (
         <div className="add-ghg-cred__content">
@@ -41,12 +55,26 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
                         required={true}
                         setValue={setValue}
                     /> 
-                    <Button 
-                            click={() => pushPresentationRequestHandler()}
-                            color="primary"
-                            text="Send proof request to wallet"
-                            type="button"
-                    />
+                    <div className="modal__row login-credential-form__qr-content">
+                    <a onClick={() => {
+                        navigator.clipboard.writeText(props.QRCodeURL) 
+                        alert("Link copied to clipboard!")}} 
+                        className="modal__link modal__link_primary"
+                        >
+                            <div className="login-credential-form__copy-link">
+                                <ContentCopyIcon className={"login-credential-form__info-icon"} />Copy link to connect
+                            </div>
+                    </a>
+                    </div>
+                    <div style={{margin: 25}}>
+                        <Button 
+                                click={() => pushPresentationRequestHandler()}
+                                color="primary"
+                                text="Send proof request to wallet"
+                                type="button"
+                        />
+                    </div>
+                  
 
                 </div>
                 <div className="add-ghg-cred__btn_row">
