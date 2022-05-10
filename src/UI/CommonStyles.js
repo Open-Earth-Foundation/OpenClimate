@@ -33,6 +33,11 @@ export const InfoText = styled.div`
   font-family: Lato;
 `
 
+export const SuccessText = styled.div`
+  font-size: 13px;
+  font-family: Lato;
+`
+
 export const ItalicText = styled.div`
   font-style: italic;
 `

@@ -32,6 +32,7 @@ import { DispatchThunk, RootState } from './store/root-state';
 import { doLogin, loginSuccess, doLogout, doPaswordlessLoginSucess } from './store/user/user.actions';
 import { connect } from 'react-redux'
 import AccountPage from './components/account/account.page';
+import RegisterWalletPage from './UI/RegisterWallet';
 import VerifyInformationModal from './shared/components/modals/verify-information/verify-information.modal';
 import * as userSelectors from './store/user/user.selectors';
 import * as appSelectors from './store/app/app.selectors';
@@ -83,6 +84,21 @@ interface Props {
   doLoginSuccess: (user: IUser | null) => void,
   showModal: (type: string) => void,
   doLogout: () => void
+}
+
+export interface Theme {
+  primary_color: string,
+  secondary_color: string,
+  neutral_color: string,
+  negative_color: string,
+  warning_color: string,
+  positive_color: string,
+  text_color: string,
+  text_light: string,
+  border: string,
+  drop_shadow: string,
+  background_primary: string,
+  background_secondary: string,
 }
 
 const App: FunctionComponent<Props> = (props) => {
@@ -1084,6 +1100,14 @@ const App: FunctionComponent<Props> = (props) => {
                   currentUser && ( 
                     <Route path="/account">
                       <AccountPage user={currentUser} />
+                    </Route>
+                  )
+                }
+
+                {
+                  currentUser && ( 
+                    <Route path="/register-wallet">
+                      <RegisterWalletPage user={currentUser} />
                     </Route>
                   )
                 }
