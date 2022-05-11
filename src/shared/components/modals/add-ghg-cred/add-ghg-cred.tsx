@@ -5,17 +5,19 @@ import Button from '../../form-elements/button/button';
 import './add-ghg-cred.modal.scss';
 import { ClimateActionTypes } from './../../../../api/models/DTO/ClimateAction/climate-action-types';
 import { ClimateActionScopes } from './../../../../api/models/DTO/ClimateAction/climate-action-scopes';
+import ISite from '../../../../api/models/DTO/Site/ISite';
 
 interface Props {
     onModalHide: () => void,
     onModalShow: (entityType: string, parameters?: object) => void,
     type?: ClimateActionTypes,
     scope: ClimateActionScopes,
+    sites?: Array<ISite>,
 }
 
 const AddGHGModal: FunctionComponent<Props> = (props) => {
 
-    const { onModalHide, scope, type, onModalShow } = props;
+    const { onModalHide, scope, type, sites, onModalShow } = props;
 
 
     return (

@@ -408,7 +408,7 @@ const App: FunctionComponent<Props> = (props) => {
   }
 
   // Handle inbound messages
-  const messageHandler = async (context, type, data = {}) => {
+  async function messageHandler (context, type, data = {}, setNotification) {
     try {
       console.log(
         `New Message with context: '${context}' and type: '${type}' with data:`,
@@ -711,7 +711,10 @@ const App: FunctionComponent<Props> = (props) => {
             case 'VERIFICATION_FAILED':
               setVerifiedCredential('')
               setVerificationStatus(false)
-
+              setNotification(
+                `Verification failed`,
+                'error'
+              )
               break
             default:
               setNotification(

@@ -11,17 +11,18 @@ import ClimateActionTile from '../../../../../api/models/DTO/ClimateAction/IClim
 import IClimateAction from '../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import { IUser } from '../../../../../api/models/User/IUser';
 import './climate-actions-summary.scss';
-
+import ISite from '../../../../../api/models/DTO/Site/ISite';
 
 interface IProps  {
     user: IUser,
     climateActions: Array<IClimateAction>,
-    showModal: (modalType: string, parameters?: object) => void
+    showModal: (modalType: string, parameters?: object) => void,
+    sites?: Array<ISite>,
 }
 
 const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
 
-    const { climateActions, user, showModal } = props;
+    const { climateActions, user, sites, showModal } = props;
 
     const [tiles, setTiles] = useState<ClimateActionTile[]>([]);
 
@@ -29,6 +30,7 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
     const [mitigationsTotal, setMitigationsTotal] = useState<number>(0);
     
     useEffect(() => {
+        console.log("Climate actions at summary", climateActions)
         const scope1EmsActions = ClimateActionHelper.GetClimateActions(climateActions, ClimateActionScopes.Scope1 , ClimateActionTypes.Emissions);
         const scope1EmsTotal = ClimateActionHelper.GetSumC02(scope1EmsActions, 'facility_emissions_co2e');
 
@@ -122,7 +124,8 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 scope={ClimateActionScopes.Scope1}
                                 type={ClimateActionTypes.Emissions}
                                 addOffset={!user.demo}
-                                showModal={showModal} 
+                                showModal={showModal}
+                                sites={sites}
                             />
                         </td>
                         <td>

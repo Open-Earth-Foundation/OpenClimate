@@ -143,6 +143,7 @@ export const doLoadClimateActions = (orgId: string) => {
     return (dispatch: Dispatch) => {
 
         climateActionService.allClimateAction(orgId).then(climateActions => {
+            console.log("Climate actions", climateActions)
             dispatch(loadClimateActions(climateActions));
         });
 

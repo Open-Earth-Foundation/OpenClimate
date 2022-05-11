@@ -5,6 +5,10 @@ import Dropdown from '../../form-elements/dropdown/dropdown';
 import { DropdownOption } from '../../../interfaces/dropdown/dropdown-option';
 import { useForm, Controller } from "react-hook-form";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import {
+    useNotification
+  } from '../../../../UI/NotificationProvider';
+
 
 interface Props {
     onModalHide: () => void,
@@ -18,7 +22,8 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
     const [userEmail, setUserEmail] = useState<string>('');
     const [userWallet, setUserWallet] = useState<string>('');
     const [requestedInvitation, setRequestedInvitation] = useState(false)
-
+    const setNotification = useNotification()
+    
     if (!props.QRCodeURL && !requestedInvitation) {
         props.sendRequest('INVITATIONS', 'CREATE_SINGLE_USE', {})
         setRequestedInvitation(true)
@@ -30,6 +35,10 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
         }
         console.log("User email", user)
         props.sendRequest('PRESENTATION', 'PUSH', {email: "pavelkrolevets@gmail.com"})
+        setNotification(
+            `Presentation request sent`,
+            'notice'
+          )
     }
     const wallets = [{'name':'did:sov:1234'}, {'name':'did:sov:4321'}]
     const { formState, register,  handleSubmit, setValue, control } = useForm();

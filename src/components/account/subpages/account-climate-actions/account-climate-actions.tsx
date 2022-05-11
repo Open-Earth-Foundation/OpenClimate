@@ -5,16 +5,21 @@ import ClimateActionsSummary from './climate-actions-summary/climate-actions-sum
 import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import { IUser } from '../../../../api/models/User/IUser';
 import './account-climate-actions.scss';
+import ISite from '../../../../api/models/DTO/Site/ISite';
+import {
+    useNotification
+  } from '../../../../UI/NotificationProvider';
 
 interface IProps  {
     user: IUser,
     climateActions: Array<IClimateAction>,
-    showModal: (modalType: string, parameters?: object) => void
+    showModal: (modalType: string, parameters?: object) => void,
+    sites?: Array<ISite>,
 }
 
 const ClimateActions: FunctionComponent<IProps> = (props) => {
-    
-    const { climateActions, user, showModal } = props;
+    const setNotification = useNotification()
+    const { climateActions, sites, user, showModal } = props;
 
     const [gridView, setGridView] = useState(false);
 
@@ -36,6 +41,7 @@ const ClimateActions: FunctionComponent<IProps> = (props) => {
                 :
                 <ClimateActionsSummary 
                     user={user}
+                    sites={sites}
                     climateActions={climateActions}                
                     showModal={showModal} 
                 />

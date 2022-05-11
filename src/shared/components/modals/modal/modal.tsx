@@ -106,7 +106,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
             break;
         case 'accept-ghg-proof':
                 title = "Review imported data"
-                component = <AcceptGHGProof onModalHide={hideModal} onModalShow={showModal} scope1={props.scope1}/>
+                component = <AcceptGHGProof onModalHide={hideModal} onModalShow={showModal} scope1={props.scope1} sites={sites} user={user}/>
             break;
         case 'emission-filters':
             title = ""
