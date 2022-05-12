@@ -50,7 +50,7 @@ const AdditionalText = styled(InfoText)`
 `
 
 const RegisterForm = styled.form`
-  width: 376px;
+  width: 425px;
   border-radius: 20px;
   height: 40px;
   background-color: ${(props: { theme: Theme }) => props.theme.background_primary};
@@ -121,6 +121,7 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
     setStep(activeStep + 1);
   }
 
+  console.log(walletCredentials);
   const handleSubmit = (e: Event) => {
     e.preventDefault();
     nextStep();
@@ -158,6 +159,7 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
                         name="credentials"
                         id="credentials"
                         ref={walletCredentials}
+                        placeholder="Your organization’s DID. i.e: did:sov:ewoiruwefh"
                         required
                       />
                     </InputBox>
@@ -194,6 +196,9 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
                       sx={{
                         '& .MuiStepLabel-root .Mui-active': {
                           color: '#007567',
+                        },
+                        '& .MuiStepContent-root': {
+                          borderLeft: '1px solid #007567'
                         },
                       }}>
                           <StepLabel>

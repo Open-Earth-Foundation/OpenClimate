@@ -162,8 +162,6 @@ export const FormContainer = styled.div`
   padding: 0 0 100px 0;
   min-width: 400px;
   width: ${(props) => props.isQRStep ? '70%' : '100%'};
-  display: flex;
-  align-items: center;
   text-align: center;
   background: ${(props) => props.isQRStep ? props.theme.background_secondary : props.theme.background_primary};
 `

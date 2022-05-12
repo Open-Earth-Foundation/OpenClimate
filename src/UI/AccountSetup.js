@@ -315,6 +315,9 @@ function AccountSetup(props) {
                   '& .MuiStepLabel-root .Mui-active': {
                     color: '#007567',
                   },
+                  '& .MuiStep-root .MuiStep-vertical .MuiStepContent-root': {
+                    borderLeft: '1px solid #007567'
+                  },
                 }}>
                 <StepLabel>
                   <StepInfoText>
