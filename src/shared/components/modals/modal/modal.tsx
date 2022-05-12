@@ -102,7 +102,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
             break;
         case 'send-ghg-proof':
             title = "Send proof notification for a Scope 1 GHG emissions credential"
-            component = <SendGHGProof onModalHide={hideModal} onModalShow={showModal} sendRequest={props.sendRequest} QRCodeURL={props.QRCodeURL} scope1={props.scope1}/>
+            component = <SendGHGProof onModalHide={hideModal} onModalShow={showModal} sendRequest={props.sendRequest} QRCodeURL={props.QRCodeURL} scope1={props.scope1} user={user}/>
             break;
         case 'accept-ghg-proof':
                 title = "Review imported data"

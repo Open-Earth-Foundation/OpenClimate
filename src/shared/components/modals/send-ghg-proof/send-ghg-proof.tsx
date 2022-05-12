@@ -8,26 +8,32 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import {
     useNotification
   } from '../../../../UI/NotificationProvider';
-
+import { IUser } from '../../../../api/models/User/IUser';
 
 interface Props {
     onModalHide: () => void,
     onModalShow: (entityType: string, parameters?: object) => void,
-    scope1: any
+    scope1: any,
+    user: IUser | null,
 }
 
 const SendGHGCredModal: FunctionComponent<Props> = (props) => {
 
-    const { onModalHide, onModalShow, scope1 } = props;
+    const { onModalHide, onModalShow, scope1, user } = props;
     const [userEmail, setUserEmail] = useState<string>('');
     const [userWallet, setUserWallet] = useState<string>('');
     const [requestedInvitation, setRequestedInvitation] = useState(false)
     const setNotification = useNotification()
+    const [connectionLink, setConnectionLink] = useState<string>('');
     
-    if (!props.QRCodeURL && !requestedInvitation) {
-        props.sendRequest('INVITATIONS', 'CREATE_SINGLE_USE', {})
-        setRequestedInvitation(true)
-      }
+    async function requestWalletInvitation() {
+        if (!requestedInvitation) {
+            console.log("User", user)
+            props.sendRequest('INVITATIONS', 'CREATE_WALLET_INVITATION', {userID: user.id})
+            setRequestedInvitation(true)
+          }
+    }
+   
 
     async function pushPresentationRequestHandler() {
         const user = {
@@ -65,13 +71,16 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
                         setValue={setValue}
                     /> 
                     <div className="modal__row login-credential-form__qr-content">
-                    <a onClick={() => {
-                        navigator.clipboard.writeText(props.QRCodeURL) 
-                        alert("Link copied to clipboard!")}} 
+                    <a onClick={async () => {
+                        await requestWalletInvitation()
+                        if (props.QRCodeURL){
+                            navigator.clipboard.writeText(props.QRCodeURL) 
+                            alert("Link copied to clipboard!")}} 
+                        }
                         className="modal__link modal__link_primary"
                         >
                             <div className="login-credential-form__copy-link">
-                                <ContentCopyIcon className={"login-credential-form__info-icon"} />Copy link to connect
+                                <ContentCopyIcon className={"login-credential-form__info-icon"} />Request invitation to connect
                             </div>
                     </a>
                     </div>
