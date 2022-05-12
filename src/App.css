@@ -18,6 +18,23 @@
       format('svg'); /* Legacy iOS */
 }
 
+@font-face {
+  font-family: 'Lato';
+  src: local('Lato'), url(./fonts/Lato-Regular.ttf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 900;
+    src: local('Lato'), url(./fonts/Lato-Bold.ttf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-weight: 900;
+    src: local('Lato'), url(./fonts/Lato-Black.ttf) format('opentype');
+}
+
 /* source-sans-pro-italic - latin */
 @font-face {
   font-family: 'Source Sans Pro';
