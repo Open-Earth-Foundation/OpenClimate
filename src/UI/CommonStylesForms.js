@@ -153,12 +153,25 @@ export const QRHolder = styled.div`
 `
 
 // Full-screen forms
+
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 export const FormContainer = styled.div`
-  margin: auto;
-  padding: 0 0 20px 0;
+  padding: 0 0 100px 0;
   min-width: 400px;
-  width: 75%;
+  width: ${(props) => props.isQRStep ? '70%' : '100%'};
   text-align: center;
+  background: ${(props) => props.isQRStep ? props.theme.background_secondary : props.theme.background_primary};
+`
+
+export const StepperContainer = styled.div`
+  margin-top: 60px;
+  padding: 0 40px 20px 30px;
+  min-width: 200px;
+  width: 30%;
+  text-align: left;
   background: ${(props) => props.theme.background_primary};
 `
 export const SubmitBtn = styled.button`

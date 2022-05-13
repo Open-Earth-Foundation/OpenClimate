@@ -16,6 +16,7 @@ import styled from 'styled-components'
 
 import { HeaderText, InfoText, SuccessText } from '../../../../../src/UI/CommonStyles';
 import { Chip, Step, StepContent, StepLabel, Stepper } from '@mui/material';
+import { useHistory } from 'react-router-dom';
 
 
 interface Props {
@@ -60,6 +61,8 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
     const setNotification = useNotification()
     const [connectionLink, setConnectionLink] = useState<string>('');
 
+    const history = useHistory();
+
     const pickUserWallet = (e) => {
         setActiveStep(1);
         setUserWallet(e);
@@ -68,6 +71,11 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
         setActiveStep(0);
         setUserWallet('');
     } 
+
+    const onRegisterWalletClick = () => {
+        history.push('/register-wallet');
+        onModalHide();
+    }
 
     const steps = [
         {
@@ -140,7 +148,7 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
                         }
                         className="modal__link modal__link_primary"
                         >
-                            <div className="login-credential-form__eye-info">
+                            <div className="login-credential-form__eye-info" onClick={onRegisterWalletClick}>
                                 <RemoveRedEyeIcon fontSize="inherit" className="login-credential-form__eye-icon"/>Connect new wallet
                             </div>
                     </a>
