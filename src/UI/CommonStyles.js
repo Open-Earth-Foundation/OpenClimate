@@ -12,3 +12,36 @@ export const TextAlignRight = styled.div`
 export const TextAlignLeft = styled.div`
   text-align: left;
 `
+export const HeaderText = styled.div`
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 21px;
+`
+
+export const Clickable = styled.a`
+  cursor: pointer;
+  color: ${(props) => props.theme.primary_color};
+`
+
+export const CopyText = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+`
+export const InfoText = styled.div`
+  font-size: 18px;
+  line-height: 21px;
+  font-family: Lato;
+`
+
+export const SuccessText = styled.div`
+  font-size: 13px;
+  font-family: Lato;
+`
+
+export const ItalicText = styled.div`
+  font-style: italic;
+`
+
+export const PrimaryColor = styled.div`
+  color: ${(props) => props.theme.primary_color}
+`
