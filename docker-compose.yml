@@ -70,7 +70,7 @@ services:
     expose:
       - "3100"
     command: >
-       sh -c "apk add --update python3 cmake bash && rm -rf /var/cache/apk/* && npm install -g nodemon ts-node && npm install && /home/node/wait-for-it/wait-for-it.sh hub-db:5432 && npm run migrate_up_all && npm run dev"
+       sh -c "apk add --update python3 g++ cmake make bash && rm -rf /var/cache/apk/* && npm install -g nodemon ts-node && npm install && /home/node/wait-for-it/wait-for-it.sh hub-db:5432 && npm run migrate_up_all && npm run dev"
     networks:
       - oc-network
     depends_on:
@@ -117,8 +117,6 @@ services:
       PORT: 3005
       ADMIN_PORT: 8150
       WEBHOOK_ADDRESS: http://hub-api:3100/api/controller-webhook
-      # ACAPY_ENDPOINT: http://agent-hub:3005
-      # ACAPY_ENDPOINT_WS: ws://2aa2-92-124-161-161.ngrok.io
     volumes:
       - ./aries-acapy-plugin-toolbox-startup:/home/indy/aries-acapy-plugin-toolbox-startup:consistent
     command: >
