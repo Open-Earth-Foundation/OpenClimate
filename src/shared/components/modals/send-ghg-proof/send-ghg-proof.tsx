@@ -67,7 +67,6 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
                         options={wallets.map(w=> {return {name: w.did, value: w.did} as DropdownOption})}
                         title=""
                         emptyPlaceholder="* Business Wallet"
-                        selectedValue={wallets[0].did}
                         onSelect={(option: DropdownOption) => setUserWallet(option.value)}
                         register={register}
                         label="select_wallet_did"
