@@ -238,7 +238,6 @@ services:
         --wallet-storage-creds '{\"account\":\"${POSTGRESQL_USER}\",\"password\":\"${POSTGRESQL_PASSWORD}\",\"admin_account\":\"${POSTGRESQL_USER}\",\"admin_password\":\"${POSTGRESQL_PASSWORD}\"}' \
         --wallet-name traction-wallet  \
         --admin '0.0.0.0' ${ACAPY_ADMIN_PORT} \
-        --emit-new-didcomm-prefix \
         --label '${AGENT_NAME}' \
         --jwt-secret '${JWT_SECRET}' \
         ${ACAPY_ADMIN_CONFIG} \
@@ -251,6 +250,12 @@ services:
         --auto-request-endorsement \
         --auto-write-transactions \
         --auto-create-revocation-transactions \
+        --public-invites \
+        --debug-connections \
+        --debug-credentials \
+        --debug-presentations \
+        --enable-undelivered-queue \
+        --log-level debug \
         ",
       ]
     volumes:
