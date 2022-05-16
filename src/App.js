@@ -37,9 +37,10 @@ import * as userSelectors from './store/user/user.selectors';
 import * as appSelectors from './store/app/app.selectors';
 import { showModal } from './store/app/app.actions';
 import Modal from './shared/components/modals/modal/modal';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IUser } from './api/models/User/IUser';
+import IWallet from './api/models/DTO/Wallet/IWallet';
 import { userService } from './shared/services/user.service';
 
 import Account from './UI/Account'
@@ -64,6 +65,9 @@ import Users from './UI/Users'
 import SessionProvider from './UI/SessionProvider'
 
 import './App.css'
+import { loadWallets } from './store/account/account.actions'
+import * as accountActions from './store/account/account.actions';
+import * as accountSelectors from './store/account/account.selectors';
 
 const Frame = styled.div`
   display: flex;
@@ -82,12 +86,15 @@ interface Props {
   doLoginClick: (email: string, password: string) => void,
   doLoginSuccess: (user: IUser | null) => void,
   showModal: (type: string) => void,
-  doLogout: () => void
+  doLogout: () => void,
+  wallets: Array<IWallet>,
+  walletsLoaded: boolean,
+  loadWallets: (orgId: string) => void,
 }
 
 const App: FunctionComponent<Props> = (props) => {
   // Envision props
-  const { currentUser, loading, doLoginClick, doLoginSuccess, showModal, doLogout } = props;
+  const { currentUser, loading, doLoginClick, doLoginSuccess, showModal, doLogout, wallets, walletsLoaded, loadWallets } = props;
 
   const defaultTheme = {
     primary_color: '#5191CE',
@@ -159,7 +166,50 @@ const App: FunctionComponent<Props> = (props) => {
   const [verifiedCredential, setVerifiedCredential] = useState('')
   const [accountCredentialIssued, setAccountCredentialIssued] = useState(false)
   const [scope1, setScope1] = useState()
+  const [wallet, setWallet] = useState()
+  const toastError = (msg)=> {
+    toast.error(
+      msg,
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        }
+    )
+  }
+  const toastSuccess = (msg)=> {
+    toast.success(
+      msg,
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        }
+    )
+  }
 
+  const toastInfo = (msg)=> {
+    toast.info(
+      msg,
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        }
+    )
+  } 
   // (JamesKEbert) Note: We may want to abstract the websockets out into a high-order component for better abstraction, especially potentially with authentication/authorization
 
   // Perform First Time Setup. Connect to Controller Server via Websockets
@@ -229,6 +279,8 @@ const App: FunctionComponent<Props> = (props) => {
             setLoggedInUserId(userCookie.id)
             setLoggedInEmail(userCookie.email)
             setLoggedInRoles(userCookie.roles)
+            if(!walletsLoaded)
+            loadWallets(userCookie.company.organization_id);
           } else setAppIsLoaded(true)
         } else setAppIsLoaded(true)
       }
@@ -445,13 +497,12 @@ const App: FunctionComponent<Props> = (props) => {
             case 'INVITATIONS_ERROR':
               console.log(data.error)
               console.log('Invitations Error')
-              setErrorMessage(data.error)
+              toastError(data.error)
               break
 
             default:
-              setNotification(
-                `Error - Unrecognized Websocket Message Type: ${type}`,
-                'error'
+              toastError(
+                `Error - Unrecognized Websocket Message Type: ${type}`
               )
               break
           }
@@ -709,17 +760,29 @@ const App: FunctionComponent<Props> = (props) => {
               break
 
             case 'VERIFICATION_FAILED':
-              setVerifiedCredential('')
-              setVerificationStatus(false)
-              setNotification(
-                `Verification failed`,
-                'error'
+                setVerifiedCredential('')
+                setVerificationStatus(false)
+                toastError(
+                  `Verification failed`
+                )
+                break
+            default:
+              toastError(
+                `Error - Unrecognized Websocket Message Type: ${type}`
               )
               break
+          }
+          break
+        case 'EMISSION_PRESENTATION':
+          switch (type) {
+            case 'PRESENTATION_FAILED':
+                toastError(
+                  `Verification failed ${data.error}`
+                )
+                break
             default:
-              setNotification(
-                `Error - Unrecognized Websocket Message Type: ${type}`,
-                'error'
+              toastError(
+                `Error - Unrecognized Websocket Message Type: ${type}`
               )
               break
           }
@@ -846,20 +909,43 @@ const App: FunctionComponent<Props> = (props) => {
                 break
   
               default:
-                setNotification(
-                  `Error - Unrecognized Websocket Message Type: ${type}`,
-                  'error'
-                )
+                toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
+                break
+            }
+            break
+        case 'WALLET':
+            switch (type) {
+              case 'ACCEPTED':
+                if (data.wallet)
+                {
+                  console.log('Recieved verified wallet registration', data.wallet)
+                  setWallet(data.wallet)
+                  toastSuccess(`Wallet proof recieved ${data.wallet.did}`);
+                  await loadWallets(currentUser.company.organization_id)
+                }
+                
+                break
+              case 'WALLET_ERROR':
+                console.log('WALLET ERROR', data.error)
+                toastError(data.error)
+                break
+              
+              case 'WALLET_CONNECTION_SUCCESS':
+                  toastSuccess(`Connection established with wallet: ${data.did}`)
+                  break
+              case 'WALLET_PROOF_SENT':
+                  toastSuccess(`Organisation Proof request sent to wallet: ${data.did}`)
+                  break
+    
+              default:
+                toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
                 break
             }
             break
   
 
         default:
-          setNotification(
-            `Error - Unrecognized Websocket Message Type: ${context}`,
-            'error'
-          )
+          toastError(`Error - Unrecognized Websocket Message Type: ${context}`)
           break
       }
     } catch (error) {
@@ -1064,6 +1150,8 @@ const App: FunctionComponent<Props> = (props) => {
                 handlePasswordlessLogin={handlePasswordlessLogin}
                 sendRequest={sendAnonMessage}
                 loggedInUserState={loggedInUserState}
+                wallet={wallet}
+                wallets={wallets}
               />
               <ToastContainer
                 position="bottom-right"
@@ -1471,6 +1559,8 @@ const App: FunctionComponent<Props> = (props) => {
                   setVerificationStatus={setVerificationStatus}
                   sendRequest={sendMessage}
                   loggedInUserState={loggedInUserState}
+                  wallet={wallet}
+                  wallets={wallets}
                 />
                 <ToastContainer
                   position="bottom-right"
@@ -1493,6 +1583,8 @@ const mapStateToProps = (state: RootState) => {
   return {
     currentUser: userSelectors.getCurrentUser(state),
     loading: userSelectors.getLoading(state),
+    wallets: accountSelectors.getWallets(state),
+    walletsLoaded: accountSelectors.getWalletsLoaded(state),
   }
 }
 
@@ -1506,6 +1598,9 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
     },
     doLogout: () => {
       dispatch(doLogout())
+    },
+    loadWallets: (orgId: string) => {
+      dispatch(accountActions.doLoadWallets(orgId))
     }
   }
 }
