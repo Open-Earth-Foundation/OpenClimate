@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Popup from 'reactjs-popup'
+import QRCode from 'qrcode.react'
 
 // Form styles
 export const StyledPopup = styled(Popup)`
@@ -243,4 +244,23 @@ export const ActionButton = styled.span`
   :hover {
     cursor: pointer;
   }
+`
+
+export const QRBox = styled.div`
+border-radius: 4px;
+border: 1px solid rgba(162, 151, 151, 0.35);
+padding: 25px;
+margin-bottom: 16px;
+margin-top: 50px;
+width: 300px;
+height: 300px;
+background: ${(props) => props.theme.background_primary}
+`
+
+export const StyledQR = styled(QRCode)`
+  display: block;
+  margin: auto;
+  padding: 10px;
+  width: 250px;
+  height: 250px;
 `
