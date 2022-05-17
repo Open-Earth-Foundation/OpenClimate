@@ -11,6 +11,7 @@ import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateAct
 import { IUser } from '../../../../api/models/User/IUser';
 import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
 import { climateActionService } from '../../../services/climate-action';
+import { proofsService } from '../../../services/proofs.service';
 import { toast } from 'react-toastify';
 import {
     useNotification
@@ -40,7 +41,7 @@ const AcceptGHGProofModal: FunctionComponent<Props> = (props) => {
         console.log(sites)
     },[userSite])
     
-    const saveClimateAction = () => {      
+    const saveClimateAction = async () => {      
         
         const foundSite=  sites.find(f => f.facility_name === userSite);
         
@@ -51,8 +52,6 @@ const AcceptGHGProofModal: FunctionComponent<Props> = (props) => {
               )
             return;
         }
-
-        console.log("User", user)
 
         if(!user || !user.company.organization_id){
             return;
@@ -110,8 +109,14 @@ const AcceptGHGProofModal: FunctionComponent<Props> = (props) => {
         climateAction.facility_emissions_combustion_co2_biomass ='';
 
         const userCompanyId = user.company.organization_id;
+        const proof = await proofsService.readProofCredDef(user.id, scope1.cred_def_id.raw)
+        if (proof) {
+            toast.error("This credentials were already accepted");
+            return;
+        }
+        await proofsService.saveProofCredDef(user.id, scope1.cred_def_id.raw)
 
-        climateActionService.saveClimateAction(userCompanyId, climateAction).then(ca => {
+        await climateActionService.saveClimateAction(userCompanyId, climateAction).then(ca => {
             onModalHide();
             toast("The data was succesfully imported");
         });
@@ -121,7 +126,7 @@ const AcceptGHGProofModal: FunctionComponent<Props> = (props) => {
 
     const reject = ()=> {
         onModalHide();
-        toast("The data was rejected");
+        toast.error("The data was rejected");
     }
 
     return (

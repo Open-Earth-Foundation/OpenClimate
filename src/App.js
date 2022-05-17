@@ -909,6 +909,9 @@ const App: FunctionComponent<Props> = (props) => {
                 }
                 
                 break
+              case 'CRED_DEF_EXIST':
+                toastError(data.error)                
+                break
   
               default:
                 toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
