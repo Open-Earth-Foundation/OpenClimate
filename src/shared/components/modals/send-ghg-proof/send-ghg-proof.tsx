@@ -125,7 +125,6 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
         onModalShow('accept-ghg-proof', { scope1: props.scope1 })
       }
 
-    const fakeWallets = [ { id: 20, did: '123fds8a90f8saasdf', organization_id: 30}]
 
     return (
         <div className="add-ghg-cred__content">
@@ -134,7 +133,7 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
                     <div className="add-ghg-cred__dropdown">
                     <Dropdown
                         withSearch={false}
-                        options={fakeWallets.map(w=> {return {name: w.did, value: w.did} as DropdownOption})}
+                        options={wallets.map(w=> {return {name: w.did, value: w.did} as DropdownOption})}
                         title=""
                         emptyPlaceholder="* Business Wallet"
                         onSelect={(option: DropdownOption) => setUserWallet(option.value)}
