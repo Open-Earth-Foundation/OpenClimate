@@ -1205,7 +1205,7 @@ const App: FunctionComponent<Props> = (props) => {
                 {
                   currentUser && ( 
                     <Route path="/register-wallet">
-                      <RegisterWalletPage user={currentUser} />
+                      <RegisterWalletPage user={currentUser} sendRequest={sendMessage} QRCodeURL={QRCodeURL}/>
                     </Route>
                   )
                 }

@@ -26,7 +26,8 @@ import { Theme } from '../App';
 
 interface RegisterProps {
     user: IUser,
-    QRCodeURL: string
+    QRCodeURL: string,
+    sendRequest: (channel: string, command: string, body: object) => void,
 }
 
 const RegisterContainer = styled.div`
@@ -145,9 +146,16 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
 
   const [activeStep, setStep] = useState(0);
   const [isQRPage, setQRPage] = useState(false);
+  const [requestedInvitation, setRequestedInvitation] = useState(false)
+  const {user, sendRequest, QRCodeURL} = props;
 
   const walletCredentials = useRef();
-
+  
+  if (!requestedInvitation) {
+    sendRequest('INVITATIONS', 'CREATE_WALLET_INVITATION', {userID: user.id})
+    setRequestedInvitation(true)
+  }
+  
   const nextStep = () => {
     setStep(activeStep + 1);
   }
@@ -194,8 +202,7 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
                   {isQRPage ?
                     <>
                       <QRBox>
-                        
-                        {/* WILL FIX IN TICKET <StyledQR value={} size={300} renderAs="svg" /> */}
+                        <StyledQR value={QRCodeURL} size={300} renderAs="svg" />
                       </QRBox>
                       <InfoContainer>
                         <InfoIcon />
