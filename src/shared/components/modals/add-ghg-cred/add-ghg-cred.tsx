@@ -6,19 +6,19 @@ import './add-ghg-cred.modal.scss';
 import { ClimateActionTypes } from './../../../../api/models/DTO/ClimateAction/climate-action-types';
 import { ClimateActionScopes } from './../../../../api/models/DTO/ClimateAction/climate-action-scopes';
 import ISite from '../../../../api/models/DTO/Site/ISite';
-
+import IWallet from '../../../../api/models/DTO/Wallet/IWallet';
 interface Props {
     onModalHide: () => void,
     onModalShow: (entityType: string, parameters?: object) => void,
     type?: ClimateActionTypes,
     scope: ClimateActionScopes,
     sites?: Array<ISite>,
+    wallets: Array<IWallet>,
 }
 
 const AddGHGModal: FunctionComponent<Props> = (props) => {
 
-    const { onModalHide, scope, type, sites, onModalShow } = props;
-
+    const { onModalHide, scope, type, sites, onModalShow, wallets } = props;
 
     return (
         <div className="add-ghg-cred__content">

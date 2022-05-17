@@ -194,7 +194,8 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
                   {isQRPage ?
                     <>
                       <QRBox>
-                        <StyledQR value={'https://flat-foxes-greet-100-0-206-132.loca.lt?c_i=eyJAdHlwZSI6ICJkaWQ6c292OkJ6Q2JzTlloTXJqSGlxWkRUVUFTSGc7c3BlYy9jb25uZWN0aW9ucy8xLjAvaW52aXRhdGlvbiIsICJAaWQiOiAiODU2OTk0NmYtMTM2YS00ZDY5LThiMjEtNTZkZTAzMGVkYzAzIiwgInNlcnZpY2VFbmRwb2ludCI6ICJodHRwczovL2ZsYXQtZm94ZXMtZ3JlZXQtMTAwLTAtMjA2LTEzMi5sb2NhLmx0IiwgImxhYmVsIjogIkh1YiIsICJyZWNpcGllbnRLZXlzIjogWyI1Nzh0SmRnRkFOaVI0TThKUVJZVnp2ZDh6RHcxTGdDNHdrODhlS3dHWlNhRCJdfQ=='} size={300} renderAs="svg" />
+                        
+                        {/* WILL FIX IN TICKET <StyledQR value={} size={300} renderAs="svg" /> */}
                       </QRBox>
                       <InfoContainer>
                         <InfoIcon />

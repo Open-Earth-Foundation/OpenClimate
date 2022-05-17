@@ -12,17 +12,19 @@ import IClimateAction from '../../../../../api/models/DTO/ClimateAction/IClimate
 import { IUser } from '../../../../../api/models/User/IUser';
 import './climate-actions-summary.scss';
 import ISite from '../../../../../api/models/DTO/Site/ISite';
+import IWallet from '../../../../../api/models/DTO/Wallet/IWallet';
 
 interface IProps  {
     user: IUser,
     climateActions: Array<IClimateAction>,
     showModal: (modalType: string, parameters?: object) => void,
     sites?: Array<ISite>,
+    wallets: Array<IWallet>,
 }
 
 const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
 
-    const { climateActions, user, sites, showModal } = props;
+    const { climateActions, user, sites, showModal, wallets} = props;
 
     const [tiles, setTiles] = useState<ClimateActionTile[]>([]);
 
@@ -30,7 +32,7 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
     const [mitigationsTotal, setMitigationsTotal] = useState<number>(0);
     
     useEffect(() => {
-        console.log("Climate actions at summary", climateActions)
+
         const scope1EmsActions = ClimateActionHelper.GetClimateActions(climateActions, ClimateActionScopes.Scope1 , ClimateActionTypes.Emissions);
         const scope1EmsTotal = ClimateActionHelper.GetSumC02(scope1EmsActions, 'facility_emissions_co2e');
 
@@ -126,6 +128,7 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 addOffset={!user.demo}
                                 showModal={showModal}
                                 sites={sites}
+                                wallets={wallets}
                             />
                         </td>
                         <td>
@@ -134,7 +137,8 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 scope={ClimateActionScopes.Scope2}
                                 type={ClimateActionTypes.Emissions}
                                 addOffset={!user.demo}
-                                showModal={showModal} 
+                                showModal={showModal}
+                                wallets={wallets}
                             />
                         </td>
                         <td>
@@ -143,7 +147,8 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 scope={ClimateActionScopes.Scope3}
                                 type={ClimateActionTypes.Emissions}
                                 addOffset={!user.demo}
-                                showModal={showModal} 
+                                showModal={showModal}
+                                wallets={wallets} 
                             />
                         </td>
                     </tr>
@@ -163,7 +168,8 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 scope={ClimateActionScopes.Scope1}
                                 type={ClimateActionTypes.Mitigations}
                                 addOffset={!user.demo}
-                                showModal={showModal} 
+                                showModal={showModal}
+                                wallets={wallets}
                             />
                         </td>
                         <td>
@@ -172,7 +178,8 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 scope={ClimateActionScopes.Scope2}
                                 type={ClimateActionTypes.Mitigations}
                                 addOffset={!user.demo}
-                                showModal={showModal} 
+                                showModal={showModal}
+                                wallets={wallets}
                             />
                         </td>
                         <td>
@@ -181,7 +188,8 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                                 scope={ClimateActionScopes.Scope3}
                                 type={ClimateActionTypes.Mitigations}
                                 addOffset={!user.demo}
-                                showModal={showModal} 
+                                showModal={showModal}
+                                wallets={wallets}
                             />
                         </td>
                     </tr>
@@ -198,21 +206,24 @@ const ClimateActionsSummary: FunctionComponent<IProps> = (props) => {
                             <ScopeTile 
                                 climateActionTile={tiles.find(t => t.scope == ClimateActionScopes.Scope1 && t.type == ClimateActionTypes.Summary)}
                                 scope={ClimateActionScopes.Scope1}
-                                showModal={showModal} 
+                                showModal={showModal}
+                                wallets={wallets}
                             />
                         </td>
                         <td>
                             <ScopeTile 
                                 climateActionTile={tiles.find(t => t.scope == ClimateActionScopes.Scope2 && t.type == ClimateActionTypes.Summary)}
                                 scope={ClimateActionScopes.Scope2}
-                                showModal={showModal} 
+                                showModal={showModal}
+                                wallets={wallets}
                             />
                         </td>
                         <td>
                             <ScopeTile 
                                 climateActionTile={tiles.find(t => t.scope == ClimateActionScopes.Scope3 && t.type == ClimateActionTypes.Summary)}
                                 scope={ClimateActionScopes.Scope3}
-                                showModal={showModal} 
+                                showModal={showModal}
+                                wallets={wallets}
                             />
                         </td>
                     </tr>
