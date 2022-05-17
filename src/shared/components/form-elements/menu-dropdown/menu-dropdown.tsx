@@ -1,10 +1,11 @@
 import React, { FunctionComponent, useEffect } from 'react'
 import { useState } from 'react';
 import { DropdownOption } from '../../../interfaces/dropdown/dropdown-option';
-import DropdownArrow from '../../../img/form-elements/dropdown/dropdown-arrow.png';
-import DropdownClose from '../../../img/form-elements/dropdown/dropdown-close.png';
-import DropdownItem from '../dropdown/dropdown-item/dropdown-item';
+
+import { NavLink, useHistory } from 'react-router-dom';
 import ArrowIcon from '../../../img/form-elements/dropdown/arrow dropdown.svg'
+
+import { ArrowDropUp, ArrowDropDown, ArrowForwardIos} from '@mui/icons-material';
 import Button from '../../form-elements/button/button';
 
 import './menu-dropdown.scss';
@@ -18,9 +19,17 @@ const MenuDropdown: FunctionComponent<Props> = (props) => {
 
     let { title, doLogout } = props;
 
+    let history = useHistory();
+
     const [ open, setOpen ] = useState(false);
 
     const selectHandler = (option: DropdownOption) => {
+    }
+
+
+    const onRegisterWalletClick = () => {
+        history.push('/register-wallet');
+        setOpen(false);
     }
 
     const logoutHandler = () => {
@@ -29,6 +38,9 @@ const MenuDropdown: FunctionComponent<Props> = (props) => {
     }
 
     useEffect(() => {
+        window.addEventListener('hashchange', function() {
+            console.log('The hash has changed!')
+          }, false);
         if(open){
             window.addEventListener('click', () => setOpen(false))
           }
@@ -43,12 +55,17 @@ const MenuDropdown: FunctionComponent<Props> = (props) => {
                 <label>{title}</label>
             </div>
 
-            <div className="dropdown-menu_btn" onClick={() => setOpen(!open)}>
-                <img src={ArrowIcon} alt="open" />
+            <div className="dropdown-menu__icon" onClick={() => setOpen(!open)}>
+                { open ? <ArrowDropUp/> : <ArrowDropDown/>}
             </div>
 
             { open ? 
                 <div className="dropdown-menu__open dropdown-open">
+                    <div className="dropdown-menu__open dropdown-menu__container" onClick={onRegisterWalletClick}>
+                        <div className="dropdown-menu__wallet-text" >Register Business Wallet</div>
+                        <ArrowForwardIos className="dropdown-menu__business-icon" fontSize="inherit"/>
+                        
+                    </div>
                     <div className="dropdown-menu__logout">
                         <Button 
                             color="white"

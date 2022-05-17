@@ -11,6 +11,15 @@
         flex-direction: row;
         justify-content: space-around;
     }
+    &__btn_row_left {
+        font-size: 12px;
+        padding-left: 50px;
+        max-width: 450px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 25px;
+    }
+
     &__btn_row {
         font-size: 12px;
         max-width: 400px;
@@ -18,6 +27,39 @@
         display: flex;
         flex-direction: column;
         margin: 25px;
+    }
+
+    &__dropdown {
+        width: 350px;
+    }
+
+    &__btn_row_middle {
+        font-size: 12px;
+        padding-left: 50px;
+        width: 250px;
+    }
+
+    &__btn_row_right {
+        font-size: 12px;
+        padding-left: 50px;
+        width: 450px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 25px;
+        margin-left: 60px;
+        margin-right: 30px;
+    }
+
+    &__info_text {
+        margin-top: 10px;
+    }
+
+    &__stepper {
+        margin-top: 28px;
+    }
+
+    &__step_label {
+        font-size: 10px;
     }
 }
 
