@@ -64,7 +64,7 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
     const [requestedInvitation, setRequestedInvitation] = useState(false)
     const setNotification = useNotification()
     const [connectionLink, setConnectionLink] = useState<string>('');
-
+    const [scope1received,  setScope1received] = useState(false);
     const history = useHistory();
 
     const onRegisterWalletClick = () => {
@@ -115,16 +115,17 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
             `Presentation request sent`,
             'notice'
           )
-          setActiveStep(2);
+        setActiveStep(2);
     }
 
     const { formState, register,  handleSubmit, setValue, control } = useForm();
     
-    if (props.scope1) {
-        console.log("Scope 1", props.scope1)
-        onModalShow('accept-ghg-proof', { scope1: props.scope1 })
+    useEffect(() => {
+      if (scope1) {
+        setScope1received(true)
+        onModalShow('accept-ghg-proof', { scope1: scope1 })
       }
-
+    },[scope1])
 
     return (
         <div className="add-ghg-cred__content">

@@ -252,6 +252,7 @@ const App: FunctionComponent<Props> = (props) => {
   // Setting up websocket and controllerSocket
   useEffect(() => {
     if (session && loggedIn && websocket) {
+      console.log("Set websocket")
       let url = new URL('/api/admin/ws', process.env.REACT_APP_CONTROLLER)
       url.protocol = url.protocol.replace('http', 'ws')
       controllerSocket.current = new WebSocket(url.href)
@@ -282,7 +283,7 @@ const App: FunctionComponent<Props> = (props) => {
             setLoggedInEmail(userCookie.email)
             setLoggedInRoles(userCookie.roles)
             if(!walletsLoaded)
-            loadWallets(userCookie.company.organization_id);
+              loadWallets(userCookie.id);
           } else setAppIsLoaded(true)
         } else setAppIsLoaded(true)
       }
@@ -362,6 +363,7 @@ const App: FunctionComponent<Props> = (props) => {
     // Perform operation on websocket open
     // Run web sockets only if authenticated
     if (session && loggedIn && websocket) {
+      console.log("Set websocket")
       controllerSocket.current.onopen = () => {
         // Resetting state to false to allow spinner while waiting for messages
         setAppIsLoaded(false) // This doesn't work as expected. See function removeLoadingProcess
@@ -457,6 +459,7 @@ const App: FunctionComponent<Props> = (props) => {
         sendMessage(context, type, data)
       }, 100)
     } else {
+      console.log("Sending ws request")
       controllerSocket.current.send(JSON.stringify({ context, type, data }))
     }
   }
@@ -472,10 +475,11 @@ const App: FunctionComponent<Props> = (props) => {
         case 'ERROR':
           switch (type) {
             case 'SERVER_ERROR':
-              setNotification(
-                `Server Error - ${data.errorCode} \n Reason: '${data.errorReason}'`,
-                'error'
-              )
+              // setNotification(
+              //   `Server Error - ${data.errorCode} \n Reason: '${data.errorReason}'`,
+              //   'error'
+              // )
+              toastError(`Server Error - ${data.errorCode} \n Reason: '${data.errorReason}'`)
               break
 
             default:
@@ -926,7 +930,7 @@ const App: FunctionComponent<Props> = (props) => {
                   console.log('Recieved verified wallet registration', data.wallet)
                   setWallet(data.wallet)
                   toastSuccess(`Wallet proof recieved ${data.wallet.did}`);
-                  await loadWallets(currentUser.company.organization_id)
+                  await loadWallets(currentUser.id)
                 }
                 
                 break
@@ -947,7 +951,6 @@ const App: FunctionComponent<Props> = (props) => {
                 break
             }
             break
-  
 
         default:
           toastError(`Error - Unrecognized Websocket Message Type: ${context}`)
@@ -955,7 +958,7 @@ const App: FunctionComponent<Props> = (props) => {
       }
     } catch (error) {
       console.log('Error caught:', error)
-      setNotification('Client Error - Websockets', 'error')
+      toastError(`Client Error - Websockets: ${error}`)
     }
   }
 

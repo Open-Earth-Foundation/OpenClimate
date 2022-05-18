@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import Button from '../../form-elements/button/button';
 import { useTheme } from 'styled-components'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -26,11 +26,17 @@ const BWInvitationModal: FunctionComponent<Props> = (props) => {
     const setNotification = useNotification()
     const { onModalShow, hideModal, user} = props;
     
-    if (!requestedInvitation) {
-        console.log("User", user)
-        props.sendRequest('INVITATIONS', 'CREATE_WALLET_INVITATION', {userID: user.id})
-        setRequestedInvitation(true)
-      }
+
+    useEffect(() => {
+        if (!requestedInvitation) {
+            console.log("User", user)
+            console.log("Requesting wallet invitation")
+            props.sendRequest('INVITATIONS', 'CREATE_WALLET_INVITATION', {userID: user.id})
+            setRequestedInvitation(true)
+          }
+      }, [requestedInvitation])
+
+
 
     return (
         <form action="/" className="login-credential-form">
