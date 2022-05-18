@@ -1,0 +1,12 @@
+.pledge-form {
+    &__sign-as {
+        color: var(--black-color);
+        font-size: 14px;
+        line-height: 28px;
+
+        a {
+            color: var(--blue-color);
+        }
+    }
+}
+
