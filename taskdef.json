@@ -28,7 +28,7 @@
   },
   {
     "name": "REACT_APP_CONTROLLER",
-    "value": "<REACT_APP_CONTROLLER>"
+    "value": "https://<REACT_APP_CONTROLLER>"
   },
   {
     "name": "BROWSER",
