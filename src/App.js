@@ -769,7 +769,7 @@ const App: FunctionComponent<Props> = (props) => {
                 setVerifiedCredential('')
                 setVerificationStatus(false)
                 toastError(
-                  `Verification failed`
+                  `Verification failed ${data.error}`
                 )
                 break
             default:
@@ -1160,6 +1160,7 @@ const App: FunctionComponent<Props> = (props) => {
                 loggedInUserState={loggedInUserState}
                 wallet={wallet}
                 wallets={wallets}
+                setScope1={setScope1}
               />
               <ToastContainer
                 position="bottom-right"
@@ -1577,6 +1578,7 @@ const App: FunctionComponent<Props> = (props) => {
                   loggedInUserState={loggedInUserState}
                   wallet={wallet}
                   wallets={wallets}
+                  setScope1={setScope1}
                 />
                 <ToastContainer
                   position="bottom-right"

@@ -50,6 +50,7 @@ interface IStateProps  {
 interface IDispatchProps {
     showModal: (entityType:string) => void,
     hideModal: () => void,
+    setScope1: (scope1: any) => void,
     addPledge: (pledge: any) => void,
     addTransfer: (transfer: any) => void,
     addSite: (site: ISite) => void,
@@ -67,7 +68,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
     const modalRef = useRef(null);
 
     const { user, modalConfig, sites, climateActions, loginError,
-        showModal, hideModal, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission, handlePasswordLogin, scope1, wallet, wallets} = props;
+        showModal, hideModal, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission, handlePasswordLogin, scope1, setScope1, wallet, wallets} = props;
     
     if(modalConfig.entityType === '')
         return null;
@@ -115,7 +116,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
             break;
         case 'accept-ghg-proof':
                 title = "Review imported data"
-                component = <AcceptGHGProof onModalHide={hideModal} onModalShow={showModal} scope1={props.scope1} sites={sites} user={user} />
+                component = <AcceptGHGProof onModalHide={hideModal} onModalShow={showModal} scope1={props.scope1} sites={sites} user={user} setScope1={setScope1}/>
             break;
         case 'emission-filters':
             title = ""

@@ -28,11 +28,12 @@ interface Props {
     climateActions: Array<IClimateAction>,
     addClimateAction: (climateAction: IClimateAction) => void,
     addAggregatedEmission: (aggregatedEmission: IAggregatedEmission) => void,
+    setScope1: (scope1: any) => void,
 }
 
 const AcceptGHGProofModal: FunctionComponent<Props> = (props) => {
 
-    const { onModalHide, scope, sites, type, onModalShow, scope1, user } = props;
+    const { onModalHide, scope, sites, type, onModalShow, scope1, setScope1, user } = props;
     const [userSite, setUserSite] = useState<string>('');
     const { formState, register,  handleSubmit, setValue, control } = useForm();
     const setNotification = useNotification()
@@ -127,6 +128,7 @@ const AcceptGHGProofModal: FunctionComponent<Props> = (props) => {
     const reject = ()=> {
         onModalHide();
         toast.error("The data was rejected");
+        setScope1(null)
     }
 
     return (
@@ -167,7 +169,6 @@ const AcceptGHGProofModal: FunctionComponent<Props> = (props) => {
                     <div style={{margin: 25, width: 100}}>
                         <Button 
                                 click={() => reject()}
-                                disabled
                                 color="primary"
                                 text="Reject"
                                 type="button"
