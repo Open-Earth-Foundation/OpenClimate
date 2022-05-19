@@ -28,7 +28,7 @@
   },
   {
     "name": "REACT_APP_CONTROLLER",
-    "value": "http://controller.openclimate.local"
+    "value": "<REACT_APP_CONTROLLER>"
   },
   {
     "name": "BROWSER",
