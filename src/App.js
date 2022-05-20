@@ -18,8 +18,6 @@ import AppHeader from './UI/AppHeader'
 import { check, CanUser } from './UI/CanUser'
 import rules from './UI/rbac-rules'
 
-import RegisterWalletPage from './UI/RegisterWallet';
-
 // Envision imports
 //import MainLayout from './layouts/main-layout/main.layout'
 import LoginCredential from './shared/components/modals/login-credential/login-credential.modal';
