@@ -5,24 +5,33 @@ import CheckIcon from '@mui/icons-material/Check';
 
 import styled from 'styled-components'
 
+import { toast } from 'react-toastify';
+
+import { ContentCopy, QrCode, InfoOutlined } from '@mui/icons-material'
+
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { IUser } from '../api/models/User/IUser';
-import { HeaderText, InfoText, SuccessText } from './CommonStyles';
+import { Clickable, CopyText, HeaderText, InfoText, InlineClickable, SuccessText } from './CommonStyles';
 
 import {
     FormContainer,
     InputBox,
     PageContainer,
+    QRBox,
     StepperContainer,
+    StyledQR,
   } from './CommonStylesForms'
 import { Theme } from '../App';
 
 interface RegisterProps {
-    user: IUser
+    user: IUser,
+    QRCodeURL: string,
+    sendRequest: (channel: string, command: string, body: object) => void,
 }
 
 const RegisterContainer = styled.div`
-  padding: 200px 30px 0px 30px;
+  padding: ${(props: {isQRPage: boolean}) => props.isQRPage ? '124px 30px 0px 30px' : '200px 30px 0px 30px'};
   display: flex;
   height: 100%;
   width: 100%;
@@ -45,8 +54,8 @@ const StepInfoText = styled(InfoText)`
   padding-left: 12px;
 `
 
-const AdditionalText = styled(InfoText)`
-  margin-top: 80px;
+const InfoIcon = styled(InfoOutlined)`
+  margin-right: 4px;
 `
 
 const RegisterForm = styled.form`
@@ -85,14 +94,35 @@ const ScanText = styled(InfoText)`
 
 const SentContainer = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   font-size: 13px;
   color: ${(props: { theme: Theme })  => props.theme.primary_color};
 `
 
+const ClickContainer = styled.div`
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+`
+
+const InfoContainer = styled.div`
+  display: flex;
+  margin: 30px 0px;
+  align-items: center;
+  justify-content: center;
+`
+
 const InvitationText = styled(SuccessText)`
   padding-left: 5px;
+`
+
+const CopyIcon = styled(ContentCopy)`
+  margin-right: 4px;
+`
+
+const QrIcon = styled(QrCode)`
+  margin-right: 4px;
 `
 
 const theme = createTheme({
@@ -115,11 +145,27 @@ const theme = createTheme({
 const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
 
   const [activeStep, setStep] = useState(0);
-  const walletCredentials = useRef();
+  const [isQRPage, setQRPage] = useState(false);
+  const [requestedInvitation, setRequestedInvitation] = useState(false)
+  const {user, sendRequest, QRCodeURL} = props;
 
+  const walletCredentials = useRef();
+  
+  if (!requestedInvitation) {
+    sendRequest('INVITATIONS', 'CREATE_WALLET_INVITATION', {userID: user.id})
+    setRequestedInvitation(true)
+  }
+  
   const nextStep = () => {
     setStep(activeStep + 1);
   }
+
+  const copyLink = () => {
+    navigator.clipboard.writeText(props.QRCodeURL);
+    toast("Link copied successfully!");
+  }
+
+  const toggleQRPage = () => setQRPage(!isQRPage);
 
   console.log(walletCredentials);
   const handleSubmit = (e: Event) => {
@@ -127,9 +173,11 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
     nextStep();
   }
 
+  console.log(isQRPage);
+
   const steps = [
       {
-        label: activeStep === 0 ? 'Not started' : 'Done',
+        label: activeStep === 0 ? 'In progress' : 'Done',
         description: "Enter the Decentralized Identifier (DID) of your organization’s business wallet, and click button to send the connection invitation."
       },
       {
@@ -149,31 +197,66 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
   return (
       <PageContainer>
           <FormContainer isQRStep>
-              <RegisterContainer>
-                  <HeaderText>Register business wallet</HeaderText>
-                  <CredentialText>If your organization holds verifiable credentials in a business wallet, you can register it with us to submit verified data.</CredentialText>
-                  <RegisterForm onSubmit={handleSubmit}>
-                    <InputBox>
-                      <RegisterInput
-                        type="credentials"
-                        name="credentials"
-                        id="credentials"
-                        ref={walletCredentials}
-                        placeholder="Your organization’s DID. i.e: did:sov:ewoiruwefh"
-                        required
-                      />
-                    </InputBox>
-                    <SubmitContainer>
-                    { 
-                      activeStep === 0 ? 
-                        <RegisterSubmit type="submit">Send invitation</RegisterSubmit>
-                        :
-                        <SentContainer><CheckIcon/><InvitationText>Invitation sent</InvitationText></SentContainer>
-                    }
-                    </SubmitContainer>
-                  </RegisterForm>
-                  <AdditionalText>- or -</AdditionalText>
-                  <ScanText onClick={nextStep}>Click here to scan QR Code</ScanText>
+              <RegisterContainer isQRPage={isQRPage}>
+                  <HeaderText>{ isQRPage ? "Please scan this QR with your digital wallet" : "Register business wallet" } </HeaderText>
+                  {isQRPage ?
+                    <>
+                      <QRBox>
+                        <StyledQR value={QRCodeURL} size={300} renderAs="svg" />
+                      </QRBox>
+                      <InfoContainer>
+                        <InfoIcon />
+                        <>
+                          <InfoText>We recommend using
+                          <InlineClickable href="https://apps.apple.com/us/app/trinsic-wallet/id1475160728">Trinsic</InlineClickable> 
+                          but you can use any digital wallet you currently use.</InfoText>
+                        </>
+                      </InfoContainer>
+                      <InfoText>- or -</InfoText>
+                      <ScanText onClick={toggleQRPage}>Enter wallet's public DID</ScanText>
+                    </>
+                    :
+                    <>
+                      <CredentialText>If your organization holds verifiable credentials in a business wallet, you can register it with us to submit verified data.</CredentialText>
+                      <RegisterForm onSubmit={handleSubmit}>
+                        <InputBox>
+                          <RegisterInput
+                            type="credentials"
+                            name="credentials"
+                            id="credentials"
+                            ref={walletCredentials}
+                            placeholder="Your organization’s DID. i.e: did:sov:ewoiruwefh"
+                            required
+                          />
+                        </InputBox>
+                        <SubmitContainer>
+                        { 
+                          activeStep === 0 ? 
+                            <RegisterSubmit type="submit">Send invitation</RegisterSubmit>
+                            :
+                            <SentContainer>
+                              <CheckIcon/>
+                              <InvitationText>Invitation sent</InvitationText>
+                            </SentContainer>
+                        }
+                        <Clickable onClick={copyLink}>
+                          <ClickContainer>
+                            <CopyIcon />
+                            <CopyText>Copy link</CopyText>
+                          </ClickContainer>
+                        </Clickable>
+                        <Clickable onClick={toggleQRPage}>
+                          <ClickContainer>
+                            <QrIcon />
+                            <CopyText>Scan QR Code</CopyText>
+                          </ClickContainer>
+                        </Clickable>
+                        </SubmitContainer>
+                      </RegisterForm>
+                    </>
+                  }
+                  
+                  
               </RegisterContainer>
           </FormContainer>
           <ThemeProvider theme={theme}>
@@ -212,7 +295,9 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
                             </StepInfoText>
                           </StepLabel>
                           <StepContent>
+                            <InfoText>
                               {step.description}
+                            </InfoText>
                           </StepContent>
                       </Step>
                   ))}

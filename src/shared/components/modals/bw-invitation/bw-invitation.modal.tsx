@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import Button from '../../form-elements/button/button';
 import { useTheme } from 'styled-components'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -6,8 +6,9 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Modal from '../modal/modal';
 // import CredentialPic from '../../../img/modals/credential-qrcode.png';
 import QR from 'qrcode.react';
-import './login-credential.modal.scss';
+import './bw-invitation.modal.scss';
 import InputText from '../../form-elements/input-text/input.text';
+import { IUser } from '../../../../api/models/User/IUser';
 import {
     useNotification
   } from '../../../../UI/NotificationProvider';
@@ -15,18 +16,27 @@ import {
 interface Props {
     onModalShow: (modalType: string) => void,
     hideModal: () => void,
+    user: IUser,
 }  
 
-const LoginCredentialModal: FunctionComponent<Props> = (props) => {
+const BWInvitationModal: FunctionComponent<Props> = (props) => {
     const [requestedInvitation, setRequestedInvitation] = useState(false)
     const [userEmail, setUserEmail] = useState<string>('');
 
-    if (!props.QRCodeURL && !requestedInvitation) {
-      props.sendRequest('INVITATIONS', 'CREATE_SINGLE_USE', {})
-      setRequestedInvitation(true)
-    }
     const setNotification = useNotification()
-    const { onModalShow, hideModal} = props;
+    const { onModalShow, hideModal, user} = props;
+    
+
+    useEffect(() => {
+        if (!requestedInvitation) {
+            console.log("User", user)
+            console.log("Requesting wallet invitation")
+            props.sendRequest('INVITATIONS', 'CREATE_WALLET_INVITATION', {userID: user.id})
+            setRequestedInvitation(true)
+          }
+      }, [requestedInvitation])
+
+
 
     return (
         <form action="/" className="login-credential-form">
@@ -70,46 +80,17 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
                             </div>
                     </a>
                 </div>
-
-                <div className="modal__row modal__row_content-center login-credential-form__qr-content login-credential-form__subheader login-credential-form__second-subheader">
-                        or you can use the Demo Access if you don't have a verified credential yet.
-                </div>
-                
-                
                 <div className="modal__row modal__row_btn">
                     <Button color="white"
-                            click={() => onModalShow('demo-info')}
-                            text="Use Demo Access"
+                            click={() => onModalShow('send-ghg-proof')}
+                            text="Done"
                             type="button"
                             />
                 </div>
-                {/* <div className="modal__row modal__row_content-center">
-                    <a
-                        onClick={() => onModalShow('verify-information')}
-                        className="modal__link modal__link_black">Skip for later
-                    </a>
-                </div> */}
             </div>
         </form>
     );
 }
 
 
-export default LoginCredentialModal;
-/*
-                <div className="modal__row  modal__options login-credential-form__options">
-                    <div>
-                        <span>No credential?</span>
-                        <a
-                                onClick={onRegistrationShow}
-                                className="modal__link modal__link_blue">Register
-                        </a>
-                    </div>
-                    <div>
-                        <a
-                            onClick={onLoginShow}
-                            className="modal__link modal__link_black">Log In with password
-                        </a>
-                    </div>
-                </div>
-*/
+export default BWInvitationModal;

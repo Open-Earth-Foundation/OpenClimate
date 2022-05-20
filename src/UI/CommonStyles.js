@@ -34,7 +34,7 @@ export const InfoText = styled.div`
 `
 
 export const SuccessText = styled.div`
-  font-size: 13px;
+  font-size: 16px;
   font-family: Lato;
 `
 
@@ -43,4 +43,13 @@ export const ItalicText = styled.div`
 `
 
 export const PrimaryColor = styled.div`
-  color: ${(props) => props.theme.primary_color}`
+  color: ${(props) => props.theme.primary_color}
+`
+
+export const InlineClickable = styled.a`
+  padding: 0 4px;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: Lato;
+  color: ${(props) => props.theme.primary_color};
+`
