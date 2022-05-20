@@ -59,7 +59,7 @@ services:
       - JWT_SECRET=ZBVgToVv72zffZE2ksUYNAhYmNCXwgKp
       - SESSION_SECRET=aZj6iXNkrtmLrAT0HsTrp7dRR7r4U7P0
       # - SCHEMA_CLIMATE_ORGANIZATION=XSYhjGtcha6oCAzaVg34df:2:Climate_Organization:1.1
-      - SCHEMA_VERIFIED_EMPLOYEE=7bT765Cj813b4WrEpjHMjG:2:Verified_Employee:1.0
+      - SCHEMA_VERIFIED_EMPLOYEE=RSaZ64jxn2NbpH8MgBdy4C:2:Verified_Employee:1.0
       - POSGRES_ADDRESS=hub-db
       - POSGRES_DB=development
       - POSTGRES_USER=development
@@ -70,7 +70,7 @@ services:
     expose:
       - "3100"
     command: >
-       sh -c "apk add --update python3 cmake bash && rm -rf /var/cache/apk/* && npm install -g nodemon ts-node && npm install && /home/node/wait-for-it/wait-for-it.sh hub-db:5432 && npm run migrate_up_all && npm run dev"
+       sh -c "apk add --update python3 g++ cmake make bash && rm -rf /var/cache/apk/* && npm install -g nodemon ts-node && npm install && /home/node/wait-for-it/wait-for-it.sh hub-db:5432 && npm run migrate_up_all && npm run dev"
     networks:
       - oc-network
     depends_on:
@@ -117,8 +117,6 @@ services:
       PORT: 3005
       ADMIN_PORT: 8150
       WEBHOOK_ADDRESS: http://hub-api:3100/api/controller-webhook
-      # ACAPY_ENDPOINT: http://agent-hub:3005
-      # ACAPY_ENDPOINT_WS: ws://2aa2-92-124-161-161.ngrok.io
     volumes:
       - ./aries-acapy-plugin-toolbox-startup:/home/indy/aries-acapy-plugin-toolbox-startup:consistent
     command: >
@@ -238,7 +236,6 @@ services:
         --wallet-storage-creds '{\"account\":\"${POSTGRESQL_USER}\",\"password\":\"${POSTGRESQL_PASSWORD}\",\"admin_account\":\"${POSTGRESQL_USER}\",\"admin_password\":\"${POSTGRESQL_PASSWORD}\"}' \
         --wallet-name traction-wallet  \
         --admin '0.0.0.0' ${ACAPY_ADMIN_PORT} \
-        --emit-new-didcomm-prefix \
         --label '${AGENT_NAME}' \
         --jwt-secret '${JWT_SECRET}' \
         ${ACAPY_ADMIN_CONFIG} \
@@ -251,6 +248,12 @@ services:
         --auto-request-endorsement \
         --auto-write-transactions \
         --auto-create-revocation-transactions \
+        --public-invites \
+        --debug-connections \
+        --debug-credentials \
+        --debug-presentations \
+        --enable-undelivered-queue \
+        --log-level debug \
         ",
       ]
     volumes:
