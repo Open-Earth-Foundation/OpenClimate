@@ -473,7 +473,6 @@ const App: FunctionComponent<Props> = (props) => {
         sendMessage(context, type, data)
       }, 100)
     } else {
-      console.log("Sending ws request")
       controllerSocket.current.send(JSON.stringify({ context, type, data }))
     }
   }
