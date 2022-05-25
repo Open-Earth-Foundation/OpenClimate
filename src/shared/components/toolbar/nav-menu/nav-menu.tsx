@@ -8,9 +8,11 @@ interface Props {
 }
 
 const NavMenu: FunctionComponent<Props> = (props) => {
-
+    var userAdmin = false
     const {currentUser} = props;
-    const userAdmin = (currentUser.roles.indexOf("admin") > -1);
+    if (currentUser && currentUser.roles){
+        userAdmin = (currentUser.roles.indexOf("admin") > -1);
+    }
     console.log('currentUser', currentUser, userAdmin)
     const showAccount = currentUser != null;
 
