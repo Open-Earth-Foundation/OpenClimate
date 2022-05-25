@@ -10,16 +10,24 @@ interface Props {
 const NavMenu: FunctionComponent<Props> = (props) => {
 
     const {currentUser} = props;
-
+    const userAdmin = (currentUser.roles.indexOf("admin") > -1);
+    console.log('currentUser', currentUser, userAdmin)
     const showAccount = currentUser != null;
 
     return (
         <nav className="toolbar-menu">
             <ul className="toolbar-menu__list">
-                {showAccount ?
+                {showAccount && userAdmin?
                 <li className="toolbar-menu__item">
                     <NavLink to="/account" className="toolbar-menu__link" activeClassName="toolbar-menu__link_active">Account</NavLink>
+                    <NavLink to="/admin" className="toolbar-menu__link" activeClassName="toolbar-menu__link_active">Admin</NavLink>
                 </li>
+                : ""
+                }
+                {showAccount && !userAdmin?
+                    <li className="toolbar-menu__item">
+                    <NavLink to="/account" className="toolbar-menu__link" activeClassName="toolbar-menu__link_active">Account</NavLink>
+                    </li>
                 : ""
                 }
                 <li className="toolbar-menu__item">
