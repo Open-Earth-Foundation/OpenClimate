@@ -16,15 +16,16 @@ const NavMenu: FunctionComponent<Props> = (props) => {
     return (
         <nav className="toolbar-menu">
             <ul className="toolbar-menu__list">
+                <li className="toolbar-menu__item">
+                    <NavLink exact={true} to="/" className="toolbar-menu__link" activeClassName="toolbar-menu__link_active">Explore</NavLink>
+                </li>
                 {showAccount ?
                 <li className="toolbar-menu__item">
                     <NavLink to="/account" className="toolbar-menu__link" activeClassName="toolbar-menu__link_active">Account</NavLink>
                 </li>
                 : ""
                 }
-                <li className="toolbar-menu__item">
-                    <NavLink exact={true} to="/" className="toolbar-menu__link" activeClassName="toolbar-menu__link_active">Explore</NavLink>
-                </li>
+                
             </ul>
         </nav>
     );

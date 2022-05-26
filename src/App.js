@@ -64,6 +64,8 @@ import Users from './UI/Users'
 import SessionProvider from './UI/SessionProvider'
 
 import './App.css'
+import ExplorePage from './components/explore/explore.page'
+import TransfersPage from './components/transfers/transfers.page'
 
 const Frame = styled.div`
   display: flex;
@@ -224,7 +226,7 @@ const App: FunctionComponent<Props> = (props) => {
             setLoggedInUserState(userCookie)
             setLoggedInUserId(userCookie.id)
             setLoggedInEmail(userCookie.email)
-            setLoggedInRoles(userCookie.roles)
+            setLoggedInRoles(userCookie.roles) 
           } else setAppIsLoaded(true)
         } else setAppIsLoaded(true)
       }
@@ -1026,6 +1028,12 @@ const App: FunctionComponent<Props> = (props) => {
               />
               <Route path="/" exact>
                 <ReviewPage />
+              </Route>
+              <Route path="/explore" exact>
+                <ExplorePage />
+              </Route>
+              <Route path="/transfers" exact>
+                <TransfersPage />
               </Route>
               <Redirect to={"/"}/>
             </Switch>

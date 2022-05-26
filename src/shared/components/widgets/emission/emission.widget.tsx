@@ -66,25 +66,24 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                 <div className="widget__emission-data red">
                                     <img src={ArrowUpRed} alt="up" className="widget__emission-arrow"/>
                                     {aggregatedEmission?.facility_ghg_total_gross_co2e?.toFixed(2)}
+                                    {/* 102365.00 */}
                                 </div>
                                 <div className="widget__emission-data-description">
                                     Total GHG Emissions Mmt CO2e/year
                                 </div>
-                                        </div>
-                                        <div className="widget__content-column widget__content-column_center">-</div>
-                                        <div className="widget__content-column">
-                                            <div className="widget__emission-data green">
-                                                <img src={ArrowDownGreen} alt="down" className="widget__emission-arrow" />
-                                                {aggregatedEmission?.facility_ghg_total_sinks_co2e?.toFixed(2)}
-                                            </div>
-                                            <div className="widget__emission-data-description">Land Use Sinks
-                        Mt CO2e/year</div>
-                                        </div>
-                                        <div className="widget__content-column widget__content-column_center">=</div>
-                                        <div className="widget__content-column red">
-                                            <div className="widget__emission-data">{aggregatedEmission?.facility_ghg_total_net_co2e?.toFixed(2)}</div>
-                                            <div className="widget__emission-data-description">Net GHG Emissions
-                        Mt CO2e/year</div>
+                            </div>
+                            <div className="widget__content-column widget__content-column_center">-</div>
+                            <div className="widget__content-column">
+                                <div className="widget__emission-data green">
+                                    <img src={ArrowDownGreen} alt="down" className="widget__emission-arrow" />
+                                    {aggregatedEmission?.facility_ghg_total_sinks_co2e?.toFixed(2)}
+                                </div>
+                                <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
+                            </div>
+                            <div className="widget__content-column widget__content-column_center">=</div>
+                            <div className="widget__content-column red">
+                                <div className="widget__emission-data">{aggregatedEmission?.facility_ghg_total_net_co2e?.toFixed(2)}</div>
+                                <div className="widget__emission-data-description">Net GHG Emissions Mt CO2e/year</div>
                             </div>
                         </div>
                     </div>

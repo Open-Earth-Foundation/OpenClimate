@@ -44,24 +44,27 @@ const AccountDashboard: FunctionComponent<IProps> = (props) => {
                 sites={sites}
                 detailsLink="account/sites"
             />
-            <EmissionWidget
-                isVisible={true}
-                title="Climate actions"
-                height={284}
-                detailsLink="account/climate-actions"
-                aggregatedEmission={summaryEmissions}
-            />
-            <ClimateAccountabilityWidget
-                height={490}
-                aggregatedEmission={summaryEmissions}
-            />
-            <PledgesWidget
-                pledges={widgetPledges} 
-                detailsLink="account/pledges"
-                showModal={showModal}
-                showAddBtn={!user.demo}
-                voluntary={true}
-            />
+            <div className='account-cards'>
+                <EmissionWidget
+                    isVisible={true}
+                    title="Climate actions"
+                    height={300}
+                    // width={550}
+                    detailsLink="account/climate-actions"
+                    aggregatedEmission={summaryEmissions}
+                />
+                <ClimateAccountabilityWidget
+                    height={300}
+                    aggregatedEmission={summaryEmissions}
+                />
+                <PledgesWidget
+                    pledges={widgetPledges} 
+                    detailsLink="account/pledges"
+                    showModal={showModal}
+                    showAddBtn={!user.demo}
+                    voluntary={true}
+                />
+            </div>
         </div>
     );
 }

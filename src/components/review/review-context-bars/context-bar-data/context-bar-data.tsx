@@ -63,7 +63,9 @@ const ContextBarData: FunctionComponent<Props> = (props) => {
 
     return (
         <div className={`context-bar__data`}>
-            {displayHtml}
+            <div className='context-bar__data_grid'>
+                {displayHtml}
+            </div>
             <div className="context-bar__data_link">
                 <a href="#" onClick={linkClickHandler}>{linkText}</a>
             </div>

@@ -62,6 +62,7 @@ function Users(props) {
   const loggedInUserState = props.loggedInUserState
 
   const users = props.users
+  console.log(users)
   const roles = props.roles
   const organizations = props.organizations
   console.log(organizations)

@@ -1,3 +1,12 @@
+@import './mixins.scss';
+
+@include respond(mobile){
+    .content-wrapper {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
+
 :root {
     --primary-color: #007568;
     --white-color: #FFFFFF;
@@ -80,11 +89,11 @@ button {
 
 .input-wrapper {
     cursor: pointer;
-    background-color: var(--grey1_35-color);
+    border: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
     padding: 12px 16px;
-    color: var(--grey3-color);
+    color: #333;
     line-height: 28px;
     font-size: 14px;
 }
