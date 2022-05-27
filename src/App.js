@@ -171,6 +171,8 @@ const App: FunctionComponent<Props> = (props) => {
     setAnonWebsocket(true)
 
     controllerAnonSocket.current.onclose = (event) => {
+      console.log("controllerAnonSocket closed; event follows");
+      console.log(event);
       // Auto Reopen websocket connection
       // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
 
@@ -180,6 +182,8 @@ const App: FunctionComponent<Props> = (props) => {
 
     // Error Handler
     controllerAnonSocket.current.onerror = (event) => {
+      console.log("controllerAnonSocket error; event follows");
+      console.log(event);
       setNotification('Client Error - Websockets', 'error')
     }
 
@@ -322,6 +326,8 @@ const App: FunctionComponent<Props> = (props) => {
       }
 
       controllerSocket.current.onclose = (event) => {
+        console.log("controllerSocket closed; event follows");
+        console.log(event);
         // Auto Reopen websocket connection
         // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
 
@@ -331,6 +337,8 @@ const App: FunctionComponent<Props> = (props) => {
 
       // Error Handler
       controllerSocket.current.onerror = (event) => {
+        console.log("controllerSocket error; event follows");
+        console.log(event);
         setNotification('Client Error - Websockets', 'error')
       }
 
