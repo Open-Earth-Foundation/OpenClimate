@@ -356,7 +356,6 @@ const App: FunctionComponent<Props> = (props) => {
         controllerSocketKeepaliveInterval = null
         // Auto Reopen websocket connection
         // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
-        setLoggedIn(false)
         setWebsocket(false)
       }
 
@@ -379,6 +378,9 @@ const App: FunctionComponent<Props> = (props) => {
       }
       // Let everyone know we have a websocket now
       setWebsocket(true)
+    } else if (!loggedIn && websocket) {
+      // State will change when this is done
+      controllerSocket.current.close()
     }
   }, [loggedIn, session, websocket])
 
