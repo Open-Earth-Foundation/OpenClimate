@@ -248,7 +248,7 @@ const App: FunctionComponent<Props> = (props) => {
     controllerAnonSocket.current.onopen = () => {
       controllerAnonSocketKeepaliveInterval = setInterval(() => {
         console.log("controllerAnonSocket keepalive")
-        if (anonwebsocket && controllerAnonSocket && controllerAnonSocket.current) {
+        if (anonwebsocket && controllerAnonSocket && controllerAnonSocket.current && controllerAnonSocket.current.readyState === WebSocket.OPEN) {
           controllerAnonSocket.current.send("\n")
         }
       }, KEEPALIVE_INTERVAL)
@@ -298,7 +298,7 @@ const App: FunctionComponent<Props> = (props) => {
       controllerSocket.current.onopen = () => {
         controllerSocketKeepaliveInterval = setInterval(() => {
           console.log("controllerSocket keepalive")
-          if (websocket && controllerSocket && controllerSocket.current) {
+          if (websocket && controllerSocket && controllerSocket.current && controllerSocket.current.readyState === WebSocket.OPEN) {
             controllerSocket.current.send("\n")
           }
         }, KEEPALIVE_INTERVAL)
