@@ -229,7 +229,7 @@ const App: FunctionComponent<Props> = (props) => {
 
   // How often to send a tickler to the WebSockets server to keep the connection open
 
-  const KEEPALIVE_INTERVAL = 60000
+  const KEEPALIVE_INTERVAL = 30000
 
   // (JamesKEbert) Note: We may want to abstract the websockets out into a high-order component for better abstraction, especially potentially with authentication/authorization
 
