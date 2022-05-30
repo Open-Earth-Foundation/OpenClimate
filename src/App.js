@@ -226,6 +226,11 @@ const App: FunctionComponent<Props> = (props) => {
         }
     )
   } 
+
+  // How often to send a tickler to the WebSockets server to keep the connection open
+
+  const KEEPALIVE_INTERVAL = 60000
+
   // (JamesKEbert) Note: We may want to abstract the websockets out into a high-order component for better abstraction, especially potentially with authentication/authorization
 
   // Perform First Time Setup. Connect to Controller Server via Websockets
@@ -238,9 +243,22 @@ const App: FunctionComponent<Props> = (props) => {
     controllerAnonSocket.current = new WebSocket(url.href)
     setAnonWebsocket(true)
 
+    let controllerAnonSocketKeepaliveInterval = null
+
+    controllerAnonSocket.current.onopen = () => {
+      controllerAnonSocketKeepaliveInterval = setInterval(() => {
+        console.log("controllerAnonSocket keepalive")
+        if (anonwebsocket && controllerAnonSocket && controllerAnonSocket.current) {
+          controllerAnonSocket.current.send("\n")
+        }
+      }, KEEPALIVE_INTERVAL)
+    }
+
     controllerAnonSocket.current.onclose = (event) => {
       console.log("controllerAnonSocket closed; event follows");
       console.log(event);
+      clearInterval(controllerAnonSocketKeepaliveInterval)
+      controllerAnonSocketKeepaliveInterval = null
       // Auto Reopen websocket connection
       // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
 
@@ -382,7 +400,14 @@ const App: FunctionComponent<Props> = (props) => {
     // Run web sockets only if authenticated
     if (session && loggedIn && websocket) {
       console.log("Set websocket")
+      let controllerSocketKeepaliveInterval = null
       controllerSocket.current.onopen = () => {
+        controllerSocketKeepaliveInterval = setInterval(() => {
+          console.log("controllerSocket keepalive")
+          if (websocket && controllerSocket && controllerSocket.current) {
+            controllerSocket.current.send("\n")
+          }
+        }, KEEPALIVE_INTERVAL)
         // Resetting state to false to allow spinner while waiting for messages
         setAppIsLoaded(false) // This doesn't work as expected. See function removeLoadingProcess
 
@@ -433,9 +458,10 @@ const App: FunctionComponent<Props> = (props) => {
       controllerSocket.current.onclose = (event) => {
         console.log("controllerSocket closed; event follows");
         console.log(event);
+        clearInterval(controllerSocketKeepaliveInterval)
+        controllerSocketKeepaliveInterval = null
         // Auto Reopen websocket connection
         // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
-
         setLoggedIn(false)
         setWebsocket(!websocket)
       }
