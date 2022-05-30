@@ -233,57 +233,59 @@ const App: FunctionComponent<Props> = (props) => {
 
   // (JamesKEbert) Note: We may want to abstract the websockets out into a high-order component for better abstraction, especially potentially with authentication/authorization
 
-  // Perform First Time Setup. Connect to Controller Server via Websockets
+  // Perform First Time Setup and reconnect automatically. Connect to Controller Server via Websockets
 
-  // Always configure the anon websocket
-  if (!anonwebsocket) {
-    console.log("Controller address ", process.env.REACT_APP_CONTROLLER)
-    let url = new URL('/api/anon/ws', process.env.REACT_APP_CONTROLLER)
-    url.protocol = url.protocol.replace('http', 'ws')
-    controllerAnonSocket.current = new WebSocket(url.href)
-    setAnonWebsocket(true)
+  useEffect(() => {
 
-    let controllerAnonSocketKeepaliveInterval = null
+    if (!anonwebsocket) {
+      console.log("Controller address ", process.env.REACT_APP_CONTROLLER)
+      let url = new URL('/api/anon/ws', process.env.REACT_APP_CONTROLLER)
+      url.protocol = url.protocol.replace('http', 'ws')
+      controllerAnonSocket.current = new WebSocket(url.href)
 
-    controllerAnonSocket.current.onopen = () => {
-      controllerAnonSocketKeepaliveInterval = setInterval(() => {
-        console.log("controllerAnonSocket keepalive")
-        if (anonwebsocket && controllerAnonSocket && controllerAnonSocket.current && controllerAnonSocket.current.readyState === WebSocket.OPEN) {
-          controllerAnonSocket.current.send("\n")
-        }
-      }, KEEPALIVE_INTERVAL)
+      let controllerAnonSocketKeepaliveInterval = null
+
+      controllerAnonSocket.current.onopen = () => {
+        controllerAnonSocketKeepaliveInterval = setInterval(() => {
+          console.log("controllerAnonSocket keepalive")
+          if (anonwebsocket && controllerAnonSocket && controllerAnonSocket.current && controllerAnonSocket.current.readyState === WebSocket.OPEN) {
+            controllerAnonSocket.current.send("\n")
+          }
+        }, KEEPALIVE_INTERVAL)
+      }
+
+      controllerAnonSocket.current.onclose = (event) => {
+        console.log("controllerAnonSocket closed; event follows");
+        console.log(event);
+        clearInterval(controllerAnonSocketKeepaliveInterval)
+        controllerAnonSocketKeepaliveInterval = null
+        // Auto Reopen websocket connection
+        // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
+
+        setAnonWebsocket(false)
+      }
+
+      // Error Handler
+      controllerAnonSocket.current.onerror = (event) => {
+        console.log("controllerAnonSocket error; event follows");
+        console.log(event);
+        setNotification('Client Error - Websockets', 'error')
+      }
+
+      // Receive new message from Controller Server
+      controllerAnonSocket.current.onmessage = (message) => {
+        const parsedMessage = JSON.parse(message.data)
+
+        messageHandler(
+          parsedMessage.context,
+          parsedMessage.type,
+          parsedMessage.data
+        )
+      }
+
+      setAnonWebsocket(true)
     }
-
-    controllerAnonSocket.current.onclose = (event) => {
-      console.log("controllerAnonSocket closed; event follows");
-      console.log(event);
-      clearInterval(controllerAnonSocketKeepaliveInterval)
-      controllerAnonSocketKeepaliveInterval = null
-      // Auto Reopen websocket connection
-      // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
-
-      setLoggedIn(false)
-      setAnonWebsocket(!anonwebsocket)
-    }
-
-    // Error Handler
-    controllerAnonSocket.current.onerror = (event) => {
-      console.log("controllerAnonSocket error; event follows");
-      console.log(event);
-      setNotification('Client Error - Websockets', 'error')
-    }
-
-    // Receive new message from Controller Server
-    controllerAnonSocket.current.onmessage = (message) => {
-      const parsedMessage = JSON.parse(message.data)
-
-      messageHandler(
-        parsedMessage.context,
-        parsedMessage.type,
-        parsedMessage.data
-      )
-    }
-  }
+  }, [anonwebsocket])
 
   // Setting up websocket and controllerSocket
   useEffect(() => {
