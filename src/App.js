@@ -287,11 +287,97 @@ const App: FunctionComponent<Props> = (props) => {
 
   // Setting up websocket and controllerSocket
   useEffect(() => {
-    if (session && loggedIn && websocket) {
-      console.log("Set websocket")
+    if (session && loggedIn && !websocket) {
+      console.log("Connecting controllerSocket")
       let url = new URL('/api/admin/ws', process.env.REACT_APP_CONTROLLER)
       url.protocol = url.protocol.replace('http', 'ws')
       controllerSocket.current = new WebSocket(url.href)
+
+      let controllerSocketKeepaliveInterval = null
+
+      controllerSocket.current.onopen = () => {
+        controllerSocketKeepaliveInterval = setInterval(() => {
+          console.log("controllerSocket keepalive")
+          if (websocket && controllerSocket && controllerSocket.current) {
+            controllerSocket.current.send("\n")
+          }
+        }, KEEPALIVE_INTERVAL)
+        // Resetting state to false to allow spinner while waiting for messages
+        setAppIsLoaded(false) // This doesn't work as expected. See function removeLoadingProcess
+
+        // Wait for the roles for come back to start sending messages
+        console.log('Ready to send messages')
+
+        sendMessage('SETTINGS', 'GET_THEME', {})
+        addLoadingProcess('THEME')
+        sendMessage('SETTINGS', 'GET_SCHEMAS', {})
+        addLoadingProcess('SCHEMAS')
+
+        if (
+          check(rules, loggedInUserState, 'contacts:read', 'demographics:read')
+        ) {
+          sendMessage('CONTACTS', 'GET_ALL', {
+            additional_tables: ['Demographic', 'Passport'],
+          })
+          addLoadingProcess('CONTACTS')
+        }
+
+        if (check(rules, loggedInUserState, 'credentials:read')) {
+          sendMessage('CREDENTIALS', 'GET_ALL', {})
+          addLoadingProcess('CREDENTIALS')
+        }
+
+        if (check(rules, loggedInUserState, 'roles:read')) {
+          sendMessage('ROLES', 'GET_ALL', {})
+          addLoadingProcess('ROLES')
+        }
+
+        sendMessage('SETTINGS', 'GET_ORGANIZATION_NAME', {})
+        addLoadingProcess('ORGANIZATION')
+
+        sendMessage('IMAGES', 'GET_ALL', {})
+        addLoadingProcess('LOGO')
+
+        if (check(rules, loggedInUserState, 'users:read')) {
+          sendMessage('USERS', 'GET_ALL', {})
+          addLoadingProcess('USERS')
+        }
+
+        if (check(rules, loggedInUserState, 'organizations:read')) {
+          sendMessage('ORGANIZATIONS', 'GET_ALL', {})
+          addLoadingProcess('ORGANIZATIONS')
+        }
+      }
+
+      controllerSocket.current.onclose = (event) => {
+        console.log("controllerSocket closed; event follows");
+        console.log(event);
+        clearInterval(controllerSocketKeepaliveInterval)
+        controllerSocketKeepaliveInterval = null
+        // Auto Reopen websocket connection
+        // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
+        setLoggedIn(false)
+        setWebsocket(false)
+      }
+
+      // Error Handler
+      controllerSocket.current.onerror = (event) => {
+        console.log("controllerSocket error; event follows");
+        console.log(event);
+        setNotification('Client Error - Websockets', 'error')
+      }
+
+      // Receive new message from Controller Server
+      controllerSocket.current.onmessage = (message) => {
+        const parsedMessage = JSON.parse(message.data)
+
+        messageHandler(
+          parsedMessage.context,
+          parsedMessage.type,
+          parsedMessage.data
+        )
+      }
+      // Let everyone know we have a websocket now
       setWebsocket(true)
     }
   }, [loggedIn, session, websocket])
@@ -309,7 +395,6 @@ const App: FunctionComponent<Props> = (props) => {
 
         if (cookies.get('sessionId')) {
           setLoggedIn(true)
-          setWebsocket(true)
 
           if (cookies.get('user')) {
             const userCookie = cookies.get('user')
@@ -393,98 +478,6 @@ const App: FunctionComponent<Props> = (props) => {
       }
     })
   }
-
-  // Define Websocket event listeners
-  useEffect(() => {
-    // Perform operation on websocket open
-    // Run web sockets only if authenticated
-    if (session && loggedIn && websocket) {
-      console.log("Set websocket")
-      let controllerSocketKeepaliveInterval = null
-      controllerSocket.current.onopen = () => {
-        controllerSocketKeepaliveInterval = setInterval(() => {
-          console.log("controllerSocket keepalive")
-          if (websocket && controllerSocket && controllerSocket.current) {
-            controllerSocket.current.send("\n")
-          }
-        }, KEEPALIVE_INTERVAL)
-        // Resetting state to false to allow spinner while waiting for messages
-        setAppIsLoaded(false) // This doesn't work as expected. See function removeLoadingProcess
-
-        // Wait for the roles for come back to start sending messages
-        console.log('Ready to send messages')
-
-        sendMessage('SETTINGS', 'GET_THEME', {})
-        addLoadingProcess('THEME')
-        sendMessage('SETTINGS', 'GET_SCHEMAS', {})
-        addLoadingProcess('SCHEMAS')
-
-        if (
-          check(rules, loggedInUserState, 'contacts:read', 'demographics:read')
-        ) {
-          sendMessage('CONTACTS', 'GET_ALL', {
-            additional_tables: ['Demographic', 'Passport'],
-          })
-          addLoadingProcess('CONTACTS')
-        }
-
-        if (check(rules, loggedInUserState, 'credentials:read')) {
-          sendMessage('CREDENTIALS', 'GET_ALL', {})
-          addLoadingProcess('CREDENTIALS')
-        }
-
-        if (check(rules, loggedInUserState, 'roles:read')) {
-          sendMessage('ROLES', 'GET_ALL', {})
-          addLoadingProcess('ROLES')
-        }
-
-        sendMessage('SETTINGS', 'GET_ORGANIZATION_NAME', {})
-        addLoadingProcess('ORGANIZATION')
-
-        sendMessage('IMAGES', 'GET_ALL', {})
-        addLoadingProcess('LOGO')
-
-        if (check(rules, loggedInUserState, 'users:read')) {
-          sendMessage('USERS', 'GET_ALL', {})
-          addLoadingProcess('USERS')
-        }
-
-        if (check(rules, loggedInUserState, 'organizations:read')) {
-          sendMessage('ORGANIZATIONS', 'GET_ALL', {})
-          addLoadingProcess('ORGANIZATIONS')
-        }
-      }
-
-      controllerSocket.current.onclose = (event) => {
-        console.log("controllerSocket closed; event follows");
-        console.log(event);
-        clearInterval(controllerSocketKeepaliveInterval)
-        controllerSocketKeepaliveInterval = null
-        // Auto Reopen websocket connection
-        // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
-        setLoggedIn(false)
-        setWebsocket(!websocket)
-      }
-
-      // Error Handler
-      controllerSocket.current.onerror = (event) => {
-        console.log("controllerSocket error; event follows");
-        console.log(event);
-        setNotification('Client Error - Websockets', 'error')
-      }
-
-      // Receive new message from Controller Server
-      controllerSocket.current.onmessage = (message) => {
-        const parsedMessage = JSON.parse(message.data)
-
-        messageHandler(
-          parsedMessage.context,
-          parsedMessage.type,
-          parsedMessage.data
-        )
-      }
-    }
-  }, [session, loggedIn, users, user, websocket, image, loggedInUserState]) // (Simon) We have to listen to all 7 to for the app to function properly
 
   // Send a message to the Controller server
   function sendAnonMessage(context, type, data = {}) {
