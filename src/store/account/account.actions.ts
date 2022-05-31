@@ -2,11 +2,13 @@ import { Dispatch } from 'redux'
 import IAggregatedEmission from '../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
 import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import ISite from '../../api/models/DTO/Site/ISite';
+import IWallet from '../../api/models/DTO/Wallet/IWallet';
 import ITransfer from '../../api/models/DTO/Transfer/ITransfer';
 import { aggregatedEmissionService } from '../../shared/services/aggregated-emission.service';
 import { climateActionService } from '../../shared/services/climate-action';
 import { pledgeService } from '../../shared/services/pledge.service'
 import { siteService } from '../../shared/services/site.service';
+import { walletService } from '../../shared/services/wallet.service';
 import { transferService } from '../../shared/services/transfer.service';
 import * as accountActionTypes from './account.action-types';
 
@@ -60,6 +62,15 @@ export const loadSites = (sites: Array<ISite>) => {
         type: accountActionTypes.LOAD_SITES,
         payload: {
             sites
+        }
+    }
+}
+
+export const loadWallets = (wallets: Array<IWallet>) => {
+    return {
+        type: accountActionTypes.LOAD_WALLETS,
+        payload: {
+            wallets
         }
     }
 }
@@ -143,6 +154,7 @@ export const doLoadClimateActions = (orgId: string) => {
     return (dispatch: Dispatch) => {
 
         climateActionService.allClimateAction(orgId).then(climateActions => {
+            console.log("Climate actions", climateActions)
             dispatch(loadClimateActions(climateActions));
         });
 
@@ -159,4 +171,12 @@ export const doLoadAggregatedEmissions = (orgId: string) => {
     }
 }
 
+export const doLoadWallets = (orgId: string) => {
+    return (dispatch: Dispatch) => {
+        walletService.allWalletsByOrg(orgId).then(wallets => {
+            dispatch(loadWallets(wallets));
+        });
+
+    }
+}
 

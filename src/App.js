@@ -32,14 +32,16 @@ import { DispatchThunk, RootState } from './store/root-state';
 import { doLogin, loginSuccess, doLogout, doPaswordlessLoginSucess } from './store/user/user.actions';
 import { connect } from 'react-redux'
 import AccountPage from './components/account/account.page';
+import RegisterWalletPage from './UI/RegisterWallet';
 import VerifyInformationModal from './shared/components/modals/verify-information/verify-information.modal';
 import * as userSelectors from './store/user/user.selectors';
 import * as appSelectors from './store/app/app.selectors';
 import { showModal } from './store/app/app.actions';
 import Modal from './shared/components/modals/modal/modal';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IUser } from './api/models/User/IUser';
+import IWallet from './api/models/DTO/Wallet/IWallet';
 import { userService } from './shared/services/user.service';
 
 import Account from './UI/Account'
@@ -64,9 +66,15 @@ import Users from './UI/Users'
 import SessionProvider from './UI/SessionProvider'
 
 import './App.css'
+<<<<<<< HEAD
 import ExplorePage from './components/explore/explore.page'
 import TransfersPage from './components/transfers/transfers.page'
 import Emissions from './components/explore/emissions.page'
+=======
+import { loadWallets } from './store/account/account.actions'
+import * as accountActions from './store/account/account.actions';
+import * as accountSelectors from './store/account/account.selectors';
+>>>>>>> e633c38d4ef65536a43e005f45f84795f11085c8
 
 const Frame = styled.div`
   display: flex;
@@ -75,7 +83,7 @@ const Frame = styled.div`
 `
 const Main = styled.main`
   flex: 9;
-  padding: 30px;
+  padding: ${(props) => props?.hasBackgroundColor ? '0px' : '30px' ?? '30px' };
 `
 
 // Envision Interface
@@ -85,12 +93,30 @@ interface Props {
   doLoginClick: (email: string, password: string) => void,
   doLoginSuccess: (user: IUser | null) => void,
   showModal: (type: string) => void,
-  doLogout: () => void
+  doLogout: () => void,
+  wallets: Array<IWallet>,
+  walletsLoaded: boolean,
+  loadWallets: (orgId: string) => void,
+}
+
+export interface Theme {
+  primary_color: string,
+  secondary_color: string,
+  neutral_color: string,
+  negative_color: string,
+  warning_color: string,
+  positive_color: string,
+  text_color: string,
+  text_light: string,
+  border: string,
+  drop_shadow: string,
+  background_primary: string,
+  background_secondary: string,
 }
 
 const App: FunctionComponent<Props> = (props) => {
   // Envision props
-  const { currentUser, loading, doLoginClick, doLoginSuccess, showModal, doLogout } = props;
+  const { currentUser, loading, doLoginClick, doLoginSuccess, showModal, doLogout, wallets, walletsLoaded, loadWallets } = props;
 
   const defaultTheme = {
     primary_color: '#5191CE',
@@ -161,153 +187,129 @@ const App: FunctionComponent<Props> = (props) => {
   const [verificationStatus, setVerificationStatus] = useState()
   const [verifiedCredential, setVerifiedCredential] = useState('')
   const [accountCredentialIssued, setAccountCredentialIssued] = useState(false)
+  const [scope1, setScope1] = useState()
+  const [wallet, setWallet] = useState()
+  const toastError = (msg)=> {
+    toast.error(
+      msg,
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        }
+    )
+  }
+  const toastSuccess = (msg)=> {
+    toast.success(
+      msg,
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        }
+    )
+  }
+
+  const toastInfo = (msg)=> {
+    toast.info(
+      msg,
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        }
+    )
+  } 
+
+  // How often to send a tickler to the WebSockets server to keep the connection open
+
+  const KEEPALIVE_INTERVAL = 30000
 
   // (JamesKEbert) Note: We may want to abstract the websockets out into a high-order component for better abstraction, especially potentially with authentication/authorization
 
-  // Perform First Time Setup. Connect to Controller Server via Websockets
+  // Perform First Time Setup and reconnect automatically. Connect to Controller Server via Websockets
 
-  // Always configure the anon websocket
-  if (!anonwebsocket) {
-    let url = new URL('/api/anon/ws', window.location.href)
-    url.protocol = url.protocol.replace('http', 'ws')
-    controllerAnonSocket.current = new WebSocket(url.href)
-    setAnonWebsocket(true)
+  useEffect(() => {
 
-    controllerAnonSocket.current.onclose = (event) => {
-      // Auto Reopen websocket connection
-      // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
+    if (!anonwebsocket) {
+      console.log("Controller address ", process.env.REACT_APP_CONTROLLER)
+      let url = new URL('/api/anon/ws', process.env.REACT_APP_CONTROLLER)
+      url.protocol = url.protocol.replace('http', 'ws')
+      controllerAnonSocket.current = new WebSocket(url.href)
 
-      setLoggedIn(false)
-      setAnonWebsocket(!anonwebsocket)
+      let controllerAnonSocketKeepaliveInterval = null
+
+      controllerAnonSocket.current.onopen = () => {
+        controllerAnonSocketKeepaliveInterval = setInterval(() => {
+          console.log("controllerAnonSocket keepalive")
+          if (anonwebsocket && controllerAnonSocket && controllerAnonSocket.current && controllerAnonSocket.current.readyState === WebSocket.OPEN) {
+            controllerAnonSocket.current.send("\n")
+          }
+        }, KEEPALIVE_INTERVAL)
+      }
+
+      controllerAnonSocket.current.onclose = (event) => {
+        console.log("controllerAnonSocket closed; event follows");
+        console.log(event);
+        clearInterval(controllerAnonSocketKeepaliveInterval)
+        controllerAnonSocketKeepaliveInterval = null
+        // Auto Reopen websocket connection
+        // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
+
+        setAnonWebsocket(false)
+      }
+
+      // Error Handler
+      controllerAnonSocket.current.onerror = (event) => {
+        console.log("controllerAnonSocket error; event follows");
+        console.log(event);
+        setNotification('Client Error - Websockets', 'error')
+      }
+
+      // Receive new message from Controller Server
+      controllerAnonSocket.current.onmessage = (message) => {
+        const parsedMessage = JSON.parse(message.data)
+
+        messageHandler(
+          parsedMessage.context,
+          parsedMessage.type,
+          parsedMessage.data
+        )
+      }
+
+      setAnonWebsocket(true)
     }
-
-    // Error Handler
-    controllerAnonSocket.current.onerror = (event) => {
-      setNotification('Client Error - Websockets', 'error')
-    }
-
-    // Receive new message from Controller Server
-    controllerAnonSocket.current.onmessage = (message) => {
-      const parsedMessage = JSON.parse(message.data)
-
-      messageHandler(
-        parsedMessage.context,
-        parsedMessage.type,
-        parsedMessage.data
-      )
-    }
-  }
+  }, [anonwebsocket])
 
   // Setting up websocket and controllerSocket
   useEffect(() => {
-    if (session && loggedIn && websocket) {
-      let url = new URL('/api/admin/ws', window.location.href)
+    if (session && loggedIn && !websocket) {
+      console.log("Connecting controllerSocket")
+      let url = new URL('/api/admin/ws', process.env.REACT_APP_CONTROLLER)
       url.protocol = url.protocol.replace('http', 'ws')
       controllerSocket.current = new WebSocket(url.href)
-      setWebsocket(true)
-    }
-  }, [loggedIn, session, websocket])
 
-  // TODO: Setting logged-in user and session states on app mount
-  useEffect(() => {
-    Axios({
-      method: 'GET',
-      url: '/api/session',
-    }).then((res) => {
-      if (res.status) {
-        // Check for a session and then set up the session state based on what we found
-        setSession(cookies.get('sessionId'))
+      let controllerSocketKeepaliveInterval = null
 
-        if (cookies.get('sessionId')) {
-          setLoggedIn(true)
-          setWebsocket(true)
-
-          if (cookies.get('user')) {
-            const userCookie = cookies.get('user')
-            setLoggedInUserState(userCookie)
-            setLoggedInUserId(userCookie.id)
-            setLoggedInEmail(userCookie.email)
-            setLoggedInRoles(userCookie.roles) 
-          } else setAppIsLoaded(true)
-        } else setAppIsLoaded(true)
-      }
-    })
-  }, [loggedIn])
-
-  useEffect(() => {
-    if (emailStatus && organizationStatus) {
-      setVerifiedCredential(emailStatus)
-      setVerificationStatus(true)
-      handlePasswordlessLogin(emailStatus)
-    }
-  }, [emailStatus, organizationStatus])
-
-  const handlePasswordlessLogin = (email) => {
-    Axios({
-      method: 'POST',
-      data: {
-        email: email
-      },
-      url: '/api/user/passwordless-log-in',
-    }).then(async (res) => {
-      if (res.data.error) {
-        // setNotification isn't defined everywhere we need to use it, so we can't display the error this way
-        // setNotification(res.data.error, 'error')
-        // We don't want to redirect to the home page in every case, we shouldn't do this, either.
-        // history.push('/')
-      } else {
-        // Setting a session cookie this way doesn't seem to be the best way
-        cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
-
-        // console.log("Setting up the user now")
-        setLoggedIn(true)
-        setUpUser(res.data.id, res.data.email, res.data.roles)
-
-        // Envision login
-        // const envisionUser = await userService.getUserByEmail(res.data.email)
-        doLoginSuccess(res.data)
-        localStorage.setItem('user', JSON.stringify(res.data));
-      }
-    })
-  }
-
-  const handlePasswordLogin = (email, userPassword, setNotification) => {
-    Axios({
-      method: 'POST',
-      data: {
-        email: email,
-        password: userPassword
-      },
-      url: '/api/user/log-in',
-    }).then(async (res) => {
-      console.log("Response ", res)
-      if (res.data.error) {
-        // setNotification isn't defined everywhere we need to use it, so we can't display the error this way
-        setNotification(res.data.error, 'error')
-        // We don't want to redirect to the home page in every case, we shouldn't do this, either.
-        // history.push('/')
-      } else {
-        // Setting a session cookie this way doesn't seem to be the best way
-        cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
-
-        // console.log("Setting up the user now")
-        setLoggedIn(true)
-        setUpUser(res.data.id, res.data.email, res.data.roles)
-
-        // Envision login
-        // const envisionUser = await userService.getUserByEmail(res.data.email)
-        doLoginSuccess(res.data)
-        localStorage.setItem('user', JSON.stringify(res.data));
-      }
-    })
-  }
-
-  // Define Websocket event listeners
-  useEffect(() => {
-    // Perform operation on websocket open
-    // Run web sockets only if authenticated
-    if (session && loggedIn && websocket) {
       controllerSocket.current.onopen = () => {
+        controllerSocketKeepaliveInterval = setInterval(() => {
+          console.log("controllerSocket keepalive")
+          if (websocket && controllerSocket && controllerSocket.current && controllerSocket.current.readyState === WebSocket.OPEN) {
+            controllerSocket.current.send("\n")
+          }
+        }, KEEPALIVE_INTERVAL)
         // Resetting state to false to allow spinner while waiting for messages
         setAppIsLoaded(false) // This doesn't work as expected. See function removeLoadingProcess
 
@@ -356,15 +358,19 @@ const App: FunctionComponent<Props> = (props) => {
       }
 
       controllerSocket.current.onclose = (event) => {
+        console.log("controllerSocket closed; event follows");
+        console.log(event);
+        clearInterval(controllerSocketKeepaliveInterval)
+        controllerSocketKeepaliveInterval = null
         // Auto Reopen websocket connection
         // (JamesKEbert) TODO: Converse on sessions, session timeout and associated UI
-
-        setLoggedIn(false)
-        setWebsocket(!websocket)
+        setWebsocket(false)
       }
 
       // Error Handler
       controllerSocket.current.onerror = (event) => {
+        console.log("controllerSocket error; event follows");
+        console.log(event);
         setNotification('Client Error - Websockets', 'error')
       }
 
@@ -378,8 +384,114 @@ const App: FunctionComponent<Props> = (props) => {
           parsedMessage.data
         )
       }
+      // Let everyone know we have a websocket now
+      setWebsocket(true)
+    } else if (!loggedIn && websocket) {
+      // State will change when this is done
+      controllerSocket.current.close()
     }
-  }, [session, loggedIn, users, user, websocket, image, loggedInUserState]) // (Simon) We have to listen to all 7 to for the app to function properly
+  }, [loggedIn, session, websocket])
+
+  // TODO: Setting logged-in user and session states on app mount
+  useEffect(() => {
+    Axios({
+      method: 'GET',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/session`,
+    }).then((res) => {
+      console.log("/api/session response", res)
+      if (res.status) {
+        // Check for a session and then set up the session state based on what we found
+        setSession(cookies.get('sessionId'))
+
+        if (cookies.get('sessionId')) {
+          setLoggedIn(true)
+
+          if (cookies.get('user')) {
+            const userCookie = cookies.get('user')
+            console.log("User from cookies", userCookie)
+            setLoggedInUserState(userCookie)
+            setLoggedInUserId(userCookie.id)
+            setLoggedInEmail(userCookie.email)
+<<<<<<< HEAD
+            setLoggedInRoles(userCookie.roles) 
+=======
+            setLoggedInRoles(userCookie.roles)
+            if(!walletsLoaded)
+              loadWallets(userCookie.id);
+>>>>>>> e633c38d4ef65536a43e005f45f84795f11085c8
+          } else setAppIsLoaded(true)
+        } else setAppIsLoaded(true)
+      }
+    })
+  }, [loggedIn])
+
+  useEffect(() => {
+    if (emailStatus && organizationStatus) {
+      setVerifiedCredential(emailStatus)
+      setVerificationStatus(true)
+      handlePasswordlessLogin(emailStatus)
+    }
+  }, [emailStatus, organizationStatus])
+
+  const handlePasswordlessLogin = (email) => {
+    Axios({
+      method: 'POST',
+      data: {
+        email: email
+      },
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/passwordless-log-in`,
+    }).then(async (res) => {
+      if (res.data.error) {
+        // setNotification isn't defined everywhere we need to use it, so we can't display the error this way
+        // setNotification(res.data.error, 'error')
+        // We don't want to redirect to the home page in every case, we shouldn't do this, either.
+        // history.push('/')
+      } else {
+        // Setting a session cookie this way doesn't seem to be the best way
+        cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
+        cookies.set('user', res.data);
+        // console.log("Setting up the user now")
+        setLoggedIn(true)
+        setUpUser(res.data.id, res.data.email, res.data.roles)
+
+        // Envision login
+        // const envisionUser = await userService.getUserByEmail(res.data.email)
+        doLoginSuccess(res.data)
+        localStorage.setItem('user', JSON.stringify(res.data));
+      }
+    })
+  }
+
+  const handlePasswordLogin = (email, userPassword, setNotification) => {
+    Axios({
+      method: 'POST',
+      data: {
+        email: email,
+        password: userPassword
+      },
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-in`,
+    }).then(async (res) => {
+      console.log("Response ", res)
+      if (res.data.error) {
+        // setNotification isn't defined everywhere we need to use it, so we can't display the error this way
+        setNotification(res.data.error, 'error')
+        // We don't want to redirect to the home page in every case, we shouldn't do this, either.
+        // history.push('/')
+      } else {
+        // Setting a session cookie this way doesn't seem to be the best way
+        cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
+        cookies.set('user', res.data);
+        // console.log("Setting up the user now")
+        setLoggedIn(true)
+        setUpUser(res.data.id, res.data.email, res.data.roles)
+
+        // Envision login
+        // const envisionUser = await userService.getUserByEmail(res.data.email)
+        doLoginSuccess(res.data)
+        localStorage.setItem('user', JSON.stringify(res.data));
+      }
+    })
+  }
 
   // Send a message to the Controller server
   function sendAnonMessage(context, type, data = {}) {
@@ -407,7 +519,7 @@ const App: FunctionComponent<Props> = (props) => {
   }
 
   // Handle inbound messages
-  const messageHandler = async (context, type, data = {}) => {
+  async function messageHandler (context, type, data = {}, setNotification) {
     try {
       console.log(
         `New Message with context: '${context}' and type: '${type}' with data:`,
@@ -417,10 +529,11 @@ const App: FunctionComponent<Props> = (props) => {
         case 'ERROR':
           switch (type) {
             case 'SERVER_ERROR':
-              setNotification(
-                `Server Error - ${data.errorCode} \n Reason: '${data.errorReason}'`,
-                'error'
-              )
+              // setNotification(
+              //   `Server Error - ${data.errorCode} \n Reason: '${data.errorReason}'`,
+              //   'error'
+              // )
+              toastError(`Server Error - ${data.errorCode} \n Reason: '${data.errorReason}'`)
               break
 
             default:
@@ -444,13 +557,12 @@ const App: FunctionComponent<Props> = (props) => {
             case 'INVITATIONS_ERROR':
               console.log(data.error)
               console.log('Invitations Error')
-              setErrorMessage(data.error)
+              toastError(data.error)
               break
 
             default:
-              setNotification(
-                `Error - Unrecognized Websocket Message Type: ${type}`,
-                'error'
+              toastError(
+                `Error - Unrecognized Websocket Message Type: ${type}`
               )
               break
           }
@@ -708,14 +820,29 @@ const App: FunctionComponent<Props> = (props) => {
               break
 
             case 'VERIFICATION_FAILED':
-              setVerifiedCredential('')
-              setVerificationStatus(false)
-
-              break
+                setVerifiedCredential('')
+                setVerificationStatus(false)
+                toastError(
+                  `Verification failed ${data.error}`
+                )
+                break
             default:
-              setNotification(
-                `Error - Unrecognized Websocket Message Type: ${type}`,
-                'error'
+              toastError(
+                `Error - Unrecognized Websocket Message Type: ${type}`
+              )
+              break
+          }
+          break
+        case 'EMISSION_PRESENTATION':
+          switch (type) {
+            case 'PRESENTATION_FAILED':
+                toastError(
+                  `Verification failed ${data.error}`
+                )
+                break
+            default:
+              toastError(
+                `Error - Unrecognized Websocket Message Type: ${type}`
               )
               break
           }
@@ -830,17 +957,62 @@ const App: FunctionComponent<Props> = (props) => {
               break
           }
           break
+        case 'EMISSIONS':
+            switch (type) {
+              case 'RECEIVED':
+                if (data.facility_emissions_scope1_co2e)
+                {
+                  console.log('Recieved facility_emissions_scope1_co2e verified report',data.facility_emissions_scope1_co2e)
+                  setScope1(data.facility_emissions_scope1_co2e)
+                }
+                
+                break
+              case 'CRED_DEF_EXIST':
+                toastError(data.error)                
+                break
+  
+              default:
+                toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
+                break
+            }
+            break
+        case 'WALLET':
+            switch (type) {
+              case 'ACCEPTED':
+                if (data.wallet)
+                {
+                  console.log('Recieved verified wallet registration', data.wallet)
+                  setWallet(data.wallet)
+                  toastSuccess(`Wallet proof recieved ${data.wallet.did}`);
+                  await loadWallets(currentUser.id)
+                }
+                
+                break
+              case 'WALLET_ERROR':
+                console.log('WALLET ERROR', data.error)
+                toastError(data.error)
+                break
+              
+              case 'WALLET_CONNECTION_SUCCESS':
+                  toastSuccess(`Connection established with wallet: ${data.did}`)
+                  break
+              case 'WALLET_PROOF_SENT':
+                  toastSuccess(`Organisation Proof request sent to wallet: ${data.did}`)
+                  break
+    
+              default:
+                toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
+                break
+            }
+            break
 
         default:
-          setNotification(
-            `Error - Unrecognized Websocket Message Type: ${context}`,
-            'error'
-          )
+          toastError(`Error - Unrecognized Websocket Message Type: ${context}`)
           break
       }
     } catch (error) {
       console.log('Error caught:', error)
-      setNotification('Client Error - Websockets', 'error')
+      toastError(`Client Error - Websockets: ${error}`)
     }
   }
 
@@ -988,7 +1160,7 @@ const App: FunctionComponent<Props> = (props) => {
                 render={({ match, history }) => {
                   return (
                     <Frame id="app-frame">
-                      <Main>
+                      <Main hasBackgroundColor>
                         <AccountSetup
                           logo={image}
                           history={history}
@@ -1049,6 +1221,9 @@ const App: FunctionComponent<Props> = (props) => {
                 handlePasswordlessLogin={handlePasswordlessLogin}
                 sendRequest={sendAnonMessage}
                 loggedInUserState={loggedInUserState}
+                wallet={wallet}
+                wallets={wallets}
+                setScope1={setScope1}
               />
               <ToastContainer
                 position="bottom-right"
@@ -1093,6 +1268,14 @@ const App: FunctionComponent<Props> = (props) => {
                   currentUser && ( 
                     <Route path="/account">
                       <AccountPage user={currentUser} />
+                    </Route>
+                  )
+                }
+
+                {
+                  currentUser && ( 
+                    <Route path="/register-wallet">
+                      <RegisterWalletPage user={currentUser} sendRequest={sendMessage} QRCodeURL={QRCodeURL}/>
                     </Route>
                   )
                 }
@@ -1451,10 +1634,14 @@ const App: FunctionComponent<Props> = (props) => {
                 <Modal
                   handlePasswordLogin={handlePasswordLogin}
                   QRCodeURL={QRCodeURL}
+                  scope1={scope1}
                   verificationStatus={verificationStatus}
                   setVerificationStatus={setVerificationStatus}
                   sendRequest={sendMessage}
                   loggedInUserState={loggedInUserState}
+                  wallet={wallet}
+                  wallets={wallets}
+                  setScope1={setScope1}
                 />
                 <ToastContainer
                   position="bottom-right"
@@ -1477,6 +1664,8 @@ const mapStateToProps = (state: RootState) => {
   return {
     currentUser: userSelectors.getCurrentUser(state),
     loading: userSelectors.getLoading(state),
+    wallets: accountSelectors.getWallets(state),
+    walletsLoaded: accountSelectors.getWalletsLoaded(state),
   }
 }
 
@@ -1490,6 +1679,9 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
     },
     doLogout: () => {
       dispatch(doLogout())
+    },
+    loadWallets: (orgId: string) => {
+      dispatch(accountActions.doLoadWallets(orgId))
     }
   }
 }

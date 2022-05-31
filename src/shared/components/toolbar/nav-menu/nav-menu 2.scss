@@ -1,0 +1,36 @@
+.toolbar-menu {
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    &__item {
+        margin-right: 24px;
+    }
+
+    &__item:last-child {
+        margin-right: 0;
+    }
+
+    &__link {
+        color: var(--white-color);
+        opacity: 50%;
+
+        &:hover {
+            opacity: initial;
+        }
+
+        &_active {
+            opacity: initial;
+        }
+    }
+
+}

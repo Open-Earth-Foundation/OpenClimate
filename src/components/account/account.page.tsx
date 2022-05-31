@@ -22,6 +22,9 @@ import IAggregatedEmission from '../../api/models/DTO/AggregatedEmission/IAggreg
 import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import { IUser } from '../../api/models/User/IUser';
 
+import {
+    useNotification
+  } from '../../UI/NotificationProvider';
 
 interface IStateProps  {
     user: IUser,
@@ -50,7 +53,7 @@ interface IProps extends IStateProps, IDispatchProps {
 }
 
 const AccountPage: FunctionComponent<IProps> = (props) => {
-
+    const setNotification = useNotification()
     const { user, pledges, transfers, sites, climateActions, pledgesLoaded, 
         transfersLoaded, sitesLoaded, climateActionsLoaded, aggregatedEmissions, aggregatedEmissionsLoaded,
         showModal, loadPledges, loadTransfers, loadSites, loadClimateActions, loadAggregatedEmissions } = props;
@@ -92,7 +95,8 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
                             <ClimateActions 
                                 user={user}
                                 climateActions={climateActions}
-                                showModal={showModal} 
+                                showModal={showModal}
+                                sites={sites}
                             />
                         </Route>
                         <Route path="/account/pledges">

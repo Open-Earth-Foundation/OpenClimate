@@ -52,3 +52,13 @@ export const getAggregatedEmissions = createSelector(
     account, 
     items => items.aggregatedEmissions
 );
+
+export const getWallets = createSelector(
+    account, 
+    items => items.wallets
+);
+
+export const getWalletsLoaded = createSelector(
+    account, 
+    items => items.walletsLoaded
+);

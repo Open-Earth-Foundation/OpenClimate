@@ -27,7 +27,7 @@ function ForgotPassword(props) {
     // Fetching the logo
     Axios({
       method: 'GET',
-      url: '/api/logo',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/logo`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')
@@ -51,7 +51,7 @@ function ForgotPassword(props) {
         email: email,
         flag: 'password reset',
       },
-      url: '/api/user/update',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/update`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')

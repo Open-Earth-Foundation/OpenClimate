@@ -1,0 +1,49 @@
+.review-tile__pledge {
+
+    padding: 24px 0;
+
+    &:not(:last-child) {
+        border-bottom: 1px dashed var(--grey2-color);
+    }
+
+    &-title {
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 19px;
+        margin-bottom: 16px;
+    }
+
+    &-data {
+        display: flex;
+        align-items: center;
+
+        &-name {
+            font-weight: 600;
+            font-size: 9px;
+            line-height: 13px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            width: 150px;
+            margin-right: 10px;
+        }
+
+        &-percentage {
+            font-size: 24px;
+            line-height: 36px;
+            margin-right: 10px;
+        }
+
+        &-deadline {
+            font-size: 10px;
+            line-height: 15px;
+            max-width: 80px;
+        }
+    }
+    
+    &_arrow {
+        position: relative;
+        top: -2px;
+        right: 3px;
+    }
+
+}

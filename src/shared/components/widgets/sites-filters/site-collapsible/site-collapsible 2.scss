@@ -1,0 +1,20 @@
+.site-collapsible {
+    &__location-title {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 16px;
+    }
+
+    &__location-sites {
+        padding-top: 18px;
+
+        &.bottom-border {
+            border-bottom: 1px solid var(--grey1-color);
+            padding-bottom: 18px;
+        }
+    }
+
+    &__btn {
+        cursor: pointer;
+    }
+}

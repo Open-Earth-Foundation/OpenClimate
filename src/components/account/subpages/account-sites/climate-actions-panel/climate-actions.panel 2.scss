@@ -1,0 +1,10 @@
+.climate-actions-panel {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--grey1-color);
+        margin-bottom: 26px;
+    }
+
+}

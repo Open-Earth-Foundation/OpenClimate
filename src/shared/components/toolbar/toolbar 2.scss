@@ -1,0 +1,28 @@
+.toolbar {
+    height: 80px;
+    background-color: var(--primary-color);
+
+    &__wrapper {
+        padding: 21px 40px 19px 29px;
+        display: flex;
+    }
+
+    &__content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding : 4px 0 0 70.57px;
+    }
+
+    &__right-area {
+        display: flex;
+    }
+
+    &__login-btn {
+        background: transparent;
+        border: 0;
+        color: var(--white-color);
+        font-size: 18px;
+        cursor: pointer;
+    }
+}

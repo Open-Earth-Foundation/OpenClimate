@@ -4,7 +4,11 @@
   "private": true,
   "dependencies": {
     "-": "0.0.1",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@material-ui/core": "^4.12.3",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.3",
     "@react-google-maps/api": "^2.4.1",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
@@ -54,7 +58,10 @@
     "react-tooltip": "^4.2.14",
     "reactjs-popup": "^2.0.4",
     "redux-thunk": "^2.3.0",
+<<<<<<< HEAD
     "semantic-ui-react": "^2.1.2",
+=======
+>>>>>>> e633c38d4ef65536a43e005f45f84795f11085c8
     "styled-components": "^5.1.0",
     "topojson-client": "^3.1.0",
     "typescript": "^4.3.5",

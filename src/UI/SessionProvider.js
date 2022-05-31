@@ -49,7 +49,7 @@ export default function SessionAlertProvider(props) {
     if (timer === 5 && keepAlive)
       Axios({
         method: 'GET',
-        url: '/api/session',
+        url: `${process.env.REACT_APP_CONTROLLER}/api/session`,
       }).then((res) => {
         console.log(res)
         if (res.status) setTimer(60)
@@ -71,7 +71,7 @@ export default function SessionAlertProvider(props) {
     // Resetting the session cookie and local timer
     Axios({
       method: 'GET',
-      url: '/api/session',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/session`,
     }).then((res) => {
       console.log(res)
       if (res.status) setTimer(60)

@@ -83,7 +83,7 @@ function Login(props) {
         email: form.get('email'),
         password: form.get('password'),
       },
-      url: '/api/user/log-in',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-in`,
     }).then((res) => {
       if (res.data.error) setNotification(res.data.error, 'error')
       else {

@@ -19,12 +19,18 @@
     }
 
     &__title {
-        width: 414px;
-        text-align: center;
+        text-align: left;
         margin: 0 auto 40px auto;
         font-weight: 500;
-        font-size: 28px;
-        line-height: 28px;
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    &__title-register {
+        font-size: 24px;
+        color: var(--primary-color);
+        line-height: 30px;
+
     }
 
     &__close {
@@ -85,8 +91,14 @@
 
     &__link_blue {
         text-decoration: none;
+        display: flex;
+        align-items: center;
         color: var(--blue-color);
         margin-left: 4px;
+    }
+
+    &__link_primary {
+        color: var(--primary-color)
     }
     
     &__link_black {

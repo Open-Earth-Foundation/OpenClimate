@@ -9,6 +9,10 @@ import RegistrationModal from '../registration/registration.modal';
 import VerifyInformationModal from '../verify-information/verify-information.modal';
 import ReportCredentialModal from '../report-credential/report-credential.modal';
 import DemoInfoModal from '../demo-info/demo-info.modal';
+import AddGHGModal from '../add-ghg-cred/add-ghg-cred';
+import SendGHGProof from '../send-ghg-proof/send-ghg-proof';
+import AcceptGHGProof from '../accept-ghg-proof/accept-ghg-proof';
+import BWInvitation from '../bw-invitation/bw-invitation.modal';
 import EmissionFilters from '../../../../components/account/subpages/account-emission-filters/emission-filters';
 import './modal.scss';
 import AddPledgeModal from '../add-pledge/add-pledge.modal';
@@ -22,10 +26,12 @@ import * as appActions from '../../../../store/app/app.actions';
 import * as userActions from '../../../../store/user/user.actions';
 import * as userSelectors from '../../../../store/user/user.selectors';
 import * as accountActions from '../../../../store/account/account.actions';
+import * as walletActions from '../../../../store/account/account.actions';
 import * as accountSelectors from '../../../../store/account/account.selectors';
 import AddClimateActionModal from '../add-climate-action/add-climate-action.modal';
 import { IUser } from '../../../../api/models/User/IUser';
 import ISite from '../../../../api/models/DTO/Site/ISite';
+import IWallet from '../../../../api/models/DTO/Wallet/IWallet';
 import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
 import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 
@@ -35,12 +41,16 @@ interface IStateProps  {
     modalConfig: ModalConfig,
     sites: Array<ISite>,
     climateActions: Array<IClimateAction>,
-    loginError: string
+    loginError: string,
+    scope1: any,
+    wallet: any,
+    wallets: Array<IWallet>,
 }
 
 interface IDispatchProps {
     showModal: (entityType:string) => void,
     hideModal: () => void,
+    setScope1: (scope1: any) => void,
     addPledge: (pledge: any) => void,
     addTransfer: (transfer: any) => void,
     addSite: (site: ISite) => void,
@@ -58,8 +68,8 @@ const Modal: FunctionComponent<IProps> = (props) => {
     const modalRef = useRef(null);
 
     const { user, modalConfig, sites, climateActions, loginError,
-        showModal, hideModal, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission, handlePasswordLogin} = props;
-
+        showModal, hideModal, addPledge, addTransfer, addSite, addClimateAction, addAggregatedEmission, handlePasswordLogin, scope1, setScope1, wallet, wallets} = props;
+    
     if(modalConfig.entityType === '')
         return null;
 
@@ -73,7 +83,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
             component = <LoginModal hideModal={hideModal} handlePasswordLogin={handlePasswordLogin} onModalShow={showModal} loginError={loginError} />
             break;
         case 'login-credential':
-            title = "Link with your company credential"
+            title = "Login with your digital wallet"
             component = <LoginCredentialModal QRCodeURL={props.QRCodeURL} sendRequest={props.sendRequest} onModalShow={showModal} />
             break;
         case 'registration':
@@ -91,6 +101,22 @@ const Modal: FunctionComponent<IProps> = (props) => {
         case 'demo-info':
             title = "Demo Account"
             component = <DemoInfoModal onModalHide={hideModal} />
+            break;
+        case 'add-ghg-cred':
+                title = "Add Scope 1 GHG emissions"
+                component = <AddGHGModal onModalHide={hideModal} onModalShow={showModal} />
+            break;
+        case 'send-ghg-proof':
+            title = "Send proof notification for a Scope 1 GHG emissions credential"
+            component = <SendGHGProof onModalHide={hideModal} onModalShow={showModal} QRCodeURL={props.QRCodeURL} sendRequest={props.sendRequest} scope1={props.scope1} user={user} wallet={wallet} wallets={wallets}/>
+            break;
+        case 'bw-invitation':
+            title = "Link to connect Business Wallet"
+            component = <BWInvitation onModalHide={hideModal} onModalShow={showModal} QRCodeURL={props.QRCodeURL} sendRequest={props.sendRequest} scope1={props.scope1} user={user}/>
+            break;
+        case 'accept-ghg-proof':
+                title = "Review imported data"
+                component = <AcceptGHGProof onModalHide={hideModal} onModalShow={showModal} scope1={props.scope1} sites={sites} user={user} setScope1={setScope1}/>
             break;
         case 'emission-filters':
             title = ""
@@ -164,7 +190,7 @@ const Modal: FunctionComponent<IProps> = (props) => {
                     </button>
                 </div>
                 {title ?
-                <div className="modal__title modal__row_content-center">
+                <div className={modalConfig.entityType === 'login-credential' ? "modal__title modal__title-register modal__row_content-center" : "modal__title modal__row_content-center"} >
                     {title}
                 </div>
                 : ""
@@ -196,8 +222,7 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
         addTransfer: (transfer: any) => dispatch(accountActions.addTransfer(transfer)),
         addSite: (site: ISite) => dispatch(accountActions.addSite(site)),
         addClimateAction: (climateAction: IClimateAction) => dispatch(accountActions.addClimateAction(climateAction)),
-        addAggregatedEmission: (aggregatedEmission: IAggregatedEmission) => dispatch(accountActions.addAggregatedEmission(aggregatedEmission))
-    }
+        addAggregatedEmission: (aggregatedEmission: IAggregatedEmission) => dispatch(accountActions.addAggregatedEmission(aggregatedEmission))}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);
