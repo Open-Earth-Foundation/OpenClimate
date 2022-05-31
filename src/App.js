@@ -66,15 +66,15 @@ import Users from './UI/Users'
 import SessionProvider from './UI/SessionProvider'
 
 import './App.css'
-<<<<<<< HEAD
+
 import ExplorePage from './components/explore/explore.page'
 import TransfersPage from './components/transfers/transfers.page'
 import Emissions from './components/explore/emissions.page'
-=======
+
 import { loadWallets } from './store/account/account.actions'
 import * as accountActions from './store/account/account.actions';
 import * as accountSelectors from './store/account/account.selectors';
->>>>>>> e633c38d4ef65536a43e005f45f84795f11085c8
+
 
 const Frame = styled.div`
   display: flex;
@@ -412,13 +412,10 @@ const App: FunctionComponent<Props> = (props) => {
             setLoggedInUserState(userCookie)
             setLoggedInUserId(userCookie.id)
             setLoggedInEmail(userCookie.email)
-<<<<<<< HEAD
             setLoggedInRoles(userCookie.roles) 
-=======
             setLoggedInRoles(userCookie.roles)
             if(!walletsLoaded)
               loadWallets(userCookie.id);
->>>>>>> e633c38d4ef65536a43e005f45f84795f11085c8
           } else setAppIsLoaded(true)
         } else setAppIsLoaded(true)
       }

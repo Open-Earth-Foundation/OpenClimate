@@ -8,5 +8,6 @@ export interface IUser {
     email: string;
     password: string;
     company?: IOrganization,
-    demo?: boolean
+    demo?: boolean;
+    roles: string;
 }
