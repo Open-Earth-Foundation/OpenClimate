@@ -1,4 +1,41 @@
+@import '../../mixins.scss';
+
 .context-bar__data {
+
+    @include respond(mobile){
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 2px;
+        width: 100%;
+        color: var(--black-color);
+
+        &_grid{
+            display: grid !important;
+            gap: 15px;
+            grid-template-columns: 170px 170px !important;
+            grid-template-rows: 170px 170px !important;
+            align-items: center;
+        }
+        &_link {
+            font-weight: 500;
+            font-size: 12px !important;
+            line-height: 15px;
+            cursor: pointer;
+            margin-top: 40px;
+            padding-bottom: 20px;
+            width: 100%;
+            text-align: center;
+            a {
+                color: var(--blue-color);
+            }
+        }
+    }
+    &_grid{
+        display: flex;
+        // background-color: blue;
+    }
+
     display: flex;
     align-items: center;
     width: 100%;

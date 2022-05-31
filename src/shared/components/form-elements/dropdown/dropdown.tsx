@@ -143,20 +143,22 @@ const Dropdown = ((props: Props) => {
                                     className='selected-area__option'
                                     value={selected ? selected.name : ""}
                                     placeholder={emptyTitle}
-                                    onChange={() => false}
+                                    onChange={(e) =>{
+                                        deselectHandler(e)
+                                    }}
                                 />
                             }
 
-                            {selected ?
+                            {/* {selected ?
 
                                 <img
                                     alt="close"
                                     className="dropdown__close-icon"
                                     src={DropdownClose}
-                                    onClick={(e) => deselectHandler(e)}
+                                    onClick={(e) => }
                                 />
                                 : ""
-                            }
+                            } */}
                         </div>
 
                     </div>

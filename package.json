@@ -46,6 +46,7 @@
     "react-google-charts": "^3.0.15",
     "react-google-maps": "^9.4.5",
     "react-hook-form": "^7.15.4",
+    "react-icons": "^4.3.1",
     "react-leaflet": "^3.2.2",
     "react-loader-spinner": "^4.0.0",
     "react-masonry-css": "^1.0.16",
@@ -57,6 +58,10 @@
     "react-tooltip": "^4.2.14",
     "reactjs-popup": "^2.0.4",
     "redux-thunk": "^2.3.0",
+<<<<<<< HEAD
+    "semantic-ui-react": "^2.1.2",
+=======
+>>>>>>> e633c38d4ef65536a43e005f45f84795f11085c8
     "styled-components": "^5.1.0",
     "topojson-client": "^3.1.0",
     "typescript": "^4.3.5",

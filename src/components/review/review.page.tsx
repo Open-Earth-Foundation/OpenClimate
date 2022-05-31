@@ -16,6 +16,7 @@ import * as reviewSelectors from '../../store/review/review.selectors';
 import * as reviewActions from '../../store/review/review.actions';
 import * as appActions from '../../store/app/app.actions'; 
 import './review.page.scss';
+import {HiOutlineSearch} from 'react-icons/hi'
 
 interface IStateProps  {
     loading: boolean,
@@ -66,6 +67,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                 }
 
                 <div className="review__top-wrapper content-wrapper">
+                    <p className='review__heading'>Earth Indicators</p>
                     <ContextBars 
                         entitySelected={dashboardEntity ? true : false}
                         collapceEntities={collapceEntities}
@@ -79,7 +81,14 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                             </ReviewInfo>
                         </div>
                     }
-
+                    <div className="review__filter-button-wrapper">
+                        <a href='/explore'>
+                            <button className="review__filter-button">
+                                <HiOutlineSearch className='review__icon'/>
+                                <span>Explore by actor</span>
+                            </button>
+                        </a>
+                    </div>
                     <div className="review__filters-wrapper">
                         <ReviewFilters
                             nationState={true} 
@@ -88,6 +97,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                             filters={reviewFilters}
                         />
                     </div>
+                    
 
                     <div className="review_selected-entity">
                     {

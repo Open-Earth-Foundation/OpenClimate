@@ -1,5 +1,118 @@
+@import './mixins';
 .toolbar {
+
+
+    @include respond(mobile){
+        height: 56px;    
+        &__icon-menu{
+            display: flex !important;
+            // background: white;
+            align-items: top;
+            position: relative;
+            top: -16px;
+        }
+        &__account-button {
+            display: flex !important;
+            padding-right: 5px;
+        }
+        &__icon {
+            color: white;
+            height: 26px;
+            width: 26px;
+        }
+        &__button {
+            background: none;
+        }
+        &__logo-pic{
+            width: 180px !important;
+        }
+        &__wrapper {
+            padding: 16px 10px 0px 18px !important;
+            display: flex;
+            justify-content: space-between;
+            align-items: top;
+        }
+        &__content {
+            display: none !important;
+        }
+        &__logo{
+            position: relative;
+            top:-16px !important;
+        }
+        &__sideNav{
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 0px;
+            z-index: 999;
+        }
+        &__sidenav-overlay{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0px;
+            background: #000;
+            opacity: .5;
+        }
+        &__sidenav-content{
+            position: relative;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 70%;
+            background: white;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        &__sidenav-menu-items{
+            list-style: none;
+            margin: 0px;
+            padding-top: 103px;
+            padding-left: 36px;
+            padding-right: 100px;  
+        }
+        
+        &__sidenav-menu-items li{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px; 
+            font-size: 18px;
+            color: var(--primary-color);
+            font-weight: 200;
+        }
+        &__icon-nav {
+            color: var(--primary-color);
+            height: 26px;
+            width: 26px;
+        }
+        &__sidenav-logo{
+            color: var(--primary-color);
+            position: absolute;
+            top:36px;
+            font-size: 20px;
+        }
+        &__logo-bold{
+            font-weight: bold;
+        }
+        &__version-text{
+            font-size: 12px;
+            padding-left: 10px;
+            color: #b1e4da;
+        }
+
+    }
+
+    &__icon-menu{
+        display: none;
+    }
+    &__account-button {
+        display: none;
+    }
+    
     height: 80px;
+    
     background-color: var(--primary-color);
 
     &__wrapper {
@@ -24,5 +137,12 @@
         color: var(--white-color);
         font-size: 18px;
         cursor: pointer;
+    }
+    &__logo-pic{
+        width: 200px
+    }
+    &__logo{
+        position: relative;
+        top:-13px
     }
 }
