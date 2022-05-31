@@ -1,5 +1,5 @@
 .widget__sites-map-content {
-    width: 1005px;
+    width: 100%;
     min-height: 284px;
     border: 1px solid var(--grey1-color);
     margin-right: 24px;
@@ -17,7 +17,6 @@
         margin-bottom: 0px;
         padding-bottom: 10px;
         min-height: 90%;
-        //max-height: 250px;
     }
 
     .sites-filters__header {
@@ -26,5 +25,11 @@
 
     .sites-map__navigate-link {
         margin-left: 24px;
+    }
+
+    .sites-map__navigate-link_icon {
+        position: relative;
+        left: 4px;
+        top: 2px;
     }
 }

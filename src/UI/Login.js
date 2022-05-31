@@ -75,7 +75,7 @@ function Login(props) {
     e.preventDefault()
     const form = new FormData(loginForm.current)
 
-    props.doLogin(form.get('email'), form.get('password'))
+    // props.doLogin(form.get('email'), form.get('password'))
 
     Axios({
       method: 'POST',
@@ -83,12 +83,11 @@ function Login(props) {
         email: form.get('email'),
         password: form.get('password'),
       },
-      url: '/api/user/log-in',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-in`,
     }).then((res) => {
       if (res.data.error) setNotification(res.data.error, 'error')
       else {
         props.setLoggedIn(true)
-
         props.setUpUser(res.data.id, res.data.email, res.data.roles)
       }
     })

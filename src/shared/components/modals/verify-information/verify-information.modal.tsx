@@ -242,29 +242,3 @@ const VerifyInformationModal: FunctionComponent<Props> = (props) => {
 
 
 export default VerifyInformationModal;
-/*
-                                <label className="verify-data__label">Issuer</label>
-                                <span>Ministry of Environment and Climate Change Strategy</span>
-
-                                <label className="verify-data__label">Credential type</label>
-                                <span>Annual GHG Emissions Report</span>
-
- <form action="/" className="registration-form">
-                    <div className="modal__content modal__content-btm-mrg">
-
-                    </div>
-                    
-                    <div className="modal__row modal__row_btn">
-                        <Button color="primary"
-                                text="Register"
-                                type="button"
-                                />
-                    </div>
-                    
-                    <div className="modal__row modal__options modal__row_content-center">
-                        <button 
-                                className="modal__link modal__link_black ">There's and Issue with this information
-                        </button>
-                    </div>
-                </form>
-*/

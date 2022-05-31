@@ -1,38 +1,58 @@
 import React, { FunctionComponent, useState } from 'react'
-import './toolbar.scss';
-import MainLogoIcon from '../../img/toolbar/main-logo.png';
+import MainLogoIcon from '../../img/toolbar/OpenClimate_Logo.png';
 import NavMenu from './nav-menu/nav-menu';
 import SearchToolbar from './toolbar-search/toolbar-search';
 import ToolbarAutorized from './toolbar-authorized/toolbar-autorized';
 import { IUser } from '../../../api/models/User/IUser';
+import './toolbar.scss';
+import {VscMenu, VscArrowRight, VscChevronRight} from 'react-icons/vsc';
+import {HiUserCircle} from 'react-icons/hi';
+
 
 interface Props {
     user: IUser | null,
-    doLogout: () => void,
-    showLoginModal: () => void
+    showLoginModal: () => void,
+    handleLogout: () => void
 }
 
 const MainToolbar: FunctionComponent<Props> = (props) => {
+    const [openSideNav, setOpenSideNav] = useState<boolean>(false)
+    const { user, showLoginModal, handleLogout } = props;
 
-    const { user, handleLogout, doLogout, showLoginModal } = props;
+    const sideNavHandler = () => {
+        setOpenSideNav((prevNavState)=>!prevNavState)
+        console.log(openSideNav)
+    }
+
+    const handleCloseSideNav = () => {
+        setOpenSideNav((prevNavState)=>!prevNavState)
+        console.log(openSideNav)
+    }
 
     return (
         <React.Fragment>
             <div className="toolbar">
                 <div className="toolbar__wrapper">
+                <div className='toolbar__icon-menu'>
+                        <button onClick={sideNavHandler} className='toolbar__button'>
+                            <VscMenu className='toolbar__icon'/>
+                        </button>
+                    </div>
                     <div className="toolbar__logo">
                         <a href="/" className="toolbar__logo-link">
                             <img className="toolbar__logo-pic" src={MainLogoIcon} alt="Open Climate" />
                         </a>
+                    </div>
+                    <div className='toolbar__account-button'>
+                    {/* <HiUserCircle className='toolbar__icon'/> */}
                     </div>
 
                     <div className="toolbar__content">
                         <NavMenu currentUser={user} />
 
                         <div className="toolbar__right-area">
-                            <SearchToolbar />
                                 {user ?
-                                    <ToolbarAutorized user={user} handleLogout={handleLogout} doLogout={doLogout} />
+                                    <ToolbarAutorized user={user} doLogout={handleLogout} />
                                 :
                                     <div className="toolbar__login">
                                         <button 
@@ -45,6 +65,26 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
                         </div>
                     </div>
                 </div>
+                {
+                    openSideNav && (
+                        <div className='toolbar__sideNav'>
+                            <div onClick={handleCloseSideNav} className='toolbar__sidenav-overlay'></div>
+                            <div className='toolbar__sidenav-content'>
+                                <ul className='toolbar__sidenav-menu-items'>
+                                    <div className='toolbar__sidenav-logo'>
+                                        <p>open<span className='toolbar__logo-bold'>climate</span><span className='toolbar__version-text'>Ver 1.0.0<span></span></span></p>
+                                    </div>
+                                    <li>
+                                        <span>
+                                            Explore
+                                        </span> 
+                                        <VscChevronRight className='toolbar__icon-nav'/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    )
+                }
             </div>
 
             

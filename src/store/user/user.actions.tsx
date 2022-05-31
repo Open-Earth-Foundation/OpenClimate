@@ -3,7 +3,18 @@ import * as userActionTypes from './user.action-types'
 import { hideModal } from '../app/app.actions'
 import { userService } from '../../shared/services/user.service'
 import { IUser } from '../../api/models/User/IUser'
+import { reviewClearState } from '../review/review.actions'
+import { nestedAccountsClearState } from '../nested-accounts/nested-accounts.actions'
+import { accountClearState } from '../account/account.actions'
 
+
+export const usersClearState = () => {
+    return {
+        type: userActionTypes.USERS_CLEAR_STATE,
+        payload: {
+        }
+    }
+}
 
 export const startLoading = () => {
     return {
@@ -47,23 +58,27 @@ export const loginSuccess = (user: IUser) => {
     }
 }
 
-export const doLogin = (email: string, password: string) => {
-    return async (dispatch: Dispatch) => {
-        dispatch(startLoading())
-        userService.login(email, password).then( (user: IUser) =>{
-            dispatch(loginSuccess(user));
-            dispatch(hideModal());
-        });
-    }
-}
+// export const doLogin = (email: string, password: string, demo: boolean) => {
+//     return async (dispatch: Dispatch) => {
+
+//         dispatch(startLoading())
+//         userService.login(email, password, demo).then( (user: IUser) =>{
+//             dispatch(loginSuccess(user));
+//             dispatch(hideModal());
+//         }).catch(err => {
+//             dispatch(loginFailed(err));
+//         });
+//     }
+// }
 
 export const doLogout = () => {
     return (dispatch: Dispatch) => {
         dispatch(startLoading())
-        
-        userService.logout().then(_ => {
-            dispatch(logout())
-        });
+        dispatch(reviewClearState());
+        dispatch(nestedAccountsClearState());
+        dispatch(accountClearState());
+        dispatch(logout())
+        userService.logout()
     }
 }
 /* todo
@@ -80,3 +95,10 @@ export const doLoadCompany = (user: IUser) => {
         }, 300)
     }
 }*/
+
+export const doPaswordlessLoginSucess = (user: IUser) => {
+    return async (dispatch: Dispatch) => {
+        dispatch(loginSuccess(user));
+        dispatch(hideModal());
+    }
+}

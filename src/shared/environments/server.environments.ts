@@ -1,3 +1,3 @@
 export const ServerUrls = {
-    api: 'http://localhost/api'
+    api: `${process.env.REACT_APP_CONTROLLER}/api`
 }

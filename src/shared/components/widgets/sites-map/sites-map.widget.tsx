@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import ISite from '../../../../api/models/DTO/Site/ISite';
 import WorldwideMap from '../../other/worldwide-map/worldwide-map';
 import SitesFiltersWidget from '../sites-filters/sites-filters.widget';
+import EyeIcon from '../../../img/widgets/eye.svg';
 import './sites-map.widget.scss';
 
 
@@ -35,7 +36,10 @@ const SitesMapWidget: FunctionComponent<Props> = (props) => {
                     showCountriesSection={false}
                 />
                 <div className="sites-map__navigate-link">
-                    <NavLink to={detailsLink} className="widget__link">Details</NavLink>
+                    <NavLink to={detailsLink} className="widget__link">
+                        Explore all sites
+                        <img src={EyeIcon} alt="explore" className="sites-map__navigate-link_icon" />
+                    </NavLink>
                 </div>
             </div>
 

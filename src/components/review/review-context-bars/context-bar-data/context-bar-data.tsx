@@ -5,12 +5,13 @@ import { EarthData } from '../../../../api/data/review/data/earth';
 import './context-bar-data.scss';
 
 interface Props {
-    entity: TrackedEntity
+    entity: TrackedEntity,
+    linkClickHandler: () => void
 }
 
 const ContextBarData: FunctionComponent<Props> = (props) => {
 
-    const { entity } = props;
+    const { entity, linkClickHandler } = props;
 
     let linkText = "";
     
@@ -34,8 +35,8 @@ const ContextBarData: FunctionComponent<Props> = (props) => {
     }
     else
     {
-        let items = entity.pledges?.map((ed, index) => 
-            <ContextBarItem key={index} title={`${ed.pledge_emission_reduction}%`} showError={true}>
+        let items = entity.pledges?.map((ed, index) =>     
+            <ContextBarItem key={index} title={`${ed.pledge_emission_reduction ?? 0}%`} showError={true}>
                 {ed.pledge_target_year ? 
                     <>by {ed.pledge_target_year} <br/></>
                     : ""
@@ -62,9 +63,11 @@ const ContextBarData: FunctionComponent<Props> = (props) => {
 
     return (
         <div className={`context-bar__data`}>
-            {displayHtml}
+            <div className='context-bar__data_grid'>
+                {displayHtml}
+            </div>
             <div className="context-bar__data_link">
-                <a href="#">{linkText}</a>
+                <a href="#" onClick={linkClickHandler}>{linkText}</a>
             </div>
         </div>
     );

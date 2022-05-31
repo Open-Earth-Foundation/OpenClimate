@@ -8,6 +8,7 @@ import IMitigations from '../../../../../../../../api/models/DTO/ClimateAction/I
 import { ClimateActionHelper } from '../../../../../../../../shared/helpers/climate-action.helper';
 import VerifiedIcon from '../../../../../../img/check.png';
 import UnverifiedIcon from '../../../../../../img/unverified.svg';
+import Moment from 'moment'
 import './scope-tile-item.scss';
 
 interface IProps  {
@@ -26,7 +27,7 @@ const ScopeTileItem: FunctionComponent<IProps> = (props) => {
     useEffect(() => {
         if(climateAction) {
 
-            const cType = ClimateActionTypes[climateAction.climate_action_type as keyof typeof ClimateActionTypes];
+            const cType = ClimateActionTypes[climateAction.credential_type as keyof typeof ClimateActionTypes];
             const amount = cType === ClimateActionTypes.Emissions ? 
                                     (climateAction as IEmissions).facility_emissions_co2e :
                                     (climateAction as IMitigations).facility_mitigations_co2e;
@@ -42,7 +43,7 @@ const ScopeTileItem: FunctionComponent<IProps> = (props) => {
 
     let color = 'red';
     if(climateAction)
-        color = climateAction.climate_action_type?.toString() == ClimateActionTypes[ClimateActionTypes.Mitigations] ? 'green' : 'red';
+        color = climateAction.credential_type?.toString() == ClimateActionTypes[ClimateActionTypes.Mitigations] ? 'green' : 'red';
 
     return (
         <div className="scope-tile__signed-item">
@@ -58,7 +59,7 @@ const ScopeTileItem: FunctionComponent<IProps> = (props) => {
                  <div className="scope-tile__content-header scope-item-signedby-header">Signed by</div>
                 <div className="scope-tile__signed-by scope-item-signedby">{climateAction?.signature_name}</div>        
                 <div className="scope-tile__signed-footer">
-                    <div className="scope-tile__signed-date scope-item-signed-date">June 01 2019</div>
+                    <div className="scope-tile__signed-date scope-item-signed-date">{Moment(climateAction.credential_issue_date).format('MMM DD yyyy')}</div>
                     <div className="scope-tile__verified scope-item-verified">
                         {
                             verified ?

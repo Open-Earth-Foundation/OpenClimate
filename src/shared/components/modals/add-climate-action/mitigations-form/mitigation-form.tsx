@@ -9,10 +9,12 @@ import InputText from '../../../form-elements/input-text/input.text';
 import { ClimateActionVerified } from '../../../../../api/models/DTO/ClimateAction/climate-action-verified';
 import IMitigations from '../../../../../api/models/DTO/ClimateAction/IClimateActions/IMitigations';
 import IClimateAction from '../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
-import FormDatePicker from '../../../form-elements/datepicker/datepicker';
-
+import { IUser } from '../../../../../api/models/User/IUser';
+import { useForm, Controller } from 'react-hook-form';
+import DatePicker from "react-datepicker";
 
 interface Props {
+    user: IUser | null,
     scopeOptions: Array<DropdownOption>,
     typeOptions: Array<DropdownOption>,
     sites: Array<ISite>,
@@ -25,87 +27,116 @@ interface Props {
 
 const MitigationsForm: FunctionComponent<Props> = (props) => {
 
-    const { scopeOptions, typeOptions, sites, defaultScope, 
+    const { scopeOptions, typeOptions, sites, defaultScope, user,
         typeChangedHandler, scopeChangedHandler,  onModalHide, saveClimateAction } = props;
 
-    const [climateActionMitigations, setClimateActionMitigations] = useState<IMitigations>({
-        credential_category: `Climate Action`,
-        climate_action_type: ClimateActionTypes[ClimateActionTypes.Mitigations],
-        climate_action_scope: ClimateActionScopes[defaultScope],
-    });
+    const { formState, register,  handleSubmit, setValue, control } = useForm();
 
-    const formChangeHandler = (name: string, value: string) => {
-        setClimateActionMitigations(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    }
-
-    const submitHandler = (e: any) => {
-        e.preventDefault();
-        
-        if(climateActionMitigations)
-            saveClimateAction(climateActionMitigations);
+    const submitHandler = (data: any) => {
+        delete data['form-signed'];
+        saveClimateAction(data)
     }
 
     return (
-        <form action="/" className="climate-action-form" onSubmit={submitHandler}>
+        <form autoComplete="off" action="/" className="climate-action-form" onSubmit={handleSubmit(submitHandler)}>
              <div className="modal__content modal__content-btm-mrg">
                 <div className="modal__row modal__row_content">
+
                     <Dropdown
-                            withSearch={false}
-                            options={typeOptions}
-                            title=""
-                            emptyPlaceholder="Credential Type"
-                            selectedValue={ClimateActionTypes[ClimateActionTypes.Mitigations]}
-                            onSelect={(option: DropdownOption) => typeChangedHandler("climate_action_type", option.value)}
+                        withSearch={false}
+                        options={typeOptions}
+                        title=""
+                        emptyPlaceholder="* Credential Type"
+                        selectedValue={ClimateActionTypes[ClimateActionTypes.Mitigations]}
+                        onSelect={(option: DropdownOption) => typeChangedHandler("credential_type", option.value)}
+                        register={register}
+                        label="credential_type"
+                        required={true}
+                        errors={formState.errors['credential_type']}
+                        setValue={setValue}
                     /> 
                 </div>
                 <div className="modal__row modal__row_content">
                     <Dropdown
-                            withSearch={false}
-                            options={scopeOptions}
-                            title=""
-                            emptyPlaceholder="Climate Action Scope"
-                            selectedValue={defaultScope!== undefined ? ClimateActionScopes[defaultScope] : null}
-                            onSelect={(option: DropdownOption) => scopeChangedHandler(option.value)}
+                        withSearch={false}
+                        options={scopeOptions}
+                        title=""
+                        emptyPlaceholder="Climate Action Scope"
+                        selectedValue={defaultScope!== undefined ? ClimateActionScopes[defaultScope] : null}
+                        onSelect={(option: DropdownOption) => scopeChangedHandler(option.value)}
+                        register={register}
+                        label="climate_action_scope"
+                        required={true}
+                        errors={formState.errors['climate_action_scope']}
+                        setValue={setValue}
                     /> 
                 </div>   
                 <div className="modal__row modal__row_content">
                     <Dropdown
-                            withSearch={false}
-                            options={sites.map(s=> {return {name: s.facility_name, value: s.facility_name} as DropdownOption})}
-                            title=""
-                            emptyPlaceholder="Facility Name"
-                            onSelect={(option: DropdownOption) => formChangeHandler("facility_name", option.value)}
-                    /> 
+                        withSearch={false}
+                        options={sites.map(s=> {return {name: s.facility_name, value: s.facility_name} as DropdownOption})}
+                        title=""
+                        emptyPlaceholder="* Facility Name"
+                        register={register}
+                        label="facility_name"
+                        required={true}
+                        errors={formState.errors['facility_name']}
+                        setValue={setValue}
+                    />
                 </div> 
                 <div className="modal__row modal__row_content">
-                    <FormDatePicker
-                      placeholder="Reporting Start Date"
-                      onChange={(dateStr: string) => formChangeHandler("credential_reporting_date_start", dateStr)}
+                    <Controller
+                        control={control}
+                        name='credential_reporting_date_start'
+                        render={({ field }) => (
+                            <DatePicker
+                            className={`input-text__element`} 
+                                placeholderText='Reporting Start Date'
+                                onChange={(date) => field.onChange(date)}
+                                selected={field.value}
+                            />
+                        )}
                     />
                 </div>  
                 <div className="modal__row modal__row_content">
-                    <FormDatePicker
-                      placeholder="Reporting End Date"
-                      onChange={(dateStr: string) => formChangeHandler("credential_reporting_date_end", dateStr)}
+                    <Controller
+                        control={control}
+                        name='credential_reporting_date_end'
+                        rules={{required: true}}
+                        render={({ field }) => (
+                            <DatePicker
+                                className={`input-text__element`} 
+                                placeholderText='* Reporting End Date'
+                                onChange={(date) => field.onChange(date)}
+                                selected={field.value}
+                            />
+                        )}
                     />
-                </div>  
-                <div className="modal__row modal__row_content">
-                        <InputText
-                            type="text"
-                            placeholder="Facility CO2e mitigations" 
-                            onChange={(value: string) => formChangeHandler("facility_mitigations_co2e", value)}
 
-                        />
+                    {formState.errors['credential_reporting_date_end'] && (
+                        <span role="alert">
+                        This field is required
+                        </span>
+                    )}
+                </div>  
+                <div className="modal__row modal__row_content">
+                    <InputText 
+                        type="number"
+                        placeholder="* Facility CO2e mitigations"
+                        register={register}
+                        label="facility_mitigations_co2e"
+                        required={true}
+                        errors={formState.errors['facility_mitigations_co2e']}
+                    />
                 </div> 
                 <div className="modal__row modal__row_content">
-                    <InputText
+                    <InputText 
                         type="text"
                         placeholder="Verification Body" 
-                        onChange={(value: string) => formChangeHandler("verification_body", value)}
-
+                        register={register}
+                        label="verification_body"
+                        required={false}
+                        errors={formState.errors['verification_body']}
                     />
                 </div>
                 <div className="modal__row modal__row_content">
@@ -118,17 +149,36 @@ const MitigationsForm: FunctionComponent<Props> = (props) => {
                                 ]
                             }
                             title=""
-                            emptyPlaceholder="Verification Result"
-                            onSelect={(option: DropdownOption) => formChangeHandler("verification_result", option.value)}
+                            emptyPlaceholder="* Verification Result"
+                            register={register}
+                            label="verification_result"
+                            required={true}
+                            errors={formState.errors['verification_result']}
+                            setValue={setValue}
                     /> 
                 </div>
                 <div className="modal__row modal__row_content">
-                    <InputText
+                    <InputText 
                         type="text"
                         placeholder="Verification Credential Id" 
-                        onChange={(value: string) => formChangeHandler("verification_credential_id", value)}
-
+                        register={register}
+                        label="verification_credential_id"
+                        required={false}
+                        errors={formState.errors['verification_credential_id']}
                     />
+                </div>
+
+                <div className="transfer-form__sign-as modal__row modal__row_content">
+                    <input  
+                        type="checkbox" 
+                        className={`transfer-form__checkbox checkbox-primary ${formState.errors['form-signed'] ? 'is-empty' : ''}` }
+                        {...register('form-signed', { required: true })}
+                    />
+
+                    Sign as 
+                    <a href="#"> {user?.email} </a>
+                    in representation of 
+                    <a href="#"> {user?.company?.name}</a>
                 </div>
             </div>
 

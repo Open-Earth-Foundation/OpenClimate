@@ -70,7 +70,7 @@ function AppHeader(props) {
     // Log out
     Axios({
       method: 'POST',
-      url: '/api/user/log-out',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-out`,
     }).then((res) => {})
 
     props.handleLogout(props.history)

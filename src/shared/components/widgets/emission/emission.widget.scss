@@ -10,11 +10,11 @@
     }
 
     .widget__emission-data {
-        font-size: 24px;
+        font-size: 20px;
         line-height: 36px;
-        text-align: center;
-        overflow: hidden;
-        //position: relative;
+        display: flex;
+        overflow: none;
+        justify-content: center;
     }
 
     .widget__emission-data-description {

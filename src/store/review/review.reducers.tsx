@@ -142,6 +142,7 @@ export const reviewReducer = ( state = initialState, action: any ) => {
         case reviewActionTypes.DO_SELECT_FILTER: return selectFilter(state, action.payload);
         case reviewActionTypes.DO_DESELECT_FILTER: return deselectFilter(state, action.payload);
         case reviewActionTypes.UPDATE_FILTER_OPTIONS: return updateFilterOptions(state, action.payload);
+        case reviewActionTypes.REVIEW_CLEAR_STATE: return initialState;
 
         default: return state;
     }

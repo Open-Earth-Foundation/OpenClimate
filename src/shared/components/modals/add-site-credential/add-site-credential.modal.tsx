@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useState, useEffect } from 'react'
 import Dropdown from '../../form-elements/dropdown/dropdown';
 import InputText from '../../form-elements/input-text/input.text';
 import Button from '../../form-elements/button/button';
@@ -11,6 +11,8 @@ import { SiteTypes } from '../../../../api/data/shared/site-types';
 import { IUser } from '../../../../api/models/User/IUser';
 import ISite from '../../../../api/models/DTO/Site/ISite';
 import { ReviewHelper } from '../../../helpers/review.helper';
+import { useForm } from 'react-hook-form';
+
 
 interface Props {
     user: IUser | null,
@@ -23,148 +25,59 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
 
     const { user, submitButtonText, onModalHide, addSite } = props;
 
+    const [countryOptions, setCountryOptions] = useState<Array<DropdownOption>>([]);
     const [subnationalOptions, setSubnationalOptions] = useState<Array<DropdownOption>>([]);
 
-    const [site, setSite] = useState<ISite>({
-        credential_category: "Facility",
-        credential_type: "Facility Information"
-    });
+    const [typesOptions, setTypesOptions] = useState<Array<any>>([]);
 
-    const countryOptions = CountryCodesHelper.GetContryOptions();
+    const { formState, register,  handleSubmit, setValue } = useForm();
 
-    const typesOptions = SiteTypes.map(s => {
-        return {
-            name: s,
-            value: s
-        }
-    });
+    useEffect(()=>{
+        setCountryOptions(CountryCodesHelper.GetContryOptions());
+
+        const typesOptions = SiteTypes.map(s => {
+            return {
+                name: s,
+                value: s
+            }
+        });
+        setTypesOptions(typesOptions);
+
+    }, []);
 
     const countryChangeHandler = async (option:DropdownOption) => {
-        formChangeHandler("facility_country", option.name);
-        const suboptions = await ReviewHelper.GetOptions(FilterTypes.SubNational, option.value);
+        const countryCode2 = CountryCodesHelper.GetCountryAlpha2(option.value);
+        const suboptions = await ReviewHelper.GetOptions(FilterTypes.SubNational, countryCode2);
         setSubnationalOptions(suboptions);
     }
 
-    const formChangeHandler = (name: string, value: string) => {
-        const updateSite = {
-            ...site,
-            [name]: value
-        };
-
-        setSite(updateSite);
+    const countryDeselectHandler = () => {
+        setSubnationalOptions([]);
     }
 
-    const submitHandler = (e: any) => {
-
-        e.preventDefault();
-        console.log(user)
-        if (!user || !user.company || !user.company.organization_credential_id)
+    const submitHandler = (data: any) => {
+        console.log("Submit click", user)
+        if(!user || !user.company || !user.company.organization_id)
             return;
 
-        const credential_issue_date = Date.now()
+        delete data['form-signed']
 
-        setSite({
-            ...site,
-            credential_issue_date: credential_issue_date,
-            credential_issuer: "OpenClimate",
-            organization_name: user.company.organization_name,
-            signature_name: `${user.firstName} ${user.lastName}`,
-        });
+        const countryName = CountryCodesHelper.GetCountryNameByAlpha3(data['facility_country']);
+        data['facility_country'] = countryName;
 
-        const attributes = [
-            {
-                name: 'credential_category',
-                value: 'Facility',
-            },
-            {
-                name: 'credential_type',
-                value: 'Facility Information',
-            },
-            {
-                name: 'credential_name',
-                value: 'Site_Facility'
-            },
-            {
-                name: 'credential_schema_id',
-                value: '5cmzU3vtyQAXcRqerHikmM:2:Site_Facility:1.0',
-            },
-            {
-                name: 'credential_issuer',
-                value: 'OpenClimate',
-            },
-            {
-                name: 'credential_issue_date',
-                value: credential_issue_date.toString(),
-            },
-            {
-                name: 'organization_name',
-                value: site.organization_name || '',
-            },
-            {
-                name: 'organization_category',
-                value: '',
-            },
-            {
-                name: 'organization_type',
-                value: '',
-            },
-            {
-                name: 'organization_credential_id',
-                value: '',
-            },
-            {
-                name: 'facility_name',
-                value: site.facility_name,
-            },
-            {
-                name: 'facility_country',
-                value: site.facility_country,
-            },
-            {
-                name: 'facility_jurisdiction',
-                value: site.facility_jurisdiction || '',
-            },
-            {
-                name: 'facility_location',
-                value: site.facility_location,
-            },
-            {
-                name: 'facility_type',
-                value: site.facility_type,
-            },
-            {
-                name: 'facility_sector_ipcc_category',
-                value: site.facility_sector_ipcc_category || '',
-            },
-            {
-                name: 'facility_sector_ipcc_activity',
-                value: site.facility_sector_ipcc_activity || '',
-            },
-            {
-                name: 'facility_sector_naics',
-                value: site.facility_sector_naics || '',
-            },
-            {
-                name: 'signature_name',
-                value: site.signature_name || '',
-            }
-        ]
+        const jurisdiction = CountryCodesHelper.GetRegionNameByCode(data['facility_jurisdiction']);
+        data['facility_jurisdiction'] = jurisdiction;
 
-        let newCredential = {
-            connectionID: props.loggedInUserState.connection_id,
-            schemaID: '5cmzU3vtyQAXcRqerHikmM:2:Site_Facility:1.0',
-            schemaVersion: '1.0',
-            schemaName: 'Site_Facility',
-            schemaIssuerDID: '5cmzU3vtyQAXcRqerHikmM',
-            comment: 'Site_Facility',
-            attributes: attributes,
-        }
+        const dbSite = {...data};
 
-        if (props.loggedInUserState.connection_id) {
-            props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
-        }
+        dbSite.credential_category = "Facility";
+        dbSite.credential_type = "Facility Information";
+        dbSite.credential_issue_date = Date.now();
+        dbSite.credential_issuer = "OpenClimate";
+        dbSite.organization_name = user.company.name;
+        dbSite.signature_name =  `${user.email}`;
 
-        siteService.saveSite(user.company.id, site).then(site => {
+        siteService.saveSite(user.company.organization_id, dbSite).then(site => {
             addSite(site);
             onModalHide();
             toast("Site successfully created");
@@ -173,93 +86,138 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
         return;
     }
 
-    return (
-        <form action="/" className="pledge-form" onSubmit={submitHandler}>
-            <div className="modal__content modal__content-btm-mrg">
+     return (
+         <form autoComplete="off" action="/" className="pledge-form" onSubmit={handleSubmit(submitHandler)}>
+             <div className="modal__content modal__content-btm-mrg">
 
                 <div className="modal__row modal__row_content">
-                    <input
-                        className="form-input"
+                    <InputText 
                         type="text"
-                        placeholder="Facility Name"
-                        onChange={e => formChangeHandler("facility_name", e.target.value)}
+                        placeholder="* Facility Name"
+                        register={register}
+                        label="facility_name"
+                        required={true}
+                        errors={formState.errors['facility_name']}
                     />
-                </div>
-                <div className="modal__row modal__row_content">
-                    <Dropdown
+                 </div>
+                 <div className="modal__row modal__row_content">
+                    <Dropdown 
                         withSearch={false}
                         options={typesOptions}
                         title=""
-                        emptyPlaceholder="Facility Type"
-                        onSelect={(option: DropdownOption) => { formChangeHandler("facility_type", option.value) }}
+                        emptyPlaceholder="* Facility Type"
+                        register={register}
+                        label="facility_type"
+                        required={true}
+                        errors={formState.errors['facility_type']}
+                        setValue={setValue}
                     />
-                </div>
-                <div className="modal__row modal__row_content">
-                    <Dropdown
+                 </div>
+                 <div className="modal__row modal__row_content">
+                    <Dropdown 
                         withSearch={true}
                         options={countryOptions}
                         title=""
-                        emptyPlaceholder="Facility Country"
+                        emptyPlaceholder="* Facility Country"
                         onSelect={countryChangeHandler}
+                        onDeSelect={() => countryDeselectHandler()}
+                        register={register}
+                        label="facility_country"
+                        required={true}
+                        errors={formState.errors['facility_country']}
+                        setValue={setValue}
                     />
-                </div>
-                <div className="modal__row modal__row_content">
-                    <Dropdown
+                 </div>
+                 <div className="modal__row modal__row_content">
+                    <Dropdown 
                         withSearch={false}
                         options={subnationalOptions}
                         title=""
                         emptyPlaceholder="Facility Jurisdiction"
-                        onSelect={(option: DropdownOption) => { formChangeHandler("facility_jurisdiction", option.value) }}
+                        register={register}
+                        label="facility_jurisdiction"
+                        required={false}
+                        errors={formState.errors['facility_jurisdiction']}
+                        setValue={setValue}
                     />
-                </div>
-                <div className="modal__row modal__row_content">
-                    <input
-                        className="form-input"
+                 </div>
+                 <div className="modal__row modal__row_content">
+                    <InputText 
                         type="text"
                         placeholder="Facility Location"
-                        onChange={e => formChangeHandler("facility_location", e.target.value)}
+                        register={register}
+                        label="facility_location"
+                        required={false}
+                        errors={formState.errors['facility_location']}
                     />
-                </div>
-                <div className="modal__row modal__row_content">
-                    <input
-                        className="form-input"
+                 </div>
+                 <div className="modal__row modal__row_content">
+                    <InputText 
+                        type="text"
+                        placeholder="Facility Bounds"
+                        register={register}
+                        label="facility_bounds"
+                        required={false}
+                        errors={formState.errors['facility_bounds']}
+                    />
+                 </div>
+                 <div className="modal__row modal__row_content">
+                    <InputText 
                         type="text"
                         placeholder="Facility IPCC Category"
-                        onChange={e => formChangeHandler("facility_sector_ipcc_category", e.target.value)}
+                        register={register}
+                        label="facility_sector_ipcc_category"
+                        required={false}
+                        errors={formState.errors['facility_sector_ipcc_category']}
                     />
-                </div>
-                <div className="modal__row modal__row_content">
-                    <input
-                        className="form-input"
+                 </div>
+                 <div className="modal__row modal__row_content">
+                    <InputText 
                         type="text"
                         placeholder="Facility IPCC Activity"
-                        onChange={e => formChangeHandler("facility_sector_ipcc_activity", e.target.value)}
+                        register={register}
+                        label="facility_sector_ipcc_activity"
+                        required={false}
+                        errors={formState.errors['facility_sector_ipcc_activity']}
                     />
-                </div>
-                <div className="modal__row modal__row_content">
-                    <input
-                        className="form-input"
+                 </div>
+                 <div className="modal__row modal__row_content">
+                    <InputText 
                         type="text"
                         placeholder="Facility NAICS Sector"
-                        onChange={e => formChangeHandler("facility_sector_naics", e.target.value)}
+                        register={register}
+                        label="facility_sector_naics"
+                        required={false}
+                        errors={formState.errors['facility_sector_naics']}
                     />
+                 </div>
+                 <div className="transfer-form__sign-as modal__row modal__row_content">
+                        <input  
+                            type="checkbox" 
+                            className={`transfer-form__checkbox checkbox-primary ${formState.errors['form-signed'] ? 'is-empty' : ''}` }
+                            {...register('form-signed', { required: true })}
+                        />
+                        Sign as 
+                        <a href="#"> {user?.email} </a>
+                        in representation of 
+                        <a href="#"> {user?.company?.name}</a>
                 </div>
-            </div>
-            <div className="modal__row modal__row_btn">
+             </div>
+         <div className="modal__row modal__row_btn">
                 <Button color="primary"
-                    text={submitButtonText}
-                    type="submit"
-                />
-            </div>
-            <div className="modal__row modal__row_btn">
-                <Button color="white"
-                    text="Cancel"
-                    type="button"
-                    click={onModalHide}
-                />
-            </div>
-        </form>
-    );
+                         text={submitButtonText}
+                         type="submit"
+                         />
+             </div>
+             <div className="modal__row modal__row_btn">
+                 <Button color="white"
+                         text="Cancel"
+                         type="button"
+                         click={onModalHide}
+                         />
+             </div>
+         </form>
+     );
 }
 
 

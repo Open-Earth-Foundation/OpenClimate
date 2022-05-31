@@ -3,3 +3,4 @@ export const DO_LOGIN = '[users] DO_LOGIN';
 export const DO_LOGOUT = '[users] DO_LOGOUT';
 export const LOGIN_FAILED = '[users] LOGIN_FAILED';
 export const LOGIN_SUCCESS = '[users] LOGIN_SUCCESS';
+export const USERS_CLEAR_STATE = '[users] USERS_CLEAR_STATE';

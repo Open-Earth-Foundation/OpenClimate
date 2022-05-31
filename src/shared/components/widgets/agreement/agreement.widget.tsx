@@ -25,7 +25,7 @@ const AgreementWidget: FunctionComponent<Props> = (props) => {
             <div className="widget__header">
                 <div className="widget__title-wrapper">
                     <h3 className="widget__title">
-                        Climate treaties & Agreement
+                        Climate Treaties & Agreements
                     </h3> 
                     <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
                 </div>
@@ -50,7 +50,7 @@ const AgreementWidget: FunctionComponent<Props> = (props) => {
                 </div>
                 :
                 <div className="widget__no-data">
-                    No any data
+                    No data yet
                 </div>
                 }
             </div>

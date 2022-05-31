@@ -1,14 +1,32 @@
+@import './mixins.scss';
+
 .context-bar {
+
+    @include respond(mobile){
+        border: none !important;
+        display: flex;
+        flex-direction: column;
+        
+        &.large {
+            height: 400px !important;
+            margin-bottom: 50px !important;
+        }
+    }
+
     display: flex;
+    flex-direction: row;
     background-color: var(--white-color);
     margin-bottom: 8px;
     border: 1px solid var(--grey1-color);
 
+    
+  
+
     &.large {
-        height: 416px;
+        height: 100px;
 
         .context-bar__view {
-            height: 416px;
+            height: 100px;
         }
     
         .context-bar__title {

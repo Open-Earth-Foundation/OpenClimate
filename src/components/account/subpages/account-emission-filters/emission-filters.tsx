@@ -30,9 +30,9 @@ const EmissionFilters: FunctionComponent<IProps> = (props) => {
         if(scope !== undefined)
             displayItems = climateActions.filter(a => 
                 a.climate_action_scope?.toString() === ClimateActionScopes[scope] &&
-                a.climate_action_type?.toString() === ClimateActionTypes[type] );
+                a.credential_type?.toString() === ClimateActionTypes[type] );
         else
-            displayItems = climateActions.filter(a => a.climate_action_type?.toString() === ClimateActionTypes[type]);
+            displayItems = climateActions.filter(a => a.credential_type?.toString() === ClimateActionTypes[type]);
 
         setDisplayItems(displayItems);
 

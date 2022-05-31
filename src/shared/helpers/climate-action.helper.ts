@@ -7,7 +7,7 @@ const GetClimateActions = (climateActions: Array<IClimateAction>, scope: Climate
     const typeStr = ClimateActionTypes[type];
 
     return climateActions.filter(act => act.climate_action_scope?.toString() == scopeStr 
-            && act.climate_action_type?.toString() == typeStr);
+            && act.credential_type?.toString() == typeStr);
 }
 
 const GetTotalC02 = (climateActions: Array<IClimateAction>, type: ClimateActionTypes) => 
@@ -51,25 +51,11 @@ const GetPropByScope = (scope: ClimateActionScopes) => {
     }
 
     return prop;
-    //return GetSumC02(climateActions, prop);
-}
-/*
-function ChangedAllScopesProp(obj: any, scope: ClimateActionScopes)
-{
-    return Object.keys(obj).filter(k => k.includes('_scope_')).map(p => ChangeScopeProp(obj, p, scope));
 }
 
-function ChangeScopeProp(obj: any, propName: string,  scope: ClimateActionScopes) {
-    const newPropName = propName.replace('_scope_', `_${scope.toString().toLowerCase()}_`);
-
-    obj[newPropName] = obj[propName];
-    delete obj[propName];
-} 
-*/
 export const ClimateActionHelper = {
     GetClimateActions,
     GetTotalC02,
     GetSumC02,
-    GetPropByScope,
-    //ChangedAllScopesProp
+    GetPropByScope
 };

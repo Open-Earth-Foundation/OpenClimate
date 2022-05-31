@@ -4,16 +4,35 @@ import { Redirect } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import styled from 'styled-components'
 import QRCode from 'qrcode.react'
+import Stepper from '@mui/material/Stepper'
+import Step from '@mui/material/Step'
+import StepLabel from '@mui/material/StepLabel'
+
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
+
 
 import { useNotification } from './NotificationProvider'
 import { handleImageSrc } from './util'
 
 // Envision imports
-import { userService } from '../shared/services/user.service';
-import { IUser } from '../api/models/User/IUser';
+import { userService } from '../shared/services/user.service'
+import { IUser } from '../api/models/User/IUser'
+
+import { 
+  HeaderText,
+  CopyText,
+  InfoText,
+  Clickable,
+  ItalicText,
+  PrimaryColor
+} from './CommonStyles'
 
 import {
   FormContainer,
+  PageContainer,
+  StepperContainer,
   InputBox,
   LogoHolder,
   Logo,
@@ -23,18 +42,85 @@ import {
   InputField,
 } from './CommonStylesForms'
 
+
+
+const QRContainer = styled.div`
+  padding: 150px 30px 0px 30px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+`
 const QRHolder = styled.div`
-  margin: 30px auto;
+  border-radius: 4px;
+  border: 1px solid rgba(162, 151, 151, 0.35);
+  padding: 25px;
+  margin-bottom: 16px;
+  margin-top: 50px;
   width: 300px;
   height: 300px;
+  background: ${(props) => props.theme.background_primary}
 `
 
 const QR = styled(QRCode)`
   display: block;
   margin: auto;
   padding: 10px;
-  width: 300px;
+  width: 250px;
+  height: 250px;
 `
+
+const SubContainer = styled.div`
+  display: flex;
+  padding-bottom: 24px;
+`
+
+const CopyIcon = styled(ContentCopyIcon)`
+  margin-right: 4px;
+`
+
+const InfoIcon = styled(InfoOutlinedIcon)`
+margin-right: 4px;
+`
+
+const InlineClickable = styled.a`
+  padding: 0 4px;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: Lato;
+  font-size: 16px;
+  color: ${(props) => props.theme.primary_color};
+`
+
+const HeaderInfoText = styled(InfoText)`
+  padding: 16px 0px 40px;
+`
+
+const StepInfoText = styled(InfoText)`
+  color: black;
+  padding-left: 12px;
+`
+
+const steps = [
+  {
+    label: <>Scan the QR code with a digital wallet. <ItalicText>We recommend using Trinsic.</ItalicText></>
+  },
+  {
+    label: 'You will get an invite in the app. You need to accept the invitation from our site.'
+  },
+  {
+    label: 'On the home page, within “Connections” you will see your credential offers.'
+  },
+  {
+    label: 'You will have to accept the Climate Organization credential offer.'
+  },
+  {
+    label: 'You will have to accept the Validated Email credential offer.'
+  },
+  {
+    label: <><PrimaryColor>You’re done!</PrimaryColor>Now you can login using your digital wallet credential.</>
+  },
+];
 
 function AccountSetup(props) {
   const [accountPasswordSet, setAccountPasswordSet] = useState(false)
@@ -60,7 +146,7 @@ function AccountSetup(props) {
       data: {
         token: token,
       },
-      url: '/api/user/token/validate',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/token/validate`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')
@@ -77,7 +163,7 @@ function AccountSetup(props) {
     // Fetch the logo
     Axios({
       method: 'GET',
-      url: '/api/logo',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/logo`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')
@@ -112,7 +198,7 @@ function AccountSetup(props) {
           token: token,
           flag: 'set-up user',
         },
-        url: '/api/user/update',
+        url: `${process.env.REACT_APP_CONTROLLER}/api/user/update`,
       }).then((res) => {
         console.log(res)
         // Envision user creation
@@ -141,9 +227,10 @@ function AccountSetup(props) {
   }
 
   return (
-    <FormContainer>
+    <PageContainer>
+    <FormContainer isQRStep={accountPasswordSet}>
       <LogoHolder>
-        {logo ? <Logo src={logo} alt="Logo" /> : <Logo />}
+        {logo && !accountPasswordSet ? <Logo src={logo} alt="Logo" /> : <Logo />}
       </LogoHolder>
       {token ? (
         accountPasswordSet ? (
@@ -151,14 +238,26 @@ function AccountSetup(props) {
             <Redirect to={"/"} />
           ) : (
             props.QRCodeURL ? (
-              <QRHolder>
-                <p>
-                  Please scan the QR code below to connect your mobile device,
-                  receive an email credential,
-                  and finalize your account.
-                </p>
-                <QR value={props.QRCodeURL} size={300} renderAs="svg" />
+              <QRContainer>
+                <HeaderText>Please scan this QR with your digital wallet</HeaderText>
+                <QRHolder>
+                  <QR value={props.QRCodeURL} size={300} renderAs="svg" />
                 </QRHolder>
+                  <Clickable onClick={() => { navigator.clipboard.writeText(props.QRCodeURL); alert("Link copied to clipboard!");}} >
+                      <SubContainer>
+                          <CopyIcon />
+                          <CopyText>Copy link</CopyText>
+                      </SubContainer>
+                  </Clickable>
+                  <SubContainer>
+                    <InfoIcon />
+                    <>
+                      <InfoText>We recommend using
+                      <InlineClickable href="https://apps.apple.com/us/app/trinsic-wallet/id1475160728">Trinsic</InlineClickable> 
+                      but you can use any digital wallet you currently use.</InfoText>
+                    </>
+                  </SubContainer>
+              </QRContainer>
             ) : (
               <QRHolder><p>Loading...</p></QRHolder>
             )
@@ -195,6 +294,42 @@ function AccountSetup(props) {
         <p>There was a problem with your invitation. Please request a new one.</p>
       )}
     </FormContainer>
+      { accountPasswordSet &&
+      <StepperContainer>
+        <HeaderText>Steps to complete verification</HeaderText>
+        <HeaderInfoText>Here's what you can expect from this process of verification</HeaderInfoText>
+        <Stepper 
+          activeStep={0} 
+          orientation="vertical"
+          sx={{
+                  '& .MuiStepConnector-root .MuiStepConnector-line': {
+                    borderColor: '#007567',
+                  },
+                }}
+          >
+            {steps.map((step) => (
+              <Step 
+                key={step.label} 
+                active
+                sx={{
+                  '& .MuiStepLabel-root .Mui-active': {
+                    color: '#007567',
+                  },
+                  '& .MuiStep-root .MuiStep-vertical .MuiStepContent-root': {
+                    borderLeft: '1px solid #007567'
+                  },
+                }}>
+                <StepLabel>
+                  <StepInfoText>
+                    {step.label}
+                  </StepInfoText>
+                </StepLabel>
+                </Step>
+            ))}
+          </Stepper>
+        </StepperContainer>
+         }
+    </PageContainer>
   )
 }
 

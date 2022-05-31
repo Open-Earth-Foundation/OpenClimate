@@ -9,7 +9,6 @@ import './pledges.widget.scss';
 interface Props {
     pledges?: Array<IPledge>,
     detailsLink?: string,
-    height: number,
     showAddBtn: boolean,
     voluntary: boolean,
     showModal?: (entityType: string) => void,
@@ -18,7 +17,7 @@ interface Props {
 
 const PledgesWidget: FunctionComponent<Props> = (props) => {
 
-    const { pledges, detailsLink, height, showAddBtn, voluntary, showModal, detailsClick } = props;
+    const { pledges, detailsLink, showAddBtn, voluntary, showModal, detailsClick } = props;
 
     let lastUpdated = "";
 
@@ -41,12 +40,12 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
     }
     
     return (
-        <div className="widget" style={{maxHeight: height}}> 
+        <div className="widget"> 
             <div className="widget__wrapper" >
                 <div className="widget__header">
                     <div className="widget__title-wrapper">
                         <h3 className="widget__title">
-                            Your pledges
+                            Pledges
                         </h3> 
                         {detailsLink ?
                             <NavLink to={detailsLink} className="widget__link">Details</NavLink>
@@ -73,9 +72,9 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                     </>
                     :
                     
-                    <div className="widget__no-data" style={{height: `calc(${height}px - 90px)`}}>
+                    <div className="widget__no-data">
                         <div className="widget__no-data-title">
-                            No any pledges yet
+                            No data yet
                         </div>
                         {showAddBtn ?
                             <AddNewBtn onClick={handlerAddPledge}/>

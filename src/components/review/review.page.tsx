@@ -16,6 +16,7 @@ import * as reviewSelectors from '../../store/review/review.selectors';
 import * as reviewActions from '../../store/review/review.actions';
 import * as appActions from '../../store/app/app.actions'; 
 import './review.page.scss';
+import {HiOutlineSearch} from 'react-icons/hi'
 
 interface IStateProps  {
     loading: boolean,
@@ -25,7 +26,7 @@ interface IStateProps  {
 }
 
 interface IDispatchProps {
-    selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedNation: ITrackedEntity | null) => void,
+    selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => void,
     deselectFilter: (filterType: FilterTypes) => void,
     showModal: (type: string) => void
 }
@@ -43,18 +44,11 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     {
         dashboardEntity = selectedEntities.find(se => se.type === dashboardEntityType) ?? null;
         collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);
-
-        debugger; 
     }
 
    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
-       let selectedNational:ITrackedEntity | null = null;
-       if(filterType == FilterTypes.SubNational)
-            selectedNational = selectedEntities.find(se => se.type === FilterTypes.National) ?? null;
-        selectFilter(filterType, option, selectedNational);
+        selectFilter(filterType, option, selectedEntities);
     }
-
-    
 
     return (
         <div className="review">
@@ -73,9 +67,11 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                 }
 
                 <div className="review__top-wrapper content-wrapper">
+                    <p className='review__heading'>Earth Indicators</p>
                     <ContextBars 
                         entitySelected={dashboardEntity ? true : false}
                         collapceEntities={collapceEntities}
+                        deselectFilter={deselectFilter}
                      />
                     {
                         dashboardEntity ? "" : 
@@ -85,16 +81,15 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                             </ReviewInfo>
                         </div>
                     }
-
+                    <div className="review__filter-button-wrapper">
+                        <a href='/explore'>
+                            <button className="review__filter-button">
+                                <HiOutlineSearch className='review__icon'/>
+                                <span>Explore by actor</span>
+                            </button>
+                        </a>
+                    </div>
                     <div className="review__filters-wrapper">
-                        <div className="review__switcher">
-                            <Switcher 
-                                leftOptionChosen={true}
-                                className = "input-wrapper"
-                                title = "State Option"
-                                leftOption="Nation State"
-                                rightOption = "Multinationals (MNC)" />
-                        </div>
                         <ReviewFilters
                             nationState={true} 
                             selectFilter={selectFilterHandler}
@@ -102,6 +97,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                             filters={reviewFilters}
                         />
                     </div>
+                    
 
                     <div className="review_selected-entity">
                     {
@@ -127,7 +123,13 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
                 <div className="review__content content-wrapper">
                     {
-                        dashboardEntity ? <Dashboard selectedEntity={dashboardEntity} showModal={showModal} /> : ""
+                        dashboardEntity ? 
+                        <>
+
+
+                            <Dashboard selectedEntity={dashboardEntity} showModal={showModal} /> 
+                        </>
+                        : ''
                     }
                 </div>
             </div>
@@ -150,8 +152,8 @@ const mapStateToProps = (state: RootState, ownProps: any) => {
 
 const mapDispatchToProps = (dispatch: DispatchThunk) => {
     return {
-        selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedNation: ITrackedEntity | null) => 
-            dispatch(reviewActions.doSelectFilter(filterType, option, selectedNation)),
+        selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => 
+            dispatch(reviewActions.doSelectFilter(filterType, option, selectedEntities)),
         deselectFilter: (filterType: FilterTypes) => dispatch(reviewActions.deselectFilter(filterType)),
         showModal: (type:string) => {
             dispatch(appActions.showModal(type))
@@ -160,4 +162,3 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewPage);
- 

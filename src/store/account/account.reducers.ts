@@ -5,6 +5,7 @@ const initialState: AccountState = {
     loading: false,
     pledges: [],
     sites: [],
+    wallets: [],
     transfers: [],
     climateActions: [],
     aggregatedEmissions: [],
@@ -12,7 +13,8 @@ const initialState: AccountState = {
     transfersLoaded: false,
     sitesLoaded: false,
     climateActionsLoaded: false,
-    aggregatedEmissionsLoaded: false
+    aggregatedEmissionsLoaded: false,
+    walletsLoaded : false
 }
 
 
@@ -46,6 +48,12 @@ export const accountReducer = ( state = initialState, action: any ) => {
                 sites: action.payload.sites,
                 sitesLoaded: true
             };
+        case accountActionTypes.LOAD_WALLETS:
+            return {
+                ...state,
+                wallets: action.payload.wallets,
+                walletsLoaded: true
+            };
         case accountActionTypes.ADD_SITE:
             return {
                 ...state,
@@ -77,6 +85,8 @@ export const accountReducer = ( state = initialState, action: any ) => {
                 ...state,
                 aggregatedEmissions: [...updatedAggrEmission, newAggrEmission]
             };
+        case accountActionTypes.ACCOUNT_CLEAR_STATE: return initialState;
+        
         default: return state;
     }
 }

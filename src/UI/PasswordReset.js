@@ -46,7 +46,7 @@ function PasswordReset(props) {
       data: {
         token: token,
       },
-      url: '/api/user/token/validate',
+      url: `${process.env.REACT_APP_CONTROLLER}/api/user/token/validate`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')
@@ -95,7 +95,7 @@ function PasswordReset(props) {
           password: form.get('newPass'),
           token: token,
         },
-        url: '/api/user/password/update',
+        url: `${process.env.REACT_APP_CONTROLLER}/api/user/password/update`,
       }).then((res) => {
         if (res.data.status) {
           setNotification(res.data.status, 'notice')

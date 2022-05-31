@@ -22,9 +22,12 @@ import IAggregatedEmission from '../../api/models/DTO/AggregatedEmission/IAggreg
 import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import { IUser } from '../../api/models/User/IUser';
 
+import {
+    useNotification
+  } from '../../UI/NotificationProvider';
 
-interface IStateProps {
-    user: IUser | null,
+interface IStateProps  {
+    user: IUser,
     pledges: Array<any>,
     transfers: Array<any>,
     sites: Array<ISite>,
@@ -50,30 +53,29 @@ interface IProps extends IStateProps, IDispatchProps {
 }
 
 const AccountPage: FunctionComponent<IProps> = (props) => {
-
+    const setNotification = useNotification()
     const { user, pledges, transfers, sites, climateActions, pledgesLoaded, 
         transfersLoaded, sitesLoaded, climateActionsLoaded, aggregatedEmissions, aggregatedEmissionsLoaded,
         showModal, loadPledges, loadTransfers, loadSites, loadClimateActions, loadAggregatedEmissions } = props;
 
     useEffect(() => {
-        console.log(user)
-        if(user && user.company && user.company.id)
+
+        if(user && user.company && user.company.organization_id)
         {
             if(!pledgesLoaded)
-                loadPledges(user.company.id);
+                loadPledges(user.company.organization_id);
 
             if(!transfersLoaded)
-                loadTransfers(user.company.id);
-            console.log(user)
-            console.log(sitesLoaded)
+                loadTransfers(user.company.organization_id);
+
             if(!sitesLoaded)
-                loadSites(user.company.id);
+                loadSites(user.company.organization_id);
 
             if(!climateActionsLoaded)
-                loadClimateActions(user.company.id);
+                loadClimateActions(user.company.organization_id);
 
             if(!aggregatedEmissionsLoaded)
-                loadAggregatedEmissions(user.company.id);
+                loadAggregatedEmissions(user.company.organization_id);
         }
 
     }, [user]);
@@ -91,24 +93,29 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
                     <Switch>
                         <Route path="/account/climate-actions">
                             <ClimateActions 
-                                showModal={showModal}
+                                user={user}
                                 climateActions={climateActions}
+                                showModal={showModal}
+                                sites={sites}
                             />
                         </Route>
                         <Route path="/account/pledges">
                             <AccountPledges 
+                                user={user}
                                 showModal={showModal} 
                                 pledges={pledges} 
                             />
                         </Route>
                         <Route path="/account/transfers">
                             <AccountTransfers 
+                                user={user}
                                 showModal={showModal} 
                                 transfers={transfers} 
                             />
                         </Route>
                         <Route path="/account/sites"
                              render = { props => <AccountSites 
+                                            user={user}
                                             aggregatedEmissions={aggregatedEmissions}
                                             showModal={showModal} 
                                             sites={sites}
@@ -122,6 +129,7 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
                                 showModal={showModal}
                                 sites={sites}
                                 aggregatedEmissions={aggregatedEmissions}
+                                user={user}
                             />
                         </Route>
                     </Switch>

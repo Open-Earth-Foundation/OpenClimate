@@ -1,3 +1,12 @@
+@import './mixins.scss';
+
+@include respond(mobile){
+    .content-wrapper {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
+
 :root {
     --primary-color: #007568;
     --white-color: #FFFFFF;
@@ -14,10 +23,7 @@
 
     --red-color: #DF4A2A;
     --green-color: #03AA6F;
-
-
-
-
+    --yellow-color: #F1A638;
 
     --dim-color: rgba(255, 255, 255, 0.5);
     --light-gray-color: rgba(0, 0, 0, 0.05);
@@ -84,11 +90,11 @@ button {
 
 .input-wrapper {
     cursor: pointer;
-    background-color: var(--grey1_35-color);
+    border: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
     padding: 12px 16px;
-    color: var(--grey3-color);
+    color: #333;
     line-height: 28px;
     font-size: 14px;
 }
@@ -154,9 +160,16 @@ button {
     margin-right: 24px;
     margin-bottom: 24px;
     width: 490px;
-    &__wrapper {
-        padding: 24px;
+    overflow: hidden;
+    min-height: 220px; 
 
+    &__content {
+        height: 90%;
+    }
+
+    &__wrapper {
+        padding: 24px 24px 0 24px;
+        height: 100%;
     }
 
     &__header {
@@ -190,9 +203,9 @@ button {
         font-size: 10px;
         line-height: 21px;
         color: var(--blue-color);
+        margin-left: 2px;
     }
 
-    
     &__info {
         margin-left: 9.33px;
         position: relative;
@@ -215,6 +228,11 @@ button {
         font-size: 12px;
         line-height: 18px;
         height: inherit;
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+        min-height: 125px;
+        padding-bottom: 0;
 
         &-title {
             margin-bottom: 16px;
@@ -277,7 +295,7 @@ button {
     color: var(--black-color);
     font-size: 10px;
     line-height: 15px;
-    width: 130px;
+    max-width: 140px;
 }
 
 .scope-item-header {
@@ -313,3 +331,90 @@ button {
     display: none;
 }
 
+.leaflet-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.loader {
+    z-index: 10;
+    position: fixed;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--grey1-color);
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nested-switcher-container {
+    padding: 15px 0;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.nested-switcher {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    color: #BDBDBD;
+    color: var(--grey3-color);
+    line-height: 24px;
+    font-size: 12px;
+    cursor: pointer;    
+}
+
+span[role="alert"] {
+    font-size: 12px;
+    color:var(--red-color);
+}
+
+input.is-empty {
+    border-color:var(--red-color);
+}
+
+.map-panel {
+    width: 50%;
+    overflow-x: hidden;
+
+    &__wrapper {
+        padding: 0 17px 0 40px;
+    }
+
+    &__back {
+        margin-bottom: 40px;
+
+        &_icon {
+            position: relative;
+            top: 2px;
+            margin-right: 12px;
+        }
+
+        &_link {
+            cursor: pointer;
+            color: var(--blue-color);
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 15px;
+        }
+    }
+}
+
+
+.apexcharts-legend.apexcharts-align-left 
+.apexcharts-legend-series {
+    width: 100%;
+}
+
+.my-masonry-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.my-masonry-grid_column {
+    min-width: 500px;
+}

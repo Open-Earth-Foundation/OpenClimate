@@ -2,13 +2,22 @@ import IOrganization from "../../api/models/DTO/Organization/IOrganization";
 import { ServerUrls } from "../environments/server.environments";
 import { CommonHelper } from "../helpers/common.helper";
 
-async function getByCredentialId(credentialId: string)
+async function getByCredentialId(credentialId: number)
 {
-    return fetch(`${ServerUrls.api}/organization/${credentialId}`, {
+    return fetch(`${ServerUrls.api}/organization/credentials/${credentialId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((organization: IOrganization) => organization);
 }
+
+async function getById(id: string)
+{
+    return fetch(`${ServerUrls.api}/organization/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(CommonHelper.HandleResponse).then((organization: IOrganization) => organization);
+}
+
 
 async function saveOrganization(orgData: IOrganization)
 {
@@ -33,6 +42,7 @@ async function getByLocation(country: string, jurisdiction: string)
 
 
 export const organizationService = {
+    getById,
     getByCredentialId,
     getByLocation,
     saveOrganization

@@ -1,4 +1,11 @@
+@import '../../mixins.scss';
+
 .context-bar__view {
+
+    @include respond(mobile){
+        display: none !important;
+    }
+
     width: 400px;
 
     .context-bar__pic-wrapper {

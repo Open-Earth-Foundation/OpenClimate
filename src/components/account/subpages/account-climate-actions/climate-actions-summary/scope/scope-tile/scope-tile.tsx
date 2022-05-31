@@ -7,6 +7,7 @@ import IClimateActionTile from '../../../../../../../api/models/DTO/ClimateActio
 import { ClimateActionTypes } from '../../../../../../../api/models/DTO/ClimateAction/climate-action-types';
 import './scope-tile.scss';
 import IClimateAction from '../../../../../../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
+import ISite from '../../../../../../../api/models/DTO/Site/ISite';
 
 interface IProps  {
     climateActionTile?: IClimateActionTile,
@@ -14,12 +15,13 @@ interface IProps  {
     scope: ClimateActionScopes,
     addOffset?: boolean,
     centered? : boolean,
-    showModal: (entityType: string, parameters?: object) => void
+    showModal: (entityType: string, parameters?: object) => void,
+    sites?: Array<ISite>,
 }
 
 const ScopeTile: FunctionComponent<IProps> = (props) => {
 
-    const { climateActionTile, scope, type, addOffset, showModal } = props;
+    const { climateActionTile, scope, sites, type, addOffset, showModal } = props;
 
     const showEmptyTile = !climateActionTile?.climateActions.length && climateActionTile?.type !== ClimateActionTypes.Summary; 
     const hideTile = !climateActionTile?.total && climateActionTile?.type === ClimateActionTypes.Summary;
@@ -32,9 +34,7 @@ const ScopeTile: FunctionComponent<IProps> = (props) => {
     if(climateActionTile?.climateActions && climateActionTile?.climateActions.length > 2)
         hiddenTilesCount = climateActionTile?.climateActions.length - 2;
 
-    useEffect(() => {
-
-    },);
+    let addTitle = climateActionTile?.type === ClimateActionTypes.Emissions ? "emissions" : "mitigations";
 
     return (
         <div className={`scope-tile ${centeredClass}`}>
@@ -42,7 +42,11 @@ const ScopeTile: FunctionComponent<IProps> = (props) => {
                 hideTile? '' :
                 showEmptyTile ?
                     <div className="scope-tile__add-offset_centered">
-                        <button className="scope-tile__add-offset-btn scope-item-btn" onClick={() => showModal('add-climate-action', { Scope: scope, Type: type })}>Add offset</button>
+                        {
+                            addOffset ?
+                            <button className="scope-tile__add-offset-btn scope-item-btn" onClick={() => showModal('add-ghg-cred', { Scope: scope, Type: type, sites: sites })}>Add {addTitle}</button>
+                            : ""
+                        }
                     </div>
                 :
                 <React.Fragment>
@@ -51,12 +55,12 @@ const ScopeTile: FunctionComponent<IProps> = (props) => {
                             <div className="scope-tile__header scope-item-header">MtCO2e/year</div>
                             <div className="scope-tile__add-offset_right">
                                 {addOffset ?
-                                    <button className="scope-tile__add-offset-btn scope-item-btn" onClick={() => showModal('add-climate-action', { Scope: scope, Type: type })}>Add</button>
+                                    <button className="scope-tile__add-offset-btn scope-item-btn" onClick={() => showModal('add-ghg-cred', { Scope: scope, Type: type })}>Add</button>
                                     : ""
                                 }
                             </div>
                     </div>
-                    <div className="scope-title__content">
+                    <div className="scope-tile__content">
                         {
                             visibleTiles?.reverse().map((c: IClimateAction, index: number) => {
                                 return (

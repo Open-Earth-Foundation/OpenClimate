@@ -1,9 +1,8 @@
 export default interface IClimateAction {
     id?: string,
     credential_category?: string,
-    climate_action_type?: string,
-    climate_action_scope?: string,
     credential_type?: string,
+    climate_action_scope?: string,
     credential_schema_id?: string,
     credential_issuer?: string,
     credential_issue_date?: number,
