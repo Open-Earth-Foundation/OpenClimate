@@ -40,9 +40,7 @@ const NavMenu: FunctionComponent<Props> = (props) => {
                     </li>
                 : ""
                 }
-                <li className="toolbar-menu__item">
-                    <NavLink exact={true} to="/" className="toolbar-menu__link" activeClassName="toolbar-menu__link_active">Explore</NavLink>
-                </li>
+                
 
             </ul>
         </nav>
