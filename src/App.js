@@ -66,6 +66,7 @@ import SessionProvider from './UI/SessionProvider'
 import './App.css'
 import ExplorePage from './components/explore/explore.page'
 import TransfersPage from './components/transfers/transfers.page'
+import Emissions from './components/explore/emissions.page'
 
 const Frame = styled.div`
   display: flex;
@@ -1031,6 +1032,9 @@ const App: FunctionComponent<Props> = (props) => {
               </Route>
               <Route path="/explore" exact>
                 <ExplorePage />
+              </Route>
+              <Route path="/emissions/:id" exact>
+                <Emissions />
               </Route>
               <Route path="/transfers" exact>
                 <TransfersPage />
