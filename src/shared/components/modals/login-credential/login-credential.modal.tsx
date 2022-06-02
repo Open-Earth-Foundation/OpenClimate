@@ -71,18 +71,18 @@ const LoginCredentialModal: FunctionComponent<Props> = (props) => {
                     </a>
                 </div>
 
-                <div className="modal__row modal__row_content-center login-credential-form__qr-content login-credential-form__subheader login-credential-form__second-subheader">
+                {/* <div className="modal__row modal__row_content-center login-credential-form__qr-content login-credential-form__subheader login-credential-form__second-subheader">
                         or you can use the Demo Access if you don't have a verified credential yet.
-                </div>
+                </div> */}
                 
                 
-                <div className="modal__row modal__row_btn">
+                {/* <div className="modal__row modal__row_btn">
                     <Button color="white"
                             click={() => onModalShow('demo-info')}
                             text="Use Demo Access"
                             type="button"
                             />
-                </div>
+                </div> */}
                 {/* <div className="modal__row modal__row_content-center">
                     <a
                         onClick={() => onModalShow('verify-information')}
