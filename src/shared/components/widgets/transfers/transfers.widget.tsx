@@ -35,7 +35,7 @@ const TransfersWidget: FunctionComponent<Props> = (props) => {
                     <h3 className="widget__title">
                         Trades & Transfers
                     </h3> 
-                    <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
+                    <a href="#" className="widget__link" onClick={detailsClick}>See details</a>         
                 </div>
 
                 <span className="widget__updated">Last Updated June 2020</span>     

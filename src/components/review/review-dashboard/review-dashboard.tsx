@@ -51,8 +51,8 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     columnClassName="my-masonry-grid_column">
                     <EmissionWidget 
                         isVisible={true}
-                        title="Emission Inventory" 
-                        height={220}
+                        title="Total emissions" 
+                        height={300}
                         width={490}
                         aggregatedEmission={selectedEntity.aggregatedEmission} 
                         detailsClick={() => showModal('information-emission')}
@@ -77,10 +77,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         detailsClick={() => showModal('information-transfers')}
                         showAddBtn={false}
                     />
-                    <NestedAccountsWidget 
-                        detailsClick={redirectToNestedAccounts}
-                        sites={selectedEntity.sites}
-                    />
+
                 </Masonry>
             </div>
             
