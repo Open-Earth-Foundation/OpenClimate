@@ -13,19 +13,26 @@ const initialState: ReviewState = {
     selectedEntities: [],
     filters: [
         {
-            title: "Nation state",
+            title: "Country",
             type: FilterTypes.National,
             selectedValue: "",
             options: CountryCodesHelper.GetContryOptions()
         },
         {
-            title: "Subnational",
+            title: "Region",
             type: FilterTypes.SubNational,
             selectedValue: "",
             options: []
         },
         {
-            title: "Organization",
+            title: "Entity type",
+            type: FilterTypes.EntityType,
+            selectedValue: 'City',
+            options: [{name: 'City', value: 'City'}, {name: 'Company', value: 'Company'}],
+            isRadio: true
+        },
+        {
+            title: "City",
             type: FilterTypes.Organization,
             selectedValue: "",
             options: []

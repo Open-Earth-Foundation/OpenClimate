@@ -160,13 +160,14 @@ const Modal: FunctionComponent<IProps> = (props) => {
                             submitButtonText="Submit Climate Action" />
             break;
         case 'information-agreements':
-            component = <InformationModal title="Climate Treaties & Agreements"  />
+            component = <InformationModal 
+                            title="Climate treaties & Agreements"  />
             break;
         case 'information-pledges':
-            component = <InformationModal title="Pledges"  />
+            component = <InformationModal title="Your pledges"  />
             break;
         case 'information-emission':
-            component = <InformationModal title="Emission Inventory"  />
+            component = <InformationModal title="Total emissions"  />
             break;
         case 'information-transfers':
             component = <InformationModal title="Transfers"  />

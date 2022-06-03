@@ -11,6 +11,44 @@ const InformationModal: FunctionComponent<Props> = (props) => {
 
     const { title, subtitle } = props;
 
+    const getDescription = () => {
+        switch(title)
+        {
+            case 'Climate treaties & Agreements':
+                return (
+                    <div className="information-column__content">
+                            This widget shows the Treaties & Agreements that the actor signed or participated in, that are related with Climate action (e.g. Paris Agreement). <p />
+                            For each Agreement, it will show the name and status.          
+                        </div>
+                )
+            case 'Your pledges':
+                return (
+                    <div className="information-column__content">
+                        The Pledges widget shows the Commitments the actor made about their Climate Actions (e.g. Nationally Determined Contributions to the Paris Agreement). <p />
+                        For each Pledge, it will show name, amount of GHG emissions that the actor wants to reduce and the deadline. 
+                    </div>
+                )
+            case 'Transfers':
+                return (
+                    <div className="information-column__content">
+                        Transfers Widget shows the amount of GHG emissions that were traded or transferred between actors in the form of carbon moving in and out, and carbon reductions (eg. mitigation outcomes in and out). 
+                            <p />
+                            It includes the actor that had originally this emissions, the actor that received them, and the type of transfer.  
+                    </div>
+                )
+            case 'Total emissions':
+                return (
+                    <div className="information-column__content">
+                        The Emissions Inventory widget includes information about the amount of Greenhouse gases (GHG) that were emitted by the actor.
+                            This information includes:
+                            <p />
+                            - Total GHG emissions Mmt CO2e/year: shows the emissions of all the GHG gases that were emitted by the actor during the last year, calculated in the CO2 equivalent. <p />
+                            - Land Use Sinks Mt CO2e/year: shows the all the Land Use Sinks within the actor territory for the last year, calculated in the CO2 equivalent. <p /> 
+                    </div>
+                )
+        }
+    }
+
     return (
         <div className="information">
             <div className="information__title">{title}</div>
@@ -19,9 +57,7 @@ const InformationModal: FunctionComponent<Props> = (props) => {
                 <div className="information__content-columns">
                     <div className="information-column">
                         <div className="information-column__title">What does it mean</div>
-                        <div className="information-column__content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porta nunc id nunc eleifend vestibulum. Cras luctus risus nisi, non dignissim nisi sodales ac. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia...
-                        </div>
+                        { getDescription() }
                         <div className="information-column__footer">
                             <a href="#" className="information-column__link modal__link modal__link_blue">Read more</a>
                         </div>

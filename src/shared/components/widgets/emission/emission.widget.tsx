@@ -41,12 +41,12 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                             {title}
                         </h3> 
                         {
-                            showDetails ?
+                            showDetails || detailsClick ?
                             <>
                             {detailsLink ?
                                 <NavLink to={detailsLink} className="widget__link">Details</NavLink>
                                 :
-                                <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
+                                <a href="#" className="widget__link" onClick={detailsClick}>See details</a>         
                             }
                             </>
                             : ''
@@ -57,35 +57,26 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                     <span className="widget__updated">Last Updated June 2020</span>     
 
                 </div>
-                <div className="widget__content" style={{height: `calc(${height}px - 90px)`}}>
+                <div className="widget__content" style={{height: `auto`}}>
                     {
                     aggregatedEmission ? 
                     <div className={`widget__emission-content ${className}`}>
-                        <div className="widget__emission-numbers">
-                            <div className="widget__content-column">
+                            <div >
                                 <div className="widget__emission-data red">
-                                    <img src={ArrowUpRed} alt="up" className="widget__emission-arrow"/>
                                     {aggregatedEmission?.facility_ghg_total_gross_co2e?.toFixed(2)}
-                                    {/* 102365.00 */}
+                                    763.44
                                 </div>
                                 <div className="widget__emission-data-description">
-                                    Total GHG Emissions Mmt CO2e/year
+                                    Total GHG Emissions <br /> Mmt CO2e/year
                                 </div>
                             </div>
-                            <div className="widget__content-column widget__content-column_center">-</div>
-                            <div className="widget__content-column">
-                                <div className="widget__emission-data green">
-                                    <img src={ArrowDownGreen} alt="down" className="widget__emission-arrow" />
+                            <div className={`widget__emission-numbers`}>
+                                <div className="widget__emission-data-small green">
                                     {aggregatedEmission?.facility_ghg_total_sinks_co2e?.toFixed(2)}
+                                    12.9
                                 </div>
                                 <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
                             </div>
-                            <div className="widget__content-column widget__content-column_center">=</div>
-                            <div className="widget__content-column red">
-                                <div className="widget__emission-data">{aggregatedEmission?.facility_ghg_total_net_co2e?.toFixed(2)}</div>
-                                <div className="widget__emission-data-description">Net GHG Emissions Mt CO2e/year</div>
-                            </div>
-                        </div>
                     </div>
                     : 
                     <div className="widget__no-data">

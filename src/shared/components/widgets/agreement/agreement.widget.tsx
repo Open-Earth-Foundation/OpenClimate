@@ -25,9 +25,9 @@ const AgreementWidget: FunctionComponent<Props> = (props) => {
             <div className="widget__header">
                 <div className="widget__title-wrapper">
                     <h3 className="widget__title">
-                        Climate Treaties & Agreements
+                        Climate treaties & Agreements
                     </h3> 
-                    <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
+                    <a href="#" className="widget__link" onClick={detailsClick}>See details</a>         
                 </div>
 
                 <span className="widget__updated">Last Updated June 2020</span>     
