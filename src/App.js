@@ -295,7 +295,7 @@ const App: FunctionComponent<Props> = (props) => {
 
   // Setting up websocket and controllerSocket
   useEffect(() => {
-    if (session && loggedIn && !websocket) {
+    if (session && loggedIn && !websocket && loggedInUserState) {
       console.log("Connecting controllerSocket")
       let url = new URL('/api/admin/ws', process.env.REACT_APP_CONTROLLER)
       url.protocol = url.protocol.replace('http', 'ws')
@@ -390,7 +390,7 @@ const App: FunctionComponent<Props> = (props) => {
       // State will change when this is done
       controllerSocket.current.close()
     }
-  }, [loggedIn, session, websocket])
+  }, [loggedIn, session, websocket, loggedInUserState])
 
   // TODO: Setting logged-in user and session states on app mount
   useEffect(() => {
@@ -423,6 +423,10 @@ const App: FunctionComponent<Props> = (props) => {
   }, [loggedIn])
 
   useEffect(() => {
+    console.log('loggedInUserState', loggedInUserState);
+  }, [loggedInUserState])
+
+  useEffect(() => {
     if (emailStatus && organizationStatus) {
       setVerifiedCredential(emailStatus)
       setVerificationStatus(true)
@@ -453,8 +457,8 @@ const App: FunctionComponent<Props> = (props) => {
         // Envision login
         // const envisionUser = await userService.getUserByEmail(res.data.email)
         doLoginSuccess(res.data)
-        setLoggedInUserState(res.data)
-        await setLoggedIn(true)
+        // setLoggedInUserState(res.data)
+        setLoggedIn(true)
         // localStorage.setItem('user', JSON.stringify(res.data));
       }
     })
@@ -484,8 +488,8 @@ const App: FunctionComponent<Props> = (props) => {
         // Envision login
         // const envisionUser = await userService.getUserByEmail(res.data.email)
         doLoginSuccess(res.data)
-        setLoggedInUserState(res.data)
-        await setLoggedIn(true)
+        // setLoggedInUserState(res.data)
+        setLoggedIn(true)
         // localStorage.setItem('user', JSON.stringify(res.data));
       }
     })
