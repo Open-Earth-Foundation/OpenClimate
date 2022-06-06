@@ -345,7 +345,7 @@ const App: FunctionComponent<Props> = (props) => {
 
         sendMessage('IMAGES', 'GET_ALL', {})
         addLoadingProcess('LOGO')
-
+        console.log("rules, loggedInUserState", rules, loggedInUserState)
         if (check(rules, loggedInUserState, 'users:read')) {
           sendMessage('USERS', 'GET_ALL', {})
           addLoadingProcess('USERS')
@@ -448,13 +448,14 @@ const App: FunctionComponent<Props> = (props) => {
         cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
         cookies.set('user', res.data);
         // console.log("Setting up the user now")
-        setLoggedIn(true)
         setUpUser(res.data.id, res.data.email, res.data.roles)
 
         // Envision login
         // const envisionUser = await userService.getUserByEmail(res.data.email)
         doLoginSuccess(res.data)
-        localStorage.setItem('user', JSON.stringify(res.data));
+        setLoggedInUserState(res.data)
+        setLoggedIn(true)
+        // localStorage.setItem('user', JSON.stringify(res.data));
       }
     })
   }
@@ -479,13 +480,13 @@ const App: FunctionComponent<Props> = (props) => {
         cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
         cookies.set('user', res.data);
         // console.log("Setting up the user now")
-        setLoggedIn(true)
         setUpUser(res.data.id, res.data.email, res.data.roles)
-
         // Envision login
         // const envisionUser = await userService.getUserByEmail(res.data.email)
         doLoginSuccess(res.data)
-        localStorage.setItem('user', JSON.stringify(res.data));
+        setLoggedInUserState(res.data)
+        setLoggedIn(true)
+        // localStorage.setItem('user', JSON.stringify(res.data));
       }
     })
   }
