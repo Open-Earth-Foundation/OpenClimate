@@ -76,8 +76,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                     {
                         dashboardEntity ? "" : 
                         <div className="review__info">
-                            <ReviewInfo title="Landing text title">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam porta nunc id nunc eleifend vestibulum. Cras luctus risus nisi, non dignissim nisi sodales ac. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia...
+                            <ReviewInfo title="An open source and digitally integrated climate accounting system">
+                            Use the filters to explore where emissions come from. We aggregate data from public sources so that you can study how each country, subnational actor and company contributes to global warming and their mitigation actions to reduce emissions.
                             </ReviewInfo>
                         </div>
                     }

@@ -45,12 +45,12 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                 <div className="widget__header">
                     <div className="widget__title-wrapper">
                         <h3 className="widget__title">
-                            Pledges
+                            Your pledges
                         </h3> 
                         {detailsLink ?
                             <NavLink to={detailsLink} className="widget__link">Details</NavLink>
                             :
-                            <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
+                            <a href="#" className="widget__link" onClick={detailsClick}>See details</a>         
                         }
                     </div>
 

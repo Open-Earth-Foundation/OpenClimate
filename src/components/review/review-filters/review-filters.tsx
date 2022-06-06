@@ -4,6 +4,7 @@ import { DropdownOption } from '../../../shared/interfaces/dropdown/dropdown-opt
 import { FilterTypes } from '../../../api/models/review/dashboard/filterTypes';
 import { IReviewFilter } from '../../../api/models/review/dashboard/reviewFilter';
 import './review-filters.scss';
+import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 
 interface Props {
     nationState: boolean,
@@ -17,7 +18,7 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
 
     const { filters, selectFilter, deselectFilter } = props;
 
-    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
+    const selectFilterHandler = (filterType: FilterTypes, option: any) => {
         selectFilter(filterType, option);
     };
 
@@ -26,7 +27,36 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
         const disabled = f.options.length === 0;
         const selectedValue = f.selectedValue === '' ? null : f.selectedValue;
 
-        return (
+
+        return f?.isRadio ? 
+        (
+            <div className="review__filter" key={i}>                
+                <FormControl>
+                    <FormLabel className="review__filter-form-label">{ f.title }</FormLabel>
+                    <RadioGroup
+                      aria-labelledby="demo-controlled-radio-buttons-group"
+                      name="controlled-radio-buttons-group"
+                      value={f.selectedValue}
+                      onChange={ (event) => selectFilterHandler(f.type, event.target)}
+
+                      sx={{
+                        '& .MuiFormControlLabel-root': {
+                          fontSize: '14px',
+                          fontFamily: 'Lato'
+                        },
+                      }}
+                      >
+
+                        { f.options.map(option => 
+                            <FormControlLabel value={option.value} control={<Radio />} label={option.name} />
+                            )
+                        }    
+                    </RadioGroup>
+                </FormControl>
+            </div>
+        )
+        :
+        (
             <div className="review__filter" key={i}>                
                 <Dropdown 
                 withSearch={true}
@@ -39,7 +69,8 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
                 selectedValue={selectedValue}
                 />
             </div>
-        );
+        )
+        ;
     });
 
 
