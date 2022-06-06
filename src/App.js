@@ -454,7 +454,7 @@ const App: FunctionComponent<Props> = (props) => {
         // const envisionUser = await userService.getUserByEmail(res.data.email)
         doLoginSuccess(res.data)
         setLoggedInUserState(res.data)
-        setLoggedIn(true)
+        await setLoggedIn(true)
         // localStorage.setItem('user', JSON.stringify(res.data));
       }
     })
@@ -485,7 +485,7 @@ const App: FunctionComponent<Props> = (props) => {
         // const envisionUser = await userService.getUserByEmail(res.data.email)
         doLoginSuccess(res.data)
         setLoggedInUserState(res.data)
-        setLoggedIn(true)
+        await setLoggedIn(true)
         // localStorage.setItem('user', JSON.stringify(res.data));
       }
     })
