@@ -143,7 +143,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
      
     const fetchData = async (id:any) => {
 
-        const fetchCountryData = await fetch(`/api/country/${id}/2019/PRIMAP`);
+        const fetchCountryData = await fetch(`/api/country/${id}`);
 
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
