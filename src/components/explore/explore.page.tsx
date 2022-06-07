@@ -44,9 +44,6 @@ const ExplorePage: React.FunctionComponent = () => {
     }
 
     
-
-    
-
     // countries options
     
 
@@ -213,8 +210,6 @@ const ExplorePage: React.FunctionComponent = () => {
     return(
         // Explore Page Main Wrapper
         <div className='explore__wrapper'>
-            
-            
                    <>
                     <div className='explore__header'>
                         <div className='explore__icon'>

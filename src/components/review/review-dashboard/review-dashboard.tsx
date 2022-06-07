@@ -11,26 +11,37 @@ import './review-dashboard.scss';
 import Switcher from '../../../shared/components/form-elements/switcher/switcher';
 import Masonry from 'react-masonry-css'
 
+
+interface IEmissionsData {
+    total_ghg: number,
+    lastUpdated: string,
+    year: number,
+    dataProviderName: string,
+    methodologyType: string
+}
+
 interface Props {
-    selectedEntity: ITrackedEntity,
+    emissionData: IEmissionsData
+    selectedEntity: ITrackedEntity | null,
     showModal: (type: string) => void
 }
 
 const Dashboard: FunctionComponent<Props> = (props) => {
-    const { selectedEntity, showModal } = props;
+    console.log(props.emissionData.total_ghg)
+    const { selectedEntity, showModal, emissionData } = props;
 
     const history = useHistory();
     
-    const redirectToNestedAccounts = () => {
-        let params = '';
+    // const redirectToNestedAccounts = () => {
+    //     let params = '';
 
-        if(selectedEntity.type === FilterTypes.National)
-            params = `?country=${selectedEntity.countryCode3}`;
-        else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
-            params = `?country=${selectedEntity.countryCode3}&jurisdictionName=${selectedEntity.jurisdictionName}&jurisdictionCode=${selectedEntity.jurisdictionCode}`;
+    //     if(selectedEntity.type === FilterTypes.National)
+    //         params = `?country=${selectedEntity.countryCode3}`;
+    //     else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
+    //         params = `?country=${selectedEntity.countryCode3}&jurisdictionName=${selectedEntity.jurisdictionName}&jurisdictionCode=${selectedEntity.jurisdictionCode}`;
 
-        history.push(`/nested-accounts${params}`);
-    }
+    //     history.push(`/nested-accounts${params}`);
+    // }
 
     return (
         <div className="review__dashboard">
@@ -40,7 +51,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     leftOption='Widget View'
                     rightOption='Nested Map View'
                     leftOptionChosen={true}
-                    onChange={redirectToNestedAccounts}
+                    // onChange={redirectToNestedAccounts}
                 />
             </div>
 
@@ -54,25 +65,30 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         title="Total emissions" 
                         height={300}
                         width={490}
-                        aggregatedEmission={selectedEntity.aggregatedEmission} 
+                        totalGhg = {emissionData.total_ghg}
+                        lastupdated = {emissionData.lastUpdated}
+                        year = {emissionData.year}
+                        source = {emissionData.dataProviderName}
+                        methodology = {emissionData.methodologyType}
+                        // aggregatedEmission={emissionData.total_ghg} 
                         detailsClick={() => showModal('information-emission')}
                     />
 
                     <AgreementWidget
-                        treaties = {selectedEntity.treaties}
+                        // treaties = {selectedEntity.treaties}
                         height={220}
                         detailsClick={() => showModal('information-agreements')}
                     />
 
                     <PledgesWidget 
-                        pledges={selectedEntity.pledges} 
+                        // pledges={selectedEntity.pledges} 
                         showModal={showModal}
                         detailsClick={() => showModal('information-pledges')}
                         showAddBtn={false}
                         voluntary={false}
                     />
                                     <Transfers 
-                        transfers={selectedEntity.transfers} 
+                        // transfers={selectedEntity.transfers} 
                         showModal={showModal}
                         detailsClick={() => showModal('information-transfers')}
                         showAddBtn={false}
