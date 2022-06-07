@@ -357,7 +357,6 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                                     value={stateValue}
                                                     placeholder="Country"
                                                     onClick={handleDropNation}
-                                                    disabled
                                                 />
 
                                     {
