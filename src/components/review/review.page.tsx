@@ -496,7 +496,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
                             </div>
                         </div>
-                        {/* <div className='review__filters'>
+                        <div className='review__filters'>
                             <div className="dropdown" onClick={(e) => e.stopPropagation()}>
                                 <div className="dropdown__title title-label">
                                     <label>Entity Type</label>
@@ -511,7 +511,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                                                
                                 </div>
                             </div>
-                        </div> */}
+                        </div>
                         { city && 
                             <div className='review__filters'>
                                 <div className="dropdown" onClick={(e) => e.stopPropagation()}>
