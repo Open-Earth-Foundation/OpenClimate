@@ -87,7 +87,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
 
     const getAllcountries = async () => {
-        const countries = await  fetch('https://dev.openclimate.network/api/country', {
+        const countries = await  fetch('/api/country', {
 
             method: 'GET',
         });
@@ -143,7 +143,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
      
     const fetchData = async (id:any) => {
 
-        const fetchCountryData = await fetch(`https://dev.openclimate.network/api/country/${id}/2019/PRIMAP`);
+        const fetchCountryData = await fetch(`/api/country/${id}/2019/PRIMAP`);
 
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
@@ -171,7 +171,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
     
     const fetchSubnationalData = async (id:any) => {
-        const fetchCountryData = await fetch(`https://dev.openclimate.network/api/subnationals/${id}`);
+        const fetchCountryData = await fetch(`/api/subnationals/${id}`);
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
         console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
