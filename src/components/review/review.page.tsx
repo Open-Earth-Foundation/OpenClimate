@@ -46,6 +46,8 @@ interface IDispatchProps {
 
 interface IProps extends IStateProps, IDispatchProps {
 }
+ 
+
 
 const ReviewPage: FunctionComponent<IProps> = (props) => {
     const [selectNation, setSelectNation] = React.useState<boolean>(false);
@@ -85,7 +87,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
 
     const getAllcountries = async () => {
-        const countries = await  fetch('/api/country', {
+        const countries = await  fetch('https://dev.openclimate.network/api/country', {
+
             method: 'GET',
         });
         const jsonData = await countries.json()
@@ -137,9 +140,11 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         setCityV('')
             
     }
-    
+     
     const fetchData = async (id:any) => {
-        const fetchCountryData = await fetch(`/api/country/${id}/2019/PRIMAP`);
+
+        const fetchCountryData = await fetch(`https://dev.openclimate.network/api/country/${id}/2019/PRIMAP`);
+
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
         console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
@@ -166,7 +171,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
     
     const fetchSubnationalData = async (id:any) => {
-        const fetchCountryData = await fetch(`http://localhost/api/subnationals/${id}`);
+        const fetchCountryData = await fetch(`https://dev.openclimate.network/api/subnationals/${id}`);
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
         console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
@@ -189,6 +194,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         data['dataProviderName'] = jsonData.data[0].Emissions[0].DataProvider.data_provider_name
         data['methodologyType'] = jsonData.data[0].Emissions[0].DataProvider.Methodology.methodology_type
         setEmissionsData(data);
+
         setCity(jsonData.data[0].Cities);
     }
     useEffect(()=> {
@@ -502,7 +508,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                                     autoComplete='off'
                                                     className='selected-area__option'
                                                     value={cityValue}
-                                                    placeholder="Subnational"
+                                                    placeholder="City"
                                                     onClick={handleDropCity}
                                                 />
 
