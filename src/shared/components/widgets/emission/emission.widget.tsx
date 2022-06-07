@@ -1,12 +1,10 @@
 import { withWidth } from '@material-ui/core';
 import React, { FunctionComponent } from 'react'
 import { NavLink } from 'react-router-dom';
-import ArrowUp from '../../../img/widgets/arrow_up_red.svg';
-import ArrowUpRed from '../../../img/widgets/arrow_up_red.svg';
-import ArrowDownGreen from '../../../img/widgets/arrow_down_green.svg';
+
 import './emission.widget.scss';
 import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
-import { HiArrowDown, HiChevronDown } from 'react-icons/hi';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 interface Props {
     isVisible: boolean
@@ -16,6 +14,7 @@ interface Props {
     className?: string,
     detailsLink?: string,
     totalGhg?: number,
+    landSinks?: number,
     year?: number,
     lastupdated?: string,
     source?: string,
@@ -27,7 +26,7 @@ interface Props {
 
 const EmissionWidget: FunctionComponent<Props> = (props) => {
 
-    const { title, className, width, height, detailsLink, aggregatedEmission,totalGhg, isVisible,  detailsClick } = props;
+    const { title, className, width, height, detailsLink, aggregatedEmission,totalGhg, isVisible,  detailsClick, landSinks } = props;
 
     if(!isVisible)
         return null;
@@ -40,7 +39,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                       aggregatedEmission.facility_ghg_total_net_co2e !== 0;
 
     return (
-        <div className="widget" style={{width: width, height: height}}>
+        <div className="widget" >
             <div className="widget__wrapper" >
                 <div className="widget__header">
                     <div className="widget__title-wrapper">
@@ -68,30 +67,32 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                     {
                     totalGhg ? 
                     <div className={`widget__emission-content ${className}`}>
-                            <div >
+                            <div className={'widget__emission-block'}>
                                 <div className="widget__emission-data red">
                                     {totalGhg}
                                     
                                 </div>
-                                <div className="widget__emission-data-description">
-                                    Total GHG Emissions <br /> Mmt CO2e/year
+                                <div className="widget__emission-data-description">Total GHG Emissions
                                 </div>
+                                <div className="widget__emission-data-description">Mmt CO2e/year</div>
                             </div>
-                            <div className={`widget__emission-numbers`}>
-                                <div className="widget__emission-data-small green">
-                                    {/* {aggregatedEmission?.facility_ghg_total_sinks_co2e?.toFixed(2)} */} 0
+                            { landSinks && landSinks > 0 && 
+                                <div className={`widget__emission-numbers widget__emission-block`}>
+                                    <div className="widget__emission-data-small green">
+                                        {/* {aggregatedEmission?.facility_ghg_total_sinks_co2e?.toFixed(2)} */} 0
+                                    </div>
+                                    <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
                                 </div>
-                                <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
-                            </div>
+                            }
                             <div className='widget__meta-data'>
                                 <div className='widget__meta-text'>
-                                    <span className='idget__meta-source-head'>Data Source</span>
-                                    <div className='widget__meta-source-name'><span>{props.source}</span> <HiChevronDown className='' size={24}/></div>
+                                    <span className='widget__meta-source-head'>Source</span>
+                                    <div className='widget__meta-source-name'><span>{props.source}</span> <ArrowDropDownIcon fontSize='inherit'/></div>
                                     
                                 </div>
                                 <div className='widget__meta-text'>
-                                    <span className='idget__meta-source-head'>Methodology</span>
-                                    <span className='widget__meta-source-m'>{props.methodology}</span>
+                                    <span className='widget__meta-source-head'>Methodology</span>
+                                    { props.methodology && <span className='widget__meta-source-m'>{props.methodology}</span> }
                                 </div>
                             </div>
                     </div>

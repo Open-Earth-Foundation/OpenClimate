@@ -24,13 +24,13 @@ const initialState: ReviewState = {
             selectedValue: "",
             options: []
         },
-        {
-            title: "Entity type",
-            type: FilterTypes.EntityType,
-            selectedValue: 'City',
-            options: [{name: 'City', value: 'City'}, {name: 'Company', value: 'Company'}],
-            isRadio: true
-        },
+        // {
+        //     title: "Entity type",
+        //     type: FilterTypes.EntityType,
+        //     selectedValue: 'City',
+        //     options: [{name: 'City', value: 'City'}, {name: 'Company', value: 'Company'}],
+        //     isRadio: true
+        // },
         {
             title: "City",
             type: FilterTypes.Organization,

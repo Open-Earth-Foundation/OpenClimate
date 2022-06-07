@@ -4,6 +4,9 @@
     .review__filter-button-wrapper{
         display: none;
     }
+    .review__heading {
+        display: none;
+    }
     .explore__dropdown {
         position: absolute;
         display: flex;
@@ -69,7 +72,9 @@
         color: #fff;
     }
     @include respond(mobile){
-        .review__heading{}
+        .review__heading {
+            display: inherit;
+        }
         .review__info{
             display: none;
         }
@@ -99,7 +104,6 @@
 
     background-color: white;
     min-height: calc(100vh - 80px);
-
     .review__top-wrapper {
         background-color: var(--white-color);
         padding-top: 20px;
