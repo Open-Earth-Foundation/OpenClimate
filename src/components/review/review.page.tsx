@@ -84,6 +84,12 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
     const handleDropNation = () => {
         setSelectNation((p)=>!p);
+        if(selectSub){
+            setSelectSub(false)
+        }
+        if(selectCity){
+            setSelectCity(false)
+        }
     }
 
     const getAllcountries = async () => {
@@ -116,7 +122,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
 
     const handleFilter = (e:any) => {
-        const val = e.target.value
+        const val = e.target.value.toLocaleLowerCase();
         const country = countryOptions.filter(v => {
             console.log(v)
             return Object.values(v).join('').toLocaleLowerCase().includes(val)
@@ -124,6 +130,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         setNations(country)
         console.log(country)
     }
+
+    useEffect(()=> {},[])
 
     
     const setStateValue = async (e:any) =>{
@@ -268,10 +276,22 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
     const handleSub = () => {
         setSelectSub((p)=>!p);
+        if(selectCity){
+            setSelectCity(false)
+        }
+        if(selectNation){
+            setSelectNation(false)
+        }
     }
 
     const handleDropCity = () => {
         setSelectCity((p)=>!p);
+        if(selectNation){
+            setSelectNation(false)
+        }
+        if(selectSub){
+            setSelectSub(false)
+        }
     }
 
 
