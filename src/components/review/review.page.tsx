@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import { DispatchThunk, RootState } from '../../store/root-state';
 import { connect } from 'react-redux';
 import ReviewInfo from './review-info/review-info';
@@ -16,13 +16,26 @@ import * as reviewSelectors from '../../store/review/review.selectors';
 import * as reviewActions from '../../store/review/review.actions';
 import * as appActions from '../../store/app/app.actions'; 
 import './review.page.scss';
-import {HiOutlineSearch} from 'react-icons/hi'
+import '../explore/explore.page.scss'
+import {HiOutlineSearch, HiSearch} from 'react-icons/hi'
+import DropdownOpen from '../../shared/components/form-elements/dropdown/dropdown-open/dropdown-open';
+
+
 
 interface IStateProps  {
     loading: boolean,
     dashboardEntityType: FilterTypes | null,
     selectedEntities: Array<ITrackedEntity>,
     reviewFilters: Array<IReviewFilter>
+}
+interface IEmissionsData {
+    actor_name: string,
+    flag_icon: string,
+    total_ghg: number,
+    lastUpdated: string,
+    year: number,
+    dataProviderName: string,
+    methodologyType: string
 }
 
 interface IDispatchProps {
@@ -35,6 +48,22 @@ interface IProps extends IStateProps, IDispatchProps {
 }
 
 const ReviewPage: FunctionComponent<IProps> = (props) => {
+    const [selectNation, setSelectNation] = React.useState<boolean>(false);
+    const [countryOptions, setCountryOptions] = React.useState<{}[]>([]);
+    const [nations, setNations] = React.useState<any>(countryOptions);
+    const [nationId, setNationId] = React.useState<number>();
+    const [snationId, setsNationId] = React.useState<number>();
+    const [stateValue, setStateV] = React.useState<string>();
+    const [emissionsData, setEmissionsData] = React.useState<IEmissionsData>();
+    const [tgh, setTghg] = React.useState<number>();
+    const [subns, setSbn] = React.useState<[]>();
+    const [subValue, setSubV] = React.useState<string>();
+    const [selectSub, setSelectSub] = React.useState<boolean>(false);
+    const [selectCity, setSelectCity] = React.useState<boolean>(false);
+    const [cityValue, setCityV] = React.useState<string>();
+    const [city, setCity] = React.useState<[]>();
+
+    
 
     const { loading, dashboardEntityType, selectedEntities, reviewFilters, selectFilter, deselectFilter, showModal  } = props;
     let dashboardEntity:ITrackedEntity|null = null;
@@ -49,6 +78,196 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
         selectFilter(filterType, option, selectedEntities);
     }
+    const error = '';
+
+    const handleDropNation = () => {
+        setSelectNation((p)=>!p);
+    }
+
+    const getAllcountries = async () => {
+        const countries = await  fetch('http://localhost/api/country', {
+            method: 'GET',
+        });
+        const jsonData = await countries.json()
+        console.log(jsonData.data)
+        setCountryOptions(jsonData.data)
+    }
+
+    React.useEffect(()=> {
+        getAllcountries()
+    },[])
+
+    interface INation {
+        country_id: number;
+        country_name: string;
+    }
+
+    interface ISubNation {
+        subnational_id: number,
+        subnational_name: string
+    }
+
+    interface ICity {
+        city_id: string,
+        city_name: string
+    }
+
+    const handleFilter = (e:any) => {
+        const val = e.target.value
+        const country = countryOptions.filter(v => {
+            console.log(v)
+            return Object.values(v).join('').toLocaleLowerCase().includes(val)
+        });
+        setNations(country)
+        console.log(country)
+    }
+
+    
+    const setStateValue = async (e:any) =>{
+        e.preventDefault();
+        const nationalId:number = e.target.getAttribute("data-id");
+        setStateV(e.target.value)
+        setNationId(nationalId)
+        setSelectNation((p)=>!p);
+        console.log(nationId)
+
+        // fetch data
+        fetchData(nationalId);
+        setSubV('');
+        setCityV('')
+            
+    }
+    
+    const fetchData = async (id:any) => {
+        const fetchCountryData = await fetch(`http://localhost/api/country/${id}/2019/PRIMAP`);
+        const jsonData = await fetchCountryData.json();
+        console.log(jsonData);
+        console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
+        setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
+        console.log()
+        const data = {
+            actor_name: '',
+            flag_icon: '',               
+            total_ghg : 0,
+            lastUpdated: '',
+            year: 0,
+            dataProviderName : '',
+            methodologyType: ''
+        }
+        data['actor_name'] = jsonData.data[0].country_name
+        data['flag_icon'] = jsonData.data[0].flag_icon
+        data['total_ghg'] = jsonData.data[0].Emissions[0].total_ghg_co2e
+        data['lastUpdated'] = jsonData.data[0].Emissions[0].year
+        data['year'] = jsonData.data[0].Emissions[0].year
+        data['dataProviderName'] = jsonData.data[0].Emissions[0].DataProvider.data_provider_name
+        data['methodologyType'] = jsonData.data[0].Emissions[0].DataProvider.Methodology.methodology_type
+        setEmissionsData(data)
+        setSbn(jsonData.data[0].Subnationals)
+    }
+    
+    const fetchSubnationalData = async (id:any) => {
+        const fetchCountryData = await fetch(`http://localhost/api/subnationals/${id}`);
+        const jsonData = await fetchCountryData.json();
+        console.log(jsonData);
+        console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
+        setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
+        console.log()
+        const data = {
+            actor_name: '',
+            flag_icon: '',               
+            total_ghg : 0,
+            lastUpdated: '',
+            year: 0,
+            dataProviderName : '',
+            methodologyType: ''
+        }
+        data['actor_name'] = jsonData.data[0].subnational_name
+        data['flag_icon'] = jsonData.data[0].flag_icon
+        data['total_ghg'] = jsonData.data[0].Emissions[0].total_ghg_co2e
+        data['lastUpdated'] = jsonData.data[0].Emissions[0].year
+        data['year'] = jsonData.data[0].Emissions[0].year
+        data['dataProviderName'] = jsonData.data[0].Emissions[0].DataProvider.data_provider_name
+        data['methodologyType'] = jsonData.data[0].Emissions[0].DataProvider.Methodology.methodology_type
+        setEmissionsData(data);
+        setCity(jsonData.data[0].Cities);
+    }
+    useEffect(()=> {
+        if(emissionsData) {
+            
+            console.log(emissionsData);
+        }
+    }, [emissionsData])
+
+    useEffect(()=> {
+        if(subns) {
+            console.log(subns);
+        }
+    }, [subns])
+
+    useEffect(()=> {
+
+        if(city) {
+            console.log(city);
+        }
+    }, [city]);
+
+    const setSubnationValue = (e:any) =>{
+        const sbnlId:number = e.target.getAttribute("data-id");
+        setSubV(e.target.value)
+        setsNationId(sbnlId)
+        e.preventDefault();
+        setSubV(e.target.value)
+        setSelectSub((p)=>!p);
+        console.log(sbnlId)
+        fetchSubnationalData(sbnlId)
+        setCityV('')
+    }
+
+    const fetchCityData = async (id:any) => {
+        const fetchCountryData = await fetch(`http://localhost/api/city/${id}`);
+        const jsonData = await fetchCountryData.json();
+        console.log(jsonData);
+        console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
+        setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e);
+        console.log()
+        const data = {
+            actor_name: '',
+            flag_icon: '',               
+            total_ghg : 0,
+            lastUpdated: '',
+            year: 0,
+            dataProviderName : '',
+            methodologyType: ''
+        }
+        data['actor_name'] = jsonData.data[0].city_name
+        data['flag_icon'] = jsonData.data[0].flag_icon
+        data['total_ghg'] = jsonData.data[0].Emissions[0].total_ghg_co2e
+        data['lastUpdated'] = jsonData.data[0].Emissions[0].year
+        data['year'] = jsonData.data[0].Emissions[0].year
+        data['dataProviderName'] = jsonData.data[0].Emissions[0].DataProvider.data_provider_name
+        data['methodologyType'] = jsonData.data[0].Emissions[0].DataProvider.Methodology.methodology_type
+        setEmissionsData(data);
+        setSbn(jsonData.data[0].Subnationals);
+    }
+
+    const setCityValue = (e:any) =>{
+        const cityId:number = e.target.getAttribute("data-id");
+        // setSubV(e.target.value)
+        setsNationId(cityId)
+        e.preventDefault();
+        setCityV(e.target.value)
+        setSelectCity((p)=>!p);
+        console.log(cityId)
+        fetchCityData(cityId)
+    }
+    const handleSub = () => {
+        setSelectSub((p)=>!p);
+    }
+
+    const handleDropCity = () => {
+        setSelectCity((p)=>!p);
+    }
+
 
     return (
         <div className="review">
@@ -90,25 +309,277 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                         </a>
                     </div>
                     <div className="review__filters-wrapper">
-                        <ReviewFilters
-                            nationState={true} 
-                            selectFilter={selectFilterHandler}
-                            deselectFilter={deselectFilter}
-                            filters={reviewFilters}
-                        />
+                        
+                        <div className='review__filters'>
+                            <div className="dropdown" onClick={(e) => e.stopPropagation()}>
+                                <div className="dropdown__title title-label">
+                                    <label>Country</label>
+                                </div>
+
+                                <div 
+                                    className={`${error ? 'field-error' : ''} dropdown__selected input-wrapper`} 
+                                    // onClick={() => openHandler(!open)}
+                                >
+                                    <div className="dropdown__selected-text">
+                                        <div className="selected-area">
+
+
+                                            
+                                                <input
+                                                    autoComplete='off'
+                                                    className='selected-area__option'
+                                                    value={stateValue}
+                                                    placeholder="Country"
+                                                    onClick={handleDropNation}
+                                                />
+
+                                    {
+                                        selectNation && (
+                                            <div className='explore__dropdown'>
+                                                <div  className='explore__filter-2'>
+                                                    <HiSearch className='icon'/>
+                                                    <input
+                                                    onChange={handleFilter} type="text" placeholder="Search Country" className='explore__filter-input'/>
+                                                </div>
+                                                <ul role="menu" className='explore__select' aria-label='Countries'>
+                                                    {
+                                                        nations.map((item: INation) =>(
+                                                            <button onClick={setStateValue} key={item.country_id} className='explore__btn-options' data-id={item.country_id} value={item.country_name}>{item.country_name}</button>
+                                                        ))
+                                                    }
+                                                </ul>
+                                            </div>
+                                        )
+                                    }
+                                                
+
+                                            {/* {selected ?
+
+                                                <img
+                                                    alt="close"
+                                                    className="dropdown__close-icon"
+                                                    src={DropdownClose}
+                                                    onClick={(e) => }
+                                                />
+                                                : ""
+                                            } */}
+                                        </div>
+
+                                    </div>
+                                    <div className="dropdown__arrow">
+                                        {">"}
+                                    </div>
+                                </div>
+
+                                {/* {errors  && (
+                                                    <span role="alert">
+                                                    This field is required
+                                                    </span>
+                                                )}
+
+                                {open ?
+                                    <DropdownOpen
+                                        searchPlaceholder={searchPlaceholder || ""}
+                                        options={options}
+                                        withSearch={withSearch}
+                                        searchHandler={searchHandler}
+                                        selectHandler={selectHandler}
+                                    />
+                                    :
+                                    ""
+                                } */}
+
+                            </div>
+                        </div>
+                        <div className='review__filters'>
+                            <div className="dropdown" onClick={(e) => e.stopPropagation()}>
+                                <div className="dropdown__title title-label">
+                                    <label>Subnational</label>
+                                </div>
+
+                                <div 
+                                    className={`${error ? 'field-error' : ''} dropdown__selected input-wrapper`} 
+                                    // onClick={() => openHandler(!open)}
+                                >
+                                    <div className="dropdown__selected-text">
+                                        <div className="selected-area">
+                                                <input
+                                                    autoComplete='off'
+                                                    className='selected-area__option'
+                                                    value={subValue}
+                                                    placeholder="Subnational"
+                                                    onClick={handleSub}
+                                                />
+
+                                    {
+                                        selectSub && (
+                                            <div className='explore__dropdown'>
+                                                <div  className='explore__filter-2'>
+                                                    <HiSearch className='icon'/>
+                                                    <input
+                                                    onChange={handleFilter} type="text" placeholder="Search Country" className='explore__filter-input'/>
+                                                </div>
+                                                <ul role="menu" className='explore__select' aria-label='Countries'>
+                                                    {
+                                                        subns?.map((item: ISubNation) =>{
+                                                            console.log(item)
+                                                            return <button onClick={setSubnationValue} data-id={item.subnational_id} className='explore__btn-options' value={item.subnational_name}>{item.subnational_name}</button>
+                                                        })
+                                                    }
+                                                </ul>
+                                            </div>
+                                        )
+                                    }
+                                                
+
+                                            {/* {selected ?
+
+                                                <img
+                                                    alt="close"
+                                                    className="dropdown__close-icon"
+                                                    src={DropdownClose}
+                                                    onClick={(e) => }
+                                                />
+                                                : ""
+                                            } */}
+                                        </div>
+
+                                    </div>
+                                    <div className="dropdown__arrow">
+                                        {">"}
+                                    </div>
+                                </div>
+
+                                {/* {errors  && (
+                                                    <span role="alert">
+                                                    This field is required
+                                                    </span>
+                                                )}
+
+                                {open ?
+                                    <DropdownOpen
+                                        searchPlaceholder={searchPlaceholder || ""}
+                                        options={options}
+                                        withSearch={withSearch}
+                                        searchHandler={searchHandler}
+                                        selectHandler={selectHandler}
+                                    />
+                                    :
+                                    ""
+                                } */}
+
+                            </div>
+                        </div>
+                        <div className='review__filters'>
+                            <div className="dropdown" onClick={(e) => e.stopPropagation()}>
+                                <div className="dropdown__title title-label">
+                                    <label>Entity Type</label>
+                                </div>
+                                <div className='dropdown__radio'>
+                                    
+                                        <input type="radio" id="city" value="city" name='entityType'/> 
+                                        <label htmlFor='city'>City</label> <br/>
+
+                                        <input type="radio" id="company" value="company" name='entityType'/> 
+                                        <label htmlFor='company'>Company</label>
+                                                               
+                                </div>
+                            </div>
+                        </div>
+                        <div className='review__filters'>
+                            <div className="dropdown" onClick={(e) => e.stopPropagation()}>
+                                <div className="dropdown__title title-label">
+                                    <label>City</label>
+                                </div>
+
+                                <div 
+                                    className={`${error ? 'field-error' : ''} dropdown__selected input-wrapper`} 
+                                    // onClick={() => openHandler(!open)}
+                                >
+                                    <div className="dropdown__selected-text">
+                                        <div className="selected-area">
+                                                <input
+                                                    autoComplete='off'
+                                                    className='selected-area__option'
+                                                    value={cityValue}
+                                                    placeholder="Subnational"
+                                                    onClick={handleDropCity}
+                                                />
+
+                                    {
+                                        selectCity && (
+                                            <div className='explore__dropdown'>
+                                                <div  className='explore__filter-2'>
+                                                    <HiSearch className='icon'/>
+                                                    <input
+                                                    onChange={handleFilter} type="text" placeholder="Search City" className='explore__filter-input'/>
+                                                </div>
+                                                <ul role="menu" className='explore__select' aria-label='Countries'>
+                                                    {
+                                                        city?.map((item: ICity) =>{
+                                                            console.log(item)
+                                                            return <button onClick={setCityValue} data-id={item.city_id} className='explore__btn-options' value={item.city_name}>{item.city_name}</button>
+                                                        })
+                                                    }
+                                                </ul>
+                                            </div>
+                                        )
+                                    }
+                                                
+
+                                            {/* {selected ?
+
+                                                <img
+                                                    alt="close"
+                                                    className="dropdown__close-icon"
+                                                    src={DropdownClose}
+                                                    onClick={(e) => }
+                                                />
+                                                : ""
+                                            } */}
+                                        </div>
+
+                                    </div>
+                                    <div className="dropdown__arrow">
+                                        {">"}
+                                    </div>
+                                </div>
+
+                                {/* {errors  && (
+                                                    <span role="alert">
+                                                    This field is required
+                                                    </span>
+                                                )}
+
+                                {open ?
+                                    <DropdownOpen
+                                        searchPlaceholder={searchPlaceholder || ""}
+                                        options={options}
+                                        withSearch={withSearch}
+                                        searchHandler={searchHandler}
+                                        selectHandler={selectHandler}
+                                    />
+                                    :
+                                    ""
+                                } */}
+
+                            </div>
+                        </div>
+                        
                     </div>
+
                     
 
                     <div className="review_selected-entity">
                     {
-                            dashboardEntity ? 
+                            emissionsData ? 
                             <div className="review__selected-entity">
                                 <div>
-                                    {dashboardEntity.countryCode ?
-                                        <CircleFlag countryCode={dashboardEntity.countryCode} height="35" />
+                                    {emissionsData?
+                                        <img className='review__flag' src={`https://flagcdn.com/${emissionsData.flag_icon}.svg`} alt={``}  width="35" height={35}/>
                                         : ""
                                     }
-                                    <span className="review__entity-title">{dashboardEntity.title}</span>
+                                    <span className="review__entity-title">{emissionsData.actor_name}</span>
                                 </div>
                                 <div className="review__explore-link">
                                     <a href="#" onClick={() => showModal('information-summary')}>Explore State Data</a>
@@ -123,11 +594,9 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
                 <div className="review__content content-wrapper">
                     {
-                        dashboardEntity ? 
+                        emissionsData ? 
                         <>
-
-
-                            <Dashboard selectedEntity={dashboardEntity} showModal={showModal} /> 
+                            <Dashboard selectedEntity={dashboardEntity} emissionData={emissionsData} showModal={showModal} /> 
                         </>
                         : ''
                     }

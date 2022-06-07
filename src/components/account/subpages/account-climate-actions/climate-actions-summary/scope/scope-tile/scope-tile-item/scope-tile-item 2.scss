@@ -1,0 +1,23 @@
+.scope-tile__signed-item {
+    
+    display: flex;
+    margin-bottom: 16px;
+
+    .scope-tile__signed-footer {
+        display: flex;
+    }
+
+    .scope-tile__amount {
+        margin-right: 30px;
+        width: 30px;
+        text-align: center;
+    }
+
+    .amount-title {
+        font-size: 14px;
+        line-height: 21px;
+        color: var(--black-color);
+        margin-top: 5px;
+    }
+}
+

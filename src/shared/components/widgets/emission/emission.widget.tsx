@@ -6,6 +6,7 @@ import ArrowUpRed from '../../../img/widgets/arrow_up_red.svg';
 import ArrowDownGreen from '../../../img/widgets/arrow_down_green.svg';
 import './emission.widget.scss';
 import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
+import { HiArrowDown, HiChevronDown } from 'react-icons/hi';
 
 interface Props {
     isVisible: boolean
@@ -14,13 +15,19 @@ interface Props {
     width?: number,
     className?: string,
     detailsLink?: string,
-    aggregatedEmission?: IAggregatedEmission,
+    totalGhg?: number,
+    year?: number,
+    lastupdated?: string,
+    source?: string,
+    methodology?: string,
+    aggregatedEmission?: IAggregatedEmission | null,
     detailsClick?: () => void
+
 }
 
 const EmissionWidget: FunctionComponent<Props> = (props) => {
 
-    const { title, className, width, height, detailsLink, aggregatedEmission, isVisible,  detailsClick } = props;
+    const { title, className, width, height, detailsLink, aggregatedEmission,totalGhg, isVisible,  detailsClick } = props;
 
     if(!isVisible)
         return null;
@@ -54,17 +61,17 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
 
                     </div>
 
-                    <span className="widget__updated">Last Updated June 2020</span>     
+                    <span className="widget__updated">Last Updated June {props.lastupdated} | Data shown refers to {props.year}</span>     
 
                 </div>
                 <div className="widget__content" style={{height: `auto`}}>
                     {
-                    aggregatedEmission ? 
+                    totalGhg ? 
                     <div className={`widget__emission-content ${className}`}>
                             <div >
                                 <div className="widget__emission-data red">
-                                    {aggregatedEmission?.facility_ghg_total_gross_co2e?.toFixed(2)}
-                                    763.44
+                                    {totalGhg}
+                                    
                                 </div>
                                 <div className="widget__emission-data-description">
                                     Total GHG Emissions <br /> Mmt CO2e/year
@@ -72,10 +79,20 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                             </div>
                             <div className={`widget__emission-numbers`}>
                                 <div className="widget__emission-data-small green">
-                                    {aggregatedEmission?.facility_ghg_total_sinks_co2e?.toFixed(2)}
-                                    12.9
+                                    {/* {aggregatedEmission?.facility_ghg_total_sinks_co2e?.toFixed(2)} */} 0
                                 </div>
                                 <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
+                            </div>
+                            <div className='widget__meta-data'>
+                                <div className='widget__meta-text'>
+                                    <span className='idget__meta-source-head'>Data Source</span>
+                                    <div className='widget__meta-source-name'><span>{props.source}</span> <HiChevronDown className='' size={24}/></div>
+                                    
+                                </div>
+                                <div className='widget__meta-text'>
+                                    <span className='idget__meta-source-head'>Methodology</span>
+                                    <span className='widget__meta-source-m'>{props.methodology}</span>
+                                </div>
                             </div>
                     </div>
                     : 
