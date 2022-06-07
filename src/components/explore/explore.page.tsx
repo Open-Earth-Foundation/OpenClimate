@@ -112,7 +112,7 @@ const ExplorePage: React.FunctionComponent = () => {
     // Fetch all countries
 
     const getAllcountries = async () => {
-        const countries = await  fetch('http://localhost/api/country', {
+        const countries = await  fetch('/api/country', {
             method: 'GET',
         });
         const jsonData = await countries.json()
