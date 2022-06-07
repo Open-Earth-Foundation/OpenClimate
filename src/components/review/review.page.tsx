@@ -191,6 +191,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         data['dataProviderName'] = jsonData.data[0].Emissions[0].DataProvider.data_provider_name
         data['methodologyType'] = jsonData.data[0].Emissions[0].DataProvider.Methodology.methodology_type
         setEmissionsData(data);
+
         setCity(jsonData.data[0].Cities);
     }
     useEffect(()=> {
@@ -504,7 +505,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                                     autoComplete='off'
                                                     className='selected-area__option'
                                                     value={cityValue}
-                                                    placeholder="Subnational"
+                                                    placeholder="City"
                                                     onClick={handleDropCity}
                                                 />
 
