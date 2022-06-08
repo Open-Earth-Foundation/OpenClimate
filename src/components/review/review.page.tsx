@@ -662,7 +662,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                     {
                         emissionsData ? 
                         <>
-                            <Dashboard selectedEntity={dashboardEntity} emissionData={emissionsData} treatiesData={treatiesData && treatiesData} pledgesData={pledgesData} showModal={showModal} /> 
+                            <Dashboard selectedEntity={dashboardEntity} emissionData={emissionsData} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} /> 
                         </>
                         : ''
                     }
