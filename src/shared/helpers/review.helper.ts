@@ -58,9 +58,9 @@ async function LoadEmissionsSubnational(countryCode: string, entity: ITrackedEnt
     }
 }
 
-async function LoadPledgesSubnational(organization: string, entity: ITrackedEntity) 
+async function LoadPledgesSubnational(organization: string) 
 {
-    entity.pledges = [];
+    let pledges = [];
     const reductionStr = "Percentage reduction target";
     
     const pledgesResponse = await pledgeService.fetchPledgesSubnational(organization);
@@ -82,15 +82,16 @@ async function LoadPledgesSubnational(organization: string, entity: ITrackedEnti
                 pledge_emission_reduction: reduction
             }
 
-            entity.pledges.push(pledge);
+            pledges.push(pledge);
         }
-
+        
     }
+    return pledges;
 }
 
-async function LoadPledgesCountry(country: string, entity: ITrackedEntity) 
+async function LoadPledgesCountry(country: string) 
 {
-    entity.pledges = [];
+    let pledges: Array<IPledge> = [];
     
     const pledgesResponse = await climateWatchService.fetchPledgesCountry(country);
         
@@ -110,18 +111,20 @@ async function LoadPledgesCountry(country: string, entity: ITrackedEntity)
             pledge_emission_reduction: isNaN(reductionNumber) ? 0 : reductionNumber
         }
 
-        entity.pledges = [pledge];
+        pledges = [pledge];
     }
+
+    return pledges;
 }
 
-async function LoadTreatiesCountry(country: string, entity: ITrackedEntity)
+async function LoadTreatiesCountry(country: string)
 {
     const treatiesResponse = await climateWatchService.fetchTreatiesCountry(country);
+    
 
     if(treatiesResponse && treatiesResponse.data && treatiesResponse.data.length)
     {
         const submissionDateStr = "Latest submission date";
-        //todo
         const submissionDate = treatiesResponse.data.find((d:any) => d["indicator_name"] === submissionDateStr)?.value;
         const signed = !!treatiesResponse.data.find((d:any) => d["indicator_name"] === "Signed")?.value;
         const ratified = !!treatiesResponse.data.find((d:any) => d["indicator_name"] === "Ratified")?.value;
@@ -131,10 +134,12 @@ async function LoadTreatiesCountry(country: string, entity: ITrackedEntity)
             signed: signed,
             ratified: ratified,
             submission_date: new Date(submissionDate)
-        }
+        };
 
-        entity.treaties = treaties;
+        return treaties;
     }
+
+    return {};
 }
 
 async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) {
