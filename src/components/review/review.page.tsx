@@ -18,7 +18,10 @@ import * as appActions from '../../store/app/app.actions';
 import './review.page.scss';
 import '../explore/explore.page.scss'
 import {HiOutlineSearch, HiSearch} from 'react-icons/hi'
-import DropdownOpen from '../../shared/components/form-elements/dropdown/dropdown-open/dropdown-open';
+
+import ITreaties from '../../api/models/DTO/Treaties/ITreaties';
+import IPledge from '../../api/models/DTO/Pledge/IPledge';
+import { ReviewHelper } from '../../shared/helpers/review.helper';
 
 
 
@@ -57,6 +60,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     const [snationId, setsNationId] = React.useState<number>();
     const [stateValue, setStateV] = React.useState<string>();
     const [emissionsData, setEmissionsData] = React.useState<IEmissionsData>();
+    const [treatiesData, setTreatiesData] = React.useState<ITreaties>({});
+    const [pledgesData, setPledgesData] = React.useState<Array<IPledge>>([]);
     const [tgh, setTghg] = React.useState<number>();
     const [subns, setSbn] = React.useState<[]>();
     const [subValue, setSubV] = React.useState<string>();
@@ -133,11 +138,32 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
     useEffect(()=> {},[])
 
+    const handleTreaties = async (countryCode: string) => {
+        const treaties = await ReviewHelper.LoadTreatiesCountry(countryCode);
+        setTreatiesData(treaties);
+    }
+
+    const handlePledges = async (entityCode: string, type: string) => {
+        let pledges;
+        switch(type) {
+            case 'country':
+                pledges = await ReviewHelper.LoadPledgesCountry(entityCode);
+                setPledgesData(pledges);
+                break;
+            case 'subnational':
+                pledges = await ReviewHelper.LoadPledgesSubnational(entityCode);
+                setPledgesData(pledges);
+                break;
+            default:
+        }
+    }
+
     
     const setStateValue = async (e:any) =>{
         e.preventDefault();
         const nationalId:number = e.target.getAttribute("data-id");
         setStateV(e.target.value)
+        console.log(e.target.value)
         setNationId(nationalId)
         setSelectNation((p)=>!p);
         console.log(nationId)
@@ -162,6 +188,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
             actor_name: '',
             flag_icon: '',               
             total_ghg : 0,
+            land_sinks: 0,
             lastUpdated: '',
             year: 0,
             dataProviderName : '',
@@ -170,11 +197,17 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         data['actor_name'] = jsonData.data[0].country_name
         data['flag_icon'] = jsonData.data[0].flag_icon
         data['total_ghg'] = jsonData.data[0].Emissions[0].total_ghg_co2e
+        data['land_sinks'] = jsonData.data[0].Emissions[0].land_sinks
         data['lastUpdated'] = jsonData.data[0].Emissions[0].year
         data['year'] = jsonData.data[0].Emissions[0].year
         data['dataProviderName'] = jsonData.data[0].Emissions[0].DataProvider.data_provider_name
         data['methodologyType'] = jsonData.data[0].Emissions[0].DataProvider.Methodology.methodology_type
+
+        const countryCode = jsonData.data[0].iso
+        handleTreaties(countryCode);
+        handlePledges(countryCode, 'country');
         setEmissionsData(data)
+        
         setSbn(jsonData.data[0].Subnationals)
     }
     
@@ -189,6 +222,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
             actor_name: '',
             flag_icon: '',               
             total_ghg : 0,
+            land_sinks: 0,
             lastUpdated: '',
             year: 0,
             dataProviderName : '',
@@ -197,11 +231,13 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         data['actor_name'] = jsonData.data[0].subnational_name
         data['flag_icon'] = jsonData.data[0].flag_icon
         data['total_ghg'] = jsonData.data[0].Emissions[0].total_ghg_co2e
+        data['land_sinks'] = jsonData.data[0].Emissions[0].land_sinks
         data['lastUpdated'] = jsonData.data[0].Emissions[0].year
         data['year'] = jsonData.data[0].Emissions[0].year
         data['dataProviderName'] = jsonData.data[0].Emissions[0].DataProvider.data_provider_name
         data['methodologyType'] = jsonData.data[0].Emissions[0].DataProvider.Methodology.methodology_type
         setEmissionsData(data);
+        handlePledges(data.actor_name, 'subnational');
 
         setCity(jsonData.data[0].Cities);
     }
@@ -209,6 +245,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         if(emissionsData) {
             
             console.log(emissionsData);
+            console.log(pledgesData);
         }
     }, [emissionsData])
 
@@ -248,6 +285,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
             actor_name: '',
             flag_icon: '',               
             total_ghg : 0,
+            land_sinks: 0,
             lastUpdated: '',
             year: 0,
             dataProviderName : '',
@@ -256,6 +294,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         data['actor_name'] = jsonData.data[0].city_name
         data['flag_icon'] = jsonData.data[0].flag_icon
         data['total_ghg'] = jsonData.data[0].Emissions[0].total_ghg_co2e
+        data['land_sinks'] = jsonData.data[0].Emissions[0].land_sinks
         data['lastUpdated'] = jsonData.data[0].Emissions[0].year
         data['year'] = jsonData.data[0].Emissions[0].year
         data['dataProviderName'] = jsonData.data[0].Emissions[0].DataProvider.data_provider_name
@@ -541,7 +580,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                                         <input
                                                         onChange={handleFilter} type="text" placeholder="Search City" className='explore__filter-input'/>
                                                     </div>
-                                                    <ul role="menu" className='explore__select' aria-label='Countries'>
+                                                    <ul role="menu" className='explore_treaties && select' aria-label='Countries'>
                                                         {
                                                             city?.map((item: ICity) =>{
                                                                 console.log(item)
@@ -623,7 +662,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                     {
                         emissionsData ? 
                         <>
-                            <Dashboard selectedEntity={dashboardEntity} emissionData={emissionsData} showModal={showModal} /> 
+                            <Dashboard selectedEntity={dashboardEntity} emissionData={emissionsData} treatiesData={treatiesData && treatiesData} pledgesData={pledgesData} showModal={showModal} /> 
                         </>
                         : ''
                     }
