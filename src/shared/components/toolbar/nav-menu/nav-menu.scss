@@ -21,8 +21,9 @@
     }
 
     &__link {
-        color: var(--white-color);
-        opacity: 50%;
+        color: white;
+        opacity: 75%;
+        cursor: pointer;
         margin-right: 24px;
         &:hover {
             opacity: initial;

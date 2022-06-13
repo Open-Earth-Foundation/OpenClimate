@@ -148,10 +148,10 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         setCityV('')
             
     }
-     
+    const MT = 1000000
     const fetchData = async (id:any) => {
 
-        const fetchCountryData = await fetch(`/api/country/${id}`);
+        const fetchCountryData = await fetch(`/api/country/${id}/2019/PRIMAP`);
 
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
@@ -169,7 +169,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         }
         data['actor_name'] = jsonData.data[0].country_name
         data['flag_icon'] = jsonData.data[0].flag_icon
-        data['total_ghg'] = jsonData.data[0].Emissions[0].total_ghg_co2e
+        data['total_ghg'] = jsonData.data[0].Emissions[0].total_ghg_co2e 
         data['lastUpdated'] = jsonData.data[0].Emissions[0].year
         data['year'] = jsonData.data[0].Emissions[0].year
         data['dataProviderName'] = jsonData.data[0].Emissions[0].DataProvider.data_provider_name
@@ -184,6 +184,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         console.log(jsonData);
         console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
+        // const ghg = (jsonData.data[0].Emissions[0].total_ghg_co2e / MT).toFixed(2)
         console.log()
         const data = {
             actor_name: '',
@@ -243,6 +244,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         console.log(jsonData);
         console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e);
+        // const ghg = (jsonData.data[0].Emissions[0].total_ghg_co2e / MT).toFixed(2)
         console.log()
         const data = {
             actor_name: '',
