@@ -76,10 +76,10 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                 </div>
                                 <div className="widget__emission-data-description">Mmt CO2e/year</div>
                             </div>
-                            { landSinks && landSinks > 0 && 
+                            { !!landSinks && 
                                 <div className={`widget__emission-numbers widget__emission-block`}>
                                     <div className="widget__emission-data-small green">
-                                        {/* {aggregatedEmission?.facility_ghg_total_sinks_co2e?.toFixed(2)} */} 0
+                                        {landSinks}
                                     </div>
                                     <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
                                 </div>

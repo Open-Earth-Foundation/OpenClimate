@@ -10,10 +10,13 @@ import { useHistory } from 'react-router-dom'
 import './review-dashboard.scss';
 import Switcher from '../../../shared/components/form-elements/switcher/switcher';
 import Masonry from 'react-masonry-css'
+import ITreaties from '../../../api/models/DTO/Treaties/ITreaties';
+import IPledge from '../../../api/models/DTO/Pledge/IPledge';
 
 
 interface IEmissionsData {
     total_ghg: number,
+    land_sinks: number,
     lastUpdated: string,
     year: number,
     dataProviderName: string,
@@ -21,14 +24,16 @@ interface IEmissionsData {
 }
 
 interface Props {
-    emissionData: IEmissionsData
+    emissionData: IEmissionsData,
+    treatiesData: ITreaties,
+    pledgesData: Array<IPledge>,
     selectedEntity: ITrackedEntity | null,
     showModal: (type: string) => void
 }
 
 const Dashboard: FunctionComponent<Props> = (props) => {
     console.log(props.emissionData.total_ghg)
-    const { selectedEntity, showModal, emissionData } = props;
+    const { selectedEntity, showModal, emissionData, treatiesData, pledgesData } = props;
 
     const history = useHistory();
     
@@ -66,6 +71,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         height={300}
                         width={490}
                         totalGhg = {emissionData.total_ghg}
+                        landSinks = {emissionData.land_sinks}
                         lastupdated = {emissionData.lastUpdated}
                         year = {emissionData.year}
                         source = {emissionData.dataProviderName}
@@ -75,13 +81,13 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     />
 
                     <AgreementWidget
-                        // treaties = {selectedEntity.treaties}
+                        treaties = {treatiesData}
                         height={220}
                         detailsClick={() => showModal('information-agreements')}
                     />
 
                     <PledgesWidget 
-                        // pledges={selectedEntity.pledges} 
+                        pledges={pledgesData} 
                         showModal={showModal}
                         detailsClick={() => showModal('information-pledges')}
                         showAddBtn={false}
