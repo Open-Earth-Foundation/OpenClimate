@@ -178,7 +178,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     
     const fetchData = async (id:any) => {
 
-        const fetchCountryData = await fetch(`/api/country/${id}/2019/PRIMAP`);
+        const fetchCountryData = await fetch(`/api/country/${id}`);
 
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
@@ -284,7 +284,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         console.log(jsonData);
         console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e);
-       
+        
         console.log()
         const data = {
             actor_name: '',
