@@ -56,9 +56,6 @@ const EmissionsCard: FunctionComponent<IProps> = (props) => {
                     </div>
                 </div>
                 <div className="emissions-card__data">
-                    <div className="emissions-card__description">
-                        Greenhouse gas emissions from the clearing and burning forests, scrublands and savannahs by fire and other methods or removal
-                    </div>
                     <div className="emissions-card__total-amount">
                         <div className={`emissions-card__amount ${totalAmount > 0 ? 'amount-red' : 'amount-green'}`}>{totalAmount}</div>
                         <span className="emissions-card__total-amount-description">Mt CO2e/year</span>

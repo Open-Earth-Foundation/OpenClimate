@@ -1,10 +1,12 @@
-import { withWidth } from '@material-ui/core';
+
 import React, { FunctionComponent } from 'react'
 import { NavLink } from 'react-router-dom';
 
 import './emission.widget.scss';
 import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { EmissionInfo } from '../../../../components/review/review.page';
+import { NativeSelect } from '@mui/material';
 
 interface Props {
     isVisible: boolean
@@ -19,14 +21,36 @@ interface Props {
     lastupdated?: string,
     source?: string,
     methodology?: string,
+    providerToEmissions: Record<string, EmissionInfo>
     aggregatedEmission?: IAggregatedEmission | null,
+    providers?: Array<string>,
     detailsClick?: () => void
 
 }
 
 const EmissionWidget: FunctionComponent<Props> = (props) => {
 
-    const { title, className, width, height, detailsLink, aggregatedEmission,totalGhg, isVisible,  detailsClick, landSinks } = props;
+    const { title, className, width, height, detailsLink, aggregatedEmission,totalGhg, isVisible,  detailsClick, landSinks, providerToEmissions } = props;
+
+    const providers = Object.keys(providerToEmissions);
+
+    const [currentProvider, setProvider] = React.useState<string>(providers[0]);
+    const [currentEmissions, setEmissions] = React.useState<EmissionInfo>(providerToEmissions[currentProvider]);
+
+    React.useEffect(()=> {
+        setEmissions(providerToEmissions[currentProvider])
+    },[currentProvider])
+
+    const calculateDecimal = (number: number) => {
+        switch(currentProvider){
+            case 'UNFCCC Annex I':
+                return number / 1000000;
+            case 'PRIMAP':
+                return number / 1000;
+            default:
+                return number;
+        }
+    }
 
     if(!isVisible)
         return null;
@@ -65,34 +89,54 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                 </div>
                 <div className="widget__content" style={{height: `auto`}}>
                     {
-                    totalGhg ? 
+                    currentEmissions.totalGhg ? 
                     <div className={`widget__emission-content ${className}`}>
                             <div className={'widget__emission-block'}>
                                 <div className="widget__emission-data red">
-                                    {totalGhg}
+                                    {calculateDecimal(currentEmissions.totalGhg)}
                                     
                                 </div>
                                 <div className="widget__emission-data-description">Total GHG Emissions
                                 </div>
-                                <div className="widget__emission-data-description">Mmt CO2e/year</div>
+                                <div className="widget__emission-data-description">Mt CO2e/year</div>
                             </div>
-                            { !!landSinks && 
+                            { !!currentEmissions.landSinks && 
                                 <div className={`widget__emission-numbers widget__emission-block`}>
                                     <div className="widget__emission-data-small green">
-                                        {landSinks}
+                                        {calculateDecimal(currentEmissions.landSinks)}
                                     </div>
                                     <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
                                 </div>
                             }
                             <div className='widget__meta-data'>
-                                <div className='widget__meta-text'>
+                                <div className='widget__meta-text-left'>
                                     <span className='widget__meta-source-head'>Source</span>
-                                    <div className='widget__meta-source-name'><span>{props.source}</span> <ArrowDropDownIcon fontSize='inherit'/></div>
+                                    <NativeSelect
+                                      defaultValue={providers[0]}
+                                      onChange={(event) => setProvider(event.target.value)}
+                                      sx={{
+                                          fontSize: '10px',
+                                          fontFamily: 'Lato',
+                                          textDecoration: 'none',
+                                          fontWeight: '700'
+                                      }}
+                                    >
+                                        {providers?.map(provider => 
+                                            <option value={provider}>{provider}</option>)}
                                     
+                                    </NativeSelect>
                                 </div>
-                                <div className='widget__meta-text'>
+                                <div className='widget__meta-text-right'>
                                     <span className='widget__meta-source-head'>Methodology</span>
-                                    { props.methodology && <span className='widget__meta-source-m'>{props.methodology}</span> }
+                                    <div className='widget__methodology-tags'>
+                                    { currentEmissions.methodologyTags && 
+                                        currentEmissions.methodologyTags.slice(0,2).map(tag => 
+                                        <span className='widget__meta-source-m'>{tag}</span>) }
+                                        {
+                                            currentEmissions.methodologyTags.length > 2 && 
+                                            <span className='widget__meta-source-m'>{ `+${currentEmissions.methodologyTags.length - 2}`}</span>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                     </div>
