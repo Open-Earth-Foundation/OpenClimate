@@ -87,10 +87,22 @@
     text-transform: capitalize;
 }
 
-.widget__meta-text{
+.widget__meta-text-right{
     display: flex;
     flex-direction:column ;
-    font-size: 12px;
+    font-size: 9px;
+    width: 265px;
+}
+
+.widget__meta-text-left{
+    display: flex;
+    flex-direction:column ;
+    font-size: 10px;
+}
+
+.widget__methodology-tags {
+    display: flex;
+    flex-direction: row;
 }
 
 .widget__meta-source-name{
@@ -101,16 +113,22 @@
 
 .widget__meta-source-head{
     font-size: 10px;
+    padding-bottom: 5px;
 }
 .widget__meta-source-m{
     
     background-color: #E6F4F2;
-    align-items: left;
+    align-items: center;
     color: #007568;
     width: auto;
     text-align: center;
+    display: flex; 
+    text-overflow: ellipsis;
+    margin-left: 4px;
     border-radius: 30px;
+    font-family: Poppins;
     padding: 1px;
+    height: 30px;
 }
 .widget__meta-data{
     padding-top: 18px;

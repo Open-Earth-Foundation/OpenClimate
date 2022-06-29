@@ -12,16 +12,9 @@ import Switcher from '../../../shared/components/form-elements/switcher/switcher
 import Masonry from 'react-masonry-css'
 import ITreaties from '../../../api/models/DTO/Treaties/ITreaties';
 import IPledge from '../../../api/models/DTO/Pledge/IPledge';
+import { IEmissionsData } from '../review.page';
 
 
-interface IEmissionsData {
-    total_ghg: number,
-    land_sinks: number,
-    lastUpdated: string,
-    year: number,
-    dataProviderName: string,
-    methodologyType: string
-}
 
 interface Props {
     emissionData: IEmissionsData,
@@ -32,7 +25,6 @@ interface Props {
 }
 
 const Dashboard: FunctionComponent<Props> = (props) => {
-    console.log(props.emissionData.total_ghg)
     const { selectedEntity, showModal, emissionData, treatiesData, pledgesData } = props;
 
     const history = useHistory();
@@ -70,13 +62,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         title="Total emissions" 
                         height={300}
                         width={490}
-                        totalGhg = {emissionData.total_ghg}
-                        landSinks = {emissionData.land_sinks}
-                        lastupdated = {emissionData.lastUpdated}
-                        year = {emissionData.year}
-                        source = {emissionData.dataProviderName}
-                        methodology = {emissionData.methodologyType}
-                        // aggregatedEmission={emissionData.total_ghg} 
+                        providerToEmissions={emissionData.providerToEmissions}
                         detailsClick={() => showModal('information-emission')}
                     />
 
