@@ -40,11 +40,9 @@ export interface IEmissionsData {
 export interface EmissionInfo {
     actorType: string,
     totalGhg: number,
-    year: number,
-    landSinks: number,
-    otherGases: number,
-    methodologyType: string,
-    methodologyTags: Array<string>
+    total_ghg: number,
+    lastUpdated: string,
+    land_sinks: number,
 }
 
 interface IProviderData {
@@ -220,7 +218,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         setCityV('')
             
     }
-     
+    
     const fetchData = async (id:any) => {
 
         const fetchCountryData = await fetch(`/api/country/2019/${id}`);
