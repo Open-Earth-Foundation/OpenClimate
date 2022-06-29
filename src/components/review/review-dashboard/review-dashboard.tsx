@@ -28,9 +28,6 @@ const Dashboard: FunctionComponent<Props> = (props) => {
     const { selectedEntity, showModal, emissionData, treatiesData, pledgesData } = props;
 
     const history = useHistory();
-
-    console.log('DASHBOARD ---------------');
-    console.log(emissionData);
     
     // const redirectToNestedAccounts = () => {
     //     let params = '';

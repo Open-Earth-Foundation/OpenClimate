@@ -180,7 +180,6 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
             
             if (dataProviderName && !providerToEmissions[dataProviderName]) {
                 const methodologyTags = emission.DataProvider.Methodology.Tags.map(tag => tag.tag_name);
-                console.log(methodologyTags);
                 const emissionData: EmissionInfo = {
                     actorType: emission.actor_type,
                     totalGhg: emission.total_ghg_co2e,
@@ -201,7 +200,6 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                 }
             }
         })
-        console.log(providerToEmissions);
 
         return providerToEmissions;
     }
@@ -229,7 +227,6 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
-        console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
         const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
         
@@ -251,10 +248,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const fetchCountryData = await fetch(`/api/subnationals/2019/${id}`);
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
-        console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
         const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
-        console.log()
         
         const data = {
             actor_name: jsonData.data[0].subnational_name,
@@ -272,15 +267,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const providerData = await fetch('api/provider');
         const jsonData = await providerData.json();
 
-        console.log(jsonData.data[0]);
     }
-    useEffect(()=> {
-        if(emissionsData) {
-            
-            console.log(emissionsData);
-            console.log(pledgesData);
-        }
-    }, [emissionsData])
 
     useEffect(()=> {
         if(subns) {
@@ -310,29 +297,15 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     const fetchCityData = async (id:any) => {
         const fetchCountryData = await fetch(`/api/city/2019/${id}`);
         const jsonData = await fetchCountryData.json();
-        console.log(jsonData);
-        console.log(jsonData.data[0].Emissions[0].total_ghg_co2e);
+    
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e);
         const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
-        console.log()
+
         const data = {
-            actor_name: '',
-            flag_icon: '',               
-            total_ghg : 0,
-            land_sinks: 0,
-            lastUpdated: '',
-            year: 0,
-            dataProviderName : '',
-            methodologyType: ''
+            actor_name: jsonData.data[0].country_name,
+            flag_icon: jsonData.data[0].flag_icon,
+            providerToEmissions: providerToEmissionsData
         }
-        data['actor_name'] = jsonData.data[0].city_name
-        data['flag_icon'] = jsonData.data[0].flag_icon
-        data['total_ghg'] = jsonData.data[0].Emissions[0].total_ghg_co2e
-        data['land_sinks'] = jsonData.data[0].Emissions[0].land_sinks
-        data['lastUpdated'] = jsonData.data[0].Emissions[0].year
-        data['year'] = jsonData.data[0].Emissions[0].year
-        data['dataProviderName'] = jsonData.data[0].Emissions[0].DataProvider.data_provider_name
-        data['methodologyType'] = jsonData.data[0].Emissions[0].DataProvider.Methodology.methodology_type
         setEmissionsData(data);
         setSbn(jsonData.data[0].Subnationals);
     }
