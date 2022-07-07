@@ -264,7 +264,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
 
     const fetchProviderData = async () => {
-        const providerData = await fetch('api/provider');
+        const providerData = await fetch('api/providers');
         const jsonData = await providerData.json();
 
     }
