@@ -40,9 +40,11 @@ export interface IEmissionsData {
 export interface EmissionInfo {
     actorType: string,
     totalGhg: number,
-    total_ghg: number,
     lastUpdated: string,
-    land_sinks: number,
+    landSinks: number,
+    year: number,
+    otherGases: string,
+    methodologyTags: Array<string>
 }
 
 interface IProviderData {
@@ -693,7 +695,7 @@ const mapStateToProps = (state: RootState, ownProps: any) => {
 const mapDispatchToProps = (dispatch: DispatchThunk) => {
     return {
         selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => 
-            dispatch(reviewActions.doSelectFilter(filterType, option, selectedEntities)),
+        dispatch(reviewActions.doSelectFilter(filterType, option, selectedEntities)),
         deselectFilter: (filterType: FilterTypes) => dispatch(reviewActions.deselectFilter(filterType)),
         showModal: (type:string) => {
             dispatch(appActions.showModal(type))
