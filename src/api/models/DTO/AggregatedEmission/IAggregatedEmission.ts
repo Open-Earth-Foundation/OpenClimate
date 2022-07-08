@@ -1,3 +1,4 @@
+import { EmissionInfo } from "../../../../components/review/review.page";
 import { ClimateActionScopes } from "../ClimateAction/climate-action-scopes";
 
 export default interface IAggregatedEmission {
@@ -33,5 +34,6 @@ export default interface IAggregatedEmission {
     verification_accountability_direct?: number,
     verification_accountability_indirect?: number,
     verification_accountability_no_tracking?: number,
-    signature_name?: string
+    signature_name?: string,
+    providerToEmissions?: Record<string, EmissionInfo>
 }

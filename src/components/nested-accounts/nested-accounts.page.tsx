@@ -41,7 +41,7 @@ const NestedAccountsPage: FunctionComponent<IProps> = (props) => {
     const { loading, sites, aggregatedEmissions, sitesLoaded, aggregatedEmissionsLoaded, geoSubnationals, loadedClimateActions,
         cleanData, loadSites, loadAggregatedEmissions, doLoadGeoSubnational, doLoadClimateActions } = props;
 
-    
+    console.log(props);
 
     const [groupedClimateActions, setGroupedClimateActions] = useState<any>();
 

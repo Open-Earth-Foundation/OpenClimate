@@ -1208,9 +1208,9 @@ const App: FunctionComponent<Props> = (props) => {
               <Route path="/explore" exact>
                 <ExplorePage />
               </Route>
-              <Route path="/nested-accounts" exact>
+              <Route path="/nested-accounts">
                   <NestedAccountsPage />
-                </Route>
+              </Route>
               <Route path="/emissions/:id" exact>
                 <Emissions />
               </Route>

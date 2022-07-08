@@ -43,7 +43,6 @@ const GetSubnationalsByCountryCode = async (countryId: number) => {
     // const filteredSubnationals =  regions.filter(sn => sn.country_code === countryCode?.toUpperCase());
 
     const res = await GetContryOptions();
-    console.log(countryId)
 
     const options = res.map(sn => {
         return sn?.sn.filter((s:any) => s.countries_to_subnationals.country_id == countryId )

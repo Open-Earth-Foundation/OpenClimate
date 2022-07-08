@@ -40,11 +40,12 @@ export interface IEmissionsData {
 export interface EmissionInfo {
     actorType: string,
     totalGhg: number,
-    lastUpdated: string,
+    // lastUpdated: string,
     landSinks: number,
     year: number,
-    otherGases: string,
-    methodologyTags: Array<string>
+    otherGases: number,
+    methodologyType: string,
+    methodologyTags: any
 }
 
 interface IProviderData {
@@ -73,7 +74,6 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     const [snationId, setsNationId] = React.useState<number>();
     const [stateValue, setStateV] = React.useState<string>();
     const [providersData, setProviders] = React.useState<Array<string>>();
-    const [dashboardEntity, setDashboardEntity] = React.useState<ITrackedEntity|null>(null)
     const [emissionsData, setEmissionsData] = React.useState<IEmissionsData>();
     const [treatiesData, setTreatiesData] = React.useState<ITreaties>({});
     const [pledgesData, setPledgesData] = React.useState<Array<IPledge>>([]);
@@ -88,6 +88,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     
 
     const { loading, dashboardEntityType, selectedEntities, reviewFilters, selectFilter, deselectFilter, showModal  } = props;
+    let dashboardEntity:ITrackedEntity|null = null;
     let collapceEntities: Array<ITrackedEntity> = [];
 
     if(dashboardEntityType !== null)
@@ -101,7 +102,6 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         console.log(dashboardEntityType)
         
     }
-
 
    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
         selectFilter(filterType, option, selectedEntities);
@@ -180,6 +180,37 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         }
     }
 
+    const createProviderEmissionsData = (data: Array<any>) => {
+        const providerToEmissions: Record<string, EmissionInfo> = {};
+        data.forEach(emission => {
+            const dataProviderName = emission.DataProvider?.data_provider_name;
+            
+            if (dataProviderName && !providerToEmissions[dataProviderName]) {
+                const methodologyTags = emission.DataProvider.Methodology.Tags.map((tag:any) => tag.tag_name);
+                const emissionData: EmissionInfo = {
+                    actorType: emission.actor_type,
+                    totalGhg: emission.total_ghg_co2e,
+                    year: emission.year,
+                    landSinks: emission.land_sinks,
+                    otherGases: emission.other_gases,
+                    methodologyType: emission.DataProvider?.Methodology?.methodology_type ?? '',
+                    methodologyTags: methodologyTags
+                }
+                providerToEmissions[dataProviderName] = emissionData;
+            }
+            else if (providerToEmissions[dataProviderName].year === emission.year) {
+                if (!providerToEmissions[dataProviderName].totalGhg && emission.total_ghg_co2e) {
+                    providerToEmissions[dataProviderName].totalGhg = emission.total_ghg_co2e;
+                }
+                if (!providerToEmissions[dataProviderName].landSinks && emission.land_sinks) {
+                    providerToEmissions[dataProviderName].landSinks = emission.land_sinks;
+                }
+            }
+        })
+
+        return providerToEmissions;
+    }
+
     
     const setStateValue = async (e:any) =>{
         e.preventDefault();
@@ -202,8 +233,9 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const fetchCountryData = await fetch(`https://dev.openclimate.network/api/country/2019/${id}`);
 
         const jsonData = await fetchCountryData.json();
+        console.log(jsonData);
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
-        const providerToEmissionsData = ReviewHelper.createProviderEmissionsData(jsonData.data[0].Emissions)
+        const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
         
         const data = {
             actor_name: jsonData.data[0].country_name,
@@ -214,8 +246,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const countryCode = jsonData.data[0].iso
         handleTreaties(countryCode);
         handlePledges(countryCode, 'country');
-        setEmissionsData(data);
-        setDashboardEntity({...dashboardEntity, countryCode: countryCode, countryId: id} as ITrackedEntity)
+        setEmissionsData(data)
         
         setSbn(jsonData.data[0].Subnationals)
     }
@@ -223,7 +254,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     const fetchSubnationalData = async (id:any) => {
         const fetchCountryData = await fetch(`https://dev.openclimate.network/api/subnationals/2019/${id}`);
         const jsonData = await fetchCountryData.json();
-        const providerToEmissionsData = ReviewHelper.createProviderEmissionsData(jsonData.data[0].Emissions)
+        console.log(jsonData);
+        const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
         
         const data = {
@@ -238,12 +270,11 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         setCity(jsonData.data[0].Cities);
     }
 
+    // const fetchProviderData = async () => {
+    //     const providerData = await fetch('https://dev.openclimate.network/api/provider');
+    //     const jsonData = await providerData.json();
 
-    const fetchProviderData = async () => {
-        const providerData = await fetch('api/providers');
-        const jsonData = await providerData.json();
-
-    }
+    // }
 
     useEffect(()=> {
         if(subns) {
@@ -275,7 +306,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const jsonData = await fetchCountryData.json();
     
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e);
-        const providerToEmissionsData = ReviewHelper.createProviderEmissionsData(jsonData.data[0].Emissions)
+        const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
 
         const data = {
             actor_name: jsonData.data[0].country_name,
@@ -372,9 +403,9 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                             dashboardEntity ? 
                             <div className="review__selected-entity">
                                 <div>
-                                    {dashboardEntity.countryCode?
+                                    {dashboardEntity.flagCode ?
                                         // <img className='review__flag' src={`https://flagcdn.com/${emissionsData?.flag_icon}.svg`} alt={``}  width="35" height={35}/>
-                                        <CircleFlag countryCode={dashboardEntity.countryCode} height="35" />
+                                        <CircleFlag countryCode={dashboardEntity.flagCode} height="35" />
                                         : ""
                                     }
                                     <span className="review__entity-title">{dashboardEntity.title}</span>
@@ -420,7 +451,7 @@ const mapStateToProps = (state: RootState, ownProps: any) => {
 const mapDispatchToProps = (dispatch: DispatchThunk) => {
     return {
         selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => 
-        dispatch(reviewActions.doSelectFilter(filterType, option, selectedEntities)),
+            dispatch(reviewActions.doSelectFilter(filterType, option, selectedEntities)),
         deselectFilter: (filterType: FilterTypes) => dispatch(reviewActions.deselectFilter(filterType)),
         showModal: (type:string) => {
             dispatch(appActions.showModal(type))

@@ -20,7 +20,7 @@ interface Props {
     // emissionData: IEmissionsData,
     treatiesData: ITreaties,
     pledgesData: Array<IPledge>,
-    selectedEntity: ITrackedEntity | null,
+    selectedEntity: ITrackedEntity,
     showModal: (type: string) => void
 }
 
@@ -29,13 +29,15 @@ const Dashboard: FunctionComponent<Props> = (props) => {
 
     const history = useHistory();
 
+    console.log(selectedEntity);
     
     const redirectToNestedAccounts = () => {
         let params = '';
 
-       params = `?countryId=${selectedEntity?.countryId}&country=${selectedEntity?.countryCode}`;
-        // else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
-        //     params = `?country=${selectedEntity.countryCode3}&jurisdictionName=${selectedEntity.jurisdictionName}&jurisdictionCode=${selectedEntity.jurisdictionCode}`;
+        if(selectedEntity.type === FilterTypes.National)
+            params = `?country=${selectedEntity.countryCode}&countryId=${selectedEntity.id}`;
+        else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
+            params = `?country=${selectedEntity.countryCode}&countryId=${selectedEntity.id}&jurisdictionName=${selectedEntity.jurisdictionName}&jurisdictionCode=${selectedEntity.jurisdictionCode}`;
 
         history.push(`/nested-accounts${params}`);
     }
@@ -63,7 +65,6 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         height={300}
                         width={490}
                         aggregatedEmission={selectedEntity.aggregatedEmission} 
-                        // providerToEmissions={emissionData.providerToEmissions}
                         detailsClick={() => showModal('information-emission')}
                     />
 
