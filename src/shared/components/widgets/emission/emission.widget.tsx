@@ -30,25 +30,27 @@ interface Props {
 
 const EmissionWidget: FunctionComponent<Props> = (props) => {
 
+    
     const { title, className, width, height, detailsLink, aggregatedEmission, totalGhg, isVisible,  detailsClick, landSinks, providerToEmissions } = props;
 
     const [providerList, setProviderList] = React.useState<Array<string>>([])
     const [currentProvider, setProvider] = React.useState<number>(0);
     const [currentEmissions, setEmissions] = React.useState<EmissionInfo>({} as EmissionInfo);
 
+
     React.useEffect(()=> {
         if (providerToEmissions) {
             setProviderList(Object.keys(providerToEmissions))
         }
-    },[])
+    },[providerToEmissions])
 
     React.useEffect(()=> {
         providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
-    },[providerList])
+    },[providerList, providerToEmissions])
 
     React.useEffect(()=> {
         providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
-    },[currentProvider])
+    },[currentProvider, providerToEmissions])
 
 
     const calculateDecimal = (number: number) => {

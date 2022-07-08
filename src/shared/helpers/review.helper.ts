@@ -272,6 +272,37 @@ const GetOptions = async (filterType: FilterTypes, countryCode: string, selected
     return options;
 }
 
+const createProviderEmissionsData = (data: Array<any>) => {
+    const providerToEmissions: Record<string, EmissionInfo> = {};
+    data.forEach(emission => {
+        const dataProviderName = emission.DataProvider?.data_provider_name;
+        
+        if (dataProviderName && !providerToEmissions[dataProviderName]) {
+            const methodologyTags = emission.DataProvider.Methodology.Tags.map(tag => tag.tag_name);
+            const emissionData: EmissionInfo = {
+                actorType: emission.actor_type,
+                totalGhg: emission.total_ghg_co2e,
+                year: emission.year,
+                landSinks: emission.land_sinks,
+                otherGases: emission.other_gases,
+                methodologyType: emission.DataProvider?.Methodology?.methodology_type ?? '',
+                methodologyTags: methodologyTags
+            }
+            providerToEmissions[dataProviderName] = emissionData;
+        }
+        else if (providerToEmissions[dataProviderName].year === emission.year) {
+            if (!providerToEmissions[dataProviderName].totalGhg && emission.total_ghg_co2e) {
+                providerToEmissions[dataProviderName].totalGhg = emission.total_ghg_co2e;
+            }
+            if (!providerToEmissions[dataProviderName].landSinks && emission.land_sinks) {
+                providerToEmissions[dataProviderName].landSinks = emission.land_sinks;
+            }
+        }
+    })
+
+    return providerToEmissions;
+}
+
 export const ReviewHelper = {
     LoadEmissionsCountry,
     LoadEmissionsSubnational,
@@ -279,5 +310,6 @@ export const ReviewHelper = {
     LoadPledgesCountry,
     LoadTreatiesCountry,
     GetTrackedEntity,
-    GetOptions
+    GetOptions,
+    createProviderEmissionsData
 };

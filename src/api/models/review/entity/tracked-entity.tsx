@@ -13,6 +13,7 @@ export default interface ITrackedEntity {
     countryName?: string,
     countryCode?: string,
     countryCode3?:string,
+    countryId?: string,
     jurisdictionName?: string,
     jurisdictionCode?: string,
     aggregatedEmission?: IAggregatedEmission,

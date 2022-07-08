@@ -10,6 +10,9 @@ import ClimateActionsPanel from '../account/subpages/account-sites/climate-actio
 import IClimateAction from '../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction';
 import MapNestedAccounts from '../../shared/components/other/nested-accounts-map/map-nested-accounts';
 import './nested-accounts.scss';
+import { ReviewHelper } from '../../shared/helpers/review.helper';
+import { EmissionInfo } from '../review/review.page';
+import { useLocation } from 'react-router-dom';
 
 enum PanelType {
     None,
@@ -30,6 +33,9 @@ interface IProps  {
 
 const NestedAccounts: FunctionComponent<IProps> = (props) => {
 
+    const location = useLocation();
+
+
     const { sites, aggregatedEmissions, geoSubnationals, groupedClimateActions, 
         cleanData, loadClimateActions, loadGeoSubnational} = props;
 
@@ -40,10 +46,18 @@ const NestedAccounts: FunctionComponent<IProps> = (props) => {
         credential_category: 'Climate Action'
     });
 
+    const [providerToEmissions, setProviderEmissions] = useState<Record<string,EmissionInfo>>({});
+
     const [selectedArea, setSelectedArea] = useState<string>();
     const [climateActionSites, setClimateActionSites] = useState<ISite[]>();
 
+    console.log(providerToEmissions);
+
     useEffect(() => {
+
+        const query = new URLSearchParams(location.search);
+        const countryId = query.get(`countryId`);
+        fetchCountryData(countryId);
         
         return () => {
             cleanData();
@@ -55,6 +69,17 @@ const NestedAccounts: FunctionComponent<IProps> = (props) => {
             loadSiteClimateActions();
         }
     }, [selectedArea, panelShown, panelType]);
+    
+    const fetchCountryData = async (id:any) => {
+
+        const fetchCountryData = await fetch(`/api/country/2019/${id}`);
+
+        const jsonData = await fetchCountryData.json();
+        const providerToEmissionsData = ReviewHelper.createProviderEmissionsData(jsonData.data[0].Emissions)
+        
+        setProviderEmissions(providerToEmissionsData);
+
+    }
 
 
     const mapWidth = panelShown ? "50%" : "100%";
@@ -155,7 +180,6 @@ const NestedAccounts: FunctionComponent<IProps> = (props) => {
         <div className="nested-accounts__content">
             <div className="nested-accounts__map" style={{width: mapWidth}}>
                 {
-                    aggregatedEmissions.length ? 
                     <MapNestedAccounts
                         sites={sites}
                         panelShown={panelShown}
@@ -164,7 +188,7 @@ const NestedAccounts: FunctionComponent<IProps> = (props) => {
                         siteSelectedHandler={siteSelectedHandler} 
                         geoSubnationals={geoSubnationals}
                         loadGeoSubnational={loadGeoSubnational}
-                    /> : ''
+                    />
                 }
 
             </div>
@@ -199,7 +223,7 @@ const NestedAccounts: FunctionComponent<IProps> = (props) => {
                     <div className="account-sites__climate-widget-wrapper">
                         <EmissionWidget
                             isVisible={true}
-                            aggregatedEmission={summaryEmissions}
+                            providerToEmissions={providerToEmissions}
                             title={`Emission Inventory - ${selectedArea}`}
                             className="sites-climate-action"
                             width={350}

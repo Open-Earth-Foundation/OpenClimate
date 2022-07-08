@@ -73,6 +73,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     const [snationId, setsNationId] = React.useState<number>();
     const [stateValue, setStateV] = React.useState<string>();
     const [providersData, setProviders] = React.useState<Array<string>>();
+    const [dashboardEntity, setDashboardEntity] = React.useState<ITrackedEntity|null>(null)
     const [emissionsData, setEmissionsData] = React.useState<IEmissionsData>();
     const [treatiesData, setTreatiesData] = React.useState<ITreaties>({});
     const [pledgesData, setPledgesData] = React.useState<Array<IPledge>>([]);
@@ -87,14 +88,13 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     
 
     const { loading, dashboardEntityType, selectedEntities, reviewFilters, selectFilter, deselectFilter, showModal  } = props;
-    let dashboardEntity:ITrackedEntity|null = null;
     let collapceEntities: Array<ITrackedEntity> = [];
 
-    if(dashboardEntityType !== null)
-    {
-        dashboardEntity = selectedEntities.find(se => se.type === dashboardEntityType) ?? null;
-        collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);
-    }
+    // if(dashboardEntityType !== null)
+    // {
+    //     dashboardEntity = selectedEntities.find(se => se.type === dashboardEntityType) ?? null;
+    //     collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);
+    // }
 
    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
         selectFilter(filterType, option, selectedEntities);
@@ -173,36 +173,6 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         }
     }
 
-    const createProviderEmissionsData = (data: Array<any>) => {
-        const providerToEmissions: Record<string, EmissionInfo> = {};
-        data.forEach(emission => {
-            const dataProviderName = emission.DataProvider?.data_provider_name;
-            
-            if (dataProviderName && !providerToEmissions[dataProviderName]) {
-                const methodologyTags = emission.DataProvider.Methodology.Tags.map(tag => tag.tag_name);
-                const emissionData: EmissionInfo = {
-                    actorType: emission.actor_type,
-                    totalGhg: emission.total_ghg_co2e,
-                    year: emission.year,
-                    landSinks: emission.land_sinks,
-                    otherGases: emission.other_gases,
-                    methodologyType: emission.DataProvider?.Methodology?.methodology_type ?? '',
-                    methodologyTags: methodologyTags
-                }
-                providerToEmissions[dataProviderName] = emissionData;
-            }
-            else if (providerToEmissions[dataProviderName].year === emission.year) {
-                if (!providerToEmissions[dataProviderName].totalGhg && emission.total_ghg_co2e) {
-                    providerToEmissions[dataProviderName].totalGhg = emission.total_ghg_co2e;
-                }
-                if (!providerToEmissions[dataProviderName].landSinks && emission.land_sinks) {
-                    providerToEmissions[dataProviderName].landSinks = emission.land_sinks;
-                }
-            }
-        })
-
-        return providerToEmissions;
-    }
 
     
     const setStateValue = async (e:any) =>{
@@ -226,9 +196,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const fetchCountryData = await fetch(`/api/country/2019/${id}`);
 
         const jsonData = await fetchCountryData.json();
-        console.log(jsonData);
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
-        const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
+        const providerToEmissionsData = ReviewHelper.createProviderEmissionsData(jsonData.data[0].Emissions)
         
         const data = {
             actor_name: jsonData.data[0].country_name,
@@ -239,7 +208,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const countryCode = jsonData.data[0].iso
         handleTreaties(countryCode);
         handlePledges(countryCode, 'country');
-        setEmissionsData(data)
+        setEmissionsData(data);
+        setDashboardEntity({...dashboardEntity, countryCode: countryCode, countryId: id} as ITrackedEntity)
         
         setSbn(jsonData.data[0].Subnationals)
     }
@@ -247,8 +217,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     const fetchSubnationalData = async (id:any) => {
         const fetchCountryData = await fetch(`/api/subnationals/2019/${id}`);
         const jsonData = await fetchCountryData.json();
-        console.log(jsonData);
-        const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
+        const providerToEmissionsData = ReviewHelper.createProviderEmissionsData(jsonData.data[0].Emissions)
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
         
         const data = {
@@ -299,7 +268,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const jsonData = await fetchCountryData.json();
     
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e);
-        const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
+        const providerToEmissionsData = ReviewHelper.createProviderEmissionsData(jsonData.data[0].Emissions)
 
         const data = {
             actor_name: jsonData.data[0].country_name,

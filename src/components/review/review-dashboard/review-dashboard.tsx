@@ -28,17 +28,17 @@ const Dashboard: FunctionComponent<Props> = (props) => {
     const { selectedEntity, showModal, emissionData, treatiesData, pledgesData } = props;
 
     const history = useHistory();
+
     
-    // const redirectToNestedAccounts = () => {
-    //     let params = '';
+    const redirectToNestedAccounts = () => {
+        let params = '';
 
-    //     if(selectedEntity.type === FilterTypes.National)
-    //         params = `?country=${selectedEntity.countryCode3}`;
-    //     else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
-    //         params = `?country=${selectedEntity.countryCode3}&jurisdictionName=${selectedEntity.jurisdictionName}&jurisdictionCode=${selectedEntity.jurisdictionCode}`;
+       params = `?countryId=${selectedEntity?.countryId}&country=${selectedEntity?.countryCode}`;
+        // else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
+        //     params = `?country=${selectedEntity.countryCode3}&jurisdictionName=${selectedEntity.jurisdictionName}&jurisdictionCode=${selectedEntity.jurisdictionCode}`;
 
-    //     history.push(`/nested-accounts${params}`);
-    // }
+        history.push(`/nested-accounts${params}`);
+    }
 
     return (
         <div className="review__dashboard">
@@ -48,7 +48,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     leftOption='Widget View'
                     rightOption='Nested Map View'
                     leftOptionChosen={true}
-                    // onChange={redirectToNestedAccounts}
+                    onChange={redirectToNestedAccounts}
                 />
             </div>
 
