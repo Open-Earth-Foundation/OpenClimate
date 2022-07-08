@@ -23,12 +23,9 @@ import MainToolbar from './shared/components/toolbar/toolbar';
 import './layouts/main-layout/main.layout.scss';
 
 // Envision imports
-import ReviewPage from  './components/review/review.page';
 import { DispatchThunk, RootState } from './store/root-state';
 import { doLogout, doPaswordlessLoginSucess } from './store/user/user.actions';
 import { connect } from 'react-redux'
-import AccountPage from './components/account/account.page';
-import RegisterWalletPage from './UI/RegisterWallet';
 import * as userSelectors from './store/user/user.selectors';
 import { showModal } from './store/app/app.actions';
 import Modal from './shared/components/modals/modal/modal';
@@ -60,14 +57,18 @@ import SessionProvider from './UI/SessionProvider'
 
 import './App.css'
 
-import ExplorePage from './components/explore/explore.page'
-import TransfersPage from './components/transfers/transfers.page'
-import Emissions from './components/explore/emissions.page'
-
 import * as accountActions from './store/account/account.actions';
 import * as accountSelectors from './store/account/account.selectors';
-const NestedAccountsPage = React.lazy(() => import('./components/nested-accounts/nested-accounts.page'))
 
+// Lazy-load other pages
+
+const ExplorePage = React.lazy(() => import('./components/explore/explore.page'));
+const TransfersPage = React.lazy(() => import('./components/transfers/transfers.page'))
+const Emissions = React.lazy(() => import('./components/explore/emissions.page'))
+const NestedAccountsPage = React.lazy(() => import('./components/nested-accounts/nested-accounts.page'))
+const ReviewPage = React.lazy(() => import('./components/review/review.page'))
+const AccountPage = React.lazy(() => import('./components/account/account.page'))
+const RegisterWalletPage = React.lazy(() => import('./UI/RegisterWallet'))
 
 const Frame = styled.div`
   display: flex;
@@ -1195,10 +1196,14 @@ const App: FunctionComponent<Props> = (props) => {
                 }}
               />
               <Route path="/" exact>
-                <ReviewPage />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ReviewPage />
+                </Suspense>
               </Route>
               <Route path="/explore" exact>
-                <ExplorePage />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ExplorePage />
+                </Suspense>
               </Route>
               <Route path="/nested-accounts" exact>
                   <Suspense fallback={<div>Loading...</div>}>
@@ -1206,10 +1211,14 @@ const App: FunctionComponent<Props> = (props) => {
                   </Suspense>
                 </Route>
               <Route path="/emissions/:id" exact>
-                <Emissions />
+                <Suspense fallback={<div>Loading...</div>}>
+                   <Emissions />
+                </Suspense>
               </Route>
               <Route path="/transfers" exact>
-                <TransfersPage />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <TransfersPage />
+                </Suspense>
               </Route>
               <Redirect to={"/"}/>
             </Switch>
@@ -1267,7 +1276,9 @@ const App: FunctionComponent<Props> = (props) => {
                 {
                   currentUser && ( 
                     <Route path="/account">
-                      <AccountPage user={currentUser} />
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <AccountPage user={currentUser} />
+                      </Suspense>
                     </Route>
                   )
                 }
@@ -1275,7 +1286,9 @@ const App: FunctionComponent<Props> = (props) => {
                 {
                   currentUser && ( 
                     <Route path="/register-wallet">
-                      <RegisterWalletPage user={currentUser} sendRequest={sendMessage} QRCodeURL={QRCodeURL}/>
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <RegisterWalletPage user={currentUser} sendRequest={sendMessage} QRCodeURL={QRCodeURL}/>
+                      </Suspense>
                     </Route>
                   )
                 }
