@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 import Cookies from 'universal-cookie'
 
-import React, { FunctionComponent, useState, useEffect, useRef } from 'react'
+import React, { Suspense, FunctionComponent, useState, useEffect, useRef } from 'react'
 
 import {
   BrowserRouter as Router,
@@ -15,34 +15,24 @@ import styled, { ThemeProvider } from 'styled-components'
 import AccountSetup from './UI/AccountSetup'
 import AppHeader from './UI/AppHeader'
 
-import { check, CanUser } from './UI/CanUser'
+import { check } from './UI/CanUser'
 import rules from './UI/rbac-rules'
 
 // Envision imports
-//import MainLayout from './layouts/main-layout/main.layout'
-import LoginCredential from './shared/components/modals/login-credential/login-credential.modal';
-import LoginModal from './shared/components/modals/login/login.modal';
-import RegistrationModal from './shared/components/modals/registration/registration.modal';
 import MainToolbar from './shared/components/toolbar/toolbar';
 import './layouts/main-layout/main.layout.scss';
 
 // Envision imports
-import ReviewPage from  './components/review/review.page';
 import { DispatchThunk, RootState } from './store/root-state';
-import { doLogin, loginSuccess, doLogout, doPaswordlessLoginSucess } from './store/user/user.actions';
+import { doLogout, doPaswordlessLoginSucess } from './store/user/user.actions';
 import { connect } from 'react-redux'
-import AccountPage from './components/account/account.page';
-import RegisterWalletPage from './UI/RegisterWallet';
-import VerifyInformationModal from './shared/components/modals/verify-information/verify-information.modal';
 import * as userSelectors from './store/user/user.selectors';
-import * as appSelectors from './store/app/app.selectors';
 import { showModal } from './store/app/app.actions';
 import Modal from './shared/components/modals/modal/modal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IUser } from './api/models/User/IUser';
 import IWallet from './api/models/DTO/Wallet/IWallet';
-import { userService } from './shared/services/user.service';
 
 import Account from './UI/Account'
 import Contact from './UI/Contact'
@@ -67,15 +57,18 @@ import SessionProvider from './UI/SessionProvider'
 
 import './App.css'
 
-import ExplorePage from './components/explore/explore.page'
-import TransfersPage from './components/transfers/transfers.page'
-import Emissions from './components/explore/emissions.page'
-
-import { loadWallets } from './store/account/account.actions'
 import * as accountActions from './store/account/account.actions';
 import * as accountSelectors from './store/account/account.selectors';
-import NestedAccountsPage from './components/nested-accounts/nested-accounts.page'
 
+// Lazy-load other pages
+
+const ExplorePage = React.lazy(() => import('./components/explore/explore.page'));
+const TransfersPage = React.lazy(() => import('./components/transfers/transfers.page'))
+const Emissions = React.lazy(() => import('./components/explore/emissions.page'))
+const NestedAccountsPage = React.lazy(() => import('./components/nested-accounts/nested-accounts.page'))
+const ReviewPage = React.lazy(() => import('./components/review/review.page'))
+const AccountPage = React.lazy(() => import('./components/account/account.page'))
+const RegisterWalletPage = React.lazy(() => import('./UI/RegisterWallet'))
 
 const Frame = styled.div`
   display: flex;
@@ -1203,19 +1196,29 @@ const App: FunctionComponent<Props> = (props) => {
                 }}
               />
               <Route path="/" exact>
-                <ReviewPage />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ReviewPage />
+                </Suspense>
               </Route>
               <Route path="/explore" exact>
-                <ExplorePage />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ExplorePage />
+                </Suspense>
               </Route>
               <Route path="/nested-accounts">
-                  <NestedAccountsPage />
-              </Route>
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <NestedAccountsPage />
+                  </Suspense>
+                </Route>
               <Route path="/emissions/:id" exact>
-                <Emissions />
+                <Suspense fallback={<div>Loading...</div>}>
+                   <Emissions />
+                </Suspense>
               </Route>
               <Route path="/transfers" exact>
-                <TransfersPage />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <TransfersPage />
+                </Suspense>
               </Route>
               <Redirect to={"/"}/>
             </Switch>
@@ -1273,7 +1276,9 @@ const App: FunctionComponent<Props> = (props) => {
                 {
                   currentUser && ( 
                     <Route path="/account">
-                      <AccountPage user={currentUser} />
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <AccountPage user={currentUser} />
+                      </Suspense>
                     </Route>
                   )
                 }
@@ -1281,7 +1286,9 @@ const App: FunctionComponent<Props> = (props) => {
                 {
                   currentUser && ( 
                     <Route path="/register-wallet">
-                      <RegisterWalletPage user={currentUser} sendRequest={sendMessage} QRCodeURL={QRCodeURL}/>
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <RegisterWalletPage user={currentUser} sendRequest={sendMessage} QRCodeURL={QRCodeURL}/>
+                      </Suspense>
                     </Route>
                   )
                 }
