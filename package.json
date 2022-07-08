@@ -73,14 +73,14 @@
     "@types/react-router-dom": "^5.1.8"
   },
   "scripts": {
-    "start": "react-scripts --max_old_space_size=4096 start",
+    "start": "react-scripts start",
     "style-watch": "onchange 'src/*.js' 'src/**/*.js' -- prettier --write {{changed}}",
     "style-check": "prettier --check 'src/**/*.js'",
     "style-format": "prettier --write .",
-    "build": "react-scripts --max_old_space_size=4096 build",
+    "build": "react-scripts build",
     "postbuild": "cp LICENSE* build && cp README.md build",
-    "test": "react-scripts --max_old_space_size=4096 test",
-    "eject": "react-scripts --max_old_space_size=4096 eject"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "husky": {
     "hooks": {
