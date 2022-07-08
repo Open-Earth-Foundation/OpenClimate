@@ -27,6 +27,7 @@ async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
     let filteredEmissions = data.data[0].Emissions
     filteredEmissions = filteredEmissions.filter((f:any)=>f.DataProvider.data_provider_name === "PRIMAP");
     
+    console.log('---LOAD EMISSIONS COUNTRY ----')
     console.log(countryCode)
     console.log(filteredEmissions);
 
@@ -40,7 +41,8 @@ async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
         const emissionData: IAggregatedEmission = {
             facility_ghg_total_gross_co2e: grossEmission,
             facility_ghg_total_sinks_co2e: skins,
-            facility_ghg_total_net_co2e: netEmission
+            facility_ghg_total_net_co2e: netEmission,
+            providerToEmissions: createProviderEmissionsData(data.data[0].Emissions)
         }
 
         entity.aggregatedEmission = emissionData;
@@ -164,24 +166,29 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
     if(selectedEntities.length)
         previousSelectedEntity = selectedEntities[selectedEntities.length-1];
 
+    console.log(option);
+
+    
     if(previousSelectedEntity)
     {
         trackedEntity.countryName = previousSelectedEntity.countryName;
-        trackedEntity.countryCode3 = previousSelectedEntity.countryCode3;
+        trackedEntity.flagCode = previousSelectedEntity.flagCode
         trackedEntity.countryCode = previousSelectedEntity.countryCode;
         trackedEntity.id = previousSelectedEntity.id
-    }
-    else
+    }   else
     {
         let countryParsed: Array<any> = JSON.parse(countryCodesJson);
-        const foundCountry = countryParsed.find(c => c["alpha-3"] === option.value);
-        const countryCode =  foundCountry ? foundCountry["alpha-2"] : option.value ;
+
+        const foundCountry = countryParsed.find(c => c.name === option.name);
+        const countryCode =  foundCountry ? foundCountry["alpha-3"] : option.value;
+        console.log('GET TRACKED ENTITY', option, countryParsed, foundCountry["alpha-3"], countryCode);
         trackedEntity.countryName = option.name;
+        trackedEntity.flagCode = option.flag;
         trackedEntity.countryCode = countryCode
         trackedEntity.id = option.value;
     }
 
-    
+        
 
     switch (type)
     {
@@ -202,8 +209,8 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
 
             if(previousSelectedEntity)
             {
-                if(previousSelectedEntity.countryCode3)
-                    await ReviewHelper.LoadTreatiesCountry(previousSelectedEntity.countryCode3, trackedEntity);
+                if(previousSelectedEntity.countryCode)
+                    await ReviewHelper.LoadTreatiesCountry(previousSelectedEntity.countryCode, trackedEntity);
                 if(previousSelectedEntity.countryName) {
                     trackedEntity.sites = await siteService.allSitesByJurisdtiction(previousSelectedEntity.countryName, option.name)
                     trackedEntity.transfers = await transferService.allTransfersByJurisdiction(previousSelectedEntity.countryName, option.name);

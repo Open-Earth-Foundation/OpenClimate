@@ -223,7 +223,7 @@ const NestedAccounts: FunctionComponent<IProps> = (props) => {
                     <div className="account-sites__climate-widget-wrapper">
                         <EmissionWidget
                             isVisible={true}
-                            providerToEmissions={providerToEmissions}
+                            aggregatedEmission={{ providerToEmissions: providerToEmissions}}
                             title={`Emission Inventory - ${selectedArea}`}
                             className="sites-climate-action"
                             width={350}

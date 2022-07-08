@@ -14,7 +14,6 @@ const ContextBarView: FunctionComponent<Props> = (props) => {
 
     const { entity,size  } = props;
 
-    const flagCode = entity.countryCode ? entity.countryCode : "";
 
     let entityHeight = 25;
     let earthIcon = EarthPicSm;
@@ -25,7 +24,7 @@ const ContextBarView: FunctionComponent<Props> = (props) => {
         earthIcon = EarthPicLg;
     }
 
-    const icon = entity.countryCode ? <CircleFlag countryCode={flagCode} height={entityHeight} /> : <img src={earthIcon} />;
+    const icon = entity.flagCode ? <CircleFlag countryCode={entity.flagCode} height={entityHeight} /> : <img src={earthIcon} />;
     
     return (
         <div className={`context-bar__view`}>

@@ -1205,7 +1205,7 @@ const App: FunctionComponent<Props> = (props) => {
                   <ExplorePage />
                 </Suspense>
               </Route>
-              <Route path="/nested-accounts" exact>
+              <Route path="/nested-accounts">
                   <Suspense fallback={<div>Loading...</div>}>
                     <NestedAccountsPage />
                   </Suspense>
