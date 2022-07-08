@@ -1288,9 +1288,6 @@ const App: FunctionComponent<Props> = (props) => {
                 <Route path="/" exact>
                   <ReviewPage />
                 </Route>
-                <Route path="/nested-accounts" exact>
-                  <NestedAccountsPage />
-                </Route>
                 
 
                 <Route
