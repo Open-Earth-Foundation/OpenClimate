@@ -7,7 +7,7 @@ import { FilterTypes } from "../dashboard/filterTypes";
 import RetiredUnits from "./retired-units";
 
 export default interface ITrackedEntity {
-    //id: string,
+    id: number,
     type?: FilterTypes,
     title: string,
     countryName?: string,

@@ -2,44 +2,65 @@ import countryCodesJson from "../../api/data/review/data/country-codes";
 import ICountry from "../../api/models/review/country";
 import { regions }  from "../../api/data/review/data/regions"
 
-const GetCountryCodes = () => {
-    let countryParsed = <any[]>JSON.parse(countryCodesJson);
-    const countries:ICountry[] = countryParsed.map(c => {
+const GetCountryCodes = async () => {
+    let countryParsed =  await fetch('https://dev.openclimate.network/api/country/2019', {
+        method: 'GET',
+    });
+    const jsonData = await countryParsed.json()
+    const countries:ICountry[] = jsonData.data.map((c:any) => {
         return {
-            name: c.name,
-            codeAlpha2: c["alpha-2"],
-            codeAlpha3: c["alpha-3"]
+            countryId: c.country_id,
+            name: c.country_name,
+            codeAlpha2: c.iso,
+            codeAlpha3: c.flag_icon,
+            sn: c.Subnationals
         }
     });
 
     return countries;
 }
 
-const GetContryOptions = () => {
-    const countryCodes = GetCountryCodes();
+const GetContryOptions = async () => {
+    const countryCodes = await GetCountryCodes();
+    // console.log(countryCodes)
 
     const countryCodeOptions = countryCodes.map(cc => {
         return {
+            countryId: cc.countryId,
             name: cc.name,
-            value: cc.codeAlpha3
+            value: cc.countryId,
+            flag:cc.codeAlpha3,
+            sn: cc.sn
         }
     });
+    // console.log(countryCodeOptions)
 
     return countryCodeOptions;
 }
 
-const GetSubnationalsByCountryCode = (countryCode: string) => {
+const GetSubnationalsByCountryCode = async (countryId: number) => {
 
-    const filteredSubnationals =  regions.filter(sn => sn.country_code === countryCode?.toUpperCase());
+    // const filteredSubnationals =  regions.filter(sn => sn.country_code === countryCode?.toUpperCase());
 
-    const options = filteredSubnationals.map(sn => {
+    const res = await GetContryOptions();
+    console.log(countryId)
+
+    const options = res.map(sn => {
+        return sn?.sn.filter((s:any) => s.countries_to_subnationals.country_id == countryId )
+    });
+   
+    const data = options.filter(e=>e.length)
+  
+
+    const subnationals = data[0]?.map((sn:any)=>{
         return {
-            name: sn.name,
-            value: `${sn.country_code}-${sn.state_code}`
+            name: sn.subnational_name,
+            value: sn.subnational_id,
+            countryId: sn.countries_to_subnationals
         }
     });
-
-    return options;
+        
+    return subnationals;
 }
 
 const GetCountryAlpha2 = (alpha3: string) => {

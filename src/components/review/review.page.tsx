@@ -95,6 +95,12 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     {
         dashboardEntity = selectedEntities.find(se => se.type === dashboardEntityType) ?? null;
         collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);
+        // collapceEntities = selectedEntities.filter(se => console.log(se));
+        console.log(dashboardEntity);
+        console.log(selectedEntities);
+        console.log(collapceEntities);
+        console.log(dashboardEntityType)
+        
     }
 
    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
@@ -118,7 +124,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
             method: 'GET',
         });
         const jsonData = await countries.json()
-        console.log(jsonData.data)
+        // console.log(jsonData.data)
         setCountryOptions(jsonData.data)
     }
 
@@ -341,6 +347,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         }
     }
 
+    console.log(dashboardEntity)
+
 
     return (
         <div className="review">
@@ -392,14 +400,15 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
                     <div className="review_selected-entity">
                     {
-                            emissionsData ? 
+                            dashboardEntity ? 
                             <div className="review__selected-entity">
                                 <div>
-                                    {emissionsData?
-                                        <img className='review__flag' src={`https://flagcdn.com/${emissionsData.flag_icon}.svg`} alt={``}  width="35" height={35}/>
+                                    {dashboardEntity.countryCode?
+                                        // <img className='review__flag' src={`https://flagcdn.com/${emissionsData?.flag_icon}.svg`} alt={``}  width="35" height={35}/>
+                                        <CircleFlag countryCode={dashboardEntity.countryCode} height="35" />
                                         : ""
                                     }
-                                    <span className="review__entity-title">{emissionsData.actor_name}</span>
+                                    <span className="review__entity-title">{dashboardEntity.title}</span>
                                 </div>
                                 <div className="review__explore-link">
                                     <a href="#" onClick={() => showModal('information-summary')}>Explore State Data</a>
@@ -414,9 +423,9 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
                 <div className="review__content content-wrapper">
                     {
-                        emissionsData ? 
+                        dashboardEntity ? 
                         <>
-                            <Dashboard selectedEntity={dashboardEntity} emissionData={emissionsData} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} /> 
+                            <Dashboard selectedEntity={dashboardEntity} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} /> 
                         </>
                         : ''
                     }
@@ -427,7 +436,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 }
 
 
-const mapStateToProps = (state: RootState, ownProps: any) => {
+const mapStateToProps = (state: RootState, ownProps: any) => { 
 
     const entities = reviewSelectors.getSelectedEntities(state.review);
    
