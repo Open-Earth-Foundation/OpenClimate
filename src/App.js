@@ -74,6 +74,7 @@ import Emissions from './components/explore/emissions.page'
 import { loadWallets } from './store/account/account.actions'
 import * as accountActions from './store/account/account.actions';
 import * as accountSelectors from './store/account/account.selectors';
+import NestedAccountsPage from './components/nested-accounts/nested-accounts.page'
 
 
 const Frame = styled.div`
@@ -1207,6 +1208,9 @@ const App: FunctionComponent<Props> = (props) => {
               <Route path="/explore" exact>
                 <ExplorePage />
               </Route>
+              <Route path="/nested-accounts" exact>
+                  <NestedAccountsPage />
+                </Route>
               <Route path="/emissions/:id" exact>
                 <Emissions />
               </Route>

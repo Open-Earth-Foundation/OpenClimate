@@ -10,6 +10,7 @@ import IGeoSubnational from "../../api/models/DTO/NestedAccounts/IGeoSubnational
 import Loader from "react-loader-spinner";
 import IClimateAction from "../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction";
 import { CommonHelper } from "../../shared/helpers/common.helper";
+import { useLocation } from "react-router-dom";
 
 
 interface IStateProps  {
@@ -35,8 +36,12 @@ interface IProps extends IStateProps, IDispatchProps {
 
 const NestedAccountsPage: FunctionComponent<IProps> = (props) => {
 
+    
+
     const { loading, sites, aggregatedEmissions, sitesLoaded, aggregatedEmissionsLoaded, geoSubnationals, loadedClimateActions,
         cleanData, loadSites, loadAggregatedEmissions, doLoadGeoSubnational, doLoadClimateActions } = props;
+
+    
 
     const [groupedClimateActions, setGroupedClimateActions] = useState<any>();
 
