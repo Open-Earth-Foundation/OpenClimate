@@ -8,4 +8,4 @@ export interface ReviewState {
     filters: Array<IReviewFilter>,
     dashboardType: FilterTypes | null,
     selectedEntities: Array<ITrackedEntity>
-}
+} 

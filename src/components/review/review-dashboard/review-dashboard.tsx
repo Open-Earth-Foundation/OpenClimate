@@ -17,7 +17,7 @@ import { IEmissionsData } from '../review.page';
 
 
 interface Props {
-    emissionData: IEmissionsData,
+    // emissionData: IEmissionsData,
     treatiesData: ITreaties,
     pledgesData: Array<IPledge>,
     selectedEntity: ITrackedEntity | null,
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const Dashboard: FunctionComponent<Props> = (props) => {
-    const { selectedEntity, showModal, emissionData, treatiesData, pledgesData } = props;
+    const { selectedEntity, showModal, treatiesData, pledgesData } = props;
 
     const history = useHistory();
 
@@ -62,7 +62,8 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         title="Total emissions" 
                         height={300}
                         width={490}
-                        providerToEmissions={emissionData.providerToEmissions}
+                        aggregatedEmission={selectedEntity.aggregatedEmission} 
+                        // providerToEmissions={emissionData.providerToEmissions}
                         detailsClick={() => showModal('information-emission')}
                     />
 

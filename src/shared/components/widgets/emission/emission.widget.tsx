@@ -33,9 +33,11 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     
     const { title, className, width, height, detailsLink, aggregatedEmission, totalGhg, isVisible,  detailsClick, landSinks, providerToEmissions } = props;
 
+
     const [providerList, setProviderList] = React.useState<Array<string>>([])
     const [currentProvider, setProvider] = React.useState<number>(0);
     const [currentEmissions, setEmissions] = React.useState<EmissionInfo>({} as EmissionInfo);
+    
 
 
     React.useEffect(()=> {
@@ -43,7 +45,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
             setProviderList(Object.keys(providerToEmissions))
         }
     },[providerToEmissions])
-
+    
     React.useEffect(()=> {
         providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
     },[providerList, providerToEmissions])
@@ -51,6 +53,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     React.useEffect(()=> {
         providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
     },[currentProvider, providerToEmissions])
+
 
 
     const calculateDecimal = (number: number) => {
@@ -69,6 +72,9 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
 
 
     let showDetails = false;
+
+    console.log(aggregatedEmission);
+
     if(aggregatedEmission)
         showDetails = aggregatedEmission.facility_ghg_total_gross_co2e !== 0 ||
                       aggregatedEmission.facility_ghg_total_sinks_co2e !== 0 ||

@@ -6,5 +6,5 @@ export interface IReviewFilter {
     type: FilterTypes,
     options: Array<DropdownOption>,
     selectedValue: string,
-    isRadio?: boolean
+    isRadio?: boolean 
 }

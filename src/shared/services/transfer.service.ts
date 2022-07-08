@@ -21,18 +21,21 @@ function allTransfers(orgId: string)
 
 function allTransfersByCountry(countryName: string)
 {
-    return fetch(`${ServerUrls.api}/transfer/byCountry/${countryName}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    }).then(CommonHelper.HandleResponse).then((transfers:Array<ITransfer>) => transfers);
+    // return fetch(`${ServerUrls.api}/transfer/byCountry/${countryName}`, {
+    //     method: 'GET',
+    //     headers: { 'Content-Type': 'application/json' }
+    // }).then(CommonHelper.HandleResponse).then((transfers:Array<ITransfer>) => transfers);
+    return []
 }
 
 function allTransfersByJurisdiction(countryName: string, jurisdiction: string)
 {
-    return fetch(`${ServerUrls.api}/transfer/byJurisdiction/${countryName}/${jurisdiction}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    }).then(CommonHelper.HandleResponse).then((transfers:Array<ITransfer>) => transfers);
+    // return fetch(`${ServerUrls.api}/transfer/byJurisdiction/${countryName}/${jurisdiction}`, {
+    //     method: 'GET',
+    //     headers: { 'Content-Type': 'application/json' }
+    // }).then(CommonHelper.HandleResponse).then((transfers:Array<ITransfer>) => transfers);
+
+    return []
 }
 
 export const transferService = {
