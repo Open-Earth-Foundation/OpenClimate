@@ -2,7 +2,7 @@ import Axios from 'axios'
 
 import Cookies from 'universal-cookie'
 
-import React, { FunctionComponent, useState, useEffect, useRef } from 'react'
+import React, { Suspense, FunctionComponent, useState, useEffect, useRef } from 'react'
 
 import {
   BrowserRouter as Router,
@@ -74,7 +74,7 @@ import Emissions from './components/explore/emissions.page'
 import { loadWallets } from './store/account/account.actions'
 import * as accountActions from './store/account/account.actions';
 import * as accountSelectors from './store/account/account.selectors';
-import NestedAccountsPage from './components/nested-accounts/nested-accounts.page'
+const NestedAccountsPage = React.lazy(() => import('./components/nested-accounts/nested-accounts.page'))
 
 
 const Frame = styled.div`
@@ -1209,7 +1209,9 @@ const App: FunctionComponent<Props> = (props) => {
                 <ExplorePage />
               </Route>
               <Route path="/nested-accounts" exact>
-                  <NestedAccountsPage />
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <NestedAccountsPage />
+                  </Suspense>
                 </Route>
               <Route path="/emissions/:id" exact>
                 <Emissions />
