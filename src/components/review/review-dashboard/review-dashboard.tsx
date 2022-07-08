@@ -34,10 +34,12 @@ const Dashboard: FunctionComponent<Props> = (props) => {
     const redirectToNestedAccounts = () => {
         let params = '';
 
-        if(selectedEntity.type === FilterTypes.National)
-            params = `?country=${selectedEntity.countryCode}&countryId=${selectedEntity.id}`;
-        else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
-            params = `?country=${selectedEntity.countryCode}&countryId=${selectedEntity.id}&jurisdictionName=${selectedEntity.jurisdictionName}&jurisdictionCode=${selectedEntity.jurisdictionCode}`;
+        params = `?country=${selectedEntity.countryCode}&countryId=${selectedEntity.id}`;
+        // Include when subnation working with Nested Page
+        // if(selectedEntity.type === FilterTypes.National)
+        //     params = `?country=${selectedEntity.countryCode}&countryId=${selectedEntity.id}`;
+        // else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
+        //     params = `?country=${selectedEntity.countryCode}&countryId=${selectedEntity.id}&jurisdictionName=${selectedEntity.jurisdictionName}&jurisdictionCode=${selectedEntity.jurisdictionCode}`;
 
         history.push(`/nested-accounts${params}`);
     }
