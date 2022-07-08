@@ -13,8 +13,7 @@
 /.pnp
 .pnp.js
 node_modules
-/package-lock.json
-/yarn.lock
+yarn.lock
 
 # Environment variables
 .env
