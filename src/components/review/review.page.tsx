@@ -40,12 +40,11 @@ export interface IEmissionsData {
 export interface EmissionInfo {
     actorType: string,
     totalGhg: number,
-    // lastUpdated: string,
+    lastUpdated: string,
     landSinks: number,
     year: number,
-    otherGases: number,
-    methodologyType: string,
-    methodologyTags: any
+    otherGases: string,
+    methodologyTags: Array<string>
 }
 
 interface IProviderData {
@@ -270,11 +269,12 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         setCity(jsonData.data[0].Cities);
     }
 
-    // const fetchProviderData = async () => {
-    //     const providerData = await fetch('https://dev.openclimate.network/api/provider');
-    //     const jsonData = await providerData.json();
 
-    // }
+    const fetchProviderData = async () => {
+        const providerData = await fetch('api/providers');
+        const jsonData = await providerData.json();
+
+    }
 
     useEffect(()=> {
         if(subns) {
@@ -451,7 +451,7 @@ const mapStateToProps = (state: RootState, ownProps: any) => {
 const mapDispatchToProps = (dispatch: DispatchThunk) => {
     return {
         selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => 
-            dispatch(reviewActions.doSelectFilter(filterType, option, selectedEntities)),
+        dispatch(reviewActions.doSelectFilter(filterType, option, selectedEntities)),
         deselectFilter: (filterType: FilterTypes) => dispatch(reviewActions.deselectFilter(filterType)),
         showModal: (type:string) => {
             dispatch(appActions.showModal(type))

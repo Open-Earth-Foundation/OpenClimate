@@ -39,12 +39,27 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     const [currentProvider, setProvider] = React.useState<string>(providers[0]);
     const [currentEmissions, setEmissions] = React.useState<EmissionInfo>(providerToEmissions[currentProvider]);
 
+    const [providerList, setProviderList] = React.useState<Array<string>>([])
+    
+
+
     React.useEffect(()=> {
-        setEmissions(providerToEmissions[currentProvider])
-    },[currentProvider])
+        if (providerToEmissions) {
+            setProviderList(Object.keys(providerToEmissions))
+        }
+    },[])
+
+    // React.useEffect(()=> {
+    //     providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
+    // },[providerList])
+
+    // React.useEffect(()=> {
+    //     providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
+    // },[currentProvider])
+
 
     const calculateDecimal = (number: number) => {
-        switch(currentProvider){
+        switch(providerList[currentProvider]){
             case 'UNFCCC Annex I':
                 return number / 1000000;
             case 'PRIMAP':
@@ -94,6 +109,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                 </div>
                 <div className="widget__content" style={{height: `auto`}}>
                     {
+
                     // currentEmissions.totalGhg ? 
                     aggregatedEmission?
                     <div className={`widget__emission-content ${className}`}>
@@ -101,16 +117,18 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                 <div className="widget__emission-data red">
                                     {/* {calculateDecimal(currentEmissions.totalGhg)} */}
                                     {aggregatedEmission.facility_ghg_total_net_co2e}
-                                    
+                                   
                                 </div>
                                 <div className="widget__emission-data-description">Total GHG Emissions
                                 </div>
                                 <div className="widget__emission-data-description">Mt CO2e/year</div>
                             </div>
+                        
                             {/* { !!currentEmissions.landSinks && 
+
                                 <div className={`widget__emission-numbers widget__emission-block`}>
                                     <div className="widget__emission-data-small green">
-                                        {calculateDecimal(currentEmissions.landSinks)}
+                                        {calculateDecimal(currentEmissions?.landSinks)}
                                     </div>
                                     <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
                                 </div>
@@ -118,9 +136,9 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                             <div className='widget__meta-data'>
                                 <div className='widget__meta-text-left'>
                                     <span className='widget__meta-source-head'>Source</span>
-                                    <NativeSelect
-                                      defaultValue={providers[0]}
-                                      onChange={(event) => setProvider(event.target.value)}
+                                    {/* <NativeSelect
+                                      defaultValue={providerList?.[currentProvider] || ''}
+                                      onChange={(event) => setProvider(parseInt(event.target.value))}
                                       sx={{
                                           fontSize: '10px',
                                           fontFamily: 'Lato',
@@ -128,20 +146,21 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                           fontWeight: '700'
                                       }}
                                     >
-                                        {providers?.map(provider => 
-                                            <option value={provider}>{provider}</option>)}
+                                        {providerList?.map((provider, index) => 
+                                            <option value={index}>{provider}</option>)}
                                     
-                                    </NativeSelect>
+                                    </NativeSelect> */}
                                 </div>
                                 {/* <div className='widget__meta-text-right'>
                                     <span className='widget__meta-source-head'>Methodology</span>
                                     <div className='widget__methodology-tags'>
                                     { currentEmissions.methodologyTags && 
                                         currentEmissions.methodologyTags.slice(0,2).map((tag:any) => 
+
                                         <span className='widget__meta-source-m'>{tag}</span>) }
                                         {
-                                            currentEmissions.methodologyTags.length > 2 && 
-                                            <span className='widget__meta-source-m'>{ `+${currentEmissions.methodologyTags.length - 2}`}</span>
+                                            currentEmissions?.methodologyTags.length > 2 && 
+                                            <span className='widget__meta-source-m'>{ `+${currentEmissions?.methodologyTags.length - 2}`}</span>
                                         }
                                     </div>
                                 </div> */}
