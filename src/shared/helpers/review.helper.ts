@@ -19,13 +19,23 @@ import { siteService } from "../services/site.service";
 
 async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
 {
-    const emissionResponse = await climateWatchService.fetchEmissionsCountry(countryCode);
+    // const emissionResponse = await climateWatchService.fetchEmissionsCountry(countryCode);
+    let emissionResponse = await fetch(`https://dev.openclimate.network/api/country/2019/${countryCode}`, {
+        method: 'GET'
+    });
+    let data = await emissionResponse.json()
+    let filteredEmissions = data.data[0].Emissions
+    filteredEmissions = filteredEmissions.filter((f:any)=>f.DataProvider.data_provider_name === "PRIMAP");
+    
+    console.log(countryCode)
+    console.log(filteredEmissions);
 
-    if(emissionResponse.data.length) 
+    if(filteredEmissions.length) 
     {
-        const skins = Math.abs(emissionResponse.data[0].emissions[0].value);
-        const grossEmission = Math.abs(emissionResponse.data[1].emissions[0].value);
+        const skins = 0;
+        const grossEmission = filteredEmissions[0].total_ghg_co2e;
         const netEmission = grossEmission - skins;
+        console.log(netEmission)
 
         const emissionData: IAggregatedEmission = {
             facility_ghg_total_gross_co2e: grossEmission,
@@ -145,6 +155,7 @@ async function LoadTreatiesCountry(country: string)
 async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) {
 
     let trackedEntity: ITrackedEntity = {
+        id: option.id,
         title: option.name, 
         type: type
     }
@@ -158,6 +169,7 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
         trackedEntity.countryName = previousSelectedEntity.countryName;
         trackedEntity.countryCode3 = previousSelectedEntity.countryCode3;
         trackedEntity.countryCode = previousSelectedEntity.countryCode;
+        trackedEntity.id = previousSelectedEntity.id
     }
     else
     {
@@ -165,8 +177,8 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
         const foundCountry = countryParsed.find(c => c["alpha-3"] === option.value);
         const countryCode =  foundCountry ? foundCountry["alpha-2"] : option.value ;
         trackedEntity.countryName = option.name;
-        trackedEntity.countryCode = countryCode.toLowerCase();
-        trackedEntity.countryCode3 = option.value;
+        trackedEntity.countryCode = countryCode
+        trackedEntity.id = option.value;
     }
 
     
@@ -248,7 +260,7 @@ const GetOrganizations = async (selectedEntity: ITrackedEntity) => {
                 value: site.organization_id ?? ""
             }
 
-            const added = dropdownItems.some(i => i.value === item.value);
+            const added = dropdownItems.some(i => i.value == item.value);
             if(!added)    
                 dropdownItems.push(item);
     });
@@ -256,12 +268,12 @@ const GetOrganizations = async (selectedEntity: ITrackedEntity) => {
     return dropdownItems;
 }
 
-const GetOptions = async (filterType: FilterTypes, countryCode: string, selectedEntity?: ITrackedEntity) => {
+const GetOptions = async (filterType: FilterTypes, countryId: number, selectedEntity?: ITrackedEntity) => {
     let options: Array<DropdownOption> = [];
 
     switch(filterType) {
         case FilterTypes.SubNational:
-            options = await CountryCodesHelper.GetSubnationalsByCountryCode(countryCode);
+            options = await CountryCodesHelper.GetSubnationalsByCountryCode(countryId);
             break;
         case FilterTypes.Organization:
             if(selectedEntity)

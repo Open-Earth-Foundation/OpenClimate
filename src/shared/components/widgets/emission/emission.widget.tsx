@@ -30,11 +30,18 @@ interface Props {
 
 const EmissionWidget: FunctionComponent<Props> = (props) => {
 
-    const { title, className, width, height, detailsLink, aggregatedEmission, totalGhg, isVisible,  detailsClick, landSinks, providerToEmissions } = props;
+    const { title, className, width, height, detailsLink, aggregatedEmission,totalGhg, isVisible,  detailsClick, landSinks } = props;
+
+    // const providers = Object.keys(providerToEmissions);
+    const providerToEmissions: string[] = ["UNFCCC Annex I", "PRIMAP"];
+    const providers: string[] = ["UNFCCC Annex I", "PRIMAP"];
+
+    const [currentProvider, setProvider] = React.useState<string>(providers[0]);
+    const [currentEmissions, setEmissions] = React.useState<EmissionInfo>(providerToEmissions[currentProvider]);
 
     const [providerList, setProviderList] = React.useState<Array<string>>([])
-    const [currentProvider, setProvider] = React.useState<number>(0);
-    const [currentEmissions, setEmissions] = React.useState<EmissionInfo>({} as EmissionInfo);
+    
+
 
     React.useEffect(()=> {
         if (providerToEmissions) {
@@ -42,13 +49,13 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
         }
     },[])
 
-    React.useEffect(()=> {
-        providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
-    },[providerList])
+    // React.useEffect(()=> {
+    //     providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
+    // },[providerList])
 
-    React.useEffect(()=> {
-        providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
-    },[currentProvider])
+    // React.useEffect(()=> {
+    //     providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
+    // },[currentProvider])
 
 
     const calculateDecimal = (number: number) => {
@@ -67,6 +74,9 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
 
 
     let showDetails = false;
+
+    console.log(aggregatedEmission);
+
     if(aggregatedEmission)
         showDetails = aggregatedEmission.facility_ghg_total_gross_co2e !== 0 ||
                       aggregatedEmission.facility_ghg_total_sinks_co2e !== 0 ||
@@ -99,29 +109,34 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                 </div>
                 <div className="widget__content" style={{height: `auto`}}>
                     {
-                    currentEmissions?.totalGhg ? 
+
+                    // currentEmissions.totalGhg ? 
+                    aggregatedEmission?
                     <div className={`widget__emission-content ${className}`}>
                             <div className={'widget__emission-block'}>
                                 <div className="widget__emission-data red">
-                                    {calculateDecimal(currentEmissions?.totalGhg)}
-                                    
+                                    {/* {calculateDecimal(currentEmissions.totalGhg)} */}
+                                    {aggregatedEmission.facility_ghg_total_net_co2e}
+                                   
                                 </div>
                                 <div className="widget__emission-data-description">Total GHG Emissions
                                 </div>
                                 <div className="widget__emission-data-description">Mt CO2e/year</div>
                             </div>
-                            { !!currentEmissions?.landSinks && 
+                        
+                            {/* { !!currentEmissions.landSinks && 
+
                                 <div className={`widget__emission-numbers widget__emission-block`}>
                                     <div className="widget__emission-data-small green">
                                         {calculateDecimal(currentEmissions?.landSinks)}
                                     </div>
                                     <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
                                 </div>
-                            }
+                            } */}
                             <div className='widget__meta-data'>
                                 <div className='widget__meta-text-left'>
                                     <span className='widget__meta-source-head'>Source</span>
-                                    <NativeSelect
+                                    {/* <NativeSelect
                                       defaultValue={providerList?.[currentProvider] || ''}
                                       onChange={(event) => setProvider(parseInt(event.target.value))}
                                       sx={{
@@ -134,20 +149,21 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                         {providerList?.map((provider, index) => 
                                             <option value={index}>{provider}</option>)}
                                     
-                                    </NativeSelect>
+                                    </NativeSelect> */}
                                 </div>
-                                <div className='widget__meta-text-right'>
+                                {/* <div className='widget__meta-text-right'>
                                     <span className='widget__meta-source-head'>Methodology</span>
                                     <div className='widget__methodology-tags'>
-                                    { currentEmissions?.methodologyTags && 
-                                        currentEmissions?.methodologyTags.slice(0,2).map(tag => 
+                                    { currentEmissions.methodologyTags && 
+                                        currentEmissions.methodologyTags.slice(0,2).map((tag:any) => 
+
                                         <span className='widget__meta-source-m'>{tag}</span>) }
                                         {
                                             currentEmissions?.methodologyTags.length > 2 && 
                                             <span className='widget__meta-source-m'>{ `+${currentEmissions?.methodologyTags.length - 2}`}</span>
                                         }
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                     </div>
                     : 

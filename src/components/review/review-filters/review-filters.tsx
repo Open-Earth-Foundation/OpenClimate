@@ -19,12 +19,12 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
     const { filters, selectFilter, deselectFilter } = props;
 
     const selectFilterHandler = (filterType: FilterTypes, option: any) => {
-        selectFilter(filterType, option);
+        selectFilter(filterType, option); 
     };
 
     const filtersHtml = filters.map((f:IReviewFilter, i:number) => {
 
-        const disabled = f.options.length === 0;
+        const disabled = f.options?.length === 0;
         const selectedValue = f.selectedValue === '' ? null : f.selectedValue;
 
 
