@@ -73,7 +73,7 @@ const AddTransferModal: FunctionComponent<Props> = (props) => {
     }
 
     useEffect(()=>{
-        setCountryOptions(CountryCodesHelper.GetContryOptions());
+        setCountryOptions(CountryCodesHelper.GetCountryOptions());
 
     }, []);
 
