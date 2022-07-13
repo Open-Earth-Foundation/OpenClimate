@@ -16,7 +16,7 @@ const initialState: ReviewState = {
             title: "Country",
             type: FilterTypes.National,
             selectedValue: "",
-            options: CountryCodesHelper.GetContryOptions()
+            options: CountryCodesHelper.GetCountryOptions()
         },
         {
             title: "Region",

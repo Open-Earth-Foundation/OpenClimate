@@ -1272,6 +1272,11 @@ const App: FunctionComponent<Props> = (props) => {
                 <Route exact path="/login">
                   <Redirect to="/" />
                 </Route>
+                <Route path="/nested-accounts">
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <NestedAccountsPage />
+                  </Suspense>
+                </Route>
 
                 {
                   currentUser && ( 

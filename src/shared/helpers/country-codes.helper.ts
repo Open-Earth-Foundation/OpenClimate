@@ -20,7 +20,7 @@ const GetCountryCodes = async () => {
     return countries;
 }
 
-const GetContryOptions = async () => {
+const GetCountryOptions = async () => {
     const countryCodes = await GetCountryCodes();
     // console.log(countryCodes)
 
@@ -38,11 +38,27 @@ const GetContryOptions = async () => {
     return countryCodeOptions;
 }
 
+const GetCountryOptionsForSite = async () => {
+    const countryCodes = await GetCountryCodes();
+    // console.log(countryCodes)
+
+    const countryCodeOptions = countryCodes.map(cc => {
+        return {
+            name: cc.name,
+            value: cc.codeAlpha2,
+
+        }
+    });
+    // console.log(countryCodeOptions)
+
+    return countryCodeOptions;
+}
+
 const GetSubnationalsByCountryCode = async (countryId: number) => {
 
     // const filteredSubnationals =  regions.filter(sn => sn.country_code === countryCode?.toUpperCase());
 
-    const res = await GetContryOptions();
+    const res = await GetCountryOptions();
 
     const options = res.map(sn => {
         return sn?.sn.filter((s:any) => s.countries_to_subnationals.country_id == countryId )
@@ -64,17 +80,18 @@ const GetSubnationalsByCountryCode = async (countryId: number) => {
 
 const GetCountryAlpha2 = (alpha3: string) => {
     let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
-    return  countryParsed.find(c => c["alpha-3"] === alpha3)['alpha-2'];
+    console.log('GETCOUNTRYALPHA', countryParsed, alpha3);
+    return countryParsed ? countryParsed.find(c => c["alpha-3"] === alpha3)['alpha-2'] : null;
 }
 
 const GetCountryAlpha3 = (alpha2: string) => {
     let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
-    return  countryParsed.find(c => c["alpha-2"] === alpha2)['alpha-3'];
+    return countryParsed ? countryParsed.find(c => c["alpha-2"] === alpha2)['alpha-3'] : null;
 }
 
 const GetCountryNameByAlpha3 = (alpha2: string) => {
     let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
-    return  countryParsed.find(c => c["alpha-3"] === alpha2)['name'];
+    return countryParsed ? countryParsed.find(c => c["alpha-3"] === alpha2)['name'] : null;
 }
 
 const GetRegionNameByCode = (jurisdictionCode: string) => {
@@ -89,7 +106,8 @@ const GetRegionNameByCode = (jurisdictionCode: string) => {
 export const CountryCodesHelper = {
     GetRegionNameByCode,
     GetCountryCodes,
-    GetContryOptions,
+    GetCountryOptions,
+    GetCountryOptionsForSite,
     GetSubnationalsByCountryCode,
     GetCountryNameByAlpha3,
     GetCountryAlpha2,
