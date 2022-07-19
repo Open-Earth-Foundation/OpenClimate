@@ -24,6 +24,9 @@ export default interface IAggregatedEmission {
     facility_sector_naics?: string,
     facility_ghg_total_net_co2e?: number,
     facility_ghg_total_gross_co2e?: number,
+    facility_ghg_year?: number,
+    facility_ghg_methodologies?: Array<object>
+    facility_ghg_date_updated?: string
     facility_ghg_scope1_co2e?: number,
     facility_ghg_scope1_credential_id?: Array<string>,
     facility_ghg_scope2_co2e?: number,

@@ -13,10 +13,11 @@ function savePledge(orgId: string, pledge: any)
 
 function allPledges(orgId: string)
 {
-    return fetch(`${ServerUrls.api}/${orgId}/pledge/all`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    }).then(CommonHelper.HandleResponse).then((pledges: Array<IPledge>) => pledges);
+    // return fetch(`${ServerUrls.api}/${orgId}/pledge/all`, {
+    //     method: 'GET',
+    //     headers: { 'Content-Type': 'application/json' }
+    // }).then(CommonHelper.HandleResponse).then((pledges: Array<IPledge>) => pledges);
+    return []
 }
 
 async function fetchPledgesSubnational(organization: string) {

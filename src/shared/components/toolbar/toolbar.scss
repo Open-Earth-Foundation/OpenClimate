@@ -37,7 +37,7 @@
         }
         &__logo{
             position: relative;
-            top:-16px !important;
+            top: 0 !important;
         }
         &__sideNav{
             position: fixed;
@@ -143,6 +143,6 @@
     }
     &__logo{
         position: relative;
-        top:-13px
+        top: 2px
     }
 }

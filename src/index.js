@@ -12,7 +12,7 @@ import store from './store/index';
 import "react-datepicker/dist/react-datepicker.css";
 
 ReactDOM.render(
-  <Provider store={store} >
+  <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

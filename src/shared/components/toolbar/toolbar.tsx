@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react'
-import MainLogoIcon from '../../img/toolbar/OpenClimate_Logo.png';
+import MainLogoIcon from '../../img/toolbar/OpenClimate_Beta_logo.svg';
 import NavMenu from './nav-menu/nav-menu';
 import SearchToolbar from './toolbar-search/toolbar-search';
 import ToolbarAutorized from './toolbar-authorized/toolbar-autorized';

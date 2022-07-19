@@ -55,12 +55,49 @@ const GetSubnationalsByCountryCode = async (countryId: number) => {
         return {
             name: sn.subnational_name,
             value: sn.subnational_id,
-            countryId: sn.countries_to_subnationals
+            countryId: sn.countries_to_subnationals,
+            cities: sn.Cities
         }
     });
-        
+    console.log(data)
     return subnationals;
 }
+
+const GetCitiesBySubnationalId = async (entity_id:number) => {
+    console.log(entity_id)
+    const res = await GetCountryCodes();
+    console.log(entity_id)
+    console.log(res)
+    const options = res.map(sn => {
+        return sn?.sn.filter((s:any) => s.countries_to_subnationals.subnational_id == entity_id )
+    });
+   
+    const data = options.filter(e=>e.length)
+    console.log(data)
+
+    const cities = data.map(sn => {
+        console.log(sn[0].Cities)
+        return sn[0]?.Cities.filter((s:any) => s.subnationals_to_cities.subnational_id == entity_id )
+    });
+
+    console.log(cities)
+    
+    
+    
+    const cityOptions = cities[0].map((cc:any) => {
+        return {
+            name: cc.city_name,
+            value: cc.city_id
+        }
+    });
+    
+    console.log(cityOptions)
+    return cityOptions;
+}
+
+GetCitiesBySubnationalId(34)
+
+// GetCitiesBySubnationalId(34)
 
 const GetCountryAlpha2 = (alpha3: string) => {
     let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
@@ -91,6 +128,7 @@ export const CountryCodesHelper = {
     GetCountryCodes,
     GetContryOptions,
     GetSubnationalsByCountryCode,
+    GetCitiesBySubnationalId,
     GetCountryNameByAlpha3,
     GetCountryAlpha2,
     GetCountryAlpha3

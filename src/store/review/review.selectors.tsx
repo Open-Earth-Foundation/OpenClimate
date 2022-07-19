@@ -5,7 +5,7 @@ const reviewData = (state: ReviewState ) => state;
 
 export const getSelectedEntities = createSelector(
     reviewData, 
-    items => items?.selectedEntities
+    items => items?.selectedEntities 
 );
 
 export const getLoading = createSelector(

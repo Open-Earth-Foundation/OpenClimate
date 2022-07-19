@@ -27,30 +27,29 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
         const disabled = f.options?.length === 0;
         const selectedValue = f.selectedValue === '' ? null : f.selectedValue;
 
+        console.log(f)
 
         return f?.isRadio ? 
         (
             <div className="review__filter" key={i}>                
                 <FormControl>
-                    <FormLabel className="review__filter-form-label">{ f.title }</FormLabel>
-                    <RadioGroup
+                    <FormLabel className="review__filter-form-label">{ "Entity Type"}</FormLabel>
+                    <RadioGroup 
                       aria-labelledby="demo-controlled-radio-buttons-group"
                       name="controlled-radio-buttons-group"
-                      value={f.selectedValue}
-                      onChange={ (event) => selectFilterHandler(f.type, event.target)}
-
+                      defaultValue="city"
+                      onChange={()=>console.log('radio')}
                       sx={{
-                        '& .MuiFormControlLabel-root': {
-                          fontSize: '14px',
-                          fontFamily: 'Lato'
-                        },
+                          fontSize: '10px !important',
                       }}
                       >
 
-                        { f.options.map(option => 
+                        {/* { f.options.map(option => 
                             <FormControlLabel value={option.value} control={<Radio />} label={option.name} />
                             )
-                        }    
+                        }     */}
+                        <FormControlLabel value="city" control={<Radio />} label="City" />
+                        <FormControlLabel value="organization" control={<Radio />} label="Organization" />
                     </RadioGroup>
                 </FormControl>
             </div>

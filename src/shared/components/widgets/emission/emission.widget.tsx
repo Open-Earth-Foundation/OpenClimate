@@ -36,7 +36,11 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     const [providerList, setProviderList] = React.useState<Array<string>>([])
     const [currentProvider, setProvider] = React.useState<number>(0);
     const [currentEmissions, setEmissions] = React.useState<EmissionInfo>({} as EmissionInfo);
-
+    const methtags = aggregatedEmission?.facility_ghg_methodologies
+    const tags = methtags?.map((tag:any)=>tag.tag_name)
+    
+    console.log(tags);
+    // console.log(currentEmissions?.methodologyTags)
 
     React.useEffect(()=> {
         if (providerToEmissions) {
@@ -73,6 +77,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
         showDetails = aggregatedEmission.facility_ghg_total_gross_co2e !== 0 ||
                       aggregatedEmission.facility_ghg_total_sinks_co2e !== 0 ||
                       aggregatedEmission.facility_ghg_total_net_co2e !== 0;
+    console.log(aggregatedEmission?.facility_ghg_total_sinks_co2e)
 
     return (
         <div className="widget" >
@@ -96,16 +101,16 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
 
                     </div>
 
-                    <span className="widget__updated">Last Updated June {props.lastupdated} | Data shown refers to {props.year}</span>     
+                    <span className="widget__updated">Last Updated {aggregatedEmission?.facility_ghg_date_updated} | Data shown refers to {aggregatedEmission?.facility_ghg_year}</span>     
 
                 </div>
                 <div className="widget__content" style={{height: `auto`}}>
                     {
-                    currentEmissions?.totalGhg ? 
+                    aggregatedEmission?.facility_ghg_total_gross_co2e ? 
                     <div className={`widget__emission-content ${className}`}>
                             <div className={'widget__emission-block'}>
                                 <div className="widget__emission-data red">
-                                    {calculateDecimal(currentEmissions?.totalGhg)}
+                                    {calculateDecimal(aggregatedEmission?.facility_ghg_total_gross_co2e)}
                                     
                                 </div>
                                 <div className="widget__emission-data-description">Total GHG Emissions
@@ -141,12 +146,12 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                 <div className='widget__meta-text-right'>
                                     <span className='widget__meta-source-head'>Methodology</span>
                                     <div className='widget__methodology-tags'>
-                                    { currentEmissions?.methodologyTags && 
-                                        currentEmissions?.methodologyTags.slice(0,2).map(tag => 
+                                    { tags && 
+                                        tags.slice(0,2).map(tag => 
                                         <span className='widget__meta-source-m'>{tag}</span>) }
                                         {
-                                            currentEmissions?.methodologyTags.length > 2 && 
-                                            <span className='widget__meta-source-m'>{ `+${currentEmissions?.methodologyTags.length - 2}`}</span>
+                                            tags?.length > 2 && 
+                                            <span className='widget__meta-source-m'>{ `+${tags?.length - 2}`}</span>
                                         }
                                     </div>
                                 </div>
