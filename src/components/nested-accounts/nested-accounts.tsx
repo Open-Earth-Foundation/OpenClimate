@@ -87,6 +87,7 @@ const NestedAccounts: FunctionComponent<IProps> = (props) => {
     const countrySelectedHandler = (countryName: string) => {
         const countryAggrEmissions = aggregatedEmissions?.filter(ae => ae.facility_country?.toLowerCase() === countryName.toLowerCase());
         const summaryAggrEmissions = AggregatedEmissionHelper.GetSummaryAggregatedEmissions(countryAggrEmissions);
+        setProviderEmissions({});
         setSummaryEmissions(summaryAggrEmissions);
         setSelectedArea(countryName);
         setPanelType(PanelType.Country);

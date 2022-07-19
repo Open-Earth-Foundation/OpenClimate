@@ -33,7 +33,7 @@ const AddSiteCredentialModal: FunctionComponent<Props> = (props) => {
     const { formState, register,  handleSubmit, setValue } = useForm();
 
     useEffect(()=>{
-        setCountryOptions(CountryCodesHelper.GetContryOptions());
+        setCountryOptions(CountryCodesHelper.GetCountryOptionsForSite());
 
         const typesOptions = SiteTypes.map(s => {
             return {
