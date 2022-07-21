@@ -39,9 +39,6 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     const methtags = aggregatedEmission?.facility_ghg_methodologies
     const tags = methtags?.map((tag:any)=>tag.tag_name)
     
-    console.log(tags);
-    // console.log(currentEmissions?.methodologyTags)
-
     React.useEffect(()=> {
         if (providerToEmissions) {
             setProviderList(Object.keys(providerToEmissions))
@@ -77,7 +74,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
         showDetails = aggregatedEmission.facility_ghg_total_gross_co2e !== 0 ||
                       aggregatedEmission.facility_ghg_total_sinks_co2e !== 0 ||
                       aggregatedEmission.facility_ghg_total_net_co2e !== 0;
-    console.log(aggregatedEmission?.facility_ghg_total_sinks_co2e)
+
 
     return (
         <div className="widget" >
