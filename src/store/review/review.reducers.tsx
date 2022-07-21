@@ -24,19 +24,26 @@ const initialState: ReviewState = {
             selectedValue: "",
             options: []
         },
-        // {
-        //     title: "Entity type",
-        //     type: FilterTypes.EntityType,
-        //     selectedValue: 'City',
-        //     options: [{name: 'City', value: 'City'}, {name: 'Company', value: 'Company'}],
-        //     isRadio: true
-        // },
+        {
+            title: "Entity type",
+            type: FilterTypes.EntityType,
+            selectedValue: 'City',
+            options: [{name: 'City', value: 'City'}, {name: 'Organization', value: 'Organization'}],
+            isRadio: true
+        },
         {
             title: "City",
+            type: FilterTypes.City,
+            selectedValue: "",
+            options: []
+        },
+        {
+            title: "Organization",
             type: FilterTypes.Organization,
             selectedValue: "",
             options: []
-        }
+        },
+        
     ]
 }
 
@@ -85,6 +92,12 @@ const deselectFilter = ( state: ReviewState, payload: any ) => {
         case FilterTypes.SubNational:
             dashboardType = FilterTypes.National;
             break;
+        case FilterTypes.EntityType:
+            dashboardType = FilterTypes.EntityType;
+            break;
+        case FilterTypes.City:
+            dashboardType = FilterTypes.City
+            break
         case FilterTypes.Organization:
             dashboardType = FilterTypes.SubNational;
             break;
@@ -104,7 +117,12 @@ const updateFilterOptions = ( state: ReviewState, payload: any ) => {
 
     let newFilters = [ ...state.filters ];
 
-    let filterIndex = newFilters.findIndex(f => f.type === filterType);
+    let filterIndex = newFilters.findIndex(f => {
+       
+        return f.type === filterType
+    });
+    
+    
     newFilters[filterIndex].options = options;
 
     return {

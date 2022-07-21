@@ -59,12 +59,14 @@ export const updateFilterOptions = (filterType: FilterTypes, options: Array<Drop
 }
 
 export const doSelectFilter = (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => {
-    return (dispatch: Dispatch) => {
+    return async (dispatch: Dispatch) => {
         dispatch(startLoading());
 
-        setTimeout(async () => {
+        // setTimeout(async () => {
 
-            const trackedEntity = await ReviewHelper.GetTrackedEntity(filterType, option, selectedEntities);
+            
+        // }, 500);
+        const trackedEntity = await ReviewHelper.GetTrackedEntity(filterType, option, selectedEntities);
             dispatch(selectFilter(filterType, option.value, trackedEntity));
             dispatch(stopLoading());
 
@@ -78,7 +80,6 @@ export const doSelectFilter = (filterType: FilterTypes, option: DropdownOption, 
                 const loadedOptions = await ReviewHelper.GetOptions(loadOptionsType, countryId, trackedEntity); 
                 dispatch(updateFilterOptions(loadOptionsType, loadedOptions));
             }
-        }, 500);
 
     }
 }

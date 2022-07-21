@@ -22,8 +22,7 @@ const GetCountryCodes = async () => {
 
 const GetCountryOptions = async () => {
     const countryCodes = await GetCountryCodes();
-    // console.log(countryCodes)
-
+    
     const countryCodeOptions = countryCodes.map(cc => {
         return {
             countryId: cc.countryId,
@@ -33,15 +32,13 @@ const GetCountryOptions = async () => {
             sn: cc.sn
         }
     });
-    // console.log(countryCodeOptions)
+    
 
     return countryCodeOptions;
 }
 
 const GetCountryOptionsForSite = async () => {
     const countryCodes = await GetCountryCodes();
-    // console.log(countryCodes)
-
     const countryCodeOptions = countryCodes.map(cc => {
         return {
             name: cc.name,
@@ -49,7 +46,6 @@ const GetCountryOptionsForSite = async () => {
 
         }
     });
-    // console.log(countryCodeOptions)
 
     return countryCodeOptions;
 }
@@ -71,16 +67,38 @@ const GetSubnationalsByCountryCode = async (countryId: number) => {
         return {
             name: sn.subnational_name,
             value: sn.subnational_id,
-            countryId: sn.countries_to_subnationals
+            countryId: sn.countries_to_subnationals,
+            cities: sn.Cities
         }
     });
-        
+   
     return subnationals;
 }
 
+const GetCitiesBySubnationalId = async (entity_id:number) => {
+    const res = await GetCountryCodes();
+    const options = res.map(sn => {
+        return sn?.sn.filter((s:any) => s.countries_to_subnationals.subnational_id == entity_id )
+    });
+   
+    const data = options.filter(e=>e.length)
+    const cities = data.map(sn => {
+        return sn[0]?.Cities.filter((s:any) => s.subnationals_to_cities.subnational_id == entity_id )
+    });
+
+    const cityOptions = cities[0].map((cc:any) => {
+        return {
+            name: cc.city_name,
+            value: cc.city_id
+        }
+    });
+    
+    return cityOptions;
+}
+
+
 const GetCountryAlpha2 = (alpha3: string) => {
     let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
-    console.log('GETCOUNTRYALPHA', countryParsed, alpha3);
     return countryParsed ? countryParsed.find(c => c["alpha-3"] === alpha3)['alpha-2'] : null;
 }
 
@@ -109,6 +127,7 @@ export const CountryCodesHelper = {
     GetCountryOptions,
     GetCountryOptionsForSite,
     GetSubnationalsByCountryCode,
+    GetCitiesBySubnationalId,
     GetCountryNameByAlpha3,
     GetCountryAlpha2,
     GetCountryAlpha3

@@ -17,31 +17,35 @@ import IOrganization from "../../api/models/DTO/Organization/IOrganization";
 import ISite from "../../api/models/DTO/Site/ISite";
 import { siteService } from "../services/site.service";
 
-async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
+async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
 {
     // const emissionResponse = await climateWatchService.fetchEmissionsCountry(countryCode);
-    let emissionResponse = await fetch(`https://dev.openclimate.network/api/country/2019/${countryCode}`, {
+    let emissionResponse = await fetch(`/api/country/2019/${countryId}`, {
         method: 'GET'
     });
     let data = await emissionResponse.json()
     let filteredEmissions = data.data[0].Emissions
     filteredEmissions = filteredEmissions.filter((f:any)=>f.DataProvider.data_provider_name === "PRIMAP");
     
-    console.log('---LOAD EMISSIONS COUNTRY ----')
-    console.log(countryCode)
-    console.log(filteredEmissions);
+   
 
     if(filteredEmissions.length) 
     {
-        const skins = 0;
-        const grossEmission = filteredEmissions[0].total_ghg_co2e;
-        const netEmission = grossEmission - skins;
-        console.log(netEmission)
+        const sinks = filteredEmissions[0].land_sinks;
+        const grossEmission = filteredEmissions[0]?.total_ghg_co2e;
+        const netEmission = grossEmission - sinks;
+        const date_updated = filteredEmissions[0].DataProvider.Methodology.date_update
+        const year = filteredEmissions[0].year
+        const methodologies = filteredEmissions[0].DataProvider.Methodology.Tags
+
 
         const emissionData: IAggregatedEmission = {
             facility_ghg_total_gross_co2e: grossEmission,
-            facility_ghg_total_sinks_co2e: skins,
+            facility_ghg_total_sinks_co2e: sinks,
             facility_ghg_total_net_co2e: netEmission,
+            facility_ghg_date_updated: date_updated,
+            facility_ghg_year: year,
+            facility_ghg_methodologies: methodologies,
             providerToEmissions: createProviderEmissionsData(data.data[0].Emissions)
         }
 
@@ -49,20 +53,52 @@ async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
     }
 }
 
-async function LoadEmissionsSubnational(countryCode: string, entity: ITrackedEntity)
+async function LoadEmissionsSubnational(subnational_Id: number, entity: ITrackedEntity)
 {
-    const emissionResponse = await emissionService.fetchEmissionsSubnational(countryCode);
+    const emissionResponse = await emissionService.fetchEmissionsSubnational(subnational_Id);
 
-    if(emissionResponse.length) 
+    if(emissionResponse.data.length) 
     {
-        const grossEmission = Math.abs(emissionResponse[0].response_answer / 1000000);
-        const netEmission = Math.abs(emissionResponse[1].response_answer / 1000000)
-        const skins = grossEmission - netEmission;
+        const grossEmission = emissionResponse.data[0].Emissions[0].total_ghg_co2e
+        const year = emissionResponse.data[0].Emissions[0].year
+        const netEmission = 0
+        const sinks = grossEmission - emissionResponse.data[0].Emissions[0].land_sinks;
+        const date_updated = emissionResponse.data[0].Emissions[0].DataProvider.Methodology.date_update
+        const methodologies = emissionResponse.data[0].Emissions[0].DataProvider.Methodology.Tags
+      
 
         const emissionData: IAggregatedEmission = {
             facility_ghg_total_gross_co2e: grossEmission,
-            facility_ghg_total_sinks_co2e: skins,
-            facility_ghg_total_net_co2e: netEmission
+            facility_ghg_total_sinks_co2e: sinks,
+            facility_ghg_total_net_co2e: netEmission,
+            facility_ghg_date_updated: date_updated,
+            facility_ghg_year: year,
+            facility_ghg_methodologies: methodologies,
+        }
+
+        if(!isNaN(grossEmission) && !isNaN(netEmission))
+            entity.aggregatedEmission = emissionData;
+    }
+}
+
+async function LoadEmissionsCity(city_id: number, entity: ITrackedEntity)
+{
+    const emissionResponse = await emissionService.fetchEmissionsCity(city_id);
+    if(emissionResponse.data.length) 
+    {
+        const grossEmission = emissionResponse.data[0].Emissions[0].total_ghg_co2e
+        const year = emissionResponse.data[0].Emissions[0].year
+        const netEmission = 0
+        const sinks = grossEmission - emissionResponse.data[0].Emissions[0].land_sinks;
+        const date_updated = emissionResponse.data[0].Emissions[0].DataProvider.Methodology.date_update
+        const methodologies = emissionResponse.data[0].Emissions[0].DataProvider.Methodology.Tags
+        const emissionData: IAggregatedEmission = {
+            facility_ghg_total_gross_co2e: grossEmission,
+            facility_ghg_total_sinks_co2e: sinks,
+            facility_ghg_total_net_co2e: netEmission,
+            facility_ghg_date_updated: date_updated,
+            facility_ghg_year: year,
+            facility_ghg_methodologies: methodologies,
         }
 
         if(!isNaN(grossEmission) && !isNaN(netEmission))
@@ -155,20 +191,18 @@ async function LoadTreatiesCountry(country: string)
 }
 
 async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) {
-
+    
     let trackedEntity: ITrackedEntity = {
         id: option.id,
-        title: option.name, 
+        title: option.name,
+        flagCode: option.flag,
         type: type
     }
 
     let previousSelectedEntity = null;
     if(selectedEntities.length)
         previousSelectedEntity = selectedEntities[selectedEntities.length-1];
-
-    console.log(option);
-
-    
+        
     if(previousSelectedEntity)
     {
         trackedEntity.countryName = previousSelectedEntity.countryName;
@@ -181,7 +215,6 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
 
         const foundCountry = countryParsed.find(c => c.name === option.name);
         const countryCode =  foundCountry ? foundCountry["alpha-3"] : option.value;
-        console.log('GET TRACKED ENTITY', option, countryParsed, foundCountry["alpha-3"], countryCode);
         trackedEntity.countryName = option.name;
         trackedEntity.flagCode = option.flag;
         trackedEntity.countryCode = countryCode
@@ -203,8 +236,9 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
         case FilterTypes.SubNational:
             trackedEntity.jurisdictionName = option.name;
             trackedEntity.jurisdictionCode = option.value;
-
-            await ReviewHelper.LoadEmissionsSubnational(option.name, trackedEntity);
+            trackedEntity.flagCode = option.flag
+            
+            await ReviewHelper.LoadEmissionsSubnational(option.value, trackedEntity);
             await ReviewHelper.LoadPledgesSubnational(option.name, trackedEntity);
 
             if(previousSelectedEntity)
@@ -217,6 +251,26 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
                 }
             }
             break;
+        case FilterTypes.City:
+
+            trackedEntity.jurisdictionName = option.name;
+            trackedEntity.jurisdictionCode = option.value;
+            trackedEntity.flagCode = option.flag
+           
+            await ReviewHelper.LoadEmissionsCity(option.value, trackedEntity);
+            await ReviewHelper.LoadPledgesSubnational(option.name, trackedEntity);
+
+            if(previousSelectedEntity)
+            {
+                if(previousSelectedEntity.countryCode)
+                    await ReviewHelper.LoadTreatiesCountry(previousSelectedEntity.countryCode, trackedEntity);
+                if(previousSelectedEntity.countryName) {
+                    trackedEntity.sites = await siteService.allSitesByJurisdtiction(previousSelectedEntity.countryName, option.name)
+                    trackedEntity.transfers = await transferService.allTransfersByJurisdiction(previousSelectedEntity.countryName, option.name);
+                }
+            }
+
+            break;
         case FilterTypes.Organization:
 
             const country = previousSelectedEntity?.countryName;
@@ -225,6 +279,7 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
             //for nation state
             //const org = await organizationService.getById(option.value);
             const orgSites = await siteService.allSitesByOrg(option.value);
+            
             //const orgJurisdiction = `${org.organization_country},${org.organization_jurisdiction}`;
             const sitesByLocation = orgSites.filter(s => s.facility_country === country && s.facility_jurisdiction === jurisdiction);
             trackedEntity.sites = sitesByLocation;
@@ -259,35 +314,389 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
 
 const GetOrganizations = async (selectedEntity: ITrackedEntity) => {
 
-    const dropdownItems:Array<DropdownOption> = [];
+    let dropdownItems:Array<DropdownOption> = [];
 
-    selectedEntity.sites?.filter(site => site.organization_name && site.organization_id).forEach((site: ISite) => {
+    const dropdowns = selectedEntity.sites?.map((site: ISite) => {
             const item = {
                 name: site.organization_name ?? "",
-                value: site.organization_id ?? ""
+                value: site.organization_id ?? "",
+                id: site.organization_id ?? "",
+                flag: ""
             }
-
-            const added = dropdownItems.some(i => i.value == item.value);
-            if(!added)    
-                dropdownItems.push(item);
     });
 
-    return dropdownItems;
+    return dropdowns;
 }
+let entity = [
+    {
+        "id": 34,
+        "title": "Canada",
+        "flagCode": "ca",
+        "type": 0,
+        "countryName": "Canada",
+        "countryCode": "CAN",
+        "aggregatedEmission": {
+            "facility_ghg_total_gross_co2e": 733000,
+            "facility_ghg_total_sinks_co2e": 0,
+            "facility_ghg_total_net_co2e": 733000,
+            "facility_ghg_date_updated": "2021-09-21",
+            "facility_ghg_year": 2019,
+            "facility_ghg_methodologies": [
+                {
+                    "tag_id": 1,
+                    "tag_name": "Combined datasets",
+                    "created_at": "2022-06-28T08:56:49.971Z",
+                    "updated_at": "2022-06-28T08:56:49.971Z",
+                    "methodology_to_tag": {
+                        "meth": 1,
+                        "tag_": 1
+                    }
+                },
+                {
+                    "tag_id": 2,
+                    "tag_name": "Country-reported data or third party",
+                    "created_at": "2022-06-28T08:56:49.971Z",
+                    "updated_at": "2022-06-28T08:56:49.971Z",
+                    "methodology_to_tag": {
+                        "meth": 1,
+                        "tag_": 2
+                    }
+                },
+                {
+                    "tag_id": 3,
+                    "tag_name": "Year gaps numerically extrapolated",
+                    "created_at": "2022-06-28T08:56:49.971Z",
+                    "updated_at": "2022-06-28T08:56:49.971Z",
+                    "methodology_to_tag": {
+                        "meth": 1,
+                        "tag_": 3
+                    }
+                },
+                {
+                    "tag_id": 4,
+                    "tag_name": "Peer reviewed",
+                    "created_at": "2022-06-28T08:56:49.971Z",
+                    "updated_at": "2022-06-28T08:56:49.971Z",
+                    "methodology_to_tag": {
+                        "meth": 1,
+                        "tag_": 4
+                    }
+                }
+            ],
+            "providerToEmissions": {
+                "PRIMAP": {
+                    "actorType": "country",
+                    "totalGhg": 733000,
+                    "year": 2019,
+                    "landSinks": 0,
+                    "otherGases": 0,
+                    "methodologyType": "",
+                    "methodologyTags": [
+                        "Combined datasets",
+                        "Country-reported data or third party",
+                        "Year gaps numerically extrapolated",
+                        "Peer reviewed"
+                    ]
+                },
+                "UNFCCC Annex I": {
+                    "actorType": "country",
+                    "totalGhg": 730240000,
+                    "year": 2019,
+                    "landSinks": 9880000,
+                    "otherGases": null,
+                    "methodologyType": "",
+                    "methodologyTags": [
+                        "Country-reported data",
+                        "Third party validated"
+                    ]
+                }
+            }
+        },
+        "sites": [
+            {
+                "id": 1,
+                "facility_name": "Test Site1",
+                "facility_type": "Solar",
+                "signature_name": "pavelkrolevets@gmail.com",
+                "credential_type": "Facility Information",
+                "facility_bounds": "",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "53.0716470504505, -125.47146420672287",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1654147743173,
+                "facility_jurisdiction": "British Columbia",
+                "facility_sector_naics": "",
+                "facility_sector_ipcc_activity": "",
+                "facility_sector_ipcc_category": ""
+            },
+            {
+                "id": 2,
+                "facility_name": "Alberta Oil Test",
+                "facility_type": "Oil",
+                "signature_name": "joaquin@openearth.org",
+                "credential_type": "Facility Information",
+                "facility_bounds": "55.26603602205677, -115.90679303997007;55.26547974114782, -115.90478674781781;55.264575003911396, -115.90529100306463;55.26533302840115, -115.90741531240232",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "55.26521685550108, -115.90640680926197",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1654205831661,
+                "facility_jurisdiction": "Alberta",
+                "facility_sector_naics": "Oil and Gas",
+                "facility_sector_ipcc_activity": "Refinery",
+                "facility_sector_ipcc_category": "Oil and Gas"
+            },
+            {
+                "id": 3,
+                "facility_name": "Alberta Oil Admin Test",
+                "facility_type": "Oil",
+                "signature_name": "j.vanpeborgh@gmail.com",
+                "credential_type": "Facility Information",
+                "facility_bounds": "55.24409391937757, -115.6597617865023;55.24392877865496, -115.65919315818591;55.2433599553598, -115.65948283676217;55.24353121484259, -115.66036260132718",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "55.24367800809781, -115.65979397301076",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1654206210380,
+                "facility_jurisdiction": "Alberta",
+                "facility_sector_naics": "Oil",
+                "facility_sector_ipcc_activity": "Refinery",
+                "facility_sector_ipcc_category": "OIL"
+            },
+            {
+                "id": 5,
+                "facility_name": "Gold Mine HQ",
+                "facility_type": "Mining",
+                "signature_name": "joakovp@gmail.com",
+                "credential_type": "Facility Information",
+                "facility_bounds": "54.95553287629569, -115.71635452698857;54.955040023165296, -115.71562496612977;54.95446091301323, -115.71690169763262;54.955514394412376, -115.71794239474",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "54.95501542433184, -115.7164939872362",
+                "organization_name": "Gold Mine",
+                "credential_category": "Facility",
+                "credential_issue_date": 1654268291436,
+                "facility_jurisdiction": "Alberta",
+                "facility_sector_naics": "Mining",
+                "facility_sector_ipcc_activity": "Gold Mining",
+                "facility_sector_ipcc_category": "Mining"
+            },
+            {
+                "id": 6,
+                "facility_name": "asdasd",
+                "facility_type": "Mining",
+                "signature_name": "greta@openearth.org",
+                "credential_type": "Facility Information",
+                "facility_bounds": "55.77940070222493, -115.65175121917191",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "55.77940070222493, -115.65175121917191",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1654513753493,
+                "facility_jurisdiction": "Alberta",
+                "facility_sector_naics": "",
+                "facility_sector_ipcc_activity": "",
+                "facility_sector_ipcc_category": ""
+            },
+            {
+                "id": 8,
+                "facility_name": "Gold Mine HQ",
+                "facility_type": "Mining",
+                "signature_name": "martin@openearth.org",
+                "credential_type": "Facility Information",
+                "facility_bounds": "55.78145208123018, -115.65183703256687;55.77981096933409, -115.64969126555913;55.77836287202695, -115.65179411722671;55.780341924863926, -115.65471236035727",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "55.77940070222493, -115.65175121917191",
+                "organization_name": "CopperMountain",
+                "credential_category": "Facility",
+                "credential_issue_date": 1654773399794,
+                "facility_jurisdiction": "Alberta",
+                "facility_sector_naics": "Mining",
+                "facility_sector_ipcc_activity": "Gold Mining",
+                "facility_sector_ipcc_category": "Mining"
+            },
+            {
+                "id": 10,
+                "facility_name": "Test Site 2 ",
+                "facility_type": "Solar",
+                "signature_name": "greta@openearth.org",
+                "credential_type": "Facility Information",
+                "facility_bounds": "54.93211894172486, -120.6126597173949; 54.93212135337093, -120.61261914178158; 54.93210768737462, -120.6126751081448; 54.932108491256884, -120.6126387300087",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "54.93212939219014, -120.61264432664504",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1655109959904,
+                "facility_jurisdiction": "British Columbia",
+                "facility_sector_naics": "Energy",
+                "facility_sector_ipcc_activity": "Energy",
+                "facility_sector_ipcc_category": "Energy"
+            },
+            {
+                "id": 11,
+                "facility_name": "Evan Factory",
+                "facility_type": "Buildings",
+                "signature_name": "admin@client.com",
+                "credential_type": "Facility Information",
+                "facility_bounds": "45.5,-73.2",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "Burnaby",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1655403438981,
+                "facility_jurisdiction": "British Columbia",
+                "facility_sector_naics": "21",
+                "facility_sector_ipcc_activity": "32",
+                "facility_sector_ipcc_category": "1"
+            },
+            {
+                "id": 12,
+                "facility_name": "Evan's Better Factory",
+                "facility_type": "Wind",
+                "signature_name": "admin@client.com",
+                "credential_type": "Facility Information",
+                "facility_bounds": "12.1,11.3",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "Burnaby",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1655403591776,
+                "facility_jurisdiction": "British Columbia",
+                "facility_sector_naics": "5",
+                "facility_sector_ipcc_activity": "4",
+                "facility_sector_ipcc_category": "3"
+            }
+        ],
+        "transfers": []
+    },
+    {
+        "id": 34,
+        "title": "British Columbia",
+        "type": 1,
+        "countryName": "Canada",
+        "countryCode": "CAN",
+        "jurisdictionName": "British Columbia",
+        "jurisdictionCode": 5,
+        "sites": [
+            {
+                "id": 1,
+                "organization_id": 1,
+                "facility_name": "Test Site1",
+                "facility_type": "Solar",
+                "signature_name": "pavelkrolevets@gmail.com",
+                "credential_type": "Facility Information",
+                "facility_bounds": "",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "53.0716470504505, -125.47146420672287",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1654147743173,
+                "facility_jurisdiction": "British Columbia",
+                "facility_sector_naics": "",
+                "facility_sector_ipcc_activity": "",
+                "facility_sector_ipcc_category": ""
+            },
+            {
+                "id": 10,
+                "organization_id": 1,
+                "facility_name": "Test Site 2 ",
+                "facility_type": "Solar",
+                "signature_name": "greta@openearth.org",
+                "credential_type": "Facility Information",
+                "facility_bounds": "54.93211894172486, -120.6126597173949; 54.93212135337093, -120.61261914178158; 54.93210768737462, -120.6126751081448; 54.932108491256884, -120.6126387300087",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "54.93212939219014, -120.61264432664504",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1655109959904,
+                "facility_jurisdiction": "British Columbia",
+                "facility_sector_naics": "Energy",
+                "facility_sector_ipcc_activity": "Energy",
+                "facility_sector_ipcc_category": "Energy"
+            },
+            {
+                "id": 11,
+                "organization_id": 1,
+                "facility_name": "Evan Factory",
+                "facility_type": "Buildings",
+                "signature_name": "admin@client.com",
+                "credential_type": "Facility Information",
+                "facility_bounds": "45.5,-73.2",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "Burnaby",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1655403438981,
+                "facility_jurisdiction": "British Columbia",
+                "facility_sector_naics": "21",
+                "facility_sector_ipcc_activity": "32",
+                "facility_sector_ipcc_category": "1"
+            },
+            {
+                "id": 12,
+                "organization_id": 1,
+                "facility_name": "Evan's Better Factory",
+                "facility_type": "Wind",
+                "signature_name": "admin@client.com",
+                "credential_type": "Facility Information",
+                "facility_bounds": "12.1,11.3",
+                "facility_country": "Canada",
+                "credential_issuer": "OpenClimate",
+                "facility_location": "Burnaby",
+                "organization_name": "OpenClimate",
+                "credential_category": "Facility",
+                "credential_issue_date": 1655403591776,
+                "facility_jurisdiction": "British Columbia",
+                "facility_sector_naics": "5",
+                "facility_sector_ipcc_activity": "4",
+                "facility_sector_ipcc_category": "3"
+            }
+        ],
+        "transfers": []
+    }
+]
+GetOrganizations(entity)
 
-const GetOptions = async (filterType: FilterTypes, countryId: number, selectedEntity?: ITrackedEntity) => {
+const GetOptions = async (filterType: FilterTypes, entityId: number, selectedEntity?: ITrackedEntity) => {
     let options: Array<DropdownOption> = [];
-
+    
     switch(filterType) {
         case FilterTypes.SubNational:
-            options = await CountryCodesHelper.GetSubnationalsByCountryCode(countryId);
+            options = await CountryCodesHelper.GetSubnationalsByCountryCode(entityId);
+            
+            break;
+        case FilterTypes.EntityType:
+            options = []
+            break;
+        case FilterTypes.City:
+            options = await CountryCodesHelper.GetCitiesBySubnationalId(entityId)
             break;
         case FilterTypes.Organization:
-            if(selectedEntity)
-                options = await GetOrganizations(selectedEntity);
+            options = [{
+                name: 'OpenClimate',
+                value: 1,
+                flag: 'CAN',
+                id: 1
+            }]
+            // if(selectedEntity) 
+            //     options = await GetOrganizations(selectedEntity);             
+                
             break;
+        
     }
-
+    
     return options;
 }
 
@@ -325,9 +734,11 @@ const createProviderEmissionsData = (data: Array<any>) => {
 export const ReviewHelper = {
     LoadEmissionsCountry,
     LoadEmissionsSubnational,
+    LoadEmissionsCity,
     LoadPledgesSubnational,
     LoadPledgesCountry,
     LoadTreatiesCountry,
+    GetOrganizations,
     GetTrackedEntity,
     GetOptions,
     createProviderEmissionsData

@@ -17,6 +17,7 @@ function allTransfers(orgId: string)
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((transfers:Array<ITransfer>) => transfers);
+    // return []
 }
 
 function allTransfersByCountry(countryName: string)
