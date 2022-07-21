@@ -11,7 +11,7 @@ function updateAggregatedEmission(orgId: string, aggregatedEmission: IAggregated
     }).then(CommonHelper.HandleResponse);
 }
 
-function allAggregatedEmissionsByOrg(orgId: string)
+function allAggregatedEmissionsByOrg(orgId: number)
 {
     return fetch(`${ServerUrls.api}/${orgId}/aggregated-emission/all`, {
         method: 'GET',
@@ -35,6 +35,8 @@ function allAggregatedEmissions()
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((aggregated: Array<IAggregatedEmission>) => aggregated);
 }
+
+allAggregatedEmissions()
 
 export const aggregatedEmissionService = {
     updateAggregatedEmission,

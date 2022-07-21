@@ -13,11 +13,11 @@ function saveTransfer(orgId: string, transfer: any)
 
 function allTransfers(orgId: string)
 {
-    // return fetch(`${ServerUrls.api}/${orgId}/transfer/all`, {
-    //     method: 'GET',
-    //     headers: { 'Content-Type': 'application/json' }
-    // }).then(CommonHelper.HandleResponse).then((transfers:Array<ITransfer>) => transfers);
-    return []
+    return fetch(`${ServerUrls.api}/${orgId}/transfer/all`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(CommonHelper.HandleResponse).then((transfers:Array<ITransfer>) => transfers);
+    // return []
 }
 
 function allTransfersByCountry(countryName: string)
