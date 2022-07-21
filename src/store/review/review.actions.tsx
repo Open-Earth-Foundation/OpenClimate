@@ -76,7 +76,6 @@ export const doSelectFilter = (filterType: FilterTypes, option: DropdownOption, 
                 let loadOptionsType = FilterTypes[FilterTypes[nextIndex] as keyof typeof FilterTypes];
 
                 const countryId =  option.value;
-                console.log(countryId)
  
                 const loadedOptions = await ReviewHelper.GetOptions(loadOptionsType, countryId, trackedEntity); 
                 dispatch(updateFilterOptions(loadOptionsType, loadedOptions));
