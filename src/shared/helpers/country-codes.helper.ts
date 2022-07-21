@@ -96,9 +96,6 @@ const GetCitiesBySubnationalId = async (entity_id:number) => {
     return cityOptions;
 }
 
-GetCitiesBySubnationalId(34)
-
-// GetCitiesBySubnationalId(34)
 
 const GetCountryAlpha2 = (alpha3: string) => {
     let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
