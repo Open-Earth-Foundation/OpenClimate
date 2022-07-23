@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import './footer.scss';
 import FooterLogo from './OEF_logo_footer_small.svg';
+import BetaCapsule from './beta_capsule.svg';
 
 const MainFooter: FunctionComponent<{}> = (props) => {
     return (
@@ -9,9 +10,7 @@ const MainFooter: FunctionComponent<{}> = (props) => {
 
                 <div className='footer__line'>
                     <div className='footer__disclaimer'>
-                        <span className='footer__beta'>
-                            BETA
-                        </span>
+                        <img className='footer__beta' src={BetaCapsule} />
                         <span className='footer__disclaimer__text'>
                             This site is a beta platform, we appreciate all feedback to improve the platform
                         </span>
