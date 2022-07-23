@@ -1,11 +1,14 @@
 .footer {
 
     background: #272727;
-    font-size: 12px;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 5px;
+    padding: 16px 40px 16px 40px;
 
     &__line {
         display: flex;
@@ -15,24 +18,33 @@
     }
 
     &__disclaimer {
-        color: white;
-        margin-right: 8px;
+        &__text {
+            color: white;
+            font-family: Lato;
+            font-size: 14px;
+            font-weight: 400;
+            margin-right: 8px;
+        }
     }
 
     &__beta {
         vertical-align: middle;
-        margin-right: 8px;
     }
 
     &__feedback {
         color: white;
         cursor: pointer;
         text-decoration: underline;
-        margin-left: 8px;
+        font-family: Poppins;
+        font-size: 13px;
+        font-weight: 500;
     }
 
     &__poweredby {
         color: white;
+        font-family: Lato;
+        font-size: 14px;
+        font-weight: 400;
         margin-left: auto;
         &__logo {
             margin-left: 8px;
@@ -50,12 +62,10 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            font-weight: 600;
-            line-height: 28px;
         }
 
         &__item {
-            margin-right: 24px;
+            margin-right: 20px;
         }
 
         &__item:last-child {
@@ -64,14 +74,20 @@
 
         &__link {
             color: white;
+            font-size: 12px;
+            font-weight: 700;
+            font-family: Lato;
             cursor: pointer;
-            margin-right: 24px;
         }
     }
 
     &__contactus {
         margin-left: auto;
         &__link {
+            font-size: 14px;
+            font-weight: 700;
+            font-family: Lato;
+            align: center;
             color: green;
             cursor: pointer;
         }
