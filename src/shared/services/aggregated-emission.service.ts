@@ -21,7 +21,7 @@ function allAggregatedEmissionsByOrg(orgId: number)
 
 function allAggregatedEmissionsByCity(cityId: number)
 {
-    return fetch(`https://dev.openclimate.network/api/city/2021/${cityId}`, {
+    return fetch(`/api/city/2021/${cityId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((aggregated: Array<IAggregatedEmission>) => aggregated);
