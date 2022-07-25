@@ -119,7 +119,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
 
     const getAllcountries = async () => {
-        const countries = await  fetch('https://dev.openclimate.network/api/country', {
+        const countries = await  fetch('/api/country', {
 
             method: 'GET',
         });
@@ -230,7 +230,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     
     const fetchData = async (id:any) => {
 
-        const fetchCountryData = await fetch(`https://dev.openclimate.network/api/country/2019/${id}`);
+        const fetchCountryData = await fetch(`/api/country/2019/${id}`);
 
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
@@ -252,7 +252,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
     
     const fetchSubnationalData = async (id:any) => {
-        const fetchCountryData = await fetch(`https://dev.openclimate.network/api/subnationals/2019/${id}`);
+        const fetchCountryData = await fetch(`/api/subnationals/2019/${id}`);
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
         const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
@@ -269,12 +269,6 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
         setCity(jsonData.data[0].Cities);
     }
-
-    // const fetchProviderData = async () => {
-    //     const providerData = await fetch('https://dev.openclimate.network/api/provider');
-    //     const jsonData = await providerData.json();
-
-    // }
 
     useEffect(()=> {
         if(subns) {
@@ -302,7 +296,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
 
     const fetchCityData = async (id:any) => {
-        const fetchCountryData = await fetch(`https://dev.openclimate.network/api/city/2019/${id}`);
+        const fetchCountryData = await fetch(`/api/city/2019/${id}`);
         const jsonData = await fetchCountryData.json();
     
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e);

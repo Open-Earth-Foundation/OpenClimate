@@ -118,10 +118,10 @@ const updateFilterOptions = ( state: ReviewState, payload: any ) => {
     let newFilters = [ ...state.filters ];
 
     let filterIndex = newFilters.findIndex(f => {
-        console.log(f.type, filterType)
+       
         return f.type === filterType
     });
-    console.log(filterIndex);
+    
     
     newFilters[filterIndex].options = options;
 

@@ -20,6 +20,8 @@ import rules from './UI/rbac-rules'
 
 // Envision imports
 import MainToolbar from './shared/components/toolbar/toolbar';
+import MainFooter from './shared/components/footer/footer';
+
 import './layouts/main-layout/main.layout.scss';
 
 // Envision imports
@@ -1241,6 +1243,7 @@ const App: FunctionComponent<Props> = (props) => {
                 newestOnTop={true}
                 toastStyle={{ backgroundColor: "#007568", color: "white" }}
               />
+              <MainFooter />
             </div>
           </Router>
         </NotificationProvider>
@@ -1670,6 +1673,7 @@ const App: FunctionComponent<Props> = (props) => {
                   newestOnTop={true}
                   toastStyle={{ backgroundColor: "#007568", color: "white" }}
                 />
+                <MainFooter />
               </div>
             </Router>
           </SessionProvider>

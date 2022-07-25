@@ -24,6 +24,7 @@ const AccountDashboard: FunctionComponent<IProps> = (props) => {
     const { aggregatedEmissions, pledges, sites, user, showModal} = props;
 
     const [ summaryEmissions, setSummaryEmissions] = useState<IAggregatedEmission>();
+    console.log(aggregatedEmissions)
 
     let widgetPledges = [];
     if(pledges)

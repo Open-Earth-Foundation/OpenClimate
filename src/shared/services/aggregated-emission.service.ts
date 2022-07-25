@@ -11,7 +11,7 @@ function updateAggregatedEmission(orgId: string, aggregatedEmission: IAggregated
     }).then(CommonHelper.HandleResponse);
 }
 
-function allAggregatedEmissionsByOrg(orgId: string)
+function allAggregatedEmissionsByOrg(orgId: number)
 {
     return fetch(`${ServerUrls.api}/${orgId}/aggregated-emission/all`, {
         method: 'GET',
@@ -21,7 +21,7 @@ function allAggregatedEmissionsByOrg(orgId: string)
 
 function allAggregatedEmissionsByCity(cityId: number)
 {
-    return fetch(`https://dev.openclimate.network/api/city/2021/${cityId}`, {
+    return fetch(`/api/city/2021/${cityId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((aggregated: Array<IAggregatedEmission>) => aggregated);
@@ -35,6 +35,8 @@ function allAggregatedEmissions()
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((aggregated: Array<IAggregatedEmission>) => aggregated);
 }
+
+allAggregatedEmissions()
 
 export const aggregatedEmissionService = {
     updateAggregatedEmission,

@@ -3,7 +3,7 @@ import ICountry from "../../api/models/review/country";
 import { regions }  from "../../api/data/review/data/regions"
 
 const GetCountryCodes = async () => {
-    let countryParsed =  await fetch('https://dev.openclimate.network/api/country/2019', {
+    let countryParsed =  await fetch('/api/country/2019', {
         method: 'GET',
     });
     const jsonData = await countryParsed.json()
@@ -22,8 +22,7 @@ const GetCountryCodes = async () => {
 
 const GetCountryOptions = async () => {
     const countryCodes = await GetCountryCodes();
-    // console.log(countryCodes)
-
+    
     const countryCodeOptions = countryCodes.map(cc => {
         return {
             countryId: cc.countryId,
@@ -33,15 +32,13 @@ const GetCountryOptions = async () => {
             sn: cc.sn
         }
     });
-    // console.log(countryCodeOptions)
+    
 
     return countryCodeOptions;
 }
 
 const GetCountryOptionsForSite = async () => {
     const countryCodes = await GetCountryCodes();
-    // console.log(countryCodes)
-
     const countryCodeOptions = countryCodes.map(cc => {
         return {
             name: cc.name,
@@ -49,7 +46,6 @@ const GetCountryOptionsForSite = async () => {
 
         }
     });
-    // console.log(countryCodeOptions)
 
     return countryCodeOptions;
 }
@@ -75,31 +71,21 @@ const GetSubnationalsByCountryCode = async (countryId: number) => {
             cities: sn.Cities
         }
     });
-    console.log(data)
+   
     return subnationals;
 }
 
 const GetCitiesBySubnationalId = async (entity_id:number) => {
-    console.log(entity_id)
     const res = await GetCountryCodes();
-    console.log(entity_id)
-    console.log(res)
     const options = res.map(sn => {
         return sn?.sn.filter((s:any) => s.countries_to_subnationals.subnational_id == entity_id )
     });
    
     const data = options.filter(e=>e.length)
-    console.log(data)
-
     const cities = data.map(sn => {
-        console.log(sn[0].Cities)
         return sn[0]?.Cities.filter((s:any) => s.subnationals_to_cities.subnational_id == entity_id )
     });
 
-    console.log(cities)
-    
-    
-    
     const cityOptions = cities[0].map((cc:any) => {
         return {
             name: cc.city_name,
@@ -107,17 +93,12 @@ const GetCitiesBySubnationalId = async (entity_id:number) => {
         }
     });
     
-    console.log(cityOptions)
     return cityOptions;
 }
 
-GetCitiesBySubnationalId(34)
-
-// GetCitiesBySubnationalId(34)
 
 const GetCountryAlpha2 = (alpha3: string) => {
     let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
-    console.log('GETCOUNTRYALPHA', countryParsed, alpha3);
     return countryParsed ? countryParsed.find(c => c["alpha-3"] === alpha3)['alpha-2'] : null;
 }
 
