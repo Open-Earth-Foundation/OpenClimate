@@ -17,7 +17,7 @@ import { IEmissionsData } from '../review.page';
 
 
 interface Props {
-    // emissionData: IEmissionsData,
+    entityType: number,
     treatiesData: ITreaties,
     pledgesData: Array<IPledge>,
     selectedEntity: ITrackedEntity,
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const Dashboard: FunctionComponent<Props> = (props) => {
-    const { selectedEntity, showModal, treatiesData, pledgesData } = props;
+    const { selectedEntity, showModal, treatiesData, pledgesData, entityType } = props;
 
     const history = useHistory();
 
