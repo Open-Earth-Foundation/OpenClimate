@@ -25,7 +25,7 @@
     "@types/react-simple-maps": "^1.0.7",
     "@types/topojson-client": "^3.1.0",
     "apexcharts": "^3.27.3",
-    "axios": "^0.23.0",
+    "axios": "^0.27.2",
     "jwt-decode": "^3.1.2",
     "leaflet": "^1.7.1",
     "mapbox-gl": "^2.6.1",
