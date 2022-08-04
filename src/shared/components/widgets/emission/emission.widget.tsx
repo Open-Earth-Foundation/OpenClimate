@@ -113,7 +113,8 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     // Switching emission data between different data provider sources
     // This is being done using the tracked entity from redux
     // The case numbers or values represent the enum value of the entity type
-    // When provider is changed in the dropdown select ment, this will update the aggregatedEmissions object
+    // When provider is changed in the dropdown select menu, this will update the aggregatedEmissions object
+    // This also keeps track of the methodologies
     
     switch(entityType){
         case 0:
