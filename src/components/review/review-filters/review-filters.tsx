@@ -46,7 +46,7 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
 
         return f?.isRadio ? 
         (
-            <div className="review__filter" key={i}>                
+            <div className="review__filter review__radio-filters" key={i}>                
                 <FormControl>
                     <FormLabel className="review__filter-form-label">{ "Entity Type"}</FormLabel>
                     <RadioGroup 
