@@ -18,8 +18,6 @@ export const getEmissionProviders = async () => {
         }
     })
     uniq.pop()
-    console.log(uniq);
-
     return uniq    
 }
 
@@ -32,7 +30,6 @@ export const getSubnationalProviders = async () => {
     const sndata = jsonD.data.map((data:any)=> {
         return data.Emissions 
     });
-    console.log(sndata)
     const snproviders = sndata.map((p:any)=> p.map((p:any)=>p.DataProvider));
     const sny = snproviders
     
@@ -41,9 +38,7 @@ export const getSubnationalProviders = async () => {
             providerId: data.data_provider_id,
             providerName: data.data_provider_name
         }
-    })
-    console.log(uniqy);
-    
+    }) 
 
     return uniqy
 }
@@ -58,7 +53,6 @@ export const getCityProviders = async () => {
     const sndata = jsonD.data.map((data:any)=> {
         return data.Emissions 
     });
-    console.log(sndata)
     const snproviders = sndata.map((p:any)=> p.map((p:any)=>p.DataProvider));
     const sny = snproviders
     
@@ -68,8 +62,6 @@ export const getCityProviders = async () => {
             providerName: data.data_provider_name,
         }
     })
-    console.log(uniqy);
-    
 
     return uniqy
 }
