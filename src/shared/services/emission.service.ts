@@ -1,5 +1,5 @@
 async function fetchEmissionsSubnational(subnational_id: number) {
-    let url = `/api/subnationals/2019/${subnational_id}`;
+    let url = `/api/subnationals/2018/${subnational_id}`;
     var response = await fetch(url);
     return await response.json();
 }
