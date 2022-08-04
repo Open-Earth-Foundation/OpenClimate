@@ -264,12 +264,6 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         setCity(jsonData.data[0].Cities);
     }
 
-    // const fetchProviderData = async () => {
-    //     const providerData = await fetch('https://dev.openclimate.network/api/provider');
-    //     const jsonData = await providerData.json();
-
-    // }
-
     useEffect(()=> {
         if(subns) {
             console.log(subns);

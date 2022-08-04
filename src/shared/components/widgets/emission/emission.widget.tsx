@@ -37,7 +37,9 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     const [etype, setEtype] = React.useState<number>()
     let [src, setSrc] = React.useState<Object>()
     
-    let { title, className, entityType, width, height, detailsLink, selectedEntity, aggregatedEmission, totalGhg, isVisible,  detailsClick, landSinks } = props;
+    const { title, className, entityType, width, height, detailsLink, selectedEntity, totalGhg, isVisible,  detailsClick, landSinks } = props;
+    // Will enable us to re-asign emission data when source is changes 
+    let {aggregatedEmission} = props
     const providerToEmissions = aggregatedEmission?.providerToEmissions;
 
     const [providerList, setProviderList] = React.useState<Array<string>>([])
