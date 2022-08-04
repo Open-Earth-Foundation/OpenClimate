@@ -31,7 +31,7 @@
     "mapbox-gl": "^2.6.1",
     "mapbox-gl-leaflet": "0.0.15",
     "moment": "^2.29.4",
-    "nan": "^2.14.1",
+    "nan": "^2.16.0",
     "node-sass": "^6.0.1",
     "qrcode.react": "^1.0.0",
     "react": "^17.0.2",
