@@ -148,28 +148,28 @@ const MapNestedAccounts: FunctionComponent<Props> = (props) => {
 
     const parsedMarkers:Array<any> = [];
 
-    // sites?.forEach((site: ISite) => {
+    sites?.forEach((site: ISite) => {
 
-    //     if(site.facility_location && site.facility_location.includes(','))
-    //     {
-    //         const location = site.facility_location.replace(';', '');
+        if(site.facility_location && site.facility_location.includes(','))
+        {
+            const location = site.facility_location.replace(';', '');
 
-    //         const splittedLocation = location.split(',');
-    //         const markerPosition = {
-    //             lat: Number(splittedLocation[0]),
-    //             lng: Number(splittedLocation[1])
-    //         }
+            const splittedLocation = location.split(',');
+            const markerPosition = {
+                lat: Number(splittedLocation[0]),
+                lng: Number(splittedLocation[1])
+            }
             
-    //         parsedMarkers.push({
-    //           siteId: site.id,
-    //           siteName: site.facility_name,
-    //           siteType: site.facility_type,
-    //           position: markerPosition
-    //         });
-    //     }
-    // });
+            parsedMarkers.push({
+              siteId: site.id,
+              siteName: site.facility_name,
+              siteType: site.facility_type,
+              position: markerPosition
+            });
+        }
+    });
 
-    // setMarkers(parsedMarkers);
+    setMarkers(parsedMarkers);
 
   }, [sites]);
 

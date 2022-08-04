@@ -13,6 +13,9 @@ import './nested-accounts.scss';
 import { ReviewHelper } from '../../shared/helpers/review.helper';
 import { EmissionInfo } from '../review/review.page';
 import { useLocation } from 'react-router-dom';
+import { FilterTypes } from '../../api/models/review/dashboard/filterTypes';
+import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option';
+import ITrackedEntity from '../../api/models/review/entity/tracked-entity';
 
 enum PanelType {
     None,
@@ -24,20 +27,22 @@ enum PanelType {
 interface IProps  {
     sites: Array<ISite>,
     aggregatedEmissions: Array<IAggregatedEmission>,
+    filterOptions: Array<DropdownOption>
+    entityEmission?: IAggregatedEmission,
+    entityTitle?: string,
     geoSubnationals: Array<IGeoSubnational>,
     groupedClimateActions: Array<any>,
     loadGeoSubnational: (countryCode: string) => void,
+    selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => void,
     loadClimateActions: (siteName: string) => void,
     cleanData: () => void
 }
 
 const NestedAccounts: FunctionComponent<IProps> = (props) => {
 
-    const location = useLocation();
-
 
     const { sites, aggregatedEmissions, geoSubnationals, groupedClimateActions, 
-        cleanData, loadClimateActions, loadGeoSubnational} = props;
+        cleanData, loadClimateActions, loadGeoSubnational, entityEmission, entityTitle, selectFilter, filterOptions} = props;
 
     const [panelShown, setPanelShown] = useState<boolean>(false);
     const [panelType, setPanelType] = useState<PanelType>(PanelType.None);
@@ -46,23 +51,25 @@ const NestedAccounts: FunctionComponent<IProps> = (props) => {
         credential_category: 'Climate Action'
     });
 
-    const [providerToEmissions, setProviderEmissions] = useState<Record<string,EmissionInfo>>({});
-
     const [selectedArea, setSelectedArea] = useState<string>();
     const [climateActionSites, setClimateActionSites] = useState<ISite[]>();
 
-    console.log(providerToEmissions);
 
     useEffect(() => {
-
-        const query = new URLSearchParams(location.search);
-        const countryId = query.get(`countryId`);
-        fetchCountryData(countryId);
-        
         return () => {
             cleanData();
         }
     }, []);
+
+
+    const getCountryOption = async (countryName: string) => {
+        const countryData = await filterOptions;
+        const countryNameToId: Record<string, DropdownOption> = {};
+        countryData.map(country => {
+            countryNameToId[country.name] = country;
+        })
+        return countryNameToId[countryName];
+    }
 
     useEffect(() => {
         if(panelShown) {
@@ -70,25 +77,16 @@ const NestedAccounts: FunctionComponent<IProps> = (props) => {
         }
     }, [selectedArea, panelShown, panelType]);
     
-    const fetchCountryData = async (id:any) => {
-
-        const fetchCountryData = await fetch(`/api/country/2019/${id}`);
-
-        const jsonData = await fetchCountryData.json();
-        const providerToEmissionsData = ReviewHelper.createProviderEmissionsData(jsonData.data[0].Emissions)
-        
-        setProviderEmissions(providerToEmissionsData);
-
-    }
 
 
     const mapWidth = panelShown ? "50%" : "100%";
 
-    const countrySelectedHandler = (countryName: string) => {
+    const countrySelectedHandler = async (countryName: string) => {
         const countryAggrEmissions = aggregatedEmissions?.filter(ae => ae.facility_country?.toLowerCase() === countryName.toLowerCase());
         const summaryAggrEmissions = AggregatedEmissionHelper.GetSummaryAggregatedEmissions(countryAggrEmissions);
-        setProviderEmissions({});
         setSummaryEmissions(summaryAggrEmissions);
+        const countryOption = await getCountryOption(countryName);
+        countryOption && selectFilter(0, countryOption, []);
         setSelectedArea(countryName);
         setPanelType(PanelType.Country);
     }
@@ -224,8 +222,8 @@ const NestedAccounts: FunctionComponent<IProps> = (props) => {
                     <div className="account-sites__climate-widget-wrapper">
                         <EmissionWidget
                             isVisible={true}
-                            aggregatedEmission={{ providerToEmissions: providerToEmissions}}
-                            title={`Emission Inventory - ${selectedArea}`}
+                            aggregatedEmission={entityEmission}
+                            title={`Emission Inventory - ${entityTitle ? entityTitle : selectedArea}`}
                             className="sites-climate-action"
                             width={350}
                             height={225}
