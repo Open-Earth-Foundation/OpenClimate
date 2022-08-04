@@ -296,7 +296,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }
 
     const fetchCityData = async (id:any) => {
-        const fetchCountryData = await fetch(`https://dev.openclimate.network/api/city/2019/${id}`);
+        const fetchCountryData = await fetch(`/api/city/2019/${id}`);
         const jsonData = await fetchCountryData.json();
     
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e);
