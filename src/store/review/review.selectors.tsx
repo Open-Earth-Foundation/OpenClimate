@@ -8,6 +8,11 @@ export const getSelectedEntities = createSelector(
     items => items?.selectedEntities 
 );
 
+export const getLatestEntity = createSelector(
+    reviewData,
+    items => items?.selectedEntities[items?.selectedEntities.length - 1]
+);
+
 export const getLoading = createSelector(
     reviewData, 
     items => items?.loading

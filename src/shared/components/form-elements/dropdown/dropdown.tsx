@@ -36,16 +36,14 @@ const Dropdown = ((props: Props) => {
             const fn = async () => {
                 const d = await options
                 if(d){
-                    setData(d)
+                    setData(d);
                 }
             }
             
     
             useEffect(()=> {
                 fn();
-                if(optionData) {
-                    console.log(true);
-                }
+
             }, [optionData])
     
 
