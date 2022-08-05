@@ -17,7 +17,6 @@ function allSitesByOrg(orgId: number)
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => {
-    console.log(sites);
     return sites;
     });
 
@@ -46,7 +45,6 @@ function allSites()
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => {
-        console.log(sites);
         return sites
     });
 }

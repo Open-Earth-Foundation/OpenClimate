@@ -150,17 +150,18 @@ const MapNestedAccounts: FunctionComponent<Props> = (props) => {
 
     sites?.forEach((site: ISite) => {
 
-        if(site.facility_location && site.facility_location.includes(','))
+
+        if(site?.facility_location && site?.facility_location.includes(','))
         {
             const location = site.facility_location.replace(';', '');
 
-            const splittedLocation = location.split(',');
+            const splittedLocation = location?.split(',');
             const markerPosition = {
                 lat: Number(splittedLocation[0]),
                 lng: Number(splittedLocation[1])
             }
             
-            parsedMarkers.push({
+            markerPosition.lat && markerPosition.lng && parsedMarkers.push({
               siteId: site.id,
               siteName: site.facility_name,
               siteType: site.facility_type,
