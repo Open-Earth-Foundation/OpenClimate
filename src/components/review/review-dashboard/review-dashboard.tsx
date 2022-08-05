@@ -66,6 +66,8 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         title="Total emissions" 
                         height={300}
                         width={490}
+                        entityType={entityType}
+                        selectedEntity={selectedEntity}
                         aggregatedEmission={selectedEntity.aggregatedEmission} 
                         detailsClick={() => showModal('information-emission')}
                     />
