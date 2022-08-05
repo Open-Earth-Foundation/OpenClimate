@@ -94,13 +94,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     if(dashboardEntityType !== null)
     {
         dashboardEntity = selectedEntities.find(se => se.type === dashboardEntityType) ?? null;
-        collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);
-        // collapceEntities = selectedEntities.filter(se => console.log(se));
-        console.log(dashboardEntity);
-        console.log(selectedEntities);
-        console.log(collapceEntities);
-        console.log(dashboardEntityType)
-        
+        collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);       
     }
 
    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
@@ -419,7 +413,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                     {
                         dashboardEntity ? 
                         <>
-                            <Dashboard selectedEntity={dashboardEntity} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} /> 
+                            <Dashboard entityType={dashboardEntityType} selectedEntity={dashboardEntity} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} /> 
                         </>
                         : ''
                     }

@@ -98,7 +98,7 @@ const GetSumEmissions = (climateActions: Array<IClimateAction>) => {
     mitigationsByFacility.map(e => sinksTotal += Number((e as IMitigations)?.facility_mitigations_co2e ?? 0));
 
     return grossTotal + sinksTotal;
-
+ 
 }
 
 const GetSummaryAggregatedEmissions = (aggregatedEmissions: Array<IAggregatedEmission>) => {

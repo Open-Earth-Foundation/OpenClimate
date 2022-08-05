@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 
 import './emission.widget.scss';
@@ -6,6 +6,11 @@ import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/I
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { EmissionInfo } from '../../../../components/review/review.page';
 import { NativeSelect } from '@mui/material';
+import { getCityProviders, getEmissionProviders, getSbProviders, getSubnationalProviders } from '../../../helpers/get-emission-providers.helper';
+import { Filter } from '@mui/icons-material';
+import { FilterTypes } from '../../../../api/models/review/dashboard/filterTypes';
+import ITrackedEntity from '../../../../api/models/review/entity/tracked-entity';
+import { getChangedEmissionData } from '../../../helpers/review.helper';
 
 interface Props {
     isVisible: boolean
@@ -21,38 +26,68 @@ interface Props {
     source?: string,
     methodology?: string,
     aggregatedEmission?: IAggregatedEmission | null,
+    selectedEntity?: ITrackedEntity | null
+    entityType?: number | undefined,
     providers?: Array<string>,
     detailsClick?: () => void
-
 }
 
 const EmissionWidget: FunctionComponent<Props> = (props) => {
-
+    const [provider, setProviders] = React.useState<Object []>([])
+    const [etype, setEtype] = React.useState<number>()
+    let [src, setSrc] = React.useState<Object>()
     
-    const { title, className, width, height, detailsLink, aggregatedEmission, totalGhg, isVisible,  detailsClick, landSinks } = props;
-
+    const { title, className, entityType, width, height, detailsLink, selectedEntity, totalGhg, isVisible,  detailsClick, landSinks } = props;
+    // Will enable us to re-asign emission data when source is changes 
+    let {aggregatedEmission} = props
     const providerToEmissions = aggregatedEmission?.providerToEmissions;
 
     const [providerList, setProviderList] = React.useState<Array<string>>([])
     const [currentProvider, setProvider] = React.useState<number>(0);
     const [currentEmissions, setEmissions] = React.useState<EmissionInfo>({} as EmissionInfo);
     const methtags = aggregatedEmission?.facility_ghg_methodologies
-    const tags = methtags?.map((tag:any)=>tag.tag_name)
     
-    React.useEffect(()=> {
-        if (providerToEmissions) {
-            setProviderList(Object.keys(providerToEmissions))
+    let tags = methtags?.map((tag:any)=>tag.tag_name);
+   
+    useEffect(()=> {
+        setEtype((c:any)=> c = entityType)
+    }, [entityType])
+
+    
+    useEffect(()=> {
+        providers(entityType)
+    },[etype])
+
+    // Setting provider by entity to state
+    // This enables us to track the providers for each entity dynamically
+    const providers = async (type:number) => {
+        switch(type){
+            case 0:
+                const nationalEmissionProvider = await getEmissionProviders()
+                setProviders(nationalEmissionProvider)
+                break;
+            case 1:
+                const  subnationalEmissionProvider = await getSubnationalProviders()
+                setProviders(subnationalEmissionProvider)
+                break;
+            case 2:
+                const cityEmissionProvider = await getCityProviders()
+                setProviders(cityEmissionProvider)
+                break;
+            default:
+                return null;
         }
-    },[providerToEmissions])
+    }
+    useEffect(()=> {
+    }, [provider])
 
-    React.useEffect(()=> {
-        providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
-    },[providerList, providerToEmissions])
-
-    React.useEffect(()=> {
-        providerToEmissions && setEmissions(providerToEmissions[providerList[currentProvider]])
-    },[currentProvider, providerToEmissions])
-
+    // This function handles the onChange select event and tracks the value - DataProviderId
+    // It accepts three params dataproviderId, entityType (enum number value) tracked from redux state and the selected entity (country, city ...)
+    const changeDataSource = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const dataProviderId = e.target.value
+        const source = await getChangedEmissionData(parseInt(dataProviderId), entityType, selectedEntity)
+        setSrc(source)
+    }
 
     const calculateDecimal = (number: number) => {
         switch(providerList[currentProvider]){
@@ -68,12 +103,41 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     if(!isVisible)
         return null;
 
-
     let showDetails = false;
     if(aggregatedEmission)
         showDetails = aggregatedEmission.facility_ghg_total_gross_co2e !== 0 ||
                       aggregatedEmission.facility_ghg_total_sinks_co2e !== 0 ||
                       aggregatedEmission.facility_ghg_total_net_co2e !== 0;
+    let em = aggregatedEmission
+
+    // Switching emission data between different data provider sources
+    // This is being done using the tracked entity from redux
+    // The case numbers or values represent the enum value of the entity type
+    // When provider is changed in the dropdown select menu, this will update the aggregatedEmissions object
+    // This also keeps track of the methodologies
+    
+    switch(entityType){
+        case 0:
+            if(aggregatedEmission && !src){
+                aggregatedEmission = em
+            }
+            else{
+                aggregatedEmission = src
+                tags = aggregatedEmission?.facility_ghg_methodologies?.map((tag:any)=>tag.tag_name);
+            }
+            break
+        case 1:
+            if(aggregatedEmission && !src){
+                aggregatedEmission = em
+            }
+            else{
+                aggregatedEmission = em
+                tags = em?.facility_ghg_methodologies?.map((tag:any)=>tag.tag_name);
+            }
+            break
+        default:
+            aggregatedEmission = aggregatedEmission
+    }
 
 
     return (
@@ -126,8 +190,8 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                 <div className='widget__meta-text-left'>
                                     <span className='widget__meta-source-head'>Source</span>
                                     <NativeSelect
-                                      defaultValue={providerList?.[currentProvider] || ''}
-                                      onChange={(event) => setProvider(parseInt(event.target.value))}
+                                      defaultValue={provider[0]}
+                                      onChange={(event) => changeDataSource(event)}
                                       sx={{
                                           fontSize: '10px',
                                           fontFamily: 'Lato',
@@ -135,8 +199,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                           fontWeight: '700'
                                       }}
                                     >
-                                        {providerList?.map((provider, index) => 
-                                            <option value={index}>{provider}</option>)}
+                                        {provider?.map((p:any) => <option value={p.providerId}>{p.providerName}</option>)     } 
                                     
                                     </NativeSelect>
                                 </div>
