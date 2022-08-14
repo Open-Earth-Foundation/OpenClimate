@@ -22,5 +22,8 @@ export default interface ITrackedEntity {
     transfers?: Array<ITransfer>
     agreement?: boolean,
     treaties?: ITreaties,
-    sites?: Array<ISite>
+    sites?: Array<ISite>,
+    cities?: Array<Object>,
+    total_scope_emissions: number;
+    total_scope_mitigations: number;
 }

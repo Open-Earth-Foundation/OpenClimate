@@ -7,7 +7,10 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { EmissionInfo } from '../../../../components/review/review.page';
 import { NativeSelect } from '@mui/material';
 import { getCityProviders, getEmissionProviders, getSbProviders, getSubnationalProviders } from '../../../helpers/get-emission-providers.helper';
-import { Filter } from '@mui/icons-material';
+import { ArrowUpwardRounded, Filter } from '@mui/icons-material';
+import ArrowUp from '../../../img/widgets/arrow_up_red.svg';
+import ArrowUpRed from '../../../img/widgets/arrow_up_red.svg';
+import ArrowDownGreen from '../../../img/widgets/arrow_down_green.svg';
 import { FilterTypes } from '../../../../api/models/review/dashboard/filterTypes';
 import ITrackedEntity from '../../../../api/models/review/entity/tracked-entity';
 import { getChangedEmissionData } from '../../../helpers/review.helper';
@@ -140,8 +143,8 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     }
 
 
-    return (
-        <div className="widget" >
+    return entityType == 3 ? (
+        <div className="widget" style={{width: width, height: height}}>
             <div className="widget__wrapper" >
                 <div className="widget__header">
                     <div className="widget__title-wrapper">
@@ -149,12 +152,12 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                             {title}
                         </h3> 
                         {
-                            showDetails || detailsClick ?
+                            showDetails ?
                             <>
                             {detailsLink ?
                                 <NavLink to={detailsLink} className="widget__link">Details</NavLink>
                                 :
-                                <a href="#" className="widget__link" onClick={detailsClick}>See details</a>         
+                                <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
                             }
                             </>
                             : ''
@@ -162,60 +165,39 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
 
                     </div>
 
-                    <span className="widget__updated">Last Updated {aggregatedEmission?.facility_ghg_date_updated} | Data shown refers to {aggregatedEmission?.facility_ghg_year}</span>     
+                    <span className="widget__updated">Last Updated June 2020</span>     
 
                 </div>
-                <div className="widget__content" style={{height: `auto`}}>
+                <div className="widget__content" style={{height: `calc(${height}px - 90px)`}}>
                     {
-                    aggregatedEmission?.facility_ghg_total_gross_co2e ? 
+                    selectedEntity ? 
                     <div className={`widget__emission-content ${className}`}>
-                            <div className={'widget__emission-block'}>
-                                <div className="widget__emission-data red">
-                                    {calculateDecimal(aggregatedEmission?.facility_ghg_total_gross_co2e)}
-                                    
+                        <div className="widget__emission-numbers">
+                            <div className="widget__content-column">
+                                <div className="widget__emission-data red text-top">
+                                    <img src={ArrowUpRed} alt="up" className="widget__emission-arrow"/>
+                                    {selectedEntity.total_scope_emissions?.toFixed(2)}
                                 </div>
-                                <div className="widget__emission-data-description">Total GHG Emissions
+                                <div className="widget__emission-data-description">
+                                    Total GHG Emissions Mmt CO2e/year
                                 </div>
-                                <div className="widget__emission-data-description">Mt CO2e/year</div>
+                                        </div>
+                                        <div className="widget__content-column widget__content-column_center">-</div>
+                                        <div className="widget__content-column text-top">
+                                            <div className="widget__emission-data green">
+                                                <img src={ArrowDownGreen} alt="down" className="widget__emission-arrow" />
+                                                {selectedEntity.total_scope_mitigations?.toFixed(2)}
+                                            </div>
+                                            <div className="widget__emission-data-description">Land Use Sinks
+                        Mt CO2e/year</div>
+                                        </div>
+                                        <div className="widget__content-column widget__content-column_center">=</div>
+                                        <div className="widget__content-column text-top red">
+                                            <div className="widget__emission-data">{selectedEntity.total_scope_emissions?.toFixed(2) - selectedEntity.total_scope_mitigations?.toFixed(2)}</div>
+                                            <div className="widget__emission-data-description">Net GHG Emissions
+                        Mt CO2e/year</div>
                             </div>
-                            { !!currentEmissions?.landSinks && 
-                                <div className={`widget__emission-numbers widget__emission-block`}>
-                                    <div className="widget__emission-data-small green">
-                                        {calculateDecimal(currentEmissions?.landSinks)}
-                                    </div>
-                                    <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
-                                </div>
-                            }
-                            <div className='widget__meta-data'>
-                                <div className='widget__meta-text-left'>
-                                    <span className='widget__meta-source-head'>Source</span>
-                                    <NativeSelect
-                                      defaultValue={provider[0]}
-                                      onChange={(event) => changeDataSource(event)}
-                                      sx={{
-                                          fontSize: '10px',
-                                          fontFamily: 'Lato',
-                                          textDecoration: 'none',
-                                          fontWeight: '700'
-                                      }}
-                                    >
-                                        {provider?.map((p:any) => <option value={p.providerId}>{p.providerName}</option>)     } 
-                                    
-                                    </NativeSelect>
-                                </div>
-                                <div className='widget__meta-text-right'>
-                                    <span className='widget__meta-source-head'>Methodology</span>
-                                    <div className='widget__methodology-tags'>
-                                    { tags && 
-                                        tags.slice(0,2).map(tag => 
-                                        <span className='widget__meta-source-m'>{tag}</span>) }
-                                        {
-                                            tags?.length > 2 && 
-                                            <span className='widget__meta-source-m'>{ `+${tags?.length - 2}`}</span>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
                     </div>
                     : 
                     <div className="widget__no-data">
@@ -225,7 +207,92 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                 </div>
             </div>
         </div>
-    );
+    ) : (
+            <div className="widget" >
+                <div className="widget__wrapper" >
+                    <div className="widget__header">
+                        <div className="widget__title-wrapper">
+                            <h3 className="widget__title">
+                                {title}
+                            </h3> 
+                            {
+                                showDetails || detailsClick ?
+                                <>
+                                {detailsLink ?
+                                    <NavLink to={detailsLink} className="widget__link">Details</NavLink>
+                                    :
+                                    <a href="#" className="widget__link" onClick={detailsClick}>See details</a>         
+                                }
+                                </>
+                                : ''
+                            }
+    
+                        </div>
+    
+                        <span className="widget__updated">Last Updated {aggregatedEmission?.facility_ghg_date_updated} | Data shown refers to {aggregatedEmission?.facility_ghg_year}</span>     
+    
+                    </div>
+                    <div className="widget__content" style={{height: `auto`}}>
+                        {
+                        aggregatedEmission?.facility_ghg_total_gross_co2e ? 
+                        <div className={`widget__emission-content ${className}`}>
+                                <div className={'widget__emission-block'}>
+                                    <div className="widget__emission-data red">
+                                        {calculateDecimal(aggregatedEmission?.facility_ghg_total_gross_co2e)}
+                                        
+                                    </div>
+                                    <div className="widget__emission-data-description">Total GHG Emissions
+                                    </div>
+                                    <div className="widget__emission-data-description">Mt CO2e/year</div>
+                                </div>
+                                { !!currentEmissions?.landSinks && 
+                                    <div className={`widget__emission-numbers widget__emission-block`}>
+                                        <div className="widget__emission-data-small green">
+                                            {calculateDecimal(currentEmissions?.landSinks)}
+                                        </div>
+                                        <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
+                                    </div>
+                                }
+                                <div className='widget__meta-data'>
+                                    <div className='widget__meta-text-left'>
+                                        <span className='widget__meta-source-head'>Source</span>
+                                        <NativeSelect
+                                          defaultValue={provider[0]}
+                                          onChange={(event) => changeDataSource(event)}
+                                          sx={{
+                                              fontSize: '10px',
+                                              fontFamily: 'Lato',
+                                              textDecoration: 'none',
+                                              fontWeight: '700'
+                                          }}
+                                        >
+                                            {provider?.map((p:any) => <option value={p.providerId}>{p.providerName}</option>)     } 
+                                        
+                                        </NativeSelect>
+                                    </div>
+                                    <div className='widget__meta-text-right'>
+                                        <span className='widget__meta-source-head'>Methodology</span>
+                                        <div className='widget__methodology-tags'>
+                                        { tags && 
+                                            tags.slice(0,2).map(tag => 
+                                            <span className='widget__meta-source-m'>{tag}</span>) }
+                                            {
+                                                tags?.length > 2 && 
+                                                <span className='widget__meta-source-m'>{ `+${tags?.length - 2}`}</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        : 
+                        <div className="widget__no-data">
+                            No data sourced yet. Have any suggestions, contact ux@openearth.org!
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        );
 }
 
 

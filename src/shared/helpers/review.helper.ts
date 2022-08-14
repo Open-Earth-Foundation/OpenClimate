@@ -16,10 +16,14 @@ import { organizationService } from "../services/organization.service";
 import IOrganization from "../../api/models/DTO/Organization/IOrganization";
 import ISite from "../../api/models/DTO/Site/ISite";
 import { siteService } from "../services/site.service";
+import { climateActionService } from "../services/climate-action";
+import { ClimateActionHelper } from "./climate-action.helper";
+import { ClimateActionScopes } from "../../api/models/DTO/ClimateAction/climate-action-scopes";
+import { ClimateActionTypes } from "../../api/models/DTO/ClimateAction/climate-action-types";
 
 async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
 {
-    let emissionResponse = await fetch(`/api/country/2019/${countryId}`, {
+    let emissionResponse = await fetch(`https://dev.openclimate.network/api/country/2019/${countryId}`, {
         method: 'GET'
     });
     let data = await emissionResponse.json();
@@ -222,6 +226,7 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
 
         
 
+    let sites;
     switch (type)
     {
         case FilterTypes.National:
@@ -236,7 +241,7 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
             trackedEntity.jurisdictionName = option.name;
             trackedEntity.jurisdictionCode = option.value;
             trackedEntity.flagCode = option.flag
-            
+            trackedEntity.cities = await CountryCodesHelper.GetCitiesBySubnationalId(option.value)
             await ReviewHelper.LoadEmissionsSubnational(option.value, trackedEntity);
             await ReviewHelper.LoadPledgesSubnational(option.name, trackedEntity);
 
@@ -246,12 +251,12 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
                     await ReviewHelper.LoadTreatiesCountry(previousSelectedEntity.countryCode, trackedEntity);
                 if(previousSelectedEntity.countryName) {
                     trackedEntity.sites = await siteService.allSitesByJurisdtiction(previousSelectedEntity.countryName, option.name)
+                    sites = trackedEntity.sites;
                     trackedEntity.transfers = await transferService.allTransfersByJurisdiction(previousSelectedEntity.countryName, option.name);
                 }
             }
             break;
         case FilterTypes.City:
-
             trackedEntity.jurisdictionName = option.name;
             trackedEntity.jurisdictionCode = option.value;
             trackedEntity.flagCode = option.flag
@@ -264,7 +269,7 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
                 if(previousSelectedEntity.countryCode)
                     await ReviewHelper.LoadTreatiesCountry(previousSelectedEntity.countryCode, trackedEntity);
                 if(previousSelectedEntity.countryName) {
-                    trackedEntity.sites = await siteService.allSitesByJurisdtiction(previousSelectedEntity.countryName, option.name)
+                    trackedEntity.sites = previousSelectedEntity.sites;
                     trackedEntity.transfers = await transferService.allTransfersByJurisdiction(previousSelectedEntity.countryName, option.name);
                 }
             }
@@ -292,7 +297,25 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
             
             const pledges = await pledgeService.allPledges(option.value);
             trackedEntity.pledges = pledges.slice(Math.max(pledges.length - 3, 0)).reverse();
+            let climateActions = await climateActionService.allClimateAction(option.value)
             
+            const scope1EmsActions = ClimateActionHelper.GetClimateActions(climateActions, ClimateActionScopes.Scope1 , ClimateActionTypes.Emissions);
+            const scope1EmsTotal = ClimateActionHelper.GetSumC02(scope1EmsActions, 'facility_emissions_co2e');
+
+            const scope2EmsActions = ClimateActionHelper.GetClimateActions(climateActions, ClimateActionScopes.Scope2 , ClimateActionTypes.Emissions);
+            const scope2EmsTotal = ClimateActionHelper.GetSumC02(scope2EmsActions, 'facility_emissions_co2e');
+
+            const scope1MtsActions = ClimateActionHelper.GetClimateActions(climateActions, ClimateActionScopes.Scope1 , ClimateActionTypes.Mitigations);
+            const scope1MtsTotal = ClimateActionHelper.GetSumC02(scope1MtsActions, 'facility_mitigations_co2e');
+
+            const scope2MtsActions = ClimateActionHelper.GetClimateActions(climateActions, ClimateActionScopes.Scope2 , ClimateActionTypes.Mitigations);
+            const scope2MtsTotal = ClimateActionHelper.GetSumC02(scope2MtsActions, 'facility_mitigations_co2e');
+
+            const totalScopeEmissions = scope1EmsTotal + scope2EmsTotal; 
+            const totalScopeMitigations = scope1MtsTotal + scope2MtsTotal;
+
+            trackedEntity.total_scope_emissions = totalScopeEmissions;
+            trackedEntity.total_scope_mitigations = totalScopeMitigations;
             const orgTransfers = await transferService.allTransfers(option.value);
             trackedEntity.transfers = orgTransfers.filter(t => 
                 (t.transfer_receiver_country === country && t.transfer_receiver_jurisdiction === jurisdiction) || 
@@ -315,46 +338,48 @@ const GetOrganizations = async (selectedEntity: ITrackedEntity) => {
 
     let dropdownItems:Array<DropdownOption> = [];
 
-    const dropdowns = selectedEntity.sites?.map((site: ISite) => {
-            const item = {
-                name: site.organization_name ?? "",
-                value: site.organization_id ?? "",
-                id: site.organization_id ?? "",
-                flag: ""
-            }
+    selectedEntity.sites?.filter(site => site.organization_name && site.organization_id).forEach((site: ISite) => {
+        const item = {
+            name: site.organization_name ?? "",
+            value: site.organization_id ?? ""
+        }
+
+        const added = dropdownItems.some(i => i.value === item.value);
+        if(!added)    
+            dropdownItems.push(item);
     });
 
-    return dropdowns;
+    return dropdownItems;
 }
 
+const getCities = (selectedEntity: ITrackedEntity) => {
+    const cityOptions = selectedEntity?.cities?.map((cc:any) => {
+        return {
+            name: cc.name,
+            value: cc.value
+        }
+    });
+    return cityOptions;
+}
 const GetOptions = async (filterType: FilterTypes, entityId: number, selectedEntity?: ITrackedEntity) => {
     let options: Array<DropdownOption> = [];
     
     switch(filterType) {
         case FilterTypes.SubNational:
             options = await CountryCodesHelper.GetSubnationalsByCountryCode(entityId);
-            
             break;
         case FilterTypes.EntityType:
             options = []
             break;
         case FilterTypes.City:
-            options = await CountryCodesHelper.GetCitiesBySubnationalId(entityId)
+            if(selectedEntity)
+                options = await getCities(selectedEntity);                
             break;
         case FilterTypes.Organization:
-            options = [{
-                name: 'OpenClimate',
-                value: 1,
-                flag: 'CAN',
-                id: 1
-            }]
-            // if(selectedEntity) 
-            //     options = await GetOrganizations(selectedEntity);             
-                
+            if(selectedEntity) 
+                options = await GetOrganizations(selectedEntity);               
             break;
-        
     }
-    
     return options;
 }
 
