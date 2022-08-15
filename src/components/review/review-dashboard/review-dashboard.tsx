@@ -78,7 +78,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     />
 
                     <PledgesWidget 
-                        pledges={pledgesData} 
+                        pledges={selectedEntity.pledges} 
                         showModal={showModal}
                         detailsClick={() => showModal('information-pledges')}
                         showAddBtn={false}

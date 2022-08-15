@@ -19,7 +19,7 @@ import { siteService } from "../services/site.service";
 
 async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
 {
-    let emissionResponse = await fetch(`/api/country/2019/${countryId}`, {
+    let emissionResponse = await fetch(`https://dev.openclimate.network/api/country/2019/${countryId}`, {
         method: 'GET'
     });
     let data = await emissionResponse.json();
