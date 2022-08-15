@@ -18,6 +18,10 @@ const ContextBars: FunctionComponent<Props> = (props) => {
     const earthInfoData: ITrackedEntity = {
         title: `Earth`
     }
+    // Removes the city collapse component
+    if(collapceEntities.length == 3){
+        collapceEntities.pop()
+    }
 
     const items = collapceEntities.map((e, index) => {
         console.log(e.type)
