@@ -11,7 +11,7 @@ services:
     profiles: ["oc"]
     build:
       context: nginx
-      dockerfile: Dockerfile-nginx    
+      dockerfile: Dockerfile-nginx
     hostname: hub-webserver
     restart: unless-stopped
     tty: true
@@ -45,13 +45,13 @@ services:
       - oc-network
 
   hub-api:
-    image: node:12-alpine
+    image: node:16-alpine
     profiles: ["oc"]
     hostname: hub-api
     restart: unless-stopped
     user: root # we want to run with write permissions for dev, so run as root.
     working_dir: /home/node/app
-    environment: 
+    environment:
       - NODE_ENV=development
       - CONTROLLERPORT=3100
       - AGENTADDRESS=http://agent-hub:8150
@@ -70,7 +70,7 @@ services:
     expose:
       - "3100"
     command: >
-       sh -c "apk add --update python3 g++ cmake make bash && rm -rf /var/cache/apk/* && npm install -g nodemon ts-node && npm install && /home/node/wait-for-it/wait-for-it.sh hub-db:5432 && npm run migrate_up_all && npm run dev"
+       sh -c "apk add --update python3 g++ cmake make bash && rm -rf /var/cache/apk/* && npm install --legacy-peer-deps -g nodemon ts-node && npm install --legacy-peer-deps && /home/node/wait-for-it/wait-for-it.sh hub-db:5432 && npm run migrate_up_all && npm run dev"
     networks:
       - oc-network
     depends_on:
@@ -78,14 +78,14 @@ services:
       # - "hub-mongo"
 
   hub-ui:
-    image: node:12-stretch
+    image: node:16-alpine
     profiles: ["oc"]
     hostname: hub-ui
     restart: unless-stopped
     user: root # To write to ui folder, we need write permissions. node user does not have this.
     tty: true # keep react from stopping development server
     working_dir: /home/node/app
-    environment: 
+    environment:
       - NODE_ENV=development
       - BROWSER=none  # don't open the web browser
       - REACT_APP_CONTROLLER=https://localhost
@@ -94,7 +94,7 @@ services:
     expose:
       - "3000"
     command: >
-      sh -c "npm install && npm start"
+      sh -c "npm install --legacy-peer-deps && npm start"
     networks:
       - oc-network
     depends_on:
@@ -105,7 +105,7 @@ services:
     profiles: ["oc"]
     command: "agent-hub:3005 -p 4040 --host ${AGENT_TUNNEL_HOST}"
     networks:
-      - oc-network     
+      - oc-network
   agent-hub:
     build:
       context: ./aries-acapy-plugin-toolbox
@@ -440,4 +440,3 @@ volumes:
 networks:
   oc-network:
     driver: bridge
-
