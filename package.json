@@ -102,5 +102,8 @@
     ">0.2%",
     "not dead",
     "not op_mini all"
-  ]
+  ],
+  "engines": {
+    "node": "^16.15.1"
+  }
 }
