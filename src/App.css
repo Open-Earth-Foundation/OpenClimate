@@ -189,6 +189,12 @@ code {
   color: #61dafb;
 }
 
+.content {
+  min-height: calc(100vh - 80px - 80px);
+  margin: 0px;
+  padding: 0px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
