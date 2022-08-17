@@ -142,7 +142,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
             aggregatedEmission = aggregatedEmission
     }
 
-
+    // checks enum entity type and swiched between them
     return entityType == 3 ? (
         <div className="widget" style={{width: width, height: height}}>
             <div className="widget__wrapper" >
