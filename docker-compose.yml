@@ -32,7 +32,7 @@ services:
 
   # Hub PostgreSQL Service
   hub-db:
-    image: postgres:9.5
+    image: postgres:14
     profiles: ["oc"]
     hostname: hub-db
     restart: always
