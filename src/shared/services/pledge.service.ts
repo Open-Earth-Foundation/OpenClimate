@@ -17,6 +17,7 @@ function allPledges(orgId: string)
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((pledges: Array<IPledge>) => pledges);
+    // return []
 }
 
 async function fetchPledgesSubnational(organization: string) {
