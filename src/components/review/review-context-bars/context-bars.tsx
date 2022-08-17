@@ -24,7 +24,6 @@ const ContextBars: FunctionComponent<Props> = (props) => {
     }
 
     const items = collapceEntities.map((e, index) => {
-        console.log(e.type)
         
         let deselectFilterType: FilterTypes;
 
