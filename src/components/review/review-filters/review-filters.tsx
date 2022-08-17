@@ -5,6 +5,21 @@ import { FilterTypes } from '../../../api/models/review/dashboard/filterTypes';
 import { IReviewFilter } from '../../../api/models/review/dashboard/reviewFilter';
 import './review-filters.scss';
 import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import {makeStyles} from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+    root: {
+      paddingTop: 20,
+      paddingBottom: 10,
+      paddingLeft: 18,
+      width: 20,
+      height: 19,
+    },
+    label: {
+        paddingLeft: 5,
+        paddingTop: 10
+    }
+}));
 
 interface Props {
     nationState: boolean,
@@ -14,7 +29,7 @@ interface Props {
 }
 
 const ReviewFilters: FunctionComponent<Props> = (props) => {
-
+    const classes = useStyles();
     const { filters, selectFilter, deselectFilter } = props;
     const [type, setType] = useState<string>('City');
     const [fltr, setFltr] = useState<IReviewFilter []>()
@@ -58,13 +73,8 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
                           fontSize: '10px !important',
                       }}
                       >
-
-                        {/* { f.options.map(option => 
-                            <FormControlLabel value={option.value} control={<Radio />} label={option.name} />
-                            )
-                        }     */}
-                        <FormControlLabel value="City" control={<Radio />} label="City" />
-                        <FormControlLabel value="Organization" control={<Radio />} label="Organization" />
+                        <FormControlLabel classes={{label: classes.label}} value="City" control={<Radio size="small" classes={{root: classes.root}}/>} label="City" />
+                        <FormControlLabel classes={{label: classes.label}}  value="Organization" control={<Radio size="small" classes={{root: classes.root}}/>} label="Organization" />
                     </RadioGroup>
                 </FormControl>
             </div>
@@ -101,8 +111,6 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
         )
         ;
     });
-
-
 
     return (
         <>
