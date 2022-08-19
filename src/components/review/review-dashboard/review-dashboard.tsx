@@ -1,10 +1,9 @@
-import React, { FunctionComponent } from 'react'
+import { FunctionComponent } from 'react'
 import Transfers from '../../../shared/components/widgets/transfers/transfers.widget';
 import ITrackedEntity from '../../../api/models/review/entity/tracked-entity';
 import PledgesWidget from '../../../shared/components/widgets/pledges/pledges.widget';
 import EmissionWidget from '../../../shared/components/widgets/emission/emission.widget';
 import AgreementWidget from '../../../shared/components/widgets/agreement/agreement.widget';
-import NestedAccountsWidget from '../../../shared/components/widgets/nested-accounts/nested-accounts.widget';
 import { FilterTypes } from '../../../api/models/review/dashboard/filterTypes';
 import { useHistory } from 'react-router-dom'
 import './review-dashboard.scss';
@@ -12,12 +11,9 @@ import Switcher from '../../../shared/components/form-elements/switcher/switcher
 import Masonry from 'react-masonry-css'
 import ITreaties from '../../../api/models/DTO/Treaties/ITreaties';
 import IPledge from '../../../api/models/DTO/Pledge/IPledge';
-import { IEmissionsData } from '../review.page';
-
-
 
 interface Props {
-    entityType: number,
+    entityType: FilterTypes | null,
     treatiesData: ITreaties,
     pledgesData: Array<IPledge>,
     selectedEntity: ITrackedEntity,
@@ -29,12 +25,9 @@ const Dashboard: FunctionComponent<Props> = (props) => {
 
     const history = useHistory();
 
-    console.log(selectedEntity);
-    
     const redirectToNestedAccounts = () => {
         let params = '';
 
-        
         if(selectedEntity.type === FilterTypes.National)
             params = `?country=${selectedEntity.countryCode}`;
         else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
@@ -60,14 +53,14 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     breakpointCols={3}
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
-                    <EmissionWidget 
+                    <EmissionWidget
                         isVisible={true}
-                        title="Total emissions" 
+                        title="Total emissions"
                         height={300}
                         width={490}
                         entityType={entityType}
                         selectedEntity={selectedEntity}
-                        aggregatedEmission={selectedEntity.aggregatedEmission} 
+                        aggregatedEmission={selectedEntity.aggregatedEmission}
                         detailsClick={() => showModal('information-emission')}
                     />
 
@@ -77,15 +70,15 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         detailsClick={() => showModal('information-agreements')}
                     />
 
-                    <PledgesWidget 
-                        pledges={pledgesData} 
+                    <PledgesWidget
+                        pledges={pledgesData}
                         showModal={showModal}
                         detailsClick={() => showModal('information-pledges')}
                         showAddBtn={false}
                         voluntary={false}
                     />
-                                    <Transfers 
-                        // transfers={selectedEntity.transfers} 
+                                    <Transfers
+                        // transfers={selectedEntity.transfers}
                         showModal={showModal}
                         detailsClick={() => showModal('information-transfers')}
                         showAddBtn={false}
@@ -93,9 +86,9 @@ const Dashboard: FunctionComponent<Props> = (props) => {
 
                 </Masonry>
             </div>
-            
+
         </div>
-    ); 
+    );
 }
 
 

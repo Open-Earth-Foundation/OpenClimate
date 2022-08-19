@@ -3,7 +3,6 @@ import { DispatchThunk, RootState } from '../../store/root-state';
 import { connect } from 'react-redux';
 import ReviewInfo from './review-info/review-info';
 import ITrackedEntity from '../../api/models/review/entity/tracked-entity';
-import Switcher from '../../shared/components/form-elements/switcher/switcher';
 import ReviewFilters from './review-filters/review-filters';
 import Dashboard from './review-dashboard/review-dashboard';
 import ContextBars from './review-context-bars/context-bars';
@@ -14,10 +13,10 @@ import { IReviewFilter } from '../../api/models/review/dashboard/reviewFilter';
 import { CircleFlag } from 'react-circle-flags';
 import * as reviewSelectors from '../../store/review/review.selectors';
 import * as reviewActions from '../../store/review/review.actions';
-import * as appActions from '../../store/app/app.actions'; 
+import * as appActions from '../../store/app/app.actions';
 import './review.page.scss';
 import '../explore/explore.page.scss'
-import {HiOutlineSearch, HiSearch} from 'react-icons/hi'
+import {HiOutlineSearch} from 'react-icons/hi'
 
 import ITreaties from '../../api/models/DTO/Treaties/ITreaties';
 import IPledge from '../../api/models/DTO/Pledge/IPledge';
@@ -63,7 +62,7 @@ interface IDispatchProps {
 
 interface IProps extends IStateProps, IDispatchProps {
 }
- 
+
 
 
 const ReviewPage: FunctionComponent<IProps> = (props) => {
@@ -85,7 +84,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     const [cityValue, setCityV] = React.useState<string>();
     const [city, setCity] = React.useState<[]>();
 
-    
+
 
     const { loading, dashboardEntityType, selectedEntities, reviewFilters, selectFilter, deselectFilter, showModal  } = props;
     let dashboardEntity:ITrackedEntity|null = null;
@@ -94,7 +93,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     if(dashboardEntityType !== null)
     {
         dashboardEntity = selectedEntities.find(se => se.type === dashboardEntityType) ?? null;
-        collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);       
+        collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);
     }
 
    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
@@ -178,7 +177,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const providerToEmissions: Record<string, EmissionInfo> = {};
         data.forEach(emission => {
             const dataProviderName = emission.DataProvider?.data_provider_name;
-            
+
             if (dataProviderName && !providerToEmissions[dataProviderName]) {
                 const methodologyTags = emission.DataProvider.Methodology.Tags.map((tag:any) => tag.tag_name);
                 const emissionData: EmissionInfo = {
@@ -205,7 +204,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         return providerToEmissions;
     }
 
-    
+
     const setStateValue = async (e:any) =>{
         e.preventDefault();
         const nationalId:number = e.target.getAttribute("data-id");
@@ -219,9 +218,9 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         fetchData(nationalId);
         setSubV('');
         setCityV('')
-            
+
     }
-    
+
     const fetchData = async (id:any) => {
 
         const fetchCountryData = await fetch(`/api/country/2019/${id}`);
@@ -230,7 +229,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         console.log(jsonData);
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
         const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
-        
+
         const data = {
             actor_name: jsonData.data[0].country_name,
             flag_icon: jsonData.data[0].flag_icon,
@@ -241,20 +240,20 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         handleTreaties(countryCode);
         handlePledges(countryCode, 'country');
         setEmissionsData(data)
-        
+
         setSbn(jsonData.data[0].Subnationals)
     }
-    
+
     const fetchSubnationalData = async (id:any) => {
         const fetchCountryData = await fetch(`/api/subnationals/2019/${id}`);
         const jsonData = await fetchCountryData.json();
         console.log(jsonData);
         const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
-        
+
         const data = {
             actor_name: jsonData.data[0].subnational_name,
-            flag_icon: jsonData.data[0].flag_icon,               
+            flag_icon: jsonData.data[0].flag_icon,
             providerToEmissions: providerToEmissionsData
         }
 
@@ -292,7 +291,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     const fetchCityData = async (id:any) => {
         const fetchCountryData = await fetch(`/api/city/2019/${id}`);
         const jsonData = await fetchCountryData.json();
-    
+
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e);
         const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
 
@@ -342,27 +341,27 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         <div className="review">
             <div className="review__wrapper">
 
-                {loading ? 
+                {loading ?
                     <div className="loader">
                         <Loader
                         type="Oval"
                         color="#A3A3A3"
                         height={100}
                         width={100}
-                        />  
+                        />
                     </div>
-                : "" 
+                : ""
                 }
 
                 <div className="review__top-wrapper content-wrapper">
                     <p className='review__heading'>Earth Indicators</p>
-                    <ContextBars 
+                    <ContextBars
                         entitySelected={dashboardEntity ? true : false}
                         collapceEntities={collapceEntities}
                         deselectFilter={deselectFilter}
                      />
                     {
-                        dashboardEntity ? "" : 
+                        dashboardEntity ? "" :
                         <div className="review__info">
                             <ReviewInfo title="An open source and digitally integrated climate accounting system">
                             Use the filters to explore where emissions come from. We aggregate data from public sources so that you can study how each country, subnational actor and company contributes to global warming and their mitigation actions to reduce emissions.
@@ -378,7 +377,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                         </a>
                     </div>
                     <div className="review__filters-wrapper">
-                       <ReviewFilters 
+                       <ReviewFilters
                         nationState={true}
                         selectFilter={selectFilterHandler}
                         deselectFilter={deselectFilter}
@@ -388,7 +387,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
                     <div className="review_selected-entity">
                     {
-                            dashboardEntity ? 
+                            dashboardEntity ?
                             <div className="review__selected-entity">
                                 <div>
                                     {dashboardEntity.flagCode ?
@@ -406,14 +405,14 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                             ""
                         }
                     </div>
-                    
+
                 </div>
 
                 <div className="review__content content-wrapper">
                     {
-                        dashboardEntity ? 
+                        dashboardEntity ?
                         <>
-                            <Dashboard entityType={dashboardEntityType} selectedEntity={dashboardEntity} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} /> 
+                            <Dashboard entityType={dashboardEntityType} selectedEntity={dashboardEntity} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} />
                         </>
                         : ''
                     }
@@ -424,10 +423,10 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 }
 
 
-const mapStateToProps = (state: RootState, ownProps: any) => { 
+const mapStateToProps = (state: RootState, ownProps: any) => {
 
     const entities = reviewSelectors.getSelectedEntities(state.review);
-   
+
     return {
         selectedEntities: entities,
         loading: reviewSelectors.getLoading(state.review),
@@ -438,7 +437,7 @@ const mapStateToProps = (state: RootState, ownProps: any) => {
 
 const mapDispatchToProps = (dispatch: DispatchThunk) => {
     return {
-        selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => 
+        selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) =>
             dispatch(reviewActions.doSelectFilter(filterType, option, selectedEntities)),
         deselectFilter: (filterType: FilterTypes) => dispatch(reviewActions.deselectFilter(filterType)),
         showModal: (type:string) => {

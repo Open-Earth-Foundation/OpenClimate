@@ -3,17 +3,14 @@ import { NavLink } from 'react-router-dom';
 
 import './emission.widget.scss';
 import IAggregatedEmission from '../../../../api/models/DTO/AggregatedEmission/IAggregatedEmission';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { EmissionInfo } from '../../../../components/review/review.page';
 import { NativeSelect } from '@mui/material';
-import { getCityProviders, getEmissionProviders, getSbProviders, getSubnationalProviders } from '../../../helpers/get-emission-providers.helper';
-import { ArrowUpwardRounded, Filter } from '@mui/icons-material';
-import ArrowUp from '../../../img/widgets/arrow_up_red.svg';
+import { getCityProviders, getEmissionProviders, getSubnationalProviders } from '../../../helpers/get-emission-providers.helper';
 import ArrowUpRed from '../../../img/widgets/arrow_up_red.svg';
 import ArrowDownGreen from '../../../img/widgets/arrow_down_green.svg';
-import { FilterTypes } from '../../../../api/models/review/dashboard/filterTypes';
 import ITrackedEntity from '../../../../api/models/review/entity/tracked-entity';
 import { getChangedEmissionData } from '../../../helpers/review.helper';
+import { FilterTypes } from '../../../../api/models/review/dashboard/filterTypes';
 
 interface Props {
     isVisible: boolean
@@ -29,15 +26,15 @@ interface Props {
     source?: string,
     methodology?: string,
     aggregatedEmission?: IAggregatedEmission | null,
-    selectedEntity?: ITrackedEntity | null
-    entityType?: number | undefined,
+    selectedEntity?: ITrackedEntity | null,
+    entityType?: FilterTypes | null,
     providers?: Array<string>,
     detailsClick?: () => void
 }
 
 const EmissionWidget: FunctionComponent<Props> = (props) => {
     const [provider, setProviders] = React.useState<Object []>([])
-    const [etype, setEtype] = React.useState<number>()
+    const [etype, setEtype] = React.useState<FilterTypes | null>()
     let [src, setSrc] = React.useState<Object>()
 
     const { title, className, entityType, width, height, detailsLink, selectedEntity, totalGhg, isVisible,  detailsClick, landSinks } = props;
@@ -53,17 +50,17 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     let tags = methtags?.map((tag:any)=>tag.tag_name);
 
     useEffect(()=> {
-        setEtype((c:any)=> c = entityType)
+        setEtype(entityType)
     }, [entityType])
 
 
     useEffect(()=> {
-        providers(entityType)
+        providers(etype)
     },[etype])
 
     // Setting provider by entity to state
     // This enables us to track the providers for each entity dynamically
-    const providers = async (type:number) => {
+    const providers = async (type:FilterTypes | null | undefined) => {
         switch(type){
             case 0:
                 const nationalEmissionProvider = await getEmissionProviders()
@@ -270,7 +267,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                             tags.slice(0,2).map(tag =>
                                             <span className='widget__meta-source-m'>{tag}</span>) }
                                             {
-                                                tags?.length > 2 &&
+                                                tags && tags?.length > 2 &&
                                                 <span className='widget__meta-source-m'>{ `+${tags?.length - 2}`}</span>
                                             }
                                         </div>
