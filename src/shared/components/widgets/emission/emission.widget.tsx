@@ -39,9 +39,9 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     const [provider, setProviders] = React.useState<Object []>([])
     const [etype, setEtype] = React.useState<number>()
     let [src, setSrc] = React.useState<Object>()
-    
+
     const { title, className, entityType, width, height, detailsLink, selectedEntity, totalGhg, isVisible,  detailsClick, landSinks } = props;
-    // Will enable us to re-asign emission data when source is changes 
+    // Will enable us to re-asign emission data when source is changes
     let {aggregatedEmission} = props
     const providerToEmissions = aggregatedEmission?.providerToEmissions;
 
@@ -49,14 +49,14 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     const [currentProvider, setProvider] = React.useState<number>(0);
     const [currentEmissions, setEmissions] = React.useState<EmissionInfo>({} as EmissionInfo);
     const methtags = aggregatedEmission?.facility_ghg_methodologies
-    
+
     let tags = methtags?.map((tag:any)=>tag.tag_name);
-   
+
     useEffect(()=> {
         setEtype((c:any)=> c = entityType)
     }, [entityType])
 
-    
+
     useEffect(()=> {
         providers(entityType)
     },[etype])
@@ -93,14 +93,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     }
 
     const calculateDecimal = (number: number) => {
-        switch(providerList[currentProvider]){
-            case 'UNFCCC Annex I':
-                return number / 1000000;
-            case 'PRIMAP':
-                return number / 1000;
-            default:
-                return number;
-        }
+        return number/1000000.0
     }
 
     if(!isVisible)
@@ -118,7 +111,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     // The case numbers or values represent the enum value of the entity type
     // When provider is changed in the dropdown select menu, this will update the aggregatedEmissions object
     // This also keeps track of the methodologies
-    
+
     switch(entityType){
         case 0:
             if(aggregatedEmission && !src){
@@ -150,14 +143,14 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                     <div className="widget__title-wrapper">
                         <h3 className="widget__title">
                             {title}
-                        </h3> 
+                        </h3>
                         {
                             showDetails ?
                             <>
                             {detailsLink ?
                                 <NavLink to={detailsLink} className="widget__link">Details</NavLink>
                                 :
-                                <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
+                                <a href="#" className="widget__link" onClick={detailsClick}>Details</a>
                             }
                             </>
                             : ''
@@ -165,18 +158,18 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
 
                     </div>
 
-                    <span className="widget__updated">Last Updated June 2020</span>     
+                    <span className="widget__updated">Last Updated June 2020</span>
 
                 </div>
                 <div className="widget__content" style={{height: `calc(${height}px - 90px)`}}>
                     {
-                    selectedEntity ? 
+                    selectedEntity ?
                     <div className={`widget__emission-content ${className}`}>
                         <div className="widget__emission-numbers">
                             <div className="widget__content-column">
                                 <div className="widget__emission-data red text-top">
                                     <img src={ArrowUpRed} alt="up" className="widget__emission-arrow"/>
-                                    {selectedEntity.total_scope_emissions?.toFixed(2)}
+                                    {(selectedEntity.total_scope_emissions)/1000000.0}
                                 </div>
                                 <div className="widget__emission-data-description">
                                     Total GHG Emissions Mmt CO2e/year
@@ -186,20 +179,20 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                         <div className="widget__content-column text-top">
                                             <div className="widget__emission-data green">
                                                 <img src={ArrowDownGreen} alt="down" className="widget__emission-arrow" />
-                                                {selectedEntity.total_scope_mitigations?.toFixed(2)}
+                                                {(selectedEntity.total_scope_mitigations)/1000000.0}
                                             </div>
                                             <div className="widget__emission-data-description">Land Use Sinks
                         Mt CO2e/year</div>
                                         </div>
                                         <div className="widget__content-column widget__content-column_center">=</div>
                                         <div className="widget__content-column text-top red">
-                                            <div className="widget__emission-data">{selectedEntity.total_scope_emissions?.toFixed(2) - selectedEntity.total_scope_mitigations?.toFixed(2)}</div>
+                                            <div className="widget__emission-data">{(selectedEntity.total_scope_emissions - selectedEntity.total_scope_mitigations)/1000000.0}</div>
                                             <div className="widget__emission-data-description">Net GHG Emissions
                         Mt CO2e/year</div>
                             </div>
                         </div>
                     </div>
-                    : 
+                    :
                     <div className="widget__no-data">
                         No data sourced yet. Have any suggestions, contact ux@openearth.org!
                     </div>
@@ -214,38 +207,38 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                         <div className="widget__title-wrapper">
                             <h3 className="widget__title">
                                 {title}
-                            </h3> 
+                            </h3>
                             {
                                 showDetails || detailsClick ?
                                 <>
                                 {detailsLink ?
                                     <NavLink to={detailsLink} className="widget__link">Details</NavLink>
                                     :
-                                    <a href="#" className="widget__link" onClick={detailsClick}>See details</a>         
+                                    <a href="#" className="widget__link" onClick={detailsClick}>See details</a>
                                 }
                                 </>
                                 : ''
                             }
-    
+
                         </div>
-    
-                        <span className="widget__updated">Last Updated {aggregatedEmission?.facility_ghg_date_updated} | Data shown refers to {aggregatedEmission?.facility_ghg_year}</span>     
-    
+
+                        <span className="widget__updated">Last Updated {aggregatedEmission?.facility_ghg_date_updated} | Data shown refers to {aggregatedEmission?.facility_ghg_year}</span>
+
                     </div>
                     <div className="widget__content" style={{height: `auto`}}>
                         {
-                        aggregatedEmission?.facility_ghg_total_gross_co2e ? 
+                        aggregatedEmission?.facility_ghg_total_gross_co2e ?
                         <div className={`widget__emission-content ${className}`}>
                                 <div className={'widget__emission-block'}>
                                     <div className="widget__emission-data red">
                                         {calculateDecimal(aggregatedEmission?.facility_ghg_total_gross_co2e)}
-                                        
+
                                     </div>
                                     <div className="widget__emission-data-description">Total GHG Emissions
                                     </div>
                                     <div className="widget__emission-data-description">Mt CO2e/year</div>
                                 </div>
-                                { !!currentEmissions?.landSinks && 
+                                { !!currentEmissions?.landSinks &&
                                     <div className={`widget__emission-numbers widget__emission-block`}>
                                         <div className="widget__emission-data-small green">
                                             {calculateDecimal(currentEmissions?.landSinks)}
@@ -266,25 +259,25 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                               fontWeight: '700'
                                           }}
                                         >
-                                            {provider?.map((p:any) => <option value={p.providerId}>{p.providerName}</option>)     } 
-                                        
+                                            {provider?.map((p:any) => <option value={p.providerId}>{p.providerName}</option>)     }
+
                                         </NativeSelect>
                                     </div>
                                     <div className='widget__meta-text-right'>
                                         <span className='widget__meta-source-head'>Methodology</span>
                                         <div className='widget__methodology-tags'>
-                                        { tags && 
-                                            tags.slice(0,2).map(tag => 
+                                        { tags &&
+                                            tags.slice(0,2).map(tag =>
                                             <span className='widget__meta-source-m'>{tag}</span>) }
                                             {
-                                                tags?.length > 2 && 
+                                                tags?.length > 2 &&
                                                 <span className='widget__meta-source-m'>{ `+${tags?.length - 2}`}</span>
                                             }
                                         </div>
                                     </div>
                                 </div>
                         </div>
-                        : 
+                        :
                         <div className="widget__no-data">
                             No data sourced yet. Have any suggestions, contact ux@openearth.org!
                         </div>
