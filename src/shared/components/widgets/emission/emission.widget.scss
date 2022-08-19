@@ -8,7 +8,7 @@
     .widget__emission-numbers {
         display: flex;
         // justify-content: center;
-        align-items: center;
+        align-items:flex-start;
         // flex-direction: column;
     }
 
@@ -17,7 +17,7 @@
     }
 
     .widget__emission-data {
-        font-size: 36px;
+        font-size: 28px;
         line-height: 43.2px;
         font-weight: 900;
         display: flex;
@@ -43,9 +43,11 @@
         text-align: left;
         color: var(--black-color);
     }
-
+    .text-top .widget__emission-data-description {
+        font-size: 12px;
+    }
     .widget__content-column {
-        width: 102px;
+        width: 80px;
 
         &_center {
             text-align: center;
