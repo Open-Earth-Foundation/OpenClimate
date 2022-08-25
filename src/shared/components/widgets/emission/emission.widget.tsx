@@ -11,6 +11,11 @@ import ArrowDownGreen from '../../../img/widgets/arrow_down_green.svg';
 import ITrackedEntity from '../../../../api/models/review/entity/tracked-entity';
 import { getChangedEmissionData } from '../../../helpers/review.helper';
 import { FilterTypes } from '../../../../api/models/review/dashboard/filterTypes';
+import Tooltip from '@mui/material/Tooltip';
+import CircleIcon from '@mui/icons-material/Circle';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
 interface Props {
     isVisible: boolean
@@ -268,7 +273,20 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                             <span className='widget__meta-source-m'>{tag}</span>) }
                                             {
                                                 tags && tags?.length > 2 &&
+                                                <Tooltip title= {tags.slice(2,).map(item=>{
+                                                    return(
+                                                    <ListItemButton>
+                                                    <ListItemIcon>
+                                                      <CircleIcon sx={{
+                                                          color: 'white',
+                                                          fontSize: 'small'
+                                                      }} />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={item} />
+                                                  </ListItemButton>)
+                                                })} arrow>
                                                 <span className='widget__meta-source-m'>{ `+${tags?.length - 2}`}</span>
+                                                </Tooltip>
                                             }
                                         </div>
                                     </div>
