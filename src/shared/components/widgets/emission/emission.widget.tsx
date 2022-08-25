@@ -11,6 +11,11 @@ import ArrowDownGreen from '../../../img/widgets/arrow_down_green.svg';
 import ITrackedEntity from '../../../../api/models/review/entity/tracked-entity';
 import { getChangedEmissionData } from '../../../helpers/review.helper';
 import { FilterTypes } from '../../../../api/models/review/dashboard/filterTypes';
+import Tooltip from '@mui/material/Tooltip';
+import CircleIcon from '@mui/icons-material/Circle';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
 interface Props {
     isVisible: boolean
@@ -299,6 +304,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                         </div>
                                         <div className="widget__emission-data-description">Mt CO2e/year</div>
                                     </div>
+<<<<<<< HEAD
                                     { !!currentEmissions?.landSinks && 
                                         <div className={`widget__emission-numbers widget__emission-block`}>
                                             <div className="widget__emission-data-small green">
@@ -335,6 +341,31 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                                     <span className='widget__meta-source-m'>{ `+${tags?.length - 2}`}</span>
                                                 }
                                             </div>
+=======
+                                    <div className='widget__meta-text-right'>
+                                        <span className='widget__meta-source-head'>Methodology</span>
+                                        <div className='widget__methodology-tags'>
+                                        { tags &&
+                                            tags.slice(0,2).map(tag =>
+                                            <span className='widget__meta-source-m'>{tag}</span>) }
+                                            {
+                                                tags && tags?.length > 2 &&
+                                                <Tooltip title= {tags.slice(2,).map(item=>{
+                                                    return(
+                                                    <ListItemButton>
+                                                    <ListItemIcon>
+                                                      <CircleIcon sx={{
+                                                          color: 'white',
+                                                          fontSize: 'small'
+                                                      }} />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={item} />
+                                                  </ListItemButton>)
+                                                })} arrow>
+                                                <span className='widget__meta-source-m'>{ `+${tags?.length - 2}`}</span>
+                                                </Tooltip>
+                                            }
+>>>>>>> cb17436e77a1114f99d7eb130eaa4ee9ee183dea
                                         </div>
                                     </div>
                             </div>

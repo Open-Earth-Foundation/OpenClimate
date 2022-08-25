@@ -204,15 +204,7 @@ function AccountSetup(props) {
         if (res.data.error) {
           setNotification(res.data.error, 'error')
         } else {
-          // Envision user creation
-          const newUser: IUser = {
-            firstName: res.data.user.first_name,
-            lastName: res.data.user.last_name,
-            email: res.data.user.email,
-            password: res.data.user.password,
-            organizationId: res.data.user.organization_id,
-          }
-          userService.register(newUser)
+          // TODO: re-add call to userService.register() for Envision user creation?
 
           if (res.data.status) {
             setNotification(res.data.status, 'notice')
