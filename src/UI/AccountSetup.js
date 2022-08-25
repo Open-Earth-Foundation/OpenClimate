@@ -20,7 +20,7 @@ import { handleImageSrc } from './util'
 import { userService } from '../shared/services/user.service'
 import { IUser } from '../api/models/User/IUser'
 
-import { 
+import {
   HeaderText,
   CopyText,
   InfoText,
@@ -200,27 +200,23 @@ function AccountSetup(props) {
         },
         url: `${process.env.REACT_APP_CONTROLLER}/api/user/update`,
       }).then((res) => {
-        console.log(res)
-        // Envision user creation
-        const newUser: IUser = {
-          firstName: res.data.user.first_name,
-          lastName: res.data.user.last_name,
-          email: res.data.user.email,
-          password: res.data.user.password,
-          organizationId: res.data.user.organization_id,
-        }
-        userService.register(newUser)
 
-        if (res.data.status) {
-          setNotification(res.data.status, 'notice')
-          setAccountPasswordSet(true)
-        } else if (res.data.error) {
+        if (res.data.error) {
           setNotification(res.data.error, 'error')
         } else {
-          setNotification(
-            "User couldn't be updated. Please try again.",
-            'error'
-          )
+          // TODO: re-add call to userService.register() for Envision user creation?
+
+          if (res.data.status) {
+            setNotification(res.data.status, 'notice')
+            setAccountPasswordSet(true)
+          } else if (res.data.error) {
+            setNotification(res.data.error, 'error')
+          } else {
+            setNotification(
+              "User couldn't be updated. Please try again.",
+              'error'
+            )
+          }
         }
       })
     }
@@ -253,7 +249,7 @@ function AccountSetup(props) {
                     <InfoIcon />
                     <>
                       <InfoText>We recommend using
-                      <InlineClickable href="https://apps.apple.com/us/app/trinsic-wallet/id1475160728">Trinsic</InlineClickable> 
+                      <InlineClickable href="https://apps.apple.com/us/app/trinsic-wallet/id1475160728">Trinsic</InlineClickable>
                       but you can use any digital wallet you currently use.</InfoText>
                     </>
                   </SubContainer>
@@ -298,8 +294,8 @@ function AccountSetup(props) {
       <StepperContainer>
         <HeaderText>Steps to complete verification</HeaderText>
         <HeaderInfoText>Here's what you can expect from this process of verification</HeaderInfoText>
-        <Stepper 
-          activeStep={0} 
+        <Stepper
+          activeStep={0}
           orientation="vertical"
           sx={{
                   '& .MuiStepConnector-root .MuiStepConnector-line': {
@@ -308,8 +304,8 @@ function AccountSetup(props) {
                 }}
           >
             {steps.map((step) => (
-              <Step 
-                key={step.label} 
+              <Step
+                key={step.label}
                 active
                 sx={{
                   '& .MuiStepLabel-root .Mui-active': {
