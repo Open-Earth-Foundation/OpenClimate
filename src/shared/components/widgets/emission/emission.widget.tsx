@@ -204,66 +204,105 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
         </div>
     ) : (
             <div className="widget" >
-                <div className="widget__wrapper" >
-                    <div className="widget__header">
-                        <div className="widget__title-wrapper">
-                            <h3 className="widget__title">
-                                {title}
-                            </h3>
-                            {
-                                showDetails || detailsClick ?
-                                <>
-                                {detailsLink ?
-                                    <NavLink to={detailsLink} className="widget__link">Details</NavLink>
-                                    :
-                                    <a href="#" className="widget__link" onClick={detailsClick}>See details</a>
+            {
+                aggregatedEmission?.credential_category === "Climate Action" ? (
+                    <div className="widget__wrapper" >
+                        <div className="widget__header">
+                            <div className="widget__title-wrapper">
+                                <h3 className="widget__title">
+                                    {title}
+                                </h3> 
+                                {
+                                    showDetails || detailsClick ?
+                                    <>
+                                    {detailsLink ?
+                                        <NavLink to={detailsLink} className="widget__link">Details</NavLink>
+                                        :
+                                        <a href="#" className="widget__link" onClick={detailsClick}>See details</a>         
+                                    }
+                                    </>
+                                    : ''
                                 }
-                                </>
-                                : ''
-                            }
-
+        
+                            </div>
+        
+                            <span className="widget__updated">Last Updated {aggregatedEmission?.facility_ghg_date_updated} | Data shown refers to {aggregatedEmission?.facility_ghg_year}</span>     
+        
                         </div>
-
-                        <span className="widget__updated">Last Updated {aggregatedEmission?.facility_ghg_date_updated} | Data shown refers to {aggregatedEmission?.facility_ghg_year}</span>
-
-                    </div>
-                    <div className="widget__content" style={{height: `auto`}}>
-                        {
-                        aggregatedEmission?.facility_ghg_total_gross_co2e ?
-                        <div className={`widget__emission-content ${className}`}>
-                                <div className={'widget__emission-block'}>
-                                    <div className="widget__emission-data red">
-                                        {calculateDecimal(aggregatedEmission?.facility_ghg_total_gross_co2e)}
-
-                                    </div>
-                                    <div className="widget__emission-data-description">Total GHG Emissions
-                                    </div>
-                                    <div className="widget__emission-data-description">Mt CO2e/year</div>
-                                </div>
-                                { !!currentEmissions?.landSinks &&
-                                    <div className={`widget__emission-numbers widget__emission-block`}>
-                                        <div className="widget__emission-data-small green">
-                                            {calculateDecimal(currentEmissions?.landSinks)}
+                        <div className="widget__content" style={{height: `auto`}}>
+                            {
+                            aggregatedEmission?.facility_ghg_total_gross_co2e ? 
+                            <div className={`widget__emission-content ${className}`}>
+                                <div className="widget__emission-numbers">
+                                    <div className="widget__content-column">
+                                        <div className="widget__emission-data red text-top">
+                                            <img src={ArrowUpRed} alt="up" className="widget__emission-arrow"/>
+                                            {aggregatedEmission?.facility_ghg_total_gross_co2e?.toFixed(2)}
                                         </div>
-                                        <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
+                                        <div className="widget__emission-data-description">
+                                            Total GHG Emissions Mmt CO2e/year
+                                        </div>
+                                                </div>
+                                                <div className="widget__content-column widget__content-column_center">-</div>
+                                                <div className="widget__content-column text-top">
+                                                    <div className="widget__emission-data green">
+                                                        <img src={ArrowDownGreen} alt="down" className="widget__emission-arrow" />
+                                                        {aggregatedEmission?.facility_ghg_total_sinks_co2e?.toFixed(2)}
+                                                    </div>
+                                                    <div className="widget__emission-data-description">Land Use Sinks
+                                Mt CO2e/year</div>
+                                                </div>
+                                                <div className="widget__content-column widget__content-column_center">=</div>
+                                                <div className="widget__content-column text-top red">
+                                                    <div className="widget__emission-data">{aggregatedEmission?.facility_ghg_total_gross_co2e.toFixed(2) - aggregatedEmission?.facility_ghg_total_sinks_co2e.toFixed(2)}</div>
+                                                    <div className="widget__emission-data-description">Net GHG Emissions
+                                Mt CO2e/year</div>
                                     </div>
+                                </div>
+                            </div>
+                            : 
+                            <div className="widget__no-data">
+                                No data sourced yet. Have any suggestions, contact ux@openearth.org!
+                            </div>
+                            }
+                        </div>
+                    </div>
+                ): (
+                    <div className="widget__wrapper" >
+                        <div className="widget__header">
+                            <div className="widget__title-wrapper">
+                                <h3 className="widget__title">
+                                    {title}
+                                </h3> 
+                                {
+                                    showDetails || detailsClick ?
+                                    <>
+                                    {detailsLink ?
+                                        <NavLink to={detailsLink} className="widget__link">Details</NavLink>
+                                        :
+                                        <a href="#" className="widget__link" onClick={detailsClick}>See details</a>         
+                                    }
+                                    </>
+                                    : ''
                                 }
-                                <div className='widget__meta-data'>
-                                    <div className='widget__meta-text-left'>
-                                        <span className='widget__meta-source-head'>Source</span>
-                                        <NativeSelect
-                                          defaultValue={provider[0]}
-                                          onChange={(event) => changeDataSource(event)}
-                                          sx={{
-                                              fontSize: '10px',
-                                              fontFamily: 'Lato',
-                                              textDecoration: 'none',
-                                              fontWeight: '700'
-                                          }}
-                                        >
-                                            {provider?.map((p:any) => <option value={p.providerId}>{p.providerName}</option>)     }
-
-                                        </NativeSelect>
+        
+                            </div>
+        
+                            <span className="widget__updated">Last Updated {aggregatedEmission?.facility_ghg_date_updated} | Data shown refers to {aggregatedEmission?.facility_ghg_year}</span>     
+        
+                        </div>
+                        <div className="widget__content" style={{height: `auto`}}>
+                            {
+                            aggregatedEmission?.facility_ghg_total_gross_co2e ? 
+                            <div className={`widget__emission-content ${className}`}>
+                                    <div className={'widget__emission-block'}>
+                                        <div className="widget__emission-data red">
+                                            {calculateDecimal(aggregatedEmission?.facility_ghg_total_gross_co2e)}
+                                            
+                                        </div>
+                                        <div className="widget__emission-data-description">Total GHG Emissions
+                                        </div>
+                                        <div className="widget__emission-data-description">Mt CO2e/year</div>
                                     </div>
                                     <div className='widget__meta-text-right'>
                                         <span className='widget__meta-source-head'>Methodology</span>
@@ -290,17 +329,18 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                             }
                                         </div>
                                     </div>
-                                </div>
+                            </div>
+                            : 
+                            <div className="widget__no-data">
+                                No data sourced yet. Have any suggestions, contact ux@openearth.org!
+                            </div>
+                            }
                         </div>
-                        :
-                        <div className="widget__no-data">
-                            No data sourced yet. Have any suggestions, contact ux@openearth.org!
-                        </div>
-                        }
                     </div>
-                </div>
-            </div>
-        );
+                )
+            }
+        </div>
+    )
 }
 
 

@@ -129,6 +129,7 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
                                 showModal={showModal}
                                 sites={sites}
                                 aggregatedEmissions={aggregatedEmissions}
+                                climateActions={climateActions}
                                 user={user}
                             />
                         </Route>
