@@ -23,7 +23,7 @@ import { ClimateActionTypes } from "../../api/models/DTO/ClimateAction/climate-a
 
 async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
 {
-    let emissionResponse = await fetch(`https://dev.openclimate.network/api/country/2019/${countryId}`, {
+    let emissionResponse = await fetch(`/api/country/2019/${countryId}`, {
         method: 'GET'
     });
     let data = await emissionResponse.json();
@@ -419,7 +419,7 @@ export const getChangedEmissionData = async (dataProviderId:number, entityType:F
 
     switch(entityType){
         case 0:
-            let emissionResponse = await fetch(`https://dev.openclimate.network/api/country/2019/${entity.id}`, {
+            let emissionResponse = await fetch(`/api/country/2019/${entity.id}`, {
                 method: 'GET'
             });
 
