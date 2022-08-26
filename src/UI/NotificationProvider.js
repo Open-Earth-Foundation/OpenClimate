@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const NotificationWrapper = styled.div`
-  padding: 18px;
+  padding: 15px;
   background-color: ${(props) =>
     props.background === 'notice'
       ? `${props.theme.positive_color}`
