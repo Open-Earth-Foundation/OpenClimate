@@ -3,7 +3,7 @@ import ICountry from "../../api/models/review/country";
 import { regions }  from "../../api/data/review/data/regions"
 
 const GetCountryCodes = async () => {
-    let countryParsed =  await fetch('/api/country/2019', {
+    let countryParsed =  await fetch('https://dev.openclimate.network/api/country/2019', {
         method: 'GET',
     });
     const jsonData = await countryParsed.json()

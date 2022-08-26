@@ -304,6 +304,31 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                         </div>
                                         <div className="widget__emission-data-description">Mt CO2e/year</div>
                                     </div>
+                                    { !!currentEmissions?.landSinks &&
+                                    <div className={`widget__emission-numbers widget__emission-block`}>
+                                        <div className="widget__emission-data-small green">
+                                            {calculateDecimal(currentEmissions?.landSinks)}
+                                        </div>
+                                        <div className="widget__emission-data-description">Land Use Sinks Mt CO2e/year</div>
+                                    </div>
+                                    }
+                                    <div className='widget__meta-data'>
+                                    <div className='widget__meta-text-left'>
+                                        <span className='widget__meta-source-head'>Source</span>
+                                        <NativeSelect
+                                          defaultValue={provider[0]}
+                                          onChange={(event) => changeDataSource(event)}
+                                          sx={{
+                                              fontSize: '10px',
+                                              fontFamily: 'Lato',
+                                              textDecoration: 'none',
+                                              fontWeight: '700'
+                                          }}
+                                        >
+                                            {provider?.map((p:any) => <option value={p.providerId}>{p.providerName}</option>)     }
+
+                                        </NativeSelect>
+                                    </div>
                                     <div className='widget__meta-text-right'>
                                         <span className='widget__meta-source-head'>Methodology</span>
                                         <div className='widget__methodology-tags'>
@@ -329,6 +354,7 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                             }
                                         </div>
                                     </div>
+                                </div>
                             </div>
                             : 
                             <div className="widget__no-data">

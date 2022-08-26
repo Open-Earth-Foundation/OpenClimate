@@ -17,8 +17,8 @@ const NotificationWrapper = styled.div`
   position: fixed;
   top: 0;
   margin-left: 30%;
-  width: 40%;
-  height: 65px;
+  width: 50%;
+  height: 80px;
   text-align: center;
   transition: 6s;
   z-index: 99999999;
