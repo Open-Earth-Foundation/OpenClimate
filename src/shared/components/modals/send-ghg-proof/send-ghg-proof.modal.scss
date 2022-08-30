@@ -25,5 +25,10 @@
         flex-direction: column;
         margin: 25px;
     }
+    &__connect_new_wallet_btn{
+        display: flex;
+        align-items: center;
+        font-size: 13px !important;
+    }
 }
 
