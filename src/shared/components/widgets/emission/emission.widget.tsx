@@ -16,6 +16,8 @@ import CircleIcon from '@mui/icons-material/Circle';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { makeStyles } from "@material-ui/core/styles";
+
 
 interface Props {
     isVisible: boolean
@@ -46,6 +48,18 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
     // Will enable us to re-asign emission data when source is changes
     let {aggregatedEmission} = props
     const providerToEmissions = aggregatedEmission?.providerToEmissions;
+
+    const useStyles = makeStyles(() => ({
+        customTooltip: {
+          backgroundColor: "rgba(44, 44, 44, 1)"
+        },
+        customArrow: {
+          color: "rgba(44, 44, 44, 1)"
+        }
+      }));
+
+    const classes = useStyles();
+
 
     const [providerList, setProviderList] = React.useState<Array<string>>([])
     const [currentProvider, setProvider] = React.useState<number>(0);
@@ -273,18 +287,18 @@ const EmissionWidget: FunctionComponent<Props> = (props) => {
                                             <span className='widget__meta-source-m'>{tag}</span>) }
                                             {
                                                 tags && tags?.length > 2 &&
-                                                <Tooltip title= {tags.slice(2,).map(item=>{
+                                                <Tooltip classes={{
+                                                    tooltip: classes.customTooltip,
+                                                    arrow: classes.customArrow
+                                                  }}
+                                                    title= {tags.slice(2,).map(item=>{
                                                     return(
-                                                    <ListItemButton>
-                                                    <ListItemIcon>
-                                                      <CircleIcon sx={{
-                                                          color: 'white',
-                                                          fontSize: 'small'
-                                                      }} />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={item} />
-                                                  </ListItemButton>)
+                                                        <ul className = "tooltip-methodology-item">
+                                                        <li>{item}</li>
+                                                    </ul>)
+
                                                 })} arrow>
+
                                                 <span className='widget__meta-source-m'>{ `+${tags?.length - 2}`}</span>
                                                 </Tooltip>
                                             }
