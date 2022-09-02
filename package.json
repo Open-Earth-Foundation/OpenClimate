@@ -32,7 +32,7 @@
     "mapbox-gl-leaflet": "0.0.15",
     "moment": "^2.29.4",
     "nan": "^2.16.0",
-    "qrcode.react": "^1.0.0",
+    "qrcode.react": "^3.1.0",
     "react": "^17.0.2",
     "react-animate-height": "^2.0.23",
     "react-animations": "^1.0.0",
