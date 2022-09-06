@@ -12,7 +12,33 @@ export const StyledPopup = styled(Popup)`
 export const InputBox = styled.div`
   margin: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+`
+export const FormBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const HintBox = styled.div`
+  margin: 8px;
+  margin-top: -12px;
+  justify-content: center;
+  font-size: 15px
+  
+`
+
+export const HintBoxContent = styled.ul`
+  text-align: left;
+  display:inline;
+  font-size: 11px;
+  color: #999999;
+`
+
+export const HintBoxHeading = styled.p`
+  margin-bottom: 0px;
 `
 
 export const Modal = styled.div`
@@ -179,10 +205,12 @@ export const SubmitBtn = styled.button`
   margin: auto;
   margin-top: 15px;
   padding: 10px 20px;
-  font-size: 1.3em;
+  width: 95%;
+  font-size: 1em;
   text-transform: uppercase;
   color: ${(props) => props.theme.text_light};
   border: none;
+  border-radius: 4px;
   box-shadow: ${(props) => props.theme.drop_shadow};
   background: ${(props) => props.theme.primary_color};
   :hover {
@@ -198,25 +226,40 @@ export const Logo = styled.img`
   max-width: 150px;
   max-height: 100%;
   margin: auto;
+  display:none;
+`
+export const FormBoxHeading = styled.p`
+  font-size: 28px;
+  font-weight: 500;
+  position: relative;
+  top: 20px;
 `
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-`
+  width: 414px;
+  padding:10px;
+
+  `
+
 export const Label = styled.label`
   margin-right: 10px;
-  width: 30%;
-  font-size: 1.5em;
+  width: 100%;
+  font-size: 0.875em;
   line-height: 1.7em;
-  text-align: right;
-  color: ${(props) => props.theme.text_color};
+  font-weight: 500;
+  text-align: left;
+  color: black;
 `
 export const InputField = styled.input`
-  margin: auto 12px auto 12px;
-  width: 50%;
-  height: 1.7em;
-  font-size: 1.5em;
+  margin: auto 12px auto 0px;
+  width: 100%;
+  height: 3em;
+  padding-left:1em;
+  font-size: 0.875em;
+  background: #E6E7E8;
+  border-radius: 4px;
   color: ${(props) => props.theme.text_color};
 `
 export const TextItem = styled.span`
