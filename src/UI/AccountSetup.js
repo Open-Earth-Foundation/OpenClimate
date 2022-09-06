@@ -40,7 +40,13 @@ import {
   Label,
   SubmitBtn,
   InputField,
+  HintBox,
+  HintBoxContent,
+  HintBoxHeading,
+  FormBox,
+  FormBoxHeading
 } from './CommonStylesForms'
+import { red } from '@mui/material/colors'
 
 
 
@@ -124,7 +130,10 @@ const steps = [
 
 function AccountSetup(props) {
   const [accountPasswordSet, setAccountPasswordSet] = useState(false)
-  const token = window.location.hash.substring(1)
+  const token = window.location.hash.substring(1);
+  const [inputValue, setInputValue] = useState('');
+  const [inputValue2, setInputValue2] = useState('');
+  const [buttonState, setButtonState] = useState(true);
 
   const [id, setId] = useState({})
 
@@ -182,8 +191,7 @@ function AccountSetup(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const form = new FormData(accSetupForm.current)
-
+    const form = new FormData(accSetupForm.current);
     // Check the password match
     if (pass1.current.value != pass2.current.value) {
       console.log("Passwords don't match")
@@ -220,6 +228,56 @@ function AccountSetup(props) {
         }
       })
     }
+  }
+  // Form validation
+  // Input check
+  
+  const handleOnChange = (e) =>{
+    e.preventDefault();
+    const value = e.target.value;
+    setInputValue(value)
+  }
+
+  const handleOnChangeConPass = (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+    setInputValue2(value);
+    if(inputValue2.length >= 0 && value !== inputValue){
+      setButtonState(true)
+    }else{
+      setButtonState(false)
+    }
+  }
+  let passM=false
+  if(inputValue !== inputValue2 && inputValue2.length > 0){
+    passM=false;
+  } else{
+    passM=true;
+  }
+
+
+  let color = "red", color1 = "red", color2 = "red", color3 = "red", color4 = "red";
+   // check if input value contains a number
+  if(inputValue.match(/\d/)){
+    color="green";
+  }
+
+  // check if input value contains lowercase
+  if(inputValue.match(/[a-z]/)){
+    color1="green";    
+  } 
+
+  // check if input value contains uppercase
+  if(inputValue.match(/[A-Z]/)){
+    color2="green";
+  }
+
+  // check if input value contains a charactor
+  if(inputValue.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/)){
+      color3="green";    
+  }
+  if(inputValue.length >= "8"){
+    color4="green"
   }
 
   return (
@@ -259,32 +317,58 @@ function AccountSetup(props) {
             )
           )
         ) : (
-          <>
-            <p>Please set an account password below:</p>
+          <FormBox>
+            <FormBoxHeading>Enter your password</FormBoxHeading>
             <Form id="form" onSubmit={handleSubmit} ref={accSetupForm}>
               <InputBox>
                 <Label htmlFor="password">Password</Label>
                 <InputField
                   type="password"
                   name="password"
+                  placeholder="Enter your password"
+                  onChange={handleOnChange}
                   id="password"
                   ref={pass1}
                   required
                 />
+                <HintBox>
+                  <HintBoxContent>
+                    <div>
+                      <span style={{"color":color}}>The password must contain at least 1 number </span>
+                      <span style={{"color":color1}}>1 lowercase letter </span>
+                      <span style={{"color":color2}}>1 uppercase letter </span>
+                      <span style={{"color":color3}}>1 special charactor </span>
+                      <span style={{"color":color4}}>and 8 or more charactors</span>
+                    </div>
+                  </HintBoxContent>
+                </HintBox>
               </InputBox>
               <InputBox>
                 <Label htmlFor="confirmedPass">Confirm Password</Label>
                 <InputField
                   type="password"
                   name="confirmedPass"
+                  placeholder="Confirm your password"
+                  onChange={handleOnChangeConPass}
                   id="confirmedPass"
                   ref={pass2}
                   required
                 />
+              {
+                passM ? '': 
+                <HintBox>
+                  <HintBoxContent>
+                    <div>
+                      <span style={{"color":"red"}}>Passwords are not matching. </span>
+                    </div>
+                  </HintBoxContent>
+                </HintBox>
+              }
               </InputBox>
-              <SubmitBtn type="submit">Submit</SubmitBtn>
+              
+              <SubmitBtn type="submit" disabled={buttonState} style={{"background": buttonState ? "#a9a9a9": '#007568'}}>Submit</SubmitBtn>
             </Form>
-          </>
+          </FormBox>
         )
       ) : (
         <p>There was a problem with your invitation. Please request a new one.</p>
