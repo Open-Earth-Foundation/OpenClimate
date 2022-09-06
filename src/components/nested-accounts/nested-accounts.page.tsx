@@ -8,7 +8,7 @@ import NestedAccounts from "./nested-accounts";
 import IAggregatedEmission from "../../api/models/DTO/AggregatedEmission/IAggregatedEmission";
 import ISite from "../../api/models/DTO/Site/ISite";
 import IGeoSubnational from "../../api/models/DTO/NestedAccounts/IGeoSubnational";
-import Loader from "react-loader-spinner";
+import {Oval} from "react-loader-spinner";
 import IClimateAction from "../../api/models/DTO/ClimateAction/IClimateActions/IClimateAction";
 import { CommonHelper } from "../../shared/helpers/common.helper";
 import { useLocation } from "react-router-dom";
@@ -35,7 +35,7 @@ interface IDispatchProps {
     loadSites: () => void,
     loadAggregatedEmissions: () => void,
     doLoadGeoSubnational: (countryCode: string) => any,
-    
+
     doLoadClimateActions: (siteId: string) => void,
     cleanData: () => void,
     selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => void,
@@ -46,12 +46,12 @@ interface IProps extends IStateProps, IDispatchProps {
 
 const NestedAccountsPage: FunctionComponent<IProps> = (props) => {
 
-    
+
 
     const { loading, sites, aggregatedEmissions, sitesLoaded, aggregatedEmissionsLoaded, geoSubnationals, loadedClimateActions,
         cleanData, loadSites, loadAggregatedEmissions, doLoadGeoSubnational, doLoadClimateActions, entity, selectFilter, filters } = props;
- 
-    
+
+
 
     const [groupedClimateActions, setGroupedClimateActions] = useState<any>();
 
@@ -72,7 +72,7 @@ const NestedAccountsPage: FunctionComponent<IProps> = (props) => {
     return (
         <div className="nested-accounts">
             <div className="nested-accounts__wrapper content-wrapper">
-                    <NestedAccounts 
+                    <NestedAccounts
                         geoSubnationals={geoSubnationals}
                         sites={sites}
                         aggregatedEmissions={aggregatedEmissions}
@@ -86,17 +86,16 @@ const NestedAccountsPage: FunctionComponent<IProps> = (props) => {
                         cleanData={cleanData}
                     />
             </div>
-            { 
-                loading ? 
+            {
+                loading ?
                 <div className="loader">
-                    <Loader
-                        type="Oval"
+                    <Oval
                         color="#A3A3A3"
                         height={100}
                         width={100}
-                    />  
+                    />
                 </div>
-                : "" 
+                : ""
                 }
         </div>
     );
@@ -118,7 +117,7 @@ const mapStateToProps = (state: RootState) => {
       loadedClimateActions: nestedAccountsSelectors.loadedClimateActions(state)
     }
   }
-  
+
   const mapDispatchToProps = (dispatch: DispatchThunk) => {
     return {
         loadSites: () => {
@@ -127,7 +126,7 @@ const mapStateToProps = (state: RootState) => {
         loadAggregatedEmissions: () => {
             dispatch(nestedAccountsActions.doLoadAggregatedEmissions())
         },
-        selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => 
+        selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) =>
             dispatch(doSelectFilter(filterType, option, selectedEntities)),
         doLoadGeoSubnational: (countryCode: string) => {
             dispatch(nestedAccountsActions.doLoadGeoSubnational(countryCode))
@@ -138,8 +137,8 @@ const mapStateToProps = (state: RootState) => {
         cleanData: () => {
             dispatch(nestedAccountsActions.nestedAccountsClearState())
         }
-        
+
     }
   }
-  
+
   export default connect(mapStateToProps, mapDispatchToProps)(NestedAccountsPage);
