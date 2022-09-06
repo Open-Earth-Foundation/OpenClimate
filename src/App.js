@@ -71,6 +71,7 @@ const NestedAccountsPage = React.lazy(() => import('./components/nested-accounts
 const ReviewPage = React.lazy(() => import('./components/review/review.page'))
 const AccountPage = React.lazy(() => import('./components/account/account.page'))
 const RegisterWalletPage = React.lazy(() => import('./UI/RegisterWallet'))
+const LoginWithWallet = React.lazy(() => import('./UI/LoginWithWallet'));
 
 const Frame = styled.div`
   display: flex;
@@ -1278,12 +1279,16 @@ const App: FunctionComponent<Props> = (props) => {
                   <Route exact path="/login">
                     <Redirect to="/" />
                   </Route>
+                  <Route exact path="/wallet-login">
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <LoginWithWallet user={currentUser} sendRequest={sendMessage} QRCodeURL={QRCodeURL}/>
+                    </Suspense>
+                  </Route>
                   <Route path="/nested-accounts">
                     <Suspense fallback={<div>Loading...</div>}>
                       <NestedAccountsPage />
                     </Suspense>
                   </Route>
-
                   {
                     currentUser && ( 
                       <Route path="/account">
