@@ -24,7 +24,7 @@
     "@types/react-geocode": "^0.2.0",
     "@types/react-simple-maps": "^1.0.7",
     "@types/topojson-client": "^3.1.0",
-    "apexcharts": "^3.27.3",
+    "apexcharts": "^3.35.5",
     "axios": "^0.27.2",
     "jwt-decode": "^3.1.2",
     "leaflet": "^1.7.1",
