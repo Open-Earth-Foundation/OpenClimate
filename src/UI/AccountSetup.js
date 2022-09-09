@@ -208,12 +208,10 @@ function AccountSetup(props) {
         },
         url: `${process.env.REACT_APP_CONTROLLER}/api/user/update`,
       }).then((res) => {
-
         if (res.data.error) {
           setNotification(res.data.error, 'error')
         } else {
           // TODO: re-add call to userService.register() for Envision user creation?
-
           if (res.data.status) {
             setNotification(res.data.status, 'notice')
             setAccountPasswordSet(true)
@@ -273,7 +271,7 @@ function AccountSetup(props) {
   }
 
   // check if input value contains a charactor
-  if(inputValue.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/)){
+  if(inputValue.match(/[\`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/)){
       color3="green";    
   }
   if(inputValue.length >= "8"){
