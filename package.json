@@ -71,7 +71,7 @@
     "@types/leaflet": "^1.7.5",
     "@types/react-animations": "^1.0.0",
     "@types/react-router-dom": "^5.1.8",
-    "sass": "^1.54.4"
+    "sass": "^1.54.9"
   },
   "scripts": {
     "start": "react-scripts start",
