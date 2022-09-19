@@ -1164,6 +1164,9 @@ const App: FunctionComponent<Props> = (props) => {
                               logo={image}
                               history={history}
                               QRCodeURL={QRCodeURL}
+                              setUpUser={setUpUser}
+                              setLoggedIn={setLoggedIn}
+                              doLoginSuccess={doLoginSuccess}
                               accountCredentialIssued={accountCredentialIssued}
                               sendRequest={sendAnonMessage}
                               messageHandler={messageHandler}

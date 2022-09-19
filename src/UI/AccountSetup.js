@@ -6,7 +6,8 @@ import styled from 'styled-components'
 import QRCode from 'qrcode.react'
 import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
-import StepLabel from '@mui/material/StepLabel'
+import StepLabel from '@mui/material/StepLabel';
+import Cookies from 'universal-cookie'
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
@@ -134,6 +135,9 @@ function AccountSetup(props) {
   const [inputValue, setInputValue] = useState('');
   const [inputValue2, setInputValue2] = useState('');
   const [buttonState, setButtonState] = useState(true);
+  const [userData, setUserData] = useState()
+  
+  const cookies = new Cookies()
 
   const [id, setId] = useState({})
 
@@ -215,8 +219,12 @@ function AccountSetup(props) {
           if (res.data.status) {
             setNotification(res.data.status, 'notice')
             setAccountPasswordSet(true)
+            cookies.set('sessionId', res.data.session, { path: '/', httpOnly: res.data.session.cookie.httpOnly, originalMaxAge: res.data.session.cookie.originalMaxAge })
+            cookies.set('user', res.data);
+            const cookieData = cookies.get('user')
+            setUserData(cookieData)
           } else if (res.data.error) {
-            setNotification(res.data.error, 'error')
+            setNotification(res.data.error, 'error')  
           } else {
             setNotification(
               "User couldn't be updated. Please try again.",
@@ -227,6 +235,16 @@ function AccountSetup(props) {
       })
     }
   }
+
+// Update user state after credentials are issued 
+useEffect(()=>{
+  if(props.accountCredentialIssued && accountPasswordSet){
+    props.setUpUser(userData.id, userData.email, userData.roles)
+    props.doLoginSuccess(userData);
+    props.setLoggedIn(true)
+  }
+}, [userData, props.accountCredentialIssued])
+  
   // Form validation
   // Input check
   
