@@ -13,14 +13,27 @@ const initialState: ReviewState = {
     selectedEntities: [],
     filters: [
         {
-            title: "Nation state",
+            title: "Country",
             type: FilterTypes.National,
             selectedValue: "",
-            options: CountryCodesHelper.GetContryOptions()
+            options: CountryCodesHelper.GetCountryOptions()
         },
         {
-            title: "Subnational",
+            title: "Region",
             type: FilterTypes.SubNational,
+            selectedValue: "",
+            options: []
+        },
+        {
+            title: "Entity type",
+            type: FilterTypes.EntityType,
+            selectedValue: 'City',
+            options: [{name: 'City', value: 'City'}, {name: 'Organization', value: 'Organization'}],
+            isRadio: true
+        },
+        {
+            title: "City",
+            type: FilterTypes.City,
             selectedValue: "",
             options: []
         },
@@ -29,7 +42,8 @@ const initialState: ReviewState = {
             type: FilterTypes.Organization,
             selectedValue: "",
             options: []
-        }
+        },
+        
     ]
 }
 
@@ -78,6 +92,12 @@ const deselectFilter = ( state: ReviewState, payload: any ) => {
         case FilterTypes.SubNational:
             dashboardType = FilterTypes.National;
             break;
+        case FilterTypes.EntityType:
+            dashboardType = FilterTypes.EntityType;
+            break;
+        case FilterTypes.City:
+            dashboardType = FilterTypes.City
+            break
         case FilterTypes.Organization:
             dashboardType = FilterTypes.SubNational;
             break;
@@ -97,7 +117,12 @@ const updateFilterOptions = ( state: ReviewState, payload: any ) => {
 
     let newFilters = [ ...state.filters ];
 
-    let filterIndex = newFilters.findIndex(f => f.type === filterType);
+    let filterIndex = newFilters.findIndex(f => {
+       
+        return f.type === filterType
+    });
+    
+    
     newFilters[filterIndex].options = options;
 
     return {

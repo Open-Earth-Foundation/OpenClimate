@@ -3,7 +3,8 @@ import { FilterTypes } from "./filterTypes";
 
 export interface IReviewFilter {
     title: string,
-    type: FilterTypes
+    type: FilterTypes,
     options: Array<DropdownOption>,
-    selectedValue: string
+    selectedValue: string,
+    isRadio?: boolean 
 }

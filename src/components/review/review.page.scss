@@ -4,8 +4,77 @@
     .review__filter-button-wrapper{
         display: none;
     }
+    .review__heading {
+        display: none;
+    }
+    .explore__dropdown {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        top: 80px;
+        left: 0px;
+        margin: auto;
+        background-color: white;
+        box-shadow: 
+        0px 4.19279px 20.77116px rgba(0,0,0, 0.25),
+        0px 4.38558px 10.19279px rgba(0,0,0, 0.08);
+        border-radius: 4px;
+    }
+    .explore__filter-2{
+        display: flex;
+        padding-left: 10px;
+        align-items: center;
+        height: 40px;
+        width: 280px;
+        background-color: #e6e7e8;
+        margin-top: 24px;
+        border-radius: 184px;
+    }
+   
+    .explore__filter-input{
+        background-color: transparent;
+        position: relative;
+        left: 5px;
+    }
+    .explore__select li{
+        padding: 10px;
+        padding-left: 24px;
+    }
+    .explore__select li:hover{
+        background-color: #007568;
+        color: white;
+    }
+    .explore__select {
+        display:flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        height: 300px;
+        overflow: scroll;
+    }
+    .explore__btn-options{
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        text-align: left;
+        padding-left: 24px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .explore__btn-options:active {
+        background-color: #007568;
+        color: #fff;
+    }
     @include respond(mobile){
-        .review__heading{}
+        .review__heading {
+            display: inherit;
+        }
         .review__info{
             display: none;
         }
@@ -34,8 +103,7 @@
     }
 
     background-color: white;
-    min-height: calc(100vh - 80px);
-
+    min-height: calc(100vh - 80px - 80px);
     .review__top-wrapper {
         background-color: var(--white-color);
         padding-top: 20px;
@@ -46,6 +114,13 @@
     .review__filters-wrapper {
         display: flex;
         flex-wrap: wrap;
+    }
+    .review__filters{
+        margin-right: 30px;
+    }
+    .input-wrapper{
+        background-color: #f1f2f6;
+        border: none !important;
     }
     
     .review__selected-entity {
@@ -75,5 +150,8 @@
     .review__switcher {
         width: 362px;
     }
-    
+    .review__flag{
+        border-radius: 50%;
+    }
+
 }

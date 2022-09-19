@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
-import MainLogoIcon from '../../img/toolbar/OpenClimate_Logo.png';
+import { NavLink } from 'react-router-dom';
+import MainLogoIcon from '../../img/toolbar/OpenClimate_Beta_logo.svg';
 import NavMenu from './nav-menu/nav-menu';
 import SearchToolbar from './toolbar-search/toolbar-search';
 import ToolbarAutorized from './toolbar-authorized/toolbar-autorized';
@@ -26,7 +27,6 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
 
     const handleCloseSideNav = () => {
         setOpenSideNav((prevNavState)=>!prevNavState)
-        console.log(openSideNav)
     }
 
     return (
@@ -39,12 +39,9 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
                         </button>
                     </div>
                     <div className="toolbar__logo">
-                        <a href="/" className="toolbar__logo-link">
+                        <NavLink exact={true} to="/" className="toolbar__logo-link">
                             <img className="toolbar__logo-pic" src={MainLogoIcon} alt="Open Climate" />
-                        </a>
-                    </div>
-                    <div className='toolbar__account-button'>
-                    {/* <HiUserCircle className='toolbar__icon'/> */}
+                        </NavLink>
                     </div>
 
                     <div className="toolbar__content">
@@ -55,8 +52,8 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
                                     <ToolbarAutorized user={user} doLogout={handleLogout} />
                                 :
                                     <div className="toolbar__login">
-                                        <button 
-                                            className="toolbar__login-btn" 
+                                        <button
+                                            className="toolbar__login-btn"
                                             onClick={showLoginModal}>
                                                 Log In
                                         </button>
@@ -77,7 +74,7 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
                                     <li>
                                         <span>
                                             Explore
-                                        </span> 
+                                        </span>
                                         <VscChevronRight className='toolbar__icon-nav'/>
                                     </li>
                                 </ul>
@@ -87,9 +84,9 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
                 }
             </div>
 
-            
+
         </React.Fragment>
- 
+
     );
 }
 

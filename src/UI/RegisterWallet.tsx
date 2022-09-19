@@ -1,7 +1,7 @@
 import { Chip, Step, StepContent, StepLabel, Stepper } from '@mui/material';
 import React, { FunctionComponent, useRef, useState } from 'react';
 
-import CheckIcon from '@mui/icons-material/Check';
+import CheckIcon from '@mui/icons-material/Done';
 
 import styled from 'styled-components'
 
@@ -42,7 +42,7 @@ const RegisterContainer = styled.div`
 const CredentialText = styled(InfoText)`
   padding: 28px 0 28px;
   width: 650px;
-  
+
 `
 
 const HeaderInfoText = styled(InfoText)`
@@ -150,12 +150,12 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
   const {user, sendRequest, QRCodeURL} = props;
 
   const walletCredentials = useRef();
-  
+
   if (!requestedInvitation) {
     sendRequest('INVITATIONS', 'CREATE_WALLET_INVITATION', {userID: user.id})
     setRequestedInvitation(true)
   }
-  
+
   const nextStep = () => {
     setStep(activeStep + 1);
   }
@@ -193,7 +193,7 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
         description: "After the proof of verified, the business wallet will be registered successfully, and you will be ready to submit verified data."
       },
     ];
-  
+
   return (
       <PageContainer>
           <FormContainer isQRStep>
@@ -208,7 +208,7 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
                         <InfoIcon />
                         <>
                           <InfoText>We recommend using
-                          <InlineClickable href="https://apps.apple.com/us/app/trinsic-wallet/id1475160728">Trinsic</InlineClickable> 
+                          <InlineClickable href="https://apps.apple.com/us/app/trinsic-wallet/id1475160728">Trinsic</InlineClickable>
                           but you can use any digital wallet you currently use.</InfoText>
                         </>
                       </InfoContainer>
@@ -230,8 +230,8 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
                           />
                         </InputBox>
                         <SubmitContainer>
-                        { 
-                          activeStep === 0 ? 
+                        {
+                          activeStep === 0 ?
                             <RegisterSubmit type="submit">Send invitation</RegisterSubmit>
                             :
                             <SentContainer>
@@ -255,16 +255,16 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
                       </RegisterForm>
                     </>
                   }
-                  
-                  
+
+
               </RegisterContainer>
           </FormContainer>
           <ThemeProvider theme={theme}>
           <StepperContainer>
               <HeaderText>Steps to complete verification</HeaderText>
               <HeaderInfoText>Here's what you can expect from this process of verification</HeaderInfoText>
-              <Stepper 
-                activeStep={0} 
+              <Stepper
+                activeStep={0}
                 orientation="vertical"
                 sx={{
                         '& .MuiStepConnector-root .MuiStepConnector-line': {
@@ -273,8 +273,8 @@ const RegisterWalletPage: FunctionComponent<RegisterProps> = (props) => {
                       }}
                 >
                   {steps.map((step) => (
-                    <Step 
-                      key={step.description} 
+                    <Step
+                      key={step.description}
                       active
                       sx={{
                         '& .MuiStepLabel-root .Mui-active': {

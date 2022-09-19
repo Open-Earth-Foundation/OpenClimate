@@ -1,5 +1,7 @@
 export enum FilterTypes {
     National,
     SubNational,
-    Organization
+    City,
+    Organization,
+    EntityType
 }

@@ -25,11 +25,28 @@ interface Props {
 }
 
 const Dropdown = ((props: Props) => {
+    const [optionData, setData] = useState<any>([])
 
+        
         let { register, setValue, label,  errors,
             options, required, searchPlaceholder, title, 
             disabled, withSearch, emptyPlaceholder, selectedValue, 
             onSelect, onDeSelect } = props;
+
+            const fn = async () => {
+                const d = await options
+                if(d){
+                    setData(d);
+                }
+            }
+            
+    
+            useEffect(()=> {
+                fn();
+
+            }, [optionData])
+    
+
 
         const [open, setOpen] = useState(false);
         const [search, setSearch] = useState("");
@@ -40,23 +57,25 @@ const Dropdown = ((props: Props) => {
 
         const searchHandler = (e: any) => {
             setSearch(e.target.value);
-        }
-
-        const selectHandler = (option: DropdownOption) => {
+        } 
+ 
+        const selectHandler = async (option: DropdownOption) => {
+            console.log(option)
+            const op = await option
             
-            if (options && options.includes(option)) {
+            if (op) {
 
-                setSelected(option);
+                setSelected(op);
 
                 setOpen(false);
 
                 if (onSelect)
-                    onSelect(option);
+                    onSelect(op);
 
                 setError(false);
 
                 if(setValue)
-                    setValue(label, option.value, { shouldValidate: true });
+                    setValue(label, op.value, { shouldValidate: true });
             }
         }
 
@@ -81,8 +100,8 @@ const Dropdown = ((props: Props) => {
             setOpen(open);
         }
 
-        if (!!search.trim() && options) {
-            options = options.filter(o => {
+        if (!!search.trim() && optionData) {
+            options = optionData.filter((o:any) => {
                 return o.name.toLowerCase().includes(search.toLowerCase());
             });
         }
@@ -92,7 +111,7 @@ const Dropdown = ((props: Props) => {
                 if (selectedValue == null)
                     setSelected(null);
                 else {
-                    const foundOption = options.find(o => o.value === selectedValue);
+                    const foundOption = optionData.find(o => o.value === selectedValue);
 
                     if (foundOption)
                     {
@@ -110,7 +129,7 @@ const Dropdown = ((props: Props) => {
             else {
                 window.removeEventListener('click', () => setOpen(false))
             }
-        }, [options, selectedValue]);
+        }, [optionData, selectedValue]);
 
         return (
             <div className="dropdown" onClick={(e) => e.stopPropagation()}>

@@ -111,10 +111,14 @@ const AcceptGHGProofModal: FunctionComponent<Props> = (props) => {
 
         const userCompanyId = user.company.organization_id;
         const proof = await proofsService.readProofCredDef(user.id, scope1.cred_def_id.raw)
-        if (proof) {
-            toast.error("This credentials were already accepted");
-            return;
-        }
+        
+        // Disable check for incoming Scope1 proof already exists
+
+        // if (proof) {
+        //     toast.error("This credentials were already accepted");
+        //     return;
+        // }
+        
         await proofsService.saveProofCredDef(user.id, scope1.cred_def_id.raw)
 
         await climateActionService.saveClimateAction(userCompanyId, climateAction).then(ca => {

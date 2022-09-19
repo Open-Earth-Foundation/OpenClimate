@@ -44,9 +44,6 @@ const ExplorePage: React.FunctionComponent = () => {
     }
 
     
-
-    
-
     // countries options
     
 
@@ -115,7 +112,7 @@ const ExplorePage: React.FunctionComponent = () => {
     // Fetch all countries
 
     const getAllcountries = async () => {
-        const countries = await  fetch('http://localhost/api/country', {
+        const countries = await  fetch('/api/country', {
             method: 'GET',
         });
         const jsonData = await countries.json()
@@ -213,8 +210,6 @@ const ExplorePage: React.FunctionComponent = () => {
     return(
         // Explore Page Main Wrapper
         <div className='explore__wrapper'>
-            
-            
                    <>
                     <div className='explore__header'>
                         <div className='explore__icon'>

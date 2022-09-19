@@ -11,16 +11,17 @@ function saveSite(orgId: string, site: ISite)
     }).then(CommonHelper.HandleResponse);
 }
 
-function allSitesByOrg(orgId: string)
+function allSitesByOrg(orgId: number)
 {
     return fetch(`${ServerUrls.api}/${orgId}/site/all`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => {
-    console.log(sites);
     return sites;
     });
+
 }
+allSitesByOrg(1)
 
 function allSitesByCountry(countryName: string)
 {
@@ -43,8 +44,11 @@ function allSites()
     return fetch(`${ServerUrls.api}/site/all`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
-    }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => sites);
+    }).then(CommonHelper.HandleResponse).then((sites: Array<ISite>) => {
+        return sites
+    });
 }
+allSites()
 
 export const siteService = {
     saveSite,

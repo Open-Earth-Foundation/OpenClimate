@@ -25,7 +25,7 @@ const NestedAccountsWidget: FunctionComponent<Props> = (props) => {
                     {detailsLink ?
                     <NavLink to={detailsLink} className="widget__link">Details</NavLink>
                     :
-                    <a href="#" className="widget__link" onClick={detailsClick}>Details</a>         
+                    <a href="#" className="widget__link" onClick={detailsClick}>See details</a>         
                     }
                 </div>
 

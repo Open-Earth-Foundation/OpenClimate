@@ -16,41 +16,67 @@ import { organizationService } from "../services/organization.service";
 import IOrganization from "../../api/models/DTO/Organization/IOrganization";
 import ISite from "../../api/models/DTO/Site/ISite";
 import { siteService } from "../services/site.service";
+import { climateActionService } from "../services/climate-action";
+import { ClimateActionHelper } from "./climate-action.helper";
+import { ClimateActionScopes } from "../../api/models/DTO/ClimateAction/climate-action-scopes";
+import { ClimateActionTypes } from "../../api/models/DTO/ClimateAction/climate-action-types";
 
-async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
+async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
 {
-    const emissionResponse = await climateWatchService.fetchEmissionsCountry(countryCode);
+    let emissionResponse = await fetch(`/api/country/2019/${countryId}`, {
+        method: 'GET'
+    });
+    let data = await emissionResponse.json();
+    let filteredEmissions = data.data[0].Emissions
+    filteredEmissions = filteredEmissions.filter((f:any)=>f.DataProvider.data_provider_name === "PRIMAP");
 
-    if(emissionResponse.data.length) 
+    if(filteredEmissions.length)
     {
-        const skins = Math.abs(emissionResponse.data[0].emissions[0].value);
-        const grossEmission = Math.abs(emissionResponse.data[1].emissions[0].value);
-        const netEmission = grossEmission - skins;
+        const sinks = filteredEmissions[0].land_sinks;
+        const grossEmission = filteredEmissions[0]?.total_ghg_co2e;
+        const netEmission = grossEmission - sinks;
+        const date_updated = filteredEmissions[0].DataProvider.Methodology.date_update
+        const year = filteredEmissions[0].year
+        const methodologies = filteredEmissions[0].DataProvider.Methodology.Tags
+
 
         const emissionData: IAggregatedEmission = {
             facility_ghg_total_gross_co2e: grossEmission,
-            facility_ghg_total_sinks_co2e: skins,
-            facility_ghg_total_net_co2e: netEmission
+            facility_ghg_total_sinks_co2e: sinks,
+            facility_ghg_total_net_co2e: netEmission,
+            facility_ghg_date_updated: date_updated,
+            facility_ghg_year: year,
+            facility_ghg_methodologies: methodologies,
+            providerToEmissions: createProviderEmissionsData(data.data[0].Emissions)
         }
 
+        // Tracking selecting entity(country id)
+        entity.id = data.data[0].country_id;
         entity.aggregatedEmission = emissionData;
     }
 }
 
-async function LoadEmissionsSubnational(countryCode: string, entity: ITrackedEntity)
+async function LoadEmissionsSubnational(subnational_Id: number, entity: ITrackedEntity)
 {
-    const emissionResponse = await emissionService.fetchEmissionsSubnational(countryCode);
+    const emissionResponse = await emissionService.fetchEmissionsSubnational(subnational_Id);
 
-    if(emissionResponse.length) 
+    if(emissionResponse.data.length)
     {
-        const grossEmission = Math.abs(emissionResponse[0].response_answer / 1000000);
-        const netEmission = Math.abs(emissionResponse[1].response_answer / 1000000)
-        const skins = grossEmission - netEmission;
+        const grossEmission = emissionResponse.data[0].Emissions[0].total_ghg_co2e
+        const year = emissionResponse.data[0].Emissions[0].year
+        const netEmission = 0
+        const sinks = grossEmission - emissionResponse.data[0].Emissions[0].land_sinks;
+        const date_updated = emissionResponse.data[0].Emissions[0].DataProvider.Methodology.date_update
+        const methodologies = emissionResponse.data[0].Emissions[0].DataProvider.Methodology.Tags
+
 
         const emissionData: IAggregatedEmission = {
             facility_ghg_total_gross_co2e: grossEmission,
-            facility_ghg_total_sinks_co2e: skins,
-            facility_ghg_total_net_co2e: netEmission
+            facility_ghg_total_sinks_co2e: sinks,
+            facility_ghg_total_net_co2e: netEmission,
+            facility_ghg_date_updated: date_updated,
+            facility_ghg_year: year,
+            facility_ghg_methodologies: methodologies,
         }
 
         if(!isNaN(grossEmission) && !isNaN(netEmission))
@@ -58,22 +84,47 @@ async function LoadEmissionsSubnational(countryCode: string, entity: ITrackedEnt
     }
 }
 
-async function LoadPledgesSubnational(organization: string, entity: ITrackedEntity) 
+async function LoadEmissionsCity(city_id: number, entity: ITrackedEntity)
 {
-    entity.pledges = [];
+    const emissionResponse = await emissionService.fetchEmissionsCity(city_id);
+    if(emissionResponse.data.length)
+    {
+        const grossEmission = emissionResponse.data[0].Emissions[0].total_ghg_co2e
+        const year = emissionResponse.data[0].Emissions[0].year
+        const netEmission = 0
+        const sinks = grossEmission - emissionResponse.data[0].Emissions[0].land_sinks;
+        const date_updated = emissionResponse.data[0].Emissions[0].DataProvider.Methodology.date_update
+        const methodologies = emissionResponse.data[0].Emissions[0].DataProvider.Methodology.Tags
+        const emissionData: IAggregatedEmission = {
+            facility_ghg_total_gross_co2e: grossEmission,
+            facility_ghg_total_sinks_co2e: sinks,
+            facility_ghg_total_net_co2e: netEmission,
+            facility_ghg_date_updated: date_updated,
+            facility_ghg_year: year,
+            facility_ghg_methodologies: methodologies,
+        }
+
+        if(!isNaN(grossEmission) && !isNaN(netEmission))
+            entity.aggregatedEmission = emissionData;
+    }
+}
+
+async function LoadPledgesSubnational(organization: string)
+{
+    let pledges = [];
     const reductionStr = "Percentage reduction target";
-    
+
     const pledgesResponse = await pledgeService.fetchPledgesSubnational(organization);
     if(pledgesResponse && pledgesResponse.length)
     {
         const rowNumbers = [1,3];
 
         for(let i = 0; i < rowNumbers.length; i++ )
-        {        
+        {
             const baseYear = pledgesResponse.find((d:any) => (d["column_name"] === "Base year" && d["row_number"]==rowNumbers[i]))?.response_answer;
             const targetYear = pledgesResponse.find((d:any) => d["column_name"] === "Target year" && d["row_number"]==rowNumbers[i])?.response_answer;
             const reduction = pledgesResponse.find((d:any) => d["column_name"] === reductionStr && d["row_number"]==rowNumbers[i])?.response_answer;
-            
+
             const pledge: IPledge = {
                 credential_category:"Pledges",
                 credential_type:"",
@@ -82,18 +133,19 @@ async function LoadPledgesSubnational(organization: string, entity: ITrackedEnti
                 pledge_emission_reduction: reduction
             }
 
-            entity.pledges.push(pledge);
+            pledges.push(pledge);
         }
 
     }
+    return pledges;
 }
 
-async function LoadPledgesCountry(country: string, entity: ITrackedEntity) 
+async function LoadPledgesCountry(country: string)
 {
-    entity.pledges = [];
-    
+    let pledges: Array<IPledge> = [];
+
     const pledgesResponse = await climateWatchService.fetchPledgesCountry(country);
-        
+
     if(pledgesResponse && pledgesResponse.data && pledgesResponse.data.length)
     {
         const baseYear = pledgesResponse.data.find((d:any) => d["indicator_id"] === "pledge_base_year")?.value;
@@ -110,18 +162,20 @@ async function LoadPledgesCountry(country: string, entity: ITrackedEntity)
             pledge_emission_reduction: isNaN(reductionNumber) ? 0 : reductionNumber
         }
 
-        entity.pledges = [pledge];
+        pledges = [pledge];
     }
+
+    return pledges;
 }
 
-async function LoadTreatiesCountry(country: string, entity: ITrackedEntity)
+async function LoadTreatiesCountry(country: string)
 {
     const treatiesResponse = await climateWatchService.fetchTreatiesCountry(country);
+
 
     if(treatiesResponse && treatiesResponse.data && treatiesResponse.data.length)
     {
         const submissionDateStr = "Latest submission date";
-        //todo
         const submissionDate = treatiesResponse.data.find((d:any) => d["indicator_name"] === submissionDateStr)?.value;
         const signed = !!treatiesResponse.data.find((d:any) => d["indicator_name"] === "Signed")?.value;
         const ratified = !!treatiesResponse.data.find((d:any) => d["indicator_name"] === "Ratified")?.value;
@@ -131,16 +185,20 @@ async function LoadTreatiesCountry(country: string, entity: ITrackedEntity)
             signed: signed,
             ratified: ratified,
             submission_date: new Date(submissionDate)
-        }
+        };
 
-        entity.treaties = treaties;
+        return treaties;
     }
+
+    return {};
 }
 
 async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) {
 
     let trackedEntity: ITrackedEntity = {
-        title: option.name, 
+        id: option.id,
+        title: option.name,
+        flagCode: option.flag,
         type: type
     }
 
@@ -151,21 +209,24 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
     if(previousSelectedEntity)
     {
         trackedEntity.countryName = previousSelectedEntity.countryName;
-        trackedEntity.countryCode3 = previousSelectedEntity.countryCode3;
+        trackedEntity.flagCode = previousSelectedEntity.flagCode
         trackedEntity.countryCode = previousSelectedEntity.countryCode;
-    }
-    else
+        trackedEntity.id = previousSelectedEntity.id
+    }   else
     {
         let countryParsed: Array<any> = JSON.parse(countryCodesJson);
-        const foundCountry = countryParsed.find(c => c["alpha-3"] === option.value);
-        const countryCode =  foundCountry ? foundCountry["alpha-2"] : option.value ;
+
+        const foundCountry = countryParsed.find(c => c.name === option.name);
+        const countryCode =  foundCountry ? foundCountry["alpha-3"] : option.value;
         trackedEntity.countryName = option.name;
-        trackedEntity.countryCode = countryCode.toLowerCase();
-        trackedEntity.countryCode3 = option.value;
+        trackedEntity.flagCode = option.flag;
+        trackedEntity.countryCode = countryCode
+        trackedEntity.id = option.value;
     }
 
-    
 
+
+    let sites;
     switch (type)
     {
         case FilterTypes.National:
@@ -179,19 +240,40 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
         case FilterTypes.SubNational:
             trackedEntity.jurisdictionName = option.name;
             trackedEntity.jurisdictionCode = option.value;
-
-            await ReviewHelper.LoadEmissionsSubnational(option.name, trackedEntity);
+            trackedEntity.flagCode = option.flag
+            trackedEntity.cities = await CountryCodesHelper.GetCitiesBySubnationalId(option.value)
+            await ReviewHelper.LoadEmissionsSubnational(option.value, trackedEntity);
             await ReviewHelper.LoadPledgesSubnational(option.name, trackedEntity);
 
             if(previousSelectedEntity)
             {
-                if(previousSelectedEntity.countryCode3)
-                    await ReviewHelper.LoadTreatiesCountry(previousSelectedEntity.countryCode3, trackedEntity);
+                if(previousSelectedEntity.countryCode)
+                    await ReviewHelper.LoadTreatiesCountry(previousSelectedEntity.countryCode, trackedEntity);
                 if(previousSelectedEntity.countryName) {
                     trackedEntity.sites = await siteService.allSitesByJurisdtiction(previousSelectedEntity.countryName, option.name)
+                    sites = trackedEntity.sites;
                     trackedEntity.transfers = await transferService.allTransfersByJurisdiction(previousSelectedEntity.countryName, option.name);
                 }
             }
+            break;
+        case FilterTypes.City:
+            trackedEntity.jurisdictionName = option.name;
+            trackedEntity.jurisdictionCode = option.value;
+            trackedEntity.flagCode = option.flag
+
+            await ReviewHelper.LoadEmissionsCity(option.value, trackedEntity);
+            await ReviewHelper.LoadPledgesSubnational(option.name, trackedEntity);
+
+            if(previousSelectedEntity)
+            {
+                if(previousSelectedEntity.countryCode)
+                    await ReviewHelper.LoadTreatiesCountry(previousSelectedEntity.countryCode, trackedEntity);
+                if(previousSelectedEntity.countryName) {
+                    trackedEntity.sites = previousSelectedEntity.sites;
+                    trackedEntity.transfers = await transferService.allTransfersByJurisdiction(previousSelectedEntity.countryName, option.name);
+                }
+            }
+
             break;
         case FilterTypes.Organization:
 
@@ -201,6 +283,7 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
             //for nation state
             //const org = await organizationService.getById(option.value);
             const orgSites = await siteService.allSitesByOrg(option.value);
+
             //const orgJurisdiction = `${org.organization_country},${org.organization_jurisdiction}`;
             const sitesByLocation = orgSites.filter(s => s.facility_country === country && s.facility_jurisdiction === jurisdiction);
             trackedEntity.sites = sitesByLocation;
@@ -209,18 +292,36 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
 
             const aggrEmissions = await aggregatedEmissionService.allAggregatedEmissionsByOrg(option.value);
             const aggrEmissionsByLocation = aggrEmissions.filter(ae => siteNames.includes(ae.facility_name));
-            
+
             trackedEntity.aggregatedEmission = AggregatedEmissionHelper.GetSummaryAggregatedEmissions(aggrEmissionsByLocation);
-            
+
             const pledges = await pledgeService.allPledges(option.value);
             trackedEntity.pledges = pledges.slice(Math.max(pledges.length - 3, 0)).reverse();
-            
+            let climateActions = await climateActionService.allClimateAction(option.value)
+
+            const scope1EmsActions = ClimateActionHelper.GetClimateActions(climateActions, ClimateActionScopes.Scope1 , ClimateActionTypes.Emissions);
+            const scope1EmsTotal = ClimateActionHelper.GetSumC02(scope1EmsActions, 'facility_emissions_co2e');
+
+            const scope2EmsActions = ClimateActionHelper.GetClimateActions(climateActions, ClimateActionScopes.Scope2 , ClimateActionTypes.Emissions);
+            const scope2EmsTotal = ClimateActionHelper.GetSumC02(scope2EmsActions, 'facility_emissions_co2e');
+
+            const scope1MtsActions = ClimateActionHelper.GetClimateActions(climateActions, ClimateActionScopes.Scope1 , ClimateActionTypes.Mitigations);
+            const scope1MtsTotal = ClimateActionHelper.GetSumC02(scope1MtsActions, 'facility_mitigations_co2e');
+
+            const scope2MtsActions = ClimateActionHelper.GetClimateActions(climateActions, ClimateActionScopes.Scope2 , ClimateActionTypes.Mitigations);
+            const scope2MtsTotal = ClimateActionHelper.GetSumC02(scope2MtsActions, 'facility_mitigations_co2e');
+
+            const totalScopeEmissions = scope1EmsTotal + scope2EmsTotal;
+            const totalScopeMitigations = scope1MtsTotal + scope2MtsTotal;
+
+            trackedEntity.total_scope_emissions = totalScopeEmissions;
+            trackedEntity.total_scope_mitigations = totalScopeMitigations;
             const orgTransfers = await transferService.allTransfers(option.value);
-            trackedEntity.transfers = orgTransfers.filter(t => 
-                (t.transfer_receiver_country === country && t.transfer_receiver_jurisdiction === jurisdiction) || 
+            trackedEntity.transfers = orgTransfers.filter(t =>
+                (t.transfer_receiver_country === country && t.transfer_receiver_jurisdiction === jurisdiction) ||
                 (t.facility_country === country && t.facility_jurisdiction === jurisdiction));
 
-            if(previousSelectedEntity) 
+            if(previousSelectedEntity)
             {
                 trackedEntity.jurisdictionName = previousSelectedEntity.jurisdictionName;
                 trackedEntity.jurisdictionCode = previousSelectedEntity.jurisdictionCode;
@@ -235,44 +336,129 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
 
 const GetOrganizations = async (selectedEntity: ITrackedEntity) => {
 
-    const dropdownItems:Array<DropdownOption> = [];
+    let dropdownItems:Array<DropdownOption> = [];
 
     selectedEntity.sites?.filter(site => site.organization_name && site.organization_id).forEach((site: ISite) => {
-            const item = {
-                name: site.organization_name ?? "",
-                value: site.organization_id ?? ""
-            }
+        const item = {
+            name: site.organization_name ?? "",
+            value: site.organization_id ?? ""
+        }
 
-            const added = dropdownItems.some(i => i.value === item.value);
-            if(!added)    
-                dropdownItems.push(item);
+        const added = dropdownItems.some(i => i.value === item.value);
+        if(!added)
+            dropdownItems.push(item);
     });
 
     return dropdownItems;
 }
 
-const GetOptions = async (filterType: FilterTypes, countryCode: string, selectedEntity?: ITrackedEntity) => {
+const getCities = (selectedEntity: ITrackedEntity) => {
+    const cityOptions = selectedEntity?.cities?.map((cc:any) => {
+        return {
+            name: cc.name,
+            value: cc.value
+        }
+    });
+    return cityOptions;
+}
+const GetOptions = async (filterType: FilterTypes, entityId: number, selectedEntity?: ITrackedEntity) => {
     let options: Array<DropdownOption> = [];
 
     switch(filterType) {
         case FilterTypes.SubNational:
-            options = await CountryCodesHelper.GetSubnationalsByCountryCode(countryCode);
+            options = await CountryCodesHelper.GetSubnationalsByCountryCode(entityId);
+            break;
+        case FilterTypes.EntityType:
+            options = []
+            break;
+        case FilterTypes.City:
+            if(selectedEntity)
+                options = await getCities(selectedEntity);
             break;
         case FilterTypes.Organization:
             if(selectedEntity)
                 options = await GetOrganizations(selectedEntity);
             break;
     }
-
     return options;
+}
+
+const createProviderEmissionsData = (data: Array<any>) => {
+    const providerToEmissions: Record<string, EmissionInfo> = {};
+    data.forEach(emission => {
+        const dataProviderName = emission.DataProvider?.data_provider_name;
+
+        if (dataProviderName && !providerToEmissions[dataProviderName]) {
+            const methodologyTags = emission.DataProvider.Methodology.Tags.map(tag => tag.tag_name);
+            const emissionData: EmissionInfo = {
+                actorType: emission.actor_type,
+                totalGhg: emission.total_ghg_co2e,
+                year: emission.year,
+                landSinks: emission.land_sinks,
+                otherGases: emission.other_gases,
+                methodologyType: emission.DataProvider?.Methodology?.methodology_type ?? '',
+                methodologyTags: methodologyTags
+            }
+            providerToEmissions[dataProviderName] = emissionData;
+        }
+        else if (providerToEmissions[dataProviderName].year === emission.year) {
+            if (!providerToEmissions[dataProviderName].totalGhg && emission.total_ghg_co2e) {
+                providerToEmissions[dataProviderName].totalGhg = emission.total_ghg_co2e;
+            }
+            if (!providerToEmissions[dataProviderName].landSinks && emission.land_sinks) {
+                providerToEmissions[dataProviderName].landSinks = emission.land_sinks;
+            }
+        }
+    })
+
+    return providerToEmissions;
+}
+
+// This function will fetch emissions data based on a selected data source
+export const getChangedEmissionData = async (dataProviderId:number, entityType:FilterTypes | null | undefined, entity: ITrackedEntity | null | undefined) => {
+
+    switch(entityType){
+        case 0:
+            let emissionResponse = await fetch(`/api/country/2019/${entity.id}`, {
+                method: 'GET'
+            });
+
+            let data = await emissionResponse.json()
+            let filteredEmissions = data.data[0].Emissions
+            filteredEmissions = filteredEmissions.filter((f:any)=>f.DataProvider.data_provider_id === dataProviderId && f.total_ghg_co2e !== null);
+
+            if(filteredEmissions.length)
+            {
+                const sinks = filteredEmissions[0].land_sinks;
+                const grossEmission = filteredEmissions[0]?.total_ghg_co2e;
+                const netEmission = grossEmission - sinks;
+                const date_updated = filteredEmissions[0].DataProvider.Methodology.date_update
+                const year = filteredEmissions[0].year
+                const methodologies = filteredEmissions[0].DataProvider.Methodology.Tags
+
+                const emissionData: IAggregatedEmission = {
+                    facility_ghg_total_gross_co2e: grossEmission,
+                    facility_ghg_total_sinks_co2e: sinks,
+                    facility_ghg_total_net_co2e: netEmission,
+                    facility_ghg_date_updated: date_updated,
+                    facility_ghg_year: year,
+                    facility_ghg_methodologies: methodologies,
+                }
+                return emissionData;
+            }
+        break;
+    }
 }
 
 export const ReviewHelper = {
     LoadEmissionsCountry,
     LoadEmissionsSubnational,
+    LoadEmissionsCity,
     LoadPledgesSubnational,
     LoadPledgesCountry,
     LoadTreatiesCountry,
+    GetOrganizations,
     GetTrackedEntity,
-    GetOptions
+    GetOptions,
+    createProviderEmissionsData
 };

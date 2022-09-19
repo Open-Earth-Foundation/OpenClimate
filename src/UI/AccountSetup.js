@@ -6,7 +6,8 @@ import styled from 'styled-components'
 import QRCode from 'qrcode.react'
 import Stepper from '@mui/material/Stepper'
 import Step from '@mui/material/Step'
-import StepLabel from '@mui/material/StepLabel'
+import StepLabel from '@mui/material/StepLabel';
+import Cookies from 'universal-cookie'
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
@@ -20,7 +21,7 @@ import { handleImageSrc } from './util'
 import { userService } from '../shared/services/user.service'
 import { IUser } from '../api/models/User/IUser'
 
-import { 
+import {
   HeaderText,
   CopyText,
   InfoText,
@@ -40,7 +41,13 @@ import {
   Label,
   SubmitBtn,
   InputField,
+  HintBox,
+  HintBoxContent,
+  HintBoxHeading,
+  FormBox,
+  FormBoxHeading
 } from './CommonStylesForms'
+import { red } from '@mui/material/colors'
 
 
 
@@ -124,7 +131,13 @@ const steps = [
 
 function AccountSetup(props) {
   const [accountPasswordSet, setAccountPasswordSet] = useState(false)
-  const token = window.location.hash.substring(1)
+  const token = window.location.hash.substring(1);
+  const [inputValue, setInputValue] = useState('');
+  const [inputValue2, setInputValue2] = useState('');
+  const [buttonState, setButtonState] = useState(true);
+  const [userData, setUserData] = useState()
+  
+  const cookies = new Cookies()
 
   const [id, setId] = useState({})
 
@@ -182,8 +195,7 @@ function AccountSetup(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const form = new FormData(accSetupForm.current)
-
+    const form = new FormData(accSetupForm.current);
     // Check the password match
     if (pass1.current.value != pass2.current.value) {
       console.log("Passwords don't match")
@@ -200,30 +212,88 @@ function AccountSetup(props) {
         },
         url: `${process.env.REACT_APP_CONTROLLER}/api/user/update`,
       }).then((res) => {
-        console.log(res)
-        // Envision user creation
-        const newUser: IUser = {
-          firstName: res.data.user.first_name,
-          lastName: res.data.user.last_name,
-          email: res.data.user.email,
-          password: res.data.user.password,
-          organizationId: res.data.user.organization_id,
-        }
-        userService.register(newUser)
-
-        if (res.data.status) {
-          setNotification(res.data.status, 'notice')
-          setAccountPasswordSet(true)
-        } else if (res.data.error) {
+        if (res.data.error) {
           setNotification(res.data.error, 'error')
         } else {
-          setNotification(
-            "User couldn't be updated. Please try again.",
-            'error'
-          )
+          // TODO: re-add call to userService.register() for Envision user creation?
+          if (res.data.status) {
+            setNotification(res.data.status, 'notice')
+            setAccountPasswordSet(true)
+            cookies.set('sessionId', res.data.session, { path: '/', httpOnly: res.data.session.cookie.httpOnly, originalMaxAge: res.data.session.cookie.originalMaxAge })
+            cookies.set('user', res.data);
+            const cookieData = cookies.get('user')
+            setUserData(cookieData)
+          } else if (res.data.error) {
+            setNotification(res.data.error, 'error')  
+          } else {
+            setNotification(
+              "User couldn't be updated. Please try again.",
+              'error'
+            )
+          }
         }
       })
     }
+  }
+
+// Update user state after credentials are issued 
+useEffect(()=>{
+  if(props.accountCredentialIssued && accountPasswordSet){
+    props.setUpUser(userData.id, userData.email, userData.roles)
+    props.doLoginSuccess(userData);
+    props.setLoggedIn(true)
+  }
+}, [userData, props.accountCredentialIssued])
+  
+  // Form validation
+  // Input check
+  
+  const handleOnChange = (e) =>{
+    e.preventDefault();
+    const value = e.target.value;
+    setInputValue(value)
+  }
+
+  const handleOnChangeConPass = (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+    setInputValue2(value);
+    if(inputValue2.length >= 0 && value !== inputValue){
+      setButtonState(true)
+    }else{
+      setButtonState(false)
+    }
+  }
+  let passM=false
+  if(inputValue !== inputValue2 && inputValue2.length > 0){
+    passM=false;
+  } else{
+    passM=true;
+  }
+
+
+  let color = "red", color1 = "red", color2 = "red", color3 = "red", color4 = "red";
+   // check if input value contains a number
+  if(inputValue.match(/\d/)){
+    color="green";
+  }
+
+  // check if input value contains lowercase
+  if(inputValue.match(/[a-z]/)){
+    color1="green";    
+  } 
+
+  // check if input value contains uppercase
+  if(inputValue.match(/[A-Z]/)){
+    color2="green";
+  }
+
+  // check if input value contains a charactor
+  if(inputValue.match(/[\`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/)){
+      color3="green";    
+  }
+  if(inputValue.length >= "8"){
+    color4="green"
   }
 
   return (
@@ -253,7 +323,7 @@ function AccountSetup(props) {
                     <InfoIcon />
                     <>
                       <InfoText>We recommend using
-                      <InlineClickable href="https://apps.apple.com/us/app/trinsic-wallet/id1475160728">Trinsic</InlineClickable> 
+                      <InlineClickable href="https://apps.apple.com/us/app/trinsic-wallet/id1475160728">Trinsic</InlineClickable>
                       but you can use any digital wallet you currently use.</InfoText>
                     </>
                   </SubContainer>
@@ -263,32 +333,58 @@ function AccountSetup(props) {
             )
           )
         ) : (
-          <>
-            <p>Please set an account password below:</p>
+          <FormBox>
+            <FormBoxHeading>Enter your password</FormBoxHeading>
             <Form id="form" onSubmit={handleSubmit} ref={accSetupForm}>
               <InputBox>
                 <Label htmlFor="password">Password</Label>
                 <InputField
                   type="password"
                   name="password"
+                  placeholder="Enter your password"
+                  onChange={handleOnChange}
                   id="password"
                   ref={pass1}
                   required
                 />
+                <HintBox>
+                  <HintBoxContent>
+                    <div>
+                      <span style={{"color":color}}>The password must contain at least 1 number </span>
+                      <span style={{"color":color1}}>1 lowercase letter </span>
+                      <span style={{"color":color2}}>1 uppercase letter </span>
+                      <span style={{"color":color3}}>1 special charactor </span>
+                      <span style={{"color":color4}}>and 8 or more charactors</span>
+                    </div>
+                  </HintBoxContent>
+                </HintBox>
               </InputBox>
               <InputBox>
                 <Label htmlFor="confirmedPass">Confirm Password</Label>
                 <InputField
                   type="password"
                   name="confirmedPass"
+                  placeholder="Confirm your password"
+                  onChange={handleOnChangeConPass}
                   id="confirmedPass"
                   ref={pass2}
                   required
                 />
+              {
+                passM ? '': 
+                <HintBox>
+                  <HintBoxContent>
+                    <div>
+                      <span style={{"color":"red"}}>Passwords are not matching. </span>
+                    </div>
+                  </HintBoxContent>
+                </HintBox>
+              }
               </InputBox>
-              <SubmitBtn type="submit">Submit</SubmitBtn>
+              
+              <SubmitBtn type="submit" disabled={buttonState} style={{"background": buttonState ? "#a9a9a9": '#007568'}}>Submit</SubmitBtn>
             </Form>
-          </>
+          </FormBox>
         )
       ) : (
         <p>There was a problem with your invitation. Please request a new one.</p>
@@ -298,8 +394,8 @@ function AccountSetup(props) {
       <StepperContainer>
         <HeaderText>Steps to complete verification</HeaderText>
         <HeaderInfoText>Here's what you can expect from this process of verification</HeaderInfoText>
-        <Stepper 
-          activeStep={0} 
+        <Stepper
+          activeStep={0}
           orientation="vertical"
           sx={{
                   '& .MuiStepConnector-root .MuiStepConnector-line': {
@@ -308,8 +404,8 @@ function AccountSetup(props) {
                 }}
           >
             {steps.map((step) => (
-              <Step 
-                key={step.label} 
+              <Step
+                key={step.label}
                 active
                 sx={{
                   '& .MuiStepLabel-root .Mui-active': {

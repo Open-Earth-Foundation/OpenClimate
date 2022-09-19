@@ -1,9 +1,16 @@
-async function fetchEmissionsSubnational(subnational: string) {
-    let url = `https://data.cdp.net/resource/d4kx-9jfn.json?question_number=3.6&organization=${subnational}&column_name=Emissions of latest inventory (metric tonnes CO2e)`;
+async function fetchEmissionsSubnational(subnational_id: number) {
+    let url = `/api/subnationals/2018/${subnational_id}`;
+    var response = await fetch(url);
+    return await response.json();
+}
+
+async function fetchEmissionsCity(city: number) {
+    let url = `/api/city/2021/${city}`;
     var response = await fetch(url);
     return await response.json();
 }
 
 export const emissionService = {
-    fetchEmissionsSubnational
+    fetchEmissionsSubnational,
+    fetchEmissionsCity
 };

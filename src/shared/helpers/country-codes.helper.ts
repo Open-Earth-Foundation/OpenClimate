@@ -2,59 +2,114 @@ import countryCodesJson from "../../api/data/review/data/country-codes";
 import ICountry from "../../api/models/review/country";
 import { regions }  from "../../api/data/review/data/regions"
 
-const GetCountryCodes = () => {
-    let countryParsed = <any[]>JSON.parse(countryCodesJson);
-    const countries:ICountry[] = countryParsed.map(c => {
+const GetCountryCodes = async () => {
+    let countryParsed =  await fetch('/api/country/2019', {
+        method: 'GET',
+    });
+    const jsonData = await countryParsed.json()
+    const countries:ICountry[] = jsonData.data.map((c:any) => {
         return {
-            name: c.name,
-            codeAlpha2: c["alpha-2"],
-            codeAlpha3: c["alpha-3"]
+            countryId: c.country_id,
+            name: c.country_name,
+            codeAlpha2: c.iso,
+            codeAlpha3: c.flag_icon,
+            sn: c.Subnationals
         }
     });
 
     return countries;
 }
 
-const GetContryOptions = () => {
-    const countryCodes = GetCountryCodes();
+const GetCountryOptions = async () => {
+    const countryCodes = await GetCountryCodes();
+    
+    const countryCodeOptions = countryCodes.map(cc => {
+        return {
+            countryId: cc.countryId,
+            name: cc.name,
+            value: cc.countryId,
+            flag:cc.codeAlpha3,
+            sn: cc.sn
+        }
+    });
+    
 
+    return countryCodeOptions;
+}
+
+const GetCountryOptionsForSite = async () => {
+    const countryCodes = await GetCountryCodes();
     const countryCodeOptions = countryCodes.map(cc => {
         return {
             name: cc.name,
-            value: cc.codeAlpha3
+            value: cc.codeAlpha2,
+
         }
     });
 
     return countryCodeOptions;
 }
 
-const GetSubnationalsByCountryCode = (countryCode: string) => {
+const GetSubnationalsByCountryCode = async (countryId: number) => {
 
-    const filteredSubnationals =  regions.filter(sn => sn.country_code === countryCode?.toUpperCase());
+    // const filteredSubnationals =  regions.filter(sn => sn.country_code === countryCode?.toUpperCase());
 
-    const options = filteredSubnationals.map(sn => {
+    const res = await GetCountryOptions();
+
+    const options = res.map(sn => {
+        return sn?.sn.filter((s:any) => s.countries_to_subnationals.country_id == countryId )
+    });
+   
+    const data = options.filter(e=>e.length)
+  
+
+    const subnationals = data[0]?.map((sn:any)=>{
         return {
-            name: sn.name,
-            value: `${sn.country_code}-${sn.state_code}`
+            name: sn.subnational_name,
+            value: sn.subnational_id,
+            countryId: sn.countries_to_subnationals,
+            cities: sn.Cities
         }
     });
-
-    return options;
+   
+    return subnationals;
 }
+
+const GetCitiesBySubnationalId = async (entity_id:number) => {
+    const res = await GetCountryCodes();
+    const options = res.map(sn => {
+        return sn?.sn.filter((s:any) => s.countries_to_subnationals.subnational_id == entity_id )
+    });
+   
+    const data = options.filter(e=>e.length)
+    const cities = data.map(sn => {
+        return sn[0]?.Cities.filter((s:any) => s.subnationals_to_cities.subnational_id == entity_id )
+    });
+
+    const cityOptions = cities[0].map((cc:any) => {
+        return {
+            name: cc.city_name,
+            value: cc.city_id
+        }
+    });
+    
+    return cityOptions;
+}
+
 
 const GetCountryAlpha2 = (alpha3: string) => {
     let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
-    return  countryParsed.find(c => c["alpha-3"] === alpha3)['alpha-2'];
+    return countryParsed ? countryParsed.find(c => c["alpha-3"] === alpha3)['alpha-2'] : null;
 }
 
 const GetCountryAlpha3 = (alpha2: string) => {
     let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
-    return  countryParsed.find(c => c["alpha-2"] === alpha2)['alpha-3'];
+    return countryParsed ? countryParsed.find(c => c["alpha-2"] === alpha2)['alpha-3'] : null;
 }
 
 const GetCountryNameByAlpha3 = (alpha2: string) => {
     let countryParsed: Array<any> = <any[]>JSON.parse(countryCodesJson);
-    return  countryParsed.find(c => c["alpha-3"] === alpha2)['name'];
+    return countryParsed ? countryParsed.find(c => c["alpha-3"] === alpha2)['name'] : null;
 }
 
 const GetRegionNameByCode = (jurisdictionCode: string) => {
@@ -69,8 +124,10 @@ const GetRegionNameByCode = (jurisdictionCode: string) => {
 export const CountryCodesHelper = {
     GetRegionNameByCode,
     GetCountryCodes,
-    GetContryOptions,
+    GetCountryOptions,
+    GetCountryOptionsForSite,
     GetSubnationalsByCountryCode,
+    GetCitiesBySubnationalId,
     GetCountryNameByAlpha3,
     GetCountryAlpha2,
     GetCountryAlpha3

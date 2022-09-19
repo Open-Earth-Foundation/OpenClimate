@@ -7,12 +7,13 @@ import { FilterTypes } from "../dashboard/filterTypes";
 import RetiredUnits from "./retired-units";
 
 export default interface ITrackedEntity {
-    //id: string,
+    id: number,
     type?: FilterTypes,
     title: string,
     countryName?: string,
+    flagCode?: string,
     countryCode?: string,
-    countryCode3?:string,
+    countryId?: string,
     jurisdictionName?: string,
     jurisdictionCode?: string,
     aggregatedEmission?: IAggregatedEmission,
@@ -21,5 +22,8 @@ export default interface ITrackedEntity {
     transfers?: Array<ITransfer>
     agreement?: boolean,
     treaties?: ITreaties,
-    sites?: Array<ISite>
+    sites?: Array<ISite>,
+    cities?: Array<Object>,
+    total_scope_emissions: number;
+    total_scope_mitigations: number;
 }

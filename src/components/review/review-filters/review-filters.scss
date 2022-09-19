@@ -8,3 +8,24 @@
     width: 362px;
     margin-right: 24px;
 }
+
+.review__filter-form-label {
+    font-size: 12px;
+    font-family: Lato;
+    font-weight: 500;
+}
+
+.MuiFormControlLabel-root span {
+    font-size: 12px !important;
+    font-family: inherit !important;
+    font-weight: 400 !important
+}
+.review__filter-form-label{
+    font-size: 12px !important;
+    font-family: inherit !important;
+    font-weight: 400 !important;
+}
+
+.review__radio-filters{
+    width: 120px !important;
+}

@@ -1,4 +1,6 @@
 export interface DropdownOption {
     name: string,
-    value: string
+    value: number,
+    id: number,
+    flag: string
 }

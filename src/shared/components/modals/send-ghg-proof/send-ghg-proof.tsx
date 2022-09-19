@@ -19,6 +19,7 @@ import styled from 'styled-components'
 import { HeaderText, InfoText, SuccessText } from '../../../../../src/UI/CommonStyles';
 import { Chip, Step, StepContent, StepLabel, Stepper } from '@mui/material';
 import { useHistory } from 'react-router-dom';
+import { AddCircleOutlined, AddCircleOutlineRounded, AddCircleRounded, AddOutlined } from '@mui/icons-material';
 
 
 interface Props {
@@ -146,15 +147,9 @@ const SendGHGCredModal: FunctionComponent<Props> = (props) => {
                     /> 
                     </div>
                     <div className="modal__row login-credential-form__qr-content">
-                    <a onClick={async () => onModalShow('bw-invitation')}
-                        className="modal__link modal__link_primary"
-                        >
-                            <div className="login-credential-form__copy-link">
-                                <ContentCopyIcon className={"login-credential-form__info-icon"} />Request invitation to connect
-                            </div>
-                    </a>
-                    <div className="login-credential-form__eye-info" onClick={onRegisterWalletClick}>
-                                <RemoveRedEyeIcon fontSize="inherit" className="login-credential-form__eye-icon"/>Connect new wallet
+                    <div className="login-credential-form__eye-info add-ghg-cred__connect_new_wallet_btn" onClick={onRegisterWalletClick}>
+                        <AddCircleOutlineRounded fontSize="inherit" className="login-credential-form__eye-icon"/>
+                        <span>Connect new wallet</span>
                     </div>
                     </div>
                     <div style={{marginTop: 25}}>

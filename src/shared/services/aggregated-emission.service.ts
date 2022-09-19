@@ -11,13 +11,22 @@ function updateAggregatedEmission(orgId: string, aggregatedEmission: IAggregated
     }).then(CommonHelper.HandleResponse);
 }
 
-function allAggregatedEmissionsByOrg(orgId: string)
+function allAggregatedEmissionsByOrg(orgId: number)
 {
     return fetch(`${ServerUrls.api}/${orgId}/aggregated-emission/all`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(CommonHelper.HandleResponse).then((aggregated: Array<IAggregatedEmission>) => aggregated);
 }
+
+function allAggregatedEmissionsByCity(cityId: number)
+{
+    return fetch(`/api/city/2021/${cityId}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(CommonHelper.HandleResponse).then((aggregated: Array<IAggregatedEmission>) => aggregated);
+}
+
 
 function allAggregatedEmissions()
 {
@@ -27,8 +36,11 @@ function allAggregatedEmissions()
     }).then(CommonHelper.HandleResponse).then((aggregated: Array<IAggregatedEmission>) => aggregated);
 }
 
+allAggregatedEmissions()
+
 export const aggregatedEmissionService = {
     updateAggregatedEmission,
     allAggregatedEmissionsByOrg,
-    allAggregatedEmissions
+    allAggregatedEmissions,
+    allAggregatedEmissionsByCity
 };

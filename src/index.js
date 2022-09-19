@@ -8,14 +8,18 @@ import reportWebVitals from './reportWebVitals';
 import './shared/css/fonts.css';
 import './shared/css/styles.scss';
 import { Provider } from 'react-redux';
-import store from './store/index';
+import store, { Persistor } from './store/index';
 import "react-datepicker/dist/react-datepicker.css";
+import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
-  <Provider store={store} >
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+
+  <Provider store={store}>
+    <PersistGate Loading={null} persistor={Persistor}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </PersistGate>
   </Provider>
 ,
   document.getElementById('root')
