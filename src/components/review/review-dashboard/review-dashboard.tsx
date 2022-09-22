@@ -3,7 +3,6 @@ import Transfers from '../../../shared/components/widgets/transfers/transfers.wi
 import ITrackedEntity from '../../../api/models/review/entity/tracked-entity';
 import PledgesWidget from '../../../shared/components/widgets/pledges/pledges.widget';
 import EmissionWidget from '../../../shared/components/widgets/emission/emission.widget';
-import AgreementWidget from '../../../shared/components/widgets/agreement/agreement.widget';
 import { FilterTypes } from '../../../api/models/review/dashboard/filterTypes';
 import { useHistory } from 'react-router-dom'
 import './review-dashboard.scss';
@@ -62,12 +61,6 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         selectedEntity={selectedEntity}
                         aggregatedEmission={selectedEntity.aggregatedEmission}
                         detailsClick={() => showModal('information-emission')}
-                    />
-
-                    <AgreementWidget
-                        treaties = {treatiesData}
-                        height={220}
-                        detailsClick={() => showModal('information-agreements')}
                     />
 
                     <PledgesWidget
