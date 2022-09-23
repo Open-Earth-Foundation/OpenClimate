@@ -5,7 +5,6 @@ import { ClimateActionTypes } from '../../../../api/models/DTO/ClimateAction/cli
 import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateAction';
 import ISite from '../../../../api/models/DTO/Site/ISite';
 import { IUser } from '../../../../api/models/User/IUser';
-import ClimateAccountabilityWidget from '../../../../shared/components/widgets/climate-accountability/climate-accountability.widget';
 import EmissionWidget from '../../../../shared/components/widgets/emission/emission.widget';
 import PledgesWidget from '../../../../shared/components/widgets/pledges/pledges.widget';
 import ReportsWidget from '../../../../shared/components/widgets/reports/reports.widget';
@@ -86,10 +85,6 @@ const AccountDashboard: FunctionComponent<IProps> = (props) => {
                     height={300}
                     // width={550}
                     detailsLink="account/climate-actions"
-                    aggregatedEmission={summaryEmissions}
-                />
-                <ClimateAccountabilityWidget
-                    height={300}
                     aggregatedEmission={summaryEmissions}
                 />
                 <PledgesWidget
