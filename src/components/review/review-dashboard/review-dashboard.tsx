@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
-import Transfers from '../../../shared/components/widgets/transfers/transfers.widget';
 import ITrackedEntity from '../../../api/models/review/entity/tracked-entity';
 import PledgesWidget from '../../../shared/components/widgets/pledges/pledges.widget';
 import EmissionWidget from '../../../shared/components/widgets/emission/emission.widget';
@@ -76,12 +75,6 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                         detailsClick={() => showModal('information-pledges')}
                         showAddBtn={false}
                         voluntary={false}
-                    />
-                                    <Transfers
-                        // transfers={selectedEntity.transfers}
-                        showModal={showModal}
-                        detailsClick={() => showModal('information-transfers')}
-                        showAddBtn={false}
                     />
 
                 </Masonry>
