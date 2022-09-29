@@ -2,164 +2,6 @@ version: '3.9'
 services:
 
 #***************************************************************
-# Hub Services
-#***************************************************************
-
-  # Nginx Service
-  hub-webserver:
-    image: nginx:alpine
-    profiles: ["oc"]
-    build:
-      context: nginx
-      dockerfile: Dockerfile-nginx
-    hostname: hub-webserver
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./OpenClimate-hub-ui/build:/var/www/ui:consistent
-      - ./nginx/hub-ssl:/etc/nginx/ssl:consistent
-      - ./OpenClimate-hub-controller:/var/www/api:consistent
-      - ./nginx/hub-conf.d/:/etc/nginx/conf.d/
-      - ./nginx/docker-entrypoint.d/create-self-signed.sh:/docker-entrypoint.d/10-create-self-signed.sh
-    depends_on:
-      - "hub-api"
-      - "hub-ui"
-    networks:
-      - oc-network
-
-  # Hub PostgreSQL Service
-  hub-db:
-    image: postgres:14
-    profiles: ["oc"]
-    hostname: hub-db
-    restart: always
-    # ports: # Uncomment to access postgres outside of containers
-    #   - "5432:5432"
-    environment:
-      POSTGRES_USER: development
-      POSTGRES_PASSWORD: development
-    networks:
-      - oc-network
-
-  hub-api:
-    image: node:16-alpine
-    profiles: ["oc"]
-    hostname: hub-api
-    restart: unless-stopped
-    user: root # we want to run with write permissions for dev, so run as root.
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=development
-      - CONTROLLERPORT=3100
-      - AGENTADDRESS=http://agent-hub:8150
-      - WEB_ROOT=https://localhost
-      - JWT_SECRET=ZBVgToVv72zffZE2ksUYNAhYmNCXwgKp
-      - SESSION_SECRET=aZj6iXNkrtmLrAT0HsTrp7dRR7r4U7P0
-      # - SCHEMA_CLIMATE_ORGANIZATION=XSYhjGtcha6oCAzaVg34df:2:Climate_Organization:1.1
-      - SCHEMA_VERIFIED_EMPLOYEE=RSaZ64jxn2NbpH8MgBdy4C:2:Verified_Employee:1.0
-      - POSGRES_ADDRESS=hub-db
-      - POSGRES_DB=development
-      - POSTGRES_USER=development
-      - POSGRES_PASSWORD=development
-    volumes:
-      - ./OpenClimate-hub-controller:/home/node/app:consistent
-      - ./wait-for-it:/home/node/wait-for-it
-    expose:
-      - "3100"
-    command: >
-       sh -c "apk add --update python3 g++ cmake make bash && rm -rf /var/cache/apk/* && npm install --legacy-peer-deps -g nodemon ts-node && npm install --legacy-peer-deps && /home/node/wait-for-it/wait-for-it.sh hub-db:5432 && npm run migrate_up_all && npm run dev"
-    networks:
-      - oc-network
-    depends_on:
-      - "hub-db"
-      # - "hub-mongo"
-
-  hub-ui:
-    image: node:16-alpine
-    profiles: ["oc"]
-    hostname: hub-ui
-    restart: unless-stopped
-    user: root # To write to ui folder, we need write permissions. node user does not have this.
-    tty: true # keep react from stopping development server
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=development
-      - BROWSER=none  # don't open the web browser
-      - REACT_APP_CONTROLLER=https://localhost
-    volumes:
-      - ./OpenClimate-hub-ui:/home/node/app:rw
-    expose:
-      - "3000"
-    command: >
-      sh -c "npm install --legacy-peer-deps && npm start"
-    networks:
-      - oc-network
-    depends_on:
-      - "hub-db"
-
-  tunnel-hub:
-    image: reflectivedevelopment/agent-tunnel
-    profiles: ["oc"]
-    command: "agent-hub:3005 -p 4040 --host ${AGENT_TUNNEL_HOST}"
-    networks:
-      - oc-network
-  agent-hub:
-    build:
-      context: ./aries-acapy-plugin-toolbox
-      dockerfile: Dockerfile.local
-    profiles: ["oc"]
-    environment:
-      TUNNEL_HOST: tunnel-hub
-      AGENT_NAME: Hub
-      PORT: 3005
-      ADMIN_PORT: 8150
-      WEBHOOK_ADDRESS: http://hub-api:3100/api/controller-webhook
-    volumes:
-      - ./aries-acapy-plugin-toolbox-startup:/home/indy/aries-acapy-plugin-toolbox-startup:consistent
-    command: >
-      sh -c "./wait.sh /home/indy/aries-acapy-plugin-toolbox-startup/startup.sh"
-    # command: >
-    #   sh -c "/home/indy/aries-acapy-plugin-toolbox-startup/startup.sh"
-    ports:
-     - "3005:3005"
-     - "8150:8150"
-    networks:
-      - oc-network
-    depends_on:
-      - "hub-api"
-      - "hub-db"
-
-
-#***************************************************************
-# Dev Services
-#***************************************************************
-
-  # tunnel-test:
-  #   image: reflectivedevelopment/agent-tunnel
-  #   command: "agent-test:3009 -p 4040 --host ${AGENT_TUNNEL_HOST}"
-  #   networks:
-  #     - oc-network
-  # agent-test:
-  #   build: aries-acapy-plugin-toolbox
-  #   environment:
-  #     TUNNEL_HOST: tunnel-test
-  #     AGENT_NAME: Test
-  #     PORT: 3009
-  #     ADMIN_PORT: 8154
-  #   volumes:
-  #     - ./aries-acapy-plugin-toolbox-startup:/home/indy/aries-acapy-plugin-toolbox-startup:consistent
-  #   command: >
-  #     sh -c "./wait.sh /home/indy/aries-acapy-plugin-toolbox-startup/startup.sh"
-  #   ports:
-  #    - "3009:3009"
-  #    - "8154:8154"
-  #   networks:
-  #     - oc-network
-
-#***************************************************************
 # Traction Services
 #***************************************************************
 
@@ -173,8 +15,8 @@ services:
         condition: service_started
       traction-agent:
         condition: service_started
-      traction-db:
-        condition: service_healthy
+      # traction-db:
+      #   condition: service_healthy
     entrypoint: bash -c "alembic upgrade head && uvicorn api.main:app --reload --host 0.0.0.0 --port 5000 --log-level info"
     environment:
       - POSTGRESQL_HOST=${POSTGRESQL_HOST}
@@ -206,7 +48,7 @@ services:
     volumes:
       - ./traction/services/traction:/app:rw
     networks:
-      - oc-network
+      - traction-network
 
   traction-agent:
     image: bcgovimages/aries-cloudagent:py36-1.16-1_0.7.3
@@ -214,8 +56,8 @@ services:
     depends_on:
       endorser-agent:
         condition: service_started
-      traction-db:
-        condition: service_healthy
+      # traction-db:
+      #   condition: service_healthy
     ports:
       - ${ACAPY_ADMIN_PORT}:${ACAPY_ADMIN_PORT}
       - ${ACAPY_HTTP_PORT}:${ACAPY_HTTP_PORT}
@@ -262,25 +104,25 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     networks:
-      - oc-network
+      - traction-network
 
-  traction-db:
-    image: "postgres:12"
-    profiles: ["traction"]
-    environment:
-      - POSTGRES_PASSWORD=${POSTGRESQL_PASSWORD}
-    ports:
-      - ${POSTGRESQL_PORT}:5432
-    volumes:
-      - traction-wallet:/var/lib/postgresql/data
-      - ./traction/scripts/db_init.sql:/docker-entrypoint-initdb.d/1-init.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - oc-network
+  # traction-db:
+  #   image: "postgres:12"
+  #   profiles: ["traction"]
+  #   environment:
+  #     - POSTGRES_PASSWORD=${POSTGRESQL_PASSWORD}
+  #   ports:
+  #     - ${POSTGRESQL_PORT}:5432
+  #   volumes:
+  #     - traction-wallet:/var/lib/postgresql/data
+  #     - ./traction/scripts/db_init.sql:/docker-entrypoint-initdb.d/1-init.sql
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - traction-network
 
   endorser-api:
     build:
@@ -290,8 +132,8 @@ services:
     depends_on:
       endorser-agent:
         condition: service_started
-      endorser-db:
-        condition: service_healthy
+      # endorser-db:
+      #   condition: service_healthy
     environment:
       - POSTGRESQL_HOST=${ENDORSER_POSTGRESQL_HOST}
       - POSTGRESQL_PORT=${ENDORSER_POSTGRESQL_PORT}
@@ -315,14 +157,14 @@ services:
     volumes:
       - ./traction/services/endorser:/app:rw
     networks:
-      - oc-network
+      - traction-network
 
   endorser-agent:
     image: bcgovimages/aries-cloudagent:py36-1.16-1_0.7.3
     profiles: ["traction"]
-    depends_on:
-      endorser-db:
-        condition: service_healthy
+    # depends_on:
+    #   endorser-db:
+    #     condition: service_healthy
     ports:
       - ${ACAPY_ENDORSER_ADMIN_PORT}:${ACAPY_ENDORSER_ADMIN_PORT}
       - ${ACAPY_ENDORSER_HTTP_PORT}:${ACAPY_ENDORSER_HTTP_PORT}
@@ -350,6 +192,7 @@ services:
         ${ACAPY_READ_ONLY_MODE} \
         --endorser-protocol-role endorser \
         --auto-endorse-transactions \
+        --public-invites \
         ",
       ]
     volumes:
@@ -357,25 +200,25 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     networks:
-      - oc-network
+      - traction-network
 
-  endorser-db:
-    image: "postgres:12"
-    profiles: ["traction"]
-    environment:
-      - POSTGRES_PASSWORD=${ENDORSER_POSTGRESQL_PASSWORD}
-    ports:
-      - ${ENDORSER_POSTGRESQL_PORT}:5432
-    volumes:
-      - endorser-wallet:/var/lib/postgresql/data
-      - ./traction/scripts/db_init.sql:/docker-entrypoint-initdb.d/1-init.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - oc-network
+  # endorser-db:
+  #   image: "postgres:12"
+  #   profiles: ["traction"]
+  #   environment:
+  #     - POSTGRES_PASSWORD=${ENDORSER_POSTGRESQL_PASSWORD}
+  #   ports:
+  #     - ${ENDORSER_POSTGRESQL_PORT}:5432
+  #   volumes:
+  #     - endorser-wallet:/var/lib/postgresql/data
+  #     - ./traction/scripts/db_init.sql:/docker-entrypoint-initdb.d/1-init.sql
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - traction-network
 
 #***************************************************************
 # Traction Showcase Demo
@@ -385,12 +228,12 @@ services:
       context: ./traction/services/showcase
       dockerfile: Dockerfile
     profiles: ["showcase"]
-    depends_on:
-      showcase-db:
-        condition: service_healthy
+    # depends_on:
+    #   showcase-db:
+    #     condition: service_healthy
     entrypoint: bash -c "alembic upgrade head && uvicorn api.main:app --reload --host 0.0.0.0 --port 5000 --log-level info"
     environment:
-      - POSTGRESQL_HOST=showcase-db
+      - POSTGRESQL_HOST=host.docker.internal
       - POSTGRESQL_PORT=5432
       - POSTGRESQL_DB=${SHOWCASE_PSQL_DB}
       - SHOWCASE_DB_ADMIN=${SHOWCASE_PSQL_ADMIN}
@@ -412,25 +255,25 @@ services:
     volumes:
       - ./traction/services/showcase:/traction/app:rw
     networks:
-      - oc-network
+      - traction-network
 
-  showcase-db:
-    image: "postgres:12"
-    profiles: ["showcase"]
-    environment:
-      - POSTGRES_PASSWORD=${SHOWCASE_POSTGRESQL_PASSWORD}
-    ports:
-      - ${SHOWCASE_POSTGRESQL_PORT}:5432
-    volumes:
-      - traction-showcase:/var/lib/postgresql/data
-      - ./traction/scripts/db_init.showcase.sql:/docker-entrypoint-initdb.d/1-init.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - oc-network
+  # showcase-db:
+  #   image: "postgres:12"
+  #   profiles: ["showcase"]
+  #   environment:
+  #     - POSTGRES_PASSWORD=${SHOWCASE_POSTGRESQL_PASSWORD}
+  #   ports:
+  #     - ${SHOWCASE_POSTGRESQL_PORT}:5432
+  #   volumes:
+  #     - traction-showcase:/var/lib/postgresql/data
+  #     - ./traction/scripts/db_init.showcase.sql:/docker-entrypoint-initdb.d/1-init.sql
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - traction-network
 volumes:
   traction-wallet:
   endorser-wallet:
@@ -438,5 +281,6 @@ volumes:
 
 # Docker Networks
 networks:
-  oc-network:
+  traction-network:
     driver: bridge
+
