@@ -102,6 +102,32 @@
         }
     }
 
+    .review__info {
+        width: 560px;
+        height: 200px;
+        color: var(--black-color);
+        margin-bottom: 40px;
+    }
+    .review-info__title {
+        font-weight: 400;
+        font-size: 54px;
+        line-height: 62px;
+        margin-bottom: -60px;
+    }
+    .review-info__title span{
+        font-weight: 600;
+    }
+
+    .review-info__content {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .review-info__content span{
+        font-weight: 600;
+    }
+
     background-color: white;
     min-height: calc(100vh - 80px - 80px);
     .review__top-wrapper {
