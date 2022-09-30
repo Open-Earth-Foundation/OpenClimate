@@ -129,14 +129,35 @@
     }
 
     background-color: white;
+    background-color: transparent;
+    background: url('./img/Earth_Background_Home.png') no-repeat center;
+    background-position: right;
+    background-position-y: 0;
+    background-size:contain;
+    
+    .review__background-content{
+        position: absolute;
+        top: 0;
+        display:flex;
+        height: 100vh;
+        width: 100%;
+        z-index: -1;
+    }
+    .review__background-content-left{
+        height: 100%;
+        width: 50%;
+        background: url('./img/background_circle.svg') no-repeat center;
+        background-position-x: -2.8rem;
+        background-position-y: -14rem;
+        background-size: contain;
+    }
     min-height: calc(100vh - 80px - 80px);
     .review__top-wrapper {
-        background-color: var(--white-color);
+        background-color: transparent;
         padding-top: 20px;
         padding-bottom: 42px;
     }
     
-
     .review__filters-wrapper {
         display: flex;
         flex-wrap: wrap;

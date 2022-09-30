@@ -340,6 +340,9 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     return (
         <div className="review">
             <div className="review__wrapper">
+                <div className='review__background-content'>
+                    <div className='review__background-content-left'></div>
+                </div>
 
                 {loading ?
                     <div className="loader">
