@@ -6,8 +6,6 @@ from datetime import datetime
 
 def import_row(curs, table, pkey, row):
 
-    print(row)
-
     # TODO: check that these always return in order
 
     columns = list(row.keys())
@@ -37,8 +35,6 @@ def import_row(curs, table, pkey, row):
     ON CONFLICT ({", ".join(map(lambda col: f'"{col}"', pkey))})
     DO UPDATE SET ({", ".join(map(lambda col: f'"{col}"', toupdate))}) = ({", ".join(map(lambda col: f'EXCLUDED."{col}"', toupdate))})
     '''
-
-    print(qry)
 
     curs.execute(qry, vals)
 
