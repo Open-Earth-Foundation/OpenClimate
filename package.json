@@ -5,7 +5,7 @@
   "dependencies": {
     "-": "0.0.1",
     "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
+    "@emotion/styled": "^11.10.4",
     "@material-ui/core": "^4.12.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.2",
