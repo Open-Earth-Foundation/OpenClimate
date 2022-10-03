@@ -22,6 +22,10 @@
         0px 4.38558px 10.19279px rgba(0,0,0, 0.08);
         border-radius: 4px;
     }
+
+    .review__info{
+        margin-top: 58px;
+    }
     .explore__filter-2{
         display: flex;
         padding-left: 10px;
@@ -71,6 +75,7 @@
         background-color: #007568;
         color: #fff;
     }
+
     @include respond(mobile){
         .review__heading {
             display: inherit;
@@ -201,4 +206,33 @@
         border-radius: 50%;
     }
 
+    .contact__block {
+        margin-top: 82px;
+        margin-left: 54px;
+        padding-bottom: 34px;
+    }
+    .contact__title {
+        font-size: 24px;
+        line-height: 36px;
+        font-weight: 600;
+    }
+    .contact__subtitle {
+        font-size: 20px;
+        line-height: 36px;
+        font-weight: 400;
+    }
+
+    .contact__button {
+        margin-top: 40px;
+        width: 176px;
+        height: 64px;
+        background-color: var(--secondary-blue-color);
+        color: #FFFFFF;
+        text-transform: uppercase;
+        font-weight: 600;
+        box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        font-size: 18px;
+
+    }
 }
