@@ -420,6 +420,13 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                         : ''
                     }
                 </div>
+
+
+                <div className="contact__block">
+                    <div className="contact__title">Looking where to add your data?</div>
+                    <div className="contact__subtitle">Contact us and start now!</div>
+                    <a href='mailto:climatedata@openearth.org'><button className="contact__button" >Contact us</button></a>
+                </div>
             </div>
         </div>
     );
