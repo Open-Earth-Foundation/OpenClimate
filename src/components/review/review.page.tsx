@@ -340,6 +340,9 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     return (
         <div className="review">
             <div className="review__wrapper">
+                <div className='review__background-content'>
+                    <div className='review__background-content-left'></div>
+                </div>
 
                 {loading ?
                     <div className="loader">
@@ -354,19 +357,20 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
                 <div className="review__top-wrapper content-wrapper">
                     <p className='review__heading'>Earth Indicators</p>
+                    <div className="review__info">
+                        <div className="review-info__title">
+                            <p>Be part of the future of <span>Climate Data</span> </p>
+                        </div>
+                        <div className="review-info__content">
+                            Visualize, report and add relevant data to an <span>aggregatted, verified and interoperable</span> portal for climate actions and tracking.
+                        </div>
+                    </div>
                     <ContextBars
                         entitySelected={dashboardEntity ? true : false}
                         collapceEntities={collapceEntities}
                         deselectFilter={deselectFilter}
                      />
-                    {
-                        dashboardEntity ? "" :
-                        <div className="review__info">
-                            <ReviewInfo title="An open source and digitally integrated climate accounting system">
-                            Use the filters to explore where emissions come from. We aggregate data from public sources so that you can study how each country, subnational actor and company contributes to global warming and their mitigation actions to reduce emissions.
-                            </ReviewInfo>
-                        </div>
-                    }
+                    
                     <div className="review__filter-button-wrapper">
                         <a href='/explore'>
                             <button className="review__filter-button">
@@ -415,6 +419,13 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                         </>
                         : ''
                     }
+                </div>
+
+
+                <div className="contact__block">
+                    <div className="contact__title">Looking where to add your data?</div>
+                    <div className="contact__subtitle">Contact us and start now!</div>
+                    <a href='mailto:climatedata@openearth.org'><button className="contact__button" >Contact us</button></a>
                 </div>
             </div>
         </div>
