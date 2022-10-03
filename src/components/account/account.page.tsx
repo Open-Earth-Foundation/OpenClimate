@@ -106,13 +106,6 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
                                 pledges={pledges} 
                             />
                         </Route>
-                        <Route path="/account/transfers">
-                            <AccountTransfers 
-                                user={user}
-                                showModal={showModal} 
-                                transfers={transfers} 
-                            />
-                        </Route>
                         <Route path="/account/sites"
                              render = { props => <AccountSites 
                                             user={user}
