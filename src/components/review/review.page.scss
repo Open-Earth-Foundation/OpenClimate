@@ -139,6 +139,10 @@
     background-position: right;
     background-position-y: 0;
     background-size:contain;
+
+    .review__foreground{
+        height: 100%;
+    }
     
     .review__background-content{
         position: absolute;
