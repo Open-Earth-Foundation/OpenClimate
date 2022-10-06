@@ -59,7 +59,12 @@ def import_openclimate_data(dir, host, dbname, user, password):
                 "DataSource": ["datasource_id"],
                 "Actor": ["actor_id"],
                 "ActorIdentifier": ["identifier", "namespace"],
-                "ActorName": ["actor_id", "language", "name"]
+                "ActorName": ["actor_id", "language", "name"],
+                "Sector": ["sector_id"],
+                "Methodology": ["methodology_id"],
+                "EmissionsAgg": ["emissions_id"],
+                "EmissionsByScope": ["emissions_id", "scope"],
+                "EmissionsBySector": ["emissions_id", "sector_id"]
             }
 
             for table, pkey in tables.items():
