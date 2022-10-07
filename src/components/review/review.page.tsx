@@ -17,7 +17,7 @@ import * as appActions from '../../store/app/app.actions';
 import './review.page.scss';
 import '../explore/explore.page.scss'
 import {HiOutlineSearch} from 'react-icons/hi'
-import {MdClear, MdArrowUpward} from "react-icons/md";
+import {MdClear, MdArrowUpward, MdArrowDropDown} from "react-icons/md";
 import {DonutChart} from 'react-circle-chart'
 
 import ITreaties from '../../api/models/DTO/Treaties/ITreaties';
@@ -341,16 +341,28 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     // Donut earth props items
     const items = [
         {
-            value: 32,
+            value: 75,
             label: "Difference",
             color: "#D9D9D9"
         },
         {
-            value: 68,
+            value: 25,
             label: "Total",
-            color: "#F9C200"
+            color: "#24BE00"
         },
        
+    ]
+    const amtsItems = [
+        {
+            value: 53,
+            label: "Difference",
+            color: "#D9D9D9"
+        },
+        {
+            value: 47,
+            label: "Total",
+            color: "#F23D33"
+        },
     ]
 
 
@@ -386,7 +398,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                         <span className="review__actor-type">Global</span>
                         <div className="review__earth-card">
                             <div className="review__earth-card-head">
-                                <span>Earth</span> 
+                                <span>Earth <MdArrowDropDown className="head-icon"/></span> 
                                 <span>
                                     <MdClear className='review__earth-icon'/>
                                 </span> 
@@ -406,7 +418,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                     </div>
                                     <div className='right-column'>
                                         <div>
-                                            <span className="review__earth-card-item-large-text">287.4</span>
+                                            <span className="review__earth-card-item-large-text">550</span>
                                             <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>
                                         </div>
                                         <div className="review__earth-card-item-normal-text">Left based on 1.5 target</div>
@@ -420,14 +432,19 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                     </div>
                                     <div className="review__earth-card-item-normal-text">Temperature <br /> since  1980</div>
                                 </div>
-                                <div className="review__earth-card-content">
+                                <div className="review__earth-card-content donut-card">
                                     <div>
-                                        <MdArrowUpward className="review__earth-card-item-icon"/>
-                                        <span className="review__earth-card-item-large-text">415.3</span>
-                                        <span className="review__earth-card-item-small-text">ppm</span>
+                                        <DonutChart items={amtsItems} size={50} showTotal={false} trackColor="#D9D9D9"/>
                                     </div>
-                                    <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2</sub> concentration</div>
+                                    <div className='right-column'>
+                                        <div>
+                                            <span className="review__earth-card-item-large-text">415.3</span>
+                                            <span className="review__earth-card-item-small-text">ppm</span>
+                                        </div>
+                                        <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2</sub> concentration</div>
+                                    </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
