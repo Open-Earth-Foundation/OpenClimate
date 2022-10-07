@@ -450,7 +450,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                                 <span className="review__earth-card-item-large-text">415.3</span>
                                                 <span className="review__earth-card-item-small-text">ppm</span>
                                             </div>
-                                            <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2</sub> concentration</div>
+                                            <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2 </sub>concentration</div>
                                         </div>
                                     </div>
                                     
