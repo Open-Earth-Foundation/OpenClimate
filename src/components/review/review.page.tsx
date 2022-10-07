@@ -340,92 +340,105 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     return (
         <div className="review">
             <div className="review__wrapper">
-                <div className='review__background-content'>
-                    <div className='review__background-content-left'></div>
-                </div>
-
-                {loading ?
-                    <div className="loader">
-                        <Oval
-                        color="#A3A3A3"
-                        height={100}
-                        width={100}
-                        />
-                    </div>
-                : ""
-                }
-
-                <div className="review__top-wrapper content-wrapper">
-                    <p className='review__heading'>Earth Indicators</p>
-                    <div className="review__info">
-                        <div className="review-info__title">
-                            <p>Be part of the future of <span>Climate Data</span> </p>
-                        </div>
-                        <div className="review-info__content">
-                            Visualize, report and add relevant data to an <span>aggregatted, verified and interoperable</span> portal for climate actions and tracking.
-                        </div>
-                    </div>
-                    <ContextBars
-                        entitySelected={dashboardEntity ? true : false}
-                        collapceEntities={collapceEntities}
-                        deselectFilter={deselectFilter}
-                     />
-                    
-                    <div className="review__filter-button-wrapper">
-                        <a href='/explore'>
-                            <button className="review__filter-button">
-                                <HiOutlineSearch className='review__icon'/>
-                                <span>Explore by actor</span>
-                            </button>
-                        </a>
-                    </div>
-                    <div className="review__filters-wrapper">
-                       <ReviewFilters
-                        nationState={true}
-                        selectFilter={selectFilterHandler}
-                        deselectFilter={deselectFilter}
-                        filters={reviewFilters}
-                       />
-                    </div>
-
-                    <div className="review_selected-entity">
+                <div style={{backgroundColor : dashboardEntity ? "rgba(255,255,255, 0.7)": "", height: dashboardEntity ? "100vh": ""}} className="review__foreground">
                     {
+                        dashboardEntity ? '': 
+                        <div className='review__background-content'>
+                            <div className='review__background-content-left'></div>
+                        </div>
+                    }
+
+                    {loading ?
+                        <div className="loader">
+                            <Oval
+                            color="#A3A3A3"
+                            height={100}
+                            width={100}
+                            />
+                        </div>
+                    : ""
+                    }
+
+                    <div className="review__top-wrapper content-wrapper">
+                        {
+                            dashboardEntity ? '':
+                            <>
+                                <p className='review__heading'>Earth Indicators</p>
+                                <div className="review__info">
+                                    <div className="review-info__title">
+                                        <p>Be part of the future of <span>Climate Data</span> </p>
+                                    </div>
+                                    <div className="review-info__content">
+                                        Visualize, report and add relevant data to an <span>aggregatted, verified and interoperable</span> portal for climate actions and tracking.
+                                    </div>
+                                </div>
+                            </>
+                        }
+                        <ContextBars
+                            entitySelected={dashboardEntity ? true : false}
+                            collapceEntities={collapceEntities}
+                            deselectFilter={deselectFilter}
+                        />
+                        
+                        <div className="review__filter-button-wrapper">
+                            <a href='/explore'>
+                                <button className="review__filter-button">
+                                    <HiOutlineSearch className='review__icon'/>
+                                    <span>Explore by actor</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div className="review__filters-wrapper">
+                        <ReviewFilters
+                            nationState={true}
+                            selectFilter={selectFilterHandler}
+                            deselectFilter={deselectFilter}
+                            filters={reviewFilters}
+                        />
+                        </div>
+
+                        <div className="review_selected-entity">
+                        {
+                                dashboardEntity ?
+                                <div className="review__selected-entity">
+                                    <div>
+                                        {dashboardEntity.flagCode ?
+                                            // <img className='review__flag' src={`https://flagcdn.com/${emissionsData?.flag_icon}.svg`} alt={``}  width="35" height={35}/>
+                                            <CircleFlag countryCode={dashboardEntity.flagCode} height="35" />
+                                            : ""
+                                        }
+                                        <span className="review__entity-title">{dashboardEntity.title}</span>
+                                    </div>
+                                    <div className="review__explore-link">
+                                        <a href="#" onClick={() => showModal('information-summary')}>Explore State Data</a>
+                                    </div>
+                                </div>
+                                :
+                                ""
+                            }
+                        </div>
+
+                    </div>
+
+                    <div className="review__content content-wrapper">
+                        {
                             dashboardEntity ?
-                            <div className="review__selected-entity">
-                                <div>
-                                    {dashboardEntity.flagCode ?
-                                        // <img className='review__flag' src={`https://flagcdn.com/${emissionsData?.flag_icon}.svg`} alt={``}  width="35" height={35}/>
-                                        <CircleFlag countryCode={dashboardEntity.flagCode} height="35" />
-                                        : ""
-                                    }
-                                    <span className="review__entity-title">{dashboardEntity.title}</span>
-                                </div>
-                                <div className="review__explore-link">
-                                    <a href="#" onClick={() => showModal('information-summary')}>Explore State Data</a>
-                                </div>
-                            </div>
-                            :
-                            ""
+                            <>
+                                <Dashboard entityType={dashboardEntityType} selectedEntity={dashboardEntity} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} />
+                            </>
+                            : ''
                         }
                     </div>
 
-                </div>
 
-                <div className="review__content content-wrapper">
                     {
-                        dashboardEntity ?
-                        <>
-                            <Dashboard entityType={dashboardEntityType} selectedEntity={dashboardEntity} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} />
-                        </>
-                        : ''
+                        dashboardEntity ? "" :
+                        <div className="contact__block">
+                            <div className="contact__title">Looking where to add your data?</div>
+                            <div className="contact__subtitle">Contact us and start now!</div>
+                            <a href='mailto:climatedata@openearth.org'><button className="contact__button" >Contact us</button></a>
+                        </div>
                     }
-                </div>
-
-
-                <div className="contact__block">
-                    <div className="contact__title">Looking where to add your data?</div>
-                    <div className="contact__subtitle">Contact us and start now!</div>
-                    <a href='mailto:climatedata@openearth.org'><button className="contact__button" >Contact us</button></a>
                 </div>
             </div>
         </div>
