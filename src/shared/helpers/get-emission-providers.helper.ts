@@ -1,5 +1,5 @@
 export const getEmissionProviders = async () => {
-    let countryParsed =  await fetch(`/api/country/2019`, {
+    let countryParsed =  await fetch(`https://dev.openclimate.network/api/country/2019`, {
         method: 'GET',
     });
     const jsonData = await countryParsed.json()
@@ -22,7 +22,7 @@ export const getEmissionProviders = async () => {
 }
 
 export const getSubnationalProviders = async () => {
-    let snParsed =  await fetch(`/api/subnationals/2018/15`, {
+    let snParsed =  await fetch(`https://dev.openclimate.network/api/subnationals/2018/15`, {
         method: 'GET',
     });
     const jsonD = await snParsed.json()
@@ -45,7 +45,7 @@ export const getSubnationalProviders = async () => {
 
 
 export const getCityProviders = async () => {
-    let snParsed =  await fetch(`/api/city/2021/196/`, {
+    let snParsed =  await fetch(`https://dev.openclimate.network/api/city/2021/196/`, {
         method: 'GET',
     });
     const jsonD = await snParsed.json()

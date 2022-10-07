@@ -369,141 +369,154 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     return (
         <div className="review">
             <div className="review__wrapper">
-                <div className='review__background-content'>
-                    <div className='review__background-content-left'></div>
-                </div>
-
-                {loading ?
-                    <div className="loader">
-                        <Oval
-                        color="#A3A3A3"
-                        height={100}
-                        width={100}
-                        />
-                    </div>
-                : ""
-                }
-
-                <div className="review__top-wrapper content-wrapper">
-                    <p className='review__heading'>Earth Indicators</p>
-                    <div className="review__info">
-                        <div className="review-info__title">
-                            <p>Be part of the future of <span>Climate Data</span> </p>
+                <div style={{backgroundColor : dashboardEntity ? "rgba(255,255,255, 0.7)": "", height: dashboardEntity ? "100vh": ""}} className="review__foreground">
+                    {
+                        dashboardEntity ? '': 
+                        <div className='review__background-content'>
+                            <div className='review__background-content-left'></div>
                         </div>
-                        <div className="review-info__content">
-                            Visualize, report and add relevant data to an <span>aggregatted, verified and interoperable</span> portal for climate actions and tracking.
+                    }
+
+                    {loading ?
+                        <div className="loader">
+                            <Oval
+                            color="#A3A3A3"
+                            height={100}
+                            width={100}
+                            />
                         </div>
-                    </div>
-                    <div className="review__earth-main">
-                        <span className="review__actor-type">Global</span>
-                        <div className="review__earth-card">
-                            <div className="review__earth-card-head">
-                                <span>Earth <MdArrowDropDown className="head-icon"/></span> 
-                                <span>
-                                    <MdClear className='review__earth-icon'/>
-                                </span> 
-                            </div>
-                            <div className='review__earth-card-body'>
-                                <div className="review__earth-card-content">
-                                    <div>
-                                        <MdArrowUpward className="review__earth-card-item-icon"/>
-                                        <span className="review__earth-card-item-large-text">+49.8</span>
-                                        <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>
+                    : ""
+                    }
+
+                    <div className="review__top-wrapper content-wrapper">
+                        {
+                            dashboardEntity ? '':
+                            <>
+                                <p className='review__heading'>Earth Indicators</p>
+                                <div className="review__info">
+                                    <div className="review-info__title">
+                                        <p>Be part of the future of <span>Climate Data</span> </p>
                                     </div>
-                                    <div className="review__earth-card-item-normal-text">in 2019</div>
+                                    <div className="review-info__content">
+                                        Visualize, report and add relevant data to an <span>aggregatted, verified and interoperable</span> portal for climate actions and tracking.
+                                    </div>
                                 </div>
-                                <div className="review__earth-card-content donut-card">
-                                    <div>
-                                        <DonutChart items={items} size={50} showTotal={false} trackColor="#D9D9D9"/>
-                                    </div>
-                                    <div className='right-column'>
+                            </>
+                        }
+                        <div className="review__earth-main">
+                            <span className="review__actor-type">Global</span>
+                            <div className="review__earth-card">
+                                <div className="review__earth-card-head">
+                                    <span>Earth <MdArrowDropDown className="head-icon"/></span> 
+                                    <span>
+                                        <MdClear className='review__earth-icon'/>
+                                    </span> 
+                                </div>
+                                <div className='review__earth-card-body'>
+                                    <div className="review__earth-card-content">
                                         <div>
-                                            <span className="review__earth-card-item-large-text">550</span>
+                                            <MdArrowUpward className="review__earth-card-item-icon"/>
+                                            <span className="review__earth-card-item-large-text">+49.8</span>
                                             <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>
                                         </div>
-                                        <div className="review__earth-card-item-normal-text">Left based on 1.5 target</div>
+                                        <div className="review__earth-card-item-normal-text">in 2019</div>
                                     </div>
-                                </div>
-                                <div className="review__earth-card-content">
-                                    <div>
-                                        <MdArrowUpward className="review__earth-card-item-icon"/>
-                                        <span className="review__earth-card-item-large-text">+1.1 <sup>o</sup>C</span>
-                                        <span className="review__earth-card-item-small-text"></span>
-                                    </div>
-                                    <div className="review__earth-card-item-normal-text">Temperature <br /> since  1980</div>
-                                </div>
-                                <div className="review__earth-card-content donut-card">
-                                    <div>
-                                        <DonutChart items={amtsItems} size={50} showTotal={false} trackColor="#D9D9D9"/>
-                                    </div>
-                                    <div className='right-column'>
+                                    <div className="review__earth-card-content donut-card">
                                         <div>
-                                            <span className="review__earth-card-item-large-text">415.3</span>
-                                            <span className="review__earth-card-item-small-text">ppm</span>
+                                            <DonutChart items={items} size={50} showTotal={false} trackColor="#D9D9D9"/>
                                         </div>
-                                        <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2</sub> concentration</div>
+                                        <div className='right-column'>
+                                            <div>
+                                                <span className="review__earth-card-item-large-text">550</span>
+                                                <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>
+                                            </div>
+                                            <div className="review__earth-card-item-normal-text">Left based on 1.5 target</div>
+                                        </div>
                                     </div>
+                                    <div className="review__earth-card-content">
+                                        <div>
+                                            <MdArrowUpward className="review__earth-card-item-icon"/>
+                                            <span className="review__earth-card-item-large-text">+1.1 <sup>o</sup>C</span>
+                                            <span className="review__earth-card-item-small-text"></span>
+                                        </div>
+                                        <div className="review__earth-card-item-normal-text">Temperature <br /> since  1980</div>
+                                    </div>
+                                    <div className="review__earth-card-content donut-card">
+                                        <div>
+                                            <DonutChart items={amtsItems} size={50} showTotal={false} trackColor="#D9D9D9"/>
+                                        </div>
+                                        <div className='right-column'>
+                                            <div>
+                                                <span className="review__earth-card-item-large-text">415.3</span>
+                                                <span className="review__earth-card-item-small-text">ppm</span>
+                                            </div>
+                                            <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2</sub> concentration</div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
-                                
                             </div>
                         </div>
-                    </div>
-                    
-                    <div className="review__filter-button-wrapper">
-                        <a href='/explore'>
-                            <button className="review__filter-button">
-                                <HiOutlineSearch className='review__icon'/>
-                                <span>Explore by actor</span>
-                            </button>
-                        </a>
-                    </div>
-                    <div className="review__filters-wrapper">
-                       <ReviewFilters
-                        nationState={true}
-                        selectFilter={selectFilterHandler}
-                        deselectFilter={deselectFilter}
-                        filters={reviewFilters}
-                       />
+                        
+                        <div className="review__filter-button-wrapper">
+                            <a href='/explore'>
+                                <button className="review__filter-button">
+                                    <HiOutlineSearch className='review__icon'/>
+                                    <span>Explore by actor</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div className="review__filters-wrapper">
+                        <ReviewFilters
+                            nationState={true}
+                            selectFilter={selectFilterHandler}
+                            deselectFilter={deselectFilter}
+                            filters={reviewFilters}
+                        />
+                        </div>
+
+                        <div className="review_selected-entity">
+                        {
+                                dashboardEntity ?
+                                <div className="review__selected-entity">
+                                    <div>
+                                        {dashboardEntity.flagCode ?
+                                            // <img className='review__flag' src={`https://flagcdn.com/${emissionsData?.flag_icon}.svg`} alt={``}  width="35" height={35}/>
+                                            <CircleFlag countryCode={dashboardEntity.flagCode} height="35" />
+                                            : ""
+                                        }
+                                        <span className="review__entity-title">{dashboardEntity.title}</span>
+                                    </div>
+                                    <div className="review__explore-link">
+                                        <a href="#" onClick={() => showModal('information-summary')}>Explore State Data</a>
+                                    </div>
+                                </div>
+                                :
+                                ""
+                            }
+                        </div>
+
                     </div>
 
-                    <div className="review_selected-entity">
-                    {
+                    <div className="review__content content-wrapper">
+                        {
                             dashboardEntity ?
-                            <div className="review__selected-entity">
-                                <div>
-                                    {dashboardEntity.flagCode ?
-                                        // <img className='review__flag' src={`https://flagcdn.com/${emissionsData?.flag_icon}.svg`} alt={``}  width="35" height={35}/>
-                                        <CircleFlag countryCode={dashboardEntity.flagCode} height="35" />
-                                        : ""
-                                    }
-                                    <span className="review__entity-title">{dashboardEntity.title}</span>
-                                </div>
-                                <div className="review__explore-link">
-                                    <a href="#" onClick={() => showModal('information-summary')}>Explore State Data</a>
-                                </div>
-                            </div>
-                            :
-                            ""
+                            <>
+                                <Dashboard entityType={dashboardEntityType} selectedEntity={dashboardEntity} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} />
+                            </>
+                            : ''
                         }
                     </div>
 
-                </div>
 
-                <div className="review__content content-wrapper">
                     {
-                        dashboardEntity ?
-                        <>
-                            <Dashboard entityType={dashboardEntityType} selectedEntity={dashboardEntity} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} />
-                        </>
-                        : ''
+                        dashboardEntity ? "" :
+                        <div className="contact__block">
+                            <div className="contact__title">Looking where to add your data?</div>
+                            <div className="contact__subtitle">Contact us and start now!</div>
+                            <a href='mailto:climatedata@openearth.org'><button className="contact__button" >Contact us</button></a>
+                        </div>
                     }
-                </div>
-
-
-                <div className="contact__block">
-                    <div className="contact__title">Looking where to add your data?</div>
-                    <div className="contact__subtitle">Contact us and start now!</div>
-                    <a href='mailto:climatedata@openearth.org'><button className="contact__button" >Contact us</button></a>
                 </div>
             </div>
         </div>
