@@ -132,6 +132,86 @@
     .review-info__content span{
         font-weight: 600;
     }
+    .review__earth-main{
+        margin-top: 60px;
+    }
+    .review__actor-type{
+        font-weight: 500;
+        font-size: 14px;
+        color: #535572;
+        padding-left: 12px;
+    }
+
+    .review__earth-card{
+        height: 220px;
+        width: 380px;
+        border: 2px solid #24BE00;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+        padding: 8px;
+        margin-bottom: 82px;
+    }
+    .review__earth-card-head{
+        font-weight: 600;
+        font-size: 24px;
+        color: #00001F;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 12px;
+        padding-right: 3px;        
+    }
+    .review__earth-icon{
+        color: #7A7B9A;
+    }
+
+    .review__earth-card-body{
+        width: 100%;
+        height: 150px;
+        padding-left: 8px;
+        padding-right: 8px;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: 10px;
+        padding-top: 10px;
+    }
+    .review__earth-card-content{
+        height: 70px;
+        width: 165px;
+    }
+    .review__earth-card-item-icon{
+        font-size: 24px;
+        position: relative;
+        top: 2px;
+        transform: rotate(45deg);
+        color: #F23D33;
+    }
+    .review__earth-card-item-large-text{
+        font-weight: 600;
+        font-size: 24px;
+    }
+    .review__earth-card-item-small-text{
+        font-weight: 600;
+        font-size: 10px;
+        color: #7A7B9A;
+    }
+    .review__earth-card-item-normal-text{
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .donut-card{
+        display: flex;
+        align-items: center;
+    }
+    .right-column{
+        padding-left: 8px;
+    }
+    .head-icon{
+        position: relative;
+        top: 5px;
+    }
+    
 
     background-color: white;
     background-color: transparent;

@@ -7,7 +7,7 @@ import ReviewFilters from './review-filters/review-filters';
 import Dashboard from './review-dashboard/review-dashboard';
 import ContextBars from './review-context-bars/context-bars';
 import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option';
-import {Oval} from "react-loader-spinner";
+import Oval from "react-loader-spinner";
 import { FilterTypes } from '../../api/models/review/dashboard/filterTypes';
 import { IReviewFilter } from '../../api/models/review/dashboard/reviewFilter';
 import { CircleFlag } from 'react-circle-flags';
@@ -17,6 +17,8 @@ import * as appActions from '../../store/app/app.actions';
 import './review.page.scss';
 import '../explore/explore.page.scss'
 import {HiOutlineSearch} from 'react-icons/hi'
+import {MdClear, MdArrowUpward, MdArrowDropDown} from "react-icons/md";
+import {DonutChart} from 'react-circle-chart'
 
 import ITreaties from '../../api/models/DTO/Treaties/ITreaties';
 import IPledge from '../../api/models/DTO/Pledge/IPledge';
@@ -336,6 +338,33 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
     console.log(dashboardEntity)
 
+    // Donut earth props items
+    const items = [
+        {
+            value: 75,
+            label: "Difference",
+            color: "#D9D9D9"
+        },
+        {
+            value: 25,
+            label: "Total",
+            color: "#24BE00"
+        },
+       
+    ]
+    const amtsItems = [
+        {
+            value: 53,
+            label: "Difference",
+            color: "#D9D9D9"
+        },
+        {
+            value: 47,
+            label: "Total",
+            color: "#F23D33"
+        },
+    ]
+
 
     return (
         <div className="review">
@@ -374,11 +403,60 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                 </div>
                             </>
                         }
-                        <ContextBars
-                            entitySelected={dashboardEntity ? true : false}
-                            collapceEntities={collapceEntities}
-                            deselectFilter={deselectFilter}
-                        />
+                        <div className="review__earth-main">
+                            <span className="review__actor-type">Global</span>
+                            <div className="review__earth-card">
+                                <div className="review__earth-card-head">
+                                    <span>Earth <MdArrowDropDown className="head-icon"/></span> 
+                                    <span>
+                                        <MdClear className='review__earth-icon'/>
+                                    </span> 
+                                </div>
+                                <div className='review__earth-card-body'>
+                                    <div className="review__earth-card-content">
+                                        <div>
+                                            <MdArrowUpward className="review__earth-card-item-icon"/>
+                                            <span className="review__earth-card-item-large-text">+49.8</span>
+                                            <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>
+                                        </div>
+                                        <div className="review__earth-card-item-normal-text">in 2019</div>
+                                    </div>
+                                    <div className="review__earth-card-content donut-card">
+                                        <div>
+                                            <DonutChart items={items} size={50} showTotal={false} trackColor="#D9D9D9"/>
+                                        </div>
+                                        <div className='right-column'>
+                                            <div>
+                                                <span className="review__earth-card-item-large-text">550</span>
+                                                <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>
+                                            </div>
+                                            <div className="review__earth-card-item-normal-text">Left based on 1.5 target</div>
+                                        </div>
+                                    </div>
+                                    <div className="review__earth-card-content">
+                                        <div>
+                                            <MdArrowUpward className="review__earth-card-item-icon"/>
+                                            <span className="review__earth-card-item-large-text">+1.1 <sup>o</sup>C</span>
+                                            <span className="review__earth-card-item-small-text"></span>
+                                        </div>
+                                        <div className="review__earth-card-item-normal-text">Temperature <br /> since  1980</div>
+                                    </div>
+                                    <div className="review__earth-card-content donut-card">
+                                        <div>
+                                            <DonutChart items={amtsItems} size={50} showTotal={false} trackColor="#D9D9D9"/>
+                                        </div>
+                                        <div className='right-column'>
+                                            <div>
+                                                <span className="review__earth-card-item-large-text">415.3</span>
+                                                <span className="review__earth-card-item-small-text">ppm</span>
+                                            </div>
+                                            <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2</sub> concentration</div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
                         
                         <div className="review__filter-button-wrapper">
                             <a href='/explore'>

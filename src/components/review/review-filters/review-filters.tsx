@@ -17,7 +17,8 @@ const useStyles = makeStyles(() => ({
     },
     label: {
         paddingLeft: 5,
-        paddingTop: 10
+        paddingTop: 8,
+        paddingBottom: 8
     }
 }));
 
