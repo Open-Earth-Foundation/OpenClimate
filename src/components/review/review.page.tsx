@@ -7,7 +7,7 @@ import ReviewFilters from './review-filters/review-filters';
 import Dashboard from './review-dashboard/review-dashboard';
 import ContextBars from './review-context-bars/context-bars';
 import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option';
-import Oval from "react-loader-spinner";
+import {Oval} from "react-loader-spinner";
 import { FilterTypes } from '../../api/models/review/dashboard/filterTypes';
 import { IReviewFilter } from '../../api/models/review/dashboard/reviewFilter';
 import { CircleFlag } from 'react-circle-flags';
@@ -450,7 +450,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                                 <span className="review__earth-card-item-large-text">415.3</span>
                                                 <span className="review__earth-card-item-small-text">ppm</span>
                                             </div>
-                                            <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2</sub> concentration</div>
+                                            <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2 </sub>concentration</div>
                                         </div>
                                     </div>
                                     
