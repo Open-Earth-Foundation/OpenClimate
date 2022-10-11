@@ -1,0 +1,95 @@
+.level__card {
+    .page {
+        padding: 50px;
+        display: flex;
+        flex-direction: row;
+    }
+    .label {
+        font-weight: 500px;
+        padding-left: 12px;
+        font-size: 14px;
+        line-height: 16px;
+        padding-bottom: 8px;
+    }
+    
+    .content {
+        padding: 16px;
+    }
+
+    .dropdown {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: var(--neutral-grey);
+        cursor: pointer;
+    }
+
+    .dropdown-text {
+        padding-left: 8px;
+        font-weight: 500;
+        font-size: 20px;
+        padding-right: 130px;
+        
+    }
+
+    .dropdown-text-selected {
+        padding-left: 8px;
+        font-weight: 600;
+        font-size: 20px;
+        padding-right: 4px;
+        color: #00001F;
+     
+    }
+
+    .dropdown-cross-icon {
+        color: var(--red-cancel);
+        font-size: 20px;
+        padding-left: 120px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dropdown-select {
+        width: 325px;
+        font-family: 'Open Sans';
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 12px 25px 12px;
+        &:hover {
+            background-color: var(--secondary-blue-color);
+            color: var(--white-color);
+        }
+    }
+
+    .arrow-forward {
+        color: var(--next-blue);
+        padding: 0px 21px 0 21px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .swapto-button {
+        margin-top: 12px;
+        margin-left: 165px;
+        padding: 14px 7px;
+        width: 161px;
+        height: 32px;
+        background-color: var(--secondary-blue-color);
+        color: #FFFFFF;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+        border-radius: 100px;
+        font-size: 12px;
+
+    }
+
+
+}

@@ -68,6 +68,7 @@ const ExplorePage = React.lazy(() => import('./components/explore/explore.page')
 const TransfersPage = React.lazy(() => import('./components/transfers/transfers.page'))
 const Emissions = React.lazy(() => import('./components/explore/emissions.page'))
 const NestedAccountsPage = React.lazy(() => import('./components/nested-accounts/nested-accounts.page'))
+const LevelCardsPage = React.lazy(() => import('./components/explore/level-cards/level-cards.page'))
 const ReviewPage = React.lazy(() => import('./components/review/review.page'))
 const AccountPage = React.lazy(() => import('./components/account/account.page'))
 const RegisterWalletPage = React.lazy(() => import('./UI/RegisterWallet'))
@@ -1217,6 +1218,11 @@ const App: FunctionComponent<Props> = (props) => {
                         <NestedAccountsPage />
                       </Suspense>
                     </Route>
+                  <Route path="/level-cards">
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <LevelCardsPage />
+                    </Suspense>
+                  </Route>
                   <Route path="/emissions/:id" exact>
                     <Suspense fallback={<div>Loading...</div>}>
                       <Emissions />
@@ -1292,6 +1298,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <NestedAccountsPage />
                     </Suspense>
                   </Route>
+                  
                   {
                     currentUser && ( 
                       <Route path="/account">
