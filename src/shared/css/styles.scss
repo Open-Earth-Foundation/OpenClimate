@@ -194,15 +194,16 @@ button {
     }
 
     &__updated {
+        font-family: 'Lato';
         font-weight: 600;
-        font-size: 9px;
-        line-height: 13px;
+        font-size: 12px;
+        line-height: 14px;
         letter-spacing: 0.02em;
-        text-transform: uppercase;
-        color:var(--grey3-color);
+        color:var(--grey5-color);
     }
 
     &__link {
+        
         font-weight: 500;
         font-size: 10px;
         line-height: 21px;

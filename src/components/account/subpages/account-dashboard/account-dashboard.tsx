@@ -5,6 +5,7 @@ import { ClimateActionTypes } from '../../../../api/models/DTO/ClimateAction/cli
 import IClimateAction from '../../../../api/models/DTO/ClimateAction/IClimateAction';
 import ISite from '../../../../api/models/DTO/Site/ISite';
 import { IUser } from '../../../../api/models/User/IUser';
+import ContextualDataWidget from '../../../../shared/components/widgets/contextual-data/contextual-data.widget';
 import EmissionWidget from '../../../../shared/components/widgets/emission/emission.widget';
 import PledgesWidget from '../../../../shared/components/widgets/pledges/pledges.widget';
 import ReportsWidget from '../../../../shared/components/widgets/reports/reports.widget';

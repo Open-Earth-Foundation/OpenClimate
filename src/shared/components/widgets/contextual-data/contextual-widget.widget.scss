@@ -1,0 +1,119 @@
+.widget__context-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 14px;
+
+    .widget__border {
+        border-left: 1px solid #D7D8FA;
+        height: 96px;
+        margin-top: 20px;
+        margin-left: 36px;
+        margin-right: 40px;
+    }
+
+
+    .widget__donut-section {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .widget__donut-text-box {
+        display:flex;
+        padding-left: 9px;
+        flex-direction: column;
+        width: 85px;
+    }
+
+    .widget__big-text {
+        display: flex;
+        flex-direction: row;
+        font-size: 36px;
+        line-height: 54px;
+        font-weight: 600;
+    }
+
+    .widget__big-right-text {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 24px;
+        line-height: 36px;
+        font-weight: 600;
+    }
+
+    .widget__big-GDP-text {
+        display: flex;
+        flex-direction: row;
+        font-size: 24px;
+        line-height: 36px;
+        font-weight: 600;
+    }
+
+    .widget__normal-text {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+    .widget__normal-right-text {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 12px;
+    }
+
+    .widget__grey-text {
+        color: var(--grey4-color);
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        padding-top: 13px;
+    }
+
+    .tooltip {
+        font-size: 9px;
+        display: flex;
+        flex-direction: row;
+    }
+    .tooltip-bold {
+        font-weight: 700;
+        display: inline-block;
+    }
+
+    .widget__right-section {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: row;
+    }
+    .widget__right-area-section {
+        padding-top: 10px;
+        display: flex;
+        padding-left: 9px;
+        flex-direction: row;
+    }
+
+    .mid-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .widget__total-text-box {
+        display:flex;
+        padding-left: 6px;
+        flex-direction: column;
+        width: 85px;
+    }
+
+
+    .widget__right-GDP-section {
+        padding-top: 10px;
+        display: flex;
+        margin-left: 38px;
+        flex-direction: row;
+    }
+
+    .icon-padding {
+        padding-top: 8px;
+    }
+}

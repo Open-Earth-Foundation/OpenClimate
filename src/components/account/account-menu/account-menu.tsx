@@ -22,6 +22,9 @@ const AccountMenu: FunctionComponent<Props> = (props) => {
                 <li className="account-menu__item">
                     <NavLink to="/account/pledges" className="account-menu__link" activeClassName="account-menu__link_active">Pledges</NavLink>
                 </li>
+                <li className="account-menu__item">
+                    <NavLink to="/account/demo-widgets" className="account-menu__link" activeClassName="account-menu__link_active">Demo Widgets</NavLink>
+                </li>
             </ul>
         </nav>
     );

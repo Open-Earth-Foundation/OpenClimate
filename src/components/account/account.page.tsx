@@ -25,6 +25,7 @@ import { IUser } from '../../api/models/User/IUser';
 import {
     useNotification
   } from '../../UI/NotificationProvider';
+import ContextualDataWidget from '../../shared/components/widgets/contextual-data/contextual-data.widget';
 
 interface IStateProps  {
     user: IUser,
@@ -105,6 +106,9 @@ const AccountPage: FunctionComponent<IProps> = (props) => {
                                 showModal={showModal} 
                                 pledges={pledges} 
                             />
+                        </Route>
+                        <Route path="/account/demo-widgets">
+                            <ContextualDataWidget/>
                         </Route>
                         <Route path="/account/sites"
                              render = { props => <AccountSites 
