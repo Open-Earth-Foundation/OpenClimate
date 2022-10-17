@@ -112,4 +112,18 @@
     .target-text{
         padding-top: 6px;
     }
+
+    .no-data{
+        display: flex;
+        height: 150px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        color: #7A7B9A;
+    }
 }
