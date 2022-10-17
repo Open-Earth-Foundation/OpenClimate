@@ -133,7 +133,7 @@
         font-weight: 600;
     }
     .review__earth-main{
-        margin-top: 60px;
+        margin-top: 20px;
     }
     .review__actor-type{
         font-weight: 500;
@@ -173,7 +173,7 @@
         padding-right: 8px;
         display: grid;
         grid-template-columns: auto auto;
-        grid-gap: 10px;
+        grid-gap: 12px;
         padding-top: 10px;
     }
     .review__earth-card-content{
@@ -199,10 +199,24 @@
     .review__earth-card-item-normal-text{
         font-size: 12px;
         font-weight: 500;
+        margin-left: 24px;
+    }
+    .co2concentration{
+        margin-left: 10px;
+        margin-top: 4px;
     }
     .donut-card{
         display: flex;
+        align-items: flex-start;
+    }
+    .target-text{
+        margin-left: 0px;
+    }
+    .donut{
+        display: flex;
         align-items: center;
+        padding-top: 4px;
+
     }
     .right-column{
         padding-left: 8px;
@@ -212,13 +226,12 @@
         top: 5px;
     }
     
-
     background-color: white;
     background-color: transparent;
     background: url('./img/Earth_Background_Home.png') no-repeat center;
     background-position: right;
     background-position-y: 0;
-    background-size:contain;
+    background-size:contain;    
 
     .review__foreground{
         height: 100%;
@@ -318,5 +331,10 @@
         border-radius: 8px;
         font-size: 18px;
 
+    }
+    .bottom-padding{
+        height: 100px;
+        width: 100%;
+        background: #24BE04;
     }
 }
