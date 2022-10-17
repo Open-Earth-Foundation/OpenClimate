@@ -3,7 +3,7 @@ import './pledges-widget.scss';
 import {MdInfoOutline, MdArrowDownward} from "react-icons/md";
 
 const PledgesWidget = () => {
-    const [data, setData] = useState<boolean>(false)
+    const [data, setData] = useState<boolean>(true)
     return(
         <div className="pledges-widget" style={{height: data ? '': "268px"}}>
             {
