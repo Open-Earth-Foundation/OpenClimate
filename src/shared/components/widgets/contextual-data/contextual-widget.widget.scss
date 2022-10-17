@@ -1,10 +1,52 @@
-.widget__context-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding-top: 14px;
+.contextual-widget {
+    height: 250px;
+    width: 578px;
+    border: 1px solid #E6E7E8;
+    display: relative;
+    border-radius: 4px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
 
-    .widget__border {
+    &__wrapper {
+        padding: 24px 24px 0 24px;
+        height: 100%;
+    }
+
+    &__header {
+        border-bottom: 1px solid var(--grey1-color);
+        padding-bottom: 14px;
+    }
+
+    &__title-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 26px;
+        margin: 0;
+    }
+
+    &__updated {
+        font-family: 'Lato';
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 0.02em;
+        color:var(--grey5-color);
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        padding-top: 14px;
+            
+    }
+
+    &__border {
         border-left: 1px solid #D7D8FA;
         height: 96px;
         margin-top: 20px;
@@ -13,21 +55,21 @@
     }
 
 
-    .widget__donut-section {
+    &__left-container {
         padding-top: 20px;
         display: flex;
         flex-direction: row;
         align-items: center;
     }
     
-    .widget__donut-text-box {
+    &__left-info-box {
         display:flex;
         padding-left: 9px;
         flex-direction: column;
         width: 85px;
     }
 
-    .widget__big-text {
+    &__left-header-text {
         display: flex;
         flex-direction: row;
         font-size: 36px;
@@ -35,7 +77,13 @@
         font-weight: 600;
     }
 
-    .widget__big-right-text {
+    &__left-subtitle-text {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+
+    &__mid-header-text {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -44,7 +92,7 @@
         font-weight: 600;
     }
 
-    .widget__big-GDP-text {
+    &__right-header-text {
         display: flex;
         flex-direction: row;
         font-size: 24px;
@@ -52,18 +100,13 @@
         font-weight: 600;
     }
 
-    .widget__normal-text {
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 16px;
-    }
-    .widget__normal-right-text {
+    &__normal-right-text {
         font-size: 12px;
         font-weight: 400;
         line-height: 12px;
     }
 
-    .widget__grey-text {
+    &__grey-text {
         color: var(--grey4-color);
         font-weight: 600;
         font-size: 12px;
@@ -71,49 +114,46 @@
         padding-top: 13px;
     }
 
-    .tooltip {
+    &__tooltip {
         font-size: 9px;
         display: flex;
         flex-direction: row;
     }
-    .tooltip-bold {
-        font-weight: 700;
-        display: inline-block;
-    }
 
-    .widget__right-section {
+    &__mid-section {
         padding-top: 10px;
         display: flex;
         flex-direction: row;
     }
-    .widget__right-area-section {
+
+    &__right-section {
+        padding-top: 10px;
+        margin-left: 35px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__right-area-section {
         padding-top: 10px;
         display: flex;
         padding-left: 9px;
         flex-direction: row;
     }
 
-    .mid-section {
+    &__mid-section-container {
         display: flex;
         flex-direction: column;
     }
 
-    .widget__total-text-box {
+    &__mid-text-box {
         display:flex;
         padding-left: 6px;
         flex-direction: column;
         width: 85px;
     }
 
-
-    .widget__right-GDP-section {
-        padding-top: 10px;
-        display: flex;
-        margin-left: 38px;
-        flex-direction: row;
-    }
-
-    .icon-padding {
+    &__icon-padding {
         padding-top: 8px;
     }
+
 }
