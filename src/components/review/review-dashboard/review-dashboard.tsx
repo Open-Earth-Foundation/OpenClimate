@@ -1,12 +1,12 @@
 import { FunctionComponent } from 'react'
 import ITrackedEntity from '../../../api/models/review/entity/tracked-entity';
-import PledgesWidget from '../../../shared/components/widgets/pledges/pledges.widget';
 import { FilterTypes } from '../../../api/models/review/dashboard/filterTypes';
 import { useHistory } from 'react-router-dom'
 import './review-dashboard.scss';
 import Masonry from 'react-masonry-css'
 import ITreaties from '../../../api/models/DTO/Treaties/ITreaties';
 import IPledge from '../../../api/models/DTO/Pledge/IPledge';
+import PledgesWidget from '../pledges-widget/pledges-widget';
 import EmissionsWidget from '../emissions-widget/emissions-widget';
 
 interface Props {
@@ -43,13 +43,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     
                     <EmissionsWidget />
 
-                    <PledgesWidget
-                        pledges={pledgesData}
-                        showModal={showModal}
-                        detailsClick={() => showModal('information-pledges')}
-                        showAddBtn={false}
-                        voluntary={false}
-                    />
+                    <PledgesWidget />
 
                 </Masonry>
             </div>
