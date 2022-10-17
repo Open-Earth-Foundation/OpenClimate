@@ -1,7 +1,5 @@
 import { FunctionComponent } from 'react'
 import ITrackedEntity from '../../../api/models/review/entity/tracked-entity';
-
-import EmissionWidget from '../../../shared/components/widgets/emission/emission.widget';
 import { FilterTypes } from '../../../api/models/review/dashboard/filterTypes';
 import { useHistory } from 'react-router-dom'
 import './review-dashboard.scss';
@@ -9,6 +7,7 @@ import Masonry from 'react-masonry-css'
 import ITreaties from '../../../api/models/DTO/Treaties/ITreaties';
 import IPledge from '../../../api/models/DTO/Pledge/IPledge';
 import PledgesWidget from '../pledges-widget/pledges-widget';
+import EmissionsWidget from '../emissions-widget/emissions-widget';
 
 interface Props {
     entityType: FilterTypes | null,
@@ -41,16 +40,8 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     breakpointCols={3}
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
-                    <EmissionWidget
-                        isVisible={true}
-                        title="Total emissions"
-                        height={300}
-                        width={490}
-                        entityType={entityType}
-                        selectedEntity={selectedEntity}
-                        aggregatedEmission={selectedEntity.aggregatedEmission}
-                        detailsClick={() => showModal('information-emission')}
-                    />
+                    
+                    <EmissionsWidget />
 
                     <PledgesWidget />
 
