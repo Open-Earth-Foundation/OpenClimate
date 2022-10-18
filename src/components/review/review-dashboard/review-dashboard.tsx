@@ -8,6 +8,7 @@ import ITreaties from '../../../api/models/DTO/Treaties/ITreaties';
 import IPledge from '../../../api/models/DTO/Pledge/IPledge';
 import PledgesWidget from '../pledges-widget/pledges-widget';
 import EmissionsWidget from '../emissions-widget/emissions-widget';
+import ContextualDataWidget from '../../../shared/components/widgets/contextual-data/contextual-data.widget';
 
 interface Props {
     entityType: FilterTypes | null,
@@ -44,6 +45,8 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     <EmissionsWidget />
 
                     <PledgesWidget />
+
+                    <ContextualDataWidget/>
 
                 </Masonry>
             </div>
