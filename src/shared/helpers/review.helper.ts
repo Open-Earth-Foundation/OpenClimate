@@ -24,7 +24,7 @@ import { ClimateActionTypes } from "../../api/models/DTO/ClimateAction/climate-a
 async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
 {
     let emissionResponse = null;
-    
+
     const emissionsOBJ = {
         sinks: 0,
         grossEmissions: 0,
@@ -77,16 +77,47 @@ async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
 
 async function LoadEmissionsSubnational(subnational_Id: number, entity: ITrackedEntity)
 {
-    const emissionResponse = await emissionService.fetchEmissionsSubnational(subnational_Id);
+    const emissionResponse = null;
 
-    if(emissionResponse.data.length)
+    const emissionsOBJ = {
+        sinks: 0,
+        grossEmissions: 0,
+        netEmissions: 0,
+        date_updated: "2022/10/10",
+        year: 0,
+        methodologies: [],
+    }
+
+    if(!emissionResponse)
     {
-        const grossEmission = emissionResponse.data[0].Emissions[0].total_ghg_co2e
-        const year = emissionResponse.data[0].Emissions[0].year
+        const sinks = emissionsOBJ.sinks;
+        const grossEmission = emissionsOBJ.grossEmissions;
+        const netEmission = grossEmission - sinks;
+        const date_updated = emissionsOBJ.date_updated;
+        const year = emissionsOBJ.year;
+        const methodologies = emissionsOBJ.methodologies
+
+
+        const emissionData: IAggregatedEmission = {
+            facility_ghg_total_gross_co2e: grossEmission,
+            facility_ghg_total_sinks_co2e: sinks,
+            facility_ghg_total_net_co2e: netEmission,
+            facility_ghg_date_updated: date_updated,
+            facility_ghg_year: year,
+            facility_ghg_methodologies: methodologies,
+        }
+
+        // Tracking selecting entity(country id)
+        entity.id = subnational_Id;
+        entity.aggregatedEmission = emissionData;
+    }else{
+        
+        const grossEmission = 0
+        const year = 0
         const netEmission = 0
-        const sinks = grossEmission - emissionResponse.data[0].Emissions[0].land_sinks;
-        const date_updated = emissionResponse.data[0].Emissions[0].DataProvider.Methodology.date_update
-        const methodologies = emissionResponse.data[0].Emissions[0].DataProvider.Methodology.Tags
+        const sinks = grossEmission - 0
+        const date_updated = "2022/10/10"
+        const methodologies = []
 
 
         const emissionData: IAggregatedEmission = {
