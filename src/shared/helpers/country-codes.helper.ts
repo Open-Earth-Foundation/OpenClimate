@@ -3,17 +3,16 @@ import ICountry from "../../api/models/review/country";
 import { regions }  from "../../api/data/review/data/regions"
 
 const GetCountryCodes = async () => {
-    let countryParsed =  await fetch('/api/country/2019', {
+    let countryParsed =  await fetch('/api/v1/actor/EARTH/parts', {
         method: 'GET',
     });
     const jsonData = await countryParsed.json()
     const countries:ICountry[] = jsonData.data.map((c:any) => {
         return {
-            countryId: c.country_id,
-            name: c.country_name,
-            codeAlpha2: c.iso,
-            codeAlpha3: c.flag_icon,
-            sn: c.Subnationals
+            countryId: c.actor_id,
+            name: c.name,
+            codeAlpha2: c.name,
+            codeAlpha3: c.name,
         }
     });
 
@@ -57,7 +56,7 @@ const GetSubnationalsByCountryCode = async (countryId: number) => {
     const res = await GetCountryOptions();
 
     const options = res.map(sn => {
-        return sn?.sn.filter((s:any) => s.countries_to_subnationals.country_id == countryId )
+        return []
     });
    
     const data = options.filter(e=>e.length)
