@@ -67,21 +67,19 @@ const GetSubnationalsByCountryCode = async (actor_id: number) => {
     return subnationals;
 }
 
-const GetCitiesBySubnationalId = async (entity_id:number) => {
-    const res = await GetCountryCodes();
-    const options = res?.map(sn => {
-        return [];
-    });
-   
-    const data = options.filter(e=>e.length)
-    const cities = data?.map(sn => {
-        return sn[0]?.Cities.filter((s:any) => s.subnationals_to_cities.subnational_id == entity_id )
+const GetCitiesBySubnationalId = async (actor_id:number) => {
+    const res = await fetch(`/api/v1/actor/${actor_id}/parts`, {
+        method: 'GET'
     });
 
-    const cityOptions = cities[0]?.map((cc:any) => {
+    const citiesData = await res.json();
+
+    console.log(citiesData)
+
+    const cityOptions = citiesData.data.map((cc:any) => {
         return {
-            name: cc.city_name,
-            value: cc.city_id
+            value: cc.actor_id,
+            name: cc.name,
         }
     });
     
