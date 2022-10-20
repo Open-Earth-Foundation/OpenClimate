@@ -49,25 +49,18 @@ const GetCountryOptionsForSite = async () => {
     return countryCodeOptions;
 }
 
-const GetSubnationalsByCountryCode = async (countryId: number) => {
+const GetSubnationalsByCountryCode = async (actor_id: number) => {
 
-    // const filteredSubnationals =  regions.filter(sn => sn.country_code === countryCode?.toUpperCase());
-
-    const res = await GetCountryOptions();
-
-    const options = res.map(sn => {
-        return []
+    const res = await fetch(`/api/v1/actor/${actor_id}/parts`, {
+        method: 'GET'
     });
-   
-    const data = options.filter(e=>e.length)
-  
 
-    const subnationals = data[0]?.map((sn:any)=>{
+    const subnationalData = await res.json();
+
+    const subnationals = subnationalData?.data.map((sn:any)=>{
         return {
-            name: sn.subnational_name,
-            value: sn.subnational_id,
-            countryId: sn.countries_to_subnationals,
-            cities: sn.Cities
+            value: sn.actor_id,
+            name: sn.name,
         }
     });
    
@@ -76,16 +69,16 @@ const GetSubnationalsByCountryCode = async (countryId: number) => {
 
 const GetCitiesBySubnationalId = async (entity_id:number) => {
     const res = await GetCountryCodes();
-    const options = res.map(sn => {
-        return sn?.sn.filter((s:any) => s.countries_to_subnationals.subnational_id == entity_id )
+    const options = res?.map(sn => {
+        return [];
     });
    
     const data = options.filter(e=>e.length)
-    const cities = data.map(sn => {
+    const cities = data?.map(sn => {
         return sn[0]?.Cities.filter((s:any) => s.subnationals_to_cities.subnational_id == entity_id )
     });
 
-    const cityOptions = cities[0].map((cc:any) => {
+    const cityOptions = cities[0]?.map((cc:any) => {
         return {
             name: cc.city_name,
             value: cc.city_id
