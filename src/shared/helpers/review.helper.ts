@@ -23,21 +23,25 @@ import { ClimateActionTypes } from "../../api/models/DTO/ClimateAction/climate-a
 
 async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
 {
-    let emissionResponse = await fetch(`/api/country/2019/${countryId}`, {
-        method: 'GET'
-    });
-    let data = await emissionResponse.json();
-    let filteredEmissions = data.data[0].Emissions
-    filteredEmissions = filteredEmissions.filter((f:any)=>f.DataProvider.data_provider_name === "PRIMAP");
+    let emissionResponse = null;
+    
+    const emissionsOBJ = {
+        sinks: 0,
+        grossEmissions: 0,
+        netEmissions: 0,
+        date_updated: "2022/10/10",
+        year: 0,
+        methodologies: [],
+    }
 
-    if(filteredEmissions.length)
+    if(!emissionResponse)
     {
-        const sinks = filteredEmissions[0].land_sinks;
-        const grossEmission = filteredEmissions[0]?.total_ghg_co2e;
+        const sinks = emissionsOBJ.sinks;
+        const grossEmission = emissionsOBJ.grossEmissions;
         const netEmission = grossEmission - sinks;
-        const date_updated = filteredEmissions[0].DataProvider.Methodology.date_update
-        const year = filteredEmissions[0].year
-        const methodologies = filteredEmissions[0].DataProvider.Methodology.Tags
+        const date_updated = emissionsOBJ.date_updated;
+        const year = emissionsOBJ.year;
+        const methodologies = emissionsOBJ.methodologies
 
 
         const emissionData: IAggregatedEmission = {
@@ -47,13 +51,28 @@ async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
             facility_ghg_date_updated: date_updated,
             facility_ghg_year: year,
             facility_ghg_methodologies: methodologies,
+        }
+
+        // Tracking selecting entity(country id)
+        entity.id = countryId;
+        entity.aggregatedEmission = emissionData;
+    } 
+    else{
+
+        const emissionData: IAggregatedEmission = {
+            facility_ghg_total_gross_co2e: 20 ,
+            facility_ghg_total_sinks_co2e: 2,
+            facility_ghg_total_net_co2e: 3,
+            facility_ghg_date_updated: "0",
+            facility_ghg_year: 2020,
+            facility_ghg_methodologies: [],
             providerToEmissions: createProviderEmissionsData(data.data[0].Emissions)
         }
 
         // Tracking selecting entity(country id)
-        entity.id = data.data[0].country_id;
-        entity.aggregatedEmission = emissionData;
-    }
+            entity.id = data.data[0].country_id;
+            entity.aggregatedEmission = emissionData;
+}
 }
 
 async function LoadEmissionsSubnational(subnational_Id: number, entity: ITrackedEntity)
