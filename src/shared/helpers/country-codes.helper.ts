@@ -74,8 +74,6 @@ const GetCitiesBySubnationalId = async (actor_id:number) => {
 
     const citiesData = await res.json();
 
-    console.log(citiesData)
-
     const cityOptions = citiesData.data.map((cc:any) => {
         return {
             value: cc.actor_id,
