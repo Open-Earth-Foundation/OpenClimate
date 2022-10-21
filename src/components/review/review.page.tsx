@@ -161,7 +161,10 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         setTreatiesData(treaties);
     }
 
+    const addPledgesData = (newPledges: Array<IPledge>) => setPledgesData(pledgesData.concat(newPledges));
+
     const handlePledges = async (entityCode: string, type: string) => {
+
         let pledges;
         switch(type) {
             case 'country':
@@ -170,7 +173,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                 break;
             case 'subnational':
                 pledges = await ReviewHelper.LoadPledgesSubnational(entityCode);
-                setPledgesData(pledges);
+                addPledgesData(pledges);
                 break;
             default:
         }
@@ -229,7 +232,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const fetchCountryData = await fetch(`/api/country/2019/${id}`);
 
         const jsonData = await fetchCountryData.json();
-        console.log(jsonData);
+        console.log('JSON DATA', jsonData);
         setTghg(jsonData.data[0].Emissions[0].total_ghg_co2e)
         const providerToEmissionsData = createProviderEmissionsData(jsonData.data[0].Emissions)
 
@@ -242,7 +245,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
         const countryCode = jsonData.data[0].iso
         handleTreaties(countryCode);
         handlePledges(countryCode, 'country');
-        setEmissionsData(data)
+        setEmissionsData(data);
 
         setSbn(jsonData.data[0].Subnationals)
     }
@@ -273,11 +276,12 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     }, [subns])
 
     useEffect(()=> {
-
-        if(city) {
-            console.log(city);
+        if (dashboardEntity?.jurisdictionName) {
+            dashboardEntity?.jurisdictionCode && handlePledges(dashboardEntity?.jurisdictionCode, 'subnational')
+        } else {
+            dashboardEntity?.countryCode && handlePledges(dashboardEntity.countryCode, 'country');
         }
-    }, [city]);
+    }, [dashboardEntity]);
 
     const setSubnationValue = (e:any) =>{
         const sbnlId:number = e.target.getAttribute("data-id");
@@ -387,7 +391,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                                         <p>Be part of the future of <span>Climate Data</span> </p>
                                     </div>
                                     <div className="review-info__content">
-                                        Visualize, report and add relevant data to an <span>aggregatted, verified and interoperable</span> portal for climate actions and tracking.
+                                        Visualize, report and add relevant data to an <span>aggregated, verified and interoperable</span> portal for climate actions and tracking.
                                     </div>
                                 </div>
                             </>

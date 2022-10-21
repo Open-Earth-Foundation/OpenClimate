@@ -1,13 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, FunctionComponent} from 'react';
 import './pledges-widget.scss';
 import {MdInfoOutline, MdArrowDownward} from "react-icons/md";
+import IPledge from '../../../api/models/DTO/Pledge/IPledge';
+import PledgeItem from './pledge-item';
 
-const PledgesWidget = () => {
-    const [data, setData] = useState<boolean>(true)
+interface Props {
+    pledgesData: Array<IPledge>
+}
+
+const PledgesWidget: FunctionComponent<Props> = (props) => {
+
+    const {pledgesData} = props;
+
+    
     return(
-        <div className="pledges-widget" style={{height: data ? '': "268px"}}>
+        <div className="pledges-widget" style={{height: pledgesData ? '': "268px"}}>
             {
-                data ?
+                pledgesData.length ?
                 <div className="pledges-widget__wrapper">
                     <div className="pledges-widget__metadata">
                         <div>
@@ -22,67 +31,10 @@ const PledgesWidget = () => {
                             <span className="pledges-widget__last-updated">Last updated June 2020</span>
                         </div>
                     </div>
-                    <div className="pledges-widget__pledges-data">
-                        <div className="pledges-widget__pledge-entry">
-                            <div className="pledges-widget__pledge-source">
-                                <span>CDP</span>
-                            </div>
-                            <div className="pledges-widget__pledge-source-info">
-                                <div className="pledges-widget__pledge-type">
-                                    CARBON INTENSITY
-                                </div>
-                                <div className="pledges-widget__pledge-target">
-                                    <div className="pledges-widget__percentage-value">
-                                        <MdArrowDownward className="pledges-widget__percentage-arrow"/>
-                                        <span className="pledges-widget__percentage-value-number">30%</span>
-                                    </div>
-                                    <div className="pledges-widget__target-estimate">
-                                        <div>by 2030 relative</div> 
-                                        <div>to 2005</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="pledges-widget__pledge-entry">
-                            <div className="pledges-widget__pledge-source">
-                                <span>CDP</span>
-                            </div>
-                            <div className="pledges-widget__pledge-source-info">
-                                <div className="pledges-widget__pledge-type">
-                                    CARBON INTENSITY
-                                </div>
-                                <div className="pledges-widget__pledge-target">
-                                    <div className="pledges-widget__percentage-value">
-                                        <MdArrowDownward className="pledges-widget__percentage-arrow"/>
-                                        <span className="pledges-widget__percentage-value-number">50%</span>
-                                    </div>
-                                    <div className="pledges-widget__target-estimate">
-                                        <div>by 2025 relative</div> 
-                                        <div>to 2018</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="pledges-widget__pledge-entry">
-                            <div className="pledges-widget__pledge-source">
-                                <span>CDP</span>
-                            </div>
-                            <div className="pledges-widget__pledge-source-info">
-                                <div className="pledges-widget__pledge-type">
-                                    CARBON INTENSITY
-                                </div>
-                                <div className="pledges-widget__pledge-target">
-                                    <div className="pledges-widget__percentage-value">
-                                        <MdArrowDownward className="pledges-widget__percentage-arrow"/>
-                                        <span className="pledges-widget__percentage-value-number">0</span>
-                                    </div>
-                                    <div className="pledges-widget__target-estimate">
-                                        <div className='target-text'>by 2025</div> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    { pledgesData.map(pledge =>
+                        <PledgeItem pledge={pledge} />
+
+                    )}
                 </div>: 
                 <div className="pledges-widget__wrapper">
                     <div className="pledges-widget__metadata">
@@ -95,7 +47,7 @@ const PledgesWidget = () => {
                                     <MdInfoOutline className="pledges-widget__icon"/>
                                 </span>
                             </div>
-                            <span className="pledges-widget__last-updated">Last updated:</span>
+                            <span className="pledges-widget__last-updated"></span>
                         </div>
                     </div>
                     <div className="pledges-widget__pledges-data no-data">
