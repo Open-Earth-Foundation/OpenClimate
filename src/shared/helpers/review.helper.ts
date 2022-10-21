@@ -230,16 +230,19 @@ async function LoadPledgesCountry(country: string)
     if(pledgesResponse && pledgesResponse.data && pledgesResponse.data.length)
     {
         const baseYear = pledgesResponse.data.find((d:any) => d["indicator_id"] === "pledge_base_year")?.value;
-        const targetYear = pledgesResponse.data.find((d:any) => d["indicator_id"] === "M_TarYr")?.value;
+        const targetYear = pledgesResponse.data.find((d:any) => d["indicator_id"] === "pledge_target_year")?.value;
         const reduction = pledgesResponse.data.find((d:any) => d["indicator_id"] === "M_TarA2")?.value;
+        const source = pledgesResponse.data.find((d:any) => d["source"])?.source;
+
 
         const reductionNumber =  Math.abs(Number(reduction?.replace('%', '')));
 
         const pledge: IPledge = {
             credential_category:"Pledges",
             credential_type:"",
-            pledge_base_year: baseYear,
-            pledge_target_year: targetYear,
+            pledge_base_year: typeof baseYear === "number" ? baseYear : undefined,
+            pledge_target_year: typeof targetYear === "number" ? targetYear : undefined,
+            source: source,
             pledge_emission_reduction: isNaN(reductionNumber) ? 0 : reductionNumber
         }
 
@@ -287,7 +290,7 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
     if(selectedEntities.length)
         previousSelectedEntity = selectedEntities[selectedEntities.length-1];
 
-    if(previousSelectedEntity)
+    if(previousSelectedEntity && !option)
     {
         trackedEntity.countryName = previousSelectedEntity.countryName;
         trackedEntity.flagCode = previousSelectedEntity.flagCode

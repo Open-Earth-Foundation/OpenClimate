@@ -44,7 +44,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     
                     <EmissionsWidget />
 
-                    <PledgesWidget />
+                    <PledgesWidget pledgesData={pledgesData} />
 
                     <ContextualDataWidget/>
 
