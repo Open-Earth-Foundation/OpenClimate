@@ -51,19 +51,21 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     }, [currentYear, emissionInfo]);
 
     const calculateTrend = () => {
-        if (sources?.length && Object.keys(sourceToEmissions)?.length && currentSource) {
-            const emissionsToYear = sourceToEmissions[currentSource].yearToEmissions;
-            const oldValue = emissionsToYear[currentYear - 1]?.totalEmissions;
+        const emissionsToYear = sourceToEmissions[currentSource].yearToEmissions;
+        const previousYear = currentYear - 1;
+        if (previousYear in emissionsToYear) {
+            const oldValue = emissionsToYear[previousYear - 1]?.totalEmissions;
             const newValue = currentEmissions?.totalEmissions;
-            const trend = newValue && oldValue ? ((newValue - oldValue) / oldValue) * 100 : 0
+            const trend = newValue ? ((newValue - oldValue) / oldValue) * 100 : 0
             return parseInt(trend.toPrecision(5));
+        } else {
+            return 0;
         }
-        return 0;
     }
 
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
         const value = e.target.value as number;
-        
+
         setCurrentYear(value);
     }
 
@@ -217,7 +219,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             <div className='emissions-widget__source-title'>
                                 <span>
                                     N/A
-                                </span> 
+                                </span>
                                 <MdArrowDropDown className="emissions-widget__icon arrow"/>
                             </div>
                         </div>
@@ -246,7 +248,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             <span className="emissions-widget__emissions-description no-data">Total GHG Emissions <br/> Mt CO2e</span>
                         </div>
                     </div>
-                    
+
                     <div className="emissions-widget__emissions-data data-per-capita marg">
                         <div className="icon-wrapper">
                             <MdOutlinePeopleAlt className="people-alt-icon"/>
@@ -274,7 +276,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                         <span>Methodology</span>
                         <MdInfoOutline className="emissions-widget__icon methodologies-icon"/>
                     </div>
-                    
+
                 </div>
             </div>
             }
