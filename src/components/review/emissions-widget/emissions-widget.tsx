@@ -52,16 +52,21 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
     const calculateTrend = () => {
         const emissionsToYear = sourceToEmissions[currentSource].yearToEmissions;
-        const oldValue = emissionsToYear[currentYear - 1].totalEmissions;
-        const newValue = currentEmissions?.totalEmissions;
-        const trend = newValue ? ((newValue - oldValue) / oldValue) * 100 : 0
-        return parseInt(trend.toPrecision(5));
+        const previousYear = currentYear - 1;
+        if (previousYear in emissionsToYear) {
+            const oldValue = emissionsToYear[previousYear - 1].totalEmissions;
+            const newValue = currentEmissions?.totalEmissions;
+            const trend = newValue ? ((newValue - oldValue) / oldValue) * 100 : 0
+            return parseInt(trend.toPrecision(5));
+        } else {
+            return 0;
+        }
     }
 
     console.log("current", {currentSource: currentSource, currentYear: currentYear})
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
         const value = e.target.value as number;
-        
+
         setCurrentYear(value);
     }
 
@@ -89,7 +94,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             <div className='emissions-widget__source-title'>
                                 <span>
                                     {sources[0]}
-                                </span> 
+                                </span>
                                 <MdArrowDropDown className="emissions-widget__icon arrow"/>
                             </div>
                         </div>
@@ -109,7 +114,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                         }}
                                     >
                                         {
-                                            years.map(year => 
+                                            years.map(year =>
                                                 <MenuItem sx={{
                                                     fontFamily: 'Poppins',
                                                     fontSize: '10px',
@@ -215,7 +220,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             <div className='emissions-widget__source-title'>
                                 <span>
                                     N/A
-                                </span> 
+                                </span>
                                 <MdArrowDropDown className="emissions-widget__icon arrow"/>
                             </div>
                         </div>
@@ -244,7 +249,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             <span className="emissions-widget__emissions-description no-data">Total GHG Emissions <br/> Mt CO2e</span>
                         </div>
                     </div>
-                    
+
                     <div className="emissions-widget__emissions-data data-per-capita marg">
                         <div className="icon-wrapper">
                             <MdOutlinePeopleAlt className="people-alt-icon"/>
@@ -272,7 +277,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                         <span>Methodology</span>
                         <MdInfoOutline className="emissions-widget__icon methodologies-icon"/>
                     </div>
-                    
+
                 </div>
             </div>
             }
