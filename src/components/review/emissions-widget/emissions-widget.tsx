@@ -51,16 +51,17 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     }, [currentYear, emissionInfo]);
 
     const calculateTrend = () => {
-        const emissionsToYear = sourceToEmissions[currentSource].yearToEmissions;
-        const previousYear = currentYear - 1;
-        if (previousYear in emissionsToYear) {
-            const oldValue = emissionsToYear[previousYear - 1]?.totalEmissions;
-            const newValue = currentEmissions?.totalEmissions;
-            const trend = newValue ? ((newValue - oldValue) / oldValue) * 100 : 0
-            return parseInt(trend.toPrecision(5));
-        } else {
+        if (sources?.length && Object.keys(sourceToEmissions)?.length && currentSource) {
+            const emissionsToYear = sourceToEmissions[currentSource].yearToEmissions;
+            const previousYear = currentYear - 1;
+            if (previousYear in emissionsToYear) {
+                const oldValue = emissionsToYear[previousYear]?.totalEmissions;
+                const newValue = currentEmissions?.totalEmissions;
+                const trend = newValue ? ((newValue - oldValue) / oldValue) * 100 : 0
+                return parseInt(trend.toPrecision(5));
+            }
+        } 
             return 0;
-        }
     }
 
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
