@@ -25,7 +25,7 @@ import { EmissionInfo, Emissions } from "../../components/review/review.page";
 
 async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
 {
-    let actorInfo =  await fetch(`https://dev.openclimate.network/api/v1/actor/${countryCode}`, {
+    let actorInfo =  await fetch(`/api/v1/actor/${countryCode}`, {
         method: 'GET'
     });
 
