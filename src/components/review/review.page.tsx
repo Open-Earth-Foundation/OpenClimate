@@ -34,20 +34,22 @@ interface IStateProps  {
     reviewFilters: Array<IReviewFilter>
 }
 export interface IEmissionsData {
-    actor_name: string,
-    flag_icon: string,
-    providerToEmissions: Record<string, EmissionInfo>
+    sources: Array<string>,
+    sourceToEmissions: Record<string, EmissionInfo>
 }
 
 export interface EmissionInfo {
-    actorType: string,
-    totalGhg: number,
-    // lastUpdated: string,
-    landSinks: number,
-    year: number,
-    otherGases: number,
-    methodologyType: string,
-    methodologyTags: any
+    latestTotalEmissions: number;
+    latestLandSinks: number;
+    latestYear: number;
+    latestMethodologies: Array<string>;
+    yearToEmissions: Record<number, Emissions>
+}
+
+export interface Emissions {
+    totalEmissions: number;
+    landSink: number;
+    methodologies: Array<string>;
 }
 
 interface IProviderData {
