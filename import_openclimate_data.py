@@ -67,7 +67,10 @@ def import_openclimate_data(dir, host, dbname, user, password):
                 "EmissionsBySector": ["emissions_id", "sector_id"],
                 "Population": ["actor_id", "year"],
                 "GDP": ["actor_id", "year"],
-                "Territory": ["actor_id"]
+                "Territory": ["actor_id"],
+                "Tag": ["tag_id"],
+                "DataSourceTag": ["datasource_id", "tag_id"],
+                "EmissionsAggTag": ["emissions_id", "tag_id"]
             }
 
             for table, pkey in tables.items():
