@@ -25,8 +25,7 @@ import { EmissionInfo, Emissions } from "../../components/review/review.page";
 
 async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
 {
-    // API is crashing when trying to access other actors emissions
-    let actorInfo =  await fetch(`/api/v1/actor/US`, {
+    let actorInfo =  await fetch(`/api/v1/actor/${countryCode}`, {
         method: 'GET'
     });
 
@@ -43,9 +42,9 @@ async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
         const emissionData = emissionObject[source]?.data;
         let latestEmissions;
         const yearToEmissions: Record<number, Emissions> = {};
-        const latestYear = emissionData.length;
+        const latestYear = 0;
         if (emissionData.length > 15) {
-            latestEmissions = emissionData.slice(latestYear - 15, latestYear);
+            latestEmissions = emissionData.slice(latestYear, 15).reverse();
         } else {
             latestEmissions = emissionData;
         }
@@ -59,8 +58,8 @@ async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
             yearToEmissions[emissionData.year] = emission;
         })
         const emissionInfo = {
-            latestTotalEmissions: latestEmissions[latestEmissions.length - 1].total_emissions,
-            latestYear: latestEmissions[latestEmissions.length - 1].year,
+            latestTotalEmissions: latestEmissions[latestEmissions.length-1].total_emissions,
+            latestYear: latestEmissions[latestEmissions.length-1].year,
             // to be added after endpoint update
             latestLandSinks: 0,
             latestMethodologies: [],
@@ -365,7 +364,7 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
     switch (type)
     {
         case FilterTypes.National:
-            await ReviewHelper.LoadEmissionsCountry(trackedEntity?.countryCode ?? '', trackedEntity);
+            await ReviewHelper.LoadEmissionsCountry(trackedEntity?.id.toString() ?? '', trackedEntity);
             await ReviewHelper.LoadPledgesCountry(option.value, trackedEntity);
             await ReviewHelper.LoadTreatiesCountry(option.value, trackedEntity);
             trackedEntity.sites = await siteService.allSitesByCountry(option.name);

@@ -489,7 +489,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                         {
                             dashboardEntity ?
                             <>
-                                <Dashboard entityType={dashboardEntityType} selectedEntity={dashboardEntity} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} />
+                                <Dashboard entityType={dashboardEntityType} selectedEntity={dashboardEntityType !== FilterTypes.National ? dashboardEntity : selectedEntities[0]} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} />
                             </>
                             : ''
                         }

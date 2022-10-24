@@ -13,19 +13,19 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
     const {emissionInfo} = props;
 
-    const sources = emissionInfo.sources;
-    const sourceToEmissions = emissionInfo.sourceToEmissions;
+    const sources = emissionInfo?.sources;
+    const sourceToEmissions = emissionInfo?.sourceToEmissions;
 
     const [currentSource, setCurrentSource] = useState<string>('');
     const [currentYear, setCurrentYear] = useState<number>(0);
     const [currentEmissions, setCurrentEmissions] = useState<Emissions>();
     const [canCalculateTrend, setCanCalculateTrend] = useState<boolean>(true);
-    const years = Object.keys(sourceToEmissions[sources[0]].yearToEmissions);
+    const years = sourceToEmissions && sources && Object.keys(sourceToEmissions[sources[0]]?.yearToEmissions);
     const latestYear = parseInt(years?.[years.length - 1]) ?? 0;
 
 
     useEffect(() => {
-        if (sources.length && Object.keys(sourceToEmissions).length) {
+        if (sources?.length && Object.keys(sourceToEmissions)?.length) {
             setCurrentSource(sources[0]);
             const emissionBySource = sourceToEmissions[sources[0]];
             setCurrentYear(emissionBySource.latestYear)
@@ -38,27 +38,29 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     }, []);
 
     useEffect(() => {
-        if (sources.length && Object.keys(sourceToEmissions).length && currentSource) {
+        if (sources?.length && Object.keys(sourceToEmissions)?.length && currentSource) {
             const emissionsToYear = sourceToEmissions[currentSource].yearToEmissions;
             const emissionsByYear = emissionsToYear[currentYear];
-            setCanCalculateTrend(emissionsToYear[currentYear - 1] !== undefined);
+            setCanCalculateTrend(currentYear !== parseInt(years[0]));
             setCurrentEmissions({
                 totalEmissions: emissionsByYear.totalEmissions,
                 landSink: emissionsByYear.landSink ,
                 methodologies: emissionsByYear.methodologies
             })
         }
-    }, [currentYear]);
+    }, [currentYear, emissionInfo]);
 
     const calculateTrend = () => {
-        const emissionsToYear = sourceToEmissions[currentSource].yearToEmissions;
-        const oldValue = emissionsToYear[currentYear - 1].totalEmissions;
-        const newValue = currentEmissions?.totalEmissions;
-        const trend = newValue ? ((newValue - oldValue) / oldValue) * 100 : 0
-        return parseInt(trend.toPrecision(5));
+        if (sources?.length && Object.keys(sourceToEmissions)?.length && currentSource) {
+            const emissionsToYear = sourceToEmissions[currentSource].yearToEmissions;
+            const oldValue = emissionsToYear[currentYear - 1]?.totalEmissions;
+            const newValue = currentEmissions?.totalEmissions;
+            const trend = newValue && oldValue ? ((newValue - oldValue) / oldValue) * 100 : 0
+            return parseInt(trend.toPrecision(5));
+        }
+        return 0;
     }
 
-    console.log("current", {currentSource: currentSource, currentYear: currentYear})
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
         const value = e.target.value as number;
         
@@ -88,7 +90,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             <div className='emissions-widget__source-label'>Source</div>
                             <div className='emissions-widget__source-title'>
                                 <span>
-                                    {sources[0]}
+                                    {sources?.[0]}
                                 </span> 
                                 <MdArrowDropDown className="emissions-widget__icon arrow"/>
                             </div>
@@ -109,7 +111,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                         }}
                                     >
                                         {
-                                            years.map(year => 
+                                            years?.map(year => 
                                                 <MenuItem sx={{
                                                     fontFamily: 'Poppins',
                                                     fontSize: '10px',
@@ -128,7 +130,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                     <div className="emissions-widget__emissions-data">
                         <div className="emissions-widget__col-1">
                             <div>
-                                <span className="emissions-widget__total-emissions">{ currentEmissions.totalEmissions / 10000000 } </span>
+                                <span className="emissions-widget__total-emissions">{ currentEmissions.totalEmissions / 1000000 } </span>
                             </div>
                             {
                                 canCalculateTrend && calculateTrend() != 0 &&
