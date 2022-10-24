@@ -25,14 +25,15 @@ import { EmissionInfo, Emissions } from "../../components/review/review.page";
 
 async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
 {
-    let actorInfo =  await fetch(`/api/v1/actor/${countryCode}`, {
+    // API is crashing when trying to access other actors emissions
+    let actorInfo =  await fetch(`/api/v1/actor/US`, {
         method: 'GET'
     });
 
    const jsonData = await actorInfo.json();
 
 
-    const emissionObject: Record<string, { data: any}> = jsonData.data.emissions;
+    const emissionObject: Record<string, { data: any, publisher: string}> = jsonData.data.emissions;
     const sources = Object.keys(emissionObject);
 
     const sourcesToEmissions: Record<string, EmissionInfo> = {};
@@ -65,7 +66,7 @@ async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
             latestMethodologies: [],
             yearToEmissions: yearToEmissions
         }
-        const sourceName = latestEmissions[0].datasource_id.split(':')[0];
+        const sourceName = emissionObject[source]?.publisher;
         listOfSources.push(sourceName);
         sourcesToEmissions[sourceName] = emissionInfo;
      } )
