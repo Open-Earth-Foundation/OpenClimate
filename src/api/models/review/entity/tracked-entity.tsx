@@ -1,3 +1,4 @@
+import { IEmissionsData } from "../../../../components/review/review.page";
 import IAggregatedEmission from "../../DTO/AggregatedEmission/IAggregatedEmission";
 import IPledge from "../../DTO/Pledge/IPledge";
 import ISite from "../../DTO/Site/ISite";
@@ -17,6 +18,7 @@ export default interface ITrackedEntity {
     jurisdictionName?: string,
     jurisdictionCode?: string,
     aggregatedEmission?: IAggregatedEmission,
+    emissionInfo?: IEmissionsData,
     retiredUnits?: Array<RetiredUnits>
     pledges?: Array<IPledge>,
     transfers?: Array<ITransfer>

@@ -20,44 +20,94 @@ import { climateActionService } from "../services/climate-action";
 import { ClimateActionHelper } from "./climate-action.helper";
 import { ClimateActionScopes } from "../../api/models/DTO/ClimateAction/climate-action-scopes";
 import { ClimateActionTypes } from "../../api/models/DTO/ClimateAction/climate-action-types";
+import { EmissionInfo, Emissions } from "../../components/review/review.page";
 
-async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
+
+async function LoadEmissionsCountry(countryCode: string, entity: ITrackedEntity)
 {
-    let emissionResponse = null;
+    let actorInfo =  await fetch(`/api/v1/actor/${countryCode}`, {
+        method: 'GET'
+    });
 
-    const emissionsOBJ = {
-        sinks: 0,
-        grossEmissions: 0,
-        netEmissions: 0,
-        date_updated: "2022/10/10",
-        year: 0,
-        methodologies: [],
+   const jsonData = await actorInfo.json();
+
+
+    const emissionObject: Record<string, { data: any}> = jsonData.data.emissions;
+    const sources = Object.keys(emissionObject);
+
+    const sourcesToEmissions: Record<string, EmissionInfo> = {};
+    const listOfSources: Array<string> = [];
+
+    sources.map(source => {
+        const emissionData = emissionObject[source]?.data;
+        let latestEmissions;
+        const yearToEmissions: Record<number, Emissions> = {};
+        const latestYear = emissionData.length;
+        if (emissionData.length > 15) {
+            latestEmissions = emissionData.slice(latestYear - 15, latestYear);
+        } else {
+            latestEmissions = emissionData;
+        }
+        latestEmissions.map((emissionData: { total_emissions: string; year: number; }) => {
+            const emission: Emissions = {
+                totalEmissions: parseInt(emissionData.total_emissions),
+                // to be added after endpoint update
+                landSink: 0,
+                methodologies: []
+            }
+            yearToEmissions[emissionData.year] = emission;
+        })
+        const emissionInfo = {
+            latestTotalEmissions: latestEmissions[latestEmissions.length - 1].total_emissions,
+            latestYear: latestEmissions[latestEmissions.length - 1].year,
+            // to be added after endpoint update
+            latestLandSinks: 0,
+            latestMethodologies: [],
+            yearToEmissions: yearToEmissions
+        }
+        const sourceName = latestEmissions[0].datasource_id.split(':')[0];
+        listOfSources.push(sourceName);
+        sourcesToEmissions[sourceName] = emissionInfo;
+     } )
+
+    const emissionInfo = {
+        sources: listOfSources,
+        sourceToEmissions: sourcesToEmissions
     }
 
-    if(!emissionResponse)
-    {
-        const sinks = emissionsOBJ.sinks;
-        const grossEmission = emissionsOBJ.grossEmissions;
-        const netEmission = grossEmission - sinks;
-        const date_updated = emissionsOBJ.date_updated;
-        const year = emissionsOBJ.year;
-        const methodologies = emissionsOBJ.methodologies
+    // const emissionsOBJ = {
+    //     sinks: 0,
+    //     grossEmissions: 0,
+    //     netEmissions: 0,
+    //     date_updated: "2022/10/10",
+    //     year: 0,
+    //     methodologies: [],
+    // }
+
+    // if(!emissionResponse)
+    // {
+    //     const sinks = emissionsOBJ.sinks;
+    //     const grossEmission = emissionsOBJ.grossEmissions;
+    //     const netEmission = grossEmission - sinks;
+    //     const date_updated = emissionsOBJ.date_updated;
+    //     const year = emissionsOBJ.year;
+    //     const methodologies = emissionsOBJ.methodologies
 
 
-        const emissionData: IAggregatedEmission = {
-            facility_ghg_total_gross_co2e: grossEmission,
-            facility_ghg_total_sinks_co2e: sinks,
-            facility_ghg_total_net_co2e: netEmission,
-            facility_ghg_date_updated: date_updated,
-            facility_ghg_year: year,
-            facility_ghg_methodologies: methodologies,
-        }
+    //     const emissionData: IAggregatedEmission = {
+    //         facility_ghg_total_gross_co2e: grossEmission,
+    //         facility_ghg_total_sinks_co2e: sinks,
+    //         facility_ghg_total_net_co2e: netEmission,
+    //         facility_ghg_date_updated: date_updated,
+    //         facility_ghg_year: year,
+    //         facility_ghg_methodologies: methodologies,
+    //     }
 
-        // Tracking selecting entity(country id)
-        entity.id = countryId;
-        entity.aggregatedEmission = emissionData;
-    } 
-    else{
+    //     // Tracking selecting entity(country id)
+    //     entity.id = countryId;
+    //     entity.aggregatedEmission = emissionData;
+    //     entity.emissionInfo = emissionInfo;
+    // } 
 
         const emissionData: IAggregatedEmission = {
             facility_ghg_total_gross_co2e: 20 ,
@@ -66,13 +116,13 @@ async function LoadEmissionsCountry(countryId: number, entity: ITrackedEntity)
             facility_ghg_date_updated: "0",
             facility_ghg_year: 2020,
             facility_ghg_methodologies: [],
-            providerToEmissions: createProviderEmissionsData(data.data[0].Emissions)
         }
 
         // Tracking selecting entity(country id)
-            entity.id = data.data[0].country_id;
+            //entity.id = data.data[0].country_id;
             entity.aggregatedEmission = emissionData;
-}
+            entity.emissionInfo = emissionInfo;
+
 }
 
 async function LoadEmissionsSubnational(subnational_Id: number, entity: ITrackedEntity)
@@ -314,7 +364,7 @@ async function GetTrackedEntity(type:FilterTypes, option: DropdownOption, select
     switch (type)
     {
         case FilterTypes.National:
-            await ReviewHelper.LoadEmissionsCountry(option.value, trackedEntity);
+            await ReviewHelper.LoadEmissionsCountry(trackedEntity?.countryCode ?? '', trackedEntity);
             await ReviewHelper.LoadPledgesCountry(option.value, trackedEntity);
             await ReviewHelper.LoadTreatiesCountry(option.value, trackedEntity);
             trackedEntity.sites = await siteService.allSitesByCountry(option.name);

@@ -9,6 +9,7 @@ import IPledge from '../../../api/models/DTO/Pledge/IPledge';
 import PledgesWidget from '../pledges-widget/pledges-widget';
 import EmissionsWidget from '../emissions-widget/emissions-widget';
 import ContextualDataWidget from '../../../shared/components/widgets/contextual-data/contextual-data.widget';
+import { IEmissionsData } from '../review.page';
 
 interface Props {
     entityType: FilterTypes | null,
@@ -42,7 +43,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
                     
-                    <EmissionsWidget />
+                    <EmissionsWidget emissionInfo={selectedEntity?.emissionInfo ?? {} as IEmissionsData} />
 
                     <PledgesWidget pledgesData={pledgesData} />
 
