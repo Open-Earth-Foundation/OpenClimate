@@ -17,7 +17,7 @@ import '../explore/explore.page.scss'
 import {HiOutlineSearch} from 'react-icons/hi'
 import { MdArrowUpward} from "react-icons/md";
 import {DonutChart} from 'react-circle-chart'
-
+import ITreaties from '../../api/models/DTO/Treaties/ITreaties';
 import IPledge from '../../api/models/DTO/Pledge/IPledge';
 import { ReviewHelper } from '../../shared/helpers/review.helper';
 import Bg from './img/Earth_Background_Home_Gray.png';
@@ -60,6 +60,7 @@ interface IProps extends IStateProps, IDispatchProps {
 const ReviewPage: FunctionComponent<IProps> = (props) => {
     const [countryOptions, setCountryOptions] = React.useState<{}[]>([]);
     const [pledgesData, setPledgesData] = React.useState<Array<IPledge>>([]);
+    const [treatiesData, setTreatiesData] = React.useState<ITreaties>({});
     const [subns, setSbn] = React.useState<[]>();
 
     const { loading, dashboardEntityType, selectedEntities, reviewFilters, selectFilter, deselectFilter, showModal  } = props;
