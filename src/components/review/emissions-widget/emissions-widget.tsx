@@ -10,10 +10,9 @@ interface Props {
 
 const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
-    const {current, parent} = props;
-    const emissionInfo = null
+    const {current, parent} = props
 
-    const sources = (current && current.emissions) ? current.emissions.keys() : []
+    const sources = (current && current.emissions) ? Object.keys(current.emissions) : []
 
     sources.sort()
 
