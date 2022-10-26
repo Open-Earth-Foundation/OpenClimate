@@ -149,7 +149,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 <div className="emissions-widget__row">
                                     { perCapita ?
                                         <div>
-                                            <span className="emissions-widget__total-tonnes-pc">{perCapita}</span>
+                                            <span className="emissions-widget__total-tonnes-pc">{perCapita.toPrecision(5)}</span>
                                             <span className="emissions-widget__emissions-pc-unit">T</span>
                                         </div>
                                       :
