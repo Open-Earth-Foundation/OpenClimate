@@ -27,7 +27,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     const currentEmissions = (currentSource && currentYear) ? current.emissions[currentSource].data.find((e:any) => e.year == currentYear) : null
     const lastEmissions = (currentSource && currentYear) ? current.emissions[currentSource].data.find((e:any) => e.year == currentYear - 1) : null
     const trend = (currentEmissions && lastEmissions) ? (currentEmissions.total_emissions - lastEmissions.total_emissions)/(lastEmissions.total_emissions) : 0
-    const population = (currentYear) ? current.population.find((p) => Math.abs(p.year - currentYear) < 5) : null
+    const population = (currentYear) ? current.population.find((p:any) => Math.abs(p.year - currentYear) < 5) : null
     const perCapita = (currentEmissions && population) ? currentEmissions.total_emissions/population.population : null
 
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
@@ -131,7 +131,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 trend != 0 &&
                                 <div className="emissions-widget__emissions-trend" >
                                     { trend > 0 ? <MdArrowDropUp className="emissions-widget__emissions-trend-icon-up"/> : <MdArrowDropDown className="emissions-widget__emissions-trend-icon-down"/>}
-                                    <span className={ trend > 0 ? "emissions-widget__emissions-trend-value-red" : "emissions-widget__emissions-trend-value-green"} >{ `${(trend > 0) ? "+" : "-"}${(trend * 100.0).toPrecision(5)}%` }</span>
+                                    <span className={ trend > 0 ? "emissions-widget__emissions-trend-value-red" : "emissions-widget__emissions-trend-value-green"} >{ `${(trend > 0) ? "+" : ""}${(trend * 100.0).toPrecision(5)}%` }</span>
                                     <MdInfoOutline className="emissions-widget__icon trend-icon"/>
                                 </div>
                             }
