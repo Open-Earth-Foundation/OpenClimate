@@ -123,7 +123,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                     <div className="emissions-widget__emissions-data">
                         <div className="emissions-widget__col-1">
                             <div>
-                                <span className="emissions-widget__total-emissions">{ currentEmissions.totalEmissions / 1000000 } </span>
+                                <span className="emissions-widget__total-emissions">{ currentEmissions.total_emissions / 1000000 } </span>
                             </div>
                             {
                                 trend != 0 &&
