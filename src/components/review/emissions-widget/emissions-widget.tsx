@@ -19,6 +19,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
     const defaultSource = (sources.length > 0) ? sources[0] : null
     const defaultYear = (defaultSource && current.emissions[defaultSource].data.length > 0) ? current.emissions[defaultSource].data[0].year : null
+    const latestYear = defaultYear
 
     const [currentSource, setCurrentSource] = useState<any>(defaultSource);
     const [currentYear, setCurrentYear] = useState<any>(defaultYear);
@@ -27,7 +28,6 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     const currentEmissions = (currentSource && currentYear) ? current.emissions[currentSource].data.find((e:any) => e.year == currentYear) : null
     const lastEmissions = (currentSource && currentYear) ? current.emissions[currentSource].data.find((e:any) => e.year == currentYear - 1) : null
     const trend = (currentEmissions && lastEmissions) ? (currentEmissions.total_emissions - lastEmissions.total_emissions)/(lastEmissions.total_emissions) : 0
-    const latestYear = (currentEmissions) ? (new Date(currentEmissions.last_updated)).getFullYear() : 0
 
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
         const value = e.target.value as number;
