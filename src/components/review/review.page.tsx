@@ -35,6 +35,7 @@ interface IProps {
     const insertActor = (actorID: any, children: Array<any>) => {
         fetch(`/api/v1/actor/${actorID}`)
         .then((res) => res.json())
+        .then((json) => json.data)
         .then((actor) => {
             if (!actor.is_part_of) {
                 setActors([actor].concat(children))
