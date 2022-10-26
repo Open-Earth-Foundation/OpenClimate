@@ -58,6 +58,8 @@ interface IProps {
         // XXX: figure out what to do here
     }
 
+    const notJustEarth = () => actors.length > 1
+
     // Donut earth props items
     const items = [
         {
@@ -74,10 +76,10 @@ interface IProps {
 
     return (
         <div className="review">
-            <div className="review__wrapper" style={{backgroundImage: current ? `url(${Bg})`: ""}}>
-                <div style={{backgroundColor : current ? "rgba(255,255,255, 0.8)": "", height: current ? "100%": "", paddingBottom: "50px"}} className="review__foreground">
+            <div className="review__wrapper" style={{backgroundImage: notJustEarth() ? `url(${Bg})`: ""}}>
+                <div style={{backgroundColor : notJustEarth() ? "rgba(255,255,255, 0.8)": "", height: notJustEarth() ? "100%": "", paddingBottom: "50px"}} className="review__foreground">
                     {
-                        current ? '':
+                        notJustEarth() ? '':
                         <div className='review__background-content'>
                             <div className='review__background-content-left'></div>
                         </div>
@@ -96,7 +98,7 @@ interface IProps {
 
                     <div className="review__top-wrapper content-wrapper">
                         {
-                            current ? '':
+                            notJustEarth() ? '':
                             <>
                                 <p className='review__heading'>Earth Indicators</p>
                                 <div className="review__info">
@@ -176,7 +178,7 @@ interface IProps {
 
                         <div className="review_selected-entity">
                         {
-                                current ?
+                                (current && notJustEarth()) ?
                                 <div className="review__selected-entity">
                                     <div>
                                         {current.flagCode ?
@@ -195,7 +197,7 @@ interface IProps {
 
                     <div className="review__content content-wrapper">
                         {
-                            current ?
+                            (current && notJustEarth()) ?
                             <>
                                 <Dashboard current={current} parent={parent} />
                             </>
@@ -204,7 +206,7 @@ interface IProps {
                     </div>
 
                     {
-                        current ? "" :
+                        notJustEarth() ? "" :
                         <div className="contact__block">
                             <div className="contact__title">Looking where to add your data?</div>
                             <div className="contact__subtitle">Contact us and start now!</div>
