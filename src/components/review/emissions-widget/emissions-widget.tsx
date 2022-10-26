@@ -26,7 +26,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     const years = (currentSource) ? current.emissions[currentSource].data.map((e:any) => e.year) : []
     const currentEmissions = (currentSource && currentYear) ? current.emissions[currentSource].data.find((e:any) => e.year == currentYear) : null
     const lastEmissions = (currentSource && currentYear) ? current.emissions[currentSource].data.find((e:any) => e.year == currentYear - 1) : null
-    const trend = (currentEmissions && lastEmissions) ? (currentEmissions.total_emissions - lastEmissions.total_emissions)/(lastEmissions.total_emissions) : 0
+    const trend = (currentEmissions && lastEmissions) ? (currentEmissions.total_emissions - lastEmissions.total_emissions)/(lastEmissions.total_emissions).toPrecision(5) : 0
 
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
         const value = e.target.value as number;
