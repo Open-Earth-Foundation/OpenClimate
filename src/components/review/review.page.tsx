@@ -22,11 +22,13 @@ interface IProps {
     const [actors, setActors] = useState<any>([])
 
     const current = (actors.length > 0) ? actors[actors.length - 1] : null
-    const parent = (actors.length > 1) ? actors[actors.length - 1] : null
+    const parent = (actors.length > 1) ? actors[actors.length - 2] : null
 
     // XXX: figure this out
 
     const loading = false
+
+    // Load the provided actor
 
     useEffect(() => {
         insertActor(actorID, [])
