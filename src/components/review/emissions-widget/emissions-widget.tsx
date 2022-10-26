@@ -27,6 +27,8 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     const currentEmissions = (currentSource && currentYear) ? current.emissions[currentSource].data.find((e:any) => e.year == currentYear) : null
     const lastEmissions = (currentSource && currentYear) ? current.emissions[currentSource].data.find((e:any) => e.year == currentYear - 1) : null
     const trend = (currentEmissions && lastEmissions) ? (currentEmissions.total_emissions - lastEmissions.total_emissions)/(lastEmissions.total_emissions) : 0
+    const population = (currentYear) ? current.population.find((p) => Math.abs(p.year - currentYear) < 5) : null
+    const perCapita = (currentEmissions && population) ? currentEmissions.total_emissions/population.population : null
 
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
         const value = e.target.value as number;
@@ -138,19 +140,6 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             <span className="emissions-widget__emissions-description">Total GHG Emissions <br/> Mt CO2e</span>
                         </div>
                     </div>
-                    <div className="emissions-widget__emissions-data land-sinks">
-                        <div className="emissions-widget__col-1">
-                            <div>
-                                <span className="emissions-widget__total-landsinks">0.1</span>
-                            </div>
-                            <div className="emissions-widget__emissions-trend">
-                                <MdInfoOutline className="emissions-widget__icon trend-icon"/>
-                            </div>
-                        </div>
-                        <div>
-                            <span className="emissions-widget__emissions-description">Land Use Sinks <br/> Mt CO2e</span>
-                        </div>
-                    </div>
                     <div className="emissions-widget__emissions-data data-per-capita">
                         <div className="icon-wrapper">
                             <MdOutlinePeopleAlt className="people-alt-icon"/>
@@ -158,10 +147,17 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                         <div>
                             <div className="emissions-widget__col-1">
                                 <div className="emissions-widget__row">
-                                    <div>
-                                        <span className="emissions-widget__total-tonnes-pc">18.58</span>
-                                        <span className="emissions-widget__emissions-pc-unit">T</span>
-                                    </div>
+                                    { perCapita ?
+                                        <div>
+                                            <span className="emissions-widget__total-tonnes-pc">{perCapita}</span>
+                                            <span className="emissions-widget__emissions-pc-unit">T</span>
+                                        </div>
+                                      :
+                                        <div>
+                                            <span className="emissions-widget__total-tonnes-pc no-data">N/A</span>
+                                        </div>
+                                    }
+
                                 </div>
                                 <div className="emissions-widget__emissions-trend">
                                     <MdInfoOutline className="emissions-widget__icon trend-icon"/>
