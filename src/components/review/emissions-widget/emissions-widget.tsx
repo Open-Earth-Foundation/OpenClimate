@@ -129,7 +129,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 trend != 0 &&
                                 <div className="emissions-widget__emissions-trend" >
                                     { trend > 0 ? <MdArrowDropUp className="emissions-widget__emissions-trend-icon-up"/> : <MdArrowDropDown className="emissions-widget__emissions-trend-icon-down"/>}
-                                    <span className={ trend > 0 ? "emissions-widget__emissions-trend-value-red" : "emissions-widget__emissions-trend-value-green"} >{ `${(trend > 0) ? "+" : "-"}${trend.toPrecision(5)}%` }</span>
+                                    <span className={ trend > 0 ? "emissions-widget__emissions-trend-value-red" : "emissions-widget__emissions-trend-value-green"} >{ `${(trend > 0) ? "+" : "-"}${(trend * 100.0).toPrecision(5)}%` }</span>
                                     <MdInfoOutline className="emissions-widget__icon trend-icon"/>
                                 </div>
                             }
