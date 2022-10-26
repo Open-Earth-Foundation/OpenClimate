@@ -40,10 +40,12 @@ interface IProps {
             if (!actor.is_part_of) {
                 setActors([actor].concat(children))
             } else {
-                const pi = actors.find((a: any) => a.actor_id == actor.is_part_of)
+                const pi = actors.findIndex((a: any) => a.actor_id == actor.is_part_of)
                 if (pi !== -1) {
-                    setActors(actors.slice(0, pi).concat([actor]).concat(children))
+                    // Parent is already part of the array, so just slice and concat
+                    setActors(actors.slice(0, pi + 1).concat([actor]).concat(children))
                 } else {
+                    // Parent is not part of the array, so go up one level and try again
                     insertActor(actor.is_part_of, [actor].concat(children))
                 }
             }
@@ -177,19 +179,19 @@ interface IProps {
                         </div>
 
                         <div className="review_selected-entity">
-                        {
+                            {
                                 (current && notJustEarth()) ?
-                                <div className="review__selected-entity">
-                                    <div>
-                                        {current.flagCode ?
-                                            <CircleFlag countryCode={current.icon} height="35" />
-                                            : ""
-                                        }
-                                        <span className="review__entity-title">{current.name}</span>
+                                    <div className="review__selected-entity">
+                                        <div>
+                                            {current.flagCode ?
+                                                <CircleFlag countryCode={current.icon} height="35" />
+                                                : ""
+                                            }
+                                            <span className="review__entity-title">{current.name}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                :
-                                ""
+                                    :
+                                    ""
                             }
                         </div>
 
