@@ -1,75 +1,43 @@
 import {FunctionComponent, useEffect, useState} from 'react';
 import './emissions-widget.scss';
 import {MdInfoOutline, MdArrowDropDown, MdArrowDropUp, MdOutlinePeopleAlt} from "react-icons/md";
-import { Emissions, IEmissionsData } from '../review.page';
 import {Select, MenuItem, SelectChangeEvent, FormControl} from '@mui/material';
 
 interface Props {
-    emissionInfo: IEmissionsData
+    current: any,
+    parent: any
 }
-
 
 const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
-    const {emissionInfo} = props;
+    const {current, parent} = props;
+    const emissionInfo = null
 
-    const sources = emissionInfo?.sources;
-    const sourceToEmissions = emissionInfo?.sourceToEmissions;
+    const sources = (current && current.emissions) ? current.emissions.keys() : []
 
-    const [currentSource, setCurrentSource] = useState<string>('');
-    const [currentYear, setCurrentYear] = useState<number>(0);
-    const [currentEmissions, setCurrentEmissions] = useState<Emissions>();
-    const [canCalculateTrend, setCanCalculateTrend] = useState<boolean>(true);
-    const years = sourceToEmissions && sources && Object.keys(sourceToEmissions[sources[0]]?.yearToEmissions);
-    const latestYear = parseInt(years?.[years.length - 1]) ?? 0;
+    sources.sort()
 
+    const defaultSource = (sources.length > 0) ? sources[0] : null
+    const defaultYear = (defaultSource && current.emissions[defaultSource].data.length > 0) ? current.emissions[defaultSource].data[0].year : null
 
-    useEffect(() => {
-        if (sources?.length && Object.keys(sourceToEmissions)?.length) {
-            setCurrentSource(sources[0]);
-            const emissionBySource = sourceToEmissions[sources[0]];
-            setCurrentYear(emissionBySource.latestYear)
-            setCurrentEmissions({
-                totalEmissions: emissionBySource.latestTotalEmissions,
-                landSink: emissionBySource.latestLandSinks,
-                methodologies: emissionBySource.latestMethodologies
-            })
-        }
-    }, []);
+    const [currentSource, setCurrentSource] = useState<any>(defaultSource);
+    const [currentYear, setCurrentYear] = useState<any>(defaultYear);
 
-    useEffect(() => {
-        if (sources?.length && Object.keys(sourceToEmissions)?.length && currentSource) {
-            const emissionsToYear = sourceToEmissions[currentSource].yearToEmissions;
-            const emissionsByYear = emissionsToYear[currentYear];
-            setCanCalculateTrend(currentYear !== parseInt(years[0]));
-            setCurrentEmissions({
-                totalEmissions: emissionsByYear.totalEmissions,
-                landSink: emissionsByYear.landSink ,
-                methodologies: emissionsByYear.methodologies
-            })
-        }
-    }, [currentYear, emissionInfo]);
-
-    const calculateTrend = () => {
-        if (sources?.length && Object.keys(sourceToEmissions)?.length && currentSource) {
-            const emissionsToYear = sourceToEmissions[currentSource].yearToEmissions;
-            const previousYear = currentYear - 1;
-            if (previousYear in emissionsToYear) {
-                const oldValue = emissionsToYear[previousYear]?.totalEmissions;
-                const newValue = currentEmissions?.totalEmissions;
-                const trend = newValue ? ((newValue - oldValue) / oldValue) * 100 : 0
-                return parseInt(trend.toPrecision(5));
-            }
-        } 
-            return 0;
-    }
+    const years = (currentSource) ? current.emissions[currentSource].data.map((e:any) => e.year) : []
+    const currentEmissions = (currentSource && currentYear) ? current.emissions[currentSource].data.find((e:any) => e.year == currentYear) : null
+    const lastEmissions = (currentSource && currentYear) ? current.emissions[currentSource].data.find((e:any) => e.year == currentYear - 1) : null
+    const trend = (currentEmissions && lastEmissions) ? (currentEmissions.total_emissions - lastEmissions.total_emissions)/(lastEmissions.total_emissions) : 0
+    const latestYear = (currentEmissions) ? (new Date(currentEmissions.last_updated)).getFullYear() : 0
 
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
         const value = e.target.value as number;
-
         setCurrentYear(value);
     }
 
+    const sourceChangeHandler = (e: SelectChangeEvent<number>) => {
+        const value = e.target.value as number;
+        setCurrentSource(value);
+    }
 
     return(
         <div className="emissions-widget" style={{height: currentEmissions ? '': "268px"}}>
@@ -86,16 +54,39 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 <MdInfoOutline className="emissions-widget__icon"/>
                             </span>
                         </div>
-                        <span className="emissions-widget__last-updated">{`Last updated in ${latestYear}`}</span>
+                        {
+                            latestYear != 0 &&
+                              <span className="emissions-widget__last-updated">{`Last updated in ${latestYear}`}</span>
+                        }
                     </div>
                     <div className="emissions-widget__metadata-right">
                         <div className="emissions-widget__metadata-right-inner">
                             <div className='emissions-widget__source-label'>Source</div>
                             <div className='emissions-widget__source-title'>
-                                <span>
-                                    {sources?.[0]}
-                                </span> 
-                                <MdArrowDropDown className="emissions-widget__icon arrow"/>
+                                <FormControl variant="standard" sx={{ m: 1, minWidth: 120, margin: '0px', minHeight: 30, fontWeight: '700px',}}>
+                                    <Select
+                                        value={currentSource}
+                                        onChange={sourceChangeHandler}
+                                        id="demo-simple-select-standard"
+                                        sx={{
+                                            border: '0px',
+                                            fontFamily: 'Poppins',
+                                            fontSize: '10px',
+                                            position: 'relative'
+                                        }}
+                                    >
+                                        {
+                                            sources.map((source:any) =>
+                                                <MenuItem sx={{
+                                                    fontFamily: 'Poppins',
+                                                    fontSize: '10px',
+                                                    position: 'relative',
+                                                    margin: '0px',
+                                                    fontWeight: '700px'
+                                                }} value={source}>{source}</MenuItem>)
+                                        }
+                                    </Select>
+                                </FormControl >
                             </div>
                         </div>
                         <div className="emissions-widget__metadata-right-inner">
@@ -114,7 +105,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                         }}
                                     >
                                         {
-                                            years?.map(year => 
+                                            years?.map((year:any) =>
                                                 <MenuItem sx={{
                                                     fontFamily: 'Poppins',
                                                     fontSize: '10px',
@@ -136,10 +127,10 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 <span className="emissions-widget__total-emissions">{ currentEmissions.totalEmissions / 1000000 } </span>
                             </div>
                             {
-                                canCalculateTrend && calculateTrend() != 0 &&
+                                trend != 0 &&
                                 <div className="emissions-widget__emissions-trend" >
-                                    { calculateTrend() > 0 ? <MdArrowDropUp className="emissions-widget__emissions-trend-icon-up"/> : <MdArrowDropDown className="emissions-widget__emissions-trend-icon-down"/>}
-                                    <span className={ calculateTrend() > 0 ? "emissions-widget__emissions-trend-value-red" : "emissions-widget__emissions-trend-value-green"} >{ calculateTrend() > 0 ? `+${calculateTrend()}%` : `${calculateTrend()}%` }</span>
+                                    { trend > 0 ? <MdArrowDropUp className="emissions-widget__emissions-trend-icon-up"/> : <MdArrowDropDown className="emissions-widget__emissions-trend-icon-down"/>}
+                                    <span className={ trend > 0 ? "emissions-widget__emissions-trend-value-red" : "emissions-widget__emissions-trend-value-green"} >{ trend > 0 ? `+${trend}%` : `${trend}%` }</span>
                                     <MdInfoOutline className="emissions-widget__icon trend-icon"/>
                                 </div>
                             }

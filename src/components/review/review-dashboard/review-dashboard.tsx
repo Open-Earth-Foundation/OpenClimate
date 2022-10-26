@@ -9,31 +9,14 @@ import IPledge from '../../../api/models/DTO/Pledge/IPledge';
 import PledgesWidget from '../pledges-widget/pledges-widget';
 import EmissionsWidget from '../emissions-widget/emissions-widget';
 import ContextualDataWidget from '../../../shared/components/widgets/contextual-data/contextual-data.widget';
-import { IEmissionsData } from '../review.page';
 
 interface Props {
-    entityType: FilterTypes | null,
-    treatiesData: ITreaties,
-    pledgesData: Array<IPledge>,
-    selectedEntity: ITrackedEntity,
-    showModal: (type: string) => void
+    current: any,
+    parent: any,
 }
 
 const Dashboard: FunctionComponent<Props> = (props) => {
-    const { selectedEntity, showModal, treatiesData, pledgesData, entityType } = props;
-
-    const history = useHistory();
-
-    const redirectToNestedAccounts = () => {
-        let params = '';
-
-        if(selectedEntity.type === FilterTypes.National)
-            params = `?country=${selectedEntity.countryCode}`;
-        else if(selectedEntity.type === FilterTypes.SubNational || selectedEntity.type === FilterTypes.Organization)
-            params = `?country=${selectedEntity.countryCode}&jurisdictionName=${selectedEntity.jurisdictionName}&jurisdictionCode=${selectedEntity.jurisdictionCode}`;
-
-        history.push(`/nested-accounts${params}`);
-    }
+    const { current, parent } = props;
 
     return (
         <div className="review__dashboard">
@@ -42,12 +25,12 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     breakpointCols={3}
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
-                    
-                    <EmissionsWidget emissionInfo={selectedEntity?.emissionInfo ?? {} as IEmissionsData} />
 
-                    <PledgesWidget pledgesData={pledgesData} />
+                    <EmissionsWidget current={current} parent={parent} />
 
-                    <ContextualDataWidget/>
+                    <PledgesWidget current={current} parent={parent} />
+
+                    <ContextualDataWidget current={current} parent={parent}/>
 
                 </Masonry>
             </div>

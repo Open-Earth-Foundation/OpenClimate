@@ -8,8 +8,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from '@mui/material/Tooltip';
 
 
+interface Props {
+    current: any,
+    parent: any
+}
 
-const ContextualDataWidget: FunctionComponent = () => {
+const ContextualDataWidget: FunctionComponent<Props> = (props) => {
+
+    const {current, parent} = props
 
     const useStyles = makeStyles(() => ({
         customTooltip: {
@@ -35,7 +41,7 @@ const ContextualDataWidget: FunctionComponent = () => {
     }]
 
     return (
-        <div className="contextual-widget" > 
+        <div className="contextual-widget" >
             <div className="contextual-widget__wrapper" >
                 <div className="contextual-widget__header">
                     <div className="contextual-widget__title-wrapper">
@@ -44,7 +50,7 @@ const ContextualDataWidget: FunctionComponent = () => {
                         </h3>
                     </div>
 
-                    <span className="contextual-widget__updated">Last updated in 2018</span>     
+                    <span className="contextual-widget__updated">Last updated in 2018</span>
 
                 </div>
                 <div className="contextual-widget__content">
@@ -65,7 +71,7 @@ const ContextualDataWidget: FunctionComponent = () => {
                                             } arrow placement="right">
                                             <InfoOutlined sx={{color: '#A3A3A3', fontSize: 13 }} />
                                             </Tooltip>
-                                
+
                             </div>
                             <div className="contextual-widget__left-subtitle-text">
                                 Of Global population
@@ -79,7 +85,7 @@ const ContextualDataWidget: FunctionComponent = () => {
                             <div className="contextual-widget__mid-text-box">
                                 <div className="contextual-widget__mid-header-text">
                                     1425.8
-                                    <div className="contextual-widget__grey-text">M</div> 
+                                    <div className="contextual-widget__grey-text">M</div>
                                     <Tooltip classes={{
                                                     tooltip: classes.customTooltip,
                                                     arrow: classes.customArrow
@@ -92,7 +98,7 @@ const ContextualDataWidget: FunctionComponent = () => {
                                                 } arrow placement="right">
                                                 <InfoOutlined sx={{color: '#A3A3A3', fontSize: 13 }} />
                                                 </Tooltip>
-                                            
+
                                 </div>
                                 <div className="contextual-widget__normal-right-text">
                                     Total population
@@ -106,7 +112,7 @@ const ContextualDataWidget: FunctionComponent = () => {
                             <div className="contextual-widget__left-info-box">
                                 <div className="contextual-widget__mid-header-text">
                                     9.7M
-                                    <div className="contextual-widget__grey-text">Km2</div> 
+                                    <div className="contextual-widget__grey-text">Km2</div>
                                     <Tooltip classes={{
                                                     tooltip: classes.customTooltip,
                                                     arrow: classes.customArrow
@@ -117,15 +123,15 @@ const ContextualDataWidget: FunctionComponent = () => {
                                                         <div>Year: 2005</div>
                                                     </div>
                                                 } arrow placement="right">
-                                                
+
                                                 <InfoOutlined sx={{color: '#A3A3A3', fontSize: 13 }} />
                                                 </Tooltip>
-                                            
+
                                 </div>
                                 <div className="contextual-widget__normal-right-text">
                                     Total area
                                 </div>
-                                            
+
                             </div>
                         </div>
                     </div>
@@ -136,7 +142,7 @@ const ContextualDataWidget: FunctionComponent = () => {
                             <div className="contextual-widget__left-info-box">
                                 <div className="contextual-widget__right-header-text">
                                     19.485T
-                                    <div className="contextual-widget__grey-text">USD</div> 
+                                    <div className="contextual-widget__grey-text">USD</div>
                                     <Tooltip classes={{
                                                     tooltip: classes.customTooltip,
                                                     arrow: classes.customArrow
@@ -147,15 +153,15 @@ const ContextualDataWidget: FunctionComponent = () => {
                                                         <div>Year: 2005</div>
                                                     </div>
                                                 } arrow placement="right">
-                                                
+
                                                 <InfoOutlined sx={{color: '#A3A3A3', fontSize: 13 }} />
                                                 </Tooltip>
                                                 </div>
-                                            
+
                                 <div className="contextual-widget__normal-right-text">
                                     GDP
                                 </div>
-                                            
+
                             </div>
                         </div>
                 </div>

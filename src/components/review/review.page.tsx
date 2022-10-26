@@ -1,127 +1,61 @@
-import React, { FunctionComponent, useEffect } from 'react'
-import { DispatchThunk, RootState } from '../../store/root-state';
-import { connect } from 'react-redux';
-import ITrackedEntity from '../../api/models/review/entity/tracked-entity';
+import { FunctionComponent, useEffect, useState } from 'react'
 import ReviewFilters from './review-filters/review-filters';
 import Dashboard from './review-dashboard/review-dashboard';
 import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option';
 import {Oval} from "react-loader-spinner";
 import { FilterTypes } from '../../api/models/review/dashboard/filterTypes';
-import { IReviewFilter } from '../../api/models/review/dashboard/reviewFilter';
 import { CircleFlag } from 'react-circle-flags';
-import * as reviewSelectors from '../../store/review/review.selectors';
-import * as reviewActions from '../../store/review/review.actions';
-import * as appActions from '../../store/app/app.actions';
 import './review.page.scss';
 import '../explore/explore.page.scss'
 import {HiOutlineSearch} from 'react-icons/hi'
 import { MdArrowUpward} from "react-icons/md";
 import {DonutChart} from 'react-circle-chart'
-import ITreaties from '../../api/models/DTO/Treaties/ITreaties';
-import IPledge from '../../api/models/DTO/Pledge/IPledge';
-import { ReviewHelper } from '../../shared/helpers/review.helper';
 import Bg from './img/Earth_Background_Home_Gray.png';
 
-interface IStateProps  {
-    loading: boolean,
-    dashboardEntityType: FilterTypes | null,
-    selectedEntities: Array<ITrackedEntity>,
-    reviewFilters: Array<IReviewFilter>
+interface IProps {
+    actorID: string;
 }
+ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
-export interface IEmissionsData {
-    sources: Array<string>,
-    sourceToEmissions: Record<string, EmissionInfo>
-}
+    const { actorID  } = props;
 
-export interface EmissionInfo {
-    latestTotalEmissions: number;
-    latestLandSinks: number;
-    latestYear: number;
-    latestMethodologies: Array<string>;
-    yearToEmissions: Record<number, Emissions>
-}
+    const [actors, setActors] = useState<any>([])
 
-export interface Emissions {
-    totalEmissions: number;
-    landSink: number;
-    methodologies: Array<string>;
-}
+    const current = (actors.length > 0) ? actors[actors.length - 1] : null
+    const parent = (actors.length > 1) ? actors[actors.length - 1] : null
 
-interface IDispatchProps {
-    selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) => void,
-    deselectFilter: (filterType: FilterTypes) => void,
-    showModal: (type: string) => void
-}
+    // XXX: figure this out
 
-interface IProps extends IStateProps, IDispatchProps {
-}
+    const loading = false
 
-const ReviewPage: FunctionComponent<IProps> = (props) => {
-    const [countryOptions, setCountryOptions] = React.useState<{}[]>([]);
-    const [pledgesData, setPledgesData] = React.useState<Array<IPledge>>([]);
-    const [treatiesData, setTreatiesData] = React.useState<ITreaties>({});
-    const [subns, setSbn] = React.useState<[]>();
+    useEffect(() => {
+        insertActor(actorID, [])
+    }, [])
 
-    const { loading, dashboardEntityType, selectedEntities, reviewFilters, selectFilter, deselectFilter, showModal  } = props;
-    let dashboardEntity:ITrackedEntity|null = null;
-    let collapceEntities: Array<ITrackedEntity> = [];
-
-    if(dashboardEntityType !== null)
-    {
-        dashboardEntity = selectedEntities.find(se => se.type === dashboardEntityType) ?? null;
-        collapceEntities = selectedEntities.filter(se => se.type !== dashboardEntityType);
+    const insertActor = (actorID: any, children: Array<any>) => {
+        fetch(`/api/v1/actor/${actorID}`)
+        .then((res) => res.json())
+        .then((actor) => {
+            if (!actor.is_part_of) {
+                setActors([actor].concat(children))
+            } else {
+                const pi = actors.find((a: any) => a.actor_id == actor.is_part_of)
+                if (pi !== -1) {
+                    setActors(actors.slice(0, pi).concat([actor]).concat(children))
+                } else {
+                    insertActor(actor.is_part_of, [actor].concat(children))
+                }
+            }
+        })
     }
 
-   const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
-        selectFilter(filterType, option, selectedEntities);
-    }
-    const error = '';
-
-    const getAllcountries = async () => {
-        const countries = await  fetch('/api/country', {
-
-            method: 'GET',
-        });
-        const jsonData = await countries.json()
-        setCountryOptions(jsonData.data)
+    const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
+        insertActor(option.value, [])
     }
 
-    React.useEffect(()=> {
-        getAllcountries()
-    },[])
-
-    const addPledgesData = (newPledges: Array<IPledge>) => setPledgesData(pledgesData.concat(newPledges));
-
-    const handlePledges = async (entityCode: string, type: string) => {
-
-        let pledges;
-        switch(type) {
-            case 'country':
-                pledges = await ReviewHelper.LoadPledgesCountry(entityCode);
-                setPledgesData(pledges);
-                break;
-            case 'subnational':
-                pledges = await ReviewHelper.LoadPledgesSubnational(entityCode);
-                addPledgesData(pledges);
-                break;
-            default:
-        }
+    const deselectFilterHandler = (filterType: FilterTypes) => {
+        // XXX: figure out what to do here
     }
-
-    useEffect(()=> {
-        if(subns) {
-            console.log(subns);
-        }
-    }, [subns])
-
-    useEffect(()=> {
-        if (dashboardEntity?.jurisdictionName) {
-            dashboardEntity?.jurisdictionCode && handlePledges(dashboardEntity?.jurisdictionCode, 'subnational')
-        } else {
-            dashboardEntity?.countryCode && handlePledges(dashboardEntity.countryCode, 'country');
-        }
-    }, [dashboardEntity]);
 
     // Donut earth props items
     const items = [
@@ -139,10 +73,10 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
     return (
         <div className="review">
-            <div className="review__wrapper" style={{backgroundImage: dashboardEntity ? `url(${Bg})`: ""}}>
-                <div style={{backgroundColor : dashboardEntity ? "rgba(255,255,255, 0.8)": "", height: dashboardEntity ? "100%": "", paddingBottom: "50px"}} className="review__foreground">
+            <div className="review__wrapper" style={{backgroundImage: current ? `url(${Bg})`: ""}}>
+                <div style={{backgroundColor : current ? "rgba(255,255,255, 0.8)": "", height: current ? "100%": "", paddingBottom: "50px"}} className="review__foreground">
                     {
-                        dashboardEntity ? '':
+                        current ? '':
                         <div className='review__background-content'>
                             <div className='review__background-content-left'></div>
                         </div>
@@ -161,7 +95,7 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
                     <div className="review__top-wrapper content-wrapper">
                         {
-                            dashboardEntity ? '':
+                            current ? '':
                             <>
                                 <p className='review__heading'>Earth Indicators</p>
                                 <div className="review__info">
@@ -234,24 +168,21 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
                         </div>
                         <div className="review__filters-wrapper">
                         <ReviewFilters
-                            nationState={true}
                             selectFilter={selectFilterHandler}
-                            deselectFilter={deselectFilter}
-                            filters={reviewFilters}
+                            deselectFilter={deselectFilterHandler}
                         />
                         </div>
 
                         <div className="review_selected-entity">
                         {
-                                dashboardEntity ?
+                                current ?
                                 <div className="review__selected-entity">
                                     <div>
-                                        {dashboardEntity.flagCode ?
-                                            // <img className='review__flag' src={`https://flagcdn.com/${emissionsData?.flag_icon}.svg`} alt={``}  width="35" height={35}/>
-                                            <CircleFlag countryCode={dashboardEntity.flagCode} height="35" />
+                                        {current.flagCode ?
+                                            <CircleFlag countryCode={current.icon} height="35" />
                                             : ""
                                         }
-                                        <span className="review__entity-title">{dashboardEntity.title}</span>
+                                        <span className="review__entity-title">{current.name}</span>
                                     </div>
                                 </div>
                                 :
@@ -263,16 +194,16 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
 
                     <div className="review__content content-wrapper">
                         {
-                            dashboardEntity ?
+                            current ?
                             <>
-                                <Dashboard entityType={dashboardEntityType} selectedEntity={dashboardEntityType !== FilterTypes.National ? dashboardEntity : selectedEntities[0]} treatiesData={treatiesData} pledgesData={pledgesData} showModal={showModal} />
+                                <Dashboard current={current} parent={parent} />
                             </>
                             : ''
                         }
                     </div>
 
                     {
-                        dashboardEntity ? "" :
+                        current ? "" :
                         <div className="contact__block">
                             <div className="contact__title">Looking where to add your data?</div>
                             <div className="contact__subtitle">Contact us and start now!</div>
@@ -286,27 +217,8 @@ const ReviewPage: FunctionComponent<IProps> = (props) => {
     );
 }
 
-const mapStateToProps = (state: RootState, ownProps: any) => {
-
-    const entities = reviewSelectors.getSelectedEntities(state.review);
-
-    return {
-        selectedEntities: entities,
-        loading: reviewSelectors.getLoading(state.review),
-        dashboardEntityType: reviewSelectors.getDashboardType(state.review),
-        reviewFilters: reviewSelectors.getReviewFilters(state.review)
-    }
+ReviewPage.defaultProps = {
+    actorID: "EARTH"
 }
 
-const mapDispatchToProps = (dispatch: DispatchThunk) => {
-    return {
-        selectFilter: (filterType: FilterTypes, option: DropdownOption, selectedEntities: Array<ITrackedEntity>) =>
-            dispatch(reviewActions.doSelectFilter(filterType, option, selectedEntities)),
-        deselectFilter: (filterType: FilterTypes) => dispatch(reviewActions.deselectFilter(filterType)),
-        showModal: (type:string) => {
-            dispatch(appActions.showModal(type))
-          }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewPage);
+export default ReviewPage

@@ -5,18 +5,19 @@ import IPledge from '../../../api/models/DTO/Pledge/IPledge';
 import PledgeItem from './pledge-item';
 
 interface Props {
-    pledgesData: Array<IPledge>
+    current: any,
+    parent: any
 }
 
 const PledgesWidget: FunctionComponent<Props> = (props) => {
 
-    const {pledgesData} = props;
+    const {current, parent} = props;
+    const pledgesData = null
 
-    
     return(
         <div className="pledges-widget" style={{height: pledgesData ? '': "268px"}}>
             {
-                pledgesData.length ?
+                pledgesData?.length ?
                 <div className="pledges-widget__wrapper">
                     <div className="pledges-widget__metadata">
                         <div>
@@ -31,11 +32,11 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                             <span className="pledges-widget__last-updated">Last updated June 2020</span>
                         </div>
                     </div>
-                    { pledgesData.map(pledge =>
+                    { pledgesData?.map(pledge =>
                         <PledgeItem pledge={pledge} />
 
                     )}
-                </div>: 
+                </div>:
                 <div className="pledges-widget__wrapper">
                     <div className="pledges-widget__metadata">
                         <div>

@@ -6,6 +6,7 @@ import { IReviewFilter } from '../../../api/models/review/dashboard/reviewFilter
 import './review-filters.scss';
 import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import {makeStyles} from "@material-ui/core/styles";
+import { CountryCodesHelper } from '../../../shared/helpers/country-codes.helper';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -22,22 +23,54 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
+const filters = [
+    {
+        title: "Country",
+        type: FilterTypes.National,
+        selectedValue: "",
+        options: CountryCodesHelper.GetCountryOptions()
+    },
+    {
+        title: "Region",
+        type: FilterTypes.SubNational,
+        selectedValue: "",
+        options: []
+    },
+    {
+        title: "Entity type",
+        type: FilterTypes.EntityType,
+        selectedValue: 'City',
+        options: [{name: 'City', value: 'City'}, {name: 'Organization', value: 'Organization'}],
+        isRadio: true
+    },
+    {
+        title: "City",
+        type: FilterTypes.City,
+        selectedValue: "",
+        options: []
+    },
+    {
+        title: "Organization",
+        type: FilterTypes.Organization,
+        selectedValue: "",
+        options: []
+    },
+]
+
 interface Props {
-    nationState: boolean,
-    filters: Array<IReviewFilter>,
     selectFilter: (filterType: FilterTypes, option: DropdownOption) => void,
     deselectFilter: (filterType: FilterTypes) => void
 }
 
 const ReviewFilters: FunctionComponent<Props> = (props) => {
     const classes = useStyles();
-    const { filters, selectFilter, deselectFilter } = props;
+    const { selectFilter, deselectFilter } = props;
     const [type, setType] = useState<string>('City');
-    const [fltr, setFltr] = useState<IReviewFilter []>()
-    
+    const [fltr, setFltr] = useState<any>()
+
 
     const selectFilterHandler = (filterType: FilterTypes, option: any) => {
-        selectFilter(filterType, option); 
+        selectFilter(filterType, option);
     };
 
     useEffect(()=> {
@@ -50,22 +83,22 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
         }
     }, [type])
 
-    
+
     const filtersHtml = fltr?.map((f:IReviewFilter, i:number) => {
 
         const disabled = f.options?.length === 0;
         const selectedValue = f.selectedValue === '' ? null : f.selectedValue;
-        
+
         const handleEntityChange = (e:React.ChangeEvent<HTMLInputElement>) => {
             setType((t)=> t = e.target.value)
         }
 
-        return f?.isRadio ? 
+        return f?.isRadio ?
         (
-            <div className="review__filter review__radio-filters" key={i}>                
+            <div className="review__filter review__radio-filters" key={i}>
                 <FormControl>
                     <FormLabel className="review__filter-form-label">{ "Entity Type"}</FormLabel>
-                    <RadioGroup 
+                    <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
                       name="controlled-radio-buttons-group"
                       defaultValue="City"
@@ -83,10 +116,10 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
         :
         (
             f.title === type ? (
-                <div className="review__filter" key={i}>                
-                    <Dropdown 
+                <div className="review__filter" key={i}>
+                    <Dropdown
                     withSearch={true}
-                    searchPlaceholder="Search" 
+                    searchPlaceholder="Search"
                     options={f.options}
                     title={f.title}
                     onDeSelect={() => deselectFilter(f.type)}
@@ -96,10 +129,10 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
                     />
                 </div>
             ): (
-                <div className="review__filter" key={i}>                
-                    <Dropdown 
+                <div className="review__filter" key={i}>
+                    <Dropdown
                     withSearch={true}
-                    searchPlaceholder="Search" 
+                    searchPlaceholder="Search"
                     options={f.options}
                     title={f.title}
                     onDeSelect={() => deselectFilter(f.type)}
@@ -108,7 +141,7 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
                     selectedValue={selectedValue}
                     />
                 </div>
-            )            
+            )
         )
         ;
     });
@@ -122,4 +155,3 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
 
 
 export default ReviewFilters;
- 
