@@ -1,11 +1,6 @@
 import { FunctionComponent } from 'react'
-import ITrackedEntity from '../../../api/models/review/entity/tracked-entity';
-import { FilterTypes } from '../../../api/models/review/dashboard/filterTypes';
-import { useHistory } from 'react-router-dom'
 import './review-dashboard.scss';
 import Masonry from 'react-masonry-css'
-import ITreaties from '../../../api/models/DTO/Treaties/ITreaties';
-import IPledge from '../../../api/models/DTO/Pledge/IPledge';
 import PledgesWidget from '../pledges-widget/pledges-widget';
 import EmissionsWidget from '../emissions-widget/emissions-widget';
 import ContextualDataWidget from '../../../shared/components/widgets/contextual-data/contextual-data.widget';
