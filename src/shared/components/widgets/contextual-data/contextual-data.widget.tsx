@@ -98,7 +98,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                             <div className="contextual-widget__mid-text-box">
                                 <div className="contextual-widget__mid-header-text">
                                     {
-                                        (latestPopulation) ? ((latestPopulation.population/1000000.0).toPrecision(5) + "M") : "N/A"
+                                        (latestPopulation) ? ((latestPopulation.population/1000000.0).toPrecision(5)) : "N/A"
                                     }
                                     <div className="contextual-widget__grey-text">M</div>
                                     <Tooltip classes={{
@@ -156,7 +156,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                             </div>
                             <div className="contextual-widget__left-info-box">
                                 <div className="contextual-widget__right-header-text">
-                                   {(latestGDP) ? "$" + ((latestGDP.gdp/1000000000.0).toPrecision(5) + "B") : "N/A"}
+                                   {(latestGDP) ? ((latestGDP.gdp/1000000000.0).toPrecision(5) + "B") : "N/A"}
                                     <div className="contextual-widget__grey-text">USD</div>
                                     <Tooltip classes={{
                                                     tooltip: classes.customTooltip,
