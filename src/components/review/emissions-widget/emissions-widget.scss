@@ -95,15 +95,26 @@
         display: flex;
         align-items: flex-start;
     }
-    &__emissions-trend-icon{
+    &__emissions-trend-icon-down{
+        position: relative;
+        top: -2px;
+        left: 4px;
+        color: #24BE00;
+        font-size: 24px;
+    }
+    &__emissions-trend-icon-up{
         position: relative;
         top: -2px;
         left: 4px;
         color: #F23D33;
         font-size: 24px;
     }
-    &__emissions-trend-value{
+    &__emissions-trend-value-red{
         color: #F23D33;
+        font-size: 14px;
+    }
+    &__emissions-trend-value-green{
+        color: #24BE00;
         font-size: 14px;
     }
     .trend-icon{

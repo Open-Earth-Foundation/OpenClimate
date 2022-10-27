@@ -22,50 +22,128 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
+const filters = [
+    {
+        title: "Country",
+        type: FilterTypes.National,
+        selectedValue: null,
+        options: [],
+        hidden: false
+    },
+    {
+        title: "Region",
+        type: FilterTypes.SubNational,
+        selectedValue: null,
+        options: [],
+        hidden: false
+    },
+    {
+        title: "Entity type",
+        type: FilterTypes.EntityType,
+        selectedValue: 'City',
+        options: [{name: 'City', value: 'City'}, {name: 'Organization', value: 'Organization'}],
+        isRadio: true,
+        hidden: false
+    },
+    {
+        title: "City",
+        type: FilterTypes.City,
+        selectedValue: null,
+        options: [],
+        hidden: false
+    },
+    {
+        title: "Organization",
+        type: FilterTypes.Organization,
+        selectedValue: null,
+        options: [],
+        hidden: true
+    },
+]
+
 interface Props {
-    nationState: boolean,
-    filters: Array<IReviewFilter>,
     selectFilter: (filterType: FilterTypes, option: DropdownOption) => void,
     deselectFilter: (filterType: FilterTypes) => void
 }
 
 const ReviewFilters: FunctionComponent<Props> = (props) => {
     const classes = useStyles();
-    const { filters, selectFilter, deselectFilter } = props;
-    const [type, setType] = useState<string>('City');
-    const [fltr, setFltr] = useState<IReviewFilter []>()
-    
+    const { selectFilter, deselectFilter } = props;
+    const [fltr, setFltr] = useState<any>(filters)
 
     const selectFilterHandler = (filterType: FilterTypes, option: any) => {
-        selectFilter(filterType, option); 
+        selectFilter(filterType, option);
+        const actor_id = option.value
+        if (filterType == FilterTypes.National) {
+            fetch(`/api/v1/actor/${actor_id}/parts?type=adm1`)
+            .then((res) => res.json())
+            .then((json) => {
+                let parts = json.data
+                let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}})
+                let u = fltr.slice()
+                u[0] = {...u[0], selectedValue: actor_id}
+                u[1] = {...u[1], selectedValue: null, options: options}
+                u[3] = {...u[3], selectedValue: null, options: []}
+                u[4] = {...u[4], selectedValue: null, options: []}
+                setFltr(u)
+            })
+        } else if (filterType == FilterTypes.SubNational) {
+            const type = (fltr[3].hidden) ? 'organization' : 'city'
+            fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
+            .then((res) => res.json())
+            .then((json) => {
+                let parts = json.data
+                let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}})
+                let u = fltr.slice()
+                u[1] = {...u[1], selectedValue: actor_id}
+                u[3] = {...u[3], selectedValue: null, options: u[3].hidden ? [] : options}
+                u[4] = {...u[4], selectedValue: null, options: u[4].hidden ? [] : options}
+                setFltr(u)
+            })
+        }
     };
 
-    useEffect(()=> {
-        if(type === 'City'){
-            const f = filters.filter((f)=>f.title !== "Organization");
-            setFltr(f)
-        } else if(type === 'Organization'){
-            const f = filters.filter((f)=>f.title !== "City");
-            setFltr(f)
-        }
-    }, [type])
+    useEffect(() => {
+        fetch(`/api/v1/actor/EARTH/parts?type=country`)
+        .then((res) => res.json())
+        .then((json) => {
+            let parts = json.data
+            let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}})
+            let u = fltr.slice()
+            u[0] = {...u[0], options: options}
+            u[1] = {...u[1], selectedValue: null, options: []}
+            u[3] = {...u[3], selectedValue: null, options: []}
+            u[4] = {...u[4], selectedValue: null, options: []}
+            setFltr(u)
+        })
+    }, [])
 
-    
-    const filtersHtml = fltr?.map((f:IReviewFilter, i:number) => {
+    const filtersHtml = fltr?.map((f:any, i:number) => {
 
         const disabled = f.options?.length === 0;
         const selectedValue = f.selectedValue === '' ? null : f.selectedValue;
-        
+
         const handleEntityChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-            setType((t)=> t = e.target.value)
+            const type = e.target.value
+            if(type === 'City'){
+                let u = fltr.slice()
+                u[3] = {...u[3], hidden: false}
+                u[4] = {...u[4], hidden: true}
+                setFltr(u)
+            } else if(type === 'Organization'){
+                let u = fltr.slice()
+                u[3] = {...u[3], hidden: true}
+                u[4] = {...u[4], hidden: false}
+                setFltr(u)
+            }
         }
 
-        return f?.isRadio ? 
+        return f?.isRadio ?
         (
-            <div className="review__filter review__radio-filters" key={i}>                
+            <div className="review__filter review__radio-filters" key={i}>
                 <FormControl>
                     <FormLabel className="review__filter-form-label">{ "Entity Type"}</FormLabel>
-                    <RadioGroup 
+                    <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
                       name="controlled-radio-buttons-group"
                       defaultValue="City"
@@ -82,11 +160,13 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
         )
         :
         (
-            f.title === type ? (
-                <div className="review__filter" key={i}>                
-                    <Dropdown 
+            f.hidden ?
+            ''
+            :
+                <div className="review__filter" key={i}>
+                    <Dropdown
                     withSearch={true}
-                    searchPlaceholder="Search" 
+                    searchPlaceholder="Search"
                     options={f.options}
                     title={f.title}
                     onDeSelect={() => deselectFilter(f.type)}
@@ -95,20 +175,6 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
                     selectedValue={selectedValue}
                     />
                 </div>
-            ): (
-                <div className="review__filter" key={i}>                
-                    <Dropdown 
-                    withSearch={true}
-                    searchPlaceholder="Search" 
-                    options={f.options}
-                    title={f.title}
-                    onDeSelect={() => deselectFilter(f.type)}
-                    onSelect={(option: DropdownOption) => selectFilterHandler(f.type, option)}
-                    disabled={disabled}
-                    selectedValue={selectedValue}
-                    />
-                </div>
-            )            
         )
         ;
     });
@@ -122,4 +188,3 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
 
 
 export default ReviewFilters;
- 

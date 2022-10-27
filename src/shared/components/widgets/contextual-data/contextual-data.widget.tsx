@@ -7,9 +7,24 @@ import { Boy, AspectRatio, InfoOutlined, MonetizationOnOutlined } from '@mui/ico
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from '@mui/material/Tooltip';
 
+interface Props {
+    current: any,
+    parent: any
+}
 
+const ContextualDataWidget: FunctionComponent<Props> = (props) => {
 
-const ContextualDataWidget: FunctionComponent = () => {
+    const {current, parent} = props
+    const lastUpdatedYear = null
+
+    const latestPopulation = (current && current.population && current.population.length > 0) ? current.population[0] : null
+    const latestGDP = (current && current.gdp && current.gdp.length > 0) ? current.gdp[0] : null
+    const parentPopulation = (parent && parent.population && latestPopulation) ? parent.population.find((p:any) => p.year == latestPopulation.year) : null
+    const area = (current) ? current.area : null
+    const populationSource = null
+    const gdpSource = null
+    const areaSource = null
+    const areaYear = null
 
     const useStyles = makeStyles(() => ({
         customTooltip: {
@@ -35,7 +50,7 @@ const ContextualDataWidget: FunctionComponent = () => {
     }]
 
     return (
-        <div className="contextual-widget" > 
+        <div className="contextual-widget" >
             <div className="contextual-widget__wrapper" >
                 <div className="contextual-widget__header">
                     <div className="contextual-widget__title-wrapper">
@@ -44,7 +59,9 @@ const ContextualDataWidget: FunctionComponent = () => {
                         </h3>
                     </div>
 
-                    <span className="contextual-widget__updated">Last updated in 2018</span>     
+                    {   lastUpdatedYear &&
+                            <span className="contextual-widget__updated">Last updated in ${lastUpdatedYear}</span>
+                    }
 
                 </div>
                 <div className="contextual-widget__content">
@@ -52,20 +69,22 @@ const ContextualDataWidget: FunctionComponent = () => {
                         <DonutChart items={items} size={50} showTotal={false} tooltipSx={{display: "none"}} trackColor="#D9D9D9"/>
                         <div className="contextual-widget__left-info-box">
                             <div className="contextual-widget__left-header-text">
-                                10%
+                                {
+                                    (latestPopulation && parentPopulation) ? ((latestPopulation.population/parentPopulation.population)*100).toPrecision(5) : "N/A"
+                                }
                                 <Tooltip classes={{
                                                 tooltip: classes.customTooltip,
                                                 arrow: classes.customArrow
                                               }}
                                                 title= {
                                                     <div className = "tooltip">
-                                                    <div>Source: CDP</div>
-                                                    <div>Year: 2005</div>
+                                                    <div>Source: {(populationSource) ? populationSource : "N/A" }</div>
+                                                    <div>Year: {(latestPopulation) ? latestPopulation.year : "N/A"}</div>
                                                 </div>
                                             } arrow placement="right">
                                             <InfoOutlined sx={{color: '#A3A3A3', fontSize: 13 }} />
                                             </Tooltip>
-                                
+
                             </div>
                             <div className="contextual-widget__left-subtitle-text">
                                 Of Global population
@@ -78,21 +97,23 @@ const ContextualDataWidget: FunctionComponent = () => {
                             <Boy sx={{color: '#7A7B9A', fontSize: 33 }}/>
                             <div className="contextual-widget__mid-text-box">
                                 <div className="contextual-widget__mid-header-text">
-                                    1425.8
-                                    <div className="contextual-widget__grey-text">M</div> 
+                                    {
+                                        (latestPopulation) ? ((latestPopulation.population/1000000.0).toPrecision(5)) : "N/A"
+                                    }
+                                    <div className="contextual-widget__grey-text">M</div>
                                     <Tooltip classes={{
                                                     tooltip: classes.customTooltip,
                                                     arrow: classes.customArrow
                                                   }}
                                                     title= {
                                                         <div className = "tooltip">
-                                                        <div>Source: CDP</div>
-                                                        <div>Year: 2005</div>
+                                                        <div>Source: {(populationSource) ? populationSource : "N/A" }</div>
+                                                        <div>Year: {(latestPopulation) ? latestPopulation.year : "N/A"}</div>
                                                     </div>
                                                 } arrow placement="right">
                                                 <InfoOutlined sx={{color: '#A3A3A3', fontSize: 13 }} />
                                                 </Tooltip>
-                                            
+
                                 </div>
                                 <div className="contextual-widget__normal-right-text">
                                     Total population
@@ -105,27 +126,27 @@ const ContextualDataWidget: FunctionComponent = () => {
                             </div>
                             <div className="contextual-widget__left-info-box">
                                 <div className="contextual-widget__mid-header-text">
-                                    9.7M
-                                    <div className="contextual-widget__grey-text">Km2</div> 
+                                    {(area) ? area : "N/A"}
+                                    <div className="contextual-widget__grey-text">Km2</div>
                                     <Tooltip classes={{
                                                     tooltip: classes.customTooltip,
                                                     arrow: classes.customArrow
                                                   }}
                                                     title= {
                                                         <div className = "tooltip">
-                                                        <div>Source: CDP</div>
-                                                        <div>Year: 2005</div>
+                                                        <div>Source: {(areaSource) ? areaSource : "N/A"}</div>
+                                                        <div>Year: {(areaYear) ? areaYear : "N/A"}</div>
                                                     </div>
                                                 } arrow placement="right">
-                                                
+
                                                 <InfoOutlined sx={{color: '#A3A3A3', fontSize: 13 }} />
                                                 </Tooltip>
-                                            
+
                                 </div>
                                 <div className="contextual-widget__normal-right-text">
                                     Total area
                                 </div>
-                                            
+
                             </div>
                         </div>
                     </div>
@@ -135,27 +156,27 @@ const ContextualDataWidget: FunctionComponent = () => {
                             </div>
                             <div className="contextual-widget__left-info-box">
                                 <div className="contextual-widget__right-header-text">
-                                    19.485T
-                                    <div className="contextual-widget__grey-text">USD</div> 
+                                   {(latestGDP) ? ((latestGDP.gdp/1000000000.0).toPrecision(5) + "B") : "N/A"}
+                                    <div className="contextual-widget__grey-text">USD</div>
                                     <Tooltip classes={{
                                                     tooltip: classes.customTooltip,
                                                     arrow: classes.customArrow
                                                   }}
                                                     title= {
                                                         <div className = "tooltip">
-                                                        <div>Source: CDP</div>
-                                                        <div>Year: 2005</div>
+                                                        <div>Source: {(gdpSource) ? gdpSource : "N/A"}</div>
+                                                        <div>Year: {(latestGDP) ? latestGDP.year : "N/A"}</div>
                                                     </div>
                                                 } arrow placement="right">
-                                                
+
                                                 <InfoOutlined sx={{color: '#A3A3A3', fontSize: 13 }} />
                                                 </Tooltip>
                                                 </div>
-                                            
+
                                 <div className="contextual-widget__normal-right-text">
                                     GDP
                                 </div>
-                                            
+
                             </div>
                         </div>
                 </div>

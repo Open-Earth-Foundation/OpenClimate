@@ -1,5 +1,6 @@
 export default interface IPledge {
     id?: string,
+    source?: string;
     credential_category?: string,
     credential_type?: string,
     credential_schema_id?: string,
