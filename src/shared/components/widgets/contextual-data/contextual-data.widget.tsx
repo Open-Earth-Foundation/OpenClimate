@@ -70,9 +70,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                         <div className="contextual-widget__left-info-box">
                             <div className="contextual-widget__left-header-text">
                                 {
-                                    (latestPopulation && parentPopulation) ?
-                                      ((latestPopulation.population/parentPopulation.population)*100).toPrecision(5)
-                                    : "N/A"
+                                    (latestPopulation && parentPopulation) ? ((latestPopulation.population/parentPopulation.population)*100).toPrecision(5) : "N/A"
                                 }
                                 <Tooltip classes={{
                                                 tooltip: classes.customTooltip,
@@ -99,9 +97,9 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                             <Boy sx={{color: '#7A7B9A', fontSize: 33 }}/>
                             <div className="contextual-widget__mid-text-box">
                                 <div className="contextual-widget__mid-header-text">
-                                    (latestPopulation) ?
-                                      (latestPopulation).toPrecision(5)
-                                    : "N/A"
+                                    {
+                                        (latestPopulation) ? (latestPopulation).toPrecision(5) : "N/A"
+                                    }
                                     <div className="contextual-widget__grey-text">M</div>
                                     <Tooltip classes={{
                                                     tooltip: classes.customTooltip,
