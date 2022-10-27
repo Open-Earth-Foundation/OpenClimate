@@ -26,14 +26,14 @@ const filters = [
     {
         title: "Country",
         type: FilterTypes.National,
-        selectedValue: "",
+        selectedValue: null,
         options: [],
         hidden: false
     },
     {
         title: "Region",
         type: FilterTypes.SubNational,
-        selectedValue: "",
+        selectedValue: null,
         options: [],
         hidden: false
     },
@@ -48,14 +48,14 @@ const filters = [
     {
         title: "City",
         type: FilterTypes.City,
-        selectedValue: "",
+        selectedValue: null,
         options: [],
         hidden: false
     },
     {
         title: "Organization",
         type: FilterTypes.Organization,
-        selectedValue: "",
+        selectedValue: null,
         options: [],
         hidden: true
     },
@@ -82,9 +82,9 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
                 let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}})
                 let u = fltr.slice()
                 u[0] = {...u[0], selectedValue: actor_id}
-                u[1] = {...u[1], selectedValue: "", options: options}
-                u[3] = {...u[3], selectedValue: "", options: []}
-                u[4] = {...u[4], selectedValue: "", options: []}
+                u[1] = {...u[1], selectedValue: null, options: options}
+                u[3] = {...u[3], selectedValue: null, options: []}
+                u[4] = {...u[4], selectedValue: null, options: []}
                 setFltr(u)
             })
         } else if (filterType == FilterTypes.SubNational) {
@@ -96,8 +96,8 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
                 let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}})
                 let u = fltr.slice()
                 u[1] = {...u[1], selectedValue: actor_id}
-                u[3] = {...u[3], selectedValue: "", options: u[3].hidden ? [] : options}
-                u[4] = {...u[4], selectedValue: "", options: u[4].hidden ? [] : options}
+                u[3] = {...u[3], selectedValue: null, options: u[3].hidden ? [] : options}
+                u[4] = {...u[4], selectedValue: null, options: u[4].hidden ? [] : options}
                 setFltr(u)
             })
         }
@@ -111,9 +111,9 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
             let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}})
             let u = fltr.slice()
             u[0] = {...u[0], options: options}
-            u[1] = {...u[1], selectedValue: "", options: []}
-            u[3] = {...u[3], selectedValue: "", options: []}
-            u[4] = {...u[4], selectedValue: "", options: []}
+            u[1] = {...u[1], selectedValue: null, options: []}
+            u[3] = {...u[3], selectedValue: null, options: []}
+            u[4] = {...u[4], selectedValue: null, options: []}
             setFltr(u)
         })
     }, [])
