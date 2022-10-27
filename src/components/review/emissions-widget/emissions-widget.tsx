@@ -84,7 +84,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                                     position: 'relative',
                                                     margin: '0px',
                                                     fontWeight: '700px'
-                                                }} value={source}>{source}</MenuItem>)
+                                                }} value={source}>{current.emissions[source].publisher_id}</MenuItem>)
                                         }
                                     </Select>
                                 </FormControl >
