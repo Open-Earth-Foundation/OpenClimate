@@ -3,8 +3,9 @@
     height: 82px;
 
     &__disabled {
-        color: "#535572";
-        opacity: ".5";
+        color: #535572;
+        opacity: .5;
+        cursor: not-allowed;
     }
 
     .label {
@@ -71,7 +72,7 @@
     }
 
     .dropdown-container {
-        height: 304px;
+        max-height: 304px;
         overflow-y: scroll;
         overflow-x: hidden;
     }
