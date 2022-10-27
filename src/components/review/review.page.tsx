@@ -203,7 +203,7 @@ interface IProps {
                         {
                             (current && notJustEarth()) ?
                             <>
-                                <Dashboard current={current} parent={parent} />
+                                <Dashboard key={`dashboard-${current.actor_id}`} current={current} parent={parent} />
                             </>
                             : ''
                         }

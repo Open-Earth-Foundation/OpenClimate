@@ -21,11 +21,11 @@ const Dashboard: FunctionComponent<Props> = (props) => {
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
 
-                    <EmissionsWidget current={current} parent={parent} />
+                    <EmissionsWidget key={`emissions-${current.actor_id}`} current={current} parent={parent} />
 
-                    <PledgesWidget current={current} parent={parent} />
+                    <PledgesWidget key={`pledges-${current.actor_id}`} current={current} parent={parent} />
 
-                    <ContextualDataWidget current={current} parent={parent}/>
+                    <ContextualDataWidget key={`contextual-${current.actor_id}`} current={current} parent={parent}/>
 
                 </Masonry>
             </div>
