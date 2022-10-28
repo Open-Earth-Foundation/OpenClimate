@@ -7,7 +7,7 @@ import { FilterTypes } from "../../../api/models/review/dashboard/filterTypes";
 
 
 
-interface Props {
+interface IProps {
     label: string,
     onSelect?: (option: DropdownOption) => void,
     onDeSelect?: () => void,
@@ -21,11 +21,12 @@ interface Props {
 }
 
 
-const LevelCard: FunctionComponent<Props> = (props) => {
+
+const LevelCard: FunctionComponent<IProps> = (props) => {
     
     const {label, onSelect, onDeSelect, disabled, selectedValue, options, onButtonSwap, isCity, placeholder, buttonDisabled} = props;
     const [cardExpanded, setCardExpanded] = useState(false);
-    const [inputString, setInputString] = useState('');
+    const [inputString, setInputString] = useState<string>('');
 
     const onOptionClick = (option: DropdownOption) => {
         setCardExpanded(false);

@@ -191,4 +191,4 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     )
 }
 
-export default LevelCards
+export default LevelCards;
