@@ -5,3 +5,10 @@ export enum FilterTypes {
     Organization,
     EntityType
 }
+
+export enum NewFilterTypes {
+    National,
+    SubNational,
+    City,
+    Company
+}

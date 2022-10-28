@@ -134,6 +134,20 @@
     }
     .review__earth-main{
         margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+    }
+    .review__card {
+        padding-left: 26px;
+    }
+    .review__card-actor-selected {
+        padding-top: 85px;
+
+    }
+    .review__arrow-forward {
+        color: var(--next-blue);
+        padding: 123px 21px 0 21px;
+        display: flex;
     }
     .review__actor-type{
         font-weight: 500;

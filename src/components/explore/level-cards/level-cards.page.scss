@@ -1,19 +1,36 @@
-.level__card {
-    .page {
-        padding: 50px;
-        display: flex;
-        flex-direction: row;
+.level-card {
+    width: 325px;
+    height: 82px;
+
+    &__disabled {
+        color: #535572;
+        opacity: .5;
+        cursor: not-allowed;
     }
+
     .label {
-        font-weight: 500px;
-        padding-left: 12px;
+        font-weight: 500;
         font-size: 14px;
-        line-height: 16px;
-        padding-bottom: 8px;
+        color: #535572;
+        padding-left: 12px;
     }
     
     .content {
         padding: 16px;
+    }
+
+    .outer-card {
+        width: 325px;
+        max-height: 367px;
+        border-radius: 8px;
+        position: absolute;
+        z-index: 9999;
+    }
+
+    .inner-card {
+        width: 325px;
+        height: 56px;
+        border-radius: 8px;
     }
 
     .dropdown {
@@ -26,16 +43,20 @@
 
     .dropdown-text {
         padding-left: 8px;
-        font-weight: 500;
-        font-size: 20px;
-        padding-right: 130px;
-        
+        font-size: 16px;
+        min-width: 228px;
+        overflow: hidden;
+        white-space: nowrap;
+        color: var(--neutral-grey);
     }
 
     .dropdown-text-selected {
         padding-left: 8px;
         font-weight: 600;
         font-size: 20px;
+        max-width: 228px;
+        overflow: hidden;
+        white-space: nowrap;
         padding-right: 4px;
         color: #00001F;
      
@@ -44,11 +65,16 @@
     .dropdown-cross-icon {
         color: var(--red-cancel);
         font-size: 20px;
-        padding-left: 120px;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .dropdown-container {
+        max-height: 304px;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 
     .dropdown-select {
@@ -73,7 +99,7 @@
     }
 
     .swapto-button {
-        margin-top: 12px;
+        margin-top: 76px;
         margin-left: 165px;
         padding: 14px 7px;
         width: 161px;
