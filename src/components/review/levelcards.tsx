@@ -10,6 +10,7 @@ import { NewFilterTypes } from '../../api/models/review/dashboard/filterTypes'
 
 interface IProps {
     actors: Array<any>,
+    parent: any,
     selectFilter: (filterType: NewFilterTypes, option: DropdownOption) => void,
     deselectFilter: (filterType: NewFilterTypes) => void
 }
@@ -48,15 +49,17 @@ const cardsTemplate: Array<ICardProps> = [
 
 const LevelCards: FunctionComponent<IProps> = (props) => {
 
-    const {actors, selectFilter, deselectFilter} = props;
+    const {actors, parent} = props;
 
     const [isCity, setIsCity] = useState<boolean>(true);
 
     const [cards, setCards] = useState<Array<ICardProps>>(cardsTemplate);
     console.log("cards", cards);
-
+    console.log("actors", actors);
+    console.log("parent", parent);
+ 
     useEffect(() => {
-        fetch(`/api/v1/actor/EARTH/parts?type=country`)
+        fetch(`https://dev.openclimate.network/api/v1/actor/EARTH/parts?type=country`)
         .then((res) => res.json())
         .then((json) => {
             let parts = json.data
@@ -105,7 +108,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     return (
         <div className="review__earth-main">
 
-            <EarthCard />
+            <EarthCard label={"Globe"} actors={actors} parent={parent}/>
 
             { cards.map((card, index) =>
                     <div className={ actors.length > 1 ? "review__card-actor-selected" : "review__card" } key={index}>

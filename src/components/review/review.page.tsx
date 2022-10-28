@@ -35,7 +35,7 @@ interface IProps {
     }, [])
 
     const insertActor = (actorID: any, children: Array<any>) => {
-        fetch(`/api/v1/actor/${actorID}`)
+        fetch(`https://dev.openclimate.network/api/v1/actor/${actorID}`)
         .then((res) => res.json())
         .then((json) => json.data)
         .then((actor) => {
@@ -102,7 +102,7 @@ interface IProps {
                             </>
                         }
 
-                        <LevelCards key={`level-cards-${actors.map((a:any) => a.actor_id).join("-")}`} actors={actors} />
+                        <LevelCards key={`level-cards-${actors.map((a:any) => a.actor_id).join("-")}`} current={current} actors={actors} parent={parent}/>
 
                         <div className="review__filter-button-wrapper">
                             <a href='/explore'>
