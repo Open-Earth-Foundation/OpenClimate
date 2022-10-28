@@ -34,21 +34,42 @@ interface IProps {
         insertActor(actorID, [])
     }, [])
 
+    const getActorsLevelCardData = () => {
+        let simplifiedActors: { actor_id: any; latestEmissions: any; latestPopulation: any; latestTargets: any; }[] = []
+        
+        // using end of the list of sources due to new PRIMAP source having most recent data, could change
+        
+        actors.map((actor: any) => {
+            const emissionSources = actor?.emissions?.length && Object.keys(actor.emissions);
+            const latestSourceIndex = emissionSources?.length - 1;
+            console.log(emissionSources);
+            const simplifiedActorObject = {
+                actor_id: actor?.actor_id,
+                latestEmissions: actor?.emissions?.[emissionSources?.[latestSourceIndex]]?.data ?? {},
+                latestPopulation: actor?.population?.[0],
+                latestTargets: actor?.targets?.[0]
+            };
+            console.log(actor, simplifiedActorObject);
+            simplifiedActors.push(simplifiedActorObject)
+        })
+        return simplifiedActors;
+    }
+
     const insertActor = (actorID: any, children: Array<any>) => {
         fetch(`/api/v1/actor/${actorID}`)
         .then((res) => res.json())
         .then((json) => json.data)
         .then((actor) => {
-            if (!actor.is_part_of) {
+            if (!actor?.is_part_of) {
                 setActors([actor].concat(children))
             } else {
-                const pi = actors.findIndex((a: any) => a.actor_id == actor.is_part_of)
+                const pi = actors?.findIndex((a: any) => a.actor_id == actor.is_part_of)
                 if (pi !== -1) {
                     // Parent is already part of the array, so just slice and concat
-                    setActors(actors.slice(0, pi + 1).concat([actor]).concat(children))
+                    setActors(actors?.slice(0, pi + 1).concat([actor]).concat(children))
                 } else {
                     // Parent is not part of the array, so go up one level and try again
-                    insertActor(actor.is_part_of, [actor].concat(children))
+                    insertActor(actor?.is_part_of, [actor].concat(children))
                 }
             }
         })
@@ -59,8 +80,22 @@ interface IProps {
     }
 
     const deselectFilterHandler = (filterType: FilterTypes) => {
-        // XXX: figure out what to do here
+        let newActorsList = actors.slice();
+        switch (filterType) {
+            case FilterTypes.City:
+            case FilterTypes.Company:
+                newActorsList.splice(3, 1);
+                break;
+            case FilterTypes.SubNational:
+                newActorsList.splice(2,2);
+                break;
+            case FilterTypes.National:
+                newActorsList.splice(1,3);
+                break;
+        }
+        setActors(newActorsList);
     }
+
 
     const notJustEarth = () => actors.length > 1
 
@@ -102,7 +137,12 @@ interface IProps {
                             </>
                         }
 
-                        <LevelCards key={`level-cards-${actors.map((a:any) => a.actor_id).join("-")}`} actors={actors} />
+                        <LevelCards
+                            actors={actors}
+                            selectFilter={selectFilterHandler}
+                            deselectFilter={deselectFilterHandler}
+
+                        />
 
                         <div className="review__filter-button-wrapper">
                             <a href='/explore'>
@@ -111,13 +151,6 @@ interface IProps {
                                     <span>Explore by actor</span>
                                 </button>
                             </a>
-                        </div>
-
-                        <div className="review__filters-wrapper">
-                        <ReviewFilters
-                            selectFilter={selectFilterHandler}
-                            deselectFilter={deselectFilterHandler}
-                        />
                         </div>
 
                         <div className="review_selected-entity">
