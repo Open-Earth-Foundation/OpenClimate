@@ -12,6 +12,7 @@ interface IProps {
     selectFilter: (filterType: FilterTypes, option: DropdownOption) => void,
     deselectFilter: (filterType: FilterTypes) => void,
     actors: Array<any>,
+    parent: any,
 }
 
 interface ICardProps {
@@ -48,7 +49,7 @@ const cardsTemplate: Array<ICardProps> = [
 
 const LevelCards: FunctionComponent<IProps> = (props) => {
 
-    const {selectFilter, deselectFilter, actors} = props;
+    const {selectFilter, deselectFilter, actors, parent} = props;
 
     const [isCity, setIsCity] = useState<boolean>(true);
 
@@ -159,7 +160,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     return (
         <div className="review__earth-main">
 
-            <EarthCard />
+            <EarthCard label={"Globe"} actors={actors} parent={parent}/>
 
             { cards.map((card, index) =>
                 <>

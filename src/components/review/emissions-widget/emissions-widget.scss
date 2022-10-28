@@ -36,8 +36,7 @@
     }
 
     &__last-updated{
-        font-family: 'Lato';
-        font-weight: 600;
+        font-weight:500;
         font-size: 12px;
         line-height: 14px;
         letter-spacing: 0.02em;
@@ -144,6 +143,7 @@
     }
     .data-per-capita{
         display: flex;
+        margin-top: 32px;
     }
     .icon-wrapper{
         padding-right: 9px;
@@ -166,7 +166,7 @@
     .pc-text{
         font-weight: 400;
         font-size: 12px;
-        line-height: 12px;
+        line-height: 18px;
         letter-spacing: 0.4px;
         color: #00001F;
     }
