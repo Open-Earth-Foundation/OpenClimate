@@ -1,6 +1,7 @@
 .review__dashboard {
     .review__dashboard-widgets {
         display: flex;
+        max-width: 1800px;
         flex-wrap: wrap;
     }
 }

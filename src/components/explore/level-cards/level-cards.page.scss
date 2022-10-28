@@ -25,12 +25,21 @@
         border-radius: 8px;
         position: absolute;
         z-index: 9999;
+        
     }
 
     .inner-card {
         width: 325px;
         height: 56px;
         border-radius: 8px;
+    }
+
+    .inner-card-disabled {
+        width: 325px;
+        height: 56px;
+        border-radius: 8px;
+        background-color: var(--disabled-background);
+
     }
 
     .dropdown {
@@ -59,16 +68,20 @@
         white-space: nowrap;
         padding-right: 4px;
         color: #00001F;
+        cursor: default;
      
+    }
+
+    .dropdown-cross-icon-container {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        justify-content: center;
     }
 
     .dropdown-cross-icon {
         color: var(--red-cancel);
-        font-size: 20px;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .dropdown-container {
@@ -90,6 +103,18 @@
         }
     }
 
+    .drop-icon {
+        color: var(--icon-black);
+    }
+
+    .search-icon {
+        color: var(--neutral-grey);
+    }
+
+    .icon-disabled {
+        color: var(--icon-disabled);
+    }
+
     .arrow-forward {
         color: var(--next-blue);
         padding: 0px 21px 0 21px;
@@ -102,7 +127,6 @@
         margin-top: 76px;
         margin-left: 165px;
         padding: 14px 7px;
-        width: 161px;
         height: 32px;
         background-color: var(--secondary-blue-color);
         color: #FFFFFF;
@@ -114,7 +138,30 @@
         box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
         border-radius: 100px;
         font-size: 12px;
+    }
 
+    .swapto-button-disabled {
+        margin-top: 76px;
+        margin-left: 165px;
+        padding: 14px 7px;
+        height: 32px;
+        background-color: #C5CBF5;
+        color: #FFFFFF;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+        border-radius: 100px;
+        font-size: 12px;
+        cursor: no-drop;
+    }
+
+    .button-text {
+        overflow: hidden;
+        white-space: nowrap;
+        padding-left: 6px;
     }
 
 

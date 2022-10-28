@@ -20,7 +20,7 @@ const ContextBarData: FunctionComponent<Props> = (props) => {
     if(entity.title === "Earth")
     {
         const items = EarthData.map((ed, index) => 
-            <ContextBarItem key={index} title={ed.title}>
+            <ContextBarItem key={`context-bar-item-${index}`} title={ed.title}>
                 {ed.content}
             </ContextBarItem>
         );
@@ -36,7 +36,7 @@ const ContextBarData: FunctionComponent<Props> = (props) => {
     else
     {
         let items = entity.pledges?.map((ed, index) =>     
-            <ContextBarItem key={index} title={`${ed.pledge_emission_reduction ?? 0}%`} showError={true}>
+            <ContextBarItem key={`context-bar-item-${index}`} title={`${ed.pledge_emission_reduction ?? 0}%`} showError={true}>
                 {ed.pledge_target_year ? 
                     <>by {ed.pledge_target_year} <br/></>
                     : ""

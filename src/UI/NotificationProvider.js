@@ -110,7 +110,7 @@ export function NotificationProvider(props) {
     }
     // Returning notification component
     return [
-      <NotificationWrapper key={index} background={background}>
+      <NotificationWrapper key={`notification-wrapper-${index}`} background={background}>
         <NotificationCloseBtn
           onClick={() => {
             closeNotification()
