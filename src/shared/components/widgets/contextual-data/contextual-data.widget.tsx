@@ -43,16 +43,24 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
 
     const classes = useStyles();
 
-    const items = [{
-        value: 95,
-        label: 'Population',
-        color: '#D9D9D9'
-    },
-    {
-        value: 5,
-        label: 'Population',
-        color: '#2351DC'
-    }]
+    if (latestPopulation && parentPopulation) {
+        const items = [{
+            value: 100 - Math.round((latestPopulation.population/parentPopulation.population)*100),
+            label: 'Population',
+            color: '#D9D9D9'
+        },
+        {
+            value: Math.round((latestPopulation.population/parentPopulation.population)*100),
+            label: 'Population',
+            color: '#2351DC'
+        }]
+    } else {
+        const items = [{
+            value: 100,
+            label: 'N/A',
+            color: '#D9D9D9'
+        }]
+    }
 
     return (
         <div className="contextual-widget" >
