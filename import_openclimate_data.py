@@ -39,10 +39,28 @@ def import_row(curs, table, pkey, row):
     curs.execute(qry, vals)
 
 def import_table(curs, table, pkey, path):
+
     with path.open() as f:
         data = csv.DictReader(f)
         for row in data:
             import_row(curs, table, pkey, row)
+
+def delete_row(curs, table, pkey, row):
+
+    vals = list(map(lambda v: None if v == '' else v, row.values()))
+
+    qry = f'''
+    DELETE FROM "{table}"
+    WHERE {" AND ".join(list(map(lambda x: f'{x} = %s', list(row.keys()))))}
+    '''
+
+    curs.execute(qry, vals)
+
+def delete_from_table(curs, table, pkey, path):
+    with path.open() as f:
+        data = csv.DictReader(f)
+        for row in data:
+            delete_row(curs, table, pkey, row)
 
 def import_openclimate_data(dir, host, dbname, user, password):
 
@@ -70,13 +88,21 @@ def import_openclimate_data(dir, host, dbname, user, password):
                 "Territory": ["actor_id"],
                 "Tag": ["tag_id"],
                 "DataSourceTag": ["datasource_id", "tag_id"],
-                "EmissionsAggTag": ["emissions_id", "tag_id"]
+                "EmissionsAggTag": ["emissions_id", "tag_id"],
+                "Target": ["target_id"],
+                "TargetTag": ["target_id", "tag_id"]
             }
 
             for table, pkey in tables.items():
                 p = Path(dir + "/" + table + ".csv")
                 if p.is_file():
                     import_table(curs, table, pkey, p)
+
+            # For deletions, we work in reverse order!
+            for table, pkey in reversed(tables.items()):
+                p = Path(dir + "/" + table + ".delete.csv")
+                if p.is_file():
+                    delete_from_table(curs, table, pkey, p)
 
 if __name__ == "__main__":
     import argparse
