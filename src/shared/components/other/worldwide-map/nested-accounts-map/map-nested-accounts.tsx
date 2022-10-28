@@ -347,7 +347,7 @@ const MapNestedAccounts: FunctionComponent<Props> = (props) => {
       {
           markers.map((marker: any, index: number) => (
               <Marker 
-                key={index} 
+                key={`nested-account-map-marker-${index}`} 
                 position={marker.position} 
                 eventHandlers={{
                   click: e => siteClickHandler(marker.siteId)

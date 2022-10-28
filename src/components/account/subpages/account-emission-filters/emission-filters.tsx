@@ -113,7 +113,7 @@ const EmissionFilters: FunctionComponent<IProps> = (props) => {
                          scopeFilters.map((scf: any, index: number) => {
                              return (
                                 <SiteFilter 
-                                key={index}
+                                key={`site-filter-${index}`}
                                 name={scf.name} 
                                 onClick={() => onFilterSelect(scf.name)} 
                                 selected={scf.selected}/>

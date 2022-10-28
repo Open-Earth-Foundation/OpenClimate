@@ -37,7 +37,7 @@ const ContextBars: FunctionComponent<Props> = (props) => {
             <ContextBar 
                 size="small" 
                 entity={e} 
-                key={index} 
+                key={`context-bar-${index}`} 
                 linkClickHandler={() => deselectFilter(deselectFilterType)}
 
             />

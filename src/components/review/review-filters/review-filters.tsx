@@ -75,7 +75,7 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
         selectFilter(filterType, option);
         const actor_id = option.value
         if (filterType == FilterTypes.National) {
-            fetch(`https://dev.openclimate.network/api/v1/actor/${actor_id}/parts?type=adm1`)
+            fetch(`/api/v1/actor/${actor_id}/parts?type=adm1`)
             .then((res) => res.json())
             .then((json) => {
                 let parts = json.data
@@ -89,7 +89,7 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
             })
         } else if (filterType == FilterTypes.SubNational) {
             const type = (fltr[3].hidden) ? 'organization' : 'city'
-            fetch(`https://dev.openclimate.network/api/v1/actor/${actor_id}/parts?type=${type}`)
+            fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
             .then((res) => res.json())
             .then((json) => {
                 let parts = json.data
@@ -104,7 +104,7 @@ const ReviewFilters: FunctionComponent<Props> = (props) => {
     };
 
     useEffect(() => {
-        fetch(`https://dev.openclimate.network/api/v1/actor/EARTH/parts?type=country`)
+        fetch(`/api/v1/actor/EARTH/parts?type=country`)
         .then((res) => res.json())
         .then((json) => {
             let parts = json.data

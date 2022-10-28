@@ -14,6 +14,7 @@
     --blue-color: #0674DA;
     --secondary-blue-color: #2351DC;
     --next-blue: #9DAAEE;
+    --disabled-background: #E6E7FF;
 
     --grey1-color: #E6E7E8;
     --neutral-grey: #7A7B9A;
@@ -21,6 +22,9 @@
     --grey3-color: #BDBDBD;
     --grey4-color: #A3A3A3;
     --grey5-color: #818385;
+
+    --icon-black: #1C1B1F;
+    --icon-disabled: #9C9DBD;
 
     --grey1_35-color: rgba(230, 231, 232, 0.35);
 
@@ -331,6 +335,15 @@ button {
     text-decoration: underline;
 }
 /*end modal*/
+
+/*input*/
+
+input[type="text"]:disabled{
+    background-color: var(--disabled-background);
+    cursor: no-drop;
+ }
+
+/*input*/
 
 .hidden {
     display: none;

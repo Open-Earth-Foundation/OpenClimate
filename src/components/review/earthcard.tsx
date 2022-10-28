@@ -13,7 +13,9 @@ interface IProps {
 const EarthCard:FunctionComponent<IProps> = (props) => {
     const {parent, actors, label} = props
     const [cardData, setCardData] = useState<Array<object>>();
-    const [emsData, setEmissionsData] = useState<any>()
+    const [emsData, setEmissionsData] = useState<any>();
+    const [currentPopulation, setCurrPopulation] = useState<number>()
+    const [parentPopulation, setParPopulation] = useState<number>()
 
     // Donut earth props items
     const items = [
@@ -46,8 +48,6 @@ const EarthCard:FunctionComponent<IProps> = (props) => {
             const u = actors;
             u[0] = {...u[0], label: "Globe" }
             setCardData(u)
-            
-            console.log(cardData)
         }
         else if(parent && actors.length == 2) {
             const u = actors
@@ -58,13 +58,14 @@ const EarthCard:FunctionComponent<IProps> = (props) => {
             const defaultSource = (sources.length > 0) ? sources[0] : null;
             const defaultYear = (defaultSource && u[0].emissions[defaultSource].data.length > 0) ? u[0].emissions[defaultSource].data[0].year : null
             const latestYear = defaultYear;
-            const currentEmissions = (defaultSource && defaultYear) ? u[0].emissions[defaultSource].data.find((e:any) => e.year == latestYear) : null
-            console.log(sources, defaultSource, latestYear);
-            // const emsData = u[0]
+            const currentEmissions = (defaultSource && defaultYear) ? u[0].emissions[defaultSource].data.find((e:any) => e.year == latestYear) : null;
+            const population = (defaultYear && u[0].population.length) ? u[0].population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
+            const parentPopulation = (defaultYear && parent.population.length) ? parent.population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
+            setCurrPopulation(population.population)
+            setParPopulation(parentPopulation.population)
             setEmissionsData(currentEmissions?.total_emissions);
-            console.log(cardData);
         }
-    },[cardData, emsData])
+    },[cardData, emsData, actors, parent])
 
     return (
         <div>
@@ -130,7 +131,7 @@ const EarthCard:FunctionComponent<IProps> = (props) => {
                             </div>
                             <div className='right-column'>
                                 <div>
-                                    <span className="review__earth-card-item-large-text">10%</span>
+                                    <span className="review__earth-card-item-large-text">{((currentPopulation/parentPopulation)*100).toFixed(5)}</span>
                                     <span className="review__earth-card-item-small-text"></span>
                                 </div>
                                 <div className="review__earth-card-item-normal-text target-text">{`Of ${parent?.name} Population`}</div>
