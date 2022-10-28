@@ -19,7 +19,12 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
 
     const latestPopulation = (current && current.population && current.population.length > 0) ? current.population[0] : null
     const latestGDP = (current && current.gdp && current.gdp.length > 0) ? current.gdp[0] : null
-    const parentPopulation = (parent && parent.population && latestPopulation) ? parent.population.find((p:any) => p.year == latestPopulation.year) : null
+    const parentPopulation = (parent && parent.population && latestPopulation) ?
+     parent.population
+     .filter((p:any) => Math.abs(p.year - latestPopulation.year) < 5)
+     .sort((p:any) => Math.abs(p.year - latestPopulation.year))
+     .shift()
+     : null
     const area = (current) ? current.area : null
     const populationSource = null
     const gdpSource = null
