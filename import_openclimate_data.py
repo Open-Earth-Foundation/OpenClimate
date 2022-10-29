@@ -3,7 +3,7 @@ from pathlib import Path
 import csv
 import psycopg2
 from datetime import datetime
-from schema import tables
+from schema import tables, pkeys
 
 def import_row(curs, table, pkey, row):
 
@@ -69,16 +69,16 @@ def import_openclimate_data(dir, host, dbname, user, password):
 
         with conn.cursor() as curs:
 
-            for table, pkey in tables.items():
+            for table in tables:
                 p = Path(dir + "/" + table + ".csv")
                 if p.is_file():
-                    import_table(curs, table, pkey, p)
+                    import_table(curs, table, pkeys[table], p)
 
             # For deletions, we work in reverse order!
-            for table, pkey in reversed(tables.items()):
+            for table in reversed(tables):
                 p = Path(dir + "/" + table + ".delete.csv")
                 if p.is_file():
-                    delete_from_table(curs, table, pkey, p)
+                    delete_from_table(curs, table, pkeys[table], p)
 
 if __name__ == "__main__":
     import argparse

@@ -1,18 +1,6 @@
-from schema import tables, tagged_tables
+from schema import tables, pkeys, no_datasource_id, tagged_tables
 import psycopg2
-
-NO_DATASOURCE_ID = [
-    "EmissionsAggTag",
-    "EmissionsBreakdown",
-    "EmissionsByScope",
-    "EmissionsBySector",
-    "Methodology",
-    "MethodologyToTag",
-    "OrganizationContext",
-    "Publisher",
-    "Tag",
-    "TargetTag"
-]
+import logging
 
 def scrub_table(curs, table, datasource_id):
 
@@ -43,19 +31,25 @@ def scrub_data_source(host, dbname, user, password, datasource_id):
 
         with conn.cursor() as curs:
 
-            for table in tables.keys():
+            # To scrub, we work from most dependent to least dependent
+
+            for table in reversed(tables):
                 if table in tagged_tables:
+                    logging.debug(f'Scrubbing tag table {table}')
                     tagged_table = tagged_tables[table]
-                    pkey = tables[tagged_table]
+                    pkey = pkeys[tagged_table]
                     # This is true for all existing tables
                     assert(len(pkey) == 1)
                     scrub_tag_table(curs, table, tagged_table, pkey[0], datasource_id)
-                elif table in NO_DATASOURCE_ID:
+                elif table in no_datasource_id:
+                    logging.debug(f'Skipping table {table}')
                     continue
                 else:
+                    logging.debug(f'Scrubbing table {table}')
                     scrub_table(curs, table, datasource_id)
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.DEBUG)
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('--dbname', help='database name')
