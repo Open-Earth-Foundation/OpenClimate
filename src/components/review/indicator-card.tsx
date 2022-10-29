@@ -1,21 +1,26 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { MdArrowDownward, MdArrowUpward} from "react-icons/md"
 import {DonutChart} from 'react-circle-chart'
+import {Close} from '@mui/icons-material'
 import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
+import { deselectFilter } from "../../store/review/review.actions";
 
 
 interface IProps {
-    parent: any
-    actors: Array<any>
-    label: string
+    parent: any,
+    current: any,
+    label: string,
+    isActive: boolean,
+    onDeSelect?: () => void
 }
 
-const EarthCard:FunctionComponent<IProps> = (props) => {
-    const {parent, actors, label} = props
-    const [cardData, setCardData] = useState<Array<object>>();
+const IndicatorCard:FunctionComponent<IProps> = (props) => {
+    const {parent, current, label, isActive, onDeSelect} = props
+    const [cardData, setCardData] = useState<any>({});
     const [emsData, setEmissionsData] = useState<any>();
     const [currentPopulation, setCurrPopulation] = useState<number>()
     const [parentPopulation, setParPopulation] = useState<number>()
+    const [targetsData, setTargetsData] = useState<any>([])
 
     // Donut earth props items
     const items = [
@@ -44,44 +49,45 @@ const EarthCard:FunctionComponent<IProps> = (props) => {
     ]
 
     useEffect(()=> {
-        if (parent == null && actors.length == 1) {
-            const u = actors;
-            u[0] = {...u[0], label: "Globe" }
-            setCardData(u)
+        if (parent == null) {
+            const u = current;
+            setCardData(u);
         }
-        else if(parent && actors.length == 2) {
-            const u = actors
-            u[0] = {...u[1], label: "Country" }
+        else {
+            const u = current
             setCardData(u)
-            const sources = (u && u[0].emissions) ? Object.keys(u[0].emissions) : []
+            const sources = (u && current.emissions) ? Object.keys(current.emissions) : []
             sources.sort()
             const defaultSource = (sources.length > 0) ? sources[0] : null;
-            const defaultYear = (defaultSource && u[0].emissions[defaultSource].data.length > 0) ? u[0].emissions[defaultSource].data[0].year : null
+            const defaultYear = (defaultSource && current.emissions[defaultSource].data.length > 0) ? current.emissions[defaultSource].data[0].year : null
             const latestYear = defaultYear;
-            const currentEmissions = (defaultSource && defaultYear) ? u[0].emissions[defaultSource].data.find((e:any) => e.year == latestYear) : null;
-            const population = (defaultYear && u[0].population.length) ? u[0].population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
+            const currentEmissions = (defaultSource && defaultYear) ? current.emissions[defaultSource].data.find((e:any) => e.year == latestYear) : null;
+            const population = (defaultYear && current.population.length) ? current.population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
             const parentPopulation = (defaultYear && parent.population.length) ? parent.population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
-            setCurrPopulation(population.population)
-            setParPopulation(parentPopulation.population)
+            const targets = current?.targets;
+            setCurrPopulation(population?.population)
+            setParPopulation(parentPopulation?.population)
             setEmissionsData(currentEmissions?.total_emissions);
+            setTargetsData(targets);
         }
-    },[cardData, emsData, actors, parent])
+    },[cardData, emsData, current, parent])
 
     return (
         <div>
-            <span className="review__actor-type">{!cardData ? "" : cardData[0]?.label}</span>
-            <div className="review__earth-card">
+            <span className="review__actor-type">{label || ''}</span>
+            <div className={isActive ? "review__earth-card-active" : "review__earth-card-inactive"} >
                 <div className="review__earth-card-head">
-                    <span>{!cardData ? "" : cardData[0]?.name}</span>
+                    <span className="review__earth-card-item-head-text-span">{cardData?.name ?? ''}</span>
+                    {onDeSelect && <Close className="review__earth-card-close-icon" onClick={onDeSelect}/> }
                 </div>
                 <div className='review__earth-card-body'>
                     <div className="review__earth-card-content">
-                        <div>
-                            <MdArrowUpward className="review__earth-card-item-icon"/>
-                            <span className="review__earth-card-item-large-text">{emsData? (emsData / 1000000.0).toPrecision(5): "49.8"}</span>
-                            <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>
+                        <div className="review__earth-card-emissions-info">
+                            <MdArrowUpward className="review__earth-card-item-icon" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#F23D33'}}/>
+                            <span className="review__earth-card-item-large-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent !== null ? "N/A" : emsData && (emsData / 1000000.0).toPrecision(5) || '49.8'}</span>
+                            {!emsData && parent !== null ? <></> : <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>}
                         </div>
-                        <div className="review__earth-card-item-normal-text">in 2019</div>
+                        <div className="review__earth-card-item-normal-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent ? 'No data available' : 'in 2019'}</div>
                     </div>
                     {
                         parent ? "" :
@@ -103,11 +109,11 @@ const EarthCard:FunctionComponent<IProps> = (props) => {
                         parent ?
                         <>
                             <div>
-                                <MdArrowDownward className="review__earth-card-item-icon" style={{color: "#008600", transform: "rotate(-45deg)"}}/>
-                                <span className="review__earth-card-item-large-text">30%</span>
-                                <span className="review__earth-card-item-small-text"></span>
+                                <MdArrowDownward className="review__earth-card-item-icon" style={{color: targetsData?.length ? "#008600" : "#7A7B9A", transform: "rotate(-45deg)"}}/>
+                                <span className="review__earth-card-item-large-text" style={targetsData?.length ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData?.length ? targetsData?.value : 'N/A'} </span>
+                                <span className="review__earth-card-item-small-text" ></span>
                             </div>
-                            <div className="review__earth-card-item-normal-text">Pleadged by 2030</div>
+                            <div className="review__earth-card-item-normal-text" style={targetsData?.length ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData?.length ? `Pledged by ${targetsData?.yearPledged}` : 'No data available'} </div>
                         </>
                         :
                         <>
@@ -127,14 +133,14 @@ const EarthCard:FunctionComponent<IProps> = (props) => {
                         
                         <>
                             <div className='donut'>
-                                <DonutChart items={items2} size={30} showTotal={false} tooltipSx={{display: "none"}} trackColor="#D9D9D9"/>
+                                <DonutChart items={currentPopulation && parentPopulation ? [{...items2[0], value: 100 - (currentPopulation/parentPopulation)*100}, {...items2[1], value: (currentPopulation/parentPopulation)*100 }] : [{value: 0, label: '', color: '#D9D9D9'}]} size={30} showTotal={false} tooltipSx={{display: "none"}} trackColor="#D9D9D9"/>
                             </div>
                             <div className='right-column'>
                                 <div>
-                                    <span className="review__earth-card-item-large-text">{((currentPopulation/parentPopulation)*100).toFixed(5)}</span>
+                                    <span className="review__earth-card-item-large-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}}>{currentPopulation && parentPopulation ? ((currentPopulation/parentPopulation)*100).toFixed(3) : 'N/A'}%</span>
                                     <span className="review__earth-card-item-small-text"></span>
                                 </div>
-                                <div className="review__earth-card-item-normal-text target-text">{`Of ${parent?.name} Population`}</div>
+                                <div className="review__earth-card-item-normal-text target-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}} >{ currentPopulation && parentPopulation ? `Of ${parent?.name}'s Population` : 'No available data'}</div>
                             </div>
                         </> :
                         <div className=''>
@@ -154,4 +160,4 @@ const EarthCard:FunctionComponent<IProps> = (props) => {
     )
 }
 
-export default EarthCard
+export default IndicatorCard;
