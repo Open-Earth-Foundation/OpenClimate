@@ -2,10 +2,10 @@
 import { FunctionComponent, useEffect, useState } from 'react'
 import LevelCard from '../explore/level-cards/level-card'
 import { ArrowForwardIos } from '@mui/icons-material'
-import EarthCard from './earthcard'
 import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option'
 import { NullLiteral, setSyntheticTrailingComments } from 'typescript'
 import { FilterTypes } from '../../api/models/review/dashboard/filterTypes'
+import IndicatorCard from './indicator-card'
 
 
 interface IProps {
@@ -53,14 +53,14 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
     const [isCity, setIsCity] = useState<boolean>(true);
 
-    console.log(actors);
 
     const [cards, setCards] = useState<Array<ICardProps>>(cardsTemplate);
 
+    const [storedOptions, setStoredOptions] = useState<Array<DropdownOption>>([]);
+
     const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
-        selectFilter(filterType, option);
-        const actor_id = option.value
-        let tempCards = cards.slice()
+        const actor_id = option.value;
+        let tempCards = cards.slice();
         switch (filterType) {
             case FilterTypes.City:
             case FilterTypes.Company:
@@ -87,14 +87,13 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                     tempCards[0] = {...tempCards[0], selectedValue: option.name};
                     tempCards[1] = {...tempCards[1], selectedValue: '', options: options};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: []};
-                    setCards(tempCards)
                 })
                 break;
             }
+        selectFilter(filterType, option);
         setCards(tempCards);
     };
 
-    console.log(actors);
     const deselectFilterHandler = (filterType: FilterTypes) => {
         let tempCards = cards.slice();
         switch (filterType) {
@@ -135,13 +134,14 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
     useEffect(() => {
         let toggleCard = cards.slice().pop();
+
         if (!isCity && toggleCard?.type === FilterTypes.City) {
             toggleCard = {
                 label: "Company",
                 type: FilterTypes.Company,
                 selectedValue: '',
                 placeholder: "Companies...",
-                options: []
+                options: storedOptions ? storedOptions : []
             }
         } else if (isCity && toggleCard?.type === FilterTypes.Company) {
             toggleCard = {
@@ -149,9 +149,10 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 type: FilterTypes.City,
                 selectedValue: '',
                 placeholder: "Cities...",
-                options: []
+                options: storedOptions ? storedOptions : []
             }
         }
+        cards?.[2]?.options && setStoredOptions(cards[2].options);
         toggleCard && setCards(cards.slice(0,2).concat(toggleCard));
         
     }, [isCity])
@@ -160,7 +161,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     return (
         <div className="review__earth-main">
 
-            <EarthCard label={"Globe"} actors={actors} parent={parent}/>
+            <IndicatorCard label={"Globe"} current={actors[0]} parent={null} isActive={actors.length === 1}/>
 
             { cards.map((card, index) =>
                 <>
@@ -170,21 +171,33 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                                 <ArrowForwardIos/>
                             </div>
                     }
-                    <div className={ actors.length > 1 ? "review__card-actor-selected" : "review__card" } key={`review-card-div-${index}`}>
-                        <LevelCard
+                    {
+                        card.selectedValue ?
+                        <IndicatorCard 
                             label={card.label}
-                            key={`level-card-${index}`}
-                            disabled={card.options?.length === 0}
-                            buttonDisabled={cards[1].options.length === 0}
-                            selectedValue={card.selectedValue}
-                            placeholder={card.placeholder}
-                            onSelect={(option: DropdownOption) => selectFilterHandler(card.type, option)}
-                            onDeSelect={() => deselectFilterHandler(card.type) }
-                            options={card.options}
-                            isCity={index === 2 ? isCity : undefined}
-                            onButtonSwap={index === 2 ? () => setIsCity(!isCity) : undefined}
+                            current={actors?.[index + 1]}
+                            parent={actors?.[index]}
+                            isActive={actors.length === index + 2}
+                            onDeSelect={() => deselectFilterHandler(card.type)}
+                            key={`indicator-card-${card.selectedValue}`}
                         />
-                    </div>
+                        :
+                        <div className={ actors.length > 1 ? "review__card-actor-selected" : "review__card" } key={`review-card-div-${index}`}>
+                            <LevelCard
+                                label={card.label}
+                                key={`level-card-${card.label}`}
+                                disabled={card.options?.length === 0}
+                                buttonDisabled={cards[1].options.length === 0}
+                                selectedValue={card.selectedValue}
+                                placeholder={card.placeholder}
+                                onSelect={(option: DropdownOption) => selectFilterHandler(card.type, option)}
+                                onDeSelect={() => deselectFilterHandler(card.type) }
+                                options={card.options}
+                                isCity={index === 2 ? isCity : undefined}
+                                onButtonSwap={index === 2 ? () => setIsCity(!isCity) : undefined}
+                            />
+                        </div>
+                    }
                 </>
             )}
 

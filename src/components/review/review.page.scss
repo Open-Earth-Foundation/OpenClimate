@@ -156,15 +156,27 @@
         padding-left: 12px;
     }
 
-    .review__earth-card{
+    .review__earth-card-active{
         height: 220px;
         width: 380px;
-        border: 2px solid #24BE00;
+        border: 2px solid #008600;
         border-radius: 8px;
         background-color: #FFFFFF;
         padding: 8px;
         margin-bottom: 82px;
+        box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
     }
+
+    .review__earth-card-inactive {
+        height: 220px;
+        width: 380px;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+        padding: 8px;
+        margin-bottom: 82px;
+        box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+    }
+
     .review__earth-card-head{
         font-weight: 600;
         font-size: 24px;
@@ -174,7 +186,14 @@
         align-items: center;
         justify-content: space-between;
         padding-left: 12px;
-        padding-right: 3px;        
+        padding-right: 3px;
+        white-space: nowrap;
+    }
+
+    .review__earth-card-close-icon{
+        cursor: pointer;
+        font-size: 20px;
+        color: var(--neutral-grey);
     }
     .review__earth-icon{
         color: #7A7B9A;
@@ -190,6 +209,10 @@
         grid-gap: 12px;
         padding-top: 10px;
     }
+
+    .review__earth-card-emissions-info {
+        white-space: nowrap;
+    }
     .review__earth-card-content{
         height: 70px;
         width: 165px;
@@ -204,6 +227,11 @@
     .review__earth-card-item-large-text{
         font-weight: 600;
         font-size: 24px;
+    }
+
+    .review__earth-card-item-head-text-span {
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
     .review__earth-card-item-small-text{
         font-weight: 600;

@@ -9,7 +9,7 @@ import './review.page.scss';
 import '../explore/explore.page.scss'
 import {HiOutlineSearch} from 'react-icons/hi'
 import Bg from './img/Earth_Background_Home_Gray.png';
-import LevelCards from './levelcards'
+import LevelCards from './level-cards'
 
 interface IProps {
     actorID: string;
@@ -34,26 +34,6 @@ interface IProps {
         insertActor(actorID, [])
     }, [])
 
-    const getActorsLevelCardData = () => {
-        let simplifiedActors: { actor_id: any; latestEmissions: any; latestPopulation: any; latestTargets: any; }[] = []
-        
-        // using end of the list of sources due to new PRIMAP source having most recent data, could change
-        
-        actors.map((actor: any) => {
-            const emissionSources = actor?.emissions?.length && Object.keys(actor.emissions);
-            const latestSourceIndex = emissionSources?.length - 1;
-            console.log(emissionSources);
-            const simplifiedActorObject = {
-                actor_id: actor?.actor_id,
-                latestEmissions: actor?.emissions?.[emissionSources?.[latestSourceIndex]]?.data ?? {},
-                latestPopulation: actor?.population?.[0],
-                latestTargets: actor?.targets?.[0]
-            };
-            console.log(actor, simplifiedActorObject);
-            simplifiedActors.push(simplifiedActorObject)
-        })
-        return simplifiedActors;
-    }
 
     const insertActor = (actorID: any, children: Array<any>) => {
         fetch(`/api/v1/actor/${actorID}`)
