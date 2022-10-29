@@ -11,8 +11,7 @@ import IndicatorCard from './indicator-card'
 interface IProps {
     selectFilter: (filterType: FilterTypes, option: DropdownOption) => void,
     deselectFilter: (filterType: FilterTypes) => void,
-    actors: Array<any>,
-    parent: any,
+    actors: Array<any>
 }
 
 interface ICardProps {
@@ -49,7 +48,7 @@ const cardsTemplate: Array<ICardProps> = [
 
 const LevelCards: FunctionComponent<IProps> = (props) => {
 
-    const {selectFilter, deselectFilter, actors, parent} = props;
+    const {selectFilter, deselectFilter, actors} = props;
 
     const [isCity, setIsCity] = useState<boolean>(true);
 
@@ -154,7 +153,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
         }
         cards?.[2]?.options && setStoredOptions(cards[2].options);
         toggleCard && setCards(cards.slice(0,2).concat(toggleCard));
-        
+
     }, [isCity])
 
 
@@ -173,7 +172,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                     }
                     {
                         card.selectedValue ?
-                        <IndicatorCard 
+                        <IndicatorCard
                             label={card.label}
                             current={actors?.[index + 1]}
                             parent={actors?.[index]}

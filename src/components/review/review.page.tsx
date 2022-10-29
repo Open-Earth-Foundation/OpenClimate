@@ -121,7 +121,6 @@ interface IProps {
                             actors={actors}
                             selectFilter={selectFilterHandler}
                             deselectFilter={deselectFilterHandler}
-                            parent={parent}
                         />
 
                         <div className="review__filter-button-wrapper">
