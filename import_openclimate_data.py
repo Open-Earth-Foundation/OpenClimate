@@ -82,11 +82,12 @@ def import_openclimate_data(dir, host, dbname, user, password):
 
 if __name__ == "__main__":
     import argparse
+    import os
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dbname', help='database name')
-    parser.add_argument('--user', help='database user')
-    parser.add_argument('--password', help='database password')
-    parser.add_argument('--host', help='database host')
+    parser.add_argument('--dbname', help='database name', default=os.environ.get('OPENCLIMATE_DATABASE'))
+    parser.add_argument('--user', help='database user', default=os.environ.get('OPENCLIMATE_USER'))
+    parser.add_argument('--password', help='database password', default=os.environ.get('OPENCLIMATE_PASSWORD'))
+    parser.add_argument('--host', help='database host', default=os.environ.get('OPENCLIMATE_HOST'))
     parser.add_argument('dir', help='directory with CSV files for OpenClimate tables')
     args = parser.parse_args()
     import_openclimate_data(args.dir, args.host, args.dbname, args.user, args.password)

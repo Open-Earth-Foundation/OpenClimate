@@ -50,12 +50,13 @@ def scrub_data_source(host, dbname, user, password, datasource_id):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
+    import os
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dbname', help='database name')
-    parser.add_argument('--user', help='database user')
-    parser.add_argument('--password', help='database password')
-    parser.add_argument('--host', help='database host')
+    parser.add_argument('--dbname', help='database name', default=os.environ.get('OPENCLIMATE_DATABASE'))
+    parser.add_argument('--user', help='database user', default=os.environ.get('OPENCLIMATE_USER'))
+    parser.add_argument('--password', help='database password', default=os.environ.get('OPENCLIMATE_PASSWORD'))
+    parser.add_argument('--host', help='database host', default=os.environ.get('OPENCLIMATE_HOST'))
     parser.add_argument('datasource_id', help='directory with CSV files for OpenClimate tables')
     args = parser.parse_args()
     scrub_data_source(args.host, args.dbname, args.user, args.password, args.datasource_id)
