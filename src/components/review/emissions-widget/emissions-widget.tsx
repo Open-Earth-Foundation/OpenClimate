@@ -29,6 +29,10 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     const trend = (currentEmissions && lastEmissions) ? (currentEmissions.total_emissions - lastEmissions.total_emissions)/(lastEmissions.total_emissions) : 0
     const population = (currentYear && current.population.length) ? current.population.slice().sort((p:any) => Math.abs(p.year - currentYear)).find((p:any) => Math.abs(p.year - currentYear) <= 5) : null
     const perCapita = (currentEmissions && population) ? currentEmissions.total_emissions/population.population : null
+    const tags = (currentSource) ?
+                    (currentEmissions) ? currentSource.tags.concat(currentEmissions.tags)
+                    : currentSource.tags
+                    : []
 
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
         const value = e.target.value as number;
@@ -176,15 +180,20 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                         <MdInfoOutline className="emissions-widget__icon methodologies-icon"/>
                     </div>
                     <div className="emissions-widget__methodologies-tags">
-                        <div className="methodologies-tag">
-                            <span className="methodologies-text">Remote sensing</span>
-                        </div>
-                        <div className="methodologies-tag">
-                            <span className="methodologies-text">Machine Learning</span>
-                        </div>
-                        <div className="methodologies-tag overflow-handler">
-                            <span className="methodologies-text">+2</span>
-                        </div>
+                        {
+                            tags.slice(0, 3).map((tag:any) =>
+                                <div key={`emissions-tag-${tag.tag_id}`} className="methodologies-tag">
+                                    <span className="methodologies-text">{tag.tag_name}</span>
+                                </div>
+                            )
+                        }
+                        {
+                            (tags.slice(3).length > 0) &&
+                                <div className="methodologies-tag overflow-handler">
+                                    <span className="methodologies-text">+{tags.slice(3).length}</span>
+                                </div>
+                        }
+
                     </div>
                 </div>
             </div>:
