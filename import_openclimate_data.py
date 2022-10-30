@@ -34,7 +34,9 @@ def import_row(curs, table, pkey, row):
     INSERT INTO "{table}" ({", ".join(map(lambda col: f'"{col}"', columns))})
     VALUES ({", ".join(['%s'] * len(vals))})
     ON CONFLICT ({", ".join(map(lambda col: f'"{col}"', pkey))})
-    DO UPDATE SET ({", ".join(map(lambda col: f'"{col}"', toupdate))}) = ({", ".join(map(lambda col: f'EXCLUDED."{col}"', toupdate))})
+    DO UPDATE
+        SET ({", ".join(map(lambda col: f'"{col}"', toupdate))}) = ({", ".join(map(lambda col: f'EXCLUDED."{col}"', toupdate))})
+        WHERE {" OR ".join(map(lambda col: f'"{table}"."{col}" IS NOT NULL' if (row[col] == '') else f'"{table}"."{col}" != EXCLUDED."{col}"', toupdate[:-1]))}
     '''
 
     curs.execute(qry, vals)
