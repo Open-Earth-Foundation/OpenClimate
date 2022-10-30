@@ -76,6 +76,7 @@ const ReviewPage: FunctionComponent<{}> = (props) => {
                 newActorsList.splice(1,3);
                 break;
         }
+        history.push(`/actor/${newActorsList[newActorsList.length - 1].actor_id}`)
         setActors(newActorsList);
     }
 
