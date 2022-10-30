@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-import ReviewFilters from './review-filters/review-filters';
+import { useParams } from 'react-router-dom';
 import Dashboard from './review-dashboard/review-dashboard';
 import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option';
 import {Oval} from "react-loader-spinner";
@@ -11,13 +11,19 @@ import {HiOutlineSearch} from 'react-icons/hi'
 import Bg from './img/Earth_Background_Home_Gray.png';
 import LevelCards from './level-cards'
 
-interface IProps {
-    actorID: string;
+interface Props {
+    history: any
 }
 
- const ReviewPage: FunctionComponent<IProps> = (props) => {
+type ReviewPageParams = {
+    actorID: string;
+};
 
-    const { actorID  } = props;
+const ReviewPage: FunctionComponent<Props> = (props) => {
+
+    const { history } = props
+    const params = useParams<ReviewPageParams>()
+    const actorID = ('actorID' in params) ? params['actorID'] : 'EARTH'
 
     const [actors, setActors] = useState<any>([])
 
@@ -56,7 +62,7 @@ interface IProps {
     }
 
     const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
-        insertActor(option.value, [])
+        history.push(`/actor/${option.value}`)
     }
 
     const deselectFilterHandler = (filterType: FilterTypes) => {

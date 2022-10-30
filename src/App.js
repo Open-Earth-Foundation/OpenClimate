@@ -64,11 +64,9 @@ import * as accountSelectors from './store/account/account.selectors';
 
 // Lazy-load other pages
 
-const ExplorePage = React.lazy(() => import('./components/explore/explore.page'));
 const TransfersPage = React.lazy(() => import('./components/transfers/transfers.page'))
 const Emissions = React.lazy(() => import('./components/explore/emissions.page'))
 const NestedAccountsPage = React.lazy(() => import('./components/nested-accounts/nested-accounts.page'))
-const LevelCardsPage = React.lazy(() => import('./components/explore/level-cards/level-cards.page'))
 const ReviewPage = React.lazy(() => import('./components/review/review.page'))
 const AccountPage = React.lazy(() => import('./components/account/account.page'))
 const RegisterWalletPage = React.lazy(() => import('./UI/RegisterWallet'))
@@ -229,7 +227,7 @@ const App: FunctionComponent<Props> = (props) => {
         progress: undefined,
         }
     )
-  } 
+  }
 
   // How often to send a tickler to the WebSockets server to keep the connection open
 
@@ -410,7 +408,7 @@ const App: FunctionComponent<Props> = (props) => {
             setLoggedInUserState(userCookie)
             setLoggedInUserId(userCookie.id)
             setLoggedInEmail(userCookie.email)
-            setLoggedInRoles(userCookie.roles) 
+            setLoggedInRoles(userCookie.roles)
             setLoggedInRoles(userCookie.roles)
             if(!walletsLoaded)
               loadWallets(userCookie.id);
@@ -965,12 +963,12 @@ const App: FunctionComponent<Props> = (props) => {
                   console.log('Recieved facility_emissions_scope1_co2e verified report',data.facility_emissions_scope1_co2e)
                   setScope1(data.facility_emissions_scope1_co2e)
                 }
-                
+
                 break
               case 'CRED_DEF_EXIST':
-                toastError(data.error)                
+                toastError(data.error)
                 break
-  
+
               default:
                 toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
                 break
@@ -986,20 +984,20 @@ const App: FunctionComponent<Props> = (props) => {
                   toastSuccess(`Wallet proof recieved ${data.wallet.did}`);
                   await loadWallets(currentUser.id)
                 }
-                
+
                 break
               case 'WALLET_ERROR':
                 console.log('WALLET ERROR', data.error)
                 toastError(data.error)
                 break
-              
+
               case 'WALLET_CONNECTION_SUCCESS':
                   toastSuccess(`Connection established with wallet: ${data.did}`)
                   break
               case 'WALLET_PROOF_SENT':
                   toastSuccess(`Organisation Proof request sent to wallet: ${data.did}`)
                   break
-    
+
               default:
                 toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
                 break
@@ -1205,12 +1203,7 @@ const App: FunctionComponent<Props> = (props) => {
                   />
                   <Route path="/" exact>
                     <Suspense fallback={<div>Loading...</div>}>
-                      <ReviewPage />
-                    </Suspense>
-                  </Route>
-                  <Route path="/explore" exact>
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <ExplorePage />
+                      <ReviewPage history={history} />
                     </Suspense>
                   </Route>
                   <Route path="/nested-accounts">
@@ -1218,11 +1211,6 @@ const App: FunctionComponent<Props> = (props) => {
                         <NestedAccountsPage />
                       </Suspense>
                     </Route>
-                  <Route path="/level-cards">
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <LevelCardsPage />
-                    </Suspense>
-                  </Route>
                   <Route path="/emissions/:id" exact>
                     <Suspense fallback={<div>Loading...</div>}>
                       <Emissions />
@@ -1231,6 +1219,11 @@ const App: FunctionComponent<Props> = (props) => {
                   <Route path="/transfers" exact>
                     <Suspense fallback={<div>Loading...</div>}>
                       <TransfersPage />
+                    </Suspense>
+                  </Route>
+                  <Route path="/actor/:actorID" exact>
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <ReviewPage history={history} />
                     </Suspense>
                   </Route>
                   <Redirect to={"/"}/>
@@ -1275,7 +1268,7 @@ const App: FunctionComponent<Props> = (props) => {
                   handleLogout={handleLogout}
                 />
                 <div className="content">
-                <Switch>  
+                <Switch>
                   <Route exact path="/forgot-password">
                     <Redirect to="/" />
                   </Route>
@@ -1298,9 +1291,9 @@ const App: FunctionComponent<Props> = (props) => {
                       <NestedAccountsPage />
                     </Suspense>
                   </Route>
-                  
+
                   {
-                    currentUser && ( 
+                    currentUser && (
                       <Route path="/account">
                         <Suspense fallback={<div>Loading...</div>}>
                           <AccountPage user={currentUser} />
@@ -1310,7 +1303,7 @@ const App: FunctionComponent<Props> = (props) => {
                   }
 
                   {
-                    currentUser && ( 
+                    currentUser && (
                       <Route path="/register-wallet">
                         <Suspense fallback={<div>Loading...</div>}>
                           <RegisterWalletPage user={currentUser} sendRequest={sendMessage} QRCodeURL={QRCodeURL}/>
@@ -1323,7 +1316,7 @@ const App: FunctionComponent<Props> = (props) => {
                       <ReviewPage />
                     </Suspense>
                   </Route>
-                  
+
 
                   <Route
                     path="/admin"
