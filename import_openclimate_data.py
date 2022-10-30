@@ -4,6 +4,7 @@ import csv
 import psycopg2
 from datetime import datetime
 from schema import tables, pkeys
+import logging
 
 def import_row(curs, table, pkey, row):
 
@@ -30,14 +31,22 @@ def import_row(curs, table, pkey, row):
 
     toupdate = nonkeys[:-1]
 
-    qry = f'''
-    INSERT INTO "{table}" ({", ".join(map(lambda col: f'"{col}"', columns))})
-    VALUES ({", ".join(['%s'] * len(vals))})
-    ON CONFLICT ({", ".join(map(lambda col: f'"{col}"', pkey))})
-    DO UPDATE
-        SET ({", ".join(map(lambda col: f'"{col}"', toupdate))}) = ({", ".join(map(lambda col: f'EXCLUDED."{col}"', toupdate))})
-        WHERE {" OR ".join(map(lambda col: f'"{table}"."{col}" IS NOT NULL' if (row[col] == '') else f'"{table}"."{col}" != EXCLUDED."{col}"', toupdate[:-1]))}
-    '''
+    if len(toupdate) > 1:
+        qry = f'''
+        INSERT INTO "{table}" ({", ".join(map(lambda col: f'"{col}"', columns))})
+        VALUES ({", ".join(['%s'] * len(vals))})
+        ON CONFLICT ({", ".join(map(lambda col: f'"{col}"', pkey))})
+        DO UPDATE
+            SET ({", ".join(map(lambda col: f'"{col}"', toupdate))}) = ({", ".join(map(lambda col: f'EXCLUDED."{col}"', toupdate))})
+            WHERE {" OR ".join(map(lambda col: f'"{table}"."{col}" IS NOT NULL' if (row[col] == '') else f'"{table}"."{col}" != EXCLUDED."{col}"', toupdate[:-1]))}
+        '''
+    else:
+        qry = f'''
+        INSERT INTO "{table}" ({", ".join(map(lambda col: f'"{col}"', columns))})
+        VALUES ({", ".join(['%s'] * len(vals))})
+        ON CONFLICT ({", ".join(map(lambda col: f'"{col}"', pkey))})
+        DO NOTHING
+        '''
 
     curs.execute(qry, vals)
 
