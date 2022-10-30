@@ -27,13 +27,13 @@ const PledgeItem: FunctionComponent<Props> = (props) => {
                                     <span className="pledges-widget__percentage-value-number">{pledge.target_value}%</span>
                             }
                             {
-                                (pledge.target_unit == "tonnes") &&
+                                (pledge.target_unit == "tCO2e") &&
                                     <span className="pledges-widget__percentage-value-number">{pledge.target_value}T</span>
                             }
                         </div>
                         <div className="pledges-widget__target-estimate">
                             <div>by {pledge.target_year} relative</div>
-                            <div>to {(pledge.baseline_year == pledge.target_year) ? "BAU" : pledge.baseline_year}</div>
+                            <div>to {(pledge.baseline_year == pledge.target_year) ? <abbr title='business as usual'>BAU</abbr> : pledge.baseline_year}</div>
                         </div>
                     </div>
                 </div>
