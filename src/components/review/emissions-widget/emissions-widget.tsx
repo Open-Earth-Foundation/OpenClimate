@@ -30,7 +30,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     const population = (currentYear && current.population.length) ? current.population.slice().sort((p:any) => Math.abs(p.year - currentYear)).find((p:any) => Math.abs(p.year - currentYear) <= 5) : null
     const perCapita = (currentEmissions && population) ? currentEmissions.total_emissions/population.population : null
     const tags = (currentSource) ?
-                    (currentEmissions) ? currentSource.tags.concat(currentEmissions.tags)
+                    (currentEmissions) ? current.emissions[currentSource].tags.concat(currentEmissions.tags)
                     : currentSource.tags
                     : []
 
