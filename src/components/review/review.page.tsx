@@ -62,6 +62,7 @@ const ReviewPage: FunctionComponent<Props> = (props) => {
     }
 
     const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
+        insertActor(option.value, [])
         history.push(`/actor/${option.value}`)
     }
 
