@@ -31,7 +31,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     const perCapita = (currentEmissions && population) ? currentEmissions.total_emissions/population.population : null
     const tags = (currentSource) ?
                     (currentEmissions) ? current.emissions[currentSource].tags.concat(currentEmissions.tags)
-                    : currentSource.tags
+                        : current.emissions[currentSource].tags
                     : []
 
     const yearChangeHandler = (e: SelectChangeEvent<number>) => {
