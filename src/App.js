@@ -62,8 +62,6 @@ import './App.css'
 import * as accountActions from './store/account/account.actions';
 import * as accountSelectors from './store/account/account.selectors';
 
-import history from 'history'
-
 // Lazy-load other pages
 
 const TransfersPage = React.lazy(() => import('./components/transfers/transfers.page'))
@@ -1205,7 +1203,7 @@ const App: FunctionComponent<Props> = (props) => {
                   />
                   <Route path="/" exact>
                     <Suspense fallback={<div>Loading...</div>}>
-                      <ReviewPage history={history} />
+                      <ReviewPage />
                     </Suspense>
                   </Route>
                   <Route path="/nested-accounts">
@@ -1225,7 +1223,7 @@ const App: FunctionComponent<Props> = (props) => {
                   </Route>
                   <Route path="/actor/:actorID" exact>
                     <Suspense fallback={<div>Loading...</div>}>
-                      <ReviewPage history={history} />
+                      <ReviewPage />
                     </Suspense>
                   </Route>
                   <Redirect to={"/"}/>

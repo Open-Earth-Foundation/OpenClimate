@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import Dashboard from './review-dashboard/review-dashboard';
 import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option';
 import {Oval} from "react-loader-spinner";
@@ -11,17 +11,13 @@ import {HiOutlineSearch} from 'react-icons/hi'
 import Bg from './img/Earth_Background_Home_Gray.png';
 import LevelCards from './level-cards'
 
-interface Props {
-    history: any
-}
-
 type ReviewPageParams = {
     actorID: string;
 };
 
-const ReviewPage: FunctionComponent<Props> = (props) => {
+const ReviewPage: FunctionComponent<{}> = (props) => {
 
-    const { history } = props
+    const history = useHistory()
     const params = useParams<ReviewPageParams>()
     const actorID = ('actorID' in params) ? params['actorID'] : 'EARTH'
 
