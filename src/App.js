@@ -62,6 +62,8 @@ import './App.css'
 import * as accountActions from './store/account/account.actions';
 import * as accountSelectors from './store/account/account.selectors';
 
+import history from 'history'
+
 // Lazy-load other pages
 
 const TransfersPage = React.lazy(() => import('./components/transfers/transfers.page'))
