@@ -20,7 +20,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
     const [emsData, setEmissionsData] = useState<any>();
     const [currentPopulation, setCurrPopulation] = useState<number>()
     const [parentPopulation, setParPopulation] = useState<number>()
-    const [targetsData, setTargetsData] = useState<any>([])
+    const [targetsData, setTargetsData] = useState<any>({})
 
     // Donut earth props items
     const items = [
@@ -68,7 +68,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
             setCurrPopulation(population?.population)
             setParPopulation(parentPopulation?.population)
             setEmissionsData(currentEmissions?.total_emissions);
-            setTargetsData(targets);
+            setTargetsData(targets?.[0]);
         }
     },[cardData, emsData, current, parent])
 
@@ -109,11 +109,11 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                         parent ?
                         <>
                             <div>
-                                <MdArrowDownward className="review__earth-card-item-icon" style={{color: targetsData?.length ? "#008600" : "#7A7B9A", transform: "rotate(-45deg)"}}/>
-                                <span className="review__earth-card-item-large-text" style={targetsData?.length ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData?.length ? targetsData?.value : 'N/A'} </span>
+                                <MdArrowDownward className="review__earth-card-item-icon" style={{color: targetsData ? "#008600" : "#7A7B9A", transform: "rotate(-45deg)"}}/>
+                                <span className="review__earth-card-item-large-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData ? `${targetsData?.target_value}%` : 'N/A'} </span>
                                 <span className="review__earth-card-item-small-text" ></span>
                             </div>
-                            <div className="review__earth-card-item-normal-text" style={targetsData?.length ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData?.length ? `Pledged by ${targetsData?.yearPledged}` : 'No data available'} </div>
+                            <div className="review__earth-card-item-normal-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData ? `Pledged by ${targetsData?.target_year}  from ${targetsData?.baseline_year}` : 'No data available'} </div>
                         </>
                         :
                         <>
