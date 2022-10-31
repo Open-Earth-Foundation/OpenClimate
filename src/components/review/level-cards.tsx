@@ -118,18 +118,48 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     }
 
     useEffect(() => {
-        fetch(`/api/v1/actor/EARTH/parts?type=country`)
-        .then((res) => res.json())
-        .then((json) => {
-            let parts = json.data
-            let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}})
+
+        const getOptions = async(actor_id: string, type: string) => {
+            const res = await fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
+            const json = await res.json()
+            return json.data.map((part:any) => {
+                return {
+                    name: part.name, value: part.actor_id
+                }
+            })
+        }
+
+        const setupLevels = async() => {
+
+            const options = Array(3).fill([])
+            const selected = Array(3).fill('')
+
+            options[0] = await getOptions('EARTH', 'country')
+
+            if (actors.length > 1) {
+                selected[0] = actors[1].actor_id
+                options[1] = await getOptions(actors[1].actor_id, 'adm1')
+            }
+
+            if (actors.length > 2) {
+                selected[1] = actors[2].actor_id
+                options[2] = await getOptions(actors[2].actor_id, 'city')
+            }
+
+            if (actors.length > 3) {
+                selected[2] = actors[3].actor_id
+            }
+
             let tempCard = cards.slice()
-            tempCard[0] = {...tempCard[0], options: options}
-            tempCard[1] = {...tempCard[1], selectedValue: '', options: []}
-            tempCard[2] = {...tempCard[2], selectedValue: '', options: []}
+            tempCard[0] = {...tempCard[0], options: options[0], selectedValue: selected[0]}
+            tempCard[1] = {...tempCard[1], selectedValue: selected[1], options: options[1]}
+            tempCard[2] = {...tempCard[2], selectedValue: selected[2], options: options[2]}
             setCards(tempCard);
-        })
-    }, [])
+        }
+
+        setupLevels().catch((err) => console.error(err))
+
+    }, [actors])
 
     useEffect(() => {
         let toggleCard = cards.slice().pop();
