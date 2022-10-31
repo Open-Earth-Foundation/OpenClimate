@@ -40,8 +40,16 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     }
 
     const sourceChangeHandler = (e: SelectChangeEvent<number>) => {
-        const value = e.target.value as number;
-        setCurrentSource(value);
+        const source = e.target.value as number;
+        // Find the year closest to the current year
+        const closest = current.emissions[source].data
+            .slice() // make a copy
+            .sort((a:any, b:any) => // sort by distance from current year
+                Math.abs(a.year - currentYear) - Math.abs(b.year - currentYear))
+            .shift() // pop off the first
+            .year // and get its year
+        setCurrentSource(source)
+        setCurrentYear(closest)
     }
 
     return(
