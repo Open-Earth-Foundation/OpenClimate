@@ -41,6 +41,8 @@ services:
     environment:
       POSTGRES_USER: development
       POSTGRES_PASSWORD: development
+    volumes:
+      - ./OpenClimate-hub-controller/schema:/var/local/schema
     networks:
       - oc-network
 
@@ -99,6 +101,27 @@ services:
       - oc-network
     depends_on:
       - "hub-db"
+
+  hub-importer:
+      image: python:3-alpine
+      profiles: ["oc"]
+      hostname: hub-shell
+      restart: unless-stopped
+      working_dir: /home/node/app
+      environment:
+        - OPENCLIMATE_HOST=hub-db
+        - OPENCLIMATE_DATABASE=development
+        - OPENCLIMATE_USER=development
+        - OPENCLIMATE_PASSWORD=development
+      volumes:
+        - ./import:/opt/import/
+        - ./data:/var/local/data
+      command: >
+        crond -f -d 8
+      networks:
+        - oc-network
+      depends_on:
+        - "hub-db"
 
   tunnel-hub:
     image: reflectivedevelopment/agent-tunnel
