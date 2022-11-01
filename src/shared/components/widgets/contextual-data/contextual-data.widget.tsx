@@ -82,7 +82,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                         <div className="contextual-widget__left-info-box">
                             <div className="contextual-widget__left-header-text">
                                 {
-                                    (latestPopulation && parentPopulation) ? ((latestPopulation.population/parentPopulation.population)*100).toFixed(3) : "N/A"
+                                    (latestPopulation && parentPopulation) ? `${((latestPopulation.population/parentPopulation.population)*100).toFixed(3)}%` : "N/A"
                                 }
                                 <Tooltip classes={{
                                                 tooltip: classes.customTooltip,
