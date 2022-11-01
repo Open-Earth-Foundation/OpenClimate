@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useRef, useState } from "react";
 import { Card, Collapse } from "@mui/material";
 import './level-cards.page.scss'
 import { DropdownOption } from "../../../shared/interfaces/dropdown/dropdown-option";
@@ -27,6 +27,11 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
     const {label, onSelect, onDeSelect, disabled, selectedValue, options, onButtonSwap, isCity, placeholder, buttonDisabled} = props;
     const [cardExpanded, setCardExpanded] = useState(false);
     const [inputString, setInputString] = useState<string>('');
+    const inputComponentRef = useRef<any>(null);
+
+    const handleClickOutside = (event: MouseEvent) => {
+        inputComponentRef.current && !inputComponentRef.current.contains(event.target) && setCardExpanded(false);
+    }
 
     const onOptionClick = (option: DropdownOption) => {
         setCardExpanded(false);
@@ -42,6 +47,13 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
             <>{name.substring(0, firstIndexMatch)}<b>{name.substring(firstIndexMatch, firstIndexMatch + inputString.length)}</b>{name.substring(firstIndexMatch + inputString.length)}</>
     }
 
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside, true);
+        return () => {
+            document.removeEventListener('click', handleClickOutside, true);
+        };
+    }, []);
+
 
     return (
         <div className="level-card">
@@ -49,7 +61,7 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                 <Card className="outer-card">
                     <Card className={disabled ? "inner-card-disabled" : "inner-card"}>
                         <div className="content">
-                            <div className="dropdown" onClick={() => !disabled && !selectedValue && setCardExpanded(!cardExpanded)}>
+                            <div className="dropdown" onClick={() => !disabled && !selectedValue && setCardExpanded(true)}>
                                 <Search/>
                                 {
                                 selectedValue ?
@@ -64,7 +76,7 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                                     </>
                                     :
                                     <>
-                                        <input className="dropdown-text" placeholder={placeholder || 'Add level'} type='text' onChange={ event => setInputString(event.target.value)} disabled={disabled} />
+                                        <input className="dropdown-text" ref={inputComponentRef} placeholder={placeholder || 'Add level'} type='text' onChange={ event => setInputString(event.target.value)} disabled={disabled} />
                                         { cardExpanded ? 
                                             <ArrowDropUp className={ disabled ? "icon-disabled" : "drop-icon"} />
                                             : 

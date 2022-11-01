@@ -24,7 +24,7 @@
         max-height: 367px;
         border-radius: 8px;
         position: absolute;
-        z-index: 9999;
+        z-index: var(--explore-dropown-list-items-z-index);
         
     }
 
