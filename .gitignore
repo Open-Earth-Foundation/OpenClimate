@@ -8,3 +8,4 @@ nginx/*ssl*
 .env.test.local
 .env.production.local
 **/.env
+data/
