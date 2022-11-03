@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: var(--modal-z-index);
 
 
     &__wrapper {

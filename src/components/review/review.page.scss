@@ -213,6 +213,12 @@
     .review__earth-card-emissions-info {
         white-space: nowrap;
     }
+
+    .review__earth-card-pledge-info {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
     .review__earth-card-content{
         height: 70px;
         width: 165px;

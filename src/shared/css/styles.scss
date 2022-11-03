@@ -42,6 +42,10 @@
     --normal-weight: 500;
     --bold-weight: 600;
 
+    // z-index priorities
+    --modal-z-index: 2;
+    --explore-dropdown-list-items-z-index: 1;
+
   }
   
 * {
