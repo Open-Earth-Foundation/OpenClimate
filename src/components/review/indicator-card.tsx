@@ -20,7 +20,8 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
     const [emsData, setEmissionsData] = useState<any>();
     const [currentPopulation, setCurrPopulation] = useState<number>()
     const [parentPopulation, setParPopulation] = useState<number>()
-    const [targetsData, setTargetsData] = useState<any>({})
+    const [targetsData, setTargetsData] = useState<any>(null)
+    const [year, setYear] = useState<number>();
 
     // Donut earth props items
     const items = [
@@ -61,14 +62,15 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
             const defaultSource = (sources.length > 0) ? sources[0] : null;
             const defaultYear = (defaultSource && current.emissions[defaultSource].data.length > 0) ? current.emissions[defaultSource].data[0].year : null
             const latestYear = defaultYear;
+            setYear(latestYear);
             const currentEmissions = (defaultSource && defaultYear) ? current.emissions[defaultSource].data.find((e:any) => e.year == latestYear) : null;
             const population = (defaultYear && current.population.length) ? current.population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
             const parentPopulation = (defaultYear && parent.population.length) ? parent.population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
-            const targets = current?.targets;
+            const target = current?.targets.slice().find((target: { target_unit: string; }) => target.target_unit === 'percent') ?? null;
             setCurrPopulation(population?.population)
             setParPopulation(parentPopulation?.population)
             setEmissionsData(currentEmissions?.total_emissions);
-            setTargetsData(targets?.[0]);
+            target && setTargetsData(target);
         }
     },[cardData, emsData, current, parent])
 
@@ -87,7 +89,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                             <span className="review__earth-card-item-large-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent !== null ? "N/A" : emsData && (emsData / 1000000.0).toPrecision(5) || '49.8'}</span>
                             {!emsData && parent !== null ? <></> : <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>}
                         </div>
-                        <div className="review__earth-card-item-normal-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent ? 'No data available' : 'in 2019'}</div>
+                        <div className="review__earth-card-item-normal-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent ? 'No data available' : `in ${year || 'N/A'}`}</div>
                     </div>
                     {
                         parent ? "" :
@@ -108,12 +110,13 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                     {
                         parent ?
                         <>
-                            <div>
+                            <div className="review__earth-card-pledge-info">
                                 <MdArrowDownward className="review__earth-card-item-icon" style={{color: targetsData ? "#008600" : "#7A7B9A", transform: "rotate(-45deg)"}}/>
                                 <span className="review__earth-card-item-large-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData ? `${targetsData?.target_value}%` : 'N/A'} </span>
                                 <span className="review__earth-card-item-small-text" ></span>
                             </div>
-                            <div className="review__earth-card-item-normal-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData ? `Pledged by ${targetsData?.target_year}  from ${targetsData?.baseline_year}` : 'No data available'} </div>
+                            <div className="review__earth-card-item-normal-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData ? `Pledged by ${targetsData?.target_year} ` : 'No data available'} </div>
+                            <div className="review__earth-card-item-normal-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData && `from ${targetsData?.baseline_year}`} </div>
                         </>
                         :
                         <>
