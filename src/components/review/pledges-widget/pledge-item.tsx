@@ -1,6 +1,7 @@
 import {FunctionComponent} from 'react';
 import './pledges-widget.scss';
 import {MdArrowDownward} from "react-icons/md";
+import {readableEmissions} from "../units";
 
 interface Props {
     pledge: any
@@ -28,7 +29,7 @@ const PledgeItem: FunctionComponent<Props> = (props) => {
                             }
                             {
                                 (pledge.target_unit == "tCO2e") &&
-                                    <span className="pledges-widget__percentage-value-number">{pledge.target_value}T</span>
+                                    <span className="pledges-widget__percentage-value-number">{readableEmissions(pledge.target_value)}</span>
                             }
                         </div>
                         <div className="pledges-widget__target-estimate">

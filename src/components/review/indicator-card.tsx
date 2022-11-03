@@ -4,7 +4,7 @@ import {DonutChart} from 'react-circle-chart'
 import {Close} from '@mui/icons-material'
 import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
 import { deselectFilter } from "../../store/review/review.actions";
-
+import {readableEmissions} from "./units"
 
 interface IProps {
     parent: any,
@@ -110,10 +110,18 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                         <>
                             <div>
                                 <MdArrowDownward className="review__earth-card-item-icon" style={{color: targetsData ? "#008600" : "#7A7B9A", transform: "rotate(-45deg)"}}/>
-                                <span className="review__earth-card-item-large-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData ? `${targetsData?.target_value}%` : 'N/A'} </span>
+                                <span className="review__earth-card-item-large-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>
+                                    {
+                                        (targetsData.target_unit == "percent") ?
+                                            `${targetsData.target_value}%`
+                                        : (targetsData.target_unit == "tCO2e") ?
+                                            `${readableEmissions(targetsData.target_value)}`
+                                        : "N/A"
+                                    }
+                                </span>
                                 <span className="review__earth-card-item-small-text" ></span>
                             </div>
-                            <div className="review__earth-card-item-normal-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData ? `Pledged by ${targetsData?.target_year}  from ${targetsData?.baseline_year}` : 'No data available'} </div>
+                            <div className="review__earth-card-item-normal-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData ? `Pledged by ${targetsData?.target_year} relative to ${(targetsData?.baseline_year == targetsData?.target_year) ? "BAU" : targetsData?.baseline_year}` : 'No data available'} </div>
                         </>
                         :
                         <>
@@ -124,13 +132,13 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                             </div>
                             <div className="review__earth-card-item-normal-text">Temperature <br /> since  1880</div>
                         </>
-                        
+
                     }
                     </div>
                     <div className="review__earth-card-content donut-card co2concentration" style={{position: "relative", left: parent ? "-10px": "0px"}}>
                        {
-                        parent ?  
-                        
+                        parent ?
+
                         <>
                             <div className='donut'>
                                 <DonutChart items={currentPopulation && parentPopulation ? [{...items2[0], value: 100 - (currentPopulation/parentPopulation)*100}, {...items2[1], value: (currentPopulation/parentPopulation)*100 }] : [{value: 0, label: '', color: '#D9D9D9'}]} size={30} showTotal={false} tooltipSx={{display: "none"}} trackColor="#D9D9D9"/>
