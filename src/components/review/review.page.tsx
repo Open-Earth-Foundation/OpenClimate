@@ -10,6 +10,8 @@ import '../explore/explore.page.scss'
 import {HiOutlineSearch} from 'react-icons/hi'
 import Bg from './img/Earth_Background_Home_Gray.png';
 import LevelCards from './level-cards'
+import CollaborateFAB from './CollaborateFab';
+import CollaborationCardHint from './CollaborateCardHint';
 
 type ReviewPageParams = {
     actorID: string;
@@ -165,15 +167,25 @@ const ReviewPage: FunctionComponent<{}> = (props) => {
                         }
                     </div>
 
-                    {
-                        notJustEarth() ? "" :
-                        <div className="contact__block">
-                            <div className="contact__title">Looking where to add your data?</div>
-                            <div className="contact__subtitle">Contact us and start now!</div>
-                            <a href='mailto:climatedata@openearth.org'><button className="contact__button" >Contact us</button></a>
+                    {/* CTA */}
+                    <div className='review-cta' style={{justifyContent: notJustEarth() ? "flex-end": ""}}>
+                        {
+                            notJustEarth() ? "" :
+                            <div className="contact__block">
+                                <div className="contact__title">Looking where to add your data?</div>
+                                <div className="contact__subtitle">Contact us and start now!</div>
+                                <a href='mailto:climatedata@openearth.org'><button className="contact__button" >Contact us</button></a>
+                            </div>
+                        }
+                        <div className="review-fab">
+                            {/* New Collaborator Floating Card Hint */}
+                            <CollaborationCardHint />
+                            {/* Collaboration Floating Action button */}
+                            <CollaborateFAB />
                         </div>
-                    }
-
+                    </div>
+                   
+                   
                 </div>
             </div>
         </div>
