@@ -1,3 +1,5 @@
+@import './mixins.scss';
+
 .contextual-widget {
     height: 250px;
     width: 578px;
@@ -154,6 +156,9 @@
 
     &__icon-padding {
         padding-top: 8px;
+    }
+    @include respond(tablet){
+       margin-top: 135px;
     }
 
 }
