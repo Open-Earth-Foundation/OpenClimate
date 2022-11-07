@@ -13,7 +13,6 @@ const NavMenu: FunctionComponent<Props> = (props) => {
     if (currentUser && currentUser.roles){
         userAdmin = (currentUser.roles.indexOf("admin") > -1);
     }
-    console.log('currentUser', currentUser, userAdmin)
     const showAccount = currentUser != null;
 
     return (

@@ -1316,6 +1316,11 @@ const App: FunctionComponent<Props> = (props) => {
                       <ReviewPage />
                     </Suspense>
                   </Route>
+                  <Route path="/actor/:actorID" exact>
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <ReviewPage />
+                    </Suspense>
+                  </Route>
 
 
                   <Route
