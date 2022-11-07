@@ -96,7 +96,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                                     position: 'relative',
                                                     margin: '0px',
                                                     fontWeight: '700px'
-                                                }} value={source}>{current.emissions[source].publisher}</MenuItem>)
+                                                }} key={`emissions-datasource-option-${current.actor_id}-${source}`} value={source}>{current.emissions[source].publisher}</MenuItem>)
                                         }
                                     </Select>
                                 </FormControl >
@@ -125,7 +125,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                                     position: 'relative',
                                                     margin: '0px',
                                                     fontWeight: '700px'
-                                                }} value={parseInt(year)}>{year}</MenuItem>)
+                                                }} key={`emissions-year-option-${current.actor_id}-${currentSource}-${year}`}value={parseInt(year)}>{year}</MenuItem>)
                                         }
                                     </Select>
                                 </FormControl >
