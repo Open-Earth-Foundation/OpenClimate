@@ -99,7 +99,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
 
                             </div>
                             <div className="contextual-widget__left-subtitle-text">
-                                Of Global population
+                            { (parent?.actor_id == "EARTH") ? 'Of Global Population' : `Of ${parent?.name}'s Population`}
                             </div>
                         </div>
                     </div>
