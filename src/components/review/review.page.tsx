@@ -17,7 +17,7 @@ type ReviewPageParams = {
     actorID: string;
 };
 
-const ReviewPage: FunctionComponent<{}> = (props) => {
+const ReviewPage: FunctionComponent = () => {
 
     const history = useHistory()
     const params = useParams<ReviewPageParams>()
@@ -28,8 +28,6 @@ const ReviewPage: FunctionComponent<{}> = (props) => {
     const current = (actors.length > 0) ? actors[actors.length - 1] : null
     const parent = (actors.length > 1) ? actors[actors.length - 2] : null
 
-    // XXX: figure this out
-
     const loading = false
 
     // Load the provided actor
@@ -37,6 +35,10 @@ const ReviewPage: FunctionComponent<{}> = (props) => {
     useEffect(() => {
         insertActor(actorID, [])
     }, [])
+
+    useEffect(() => {
+        actorID === 'EARTH' && actors.length > 1 && deselectFilterHandler(FilterTypes.National);
+    }, [actorID])
 
 
     const insertActor = (actorID: any, children: Array<any>) => {
@@ -185,7 +187,6 @@ const ReviewPage: FunctionComponent<{}> = (props) => {
                         </div>
                     </div>
                    
-                   
                 </div>
             </div>
         </div>
@@ -196,4 +197,4 @@ ReviewPage.defaultProps = {
     actorID: "EARTH"
 }
 
-export default ReviewPage
+export default ReviewPage;

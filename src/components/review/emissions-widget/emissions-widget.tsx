@@ -89,14 +89,16 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                         }}
                                     >
                                         {
-                                            sources.map((source:any) =>
+                                            sources.map((source:any, index:number) =>
                                                 <MenuItem sx={{
                                                     fontFamily: 'Poppins',
                                                     fontSize: '10px',
                                                     position: 'relative',
                                                     margin: '0px',
                                                     fontWeight: '700px'
-                                                }} value={source}>{current.emissions[source].publisher}</MenuItem>)
+                                                }}
+                                                value={source}
+                                                key={`source-${index}`}>{current.emissions[source].publisher}</MenuItem>)
                                         }
                                     </Select>
                                 </FormControl >
@@ -118,14 +120,17 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                         }}
                                     >
                                         {
-                                            years?.map((year:any) =>
+                                            years?.map((year:any, index: number) =>
                                                 <MenuItem sx={{
                                                     fontFamily: 'Poppins',
                                                     fontSize: '10px',
                                                     position: 'relative',
                                                     margin: '0px',
                                                     fontWeight: '700px'
-                                                }} value={parseInt(year)}>{year}</MenuItem>)
+                                                }} 
+                                                value={parseInt(year)}
+                                                key={`year-${index}`}
+                                                >{year}</MenuItem>)
                                         }
                                     </Select>
                                 </FormControl >

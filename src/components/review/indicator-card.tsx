@@ -89,7 +89,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                             <span className="review__earth-card-item-large-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent !== null ? "N/A" : emsData && (emsData / 1000000.0).toPrecision(5) || '49.8'}</span>
                             {!emsData && parent !== null ? <></> : <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>}
                         </div>
-                        <div className="review__earth-card-item-normal-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent ? 'No data available' : `in ${year || 'N/A'}`}</div>
+                        <div className="review__earth-card-item-normal-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent ? 'No data available' : `in ${parent !== null ? (year || 'N/A') : '2019'}`}</div>
                     </div>
                     {
                         parent ? "" :
