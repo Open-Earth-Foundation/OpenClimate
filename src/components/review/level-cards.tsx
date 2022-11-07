@@ -1,5 +1,5 @@
 
-import { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import LevelCard from '../explore/level-cards/level-card'
 import { ArrowForwardIos } from '@mui/icons-material'
 import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option'
@@ -193,7 +193,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
             <IndicatorCard label={"Globe"} current={actors[0]} parent={null} isActive={actors.length === 1}/>
 
             { cards.map((card, index) =>
-                <>
+                <React.Fragment key={`card-fragment-${card.label}`}>
                     {
                         actors.length > 1 &&
                             <div className="review__arrow-forward" key={`arrow-forward-${index}`}>
@@ -227,7 +227,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                             />
                         </div>
                     }
-                </>
+                </React.Fragment>
             )}
 
         </div>

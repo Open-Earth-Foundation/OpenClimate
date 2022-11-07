@@ -89,7 +89,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                         }}
                                     >
                                         {
-                                            sources.map((source:any) =>
+                                            sources.map((source:any, index:number) =>
                                                 <MenuItem sx={{
                                                     fontFamily: 'Poppins',
                                                     fontSize: '10px',
@@ -118,7 +118,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                         }}
                                     >
                                         {
-                                            years?.map((year:any) =>
+                                            years?.map((year:any, index: number) =>
                                                 <MenuItem sx={{
                                                     fontFamily: 'Poppins',
                                                     fontSize: '10px',
