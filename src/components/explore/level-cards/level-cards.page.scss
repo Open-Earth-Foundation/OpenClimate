@@ -1,3 +1,5 @@
+@import '../mixins.scss';
+
 .level-card {
     width: 325px;
     height: 82px;
@@ -48,6 +50,8 @@
         align-items: center;
         color: var(--neutral-grey);
         cursor: pointer;
+        position: relative;
+        z-index: 3;
     }
 
     .dropdown-text {
@@ -88,6 +92,7 @@
         max-height: 304px;
         overflow-y: scroll;
         overflow-x: hidden;
+       
     }
 
     .dropdown-select {
@@ -97,6 +102,7 @@
         font-weight: 400;
         font-size: 16px;
         padding: 12px 25px 12px;
+        
         &:hover {
             background-color: var(--secondary-blue-color);
             color: var(--white-color);
@@ -162,6 +168,52 @@
         overflow: hidden;
         white-space: nowrap;
         padding-left: 6px;
+    }
+    @include respond(laptop){
+        width: 260px;
+        height: 82px;
+        margin-top: -10px;
+
+        .outer-card {
+            width: 260px;
+            max-height: 367px;
+            border-radius: 8px;
+            position: absolute;
+            z-index: var(--explore-dropown-list-items-z-index);
+            
+        }
+    
+        .inner-card {
+            width: 260px;
+            height: 56px;
+            border-radius: 8px;
+        }
+        .swapto-button {
+            margin-top: 76px;
+            position: relative;
+            right: 63px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+            border-radius: 100px;
+            font-size: 12px;
+        }
+        .swapto-button-disabled {
+            margin-top: 76px;
+            position: relative;
+            right: 63px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+            border-radius: 100px;
+            font-size: 12px;
+        }
     }
 
 
