@@ -4,7 +4,7 @@ import {DonutChart} from 'react-circle-chart'
 import {Close} from '@mui/icons-material'
 import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
 import { deselectFilter } from "../../store/review/review.actions";
-import {readableEmissions} from "./units"
+import {readableEmissions, readablePercentagePopulation} from "./units"
 
 interface IProps {
     parent: any,
@@ -147,7 +147,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                             </div>
                             <div className='right-column'>
                                 <div>
-                                    <span className="review__earth-card-item-large-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}}>{currentPopulation && parentPopulation ? ((currentPopulation/parentPopulation)*100).toFixed(3) : 'N/A'}%</span>
+                                    <span className="review__earth-card-item-large-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}}>{currentPopulation && parentPopulation ? readablePercentagePopulation(currentPopulation, parentPopulation) : 'N/A'}%</span>
                                     <span className="review__earth-card-item-small-text"></span>
                                 </div>
                                 <div className="review__earth-card-item-normal-text target-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}} >{ currentPopulation && parentPopulation ? `Of ${parent?.name}'s Population` : 'No available data'}</div>

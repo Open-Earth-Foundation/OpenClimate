@@ -9,3 +9,8 @@ export function readableEmissions(value:number) {
         return `${(value/1000000000.0).toPrecision(3)}GT`
     }
 }
+
+export function readablePercentagePopulation(current: number, parent: number) {
+    const precisePercentage: number = parseFloat(((current / parent) * 100).toPrecision(3));
+    return precisePercentage / 1;
+}
