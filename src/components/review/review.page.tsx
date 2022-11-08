@@ -4,7 +4,6 @@ import Dashboard from './review-dashboard/review-dashboard';
 import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option';
 import {Oval} from "react-loader-spinner";
 import { FilterTypes } from '../../api/models/review/dashboard/filterTypes';
-import { CircleFlag } from 'react-circle-flags';
 import './review.page.scss';
 import '../explore/explore.page.scss'
 import {HiOutlineSearch} from 'react-icons/hi'
@@ -12,6 +11,8 @@ import Bg from './img/Earth_Background_Home_Gray.png';
 import LevelCards from './level-cards'
 import CollaborateFAB from './CollaborateFab';
 import CollaborationCardHint from './CollaborateCardHint';
+import { CircleFlag } from 'react-circle-flags';
+import ActorFlag from './actor-flag/actor-flag';
 
 type ReviewPageParams = {
     actorID: string;
@@ -144,13 +145,15 @@ const ReviewPage: FunctionComponent = () => {
                             {
                                 (current && notJustEarth()) ?
                                     <div className="review__selected-entity">
-                                        <div>
-                                            {current.flagCode ?
-                                                <CircleFlag countryCode={current.icon} height="35" />
-                                                : ""
-                                            }
+                                        <>
+                                            <ActorFlag 
+                                                currentActorId={current.actor_id}
+                                                currentActorType={actors.length - 2}
+                                                parentActorId={parent.actor_id}
+                                                icon={current.icon}
+                                            />
                                             <span className="review__entity-title">{current.name}</span>
-                                        </div>
+                                        </>
                                     </div>
                                     :
                                     ""
