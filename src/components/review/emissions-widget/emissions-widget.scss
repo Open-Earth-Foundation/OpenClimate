@@ -190,17 +190,21 @@
         display: flex;
     }
     .methodologies-tag{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 95px;
-        height: 20px;
         background: #E6F4F2;
-        border-radius: 1000px;
+        border-radius: 15px;
         margin-right: 2px;
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 10px;
+        padding-right: 10px;
+
     }
+    .methodologies-tag
     .methodologies-text{
+        position: relative;
+        top: -1px;
         font-weight: 400;
         font-size: 9px;
         letter-spacing: 0.02em;
