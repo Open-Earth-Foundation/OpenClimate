@@ -187,6 +187,17 @@
             width: 260px;
             height: 56px;
             border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        .inner-card-disabled {
+            width: 260px;
+            height: 56px;
+            border-radius: 8px;
+            background-color: var(--disabled-background);
+            position: relative;
+            z-index: 1;
+    
         }
         .swapto-button {
             margin-top: 76px;
@@ -200,6 +211,8 @@
             box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
             border-radius: 100px;
             font-size: 12px;
+            position: relative;
+            z-index: 1;
         }
         .swapto-button-disabled {
             margin-top: 76px;
