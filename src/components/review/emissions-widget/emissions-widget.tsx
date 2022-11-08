@@ -1,7 +1,12 @@
 import {FunctionComponent, useEffect, useState} from 'react';
 import './emissions-widget.scss';
 import {MdInfoOutline, MdArrowDropDown, MdArrowDropUp, MdOutlinePeopleAlt} from "react-icons/md";
-import {Select, MenuItem, SelectChangeEvent, FormControl} from '@mui/material';
+import { Select, MenuItem, SelectChangeEvent, FormControl } from '@mui/material';
+
+import { InfoOutlined } from '@mui/icons-material'
+
+import { makeStyles } from "@material-ui/core/styles";
+import Tooltip from '@mui/material/Tooltip';
 
 interface Props {
     current: any,
@@ -10,7 +15,19 @@ interface Props {
 
 const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
-    const {current, parent} = props
+    const { current } = props
+
+    const useStyles = makeStyles(() => ({
+        customTooltip: {
+          backgroundColor: "rgba(44, 44, 44, 1)",
+          padding: "10px"
+        },
+        customArrow: {
+          color: "rgba(44, 44, 44, 1)"
+        }
+      }));
+
+    const classes = useStyles();
 
     const sources = (current && current.emissions) ? Object.keys(current.emissions) : []
 
@@ -64,7 +81,19 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 Total emissions
                             </span>
                             <span>
-                                <MdInfoOutline className="emissions-widget__icon"/>
+                            <Tooltip 
+                                classes={{
+                                            tooltip: classes.customTooltip,
+                                            arrow: classes.customArrow
+                                        }}
+                                title= {
+                                            <div className = "tooltip">
+                                                GHG emissions emitted by the selected actor during the selected year, according to the selected source
+                                            </div>
+                                       }  
+                                arrow placement="right">
+                                    <InfoOutlined className="emissions-widget__icon"/>
+                            </Tooltip>
                             </span>
                         </div>
                         {
@@ -144,7 +173,19 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 <div className="emissions-widget__emissions-trend" >
                                     { trend > 0 ? <MdArrowDropUp className="emissions-widget__emissions-trend-icon-up"/> : <MdArrowDropDown className="emissions-widget__emissions-trend-icon-down"/>}
                                     <span className={ trend > 0 ? "emissions-widget__emissions-trend-value-red" : "emissions-widget__emissions-trend-value-green"} >{ `${(trend > 0) ? "+" : ""}${(trend * 100.0).toPrecision(3)}%` }</span>
-                                    <MdInfoOutline className="emissions-widget__icon trend-icon"/>
+                                    <Tooltip 
+                                        classes={{
+                                                    tooltip: classes.customTooltip,
+                                                    arrow: classes.customArrow
+                                                }}
+                                        title= {
+                                                    <div className = "tooltip">
+                                                        Evolution compared to the previous year
+                                                    </div>
+                                               } 
+                                        arrow placement="right">
+                                        <InfoOutlined className="emissions-widget__icon trend-icon"/>
+                                    </Tooltip>
                                 </div>
                             }
                         </div>
@@ -172,7 +213,19 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
                                 </div>
                                 <div className="emissions-widget__emissions-trend">
-                                    <MdInfoOutline className="emissions-widget__icon trend-icon"/>
+                                    <Tooltip 
+                                        classes={{
+                                                    tooltip: classes.customTooltip,
+                                                    arrow: classes.customArrow
+                                                }}
+                                        title= {
+                                                    <div className = "tooltip">
+                                                        Calculated by Open Climate
+                                                    </div>
+                                               } 
+                                        arrow placement="right">
+                                            <InfoOutlined className="emissions-widget__icon trend-icon"/>
+                                    </Tooltip>
                                 </div>
                             </div>
                             <div>
@@ -185,7 +238,19 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                 <div className="emissions-widget__methodologies">
                     <div className="emissions-widget__methodologies-heading">
                         <span>Methodologies</span>
-                        <MdInfoOutline className="emissions-widget__icon methodologies-icon"/>
+                        <Tooltip 
+                            classes={{
+                                        tooltip: classes.customTooltip,
+                                        arrow: classes.customArrow
+                                    }}
+                            title= {
+                                        <div className = "tooltip">
+                                            Type of methodologies utilized by the selected data source
+                                        </div>
+                                   } 
+                            arrow placement="right">
+                                <InfoOutlined className="emissions-widget__icon methodologies-icon"/>
+                        </Tooltip>
                     </div>
                     <div className="emissions-widget__methodologies-tags">
                         {
@@ -213,7 +278,19 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 Total emissions
                             </span>
                             <span>
-                                <MdInfoOutline className="emissions-widget__icon"/>
+                            <Tooltip 
+                                classes={{
+                                            tooltip: classes.customTooltip,
+                                            arrow: classes.customArrow
+                                        }}
+                                title= {
+                                            <div className = "tooltip">
+                                                GHG emissions emitted by the selected actor during the selected year, according to the selected source
+                                            </div>
+                                       }  
+                                arrow placement="right">
+                                    <InfoOutlined className="emissions-widget__icon"/>
+                            </Tooltip>
                             </span>
                         </div>
                     </div>
@@ -244,9 +321,6 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             <div>
                                 <span className="emissions-widget__total-emissions no-data">N/A</span>
                             </div>
-                            <div className="emissions-widget__emissions-trend">
-                                <MdInfoOutline className="emissions-widget__icon trend-icon"/>
-                            </div>
                         </div>
                         <div>
                             <span className="emissions-widget__emissions-description no-data">Total GHG Emissions <br/> Mt CO2e</span>
@@ -265,7 +339,19 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                     </div>
                                 </div>
                                 <div className="emissions-widget__emissions-trend">
-                                    <MdInfoOutline className="emissions-widget__icon trend-icon"/>
+                                <Tooltip 
+                                        classes={{
+                                                    tooltip: classes.customTooltip,
+                                                    arrow: classes.customArrow
+                                                }}
+                                        title= {
+                                                    <div className = "tooltip">
+                                                        Calculated by Open Climate
+                                                    </div>
+                                               } 
+                                        arrow placement="right">
+                                            <InfoOutlined className="emissions-widget__icon trend-icon"/>
+                                    </Tooltip>
                                 </div>
                             </div>
                             <div>
@@ -278,7 +364,19 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                 <div className="emissions-widget__methodologies">
                     <div className="emissions-widget__methodologies-heading">
                         <span>Methodology</span>
-                        <MdInfoOutline className="emissions-widget__icon methodologies-icon"/>
+                        <Tooltip 
+                            classes={{
+                                        tooltip: classes.customTooltip,
+                                        arrow: classes.customArrow
+                                    }}
+                            title= {
+                                        <div className = "tooltip">
+                                            Type of methodologies utilized by the selected data source
+                                        </div>
+                                   } 
+                            arrow placement="right">
+                                <InfoOutlined className="emissions-widget__icon methodologies-icon"/>
+                        </Tooltip>
                     </div>
 
                 </div>

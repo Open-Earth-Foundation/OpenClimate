@@ -110,12 +110,13 @@
     
 
     .review__info {
-        width: 560px;
+        
         height: 200px;
         color: var(--black-color);
         margin-bottom: 40px;
     }
     .review-info__title {
+        width: 756px;
         font-weight: 400;
         font-size: 54px;
         line-height: 62px;
@@ -126,6 +127,7 @@
     }
 
     .review-info__content {
+        width: 600px;
         font-weight: 400;
         font-size: 18px;
         line-height: 28px;
@@ -363,6 +365,33 @@
             box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
             height: 35px;
             width: 35px;
+            object-fit: cover;
+        }
+
+        .review__icon-container-city {
+            width: 32px;
+            height: 32px;
+            border-radius: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #24BE00 100%, #008600 100%);
+
+        }
+
+        .review__icon-container-company {
+            width: 32px;
+            height: 32px;
+            border-radius: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #506CE3 100%, #001EA7 100%);
+        }
+
+        .review__icon-city {
+            font-size: 24px;
+            color: #EFEFEF;
         }
         
 
