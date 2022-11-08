@@ -107,6 +107,8 @@
         }
     }
 
+    
+
     .review__info {
         width: 560px;
         height: 200px;
@@ -165,6 +167,7 @@
         padding: 8px;
         margin-bottom: 82px;
         box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+        transition: .5s;
     }
 
     .review__earth-card-inactive {
@@ -175,6 +178,7 @@
         padding: 8px;
         margin-bottom: 82px;
         box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+        transition: .5s;
     }
 
     .review__earth-card-head{
@@ -226,7 +230,14 @@
     .review__earth-card-item-icon{
         font-size: 24px;
         position: relative;
-        top: 2px;
+        top: 4px;
+        transform: rotate(45deg);
+        color: #F23D33;
+    }
+    .review__earth-card-item-icon-b{
+        font-size: 43px;
+        position: relative;
+        top: -8px;
         transform: rotate(45deg);
         color: #F23D33;
     }
@@ -247,7 +258,7 @@
     .review__earth-card-item-normal-text{
         font-size: 12px;
         font-weight: 500;
-        margin-left: 24px;
+        margin-left: 0px;
     }
     .co2concentration{
         margin-left: 10px;
@@ -273,7 +284,17 @@
         position: relative;
         top: 5px;
     }
-    
+    .co2-history{
+        display: flex;
+    }
+    .co2-concentration-content{
+        display: flex;
+        align-items: flex-start;
+    }
+    .earth-card-normal-text{
+        margin-left: 26px;
+    }
+
     background-color: white;
     background-color: transparent;
     background: url('./img/Earth_Background_Home.png') no-repeat center;
@@ -466,5 +487,101 @@
     }
     .collaboration-card-arrow-icon{
         color: #9DAAEE;
+    }
+    @include respond(laptop){
+        .review__earth-card-active{
+            height: 198px;
+            width: 258px;
+            border: 2px solid #008600;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            padding: 8px;
+            margin-bottom: 82px;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+            transition: .5s;
+        }
+    
+        .review__earth-card-inactive {
+            height: 198px;
+            width: 260px;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            padding: 4px;
+            margin-bottom: 82px;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+            transition: .5s;
+        }
+
+        .review__earth-card-head{
+            font-weight: 600;
+            font-size: 20px;
+            color: #00001F;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 5px;
+            padding-right: 3px;
+            white-space: nowrap;
+        }
+        .review__earth-card-close-icon{
+            font-size: 18px;
+        }
+        .review__earth-card-body{
+            width: 100%;
+            height: 150px;
+            padding-left: 0px;
+            padding-right: 0px;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-gap: 0px;
+            padding-top: 3px;
+        }
+        .review__earth-card-content{
+            height: 50px;
+            width: 110px;
+        }
+        .card-contents{
+            position: relative;
+            top: 70px;
+            background: blueviolet;
+        }
+
+        .review__earth-card-item-large-text{
+            font-weight: 600;
+            font-size: 19px;
+        }
+
+        .review__earth-card-item-normal-text{
+            font-size: 10px;
+            font-weight: 500;
+            margin-left: 0px;
+        }
+        .review__arrow-forward {
+            color: var(--next-blue);
+            padding: 110px 6px 0 6px;
+            display: flex;
+        }
+        .review__earth-card-pledge-info {
+            white-space:pre;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .min{
+            position: relative;
+            top: -10px;
+        }
+        .co2-history{
+            display: flex;
+            align-items: flex-start;
+        }
+        .co2-concentration-content{
+            display: flex;
+            align-items: flex-start;
+        }
+        .earth-card-normal-text{
+            margin-left: 23px;
+        }
+        
     }
 }
