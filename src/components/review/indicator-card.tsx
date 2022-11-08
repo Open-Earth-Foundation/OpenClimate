@@ -14,6 +14,13 @@ interface IProps {
     onDeSelect?: () => void
 }
 
+// Detect window
+
+function getWinSize() {
+    const {innerWidth, innerHeight} = window;
+    return {innerWidth, innerHeight};
+}
+
 const IndicatorCard:FunctionComponent<IProps> = (props) => {
     const {parent, current, label, isActive, onDeSelect} = props
     const [cardData, setCardData] = useState<any>({});
@@ -22,6 +29,30 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
     const [parentPopulation, setParPopulation] = useState<number>()
     const [targetsData, setTargetsData] = useState<any>(null)
     const [year, setYear] = useState<number>();
+
+    // Detect window sise to resize the donut chart
+    
+    const [winSize, setWinSize] = useState(getWinSize());
+    const [donutSize, setDonutSize] = useState(22)
+    useEffect(()=> {
+        function handleWinResize() {
+            setWinSize(getWinSize())
+        }
+        
+        window.addEventListener('resize', handleWinResize);
+
+    }, [])
+
+    useEffect(()=> {
+        if(winSize.innerWidth > 1550){
+            setDonutSize(30)
+            console.log(winSize.innerWidth)
+        }
+        else{
+            setDonutSize(22)
+        }
+            
+    }, [winSize.innerWidth, donutSize])
 
     // Donut earth props items
     const items = [
@@ -89,13 +120,13 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                             <span className="review__earth-card-item-large-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent !== null ? "N/A" : emsData && (emsData / 1000000.0).toPrecision(5) || '49.8'}</span>
                             {!emsData && parent !== null ? <></> : <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>}
                         </div>
-                        <div className="review__earth-card-item-normal-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent ? 'No data available' : `in ${parent !== null ? (year || 'N/A') : '2019'}`}</div>
+                        <div className="review__earth-card-item-normal-text earth-card-normal-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent ? 'No data available' : `in ${parent !== null ? (year || 'N/A') : '2019'}`}</div>
                     </div>
                     {
                         parent ? "" :
                         <div className="review__earth-card-content donut-card">
                             <div className='donut'>
-                                <DonutChart items={items} size={30} showTotal={false} tooltipSx={{display: "none"}} trackColor="#D9D9D9"/>
+                                <DonutChart items={items} size={donutSize} showTotal={false} tooltipSx={{display: "none"}} trackColor="#D9D9D9"/>
                             </div>
                             <div className='right-column'>
                                 <div>
@@ -110,7 +141,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                     {
                         parent ?
                         <>
-                            <div className="review__earth-card-pledge-info">
+                            <div className={`review__earth-card-pledge-info ${parent && winSize.innerWidth <= 1550 ? "min": ""}`}>
                                 <MdArrowDownward className="review__earth-card-item-icon" style={{color: targetsData ? "#008600" : "#7A7B9A", transform: "rotate(-45deg)"}}/>
                                 <span className="review__earth-card-item-large-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>
                                     {
@@ -123,17 +154,16 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                                 </span>
                                 <span className="review__earth-card-item-small-text" ></span>
                             </div>
-                            <div className="review__earth-card-item-normal-text" style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData ? `Pledged by ${targetsData?.target_year} relative to ${(targetsData?.baseline_year == targetsData?.target_year) ? "BAU" : targetsData?.baseline_year}` : 'No data available'} </div>
+                            <div className={`review__earth-card-item-normal-text earth-card-normal-text ${parent && winSize.innerWidth <= 1550 ? "min": ""}`} style={targetsData ? {color: '#00001F'} : { color: '#7A7B9A'}}>{targetsData ? `Pledged by ${targetsData?.target_year} relative to ${(targetsData?.baseline_year == targetsData?.target_year) ? "BAU" : targetsData?.baseline_year}` : 'No data available'} </div>
                         </>
                         :
-                        <>
+                        <div className="co2-history">
+                            <MdArrowUpward className="review__earth-card-item-icon"/>
                             <div>
-                                <MdArrowUpward className="review__earth-card-item-icon"/>
                                 <span className="review__earth-card-item-large-text">1.1 <sup>o</sup>C</span>
-                                <span className="review__earth-card-item-small-text"></span>
+                                <div className="review__earth-card-item-normal-text">Temperature <br /> since  1880</div>
                             </div>
-                            <div className="review__earth-card-item-normal-text">Temperature <br /> since  1880</div>
-                        </>
+                        </div>
 
                     }
                     </div>
@@ -143,7 +173,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
 
                         <>
                             <div className='donut'>
-                                <DonutChart items={currentPopulation && parentPopulation ? [{...items2[0], value: 100 - (currentPopulation/parentPopulation)*100}, {...items2[1], value: (currentPopulation/parentPopulation)*100 }] : [{value: 0, label: '', color: '#D9D9D9'}]} size={30} showTotal={false} tooltipSx={{display: "none"}} trackColor="#D9D9D9"/>
+                                <DonutChart items={currentPopulation && parentPopulation ? [{...items2[0], value: 100 - (currentPopulation/parentPopulation)*100}, {...items2[1], value: (currentPopulation/parentPopulation)*100 }] : [{value: 0, label: '', color: '#D9D9D9'}]} size={donutSize} showTotal={false} tooltipSx={{display: "none"}} trackColor="#D9D9D9"/>
                             </div>
                             <div className='right-column'>
                                 <div>
@@ -153,13 +183,15 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                                 <div className="review__earth-card-item-normal-text target-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}} >{ currentPopulation && parentPopulation ? `Of ${parent?.name}'s Population` : 'No available data'}</div>
                             </div>
                         </> :
-                        <div className=''>
-                            <div>
-                                <MdArrowUpward className="review__earth-card-item-icon"/>
-                                <span className="review__earth-card-item-large-text">415.3</span>
-                                <span className="review__earth-card-item-small-text">ppm</span>
+                        <div className='co2-concentration-content'>
+                            <MdArrowUpward className="review__earth-card-item-icon-b"/>
+                            <div className="">
+                                <div>
+                                    <span className="review__earth-card-item-large-text">415.3</span>
+                                    <span className="review__earth-card-item-small-text">ppm</span>
+                                </div>
+                                <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2 </sub>concentration</div>
                             </div>
-                            <div className="review__earth-card-item-normal-text">atmospheric CO<sub>2 </sub>concentration</div>
                         </div>
                        }
                     </div>
