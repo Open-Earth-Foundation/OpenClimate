@@ -172,7 +172,7 @@
     @include respond(laptop){
         width: 260px;
         height: 82px;
-        margin-top: -10px;
+        
 
         .outer-card {
             width: 260px;
@@ -198,6 +198,27 @@
             position: relative;
             z-index: 1;
     
+        }
+        .dropdown-text {
+            padding-left: 8px;
+            font-size: 14px;
+            min-width: 228px;
+            overflow: hidden;
+            white-space: nowrap;
+            color: var(--neutral-grey);
+        }
+    
+        .dropdown-text-selected {
+            padding-left: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            max-width: 228px;
+            overflow: hidden;
+            white-space: nowrap;
+            padding-right: 4px;
+            color: #00001F;
+            cursor: default;
+         
         }
         .swapto-button {
             margin-top: 76px;
