@@ -15,7 +15,6 @@ interface Props {
 const ContextualDataWidget: FunctionComponent<Props> = (props) => {
 
     const {current, parent} = props
-    const lastUpdatedYear = null
 
     const latestPopulation = (current && current.population && current.population.length > 0) ? current.population[0] : null
     const latestGDP = (current && current.gdp && current.gdp.length > 0) ? current.gdp[0] : null
@@ -26,10 +25,13 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
      .shift()
      : null
     const area = (current) ? current.area : null
-    const populationSource = null
-    const gdpSource = null
-    const areaSource = null
-    const areaYear = null
+    const populationSource = latestPopulation?.datasource?.name
+    const gdpSource = latestGDP?.datasource?.name
+    const areaSource = current?.territory?.datasource?.name
+    const areaYear = current?.territory?.datasource?.published.slice(0,4)
+    const populationYear = latestPopulation?.datasource?.published.slice(0,4)
+    const gdpYear = latestGDP?.datasource?.published.slice(0,4)
+    const lastUpdatedYear = Math.max.apply(null, [areaYear, populationYear, gdpYear].filter(n => n !== undefined).map(n => parseInt(n)))
 
     const useStyles = makeStyles(() => ({
         customTooltip: {
@@ -72,7 +74,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                     </div>
 
                     {   lastUpdatedYear &&
-                            <span className="contextual-widget__updated">Last updated in ${lastUpdatedYear}</span>
+                            <span className="contextual-widget__updated">Last updated in {lastUpdatedYear}</span>
                     }
 
                 </div>
