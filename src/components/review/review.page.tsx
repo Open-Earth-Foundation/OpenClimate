@@ -117,10 +117,10 @@ const ReviewPage: FunctionComponent = () => {
                                 <p className='review__heading'>Earth Indicators</p>
                                 <div className="review__info">
                                     <div className="review-info__title">
-                                        <p>Be part of the future of <span>Climate Data</span> </p>
+                                        <p>Be part of the future of <span>Climate Data Collaboration</span> </p>
                                     </div>
                                     <div className="review-info__content">
-                                        Visualize, report and add relevant data to an <span>aggregated, verified and interoperable</span> portal for climate actions and tracking.
+                                        Visualize, report, and participate with relevant data to a <span>nested, aggregated, and interoperable open source</span> portal for climate accounting.
                                     </div>
                                 </div>
                             </>
@@ -148,7 +148,7 @@ const ReviewPage: FunctionComponent = () => {
                                         <>
                                             <ActorFlag 
                                                 currentActorId={current.actor_id}
-                                                currentActorType={actors.length - 2}
+                                                currentActorType={current.type}
                                                 parentActorId={parent.actor_id}
                                                 icon={current.icon}
                                             />

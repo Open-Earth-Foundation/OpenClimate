@@ -1,7 +1,13 @@
 import React, {useState, FunctionComponent} from 'react';
 import './pledges-widget.scss';
 import {MdInfoOutline, MdArrowDownward} from "react-icons/md";
+import { Boy, AspectRatio, InfoOutlined, MonetizationOnOutlined } from '@mui/icons-material'
+
 import PledgeItem from './pledge-item';
+
+import { makeStyles } from "@material-ui/core/styles";
+import Tooltip from '@mui/material/Tooltip';
+
 
 interface Props {
     current: any,
@@ -14,12 +20,25 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 const PledgesWidget: FunctionComponent<Props> = (props) => {
 
     const {current, parent} = props;
+
+    const useStyles = makeStyles(() => ({
+        customTooltip: {
+          backgroundColor: "rgba(44, 44, 44, 1)",
+          padding: "10px"
+        },
+        customArrow: {
+          color: "rgba(44, 44, 44, 1)"
+        }
+      }));
+
+    const classes = useStyles();
     const targets = (current && current.targets) ? current.targets : []
     const lu = targets.map((t:any) => t.last_updated)
     lu.sort()
     const lastUpdated = (lu.length > 0) ? lu[lu.length - 1] : null
     const [lastMonth, lastYear] = (lastUpdated) ? [(new Date(lastUpdated)).getMonth(), (new Date(lastUpdated)).getFullYear()] : [null, null]
 
+    
     return(
         <div className="pledges-widget" style={{height: targets ? '': "268px"}}>
             {
@@ -32,7 +51,20 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                     Pledges
                                 </span>
                                 <span>
-                                    <MdInfoOutline className="pledges-widget__icon"/>
+                                <Tooltip 
+                                    classes={{
+                                                tooltip: classes.customTooltip,
+                                                arrow: classes.customArrow
+                                            }}
+                                    title= {
+                                                <div className = "tooltip">
+                                                    Commitments that the selected actor made
+                                                </div>
+                                           } 
+                                    arrow placement="right">
+                                        <InfoOutlined className="pledges-widget__icon" />
+                                </Tooltip>
+                                    
                                 </span>
                             </div>
                             {
@@ -53,7 +85,19 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                     Pledges
                                 </span>
                                 <span>
-                                    <MdInfoOutline className="pledges-widget__icon"/>
+                                <Tooltip 
+                                    classes={{
+                                                tooltip: classes.customTooltip,
+                                                arrow: classes.customArrow
+                                            }}
+                                    title= {
+                                                <div className = "tooltip">
+                                                    Commitments that the selected actor made
+                                                </div>
+                                           } 
+                                    arrow placement="right">
+                                        <InfoOutlined className="pledges-widget__icon" />
+                                </Tooltip>
                                 </span>
                             </div>
                             <span className="pledges-widget__last-updated"></span>

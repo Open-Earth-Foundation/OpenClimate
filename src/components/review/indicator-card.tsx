@@ -117,8 +117,8 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                     <div className="review__earth-card-content">
                         <div className="review__earth-card-emissions-info">
                             <MdArrowUpward className="review__earth-card-item-icon" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#F23D33'}}/>
-                            <span className="review__earth-card-item-large-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent !== null ? "N/A" : emsData && (emsData / 1000000.0).toPrecision(5) || '49.8'}</span>
-                            {!emsData && parent !== null ? <></> : <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>}
+                            <span className="review__earth-card-item-large-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent !== null ? "N/A" : emsData && readableEmissions(emsData, "array")[0] || '49.8'}</span>
+                            {!emsData && parent !== null ? <></> : <span className="review__earth-card-item-small-text">{parent === null ? 'GtCO' : `${readableEmissions(emsData, "array")[1]}CO`}<sub>2</sub>eq</span>}
                         </div>
                         <div className="review__earth-card-item-normal-text earth-card-normal-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent ? 'No data available' : `in ${parent !== null ? (year || 'N/A') : '2019'}`}</div>
                     </div>

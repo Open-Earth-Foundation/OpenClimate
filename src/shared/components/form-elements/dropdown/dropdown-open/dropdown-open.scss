@@ -2,7 +2,7 @@
     width: 100%;
     position: absolute;
     box-shadow: 4px 4px 22px rgba(0, 0, 0, 0.12);
-    z-index: 1;
+    z-index: var(--logout-dropdown-z-index);
 
     &__search {
         padding: 24px;

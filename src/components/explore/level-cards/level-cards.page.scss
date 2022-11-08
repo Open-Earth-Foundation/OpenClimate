@@ -26,7 +26,7 @@
         max-height: 367px;
         border-radius: 8px;
         position: absolute;
-        z-index: var(--explore-dropown-list-items-z-index);
+        z-index: var(--explore-dropdown-list-items-z-index);
         
     }
 
@@ -51,7 +51,7 @@
         color: var(--neutral-grey);
         cursor: pointer;
         position: relative;
-        z-index: 3;
+        z-index: var(--explore-dropdown-list-items-z-index);
     }
 
     .dropdown-text {
@@ -179,7 +179,7 @@
             max-height: 367px;
             border-radius: 8px;
             position: absolute;
-            z-index: var(--explore-dropown-list-items-z-index);
+            z-index: var(--explore-dropdown-list-items-z-index);
             
         }
     
