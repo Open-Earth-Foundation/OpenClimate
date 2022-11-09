@@ -62,7 +62,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                                 </div>
                                            } 
                                     arrow placement="right">
-                                        <InfoOutlined className="pledges-widget__icon" />
+                                        <InfoOutlined className="pledges-widget__icon info-icon" />
                                 </Tooltip>
                                     
                                 </span>
@@ -96,7 +96,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                                 </div>
                                            } 
                                     arrow placement="right">
-                                        <InfoOutlined className="pledges-widget__icon" />
+                                        <InfoOutlined className="pledges-widget__icon info-icon" />
                                 </Tooltip>
                                 </span>
                             </div>

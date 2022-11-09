@@ -92,7 +92,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                             </div>
                                        }  
                                 arrow placement="right">
-                                    <InfoOutlined className="emissions-widget__icon"/>
+                                    <InfoOutlined className="emissions-widget__icon info-icon"/>
                             </Tooltip>
                             </span>
                         </div>
@@ -289,7 +289,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                             </div>
                                        }  
                                 arrow placement="right">
-                                    <InfoOutlined className="emissions-widget__icon"/>
+                                    <InfoOutlined className="emissions-widget__icon info-icon"/>
                             </Tooltip>
                             </span>
                         </div>

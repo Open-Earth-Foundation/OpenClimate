@@ -32,7 +32,7 @@
 
     &__icon{
         margin-left: 6px;
-        font-size: 16px;
+        font-size: 13px;
         color: #A3A3A3;
     }
 
@@ -120,9 +120,15 @@
     }
     .trend-icon{
         position: relative;
+        font-size: 16px;
         top: 2px;
         left:-4px;
     }
+
+    .info-icon {
+        font-size: 16px;
+    }
+    
     &__emissions-description{
         font-weight: 400;
         font-size: 14px;

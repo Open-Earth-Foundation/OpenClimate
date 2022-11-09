@@ -31,7 +31,6 @@
     }
 
     &__icon{
-        font-size: 16px;
         margin-left: 3px;
         color: #A3A3A3;
     }
@@ -125,5 +124,9 @@
         display: flex;
         align-items: center;
         color: #7A7B9A;
+    }
+
+    .info-icon {
+        font-size: 16px;
     }
 }
