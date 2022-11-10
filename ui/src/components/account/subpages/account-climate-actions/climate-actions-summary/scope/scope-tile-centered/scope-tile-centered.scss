@@ -1,0 +1,30 @@
+.scope-tile-centered {
+    min-width: 250px;
+    text-align: center;
+    cursor: pointer;
+
+    &__title {
+        color: var(--black-color);
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    &__amount {
+        font-size: 48px;
+        line-height: 72px;
+        position: relative;
+    }
+
+    &__description {
+        color: var(--black-color);
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    &__icon {
+        position: absolute;
+        top: 25px;
+        left: 20%;
+    }
+}

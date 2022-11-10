@@ -1,0 +1,144 @@
+.widget__emission-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 16px;
+    padding-left: 20px;
+
+    .widget__emission-numbers {
+        display: flex;
+        // justify-content: center;
+        align-items:flex-start;
+        // flex-direction: column;
+    }
+
+    .widget__emission-block {
+        padding-bottom: 16px;
+    }
+
+    .widget__emission-data {
+        font-size: 28px;
+        line-height: 43.2px;
+        font-weight: 900;
+        display: flex;
+        padding-right: 8px;
+        overflow: none;
+    }
+    
+
+    .widget__emission-data-small {
+        font-size: 22px;
+        line-height: 43.2px;
+        font-weight: 900;
+        padding-right: 4px;
+        display: flex;
+        overflow: none;
+    }
+
+    .widget__emission-data-description {
+        width: inherit;
+        font-family: Lato;
+        font-weight: 400;
+        font-size: 14px;
+        text-align: left;
+        color: var(--black-color);
+    }
+    .text-top .widget__emission-data-description {
+        font-size: 12px;
+    }
+    .widget__content-column {
+        width: 80px;
+
+        &_center {
+            text-align: center;
+            align-self: center;  
+        }
+    }
+
+
+    .widget__emission-arrow {
+        position: relative;
+        top:-2px;
+        left: -3px;
+    }
+
+    //account-sites
+    &.sites-climate-action {
+        .widget__emission-data {
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+        .widget__emission-data-description {
+            font-size: 8px;
+            line-height: 12px;
+        }
+
+        .widget__content-column {
+            width: 90px;
+        }
+        .widget__emission-arrow {
+            position: relative;
+            top: 0;
+            left: -3px;
+        }
+
+    }
+}
+
+.widget__meta-text-right{
+    display: flex;
+    flex-direction:column ;
+    font-size: 9px;
+    width: 265px;
+}
+
+.widget__meta-text-left{
+    display: flex;
+    flex-direction:column ;
+    font-size: 10px;
+}
+
+.widget__methodology-tags {
+    display: flex;
+    flex-direction: row;
+}
+
+.widget__meta-source-name{
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.widget__meta-source-head{
+    font-size: 10px;
+    padding-bottom: 5px;
+}
+.widget__meta-source-m{
+    
+    background-color: #E6F4F2;
+    align-items: center;
+    color: #007568;
+    width: auto;
+    text-align: center;
+    display: flex; 
+    text-overflow: ellipsis;
+    margin-left: 4px;
+    border-radius: 30px;
+    font-family: Poppins;
+    padding: 1px;
+    height: 30px;
+}
+.widget__meta-data{
+    padding-top: 18px;
+    width: 100% ;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.tooltip-methodology-item{
+    margin: 0px;
+    padding: 13px;
+    font-size: 9px;
+}

@@ -1,0 +1,16 @@
+.review-tile__transfer-item {
+
+    &-title {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    &-description {
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 21px;
+        color: var(--grey5-color);
+    }
+
+}

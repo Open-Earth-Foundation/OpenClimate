@@ -1,0 +1,20 @@
+.widget__nested-accounts-content {
+
+    padding-top: 16px;
+    height: 100%;
+    overflow: auto;
+
+    .widget__nested-accounts {
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 21px;
+        width: 100%;
+        text-align: center;
+        
+        tr:not(:last-child) td,th {
+            border-bottom: 1px dashed var(--grey2-color);
+        }
+
+    }
+
+}

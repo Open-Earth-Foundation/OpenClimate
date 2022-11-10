@@ -1,0 +1,20 @@
+@import './mixins.scss';
+
+@include respond(tablet){
+    .account-cards {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+}
+
+.account-dasboard {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.account-cards {
+    display: grid;
+    grid-template-columns: auto auto;
+    // width: 100%;
+}

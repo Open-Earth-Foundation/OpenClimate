@@ -1,0 +1,254 @@
+@import '../mixins.scss';
+
+.level-card {
+    width: 325px;
+    height: 82px;
+
+    &__disabled {
+        color: #535572;
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
+    .label {
+        font-weight: 500;
+        font-size: 14px;
+        color: #535572;
+        padding-left: 12px;
+    }
+    
+    .content {
+        padding: 16px;
+    }
+
+    .outer-card {
+        width: 325px;
+        max-height: 367px;
+        border-radius: 8px;
+        position: absolute;
+        z-index: var(--explore-dropdown-list-items-z-index);
+        
+    }
+
+    .inner-card {
+        width: 325px;
+        height: 56px;
+        border-radius: 8px;
+    }
+
+    .inner-card-disabled {
+        width: 325px;
+        height: 56px;
+        border-radius: 8px;
+        background-color: var(--disabled-background);
+
+    }
+
+    .dropdown {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: var(--neutral-grey);
+        cursor: pointer;
+        position: relative;
+        z-index: var(--explore-dropdown-list-items-z-index);
+    }
+
+    .dropdown-text {
+        padding-left: 8px;
+        font-size: 16px;
+        min-width: 228px;
+        overflow: hidden;
+        white-space: nowrap;
+        color: var(--neutral-grey);
+    }
+
+    .dropdown-text-selected {
+        padding-left: 8px;
+        font-weight: 600;
+        font-size: 20px;
+        max-width: 228px;
+        overflow: hidden;
+        white-space: nowrap;
+        padding-right: 4px;
+        color: #00001F;
+        cursor: default;
+     
+    }
+
+    .dropdown-cross-icon-container {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        justify-content: center;
+    }
+
+    .dropdown-cross-icon {
+        color: var(--red-cancel);
+        cursor: pointer;
+    }
+
+    .dropdown-container {
+        max-height: 304px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+       
+    }
+
+    .dropdown-select {
+        width: 325px;
+        font-family: 'Open Sans';
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 12px 25px 12px;
+        
+        &:hover {
+            background-color: var(--secondary-blue-color);
+            color: var(--white-color);
+        }
+    }
+
+    .drop-icon {
+        color: var(--icon-black);
+    }
+
+    .search-icon {
+        color: var(--neutral-grey);
+    }
+
+    .icon-disabled {
+        color: var(--icon-disabled);
+    }
+
+    .arrow-forward {
+        color: var(--next-blue);
+        padding: 0px 21px 0 21px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .swapto-button {
+        margin-top: 76px;
+        margin-left: 165px;
+        padding: 14px 7px;
+        height: 32px;
+        background-color: var(--secondary-blue-color);
+        color: #FFFFFF;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+        border-radius: 100px;
+        font-size: 12px;
+    }
+
+    .swapto-button-disabled {
+        margin-top: 76px;
+        margin-left: 165px;
+        padding: 14px 7px;
+        height: 32px;
+        background-color: #C5CBF5;
+        color: #FFFFFF;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+        border-radius: 100px;
+        font-size: 12px;
+        cursor: no-drop;
+    }
+
+    .button-text {
+        overflow: hidden;
+        white-space: nowrap;
+        padding-left: 6px;
+    }
+    @include respond(laptop){
+        width: 260px;
+        height: 82px;
+        
+
+        .outer-card {
+            width: 260px;
+            max-height: 367px;
+            border-radius: 8px;
+            position: absolute;
+            z-index: var(--explore-dropdown-list-items-z-index);
+            
+        }
+    
+        .inner-card {
+            width: 260px;
+            height: 56px;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        .inner-card-disabled {
+            width: 260px;
+            height: 56px;
+            border-radius: 8px;
+            background-color: var(--disabled-background);
+            position: relative;
+            z-index: 1;
+    
+        }
+        .dropdown-text {
+            padding-left: 8px;
+            font-size: 14px;
+            min-width: 228px;
+            overflow: hidden;
+            white-space: nowrap;
+            color: var(--neutral-grey);
+        }
+    
+        .dropdown-text-selected {
+            padding-left: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            max-width: 228px;
+            overflow: hidden;
+            white-space: nowrap;
+            padding-right: 4px;
+            color: #00001F;
+            cursor: default;
+         
+        }
+        .swapto-button {
+            margin-top: 76px;
+            position: relative;
+            right: 63px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+            border-radius: 100px;
+            font-size: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .swapto-button-disabled {
+            margin-top: 76px;
+            position: relative;
+            right: 63px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+            border-radius: 100px;
+            font-size: 12px;
+        }
+    }
+
+
+}
