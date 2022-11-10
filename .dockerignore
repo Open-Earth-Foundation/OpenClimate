@@ -1,0 +1,9 @@
+*.md
+LICENSE
+.env
+.env.*
+docs
+.dockerignore
+Dockerfile
+node_modules
+

@@ -1,0 +1,19 @@
+{
+  "defaultEnv": {"ENV": "NODE_ENV"},
+  "development": {
+    "driver": "pg",
+    "host": {"ENV": "POSGRES_ADDRESS"},
+    "schema": "public",
+    "database": {"ENV": "POSGRES_DB"},
+    "user": {"ENV": "POSTGRES_USER"},
+    "password": {"ENV": "POSGRES_PASSWORD"}
+  },
+  "production": {
+    "driver": "pg",
+    "host": {"ENV": "POSGRES_ADDRESS"},
+    "schema": "public",
+    "database": {"ENV": "POSGRES_DB"},
+    "user": {"ENV": "POSTGRES_USER"},
+    "password": {"ENV": "POSGRES_PASSWORD"}
+  }
+}

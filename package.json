@@ -1,0 +1,72 @@
+{
+  "name": "openclimate-hub-controller",
+  "version": "1.1.0-dev",
+  "private": true,
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@types/jsonwebtoken": "^8.5.9",
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "cookie": "^0.5.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
+    "db-migrate-plugin-typescript": "^2.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-winston": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.11.0",
+    "nodemailer": "^6.8.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.25.3",
+    "supertest": "^6.3.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4",
+    "uuid": "^9.0.0",
+    "winston": "^3.8.2",
+    "ws": "^8.8.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^18.7.17",
+    "http-errors": "^2.0.0",
+    "husky": "^4.3.8",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.20",
+    "prettier": "2.7.1",
+    "sequelize-cli": "^6.5.1",
+    "ts-jest": "^27.1.4"
+  },
+  "scripts": {
+    "migrate_down": "node node_modules/db-migrate/bin/db-migrate down -c 1 --config ./database.json",
+    "migrate_up": "node node_modules/db-migrate/bin/db-migrate up -c 1 --config ./database.json",
+    "migrate_up_all": "node node_modules/db-migrate/bin/db-migrate up --config ./database.json",
+    "style-watch": "onchange '**/*.js' -- prettier --write {{changed}}",
+    "style-check": "prettier --check '**/*.js'",
+    "style-format": "prettier --write '**/*.js'",
+    "dev": "nodemon index.ts",
+    "first-time-setup": "ts-node ./scripts/firstTimeSetup.ts",
+    "test": "jest",
+    "start": "ts-node index.ts"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "engines": {
+    "node": "^16.15.1"
+  }
+}
