@@ -1,0 +1,2 @@
+datasource_id,name,publisher,published,URL
+OEF:WD:city-area:20221105,Wikidata extract of city objects and their areas,OEF:WD,2022-11-05,https://github.com/Open-Earth-Foundation/OpenClimate-harmonize/tree/main/source/Wikidata-Subnational-Area
