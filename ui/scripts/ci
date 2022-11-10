@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+set -e
+
+
+# =================================================================================================
+
+
+_ACAPY_CONTAINER_NAME=aries-cloudagent
+_ACAPY_IMAGE=bcgovimages/aries-cloudagent:py36-1.14-1_0.5.1
+
+
+do_setup() {
+    docker run -d --rm -p 8000:8000 --name  $_ACAPY_CONTAINER_NAME $_ACAPY_IMAGE \
+        start \
+        --inbound-transport http 0.0.0.0 8000 \
+        --outbound-transport http
+}
+
+
+do_teardown() {
+    docker stop $_ACAPY_CONTAINER_NAME
+}
+
+
+# =================================================================================================
+
+
+display_usage() {
+    echo "Continuous Integration (CI) helper for openclimate-hub-ui"
+    echo
+    echo "Usage:"
+    echo
+    echo "  ci services COMMAND"
+    echo
+    echo "Commands:"
+    echo "  setup"
+    echo "  teardown"
+    echo
+}
+
+
+if [[ $# -ne 2 ]]; then
+    display_usage
+    exit 1
+fi
+
+if [[ "$1" != "services" ]]; then
+    display_usage
+    exit 1
+fi
+
+if [[ "$2" == "setup" ]]; then
+    do_setup
+    exit 0
+fi
+
+if [[ "$2" == "teardown" ]]; then
+    do_teardown
+    exit 0
+fi
+
+display_usage
+exit 1

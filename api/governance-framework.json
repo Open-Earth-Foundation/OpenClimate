@@ -1,0 +1,26 @@
+{
+  "@context": ["https://github.com/hyperledger/aries-rfcs/blob/master/0430-machine-readable-governance-frameworks/context.jsonld"],
+  "name": "Sample Governance File",
+  "version": "0.1",
+  "description": "Issuance and verification of Sample Credentials to demonstrate governance frameworks. Provides a source of truth of issuers and verifiers",
+  "last_updated": "2020-11-02",
+  "docs_uri": "",
+  "data_uri": "",
+  "schemas": ["XSYhjGtcha6oCAzaVg34df:2:Climate_Organization:1.1"],
+  "roles": ["issuer", "verifier"],
+  "define": [
+    {
+      "name": "OpenClimate",
+      "id": "GwE4EzQx733ERwNhEGNgAUSccwez2MqW4RuDECTw1nUy",
+      "describe": {
+        "label": "OpenClimate Issuer",
+        "sublabel": "The OpenClimate Project",
+        "website": "https://openearth.org/",
+        "email": ""
+      }
+    }
+  ], 
+  "rules": [
+    {"when": {"name": "OpenClimate"}, "thus": "issuer"}
+  ]
+}

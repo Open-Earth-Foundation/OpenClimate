@@ -1,0 +1,90 @@
+{
+  "family": "controller",
+  "volumes": [
+  {
+    "name": "efs-controller",
+    "efsVolumeConfiguration": {
+      "fileSystemId": "<FILESYSTEMID>"
+       }
+   }
+],
+  "containerDefinitions": [
+{
+  "name" : "controller",
+  "image" : "<ACCOUNTID>.dkr.ecr.<REGION>.amazonaws.com/controller:<VERSION>",
+  "cpu" : 0,
+  "memory" : 300,
+  "essential" : true,
+  "portMappings" : [
+    {
+      "containerPort" : 3100,
+      "hostPort" : 3100
+    }
+  ],
+  "mountPoints": [
+    {
+      "sourceVolume": "efs-controller",
+      "containerPath": "/data"
+    }
+  ],
+  "logConfiguration" : {
+    "logDriver" : "awslogs",
+    "options" : {
+      "awslogs-group" : "/ecs/controller",
+      "awslogs-region" : "<REGION>",
+      "awslogs-stream-prefix" : "ecs"
+    }
+  },
+  "environment": [
+  {
+    "name": "NODE_ENV",
+    "value": "<ENV>"
+  },
+  {
+    "name": "CONTROLLERPORT",
+    "value": "3100"
+  },
+  {
+    "name": "AGENTADDRESS",
+    "value": "http://haproxy.openclimate.local:8011"
+  },
+  {
+    "name": "WEB_ROOT",
+    "value": "<UI_ENDPOINT>"
+  },
+  {
+    "name": "JWT_SECRET",
+    "value": "<JWT_SECRET>"
+  },
+  {
+    "name": "SESSION_SECRET",
+    "value": "<SESSION_SECRET>"
+  },
+  {
+    "name": "SCHEMA_VERIFIED_EMPLOYEE",
+    "value": "<SCHEMA_VERIFIED_EMPLOYEE>"
+  },
+  {
+    "name": "SCHEMA_VALIDATED_EMAIL",
+    "value": "<SCHEMA_VALIDATED_EMAIL>"
+  },
+  {
+    "name": "POSGRES_ADDRESS",
+    "value": "<POSGRES_ENDPOINT>"
+  },
+  {
+    "name": "POSGRES_DB",
+    "value": "<POSGRES_DB>"
+  },
+  {
+    "name": "POSTGRES_USER",
+    "value": "<POSGRES_USER>"
+  },
+  {
+    "name": "POSGRES_PASSWORD",
+    "value": "<POSGRES_PASSWORD>"
+  }
+]
+}
+]
+}

@@ -1,0 +1,42 @@
+.account-menu {
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 28px;
+        //margin-top: 24px;
+        border-bottom: 1px solid var(--grey1-color);
+        padding-bottom: 22px;
+    }
+
+    &__item {
+        margin-right: 32px;
+    }
+
+    &__item:last-child {
+        margin-right: 0;
+    }
+    &__link {
+        padding-bottom: 23px;
+        
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 26px;
+        color: var(--black-color);
+
+        &_active {
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        &:hover {
+            color: #a6a6a6
+        }
+    }
+
+}

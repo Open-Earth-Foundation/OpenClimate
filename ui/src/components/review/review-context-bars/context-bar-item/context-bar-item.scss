@@ -1,0 +1,40 @@
+@import '../../mixins.scss';
+
+.context-bar__item {
+
+    @include respond(mobile){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        height:170px;
+        width: 170px;
+        // border: 1px solid #eceaea;
+        border-radius: 17.54px;
+        box-shadow: 
+            0px 2.19279px 8.77116px rgba(0,0,0, 0.25),
+            0px 4.38558px 2.19279px rgba(0,0,0, 0.08)
+        ;
+    }
+
+    position: relative;
+    width: 200px;
+    color: var(--black-color);
+    white-space: pre-line;
+
+    &:last-child {
+        margin-right: 90px;
+    }
+
+
+    &-content {
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    .context-bar__arrow-icon {
+        position: absolute;
+        top: 8px;
+        left: -15px;
+    }
+}

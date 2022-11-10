@@ -19,9 +19,9 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./OpenClimate-hub-ui/build:/var/www/ui:consistent
+      - ./ui/build:/var/www/ui:consistent
       - ./nginx/hub-ssl:/etc/nginx/ssl:consistent
-      - ./OpenClimate-hub-controller:/var/www/api:consistent
+      - ./api:/var/www/api:consistent
       - ./nginx/hub-conf.d/:/etc/nginx/conf.d/
       - ./nginx/docker-entrypoint.d/create-self-signed.sh:/docker-entrypoint.d/10-create-self-signed.sh
     depends_on:
@@ -42,7 +42,7 @@ services:
       POSTGRES_USER: development
       POSTGRES_PASSWORD: development
     volumes:
-      - ./OpenClimate-hub-controller/schema:/var/local/schema
+      - ./api/schema:/var/local/schema
     networks:
       - oc-network
 
@@ -67,7 +67,7 @@ services:
       - POSTGRES_USER=development
       - POSGRES_PASSWORD=development
     volumes:
-      - ./OpenClimate-hub-controller:/home/node/app:consistent
+      - ./api:/home/node/app:consistent
       - ./wait-for-it:/home/node/wait-for-it
     expose:
       - "3100"
@@ -92,7 +92,7 @@ services:
       - BROWSER=none  # don't open the web browser
       - REACT_APP_CONTROLLER=https://localhost
     volumes:
-      - ./OpenClimate-hub-ui:/home/node/app:rw
+      - ./ui:/home/node/app:rw
     expose:
       - "3000"
     command: >
@@ -116,6 +116,7 @@ services:
       volumes:
         - ./import:/opt/import/
         - ./data:/var/local/data
+        - ./harmonize:/var/local/harmonize
       command: >
         crond -f -d 8
       networks:

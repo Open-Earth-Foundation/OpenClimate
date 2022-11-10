@@ -1,0 +1,19 @@
+.account-sites {
+
+    display: flex;
+    position: relative;
+    height: calc(100vh - 205px);
+    
+    &__map {
+        transition: all 300ms ease-out 0s;
+    }
+    &__widgets {
+        position: absolute;
+        top: 20px;
+        right: 0;
+    }
+
+    &__widgets {
+        display: flex;
+    }
+}

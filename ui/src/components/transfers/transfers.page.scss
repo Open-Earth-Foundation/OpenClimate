@@ -1,0 +1,71 @@
+@import './mixins.scss';
+
+.transfers__wrapper{
+    @include respond(mobile) {
+        padding:16px;
+        h3{
+            font-size: 22px;
+            color: #007568;
+            border-bottom: 1px solid #a3a3a3;
+            padding-bottom: 10px;
+        }
+        .transfers__id{
+            display: flex;
+            flex-direction: column;
+            padding-top: 10px;
+            padding-bottom: 16px
+        }
+    
+        .sp1{
+            color: #a3a3a3 !important;
+        }
+        .sp2{
+            color: #0674da !important;
+        }
+        .icon{
+            font-size: 20px;
+        }
+        table tbody{
+            line-height: 5px;
+        }
+        table tbody td span{
+            font-size: 10px;
+            color: #a3a3a3;
+        }
+        .table-data{
+            width: 100% !important;
+        }
+
+        table  {
+            width: 100%;
+        }
+
+        .status {
+            margin-top: 30px;
+            line-height: 10px;
+        }
+        .status p {
+            color: #a3a3a3;
+        }
+
+        .status span {
+            font-weight: bold;
+            color: #a3a3a3;
+        }
+        .table-data-2{
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+        .table-data-2 thead th{
+            text-align: left;
+            font-size: 12px;
+            padding-bottom: 5px !important;
+            color: #a3a3a3 !important;
+        }
+        .table-data-2 td {
+            padding-bottom: 5px;
+        }
+        
+
+    }
+}

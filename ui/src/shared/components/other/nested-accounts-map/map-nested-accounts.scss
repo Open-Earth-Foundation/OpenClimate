@@ -1,0 +1,33 @@
+.nested-accounts .leaflet-container {
+    width: 100%;
+    height: 85vh;
+    z-index: 0;
+}
+
+.nested-accounts {
+
+    &__wrapper {
+        position: relative;
+    }
+
+    &__widgets {
+        display: flex;
+        position: absolute;
+        top: 75px;
+        right: 20px;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        width: 95%;
+        bottom: 5px;
+    }
+
+    &__content {
+        height:90vh;
+        display: flex;
+    }
+}
+

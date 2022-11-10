@@ -1,0 +1,43 @@
+.dropdown-menu {
+    display: flex;
+
+    &__open {
+        max-width: 250px;
+        right: 10px;
+        top: 80px;
+        background-color: white;
+        z-index: var(--logout-menu-dropdown-z-index);
+    }
+
+    &__logout {
+        padding: 12px 24px;
+    }
+
+    &__icon {
+        padding-top: 4px;
+        padding-left: 4px;
+    }
+
+    &__wallet-text {
+        color: var(--black-color);
+        font-size: 16px;
+        padding-right: 8px;
+    }
+    
+    &__container {
+        margin: 16px 0 8px 0;
+        padding: 16px 16px 16px 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    &__container:hover {
+        background-color: #0075680D
+    }
+
+    &__business-icon {
+        color: var(--black-color);
+    }
+
+}

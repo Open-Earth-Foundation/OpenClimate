@@ -1,0 +1,2 @@
+datasource_id,name,publisher,published,URL
+OEF:WD:city-population:20221106,Wikidata extract of city objects and their populations,OEF:WD,2022-11-06,https://github.com/Open-Earth-Foundation/OpenClimate-harmonize/tree/main/source/wikidata-city-population/
