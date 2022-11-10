@@ -33,6 +33,10 @@
   {
     "name": "BROWSER",
     "value": "none"
+  },
+  {
+    "name": "GOOGLE_MAP_API_KEY",
+    "value": "<GOOGLE_MAP_API_KEY>"
   }
 ]
 }
