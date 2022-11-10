@@ -1,0 +1,9 @@
+tag_id,tag_name
+geo,geographical data
+contextual,contextual data
+area,geographical area
+wikidata,data extracted from Wikidata
+cc0,Creative Commons CC0 license
+extract,Dataset extracted from a larger database
+oef,Dataset from Open Earth Foundation
+evanp,Dataset by Evan Prodromou

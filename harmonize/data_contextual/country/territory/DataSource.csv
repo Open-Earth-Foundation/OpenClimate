@@ -1,0 +1,2 @@
+datasource_id,name,publisher,published,URL
+world_bank:LandArea:v20220916,Land Area (AG.LND.TOTL.K2),world_bank,2022-09-16,https://data.worldbank.org/indicator/AG.LND.TOTL.K2

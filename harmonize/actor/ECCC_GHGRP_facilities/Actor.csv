@@ -1,0 +1,1702 @@
+actor_id,type,name,is_part_of,is_owned_by,datasource_id
+ECCC:GHGRP:10001,site,Division Alma,CA-QC,Produits forestiers Résolu,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10003,site,"Foothills Pipeline, Alberta",CA-AB,Foothills Pipe Lines Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10004,site,Kingston CoGen,CA-ON,Northland Power Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10006,site,Redwater Fertilizer Operations,CA-AB,Agrium Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10007,site,Alberta Envirofuels,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10008,site,Alliance Pipeline Ltd. - AB Pipeline System,CA-AB,Alliance Pipeline Ltd. Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10009,site,Alberta-Pacific Forest Industries Inc.,CA-AB,Alberta-Pacific Forest Industries Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10010,site,Rio Tinto Alcan Inc.,CA-BC,Rio Tinto Alcan Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10011,site,Algoma Steel Inc,CA-ON,Algoma Steel Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10012,site,Aluminerie Alouette inc.,CA-QC,Aluminerie Alouette inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10013,site,Aluminerie de Baie-Comeau,CA-QC,Ne pas prendre - Alcoa Canada Co.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10014,site,Aluminerie de Bécancour inc.,CA-QC,Aluminerie de Bécancour inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10015,site,ATCO Pipelines - Transmission System,CA-AB,ATCO Gas and Pipelines Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10016,site,Atikokan Generating Station,CA-ON,Ontario Power Generation Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10018,site,Battle River Generating Station,CA-AB,Alberta Power 2000 Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10020,site,Bayside Power,CA-NB,New Brunswick Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10021,site,Usine de Bedford,CA-QC,Graymont (QC) Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10022,site,Belledune Generating Station,CA-NB,New Brunswick Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10024,site,Boundary Dam Power Station,CA-SK,Saskatchewan Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10025,site,Resolute Forest Products - Thunder Bay Operations,CA-ON,Produits forestiers Résolu,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10026,site,Brady Road Resource Management Facility,CA-MB,"City of Winnipeg, Water & Waste Department",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10027,site,Brampton Assembly Plant,CA-ON,FCA Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10028,site,Brandon Generating Station,CA-MB,Manitoba Hydro,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10029,site,Brazeau Gas Plant,CA-AB,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10030,site,Brazeau River Gas Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10031,site,Brighton Beach Power,CA-ON,Brighton Beach Power L.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10032,site,Brock West Landfill,CA-ON,City of Toronto,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10033,site,Brookfield Cement Plant,CA-NS,Lafarge Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10036,site,Burnaby Refinery,CA-BC,Parkland Refining (B.C.) Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10038,site,"TransCanada Pipeline, Saskatchewan",CA-SK,TransCanada PipeLines Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10039,site,Cabot Canada Limited,CA-ON,Cabot Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10040,site,Calgary Energy Centre,CA-AB,Calgary Energy Centre No. 2 Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10041,site,Island Generation,CA-BC,V.I. Power LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10042,site,Calstock Power Plant,CA-ON,Atlantic Power LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10043,site,Northern Lime Limited,CA-ON,Carmeuse Lime Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10045,site,Cancarb Ltd.,CA-AB,Cancarb Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10046,site,"TransCanada Pipeline, Alberta System",CA-AB,Nova Gas Transmission Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10047,site,Cardinal Power,CA-ON,"Cardinal Power of Canada, L.P.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10048,site,Cariboo Pulp and Paper Company,CA-BC,Cariboo Pulp and Paper Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10049,site,Caribou North Comp Stn 11-08,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10050,site,Dundas Operations,CA-ON,Carmeuse Lime Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10051,site,Beachville Operation,CA-ON,Carmeuse Lime Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10052,site,Carol Project,CA-NL,Iron Ore Company of Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10053,site,Carseland Nitrogen Operations,CA-AB,Agrium Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10054,site,Carseland Power Plant,CA-AB,TransCanada Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10055,site,Carseland Works,CA-AB,Orica Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10057,site,Ingredion Canada Incorporated - London Plant,CA-ON,Ingredion Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10058,site,Cavalier Energy Centre,CA-AB,ENMAX Cavalier GP Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10059,site,Cavendish Farms,CA-PE,Cavendish Farms Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10060,site,Co-op Refinery Complex,CA-SK,Consumers' Co-operative Refineries Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10061,site,Centrale de Cap-aux-Meules,CA-QC,Hydro-Québec,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10064,site,Chimie Parachem s.e.c,CA-QC,Chimie Parachem s.e.c,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10065,site,Christina Lake SAGD Bitumen Battery,CA-AB,Cenovus FCCL Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10066,site,Cimenterie de Saint-Basile,CA-QC,Ciment Québec inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10067,site,Cimenterie de Saint-Constant,CA-QC,Lafarge Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10068,site,Electric Utility - Generation,CA-AB,City of Medicine Hat,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10069,site,Clover Bar Energy Centre,CA-AB,Capital Power (Alberta) Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10070,site,Coal Mountain Operations,CA-BC,Teck Coal Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10071,site,Cochrane Extraction Plant,CA-AB,Inter Pipeline Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10073,site,Cold Lake,CA-AB,Imperial Oil Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10074,site,Coleson Cove Generating Station,CA-NB,New Brunswick Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10075,site,Chatham,CA-ON,Greenfield Global Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10076,site,Rio Tinto Fer et Titane inc.- Complexe  de Sorel-Tracy,CA-QC,Rio Tinto Fer et Titane inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10079,site,Corner Brook Pulp and Paper,CA-NL,Corner Brook Pulp and Paper Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10080,site,Cory Cogeneration Station,CA-SK,Saskatchewan Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10082,site,Crofton Division,CA-BC,Catalyst Paper Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10085,site,Delta Plant,CA-BC,Lehigh Hanson Materials Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10086,site,ATCO Gas - Distribution System,CA-AB,ATCO Gas and Pipelines Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10088,site,Kruger Trois-Rivières S.E.C.,CA-QC,Kruger inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10089,site,Usine Kénogami,CA-QC,Produits forestiers Résolu,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10091,site,ArcelorMittal Dofasco,CA-ON,ArcelorMittal Canada MP Inc. and ArcelorMittal Canada Inc. p,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10093,site,Espanola Mill,CA-ON,Domtar Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10095,site,East Calgary Landfill,CA-AB,City of Calgary,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10096,site,East Crossfield Gas Plant 9-14-28-1W5,CA-AB,Taqa North Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10097,site,Edmonton Site,CA-AB,Celanese Canada ULC.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10098,site,Edmonton Refinery,CA-AB,Suncor Energy Products Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10099,site,Edmundston Pulp Mill,CA-NB,Twin Rivers Paper Company Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10100,site,Edson Gas Plant,CA-AB,Repsol Oil & Gas Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10101,site,Ekati Diamond Mine,CA-NT,Dominion Diamond Mines ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10103,site,Elkem Métal Chicoutimi,CA-QC,Elkem Metal Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10104,site,"Foothills Pipeline, British Columbia System",CA-BC,Foothills Pipe Lines (South B.C.) Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10105,site,Elkview Operations,CA-BC,Teck Coal Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10106,site,Elmworth Gas Plant,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10107,site,Empress Gas Plant,CA-AB,Plains Midstream Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10108,site,Empress 6,CA-AB,Plains Midstream Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10111,site,Exshaw Plant,CA-AB,Graymont Western Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10112,site,Exshaw Cement Plant,CA-AB,Lafarge Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10113,site,Faulkner Plant,CA-MB,Graymont Western Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10114,site,Woodstock Plant,CA-ON,Federal White Cement Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10115,site,Fording River Operations,CA-BC,Teck Coal Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10117,site,Fort Nelson Gas Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10118,site,Fort Nelson Generating Station,CA-BC,British Columbia Hydro and Power Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10119,site,Fort Saskatchewan,CA-AB,Sherritt International Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10120,site,Fort Saskatchewan Thermal Electric(Cogeneration) Power Plant,CA-AB,TransAlta Cogeneration L.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10121,site,Fort Saskatchewan Nitrogen Operations,CA-AB,Agrium Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10122,site,Fort Saskatchewan Storage and Fractionation,CA-AB,Plains Midstream Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10125,site,Fort Saskatchewan EOEG,CA-AB,MEGlobal Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10126,site,Gathering,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10127,site,Genesee Thermal Generating Station,CA-AB,Capital Power Generation Services Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10128,site,"Gerdau Ameristeel Corporation, Whitby Mill",CA-ON,Gerdau Ameristeel Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10130,site,International Paper Canadian Pulp Holdings ULC,CA-AB,International Paper Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10131,site,Greenhills Operations,CA-BC,Teck Coal Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10132,site,H.R.Milner Generating Station,CA-AB,Milner Power Limited Partnership by its GP Milner Power Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10133,site,Birla Carbon Canada Ltd.,CA-ON,Birla Carbon Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10135,site,Hanlan Robb Gas Plant,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10136,site,Harmac Pacific Operations,CA-BC,Nanaimo Forest Products Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10137,site,Harmattan Gas Processing Plant,CA-AB,AltaGas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10138,site,Havelock Plant,CA-NB,Graymont (NB) Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10139,site,Hays Gas Plant 11-31-013-14 W4M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10140,site,HBMS Flin Flon Metallurgical Complex,CA-MB,Hudbay Minerals,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10141,site,Hendrickson Springs,CA-ON,Hendrickson Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10142,site,Hibernia Platform,CA-NL,Hibernia Management and Development Company Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10143,site,Highvale Coal Mine,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10144,site,Hinton Pulp,CA-AB,West Fraser Mills Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10145,site,Holyrood Thermal Generating Station,CA-NL,Newfoundland and Labrador Hydro,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10146,site,Howe Sound Pulp and Paper Mill,CA-BC,Howe Sound Pulp & Paper Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10147,site,Lloydminster Upgrader,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10148,site,Entreprise Indorama PTA Montréal s.e.c.,CA-QC,Entreprise Indorama PTA Montréal s.e.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10149,site,INVISTA (Canada) Company-Maitland Site,CA-ON,INVISTA (Canada) Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10150,site,EVRAZ Inc NA Canada - Regina Facilities,CA-SK,EVRAZ Inc NA Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10151,site,Iroquois Falls Generating Station,CA-ON,Northland Power Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10152,site,Joffre LAO Plant,CA-AB,INEOS Canada Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10154,site,Usine de Joliette,CA-QC,CRH Canada Group Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10155,site,Judy Creek Gas Conservation Plant,CA-AB,ACCEL Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10157,site,Kamloops Mill (SFO),CA-BC,Domtar Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10158,site,Karr 10-10-065-02 W6M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10159,site,Kaybob Amalgamated Sour Gas Plant,CA-AB,Energy Transfer Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10160,site,Kaybob South #3 Gas Plant,CA-AB,Energy Transfer Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10161,site,Keele Valley Landfill,CA-ON,City of Toronto,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10162,site,Keephills Thermal Electric Power Generating Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10163,site,"TransCanada Pipeline, Ontario",CA-ON,TransCanada PipeLines Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10164,site,Kidd Metallurgical Site,CA-ON,Glencore Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10165,site,Kirkland Lake Generating Station,CA-ON,Northland Power Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10168,site,"KRONOS Canada, Inc.",CA-QC,"KRONOS Canada, Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10169,site,Kruger Wayagamack Inc.,CA-QC,Kruger Wayagamack S.E.C.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10170,site,Richmond Cement Plant,CA-BC,Lafarge Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10171,site,Bath Cement Plant,CA-ON,Lafarge Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10176,site,Edmonton Plant,CA-AB,Lehigh Hanson Materials Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10177,site,Lennox Generating Station,CA-ON,Ontario Power Generation Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10178,site,Lingan Generating Station,CA-NS,Nova Scotia Power Incorporated,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10179,site,MacKay River Power Plant,CA-AB,TransCanada Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10180,site,"MacKay River, In-Situ Oil Sands Plant",CA-AB,Suncor Energy Oil Sands Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10181,site,Mackenzie Pulp Mill,CA-BC,Mackenzie Pulp Mill Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10182,site,Canadian Kraft Paper Industries Ltd.,CA-MB,Canadian Kraft Paper Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10183,site,Usine de Marbleton,CA-QC,Graymont (QC) Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10184,site,McMahon Cogen Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10185,site,McMahon Gas Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10186,site,Meridian Cogeneration Plant,CA-SK,Meridian Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10187,site,Syncrude Canada Ltd,CA-AB,Syncrude Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10188,site,Mine de Mont-Wright,CA-QC,ArcelorMittal Exploitation Minière Canada s.e.n.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10191,site,Mississauga Lubricants Centre,CA-ON,Petro-Canada Lubricants Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10192,site,Mississauga Cement Plant,CA-ON,CRH Canada Group Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10193,site,Mohawk Street Landfill,CA-ON,The Corporation of the City of Brantford,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10195,site,Mosaic Potash Belle Plaine,CA-SK,Mosaic Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10196,site,Muskeg River Cogeneration Plant,CA-AB,Heartland Generation Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10199,site,Imperial Oil Nanticoke Refinery,CA-ON,Imperial Oil,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10203,site,Nipigon Power Plant,CA-ON,Atlantic Power LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10204,site,Norman Wells Central Processing Facility,CA-NT,Imperial Oil Resources N.W.T. Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10206,site,NARL Refining LP,CA-NL,North Atlantic Refinery,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10207,site,Northwood Pulp Mill,CA-BC,Canfor Pulp Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10208,site,Corunna Site,CA-ON,NOVA Chemicals Corporation (Additional Profile for OBPS),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10209,site,INEOS Styrolution,CA-ON,INEOS Styrolution Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10210,site,St. Clair River Site,CA-ON,NOVA Chemicals Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10211,site,NOVA Chemicals Corporation (Joffre),CA-AB,NOVA Chemicals Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10213,site,Oshawa OEM Stamped Products and Services Operations,CA-ON,General Motors of Canada Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10215,site,Ottawa Health Sciences Centre (OHSC) Cogeneration Facility,CA-ON,TransAlta Cogeneration L.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10217,site,Usine de Thurso,CA-QC,Fortress Cellulose Spécialisée,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10219,site,CNUL Peace River Complex,CA-AB,Canadian Natural Upgrading Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10220,site,Mercer Peace River,CA-AB,Mercer Peace River Pulp Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10221,site,CEPSA Chimie Bécancour,CA-QC,CEPSA Chimie Bécancour,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10223,site,Picton  Plant,CA-ON,Lehigh Hanson Materials Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10225,site,Pine River Sour Gas Plant C-085-D,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10226,site,Transmission Mainline - BC,CA-BC,Spectra Energy Transmission,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10227,site,Point Aconi Generating Station,CA-NS,Nova Scotia Power Incorporated,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10228,site,Point Tupper Generating Station,CA-NS,Nova Scotia Power Incorporated,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10229,site,Poplar River Power Station,CA-SK,Saskatchewan Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10230,site,Port Alberni Division,CA-BC,Catalyst Paper Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10231,site,Powell River Division,CA-BC,Catalyst Paper Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10232,site,Prentiss Chemical Manufacturing Facility,CA-AB,MEGlobal Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10234,site,Prince George Refinery,CA-BC,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10235,site,Progress Gas Plant 01-01-078-10 W6M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10236,site,Queen Elizabeth Power Station,CA-SK,Saskatchewan Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10237,site,Quirk Creek Gas Plant,CA-AB,Caledonian Midstream,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10238,site,Raffinerie de Montreal,CA-QC,Suncor Energy Products Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10239,site,Raffinerie Jean-Gaulin,CA-QC,Valero Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10240,site,Mine Raglan,CA-QC,Glencore Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10241,site,Rainbow Lake Cogeneration Power Plant (Units 4-5),CA-AB,Heartland Generation Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10243,site,Ram River Sour Gas Plant,CA-AB,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10244,site,"TransCanada Pipeline, Manitoba",CA-MB,TransCanada PipeLines Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10246,site,Redwater Cogeneration Plant,CA-AB,TransCanada Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10247,site,Irving Oil Refinery,CA-NB,Irving Oil Refining G.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10248,site,"Foothills Pipeline, Saskatchewan",CA-SK,Foothills Pipe Lines Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10249,site,Rimbey Gas Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10250,site,Sarnia Chemical Plant,CA-ON,Imperial Oil,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10251,site,Sarnia Cogen Plant,CA-ON,Imperial Oil,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10252,site,Sarnia Fractionation Plant,CA-ON,Plains Midstream Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10253,site,Sarnia Manufacturing Centre,CA-ON,Shell Canada Products,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10254,site,Sarnia Refinery,CA-ON,Suncor Energy Products Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10255,site,Sarnia Refinery Plant,CA-ON,Imperial Oil,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10256,site,Sarnia Regional Cogeneration Facility,CA-ON,TransAlta Sarnia Cogeneration L.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10257,site,Alliance Pipeline Ltd. - SK Pipeline System,CA-SK,Alliance Pipeline Ltd. Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10258,site,SaskEnergy Incorporated,CA-SK,SaskEnergy Incorporated,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10259,site,Yara Belle Plaine Inc.,CA-SK,Yara Belle Plaine Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10260,site,Scotford Chemical Plant,CA-AB,Shell Chemicals Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10261,site,Scotford Complex,CA-AB,Air Liquide Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10262,site,Scotford Upgrader and Upgrader Cogeneration,CA-AB,Shell Canada Energy Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10263,site,Fibrek SENC,CA-QC,Fibrek S.E.N.C.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10264,site,Shand Power Station,CA-SK,Saskatchewan Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10265,site,Sheerness Generating Station,CA-AB,Alberta Power 2000 Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10267,site,Caroline Complex,CA-AB,PIERIDAE ALBERTA PRODUCTION LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10268,site,Jumping Pound Complex,CA-AB,PIERIDAE ALBERTA PRODUCTION LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10269,site,Shell Scotford Refinery,CA-AB,Shell Canada Products,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10271,site,"Koch Fertilizer Canada, ULC",CA-MB,"Koch Fertilizer Canada, ULC",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10272,site,Site de Témiscaming,CA-QC,Rayonier A.M. Canada G.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10273,site,Bowmanville Cement Plant,CA-ON,St. Marys Cement Inc. (Canada),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10274,site,St. Marys Cement Plant,CA-ON,St. Marys Cement Inc. (Canada),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10275,site,Hamilton,CA-ON,Stelco Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10276,site,Lake Erie,CA-ON,Stelco Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10277,site,Strachan Gas Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10278,site,"Imperial Oil, Strathcona Refinery",CA-AB,Imperial Oil,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10279,site,Summit Road Landfill,CA-MB,"City of Winnipeg, Water & Waste Department",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10281,site,Sundance Thermal Electric Power Generating Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10283,site,CF Industries Courtright Nitrogen Complex,CA-ON,Terra International (Canada) Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10284,site,Terra Nova,CA-NL,Suncor Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10285,site,AV Terrace Bay,CA-ON,AV Terrace Bay Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10289,site,"Teck Metals Ltd, Trail Operations",CA-BC,"Teck Metals Ltd, Trail Operations",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10290,site,TransGas Limited,CA-SK,TransGas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10291,site,Trenton Generating Station,CA-NS,Nova Scotia Power Incorporated,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10292,site,Tufts Cove Generating Station,CA-NS,Nova Scotia Power Incorporated,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10293,site,Tunis Power Plant,CA-ON,Atlantic Power LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10295,site,Usine Alma,CA-QC,Rio Tinto Alcan Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10296,site,Usine Arvida,CA-QC,Rio Tinto Alcan Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10297,site,Usine de Beauharnois,CA-QC,Rio Tinto Alcan Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10298,site,Usine de Bécancour,CA-QC,Olin Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10299,site,Usine de Bouletage de Port-Cartier,CA-QC,ArcelorMittal Exploitation Minière Canada s.e.n.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10300,site,Aluminerie de Deschambault,CA-QC,Compagnie de gestion Alcoa - Lauralco,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10302,site,Usine de La Tuque,CA-QC,Compagnie WestRock du Canada Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10304,site,Usine de Québec,CA-QC,Stadacona WB S.E.C.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10306,site,Usine Grande-Baie,CA-QC,Rio Tinto Alcan Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10307,site,Usine Laterrière,CA-QC,Rio Tinto Alcan Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10310,site,W12A Landfill,CA-ON,Corporation of the City of London,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10312,site,Wapiti Deep Cut Plant 04-08-069-08 W6M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10313,site,Waterton Complex,CA-AB,PIERIDAE ALBERTA PRODUCTION LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10315,site,West Windsor Power,CA-ON,Engie Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10316,site,Western Canada Operations,CA-AB,Dow Chemical Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10318,site,Dryden Mill,CA-ON,Domtar Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10321,site,Wildcat Hills Gas Plant,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10323,site,Windsor Essex Cogeneration Plant,CA-ON,TransAlta Cogeneration L.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10324,site,PAW In-Situ Oilsands Facilities,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10327,site,Strathcona Works,CA-AB,Rio Tinto Alcan Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10328,site,BEINFAIT MINE - CHAR PLANT,CA-SK,Prairie Mines & Royalty ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10329,site,Bolney Thermal,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10330,site,Usine de Joliette,CA-QC,Bridgestone  Canada inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10332,site,Glanbrook Landfill Site,CA-ON,City of Hamilton,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10334,site,Irving Paper,CA-NB,Irving Paper Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10337,site,Walker Environmental Group Inc. Landfill Sites,CA-ON,Walker Environmental Group Inc. - Landfill Sites,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10338,site,North Tangleflags Facility,CA-SK,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10341,site,Poplar Hill Generating Station,CA-AB,Heartland Generation Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10342,site,Prince George Pulp and Paper and Intercontinental Pulp Mills,CA-BC,Canfor Pulp Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10343,site,Ridge Landfill,CA-ON,Waste Connections of Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10344,site,Sainte Sophie Landfill,CA-QC,Waste Management of Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10346,site,FortisBC Energy Inc.,CA-BC,FortisBC Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10348,site,Trail Road Waste Facility,CA-ON,City of Ottawa,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10349,site,Valleyview Generating Station,CA-AB,Heartland Generation Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10351,site,Walkerville,CA-ON,Hiram Walker & Sons Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10352,site,West Edmonton Landfill,CA-AB,Waste Management of Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10353,site,Weyburn 05-16-006-13W2 BTY,CA-SK,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10354,site,Sea Rose FPSO,CA-NL,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10355,site,Nackawic Mill,CA-NB,AV Group NB Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10356,site,Balzac Power Station,CA-AB,CNOOC Petroleum North America ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10357,site,Bécancour Power Plant,CA-QC,TransCanada Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10358,site,Eastview Landfill,CA-ON,Corporation of the City of Guelph,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10359,site,Coal Valley Mine,CA-AB,Prairie Mines & Royalty ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10360,site,Corunna Hydrogen Facility,CA-ON,Air Products Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10361,site,Edmonton Hydrogen Facility,CA-AB,Air Products Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10364,site,Essex County Landfill No. 3,CA-ON,Essex-Windsor Solid Waste Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10365,site,Essex-Windsor Regional Landfill,CA-ON,Essex-Windsor Solid Waste Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10366,site,Toronto Pearson International Airport,CA-ON,Greater Toronto Airports Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10368,site,Marten Hills Gas Plant,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10369,site,ArcelorMittal Contrecoeur Ouest,CA-QC,ArcelorMittal Produits Longs Canada s.e.n.c,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10370,site,OC Celfortec LPValleyfield,CA-QC,Owens Corning Composite Materials Canada LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10371,site,Olds Gas Plant,CA-AB,NAL Resources Management,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10373,site,Plant #31 Brampton,CA-ON,O-I Canada Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10375,site,Prentiss Manufacturing Facility,CA-AB,Dow Chemical Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10376,site,Britannia Sanitary Landfill Site,CA-ON,Region of Peel,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10379,site,Transfer Station No. 2,CA-ON,Essex-Windsor Solid Waste Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10380,site,Bear Creek Power Plant,CA-AB,TransCanada Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10381,site,Diavik Diamond Mines (2012) Inc.,CA-NT,Rio Tinto plc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10382,site,GenAlta Recycling Inc.,CA-AB,General Scrap Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10383,site,General Scrap - Winnipeg,CA-MB,General Scrap Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10385,site,Teck Highland Valley Copper Partnership,CA-BC,Teck Highland Valley Copper Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10386,site,"Irving Pulp & Paper, Limited",CA-NB,"Irving Pulp & Paper, Limited",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10388,site,Line Creek Operations,CA-BC,Teck Coal Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10389,site,Lloydminster Ethanol Plant,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10390,site,Long Lake,CA-AB,CNOOC Petroleum North America ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10392,site,Navajo Metals,CA-AB,General Scrap Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10394,site,Tucker Thermal,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10398,site,Sudbury Integrated Nickel Operations Smelter,CA-ON,Glencore Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10399,site,Dillon / Brule Mine,CA-BC,Conuma Coal Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10400,site,Wolverine Mine,CA-BC,Conuma Coal Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10401,site,Usine de triage Lachenaie,CA-QC,Complexe Enviro Connexions,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10402,site,Cardinal River Operations,CA-AB,Teck Coal Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10404,site,Duffin Creek WPCP,CA-ON,Regional Municipality of Durham,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10406,site,Pod One,CA-AB,Connacher Oil and Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10407,site,Greenfield Energy Centre LP,CA-ON,"Greenfield Energy Centre, LP",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10408,site,Horizon Oil Sands Processing Plant and Mine,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10411,site,Minnedosa Ethanol Plant,CA-MB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10412,site,Orion Facilities,CA-AB,Osum Production Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10413,site,Portlands Energy Centre,CA-ON,Portlands Energy Centre LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10414,site,Surmont SAGD Commercial Battery,CA-AB,ConocoPhillips Surmont Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10415,site,Tiverton,CA-ON,Greenfield Global Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10416,site,ADM AGRI-INDUSTRIES - ADM Windsor,CA-ON,ADM Agri-Industries Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10417,site,Suffield Gas Storage Facility,CA-AB,AECO Gas Storage Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10419,site,Vanscoy Potash Operations,CA-SK,Agrium Potash Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10420,site,AltaSteel Inc.,CA-AB,AltaSteel Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10421,site,Baymag Exshaw Operations,CA-AB,Baymag Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10423,site,BUNGE CANADA - HAMILTON,CA-ON,Bunge Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10426,site,Canfor Taylor Pulp,CA-BC,Canfor Pulp Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10427,site,CGC Hagersville Plant,CA-ON,CGC Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10428,site,Galloway Plant 14-14-053-20 W5M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10429,site,Gold Creek 13-26-067-05 W6M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10430,site,Stoddart 02-34 Sour Gas Plant,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10431,site,Wild River Compressor Station 04-03,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10433,site,Hartland Landfill,CA-BC,Capital Regional District,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10434,site,"Cascades Containerboard Packaging, A Division of Cascades Can",CA-ON,Cascades Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10435,site,Brintnell Oil Battery and Comp Stn 1107 11-07,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10436,site,Suffield C Comp Stn 01-04,CA-AB,IPC Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10437,site,Suffield K (Koomati) Gas Battery 04-04,CA-AB,IPC Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10440,site,Langley Plant,CA-BC,LHOIST NORTH AMERICA OF CANADA  INC.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10441,site,Lethbridge Waste and Recycling Centre Disposal Site,CA-AB,City of Lethbridge,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10442,site,Landfill,CA-SK,City of Saskatoon,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10443,site,Vancouver Landfill,CA-BC,City of Vancouver,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10444,site,Kilcona Landfill,CA-MB,"City of Winnipeg, Water & Waste Department",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10446,site,Tourmaline Berland Gas Plant (14-15-059-24-W5M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10447,site,Noel Sweet Gas Plant,CA-BC,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10451,site,Narraway Sweet Gas Plant 10-08,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10452,site,Domtar Usine de Windsor,CA-QC,Domtar Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10453,site,East Windsor Cogeneration Centre,CA-ON,East Windsor Cogeneration LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10454,site,Gunnell Comp Stn b-023-F,CA-BC,Shanghai Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10455,site,Resthaven Sweet Gas Plant 08-11,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10456,site,Sexsmith Sour Gas Plant,CA-AB,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10457,site,Sierra Sour Gas Plant,CA-BC,Shanghai Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10458,site,Steeprock Sour Gas Plant,CA-BC,Veresen Midstream General Partner Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10459,site,Pearl Street Steam Plant,CA-ON,Enwave Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10460,site,Walton Street Steam Plant,CA-ON,Enwave Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10461,site,Gold Bar Wastewater Treatment Plant,CA-AB,EPCOR Water Services Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10465,site,Foster Creek SAGD Bitumen Battery (with Cogen),CA-AB,Cenovus FCCL Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10466,site,Flakeboard Company Limited,CA-ON,Arauco Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10467,site,Ford Oakville Assembly Complex,CA-ON,"Ford Motor Company of Canada, Limited",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10468,site,Musselwhite Mine,CA-ON,GOLDCORP CANADA LTD,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10469,site,Goreway Power Station,CA-ON,Goreway Station Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10470,site,Metro Vancouver Waste-to-Energy Facility,CA-BC,Greater Vancouver Sewerage and Drainage District,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10471,site,Green Lane Landfill,CA-ON,Green Lane Landfill,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10472,site,Johnstown,CA-ON,Greenfield Global Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10475,site,Lloydminster Refinery,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10476,site,Rainbow Lake Gas plant,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10478,site,IGPC Ethanol Inc.,CA-ON,IGPC Ethanol Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10479,site,Kingston Site,CA-ON,INVISTA (Canada) Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10481,site,Irving Consumer Products Limited,CA-ON,Irving Consumer Products Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10482,site,Jungbunzlauer Canada Inc.,CA-ON,Jungbunzlauer Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10485,site,Nordegg River Gas Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10486,site,West Pembina GP,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10487,site,Kruger Products L.P.,CA-BC,Kruger Products L.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10488,site,"Produits Kruger s.e.c., usine de Gatineau",CA-QC,Produits Kruger s.e.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10489,site,"Lake Utopia Paper A Division of J.D. Irving, Limited",CA-NB,"Lake Utopia Paper A Division of J.D. Irving, Limited",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10490,site,Lantic Inc. - Raffinerie Montréal,CA-QC,Lantic Inc. - Raffinerie Montréal,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10491,site,Lantic Inc. Taber Beet Sugar Factory,CA-AB,Lantic Inc. Taber Factory,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10492,site,"Lidya Énergie, s.e.c.",CA-QC,"Lidya Énergie, s.e.c.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10493,site,"Magellan Aerospace, Haley",CA-ON,"Magellan Aerospace Limited, Haley",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10495,site,Meadow Lake Mechanical Pulp,CA-SK,Meadow Lake Mechanical Pulp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10496,site,MEG Christina Lake Regional Project,CA-AB,MEG Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10497,site,Whitecourt Pulp Division,CA-AB,Millar Western Forest Products Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10499,site,Sylvan Lake Gas Plant 14-32-037-03W5M,CA-AB,Certus Oil and Gas Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10500,site,Northern Pulp Nova Scotia Corporation,CA-NS,Northern Pulp Nova Scotia Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10501,site,Moore Site,CA-ON,NOVA Chemicals Corporation (Additional Profile for OBPS),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10513,site,Inuvik Plant,CA-NT,NWT Power Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10527,site,Plant #34 Montreal,CA-QC,O-I Canada Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10529,site,Minnehik Buck Lake Gas Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10531,site,Peyto Oldman 11-17-055-21W5,CA-AB,Peyto Exploration and Development Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10533,site,Potash Corp - Allan Division,CA-SK,Potash Corporation of Saskatchewan Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10534,site,Boundary Dam Mine,CA-SK,Prairie Mines & Royalty ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10535,site,Produits Kruger s.e.c.,CA-QC,PRODUITS KRUGER s.e.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10536,site,Empress NGL Extraction Plant,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10537,site,Toronto Refinery,CA-ON,Redpath Sugar Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10538,site,Régie Intermunicipale Argenteuil Deux-Montagnes (RIADM),CA-QC,Waste Management of Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10539,site,Cambridge Landfill Site,CA-ON,"Region of Waterloo, Waste Management Division",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10540,site,Waterloo Landfill Site,CA-ON,"Region of Waterloo, Waste Management Division",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10544,site,Lieu d'enfouissement,CA-QC,RIGMRBM,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10545,site,Université McGill - Campus Centre-Ville,CA-QC,Institution royale pour l'avancement des sciences,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10546,site,Université McGill - Campus Macdonald,CA-QC,Institution royale pour l'avancement des sciences,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10548,site,"Énergir, s.e.c.",CA-QC,"Énergir, s.e.c.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10549,site,Senlac Thermal Oil Battery,CA-SK,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10550,site,Gordondale East Gas Plant,CA-AB,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10551,site,Highway Gas Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10552,site,Jedney I Gas Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10553,site,Jedney II Gas Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10554,site,St. Clair Energy Center,CA-ON,"St. Clair Power, LP",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10555,site,Simonette Gas Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10556,site,Ferrier Gas Plant,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10557,site,Firebag,CA-AB,Suncor Energy Oil Sands Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10558,site,Suncor Energy Inc. Oil Sands,CA-AB,Suncor Energy Oil Sands Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10559,site,St. Clair Ethanol Plant,CA-ON,Suncor Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10560,site,PETROMET BIGSTONE WEST FIR 14-28-59-22,CA-AB,Repsol Oil & Gas Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10561,site,PETROMET WILD RIVER 10-20 PLANT,CA-AB,Repsol Oil & Gas Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10562,site,102078290 Saskatchewan Ltd.,CA-SK,102078290 Saskatchewan Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10563,site,Tolko High Level Lumber Division,CA-AB,Tolko Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10564,site,Toyota Motor Manufacturing Canada Inc. (Cambridge),CA-ON,Toyota Motor Manufacturing Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10566,site,Heating Plant,CA-AB,University of Alberta Heating Plant,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10567,site,University of Windsor,CA-ON,University of Windsor,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10568,site,Aitken Creek Gas Storage_LFO,CA-BC,Aitken Creek Gas Storage ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10569,site,Thompson Operations,CA-MB,Vale Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10570,site,Voisey's Bay Mine Site,CA-NL,Vale Newfoundland and Labrador Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10571,site,Station d'épuration des eaux usées Jean-R.-Marcotte,CA-QC,Ville de Montréal,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10572,site,St. Nicephore Landfill,CA-QC,Waste Management of Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10575,site,Quesnel River Pulp,CA-BC,West Fraser Mills Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10576,site,Ranger Board,CA-AB,Williams Lake Lumber (Div of West Fraser Mills Ltd.),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10577,site,Whitecourt Electric Power Generating Facility,CA-AB,Whitecourt Power Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10578,site,"Glencore Canada Corporation, CCR refinery",CA-QC,Glencore Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10579,site,Glencore Canada Corporation - Fonderie Horne,CA-QC,Glencore Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10580,site,Sudbury Operations Mines Mill - Onaping Area,CA-ON,Glencore Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10581,site,Global Contract Inc.,CA-ON,Global Contract Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10582,site,Incinérateur,CA-QC,Ville de Québec,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10583,site,Site d'enfouissement Saint-Tite-des-Caps,CA-QC,Ville de Québec,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10585,site,Varennes Facility,CA-QC,3313045 NOVA SCOTIA COMPANY,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10586,site,ADM AGRI-INDUSTRIES - ADM Lloydminster,CA-AB,ADM Agri-Industries Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10587,site,Division Meadowbank,CA-NU,Agnico Eagle Mines Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10588,site,Grande Prairie OSB Mill,CA-AB,Norbord Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10589,site,Mine de Fire Lake,CA-QC,ArcelorMittal Exploitation Minière Canada s.e.n.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10591,site,Beaver Regional Landfill,CA-AB,Claystone Waste Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10594,site,Canaport LNG Limited Partnership Marine Terminal & Multi-Purp,CA-NB,Canaport LNG Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10595,site,Chemtrade Electrochem - North Vancouver Chlor-alkali Facility,CA-BC,Chemtrade Logistics Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10599,site,CEVPC 720 Beatty Street,CA-BC,CREATIVE ENERGY VANCOUVER PLATFORMS CORP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10601,site,City of Thunder Bay Solid Waste and Recycling Facility,CA-ON,City of Thunder Bay,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10602,site,"Clean Harbors Canada, Inc",CA-ON,"Clean Harbors Canada, Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10604,site,Algar,CA-AB,Connacher Oil and Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10605,site,Descor Industries Inc.,CA-ON,Descor Industries Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10606,site,Hythe Brainard Sour Gas Plant,CA-AB,Veresen Midstream General Partner Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10607,site,Crossfield Energy Centre,CA-AB,Enmax Generation Portfolio Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10608,site,London District Energy,CA-ON,London District Energy LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10609,site,Global Upholstery,CA-ON,Global Upholstery Co. Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10610,site,Englehart Oriented Strand Board Plant,CA-ON,GP North Woods LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10611,site,CST Coal,CA-AB,CST Canada Coal Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10612,site,Highbury Canco Corporation,CA-ON,Highbury Canco Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10614,site,Ivaco Rolling Mills,CA-ON,Ivaco Rolling Mills 2004 L. P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10617,site,Macassa Mine,CA-ON,KIRKLAND LAKE GOLD INC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10618,site,VSC,CA-QC,Terrapure BR Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10619,site,MEG Christina Lake Cogeneration Facility,CA-AB,MEG Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10620,site,MOSAIC POTASH ESTERHAZY - K2 SITE,CA-SK,Mosaic Potash Esterhazy Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10621,site,New Forest Paper Mills LP,CA-ON,New Forest Paper Mills LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10622,site,Thorold Cogen Generating Station,CA-ON,Northland Power Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10626,site,PotashCorp Rocanville,CA-SK,Potash Corporation of Saskatchewan Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10627,site,Genesee Mine,CA-AB,Prairie Mines & Royalty ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10631,site,Cliff Central Heating and Cooling Plant,CA-ON,Public Works and Government Services Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10632,site,HUMBERSTONE LANDFILL,CA-ON,Regional Municipality of Niagara,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10633,site,Services Matrec inc.,CA-QC,Services Matrec inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10634,site,Sanofi Pasteur Limited,CA-ON,Sanofi Pasteur Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10635,site,Ermine Power Station,CA-SK,Saskatchewan Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10638,site,West Doe Gas Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10639,site,Leismer SAGD Bitumen Battery,CA-AB,Athabasca Oil Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10640,site,Technocell inc,CA-QC,Technocell Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10641,site,Skookumchuck Operation,CA-BC,Skookumchuck Pulp Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10643,site,Tenaris Algoma Tubes,CA-ON,Algoma Tubes Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10644,site,Main Campus,CA-ON,The University of Western Ontario,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10645,site,Canfor Green Energy Combined Heat and Power Plant,CA-AB,Canadian Forest Products Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10646,site,Halton Hills Generating Station,CA-ON,Portlands Energy Centre LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10648,site,St George Campus,CA-ON,The Governing Council of the University of Toronto,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10649,site,Magog Landfill Bestan Inc.,CA-QC,Waste Management of Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10650,site,Willow Creek Mine,CA-BC,Conuma Coal Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10651,site,Edson O.S.B.,CA-AB,Weyerhaeuser Company Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10652,site,Keele Campus,CA-ON,York University,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10653,site,Mercer Celgar Limited Partnership,CA-BC,Mercer Celgar Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10656,site,Carson Creek GP 4-23,CA-AB,Accel Canada Holdings Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10657,site,Quebec Silicon LP,CA-QC,Silicium Québec SEC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10658,site,POTASH CORP - LANIGAN DIVISION,CA-SK,Potash Corporation of Saskatchewan Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10660,site,Montney Gas Processing and Production IF-a,CA-BC,Shell Canada Limited-1,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10661,site,Glacier Sour Gas Plant 05-02,CA-AB,Advantage Oil & Gas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10662,site,Emerald Energy from Waste Inc.,CA-ON,Emerald Energy From Waste Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10663,site,111 Progress,CA-ON,Atlantic Packaging Products Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10664,site,Brampton Brick Limited,CA-ON,Brampton Brick Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10667,site,Collingwood Distillery,CA-ON,Sazerac Distillers of Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10668,site,Northern Prairie Thermal Electric Power Plant,CA-AB,"Grande Prairie Generation, Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10669,site,Mine Canadian Malartic GP,CA-QC,Canadian Malartic GP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10673,site,Usine de Valleyfield,CA-QC,Diageo Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10675,site,Horn River Comp Stn c-067-K,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10676,site,Hythe Comp Stn A-005-G,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10677,site,Fanshawe College of Applied Arts and Technology,CA-ON,Fanshawe College of Applied Arts and Technology,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10678,site,"Gerdau Ameristeel Corporation, Manitoba Mill",CA-MB,Gerdau Ameristeel Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10679,site,Gibraltar Mine (SFO),CA-BC,Gibraltar Mines Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10681,site,Hope Bay Project,CA-NU,Agnico Eagle Mines Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10683,site,Kawartha Ethanol Inc.,CA-ON,Kawartha Ethanol Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10684,site,Emballages Krupack Place Turcot,CA-QC,Produits Kruger s.e.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10686,site,Methanex Medicine Hat Methanol Plant,CA-AB,Methanex Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10687,site,Bridgewater Plant,CA-NS,Michelin North America (Canada),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10688,site,Waterville Plant,CA-NS,Michelin North America (Canada),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10689,site,Pictou County Plant,CA-NS,Michelin North America (Canada),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10690,site,Spy Hill Generating Station,CA-SK,Northland Power Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10692,site,Waskada 11-30-001-25 W1M,CA-MB,Tundra Oil & Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10693,site,Peyto Nosehill 11-21-055-20W5,CA-AB,Peyto Exploration and Development Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10696,site,Tattoo d-068-B/094-O-15 Compressor Station,CA-BC,Shanghai Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10697,site,ROXUL Inc.,CA-ON,ROXUL Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10702,site,Norbord High Level,CA-AB,Norbord Industries,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10703,site,Expert Manufacturing Inc.,CA-ON,Expert Manufacturing Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10707,site,Wolf Lake Sweet Gas Plant,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10709,site,Shepard Landfill,CA-AB,City of Calgary,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10710,site,Honda of Canada Mfg.,CA-ON,Honda Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10711,site,Pikes Peak South Thermal 05-07-049-23W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10712,site,Tupper West 5-1 Gas Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10713,site,Tupper Main Gas Plant A-21-B/093-P-09,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10714,site,Musreau Gas Plant,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10715,site,CORY,CA-SK,Potash Corporation of Saskatchewan Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10716,site,Patience Lake Division,CA-SK,Potash Corporation of Saskatchewan Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10718,site,PROFILE INDUSTRIES INC.,CA-ON,Profile Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10719,site,Lieu d'enfouissement technique,CA-QC,Régie de gestion des matières résiduelles de la Mauricie,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10720,site,Lieu enfouissement technique de Champlain,CA-QC,Régie de gestion des matières résiduelles de la Mauricie,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10721,site,Yellowhead Power Station,CA-SK,Saskatchewan Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10722,site,Mine du Lac Bloom,CA-QC,MINERAI DE FER QUÉBEC INC.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10724,site,City View Drive,CA-ON,Spec Furniture Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10725,site,Farrell Creek B-88-I,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10726,site,Kaybob Gas Plant,CA-AB,Paramount Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10727,site,Central Heating and Cooling Plant,CA-AB,University of Calgary,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10728,site,University of Saskatchewan,CA-SK,University of Saskatchewan,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10729,site,York Energy Centre,CA-ON,York Energy Centre LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10730,site,Dépôt Rive-Nord,CA-QC,Dépôt Rive-Nord Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10735,site,MacKay River Commercial Project,CA-AB,PetroChina Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10736,site,Apex Utilities Inc.,CA-AB,Apex Utilities Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10738,site,"Gerdau Ameristeel Corporation, Cambridge Mill",CA-ON,Gerdau Ameristeel Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10742,site,Meadow Lake Power Station,CA-SK,Saskatchewan Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10744,site,Kirby South 13-21-73-7W4,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10745,site,"Cascades Papier Kingsey Falls, une division de Cascades Canad",CA-QC,Cascades Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10746,site,Spyhill Landfill,CA-AB,City of Calgary,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10747,site,Deep Panuke,CA-NS,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10749,site,Paradise Hill Thermal 08-27-053-24W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10750,site,Kearl Oil Sands Processing Plant and Mine,CA-AB,Imperial Oil Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10751,site,Centrale de cogénération à la biomasse,CA-QC,Kruger Énergie Bromptonville S.E.C.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10753,site,North Battleford G.S.,CA-SK,Northland Power Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10756,site,Landis Power Station,CA-SK,Saskatchewan Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10757,site,Centre technologique AES,CA-QC,GFL Environmental Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10758,site,Dawson Gas Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10759,site,Fort Nelson North Processing Facility,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10760,site,"TransCanada Pipeline, Quebec",CA-QC,TransCanada PipeLines Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10762,site,Twin Creeks Landfill (formerly Warwick Landfill),CA-ON,Waste Management of Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10763,site,Tourmaline Sunrise Gas Plant (03-18-080-17 W6M),CA-BC,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10765,site,Detour Lake Project,CA-ON,Kirkland Lake Gold Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10768,site,Meridian Lightweight Technologies Inc,CA-ON,Meridian Technologies Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10769,site,Meridian Lightweight Technologies Inc. Plant E,CA-ON,Meridian Technologies Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10770,site,Parkland Gas Plant 03-09,CA-BC,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10771,site,Kaybob East 16-03,CA-AB,Athabasca Oil Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10772,site,Kaybob West 07-14,CA-AB,Athabasca Oil Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10773,site,Saxon 10-19,CA-AB,Athabasca Oil Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10774,site,03-22-78-12-W6M,CA-AB,Birchcliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10776,site,Wembley Gas Plant,CA-AB,NuVista Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10777,site,Viewfield Sour Gas Plant 13-05,CA-SK,Steel Reef Infrastructure Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10779,site,Shepard Energy Centre,CA-AB,Enmax Generation Portfolio Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10780,site,Sandall Thermal 06-14-051-24W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10782,site,LES FORGES DE SOREL CIE - ST-JOSEPH-DE-SOREL,CA-QC,Les Forges de Sorel Cie,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10783,site,Mosaic Potash Colonsay,CA-SK,Mosaic Potash Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10785,site,Nyrstar Myra Falls Ltd,CA-BC,Myra Falls Mine Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10787,site,Kakwa River Gas Plant 08-13-063-05W6,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10788,site,Redwater Fractionation and Storage Facility,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10789,site,Saturn Deepcut Gas Plant 12-36,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10790,site,Peyto Swanson 12-31-053-19W5,CA-AB,Peyto Exploration and Development Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10791,site,Aluminerie Arvida - Centre technologique AP60,CA-QC,Rio Tinto Alcan Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10792,site,Saturn Gas Processing and Production IF-a,CA-BC,Shell Canada Limited-1,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10793,site,Slave Lake Pulp,CA-AB,"West Fraser Mills Ltd., Operating as Slave Lake Pulp",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10795,site,Tourmaline Banshee Plant (15-12-050-21 W5M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10796,site,Tourmaline West Doe Gas Plant (13-25-080-16 W6M),CA-BC,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10797,site,Spirit River 06-03-078-07 W6,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10798,site,Tourmaline Musreau Gas Plant (08-13-062-06 W6M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10799,site,Tourmaline Wildriver Gas Plant (14-20-056-23 W5M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10800,site,TRT ETGO du Québec inc.,CA-QC,Viterra Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10801,site,Blair Creek Comp Stn d-058-F,CA-BC,AltaGas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10802,site,Gordondale Sour Gas Plant 16-31,CA-AB,AltaGas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10804,site,AOC Hangingstone SAGD,CA-AB,Athabasca Oil Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10805,site,Durham York Energy Centre,CA-ON,Covanta Durham York Renewable Energy Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10806,site,Ferrier Comp Station 13-05,CA-AB,Spartan Delta Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10807,site,Fort Saskatchewan Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10808,site,Guelph Campus,CA-ON,University of Guelph,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10809,site,JBS Foods Canada Inc.,CA-AB,ALIMENT JBS CANADA ULC/ JBS FOOD CANADA ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10810,site,Long Harbour Operations,CA-NL,Vale Newfoundland and Labrador Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10811,site,Petyo Oldman North 14-17-055-21W5,CA-AB,Peyto Exploration and Development Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10812,site,Rush Lake Thermal Pilot & Commercial 12-03-048-21W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10813,site,Canadian Natural Upgrading Limited Muskeg River Mine and Jack,CA-AB,Canadian Natural Upgrading Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10814,site,Sundance 15-07,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10815,site,Sunrise Thermal,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10816,site,West Cadotte Power Plant,CA-AB,WCSB Power Alberta LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10817,site,LINDBERGH SAGD 04-25,CA-AB,Strathcona Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10818,site,Oungre Oil Battery 03-14,CA-SK,Crescent Point Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10821,site,Glenridge Landfill Site,CA-ON,Regional Municipality of Niagara,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10822,site,SAULT STE. MARIE MUNICIPAL LANDFILL,CA-ON,Sault Ste. Marie Municipal Landfill,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10823,site,Air Liquide Canada - Bécancour Plan 2,CA-QC,Air Liquide Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10825,site,Tourmaline Musreau 02/09-13-062-06-W6,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10826,site,Fleet Street Landfill Site,CA-SK,City of Regina,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10827,site,Charlottetown Thermal Generating Station,CA-PE,Maritime Electric,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10828,site,ALBERTA NEWSPRINT,CA-AB,Alberta Newsprint Co.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10830,site,MSSC Canada,CA-ON,MSSC Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10832,site,Lator #2 01-21-063-02W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10833,site,Karr 07-11-064-04W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10834,site,Otter Lake Landfill,CA-NS,Halifax Regional Municipality (HRM),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10835,site,Mary River Mine Site,CA-NU,Baffinland Iron Mines,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10836,site,North Portal Sour Gas Plant 01-09,CA-SK,Steel Reef Infrastructure Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10838,site,Windsor Plant,CA-ON,K+S Windsor Salt Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10840,site,Port Hawkesbury Biomass Cogeneration Power Plant,CA-NS,Nova Scotia Power Incorporated,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10841,site,Edam East Thermal 05-08-048-19W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10842,site,Vawn Thermal 16-01-048-19W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10843,site,Cargill Limited Clavet - Oilseed Processing,CA-MB,Cargill Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10846,site,Peyto Brazeau 06-12-044-13W5,CA-AB,Peyto Exploration and Development Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10847,site,Tafisa Canada,CA-QC,Tafisa Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10850,site,Altares Gas Plant b-72-A,CA-BC,Pacific Canbriam Energy Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10860,site,McCain Foods (Canada) GRAND FALLS,CA-NB,McCain Foods Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10861,site,Ball Advanced Aluminum Technologies Canada Inc.,CA-QC,Ball Advanced Aluminum Technologies Holding Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10863,site,Meliadine Gold Project,CA-NU,Agnico Eagle Mines Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10864,site,Coronation Landfill,CA-AB,Waste Connections of Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10865,site,Lieu d'enfouissement technique,CA-QC,Ville de Rimouski,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10866,site,"FLORENCEVILLE, NEW BRUNSWICK",CA-NB,McCain Foods Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10867,site,Usine de St-Jérôme,CA-QC,Les entreprises Rolland inc Usine de St-Jérôme,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10868,site,Edmonton International Airport,CA-AB,Edmonton Regional Airport Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10869,site,Kaybob Gas Plant 10-29-063,CA-AB,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10870,site,Kaybob Gas Plant 15-31,CA-AB,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10872,site,Atlantic Wallboard,CA-NB,Atlantic Wallboard Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10873,site,Brucejack Gold Mine,CA-BC,Pretium Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10876,site,Dumur Industries,CA-SK,Dumur Industries,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10878,site,Red Deer Batch Plant,CA-AB,Border Paving Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10879,site,Camrose Batch Plant,CA-AB,Border Paving Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10881,site,Flakeboard,CA-NB,Arauco Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10882,site,Hinton Batch Plant,CA-AB,Border Paving Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10883,site,Border Paving 20010,CA-AB,Border Paving Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10885,site,Stony Plain Batch Plant,CA-AB,Border Paving Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10886,site,Portable Plant 020002,CA-AB,Border Paving Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10887,site,Red Deer Main Office,CA-AB,Border Paving Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10888,site,Border Paving 20011,CA-AB,Border Paving Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10889,site,Red Deer Truck Shop,CA-AB,Border Paving Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10890,site,Seabee,CA-SK,SGO Mining Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10896,site,Atholville Mill,CA-NB,AV Group NB Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10897,site,Scotford Hydrogen Facility,CA-AB,Air Products Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10899,site,DEPARTMENT OF Facilities Management,CA-NB,University of New Brunswick,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10900,site,Milne Port Site,CA-NU,Baffinland Iron Mines,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10901,site,SILVER CITY GALVANIZING - DELTA,CA-BC,Silver City Galvanizing Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10903,site,SOCIÉTÉ EN COMMANDITE REVENU NORANDA - VALLEYFIELD,CA-QC,Société en commandite Revenu Noranda,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10904,site,Casa Berardi,CA-QC,Hecla Québec Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10907,site,La Mine Niobec,CA-QC,Magris Ressources,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10908,site,McClean Lake Operations,CA-SK,Orano Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10909,site,MOSAIC POTASH ESTERHAZY - K1 SITE,CA-SK,Mosaic Potash Esterhazy Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10911,site,La mine Doyon,CA-QC,Iamgold Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10912,site,Timmins Micronizing Plant,CA-ON,Magris Talc Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10913,site,Key Lake Operation,CA-SK,Cameco Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10914,site,Sheerness Mine,CA-AB,Prairie Mines & Royalty ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10915,site,Paintearth Mine,CA-AB,Prairie Mines & Royalty ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10916,site,Poplar River Mine,CA-SK,Prairie Mines & Royalty ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10917,site,Island Gold Mine,CA-ON,Alamos Gold Incorporated,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10919,site,GODERICH PLANT,CA-ON,Compass Minerals Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10920,site,Nepheline Syenite Operations,CA-ON,Covia Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10921,site,HBMS Chisel Lake Mine,CA-MB,Hudbay Minerals,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10922,site,McArthur River Operation,CA-SK,Cameco Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10923,site,Cigar Lake Operation,CA-SK,Cameco Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10924,site,Porcupine Gold Mines,CA-ON,GOLDCORP CANADA LTD,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10925,site,ADM AGRI-INDUSTRIES - ADM Candiac,CA-QC,ADM Agri-Industries Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10926,site,Impala Canada Ltd.,CA-ON,Impala Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10927,site,Meridian Brick - Burlington,CA-ON,Meridian Brick,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10928,site,Meridian Brick - Aldershot,CA-ON,Meridian Brick,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10929,site,Lake Shore Gold Timmins West Mine,CA-ON,Lake Shore Gold,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10930,site,McEwen Ontario Black Fox Mine,CA-ON,McEwen Ontario,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10931,site,Bell Creek Complex,CA-ON,Lake Shore Gold,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10932,site,Brassey Gas Processing and Production IF-a,CA-BC,Shell Canada Limited-1,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10933,site,Sunset Gas Processing and Production IF-a,CA-BC,Shell Canada Limited-1,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10934,site,Houweling Nurseries Ltd. - Delta,CA-BC,Houweling Nurseries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10935,site,Windset Farms (Canada) Ltd. - Ladner,CA-BC,Windset Farms (Canada) Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10936,site,Dawson Sour Gas Plant 05-35,CA-BC,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10937,site,Dawson Comp Stn 01-34,CA-BC,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10938,site,Masset Diesel Generating Station,CA-BC,British Columbia Hydro and Power Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10939,site,"Coastland Wood Industries Ltd., Annacis Division",CA-BC,Coastland Wood Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10940,site,South Hiding Creek Comp Station B-053-A,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10941,site,Ring Border c-81-I/94-H-9,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10942,site,Cutbank Comp Stn A-038-I,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10943,site,Cutbank Comp Stn B-100-B,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10944,site,Dawson Creek Comp Stn 09-15,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10945,site,Hythe Comp Stn D-033-I,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10947,site,Hythe Comp Stn D-019-H,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10948,site,Hay Gas Plant,CA-BC,HARVEST OPERATIONS CORP.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10949,site,Lantic Inc. - Vancouver Refinery,CA-BC,Lantic Inc. - Vancouver Refinery,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10952,site,Heffley Creek Division,CA-BC,Tolko Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10953,site,Lavington Planer Mill,CA-BC,Tolko Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10954,site,Village Farms - Delta I,CA-BC,Village Farms Canada L.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10955,site,West Coast Reduction Ltd.,CA-BC,West Coast Reduction Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10957,site,CIPA Lumber Co. Ltd.,CA-BC,CIPA Lumber Co. Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10958,site,Burrard Products Terminal,CA-BC,Suncor Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10959,site,Murray River Comp Stn C-033-J,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10962,site,Fort McMurray Class 1 Composting Facility,CA-AB,Regional Municipality of Wood Buffalo,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10963,site,Wroe 8-12,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10964,site,Laprise Main Battery (A-040-E/094-H-05),CA-BC,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10966,site,Parkland Comp Stn 08-13,CA-BC,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10968,site,Septimus Sweet Gas Plant 12-27,CA-BC,Crew Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10969,site,Birch Comp Stn C-018-I,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10971,site,Prespatou  Comp Stn C-059-B,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10974,site,Dawson/Doe 1-32-80-15 W6,CA-BC,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10975,site,Navan Landfill,CA-ON,Waste Connections of Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10976,site,West Pembina Battery and Compressor,CA-AB,Vermilion Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10977,site,Granada Gas Plant,CA-AB,Vermilion Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10978,site,Wapiti Compressor Station 07-22,CA-AB,Sinopec Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10979,site,Eta Lake Gas Plant,CA-AB,Vermilion Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10980,site,LRE - Kenzie Oil Battery 13-04,CA-AB,Long Run Exploration Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10981,site,Kakwa Gas Plant 10-07-063-05W6,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10982,site,KUNTZ ELECTROPLATING INC.,CA-ON,Kuntz Electroplating Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10983,site,CertainTeed Insulation Ottawa,CA-ON,Ottawa Fibre LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10985,site,Gibbons Site,CA-AB,Evonik Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10986,site,DALSA SEMICONDUCTOR - BROMONT,CA-QC,Teledyne Dalsa Semiconducteur Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10987,site,Usine Montréal,CA-QC,Usines Giant Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10989,site,Edmonton Plant,CA-AB,Owens Corning Insulating Systems Canada LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10991,site,BIOX Canada Limited,CA-ON,BIOX Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10994,site,Oil Recovery Division,CA-ON,Safety-Kleen Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:10998,site,CARBERRY FACTORY,CA-MB,McCain Foods Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11000,site,Mitsue Sour GP 10-30-72-4W5,CA-AB,Cardinal Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11001,site,Scots Lake 13-7-16-11W4,CA-AB,Cardinal Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11002,site,Acheson Sour Gas Plant 05-02-053-26W4,CA-AB,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11003,site,Slave Lake Sour Gas Plant 09-15,CA-AB,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11005,site,Willesden Green Sweet Gas Plant 14-01,CA-AB,Obsidian Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11007,site,Brasserie de Montréal,CA-QC,Molson Coors Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11008,site,CFB Halifax - Windsor Park,CA-NS,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11009,site,Toronto Plant,CA-ON,Owens Corning Insulating Systems Canada LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11010,site,Hussar Gas Plant 13-36-024-21W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11011,site,Obed 01-21,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11012,site,LRE - Edson Gas Plant 01-13,CA-AB,Long Run Exploration Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11013,site,Apotex Inc. Etobicoke site,CA-ON,Apotex Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11014,site,LA CIE MATÉRIAUX DE CONSTRUCTION  BP CANADA - LASALLE,CA-QC,La Cie Matériaux de Construction BP Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11015,site,THE CALGARY AIRPORT AUTHORITY - CALGARY,CA-AB,The Calgary Airport Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11016,site,CFB - ASU Edmonton,CA-AB,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11018,site,Dunn Paper,CA-ON,Interlake Acquisition Corporation Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11019,site,Belleville,CA-ON,The Procter & Gamble Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11020,site,Matalco Inc.,CA-ON,Matalco Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11021,site,Ste. Agathe (Canola Crush Plant) Viterra,CA-MB,Viterra Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11022,site,Lator #1 01-21-063-02W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11025,site,Chalk River Laboratories,CA-ON,Canadian Nuclear Laboratories,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11026,site,Toronto Brewery,CA-ON,Molson Coors Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11027,site,4 CDSB - Garrison Petawawa,CA-ON,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11028,site,Moorefield,CA-ON,Darling International Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11029,site,Bantry Sour Gas Plant & Power Plant,CA-AB,Campus Energy Partners Operations Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11030,site,Edmonton Ethane Extraction Plant,CA-AB,AltaGas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11031,site,CFB Esquimalt - Dockyard,CA-BC,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11032,site,Usine de production de polystyrène expansible,CA-QC,Styrochem Canada Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11034,site,Roseburg Forest Products Canada Ltd. (Pembroke MDF),CA-ON,Roseburg Forest Products Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11036,site,CFB Gagetown,CA-NB,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11037,site,Willisden Green Comp Station 08-04,CA-AB,Spartan Delta Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11038,site,Conroy D-48-C/94-H-12,CA-BC,Polar Star Canadian Oil and Gas Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11039,site,Incinérateur de Lévis,CA-QC,Ville de Lévis,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11040,site,Fort McMurray WWTP,CA-AB,Regional Municipality of Wood Buffalo,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11041,site,Maple Lodge Farms,CA-ON,Maple Lodge Farms Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11042,site,Real Alloy Mississauga,CA-ON,Real Alloy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11043,site,"Canada Malting, Thunder Bay",CA-ON,Canada Malting Co Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11045,site,Steen River Gas Plant,CA-AB,Tallahassee Exploration Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11046,site,Great Lakes Copper Ltd.,CA-ON,Great Lakes Copper Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11047,site,Alberta Capital Region Wastewater Commission Treatment Plant,CA-AB,Alberta Capital Region Wastewater Commision,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11048,site,Selenis Canada Inc,CA-QC,Compagnie Selenis Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11050,site,Peintures MF Inc.,CA-QC,Peintures MF Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11051,site,energy centre,CA-ON,Hamilton Utilities Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11052,site,Agropur Coopérative - Usine de Beauceville,CA-QC,Agropur Cooperative,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11053,site,Agropur Coopérative - Usine de Granby,CA-QC,Agropur Cooperative,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11054,site,Agropur Coopérative - Usine de Notre-Dame-du-Bon-Conseil,CA-QC,Agropur Cooperative,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11055,site,Agropur Coopérative - Usine de Plessisville,CA-QC,Agropur Cooperative,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11056,site,Innisfail Plant,CA-AB,Johns Manville Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11057,site,Waste Management Facility,CA-AB,City of Red Deer,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11058,site,Main Campus,CA-NS,Dalhousie University,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11059,site,FORMET INDUSTRIES,CA-ON,Magna International Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11060,site,Canadian General-Tower Ltd.,CA-ON,Canadian General-Tower Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11064,site,CASCADES EMBALLAGE CARTON-CAISSE CABANO,CA-QC,Cascades Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11066,site,BFC Borden,CA-ON,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11067,site,Montreal Power House,CA-QC,Air Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11068,site,Lethbridge,CA-AB,Richardson Oilseed Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11069,site,Red Deer Regional Hospital Centre,CA-AB,Alberta  Health Services,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11070,site,Saskatoon Plant,CA-SK,"ERCO Worldwide, A division of Superior Plus LP",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11072,site,5 Wing Goose Bay,CA-NL,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11073,site,Panolam Industries Ltd.,CA-ON,Panolam Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11074,site,Hexion Canada Inc.- Edmonton Facility,CA-AB,Hexion Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11076,site,Maple Leaf Foods - Brandon,CA-MB,Maple Leaf Foods Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11079,site,Cargill High River Plant,CA-AB,Cargill Foods,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11080,site,Powerhouse,CA-MB,University of Manitoba,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11081,site,Ingredion Canada Corporation,CA-ON,Ingredion Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11082,site,G.E. Booth (Lakeview) Wastewater Treatment Facility,CA-ON,Ontario Clean Water Agency,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11084,site,Hartmann North America,CA-ON,Hartmann Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11085,site,Moose Jaw,CA-SK,PNA Partnership o/a Potters Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11087,site,Tunney's Pasture Central Heating and Cooling Plant,CA-ON,Public Works and Government Services Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11088,site,Confederation Heights Central Heating and Cooling Plant,CA-ON,Public Works and Government Services Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11091,site,Valhalla 03-27-075-09W6 BTY,CA-AB,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11092,site,Sonoco Brantford,CA-ON,Sonoco Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11093,site,Halton Waste Management Site,CA-ON,Region Municipality of Halton,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11094,site,Sonoco - Trent Valley Mill,CA-ON,Sonoco Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11095,site,INFASCO,CA-QC,Ifastgroupe,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11097,site,Rain Carbon Canada Inc.,CA-ON,Rain Carbon Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11098,site,ArcelorMittal Coteau Du Lac Inc,CA-QC,ArcelorMittal Coteau Du Lac,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11100,site,Trilogy Presley 03-29 100%,CA-AB,Paramount Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11102,site,Goodyear Canada Inc.,CA-ON,Goodyear Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11103,site,Kaiser Aluminum Canada Limited,CA-ON,Kaiser Aluminum Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11104,site,Victoriaville,CA-QC,Lactalis Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11105,site,Winchester,CA-ON,Lactalis Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11106,site,Strathcona Paper LP,CA-ON,Strathcona Paper GP Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11107,site,Beiseker Compressor Station 04-15,CA-AB,Lynx Energy ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11108,site,Joffre Compressor Station 04-22,CA-AB,Lynx Energy ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11109,site,LA CIE MATÉRIAUX DE CONSTRUCTION BP CANADA - Pont-Rouge,CA-QC,La Cie Matériaux de Construction BP Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11111,site,McCain Foods Coaldale FF plant,CA-AB,McCain Foods Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11112,site,Ferrier Comp Stn 09-03,CA-AB,Spartan Delta Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11113,site,Montreal Sulphur Plant,CA-QC,Suncor Energy Products Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11114,site,Portable Plant 020008,CA-AB,Border Paving Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11115,site,Guelph Beef,CA-ON,Cargill Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11116,site,USINE MONTREAL,CA-QC,Lallemand Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11119,site,MSC Toronto,CA-ON,Continuous Colour Coat Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11120,site,8 Wing Trenton Environmental Management,CA-ON,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11121,site,Spray Lake Sawmills (1980) Ltd.,CA-AB,Spray Lake Sawmills (1980) Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11122,site,CFB/ ASU Kingston,CA-ON,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11123,site,"Fabrication région Est, Sherbrooke",CA-QC,Produits Kruger s.e.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11124,site,Baycoat,CA-ON,"Dofasco Inc., Stelco Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11125,site,Sanimax ACI,CA-QC,Sanimax ACI,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11126,site,WINDSOR ALUMINUM PLANT,CA-ON,Nemak of Canada Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11127,site,4 Wing Cold Lake,CA-AB,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11128,site,Sivaco Québec,CA-QC,Groupe des tréfileries Sivaco 2004,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11129,site,Welland Plant,CA-ON,Cytec Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11130,site,Swan Hills Treatment Center,CA-AB,SUEZ Canada Waste Services Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11131,site,Channel Lake 12-29,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11132,site,CAMI Assembly Plant,CA-ON,General Motors of Canada Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11133,site,3M BROCKVILLE 501,CA-ON,3M Canada Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11134,site,Queen's University - Kingston Main Campus,CA-ON,Queen's University,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11136,site,MCCAIN FOODS (CANADA) - PORTAGE LA PRAIRIE,CA-MB,McCain Foods Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11137,site,Amadou Compressor Station 14-03-074-20W4,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11139,site,Galloway Gas Plant 12-05-054-20W5,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11140,site,CKF - HANTSPORT,CA-NS,CKF Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11142,site,MCMASTER UNIVERSITY,CA-ON,McMaster University,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11144,site,Stolberg Dehy 02-03-041-14W5,CA-AB,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11145,site,Sylvan Lake Gas Plant 01-21-038-02W5,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11146,site,Cessford Comp Stn 04-14,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11148,site,Maxhamish Comp Stn d-036-I,CA-BC,EOG Canada Oil & Gas Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11150,site,Glen Ewen Sour Gas Plant 05-14,CA-SK,Steel Reef Infrastructure Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11151,site,Formica Canada Inc,CA-QC,Formica Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11152,site,"Centrales thermiques, Service des immeubles",CA-QC,Université Laval,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11153,site,BFC Suffield,CA-AB,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11155,site,LRE - Donnelly Gas Plant 06-01,CA-AB,Long Run Exploration Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11156,site,Gimli Plant,CA-MB,Diageo Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11158,site,"Kimberly Clark, Huntsville Mill",CA-ON,Kimberly-Clark Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11159,site,Warden Energy Centre,CA-ON,Markham District Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11161,site,Foothills Medical Centre,CA-AB,Alberta  Health Services,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11162,site,North Sheridan Landfill Site (Closed),CA-ON,Region of Peel,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11164,site,Waterton Complex - Compressor Station W,CA-AB,PIERIDAE ALBERTA PRODUCTION LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11165,site,BLIND RIVER REFINERY,CA-ON,Cameco Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11166,site,Lindbergh Custom Treating Facility,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11167,site,LA BRASSERIE LABATT,CA-QC,Labatt Brewing Company Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11168,site,Niton Sweet Gas Plant,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11169,site,Lindbergh Facility,CA-AB,Windsor Salt Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11171,site,WASTEWATER TREATMENT PLANT,CA-SK,City of Saskatoon,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11172,site,Toyota Motor Manufacturing Canada Inc. (Woodstock),CA-ON,Toyota Motor Manufacturing Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11173,site,BUNGE CANADA - ALTONA PLANT,CA-MB,Bunge Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11174,site,BUNGE CANADA - FORT SASKATCHEWAN PLANT,CA-AB,Bunge Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11175,site,BUNGE CANADA - HARROWBY PLANT,CA-MB,Bunge Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11177,site,NAL Sturgeon Lake Gas Plant 13-07-069-24-W5,CA-AB,NAL Resources Management,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11178,site,Tilley Main Gas Battery 08-16,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11179,site,JCWP 7-6,CA-AB,ACCEL Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11180,site,Westerose Comp Stn 11-09,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11182,site,Redwater Sour Gas Plant 01-29,CA-AB,Accel Canada Holdings Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11183,site,Beartrap Custom Treating Facility,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11184,site,Pierson Oil Battery 14-09,CA-MB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11186,site,BUNGE CANADA - NIPAWIN PLANT,CA-SK,Bunge Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11187,site,North East Station 7-15,CA-AB,City of Medicine Hat,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11190,site,Clearhills 16-11-088-13 W6M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11191,site,Ladyfern Comp Stn B-017-I,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11195,site,Minehead 10-12,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11196,site,Wild Hay Gas Battery 13-24,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11200,site,Smoky Sweet Gas Plant 07-36,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11203,site,LET de La Nouvelle-Beauce,CA-QC,MRC de La Nouvelle-Beauce,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11205,site,Ferrier 01-34-040-09 W5M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11206,site,Installations Portuaires et Services Ferroviaires,CA-QC,Rio Tinto Alcan Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11207,site,Hythe Comp Stn a-029-H,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11208,site,Usine de Gatineau,CA-QC,Produits forestiers Résolu,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11209,site,Centrale de Kuujjuaq,CA-QC,Hydro-Québec,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11210,site,Centrale d'Obedjiwan,CA-QC,Hydro-Québec,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11211,site,Prairie Green IWMF,CA-MB,Waste Connections of Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11212,site,Kapuskasing Operations,CA-ON,Rayonier A.M. Canada G.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11213,site,Cactus Lake Battery,CA-SK,Strathcona Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11215,site,Midale Complex 07-12-06-11W2,CA-SK,Cardinal Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11216,site,Consort Sweet Gas Plant,CA-AB,Karve Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11217,site,Wildhay Cecilia-Kaybob Plant,CA-AB,Paramount Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11219,site,Leafland Facility,CA-AB,Paramount Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11220,site,Air Liquide Canada - Hamilton (ASU and H2),CA-ON,Air Liquide Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11221,site,"Cascades Groupe Tissu Candiac, une division de Cascades Canad",CA-QC,Cascades Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11225,site,Graphic Packaging International Canada ULC - East Angus,CA-QC,Graphic Packaging International Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11226,site,Everdell 14-20-038-07W5 GP,CA-AB,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11227,site,Armstrong Division,CA-BC,Tolko Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11228,site,Soda Creek,CA-BC,Tolko Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11229,site,"Cascades Groupe Tissu Kingsey Falls, une division de Cascades",CA-QC,Cascades Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11231,site,ArcelorMittal Longueuil,CA-QC,ArcelorMittal Produits Longs Canada s.e.n.c,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11232,site,Moose Mountain Compressor Station,CA-AB,PIERIDAE ALBERTA PRODUCTION LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11233,site,Bonnybrook Wastewater Treatment Plant,CA-AB,City of Calgary,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11234,site,Greenway Pollution Control Centre,CA-ON,Corporation of the City of London,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11235,site,Drayton Valley Sawmill,CA-AB,Weyerhaeuser Company Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11236,site,Joffre Nitrogen Operations,CA-AB,Agrium Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11238,site,Dunvegan Plant 15-03-081-04 W6M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11239,site,Alberta Processing Company,CA-AB,West Coast Reduction Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11240,site,Northern Alberta Processing Company,CA-AB,West Coast Reduction Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11241,site,Guelph Glass Plant,CA-ON,Owens Corning Composite Materials Canada LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11242,site,Établissement 01,CA-QC,Pratt & Whitney Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11243,site,Etobicoke Casting Plant,CA-ON,FCA Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11245,site,Steelman Gas Plant,CA-SK,Steel Reef Infrastructure Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11247,site,Ricinus Gas Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11249,site,Pembina  North Gas Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11250,site,Brazeau Sweet Gas Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11251,site,ALBERTA PLYWOOD EDMONTON - A Division of West Fraser Mills Lt,CA-AB,Williams Lake Lumber (Div of West Fraser Mills Ltd.),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11252,site,Nottingham Gas Plant 07-17-005-32-W1,CA-SK,Steel Reef Infrastructure Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11253,site,Centrica Compressor Station 10-10,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11256,site,East River,CA-NS,Maibec Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11257,site,Turin Sour Gas Plant,CA-AB,Campus Energy Partners Operations Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11258,site,South Swan Hills,CA-AB,ACCEL Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11260,site,PETRO-CAN WHITECOURT,CA-AB,Taqa North Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11262,site,Teepee Creek Plant 07-02-074-04 W6M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11263,site,Chime 5-26 Compressor Station,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11264,site,Chime 08-13,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11265,site,Alder Flats Sweet Gas Plant,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11266,site,Ferrier Comp Stn 13-17,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11269,site,Medicine River Sour Gas Plant,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11271,site,Peco Sweet Gas Plant,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11272,site,Placid Gas Battery 06-31,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11275,site,Viking Sweet Gas Plant,CA-AB,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11276,site,Wapiti Comp Station 07-23,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11277,site,Carrot Creek Gas Plant,CA-AB,Vermilion Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11279,site,Brazeau Comp Stn 02-10,CA-AB,Spartan Delta Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11281,site,Hussar Crowfoot Sweet Gas Plant 14-01,CA-AB,Lynx Energy ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11283,site,Hythe Gas Battery 15-31,CA-AB,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11284,site,Redland Comp Stn 11-19,CA-AB,Lynx Energy ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11285,site,Redland Sweet Gas Plant (01-20),CA-AB,Lynx Energy ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11286,site,Severn Comp Stn 06-17,CA-AB,Lynx Energy ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11287,site,Cassils Comp Stn 13-24-019-15W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11288,site,Countess Makepeace Sweet Gas Plant 12-33-022-18W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11290,site,Bassano Lathom Comp Stn 10-23-020-18W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11293,site,Rosemary Sweet Gas Plant 08-21-021-15W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11294,site,Suffield A2 Sour Gas Plant,CA-AB,IPC Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11296,site,Suffield CD Comp Stn 01-04,CA-AB,IPC Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11297,site,Suffield D Comp Stn 01-04,CA-AB,IPC Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11298,site,Suffield E Comp Stn 04-03,CA-AB,IPC Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11299,site,Tide Lake Comp Stn 01-04-018-11W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11300,site,Verger A Sweet Gas Plant 04-28-022-16W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11301,site,Wayne Dalum Sweet Gas Plant 05-17-027-19W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11302,site,BLENHEIM LANDFILL,CA-ON,Waste Management of Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11303,site,Peyto Wildhay 04-21-055-23W5,CA-AB,Peyto Exploration and Development Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11304,site,Peyto Kakwa 02-11-060-04W6,CA-AB,Peyto Exploration and Development Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11307,site,Ferrier 01-20-039-07 W5M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11308,site,Hamburg 11-14-097-11 W6M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11309,site,GoodFish South Sour Gas Plant 03-32,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11311,site,Eaglesham Culp 05-34-078-25 W5M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11312,site,WIMBORNE Gas Battery 2-16-34-26W4,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11313,site,Markerville Compressor Station #1,CA-AB,HARVEST OPERATIONS CORP.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11315,site,FCA Canada Inc. - Windsor Assembly Plant,CA-ON,FCA Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11319,site,Port Hope Conversion Facility,CA-ON,Cameco Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11320,site,South Wapiti 16-36,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11322,site,Victoria Hospital,CA-ON,London Health Sciences Centre,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11324,site,Alberta Hub Gas Storage Facility,CA-AB,Iberdrola Canada Energy Services Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11325,site,UNITY ETHANOL PLANT,CA-SK,North West Terminal Ltd. (NWT),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11326,site,Tourmaline Hinton Gas Plant (06-32-51-25 W5M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11327,site,Horse 16-17-058-26-W5,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11328,site,Warner Oil Battery 04-20-007-16W4,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11330,site,Moose Moutain Oil Battery 02-23-023-07W5,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11331,site,Yorkton,CA-SK,Richardson Oilseed Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11336,site,Bracemac-McLeod,CA-QC,Glencore Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11337,site,Camrose Regional Landfill,CA-AB,City of Camrose,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11339,site,Niagara Road 12 Landfill Site,CA-ON,Regional Municipality of Niagara,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11340,site,Bridge Street Landfiil Site,CA-ON,Regional Municipality of Niagara,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11341,site,Elm Street Landfill Site,CA-ON,Regional Municipality of Niagara,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11343,site,Pcp Westerose 14-27,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11344,site,Pancdn Wilson Creek #2,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11345,site,Brazeau Office 01-01,CA-AB,Westbrick Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11348,site,GROUNDBIRCH GP 06-19-080-20W6,CA-BC,Strathcona Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11351,site,Sukunka Comp Stn A-064-J,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11354,site,Kerrobert 03-27-032-23W3 BTY,CA-SK,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11357,site,Town North B-070-C/094-G-01,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11360,site,Younger NGL Extraction Plant,CA-BC,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11361,site,Welded Tube (Q&T Plant),CA-ON,Welded Tube of Canada Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11362,site,BPCO Edmonton,CA-AB,La Cie Matériaux de Construction BP Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11363,site,Chaparral Landfill,CA-AB,Waste Connections of Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11365,site,Chungo Compressor Station 05-26-043-18W5,CA-AB,PIERIDAE ALBERTA PRODUCTION LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11366,site,Valhalla Oil Battery 06-18,CA-AB,Surge Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11368,site,Valbruna ASW Inc.,CA-ON,Valbruna ASW Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11372,site,Kakwa Sour Gas Processing Plant 16-07-063-05W6,CA-AB,ORLEN Upstream Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11373,site,Resthaven Gas Battery 02-16,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11374,site,Cresecent Point Shaunavon Oil Battery 04-16,CA-SK,Crescent Point Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11375,site,Young-Davidson,CA-ON,Alamos Gold Incorporated,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11376,site,Kiwigana Comp Stn C-093-L,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11377,site,Caribou D-032-C/094-G-07,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11378,site,Lily B-038-J/094-G-02,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11379,site,Huron 15-34-079-17-W6,CA-BC,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11380,site,Ferrier Compressor Station 04-13-039-09W5,CA-AB,ORLEN Upstream Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11382,site,Projet Nunavik Nickel,CA-QC,Canadian Royalties inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11385,site,Aquatera Grande Prairie WWTP (and Landfill),CA-AB,Aquatera Utilities Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11386,site,Robin Hood Bay Regional Waste Management Facility,CA-NL,City of St. John's,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11387,site,Tourmaline Anderson Gas Plant (01-09-051-24 W5M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11388,site,Eastern Ontario Landfill,CA-ON,GFL Environmental Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11389,site,Jansen Project,CA-SK,BHP Billiton Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11390,site,Fonderie Bibby Ste-Croix,CA-QC,Canada Pipe Co ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11391,site,Ante Creek North Sweet Gas Plant 10-07,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11392,site,Vero Edson Sweet Gas Plant 12-15-053-15W5,CA-AB,Velvet Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11393,site,Kaybob Gas Plant 05-31,CA-AB,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11394,site,Leitchville Sour Gas Plant,CA-SK,Steel Reef Infrastructure Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11397,site,Fort Hills Oil Sands,CA-AB,Fort Hills Energy L.P.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11398,site,Ferrero Canada Limited,CA-ON,Ferrero Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11402,site,Altares D-097-G/094-B-08,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11403,site,Green D-039-C/094-G-10,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11404,site,W Gundy B-032-B/094-B-16,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11405,site,Lily A-29-J Gas Plant,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11407,site,Resthaven 02-10,CA-AB,XTO Energy Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11408,site,Shaunavon Oil Battery 01-15,CA-SK,Surge Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11409,site,Hangingstone Expansion Project,CA-AB,Japan Canada Oil Sands Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11411,site,Golden Lake Oil Multi Well Battery 14-13-047-23W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11413,site,Ferguson Compressor Station 03-25-003-17W4,CA-AB,Granite Oil Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11415,site,Altares Gas Plant b-24-H,CA-BC,Pacific Canbriam Energy Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11416,site,Sarnia CO2 & Dry Ice Plant,CA-ON,Linde Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11418,site,Wild River 11-16-055-24-W5,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11421,site,Wapiti Comp stn 15-09,CA-AB,Sinopec Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11423,site,Veolia ES Canada Services Industriels inc.,CA-QC,Veolia ES Canada Services Industriels Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11425,site,Installations portuaires de Port-Cartier,CA-QC,ArcelorMittal Infrastructure Canada s.e.n.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11426,site,Julienne A-005-I/094-G-02,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11428,site,Gundy D-004-H/094-B-16,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11431,site,North Beg D-045-D/094-G-08,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11432,site,Sundown B-067-H/093-P-10,CA-BC,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11434,site,Brazeau CS 06-27-047-14W5,CA-AB,Boulder Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11435,site,Galloway Power Plant,CA-AB,WCSB Power Alberta LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11437,site,Kerrobert 01-01-033-24W3,CA-SK,Baytex Energy Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11438,site,Pembalta Gas Plant 09-25,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11439,site,Maple Leaf Foods - Heritage,CA-ON,Maple Leaf Foods Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11440,site,KAYBOB SOUR GAS PROCESSING PLANT 15-07-060-18 W5M,CA-AB,XTO Energy Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11443,site,Wapiti Gas Battery 03-36,CA-AB,NuVista Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11449,site,Mountain Road Landfill,CA-ON,Regional Municipality of Niagara,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11450,site,Torc Macoun Oil Battery 06-24-004-09W2,CA-SK,TORC Oil & Gas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11451,site,Cynthia GP & Bty,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11452,site,Kakwa 01-02-064-05W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11453,site,Kakwa 07-04-064-05W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11454,site,Kakwa 13-08-064-04W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11455,site,Kakwa 16-29-064-05 W6M,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11456,site,Kaybob 15-28,CA-AB,Energy Transfer Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11457,site,PARA KARR 06-18 COMPRESSOR,CA-AB,CSV Midstream Solutions,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11458,site,Kakwa 16-21-063-04W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11459,site,Musreau II 09-26-062-6W6,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11460,site,Plover SAGD 06-22,CA-SK,Strathcona Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11461,site,Tourmaline Spirit River Gas Plant (03-10-077-07 W6M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11462,site,Pipestone Comp Stn 16-34,CA-AB,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11463,site,Harley 08-10-057-27-W5,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11464,site,Saturn Gas Plant 15-27,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11465,site,Town Comp Stn. B-8-I,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11467,site,Graham C-77-F,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11469,site,Wilder Sweet Gas Plant 10-14,CA-BC,Crew Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11470,site,BFC Valcartier,CA-QC,DEPARTMENT OF NATIONAL DEFENCE,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11471,site,Kelt Pouce Coupe 103/06-33-077-11W6M,CA-AB,Kelt Exploration,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11472,site,Gahcho Kue Mine,CA-NT,De Beers Group,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11473,site,Gleichen Comp Stn 13-26,CA-AB,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11474,site,Redland South Comp Station 06-04,CA-AB,Lynx Energy ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11475,site,PFI Carrot Creek Comp Stn 08-36-051-14W5,CA-AB,Velvet Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11476,site,Wapiti Gas Battery 08-10,CA-AB,NuVista Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11477,site,Onion Lake Thermal 14-05-056-27W3,CA-SK,IPC Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11478,site,Carrier et Bégin inc.,CA-QC,Carrier et Bégin inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11479,site,Revolution Landfill,CA-ON,Revolution Landfill Acquisition GP Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11480,site,Tourmaline Ansell Plant (01-34-51-18 W5M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11481,site,Tourmaline Edson Gas Plant (04-17-051-18-W5M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11482,site,Zeta Creek GP 11-10,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11483,site,Alder Flats Gas Plant 10-09,CA-AB,Spartan Delta Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11484,site,13-11-062-27 W5M Simonette,CA-AB,Kanata Energy Group Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11486,site,Tourmaline 12-06-081-07-W6,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11489,site,Enerkem Alberta Biofuels,CA-AB,Enerkem Alberta Biofuels,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11490,site,Sunnybrook Health Sciences Centre,CA-ON,Sunnybrook Health Sciences Centre,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11491,site,Kildair Sorel-Tracy Terminal,CA-QC,Kildair Service ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11492,site,W.R. Grace Canada Corp.,CA-QC,W. R. Grace Canada Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11493,site,Aitken Creek Sour Gas Plant c-038-C,CA-BC,Black Swan Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11494,site,Edam CPF 06-11-048-19 W3M,CA-SK,Serafina Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11495,site,Edam West Thermal 11-19-048-20W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11496,site,Rainy River Mine,CA-ON,New Gold Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11497,site,Birley Umbach A-072-F/094-H-03,CA-BC,Chinook Energy (2010) Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11498,site,Townsend Gas Plant,CA-BC,AltaGas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11499,site,BUBBLES A-053-B/094-G-08,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11500,site,"Cascades Groupe Tissu Lachute, une division de Cascades Canad",CA-QC,Cascades Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11501,site,NBRHC,CA-ON,North Bay Regional Health Centre,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11502,site,Alameda Sour Gas Plant 16-08,CA-SK,Steel Reef Infrastructure Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11503,site,LRE - Kakwa 07-14,CA-AB,Long Run Exploration Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11504,site,Kakwa 16-23-063-05 W6M,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11505,site,Kakwa 08-06-064-04W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11506,site,Kakwa 02-31-063-04W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11507,site,Kakwa 04-14-064-05W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11508,site,Cutbank 10-10-065-05 W6M,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11509,site,Altana Pendant D'oreille 01-17,CA-AB,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11510,site,Wascana Many Islands 04-16,CA-AB,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11511,site,Pancan Alderson Monogram 13-14,CA-AB,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11512,site,Homestead Hatton 14-2 Battery,CA-SK,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11513,site,Bethune Mine,CA-SK,K+S Potash Canada General Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11515,site,Tourmaline Cecilia Gas Plant (15-04-058-23 W5M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11516,site,Tourmaline Columbia Gas Plant (15-36-044-15 W5M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11517,site,Redwater Fractionation Site Facility II (RFS II),CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11518,site,Ante Creek Multi-Well Gas Battery 05-26,CA-AB,Enerplus Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11519,site,Mine Renard,CA-QC,Les Diamants Stornoway (Canada) Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11520,site,Horse Sweet Gas Plant 14-23-058-26W5,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11521,site,Sturgeon Refinery,CA-AB,North West Redwater Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11522,site,University of Regina - Main Campus,CA-SK,University of Regina,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11523,site,Comox Valley Waste Management Centre,CA-BC,Comox Valley Regional District,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11524,site,Campbell River Waste Management Centre,CA-BC,Comox Valley Regional District,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11526,site,Tooga Gas Plant B-031-I,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11527,site,Flagstaff Waste Regional Landfill,CA-AB,Flagstaff Regional Solid Waste Management,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11528,site,Dawson Sour Gas Plant 13-07,CA-BC,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11530,site,South Health Campus,CA-AB,Alberta  Health Services,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11531,site,Sinclair 03-04-008-29 W1M,CA-MB,Tundra Oil & Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11532,site,Sinclair 13-14-008-29 W1M,CA-MB,Tundra Oil & Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11533,site,Daly 08-28-009-29 W1M,CA-MB,Tundra Oil & Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11534,site,Cromer 13-10-009-28 W1M,CA-MB,Tundra Oil & Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11535,site,Waskada 15-21-001-25 W1M,CA-MB,Tundra Oil & Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11536,site,Goodlands 16-10-001-24 W1M,CA-MB,Tundra Oil & Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11537,site,Rockyview General Hospital,CA-AB,Alberta  Health Services,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11539,site,Tower Gas Plant 03-07-081-17W6,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11540,site,1200 Montreal Road Campus,CA-ON,National Research Council Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11542,site,CNUL Cliffdale Facilities,CA-AB,Canadian Natural Upgrading Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11543,site,Service GMR,CA-QC,MRC de Bellechasse,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11545,site,Lieu d'enfouissement de St-Lambert de Lauzon (LET/LES),CA-QC,Régie intermunicipale de gestion des déchets des Chutes-de-l,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11546,site,Baptiste Comp Stn 06-21,CA-AB,Spartan Delta Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11548,site,Dumur Industries Assembly Division,CA-SK,Dumur Industries,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11549,site,Sand Creek Sour Gas Plant,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11551,site,Mervin EOR Central Facility 11-36-049-20W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11552,site,Lashburn EOR Central Facility 12-01-049-24W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11557,site,EDAM EOR Central Facility 07-24-049-20W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11564,site,Wainwright Multiwell Oil Battery 09-32-045-06W4,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11567,site,Cantuar Oil MWB 15-15,CA-SK,Crescent Point Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11568,site,SEEP Ethane Extraction Plant 13-19,CA-SK,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11575,site,Swan Hills Oil MWB 12-36,CA-AB,Crescent Point Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11576,site,Flat Lake Sour Gas Plant 09-16,CA-SK,Steel Reef Infrastructure Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11590,site,Rapdan Sour Gas Plant 13-01,CA-SK,Steel Reef Infrastructure Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11593,site,Redcliff Cypress Regional Landfill,CA-AB,Redcliff Cypress Waste Management Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11594,site,Tourmaline Doe Gas Plant (02-11-080-16 W6M),CA-BC,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11596,site,Wilrich 16-27 Compressor Station,CA-AB,Repsol Oil & Gas Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11597,site,Winnipeg,CA-MB,Darling International Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11598,site,Drumheller & District Regional Landfill,CA-AB,Drumheller & District Solid Waste Management Association,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11599,site,Hebron Platform,CA-NL,Exxonmobil Canada Properties - Hebron,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11601,site,Park Road Landfill,CA-ON,Regional Municipality of Niagara,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11602,site,Quest Carbon Capture and Storage (CCS) Project,CA-AB,Shell Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11603,site,NAIT - Main Campus,CA-AB,Northern Alberta Institute of Technology,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11605,site,TORC et Al Weir Hill Oil Battery 11-25-005-06W2,CA-SK,TORC Oil & Gas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11619,site,Kakwa 12-14-063-05W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11620,site,Kakwa 08-07-063-04W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11624,site,1972 Landfill (non-operating),CA-AB,City of Red Deer,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11626,site,Eagle Lake 11-09-031-21W3 BTY,CA-SK,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11631,site,Wembley Comp Station 06-27,CA-AB,NuVista Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11632,site,Cutbank Comp Stn 10-36,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11636,site,Knockholt Sub-Regional Landfill,CA-BC,Regional District of Bulkley-Nechako,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11637,site,Ansell Sweet Gas Plant 01-24,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11638,site,Bilbo Compressor Station 04-23,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11639,site,Cecilia 14-36-057-23 W5M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11641,site,Knopcik Gas Plant 09-10-074-11 W6M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11642,site,Duncan Compressor Station 10-36,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11643,site,Chinchaga 01-24-096-05 W6M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11644,site,Tilley West Compressor Station 01-03,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11645,site,Leland Compressor Station 16-27,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11647,site,Swan Hills Compressor Station 03-18,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11648,site,Obed Gas Battery 14-32,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11650,site,Wild River West Gas Battery 08-30,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11651,site,City of Medicine Hat Landfill,CA-AB,City of Medicine Hat,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11653,site,Bantry Gas Battery 05-08,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11656,site,Hangingstone Compressor Station 11-10,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11657,site,Nanaimo Regional Landfill,CA-BC,Regional District of Nanaimo,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11661,site,Claresholm Sweet Gas Plant 13-31-011-26W4,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11665,site,Wembley Oil Battery 14-03-073-08W6,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11666,site,Bilbo Compressor Station 06-34-065-08W6,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11667,site,Karr Creek Compressor Station 12-35-063-02W6,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11669,site,Tourmaline West Wolf Lake Gas Plant (10-03-052-17 W5M),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11672,site,Natural Gas Distribution System,CA-MB,Manitoba Hydro,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11675,site,Ciment McInnis inc.,CA-QC,Ciment McInnis Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11676,site,BRAZEAU 14-30-45-11W5 MWOB,CA-AB,Ridgeback Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11678,site,Newell Regional Landfill,CA-AB,Newell Regional Solid Waste Management Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11679,site,PETRO-CAN MED HAT #3,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11680,site,PETRO-CAN ALDERSON,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11681,site,PETRO-CAN MED HAT #1,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11682,site,Pouce Coupe Battery 6-3,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11683,site,Gilby 2-27 Gas Plant,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11684,site,PETRO-CAN GILBY,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11687,site,Turner Valley Battery 6-16,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11689,site,MORNINGSIDE 11-35 COMP,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11691,site,Marlboro Gas Plant 05-29-055-19 W5M,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11692,site,SOUTH ROSEVEAR 11-36-53-15,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11693,site,Willesden Green 10-34-40-06w5 Ggs,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11694,site,Pine Creek 12-2-56-19 Multiwell Gas,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11695,site,Ansell Gas Plant 12-31-050-17 W5M,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11696,site,Gilby 03-28-41-4 Ggs,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11697,site,BILBO GAS PLANT 4-25-65-7W6,CA-AB,HARVEST OPERATIONS CORP.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11698,site,LET de Neuville,CA-QC,Régie régionale de gestion des matières résiduelles de Portn,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11699,site,PCR FERRIER 7-16 COMP.,CA-AB,Taqa North Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11700,site,Pembina Blue Rapids 04-08-047-09W5,CA-AB,Taqa North Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11701,site,Valhalla Plant 13-21-76-9W6,CA-AB,Kanata Energy Group Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11702,site,Fort McMurray Regional Landfill,CA-AB,Regional Municipality of Wood Buffalo,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11712,site,Leduc & District Regional Waste Facility,CA-AB,Leduc & District Regional Waste Management Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11713,site,Placid 6-29,CA-AB,Athabasca Oil Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11714,site,Usine de production d'eau potable,CA-QC,Ville de Saint-Eustache,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11715,site,Usine d'épuration,CA-QC,Ville de Saint-Eustache,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11716,site,Brockville Activated Alumina Plant,CA-ON,Axens Canada Specialty Aluminas Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11718,site,North York Division,CA-ON,"Hydro Extrusion Canada, Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11719,site,Whitby,CA-ON,Atlantic Packaging Products Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11721,site,Armstrong Spallumcheen Recycling and Disposal Facility,CA-BC,Regional District of North Okanagan,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11722,site,Sechelt Landfill,CA-BC,Sunshine Coast Regional District,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11723,site,Port Colborne Refinery,CA-ON,Vale Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11724,site,Greater Vernon Recycling and Disposal Facility,CA-BC,Regional District of North Okanagan,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11725,site,Alix Malthouse,CA-AB,Rahr Malting Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11726,site,Les Entreprises Environementales de Pierrefonds,CA-QC,GFL Environmental Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11727,site,Tupper West Field,CA-BC,Murphy Oil Company Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11729,site,Dundas,CA-ON,Darling International Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11730,site,Usine Vaudreuil,CA-QC,Rio Tinto Alcan Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11731,site,Burlington,CA-ON,Sofina Foods Inc./Aliments Sofina Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11732,site,RMRSWA Landfill,CA-AB,Rocky Mountain Regional Solid Waste Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11733,site,Carbon,CA-AB,ATCO Energy Solutions Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11734,site,DSO Timmins Project,CA-NL,Tata Steel Minerals Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11735,site,Kola 12-24-010-29 W1M,CA-MB,Tundra Oil & Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11737,site,Pouce Coupe Gas Plant,CA-AB,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11738,site,Aitken Creek Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11739,site,Fourth Creek Gas Plant,CA-AB,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11740,site,11-19 Compressor Station,CA-AB,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11741,site,Cabin Gas Plant,CA-BC,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11742,site,Agincourt Plant,CA-ON,The International Group Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11744,site,Pickering,CA-ON,Signature Aluminum Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11745,site,Carleton university,CA-ON,Carleton University,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11747,site,St. David's Hydroponics,CA-ON,St. David's Hydroponics Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11748,site,Six Nations Natural Gas Company Limited,CA-ON,Six Nations Natural Gas Company Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11749,site,Worsley (Birchcliff) Sour Gas Plant,CA-AB,Enercapita Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11750,site,ARCELORMITTAL WINDSOR A DIVISION OF ARCELORMITTAL DOFASCO G.P,CA-ON,ARCELORMITTAL WINDSOR A DIVISION OF ARCELORMITTAL DOFASCO G.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11751,site,Oakville Trafalgar Memorial Hospital,CA-ON,Halton Healthcare Services Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11752,site,Lakeridge Health Oshawa,CA-ON,Lakeridge Health,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11754,site,980 Oliver Road,CA-ON,Thunder Bay Regional Health Sciences Centre,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11755,site,Brantford Facility,CA-ON,Patriot Forge Co.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11756,site,Saguaro BC Linear Facilities Operation (LFO),CA-BC,Saguaro Resources Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11757,site,TEINE Coleville 3-14,CA-SK,Teine Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11759,site,Niagara PVC Plant,CA-ON,Oxy Vinyls Canada Co.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11760,site,TEINE Dodsland 13-12,CA-SK,Teine Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11763,site,TEINE Dodsland 8-34,CA-SK,Teine Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11765,site,ArcelorMittal long Products Canada - Hamilton East,CA-ON,ArcelorMittal long Products Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11766,site,Sil Industrial Minerals Lamont Plant,CA-AB,543077 Alberta Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11767,site,Rio Tinto Fer et Titane inc. - HAVRE-SAINT-PIERRE,CA-QC,Rio Tinto Fer et Titane inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11768,site,Énergir CCU,CA-QC,"Énergir, chaleur et climatisation urbaines S.E.C.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11769,site,Plant #1,CA-ON,Bartek Ingredients Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11770,site,Division Goldex,CA-QC,Agnico-Eagle Mines Lted,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11771,site,Lieu d'enfouissement Sanitiare de la Ville de Sherbrooke,CA-QC,Ville de Sherbrooke,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11772,site,Usine Mont-Royal,CA-QC,Kraft Foods Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11773,site,McMaster University Medical Centre Co-generation Plant,CA-ON,Hamilton Health Sciences Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11774,site,Juravinski Hospital and Cancer Center Cogeneration Plant,CA-ON,Hamilton Health Sciences Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11775,site,Hamilton General Hospital Cogeneration Plant,CA-ON,Hamilton Health Sciences Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11776,site,Fallsview Casino Resort,CA-ON,Ontario Lottery and Gaming and Gaming Corporation operating ,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11777,site,Elleh Sweet Gas Plant,CA-BC,Shanghai Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11778,site,617885 Ontario Limited o/a Jem Farms,CA-ON,617885 Ontario Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11779,site,Orangeline Farms Limited,CA-ON,Orangeline Farms Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11780,site,Bull Market Farms Inc.,CA-ON,Bull Market Farms Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11781,site,Envirofresh Produce Inc.,CA-ON,Envirofresh Produce Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11782,site,Cervini Farms (1993) Inc.,CA-ON,Cervini Farms (1993) Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11783,site,DiCiocco Farms Eastside Inc.,CA-ON,DiCiocco Farms Eastside Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11784,site,1808278 Ontario Inc.,CA-ON,1808278 Ontario Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11785,site,Twin Peaks Hydroponics Inc.,CA-ON,Twin Peaks Hydroponics Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11786,site,Great Northern Hydroponics,CA-ON,Soave Hydroponics Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11787,site,Truly Green Farms,CA-ON,2333281 Ontario Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11788,site,Allegro Acres Inc.,CA-ON,Allegro Acres Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11789,site,Ecotex Healthcare Linen Service LP,CA-ON,Ecotex Healthcare Linen Service LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11790,site,Sun-Brite Foods Inc.,CA-ON,Sun-Brite Foods Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11791,site,SUPER-PUFFT SNACKS CORPORATION,CA-ON,SUPER-PUFFT SNACKS CORPORATION,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11792,site,AMCO Farms Inc.,CA-ON,AMCO Farms Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11793,site,ARLANXEO WEST,CA-ON,ARLANXEO Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11794,site,Division Laronde,CA-QC,Les Mines Agnico Eagle Limitée,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11795,site,POLYCON INDUSTRIES,CA-ON,Magna Exteriors Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11796,site,The Ottawa Hospital - Civic campus,CA-ON,The Ottawa Hospital,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11797,site,Ingleside Plant,CA-ON,Lactalis Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11800,site,University of Waterloo-GHG,CA-ON,University of Waterloo,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11801,site,Greenhill Produce (2),CA-ON,Greenhill Produce (Thamesville) Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11802,site,Guelph,CA-ON,Gay Lea Foods Cooperative Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11803,site,Main Greenhouses,CA-ON,Suntastic Hothouse Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11804,site,Mine Éléonore,CA-QC,Goldcorp Canada Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11808,site,Ashbridges Bay Treatment Plant,CA-ON,City of Toronto,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11809,site,Highland Creek Treatment Plant,CA-ON,City of Toronto,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11810,site,Lieux d'enfouissement technique d'Hébertville Station,CA-QC,REGIE DES MATIÈRES RÉSIDUELLES DU LAC SAINT-JEAN,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11811,site,Enwave Windsor Limited Parnership,CA-ON,Enwave Windsor Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11812,site,PM - Stratford,CA-ON,Stackpole International,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11813,site,GENPAK MISSISSAUGA,CA-ON,"Genpak, Division of Great Pacific Enterprises LP",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11814,site,Alderson West Sour Gas Plant 06-02-016-15W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11815,site,Countess Sour Gas Plant 10-20-018-15W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11816,site,Countess Makepeace Comp Stn 03-18-022-17W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11819,site,LET Saint-Flavien,CA-QC,MRC de Lotbinière,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11820,site,Usine de PCC de Windsor,CA-QC,Mintech Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11821,site,"Innophos Canada, Inc.",CA-ON,"Innophos Canada, Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11822,site,Physical Resources Service,CA-ON,University of Ottawa,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11823,site,Usine St-Laurent,CA-QC,Bombardier Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11824,site,Cambridge Manufacturing,CA-ON,PepsiCo Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11825,site,Calgary Plant,CA-AB,Canada Malting Co Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11826,site,IKO Hawkesbury,CA-ON,IKO Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11827,site,IKO Madoc,CA-ON,IKO Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11828,site,Complexe environnemental St-Michel,CA-QC,Ville de Montréal,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11829,site,Vaudreuil-Dorion site,CA-QC,Excelitas Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11830,site,Pepsico Aliments Canada - Usine de Lauzon,CA-QC,PepsiCo Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11831,site,Montreal Wallboard/Finishing Plant,CA-QC,"CertainTeed Canada, Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11832,site,Lieu d'enfouissement technique de Saint-Côme-Linière,CA-QC,Régie Intermunicipale du comté de Beauce-Sud,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11833,site,Usine St-Leonard,CA-QC,Saputo Produits Laitiers Canada s.e.n.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11834,site,1329606 Ontario Limited,CA-ON,1329606 Ontario Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11835,site,Klassen Greenhouse Farms,CA-ON,Klassen Greenhouse Farms Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11836,site,Mucci Farms Ltd.,CA-ON,Mucci Farms Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11837,site,Pomas Farms Inc.,CA-ON,Pomas Farms Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11838,site,Sun Gro Farms Inc.,CA-ON,Sun Gro Farms Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11839,site,Agriville Farms Ltd,CA-ON,Agriville Farms Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11840,site,Southshore Greenhouses Inc.,CA-ON,Southshore Greenhouses Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11841,site,Zochem,CA-ON,Zochem ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11842,site,Minto Mine,CA-YT,Minto Explorations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11843,site,Nature Fresh Plant 1,CA-ON,Nature Fresh Farms,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11844,site,Nature Fresh Plant 2,CA-ON,Nature Fresh Farms,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11845,site,Kapital Produce Ltd,CA-ON,Kapital Produce Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11846,site,Platinum Produce,CA-ON,Platinum Produce Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11847,site,J.C. Fresh Farms Ltd.,CA-ON,J C Fresh Farms Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11848,site,IKO Calgary,CA-AB,IKO Industries Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11849,site,Great Lakes Greenhouses Inc.,CA-ON,Great Lakes Greenhouses Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11850,site,Arriva 02-25 Gas Plant,CA-AB,Petrus Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11851,site,Sunrite Greenhouses Ltd,CA-ON,Sunrite Greenhouses Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11852,site,Lieu d'enfouissement sanitaire Chibougamau,CA-QC,Ville de Chibougamau,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11854,site,Toronto Board Plant,CA-ON,"CertainTeed Canada, Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11855,site,Levesque Plywood Ltd.,CA-ON,Columbia Forest Products Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11876,site,Chaplin,CA-SK,Saskatchewan Mining and Minerals,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11877,site,Prairie Malt Limited,CA-SK,Prairie Malt ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11878,site,Max Aicher (North America) Limited,CA-ON,Max Aicher (North America) Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11879,site,City of Moose Jaw (Landfill),CA-SK,City of Moose Jaw,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11880,site,West Yellowhead Regional Landfill,CA-AB,Town of Hinton,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11881,site,WDMLR Landfill,CA-AB,Camrose County,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11882,site,Brock University,CA-ON,Brock University,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11884,site,Meota West 06-24-046-18W3M,CA-SK,Serafina Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11885,site,Alliance Pipeline Ltd. - BC Pipeline System,CA-BC,Alliance Pipeline Ltd. Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11886,site,LONDON,CA-ON,3M Canada Company,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11887,site,Coleville Compressor Station,CA-SK,Steel Reef Infrastructure Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11888,site,Cargill Limited - Camrose Oilseed Processing,CA-AB,Cargill Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11893,site,Wapiti 13-05-067-08W6 BTY,CA-AB,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11894,site,Copper Mountain Mine,CA-BC,Copper Mountain Mine (BC) Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11896,site,Pioneer 2 Liquids Extraction Plant,CA-AB,Inter Pipeline Offgas Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11897,site,BONAVISTA STRACHAN 05-34-037-08W5,CA-AB,Bonavista Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11898,site,The Black Velvet Distilling Company,CA-AB,Heaven Hill Distilling Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11900,site,07-29-78-11-W6M,CA-AB,Birchcliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11902,site,Electric Utility - Generation - Remote Site,CA-AB,City of Medicine Hat,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11907,site,Saturn Comp Stn 09-27,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11908,site,Sunrise Gas Plant 04-26-078-17W6,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11909,site,Usine St-Hyacinthe,CA-QC,Saputo Produits Laitiers Canada s.e.n.c.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11910,site,Big Marble Farms,CA-AB,Big Marble Farms Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11912,site,West Beg c-34-C/94-G-1,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11913,site,BUNGE CANADA - WAINWRIGHT PLANT,CA-AB,Bunge Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11914,site,Kaybob 05-33 Gas Battery,CA-AB,Shell Canada Limited-1,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11915,site,07-14-049-01W5 Gas Plant,CA-AB,Petrus Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11916,site,Thorhild,CA-AB,Waste Management of Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11917,site,Hinton Wood Products - A Division of West Fraser Mills Ltd.,CA-AB,Williams Lake Lumber (Div of West Fraser Mills Ltd.),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11918,site,Alberta Children's Hospital,CA-AB,Alberta  Health Services,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11919,site,Barrier Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11921,site,Bearspaw Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11922,site,Bighorn Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11924,site,Brazeau Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11925,site,Cascade Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11926,site,Ghost Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11927,site,Horseshoe Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11928,site,Interlakes Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11929,site,Kananaskis Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11930,site,Pocaterra Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11931,site,Rundle Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11932,site,Spray Hydro Plant,CA-AB,TransAlta Generation Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11933,site,Castle Wind Farm,CA-AB,TransAlta Renewables Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11934,site,Cowley Wind Farm,CA-AB,TransAlta Renewables Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11936,site,Sinnott Wind Farm,CA-AB,TransAlta Renewables Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11937,site,Summerview 1 Wind Farm,CA-AB,TransAlta Renewables Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11938,site,Taylor Hydro Plant,CA-AB,TransAlta Renewables Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11939,site,Centre Hospitalier de l'Université de Montréal,CA-QC,Centre hospitalier de l'Université de Montréal,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11941,site,Duvernay Kaybob Complex,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11942,site,WASKAHIGAN MGS 10-29-062-23W5,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11943,site,Oungre Oil MWB 15-31,CA-SK,Crescent Point Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11944,site,Virginia Hills Oil MWB 04-12,CA-AB,Crescent Point Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11948,site,Rush Lake 2 Thermal Plant 16-03-048-21W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11949,site,Brampton Civic Hospital,CA-ON,William Osler Health System,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11950,site,TERMINAL DE MONTREAL-EST,CA-QC,Valero Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11951,site,Red Lake Operation,CA-ON,Evolution Mining Gold Operations Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11954,site,HUSSAR GAS STOR 07-07-025-20W4,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11955,site,Iqaluit,CA-NU,Qulliq Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11956,site,MASTERLOY PRODUCTS Company,CA-ON,Masterloy Products Co.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11957,site,Rankin Inlet,CA-NU,Qulliq Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11958,site,Rmp Waskahigan 12-07-064-23w5,CA-AB,Tangle Creek Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11960,site,JW Oliver Waste Water Plant,CA-SK,City of Prince Albert,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11961,site,Willesden Green 14-05,CA-AB,Westbrick Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11963,site,North Pine Liquid Separation,CA-BC,AltaGas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11970,site,HUSKY ABERFELDY 8-1-50-27,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11976,site,Pointes-Aux-Trembles CO2 Plant,CA-QC,Linde Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11978,site,Fort Saskatchewan CO2 Plant,CA-AB,Linde Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11979,site,Highvale Sour Gas Plant 10-04,CA-AB,New Star Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11981,site,UNITY PLANT,CA-SK,Compass Minerals Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11982,site,BlackGold SAGD Sec14-76-07W4,CA-AB,HARVEST OPERATIONS CORP.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11988,site,Wargen Comp Stn D-056-C,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11989,site,ArcelorMittal Contrecoeur Est,CA-QC,ArcelorMittal Produits Longs Canada s.e.n.c,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11990,site,Varennes Plant,CA-QC,Greenfield Global Quebec Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11995,site,Patterson Creek Gas Plant 11-21,CA-AB,Energy Transfer Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11996,site,SemCAMS Gold Creek 11-02,CA-AB,Energy Transfer Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11997,site,Elmworth 2-23 Bty,CA-AB,Energy Transfer Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11998,site,Usine de Valleyfield,CA-QC,Macco Organiques Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:11999,site,Calgary Composting Facility,CA-AB,City of Calgary,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12000,site,Kakwa 14-18-064-05W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12001,site,Kakwa 05-01-064-06W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12009,site,NATT Tools Group Inc.,CA-ON,NATT Tools Group Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12010,site,Touquoy Mine,CA-NS,St Barbara Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12011,site,Willesden Green Comp Stn 05-03,CA-AB,Spartan Delta Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12015,site,Ante Creek Oil Battery 10-07,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12016,site,Pembalta IV Sour Gas Plant 09-16,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12018,site,Cessford Sweet Gas Plant 02-08-024-12W4,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12020,site,Wintering Hills West Sweet Gas Plant 06-17-025-20W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12022,site,Rosa Flora Growers Limited,CA-ON,Rosa Flora Growers Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12023,site,Carson Creek 15MW,CA-AB,WCSB Power Alberta LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12026,site,Brintnell South Power Generation Plant 13-01-081-23W4,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12031,site,Consumer Foods - Winnipeg,CA-MB,Maple Leaf Foods Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12034,site,Heavysound 1509,CA-AB,Outlier Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12035,site,Centrale de La Romaine,CA-QC,Hydro-Québec,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12036,site,Kakwa 01-13-063-05W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12037,site,Usine Mirabel,CA-QC,C Series Aircraft Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12039,site,Centre d'épuration Rive-Sud (CERS),CA-QC,Ville de Longueuil,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12041,site,TORC Pinto Oil MWB 06-03-002-04W2,CA-SK,TORC Oil & Gas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12042,site,City of Prince Albert Landfill,CA-SK,City of Prince Albert Landfill,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12048,site,Vista Mine,CA-AB,Coalspur Mines (Operations) Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12049,site,Parkland Gas Plant (06-29-081-15W6M),CA-BC,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12053,site,District Energy Centre,CA-AB,ENMAX Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12054,site,Centrale de Senneterre,CA-QC,Société en commandite Boralex Énergie,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12055,site,Morrin Ghost Pine Sweet Gas Plant,CA-AB,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12056,site,Huxley Sweet Gas Plant,CA-AB,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12057,site,Foothills Regional Landfill & Resource Recovery Centre,CA-AB,Foothills Regional Services Commission,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12061,site,Pinto 14-30-001-04 W2M,CA-SK,Vermilion Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12066,site,Harmon Valley Sour Gas Plant 03-18-084-17W5,CA-AB,Baytex Energy Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12080,site,Mulligan Fourth Creek 15-13-082-09-W6,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12084,site,PAPIERS WHITE BIRCHmc - DIVISION PAPIER MASSON LTÉE,CA-QC,Papier Masson Ltée.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12085,site,City of Cornwall Landfill Site,CA-ON,Corporation of the City of Cornwall,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12086,site,Calgary Wallboard Plant,CA-AB,"CertainTeed Canada, Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12087,site,Kakwa Gas Plant 07-09-062-08 W6M,CA-AB,Modern Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12089,site,House Mountain GP 1-8-70-10W5,CA-AB,Cardinal Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12090,site,Gilby Sweet Gas Plant 01-04,CA-AB,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12091,site,Garrington 03-03-35-04 W5,CA-AB,NAL Resources Management,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12092,site,LOCHEND 03-20-027-03W5,CA-AB,NAL Resources Management,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12096,site,Olds 16-33-30-1W5,CA-AB,NAL Resources Management,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12097,site,Université de Montréal - Campus de la Montagne,CA-QC,Université de Montréal,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12109,site,Dodsland 10-8-31-20 W3,CA-SK,Teine Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12110,site,TEINE Dodsland 5-26,CA-SK,Teine Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12112,site,Silvertip Mine,CA-BC,Coeur Silvertip Holdings Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12114,site,Nairn Centre Sawmill,CA-ON,Eacom Timber Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12115,site,Elk Lake Sawmill,CA-ON,Eacom Timber Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12116,site,McBride Lake Wind Farm,CA-AB,TransAlta Renewables Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12117,site,Whitehorse Rapids Diesel Generating Station,CA-YT,Yukon Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12119,site,Elmworth Generating Station,CA-AB,Northstone Power Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12120,site,Foothills Boulevard Regional Landfill,CA-BC,Regional District of Fraser-Fort George,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12135,site,Whitecourt Solid Wood Division,CA-AB,Millar Western Forest Products Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12136,site,Fox Creek Division,CA-AB,Millar Western Forest Products Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12141,site,Borden Generating Station,CA-PE,Maritime Electric,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12142,site,Caribou Mine,CA-NB,Trevali Mining (New Brunswick) Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12143,site,McAdam Wallboard Plant,CA-NB,"CertainTeed Canada, Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12144,site,Winnipeg Wallboard Plant,CA-MB,"CertainTeed Canada, Inc.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12145,site,Napanee Generating Station,CA-ON,Portlands Energy Centre LP,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12146,site,Enbridge Gas Inc.,CA-ON,Enbridge Gas Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12147,site,Enbridge Gas Inc. - Distribution,CA-ON,Enbridge Gas Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12148,site,Jackfish District,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12149,site,Kirby North 01-06-075-8 W4M,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12150,site,Chinook Power Station,CA-SK,Saskatchewan Power Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12151,site,Clover Bar Landfills,CA-AB,City of Edmonton - WMC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12152,site,Wapiti Sour Gas Processing Plant,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12153,site,ECO360 Landfill,CA-NB,Southeast Regional Service Comission,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12154,site,Tourmaline Gundy Gas Plant (C-060-A / 94-B-16),CA-BC,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12155,site,Dee Valley Thermal,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12156,site,Wapiti Gas Plant 07-35,CA-AB,Energy Transfer Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12157,site,Kakwa Gas Battery 12-13-063-06W6,CA-AB,ORLEN Upstream Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12158,site,Mount Milligan Mine,CA-BC,Thompson Creek Metals Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12160,site,Kakwa 10-23-067-05W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12161,site,Hydro One Networks,CA-ON,Hydro One Networks Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12162,site,Pipestone 12-35-070-09W6 Gas Plant,CA-AB,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12163,site,GFL Environmental Inc.,CA-NS,GFL Environmental Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12164,site,Inga Compressor Station 02-10-088-23W6,CA-BC,ConocoPhillips Canada Resources Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12165,site,Transmission Mainline - AB,CA-AB,Spectra Energy Transmission,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12166,site,Battrum Oil MWB 07-21,CA-SK,Crescent Point Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12167,site,Economy Creek 11-05,CA-AB,Energy Transfer Canada,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12168,site,Highway 48 Landfill,CA-ON,Waste Management of Canada Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12169,site,Swan Hills OB 03-19-65-10W5,CA-AB,Razor Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12170,site,Labatt Brewing Company Ltd,CA-ON,Labatt Brewing Company Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12171,site,BLACKSTONE 9-23-44-16W5 DEHY CS,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12172,site,SRL NIG CREEK C-039-D/094-H-03,CA-BC,Storm Resources Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12173,site,SRL NIG CREEK D-039-D,CA-BC,Storm Resources Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12174,site,"Kraft Nordic, s.e.c. - Usine de pâtes kraft de Lebel-sur-Quév",CA-QC,"Kraft Nordic, s.e.c.",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12175,site,Glenrose Energy Centre,CA-AB,Alberta  Health Services,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12176,site,Plant #2,CA-ON,Bartek Ingredients Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12177,site,Plato Oil MWB 01-33,CA-SK,Crescent Point Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12179,site,Kakwa 16-16-064-04W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12180,site,01-20-060-17 W5M,CA-AB,Tangle Creek Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12181,site,Rmp Kaybob 10-22 Compressor,CA-AB,Tangle Creek Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12182,site,Tonolli Canada,CA-ON,Terrapure BR Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12183,site,Cervini Farms (1993) Inc. - C5,CA-ON,Cervini Farms (1993) Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12184,site,Projet Windfall,CA-QC,Osisko Mining inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12185,site,Sappi Matane,CA-QC,Entreprises Sappi Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12186,site,Aitken Creek Sour Gas Plant c-046-C,CA-BC,Black Swan Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12188,site,Lieu enfouissement technique,CA-QC,Régie de gestion des matières résiduelles,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12189,site,Whiteside 04-07-030-26W3 (102/04-12) SWB,CA-SK,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12191,site,Gold Creek Compressor Stn 12-02,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12192,site,Whiteside 04-12-030-27W3 (101/13-12) SWB,CA-SK,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12193,site,Blackrod SAGD Pilot 02-36-076-18W4,CA-AB,IPC Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12197,site,Toronto Site,CA-ON,Bombardier Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12198,site,Prince Rupert Generating Station (RPG),CA-BC,British Columbia Hydro and Power Authority,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12199,site,TWO CREEKS 16-29 OIL BT,CA-AB,Murphy Oil Company Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12200,site,Chosen Fresh Farms Ltd.,CA-ON,Chosen Fresh Farms Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12201,site,Bonterra 05-35 Sweet Gas Plant,CA-AB,Bonterra Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12202,site,RSI Environnement - Centre de décontamination et de recyclage,CA-QC,8439117 Canada Inc. / RSI Environmental,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12203,site,Pbn 15-10-049-12w5 Mwob,CA-AB,Ridgeback Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12204,site,Grantech,CA-QC,Grantech,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12206,site,Leland Comp Stn 14-34-058-26-W5,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12207,site,Pipestone Processing Facility and Liquids Hub 04-07-073-08W6,CA-AB,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12208,site,Aphria Inc.,CA-ON,Aphria Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12210,site,TORC Weirhill Oil MWB 11-28-005-06W2,CA-SK,TORC Oil & Gas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12211,site,Karr 1-7-66-3W6 Oil Battery,CA-AB,Mancal Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12214,site,SCEPTRE PEMBINA 8-35,CA-AB,Ridgeback Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12215,site,Willesden Green 08-10,CA-AB,Westbrick Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12216,site,CARBON 4-22-029-21W4 CBM BATTERY,CA-AB,Taqa North Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12217,site,Pinnacle Acres,CA-ON,1287755 Ontario Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12218,site,Crew Edson 16-10-052-15 W5,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12219,site,H&A Graham #3,CA-ON,H & A Mastronardi Farms Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12220,site,Bonterra 10-15 Sweet Gas Plant,CA-AB,Bonterra Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12221,site,SC East Landfill,CA-SK,City of Swift Current,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12222,site,Success 11-17-016-16W3 GGS,CA-SK,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12223,site,HUSKY 06-20-49-18W5 GAS BATTERY,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12224,site,TORC Torquay Oil MWB 14-09-002-11W2,CA-SK,TORC Oil & Gas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12226,site,WAINWRIGHT 02-17-046-06W4,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12228,site,West Pembina 15-06-050-11W5 BTY,CA-AB,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12229,site,Daly Unit No. 3 Battery,CA-MB,Corex Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12232,site,TEINE Plato 13-18-26-18W3,CA-SK,Teine Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12233,site,Pembina Oil Battery 16-34-048-09W5,CA-AB,Baytex Energy Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12235,site,Mikwan Gas Plant,CA-AB,Vermilion Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12237,site,Harmattan Eagle Hill Battery,CA-AB,AltaGas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12238,site,Bilbo Comp Stn 04-32-065-07W6,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12239,site,KAYBOB NORTH 16-25-065-20W5,CA-AB,Murphy Oil Company Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12242,site,Hacienda North Farms,CA-ON,Hacienda North Farms Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12244,site,Meota East 02-16-46-16W3M,CA-SK,Serafina Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12245,site,CS 09-02-048-06W5 (ABCS0136852),CA-AB,Bonterra Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12251,site,ARCHER MANNVILLE-MINBURN,CA-AB,Perpetual Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12252,site,Lougheed 11-12-006-15 W2M,CA-SK,Vermilion Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12253,site,PPY Daiber d-044-C/094-B-16,CA-BC,Painted Pony Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12255,site,Ontario Plants Propagation Limited,CA-ON,Ontario Plants Propagation Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12258,site,Ferrier Oil Battery 10-36-038-08W5,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12259,site,Valhalla Comp Stn 13-16,CA-AB,Advantage Oil & Gas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12260,site,Harmon Valley SAGD South Pilot 07-06,CA-AB,Obsidian Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12261,site,Credit Valley Hospital,CA-ON,Trillium Health Partners,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12262,site,Medicine Hat  01-16-013-29 W3,CA-SK,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12263,site,Sawn Lake Battery 12-29-091-12W5,CA-AB,Surge Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12264,site,Kakwa 10-16-062-04W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12265,site,Woodward Avenue Wastewater Treatment Plant,CA-ON,City of Hamilton,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12267,site,Ferrier Gas Battery 10-19-044-10W5,CA-AB,Baytex Energy Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12268,site,RBR KAYB 15-30-063-18W5 MWOB,CA-AB,Ridgeback Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12270,site,Attachie Compressor Station 04-20,CA-BC,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12271,site,Gilby Sweet Comp Stn 04-19,CA-AB,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12273,site,Daly Unit No. 1 Battery,CA-MB,Corex Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12276,site,HANLAN SOUR INLET,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12277,site,Vesta Sylvan Lake 06-20-037-01W5 Gas Plant,CA-AB,Vesta Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12280,site,SRL BUICKCREEK D-36-L/094-A-14 003,CA-BC,Storm Resources Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12281,site,July Lake Comp Stn A-071-G,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12282,site,05-22 Pouce Coupe Compressor Station,CA-AB,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12286,site,Ojay Comp Stn A-011-L,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12287,site,Apotex Inc. 150 Signet Drive,CA-ON,Apotex Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12288,site,Sylvan Lake Sweet Gas Plant 05-01,CA-AB,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12289,site,Chinook Regional Hospital,CA-AB,Alberta  Health Services,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12290,site,Cavendish Farms,CA-AB,Cavendish Farms Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12292,site,Elmira Facility,CA-ON,Lanxess Canada Co./Cie,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12293,site,Spruceland Millworks,CA-AB,Millar Western Forest Products Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12296,site,Centrale de cogénération de la Haute-Yamaska,CA-QC,"Terreau Biogaz, société en commandite",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12297,site,Soderglen Wind Farm,CA-AB,TransAlta Renewables Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12298,site,"Copper Cliff Mining, Smelting and Refining Complex",CA-ON,Vale Canada Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12299,site,Todd Birch a-44-I/94-A-13 Compressor Station IF_a,CA-BC,TODD ENERGY CANADA LIMITED,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12300,site,Louis Dreyfus Company Canada ULC,CA-SK,Louis Dreyfus Company Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12302,site,Metex Heat Treating Ltd.,CA-ON,Metex Heat Treating Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12303,site,Souris Valley Pipeline,CA-SK,Souris Valley Pipeline,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12304,site,Eagle River Mill,CA-ON,Wesdome Gold Mines Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12305,site,Spirit River 13-28-78-8w6 GGS,CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12307,site,Pierson 04-01-002-28 W1M,CA-MB,Tundra Oil & Gas Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12308,site,Milner M2 Power Plant,CA-AB,Milner Power II Limited Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12309,site,Beare Road Landfill,CA-ON,City of Toronto,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12310,site,Fredericton Region Landfill,CA-NB,Fredericton Region Solid Waste,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12311,site,Spruce Lake Central Thermal,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12312,site,XTO 07-20-60-19 W5,CA-AB,XTO Energy Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12313,site,NEL ANSELL BT 07-27-051-19W5,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12314,site,HHR Karr 01-16-065-03W6,CA-AB,Hammerhead Resources Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12315,site,Hemlock Knoll Landfill,CA-NB,Southwest Regional Service Commission,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12316,site,Crane Mountain,CA-NB,Fundy Regional Service Commission,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12317,site,TOWN C-72-A Gas Plant,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12318,site,Ansell MWB 03-06-049-18W5,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12319,site,HHR Gold Creek 09-03-068-04W6,CA-AB,Hammerhead Resources Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12321,site,SRL Aggregated Linear Facilities Operation (LFO),CA-BC,Storm Resources Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12322,site,Montney Sour Gas Plant C-011-K/094-A-12,CA-BC,ConocoPhillips Canada Resources Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12323,site,HHR GGS 11-12-068-04W6,CA-AB,Hammerhead Resources Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12324,site,Cogerno Regional Landfill,CA-NB,Commission de services régionaux Nord Ouest,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12325,site,TAQA - Sunchild 01-04-044-11W5M Facility,CA-AB,Taqa North Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12326,site,Red Pine Landfill,CA-NB,Commission de services régionaux Chaleur,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12327,site,Resthaven 3-16 Gas Plant,CA-AB,Jupiter Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12328,site,Provost Veteran Oil Battery 15-20-034-08W4,CA-AB,Tamarack Acquisition Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12329,site,"NGTL, British Columbia System",CA-BC,Nova Gas Transmission Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12330,site,Aggregated Linear Facilities Operation (L-c),CA-BC,Storm Resources Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12331,site,Duvernay Sweetening Plant,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12332,site,Kakwa Gas Battery 04-26-061-05W6,CA-AB,Jupiter Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12333,site,Highway 101 Landfill,CA-NS,Halifax Regional Municipality (HRM),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12334,site,OTTAWA VALLEY WASTE RECOVERY CENTRE,CA-ON,Ottawa Valley Waste Management Board,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12335,site,PWE Pouce Coupe 1-19 GGS,CA-AB,Taqa North Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12336,site,Thackeray Landfill,CA-ON,City of Toronto,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12337,site,PLOVER LAKE WSW 112/01-36-034-27W3M,CA-SK,Strathcona Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12338,site,Aphria Diamond,CA-ON,1974568 Ontario Limited o/a Aphria Diamond,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12339,site,Pipestone South Gas Battery 14-17,CA-AB,NuVista Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12340,site,AG20 ABGP0001220 NEVIS 12-07 GP,CA-AB,Ember Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12341,site,HUSKY 102/01-12-052-04W4/00,CA-AB,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12342,site,Pipestone Compressor Station 08-15-070-08W6,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12343,site,Bigstone Battery 07-11-060-23W5,CA-AB,Distinction Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12344,site,Gundy a-021-I Compressor Stn,CA-BC,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12345,site,Plato 04-07 Bty,CA-SK,Teine Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12346,site,AG20 ABBT0118889 IRRICANA 10-22 BTY,CA-AB,Ember Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12347,site,Lynx 01-24-060-08 W6M,CA-AB,Modern Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12348,site,Kakwa 16-17-064-04W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12349,site,Ante Creek Sweet Gas Plant 10-36,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12350,site,Mission Landfill,CA-BC,District of Mission,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12351,site,AG20 ABBT0111618 LONE PINE 11-32 BTY,CA-AB,Ember Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12352,site,Shell Canada Limited CS 12-28,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12354,site,Ridley Island Propane Export Terminal,CA-BC,AltaGas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12356,site,Linamar Gear,CA-ON,Linamar Gear,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12357,site,HHR Gold Creek 03-10-068-04W6,CA-AB,Hammerhead Resources Inc,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12358,site,C-041-G/093-P-09 SCLH,CA-BC,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12359,site,Suncor Energy Inc CS 14-03,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12360,site,Arriva  2-25-38-9 W5M,CA-AB,Petrus Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12361,site,AG20 ABBT0097122 FOSTER 08-28 BTY,CA-AB,Ember Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12362,site,AG20 ABGS0121501 ACME 16-07 GGS,CA-AB,Ember Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12363,site,AG20 ABBT0141226 ENTICE 01-22 BTY,CA-AB,Ember Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12364,site,Willesden Green Sweet Gas Plant 13-27,CA-AB,Obsidian Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12365,site,PIPESTONE Compressor Station 15-30-072-08W6,CA-AB,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12366,site,TQM Pipeline,CA-QC,"TQM Pipeline and Company, Limited Partnership",ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12367,site,Pouce Coupe 14-27,CA-AB,Insignia Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12368,site,WestPine MDF,CA-BC,Williams Lake Lumber (Div of West Fraser Mills Ltd.),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12369,site,PharmHouse Inc.,CA-ON,PharmHouse Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12370,site,Bigstone Sour Gas Processing Plant,CA-AB,Distinction Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12371,site,AG20 ABGS0003808 FENN BV 12-15 GGS,CA-AB,Ember Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12372,site,Grande Pointe Greenhouse,CA-ON,Medisun Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12373,site,MURPHY SIMONETTE 03-02,CA-AB,Murphy Oil Company Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12374,site,2492309 Ontario Ltd,CA-ON,2492309 Ontario Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12375,site,Ojay Comp Stn A-011-I,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12376,site,Tamarack Sun Creek 06-19-045-06 W5M,CA-AB,Tamarack Acquisition Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12377,site,Encal Wilson Creek 6-18,CA-AB,Taqa North Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12378,site,Tamarack Minnehick Oil Battery 04-14-044-05 W5M,CA-AB,Tamarack Acquisition Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12379,site,Surge Valhalla South 06-18,CA-AB,Surge Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12380,site,6-21-38-20W4M,CA-AB,Bearspaw Petroleum Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12381,site,CELTIC BT 06-18-052-23W3,CA-SK,Husky Oil Operations Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12382,site,Kakwa Gas Processing 01-35-060-05W6,CA-AB,Jupiter Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12383,site,Westbrick 04-06-047-12W5 Multi-Well Battery,CA-AB,Westbrick Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12384,site,Petro-Canada CS 06-08,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12385,site,Station F Comp Station 16-09,CA-AB,Cenovus Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12386,site,AG20 ABGS0103393 GAYFORD 12-35 GGS,CA-AB,Ember Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12387,site,Mantario Oil Battery 13-32-027-27W3,CA-SK,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12388,site,Macoun Oil Battery 08-22,CA-SK,TORC Oil & Gas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12389,site,SRL Nig Creek Gas Plant B-048-G/94-H-04,CA-BC,Storm Resources Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12390,site,Gerald Parisien Energy Facility,CA-ON,FortisOntario Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12391,site,Tourmaline Med Lodge Gas Plant (14-03-052-23W5),CA-AB,Tourmaline Oil Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12392,site,TAQA NORTH LAPRISE CREEK B-040-E/094-H-05,CA-BC,Taqa North Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12393,site,North Hoosier Oil Battery 13-21-032-27 W3M,CA-SK,Tamarack Acquisition Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12394,site,Pipestone 05-36-071-07W6 Battery,CA-AB,Tidewater Midstream and Infrastructure Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12395,site,VEHCOM MANUFACTURING,CA-ON,Vehcom Manufacturing,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12396,site,Countess Gas Storage Facility,CA-AB,AECO Gas Storage Partnership,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12397,site,Carmichael 13-15-011-19W3 BTY,CA-SK,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12398,site,MURPHY 08-03 WASKAHIGAN,CA-AB,Murphy Oil Company Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12399,site,BILBO 04-25 GROUP GAS BTY,CA-AB,HARVEST OPERATIONS CORP.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12400,site,Conserve Joffre 15-17-39-26-w4,CA-AB,DEL Canada GP Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12401,site,Wintering Hills gas Plant 01-18-025-17W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12402,site,WEST FRASER MILLS - WILLIAMS LAKE,CA-BC,Williams Lake Lumber (Div of West Fraser Mills Ltd.),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12403,site,Whiteside 01-05-030-25W3 GGS,CA-SK,Whitecap Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12404,site,Eldorado Gold (Québec) Inc.,CA-QC,Eldorado Gold (Québec) Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12405,site,Alderson 13-21-15-11 Plant,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12406,site,Newell Sweet Gas Plant 04-22-017-14W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12407,site,Ghost Pine No.1 Comp Station 06-05,CA-AB,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12408,site,Carseland Gas Plant 16-21,CA-AB,PERSIST OIL & GAS INC.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12409,site,POLAR DIVISION,CA-BC,Canadian Forest Products Ltd,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12410,site,Valhalla 10-25,CA-AB,Insignia Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12411,site,"Chetwynd Forest Industries, a Division of West Fraser Mills L",CA-BC,West Fraser Mills Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12412,site,Grizzly North  Comp Stn A-074-G,CA-BC,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12413,site,TORC Kaybob Oil Battery 04-01-060-20W5,CA-AB,TORC Oil & Gas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12414,site,JEDNEY NORTH b-76-C/94-G-8,CA-BC,PETRONAS Energy Canada Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12415,site,Hanlan Compressor Station 09-09-045-16W5,CA-AB,PIERIDAE ALBERTA PRODUCTION LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12416,site,Nevis Oil Battery 12-36,CA-AB,Surge Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12417,site,NRK SUNCHILD 11-18 COMPRESSOR,CA-AB,Taqa North Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12418,site,Kakwa 04-22-062-04W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12419,site,Kakwa 16-06-064-05W6,CA-AB,ARC RESOURCES LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12420,site,Saddle Lake 09-09,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12421,site,Garrington 03-36 Compressor Site,CA-AB,Keyera Corp,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12422,site,PepsiCo Beverage Company,CA-ON,The Pepsi Bottling Group,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12423,site,Wembley Comp Stn 03-01,CA-AB,Advantage Oil & Gas Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12424,site,AG20 ABGS0084730 BASHAW 13-20 GGS,CA-AB,Ember Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12425,site,Grace Family Farms Ltd,CA-ON,Grace Family Farms Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12426,site,Cape FC SCL,CA-AB,Shell Canada Limited-1,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12427,site,AG20 ABGS0002893 NEVIS/LAM 11-07 GGS,CA-AB,Ember Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12428,site,Princess Compressor Station 01-28-020-10W4,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12429,site,Kettle River North 15-14,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12430,site,Verger North Comp Stn 06-18-022-14W4,CA-AB,Torxen Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12431,site,Mountain Park Hanlan 10-17 GGS,CA-AB,Canlin Energy Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12432,site,Pipestone Compressor Station 14-27-072-09W6,CA-AB,Ovintiv Canada ULC,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12433,site,Fox Creek 15-24-060-22W5,CA-AB,Paramount Resources Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12434,site,Crooked Lake Gas Battery 10-22-062-22W5,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12435,site,Mitchell,CA-ON,Lactalis Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12436,site,Brownfield Sweet Gas Plant,CA-AB,Karve Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12437,site,Sandy Lake Diesel Generating Station,CA-ON,Hydro One Remote Communities Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12438,site,Valhalla Compressor Station 05-28-073-09W6,CA-AB,Canadian Natural Resources Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12439,site,"QUESNEL PLYWOOD, A Division of West Fraser Mills Ltd.",CA-BC,Williams Lake Lumber (Div of West Fraser Mills Ltd.),ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12440,site,Birchmount Energy Centre,CA-ON,Markham District Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12441,site,Chicken 06-27 Compressor Station,CA-AB,Pembina Pipeline Corporation,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12442,site,Pengrowth Mcleod 16-12,CA-AB,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12443,site,CPC Trochu 16-32 GGS,CA-AB,Pine Cliff Energy Ltd.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12444,site,Clearview Sub-Regional Landfill,CA-BC,Regional District of Bulkley-Nechako,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12445,site,CS12 14-11 Hub,CA-AB,NorthRiver Midstream Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12446,site,Clegg Energy Centre,CA-ON,Markham District Energy Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12447,site,Donkin Mine,CA-NS,Kameron Collieries Limited,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12448,site,Waterton Complex - Compressor Station X,CA-AB,PIERIDAE ALBERTA PRODUCTION LTD.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12449,site,Lieu d'Enfouissement Sanitaire de l'Ascension,CA-QC,Municipalité Régionale de Comté de Lac-Saint-Jean-Est,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12450,site,12- 14 Elmworth,CA-AB,Pipestone Energy Corp.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12451,site,Belleville Plant,CA-ON,Kellogg Canada Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12452,site,Innes 12-22,CA-SK,Ridgeback Resources Inc.,ECCC:GHGRP_facilities:2022-04-14
+ECCC:GHGRP:12453,site,Municipalité de Saint-Alphonse- LET,CA-QC,Municipalité de Saint-Alphonse,ECCC:GHGRP_facilities:2022-04-14
