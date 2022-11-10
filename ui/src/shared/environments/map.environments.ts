@@ -1,3 +1,3 @@
 export const Map = {
-    googleMapApiKey: process.env.GOOGLE_MAP_API_KEY
+    googleMapApiKey: 'AIzaSyBU9MwV6Q8bFJEanV_-wFsAKWiHV8l7rPg'
 }
