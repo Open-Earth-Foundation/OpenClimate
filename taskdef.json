@@ -1,0 +1,40 @@
+{
+  "family": "ui",
+  "containerDefinitions": [
+{
+  "name" : "ui",
+  "image" : "<ACCOUNTID>.dkr.ecr.<REGION>.amazonaws.com/ui:<VERSION>",
+  "cpu" : 0,
+  "memory" : 300,
+  "essential" : true,
+  "portMappings" : [
+    {
+      "containerPort" : 80,
+      "hostPort" : 80
+    }
+  ],
+  "logConfiguration" : {
+    "logDriver" : "awslogs",
+    "options" : {
+      "awslogs-group" : "/ecs/ui",
+      "awslogs-region" : "<REGION>",
+      "awslogs-stream-prefix" : "ecs"
+    }
+  },
+  "environment": [
+  {
+    "name": "NODE_ENV",
+    "value": "development"
+  },
+  {
+    "name": "REACT_APP_CONTROLLER",
+    "value": "https://<REACT_APP_CONTROLLER>"
+  },
+  {
+    "name": "BROWSER",
+    "value": "none"
+  }
+]
+}
+]
+}

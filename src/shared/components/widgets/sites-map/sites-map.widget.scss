@@ -1,0 +1,35 @@
+.widget__sites-map-content {
+    width: 100%;
+    min-height: 284px;
+    border: 1px solid var(--grey1-color);
+    margin-right: 24px;
+    margin-bottom: 24px;
+}
+
+.sites-map__sites {
+    width: 282px;
+    float: left;
+    height: 100%;
+
+    .sites-filters {
+        width: auto;
+        border: none;
+        margin-bottom: 0px;
+        padding-bottom: 10px;
+        min-height: 90%;
+    }
+
+    .sites-filters__header {
+        border: none;
+    }
+
+    .sites-map__navigate-link {
+        margin-left: 24px;
+    }
+
+    .sites-map__navigate-link_icon {
+        position: relative;
+        left: 4px;
+        top: 2px;
+    }
+}

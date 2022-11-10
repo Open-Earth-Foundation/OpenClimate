@@ -1,0 +1,724 @@
+@import './mixins.scss';
+
+.review__wrapper {
+    .review__filter-button-wrapper{
+        display: none;
+    }
+    .review__heading {
+        display: none;
+    }
+    .explore__dropdown {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+        top: 80px;
+        left: 0px;
+        margin: auto;
+        background-color: white;
+        box-shadow: 
+        0px 4.19279px 20.77116px rgba(0,0,0, 0.25),
+        0px 4.38558px 10.19279px rgba(0,0,0, 0.08);
+        border-radius: 4px;
+    }
+
+    .review__info{
+        margin-top: 58px;
+    }
+    .explore__filter-2{
+        display: flex;
+        padding-left: 10px;
+        align-items: center;
+        height: 40px;
+        width: 280px;
+        background-color: #e6e7e8;
+        margin-top: 24px;
+        border-radius: 184px;
+    }
+   
+    .explore__filter-input{
+        background-color: transparent;
+        position: relative;
+        left: 5px;
+    }
+    .explore__select li{
+        padding: 10px;
+        padding-left: 24px;
+    }
+    .explore__select li:hover{
+        background-color: #007568;
+        color: white;
+    }
+    .explore__select {
+        display:flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        height: 300px;
+        overflow: scroll;
+    }
+    .explore__btn-options{
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        text-align: left;
+        padding-left: 24px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .explore__btn-options:active {
+        background-color: #007568;
+        color: #fff;
+    }
+
+    @include respond(mobile){
+        .review__heading {
+            display: inherit;
+        }
+        .review__info{
+            display: none;
+        }
+        .review__filters-wrapper{
+            display: none !important;
+        }
+        .review__filter-button-wrapper{
+            display: flex;
+            justify-content: center;
+        }
+        .review__filter-button{
+            display: flex;
+            justify-content:space-evenly;
+            align-items:center;
+            background-color: #007568;
+            font-size: 17px;
+            height: 42px;
+            width: 200px;
+            font-weight: bold;
+            border-radius: 20px;
+            color: white;
+        }
+        .review__icon{
+            font-size: 20px;
+        }
+    }
+
+    
+
+    .review__info {
+        
+        height: 200px;
+        color: var(--black-color);
+        margin-bottom: 40px;
+    }
+    .review-info__title {
+        width: 756px;
+        font-weight: 400;
+        font-size: 54px;
+        line-height: 62px;
+        margin-bottom: -60px;
+    }
+    .review-info__title span{
+        font-weight: 600;
+    }
+
+    .review-info__content {
+        width: 600px;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .review-info__content span{
+        font-weight: 600;
+    }
+    .review__earth-main{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+    }
+    .review__card {
+        padding-left: 26px;
+    }
+    .review__card-actor-selected {
+        padding-top: 85px;
+
+    }
+    .review__arrow-forward {
+        color: var(--next-blue);
+        padding: 123px 21px 0 21px;
+        display: flex;
+    }
+    .review__actor-type{
+        font-weight: 500;
+        font-size: 14px;
+        color: #535572;
+        padding-left: 12px;
+    }
+
+    .review__earth-card-active{
+        height: 230px;
+        width: 380px;
+        border: 2px solid #008600;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+        padding: 8px;
+        margin-bottom: 82px;
+        box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+        transition: .5s;
+    }
+
+    .review__earth-card-inactive {
+        height: 230px;
+        width: 380px;
+        border-radius: 8px;
+        background-color: #FFFFFF;
+        padding: 8px;
+        margin-bottom: 82px;
+        box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+        transition: .5s;
+    }
+
+    .review__earth-card-head{
+        font-weight: 600;
+        font-size: 24px;
+        color: #00001F;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 12px;
+        padding-right: 3px;
+        white-space: nowrap;
+    }
+
+    .review__earth-card-close-icon{
+        cursor: pointer;
+        font-size: 20px;
+        color: var(--neutral-grey);
+    }
+    .review__earth-icon{
+        color: #7A7B9A;
+    }
+
+    .review__earth-card-body{
+        width: 100%;
+        height: 150px;
+        padding-left: 8px;
+        padding-right: 8px;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: 12px;
+        padding-top: 10px;
+    }
+
+    .review__earth-card-emissions-info {
+        white-space: nowrap;
+    }
+
+    .review__earth-card-pledge-info {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .review__earth-card-content{
+        height: 70px;
+        width: 165px;
+    }
+    .review__earth-card-item-icon{
+        font-size: 24px;
+        position: relative;
+        top: 4px;
+        transform: rotate(45deg);
+        color: #F23D33;
+    }
+    .review__earth-card-item-icon-b{
+        font-size: 43px;
+        position: relative;
+        top: -8px;
+        transform: rotate(45deg);
+        color: #F23D33;
+    }
+    .review__earth-card-item-large-text{
+        font-weight: 600;
+        font-size: 24px;
+    }
+
+    .review__earth-card-item-head-text-span {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .review__earth-card-item-small-text{
+        font-weight: 600;
+        font-size: 10px;
+        color: #7A7B9A;
+    }
+    .review__earth-card-item-normal-text{
+        font-size: 12px;
+        font-weight: 500;
+        margin-left: 0px;
+    }
+    .co2concentration{
+        margin-left: 10px;
+        margin-top: 4px;
+    }
+    .donut-card{
+        display: flex;
+        align-items: flex-start;
+    }
+    .target-text{
+        margin-left: 0px;
+    }
+    .donut{
+        display: flex;
+        align-items: center;
+        padding-top: 4px;
+
+    }
+    .right-column{
+        padding-left: 8px;
+    }
+    .head-icon{
+        position: relative;
+        top: 5px;
+    }
+    .co2-history{
+        display: flex;
+    }
+    .co2-concentration-content{
+        display: flex;
+        align-items: flex-start;
+    }
+    .earth-card-normal-text{
+        margin-left: 26px;
+    }
+
+    background-color: white;
+    background-color: transparent;
+    background: url('./img/Earth_Background_Home.png') no-repeat center;
+    background-position: right;
+    background-position-y: 0;
+    background-size:contain;    
+
+    .review__foreground{
+        height: 100%;
+    }
+    
+    .review__background-content{
+        position: absolute;
+        top: 0;
+        display:flex;
+        height: 100vh;
+        width: 100%;
+        z-index: -1;
+    }
+    .review__background-content-left{
+        height: 100%;
+        width: 50%;
+        background: url('./img/background_circle.svg') no-repeat center;
+        background-position-x: -2.8rem;
+        background-position-y: -14rem;
+        background-size: contain;
+    }
+    min-height: calc(100vh - 80px - 80px);
+    .review__top-wrapper {
+        background-color: transparent;
+        padding-top: 20px;
+        padding-bottom: 12px;
+    }
+    
+    .review__filters-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .review__filters{
+        margin-right: 30px;
+    }
+    .input-wrapper{
+        background-color: #f1f2f6;
+        border: none !important;
+    }
+    
+    .review__selected-entity {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        align-items: center;
+        margin-top:42px;
+
+        .review__entity-title {
+            vertical-align: middle;
+            height: 100%;
+            display: inline-block;
+            margin-left: 16px;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 28px;
+        }
+
+        .review__icon {
+            border-radius: 50%;
+            box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+            height: 35px;
+            width: 35px;
+            object-fit: cover;
+        }
+
+        .review__icon-container-city {
+            width: 32px;
+            height: 32px;
+            border-radius: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #24BE00 100%, #008600 100%);
+
+        }
+
+        .review__icon-container-company {
+            width: 32px;
+            height: 32px;
+            border-radius: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #506CE3 100%, #001EA7 100%);
+        }
+
+        .review__icon-city {
+            font-size: 24px;
+            color: #EFEFEF;
+        }
+        
+
+        .review__explore-link {
+            font-weight: 500;
+            font-size: 11px;
+            line-height: 24px;
+            color: var(--blue-color);
+
+            :-webkit-any-link {
+                color: var(--blue-color);
+            }
+        }
+    }
+
+    .review__switcher {
+        width: 362px;
+    }
+    .review__flag{
+        border-radius: 50%;
+    }
+
+    .contact__block {
+        margin-top: 82px;
+        margin-left: 54px;
+        padding-bottom: 34px;
+    }
+    .contact__title {
+        font-size: 24px;
+        line-height: 36px;
+        font-weight: 600;
+    }
+    .contact__subtitle {
+        font-size: 20px;
+        line-height: 36px;
+        font-weight: 400;
+    }
+
+    .contact__button {
+        margin-top: 40px;
+        width: 176px;
+        height: 64px;
+        background-color: var(--secondary-blue-color);
+        color: #FFFFFF;
+        text-transform: uppercase;
+        font-weight: 600;
+        box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        font-size: 18px;
+
+    }
+    .bottom-padding{
+        height: 100px;
+        width: 100%;
+        background: #24BE04;
+    }
+    .review-cta{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    .review-fab{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        position: relative;
+        right: 50px;
+        position: fixed;
+        bottom: 50px;
+    }
+    .review-colab-button{
+        height: 60px;
+        width: 60px;
+        transition: .5s;
+    }
+    .review-colab-fab{
+        display: flex;
+        align-items: center;
+        background-color: #24BE00;
+        color: #FFFFFF;
+        transition: .5s;
+        height: 56px;
+        border-radius: 56px;
+        float: right;
+        box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    .review-colab-fab:hover{
+        background-color: #28ce03;
+        color: #FFFFFF;
+        transition: .5s;
+        border-radius: 56px;
+    }
+    .review-colab-fab-text{
+        margin-left: 5px;
+    }
+    .review-collaboration-card-hint{
+        height: 255px;
+        width: 199px;
+        background: #FFFFFF;
+        padding: 16px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+    
+    .collaboration-card-header{
+        display: flex;
+        justify-content: space-between;
+    }
+    .collaboration-card-header span{
+        color: #2351DC;
+        font-weight: 700;
+        line-height: 21px;
+    }
+    .collaboration-card-close-icon{
+        color: #C2C3E4;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    .collaboration-card-body{
+        padding-top: 25px;
+        line-height: 21px;
+        color: #535572;
+    }
+    .collaboration-card-body span{
+        color: #2351DC;
+        font-weight: 700;
+    }
+    .collaboration-card-footer{
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+        top: -25px;
+    }
+    .collaboration-card-arrow-icon{
+        color: #9DAAEE;
+    }
+    @include respond(mediumScreen){
+        .review__earth-card-active{
+            height: 198px;
+            width: 260px;
+            border: 2px solid #008600;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            padding: 12px;
+            margin-bottom: 82px;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+            transition: .5s;
+        }
+    
+        .review__earth-card-inactive {
+            height: 198px;
+            width: 260px;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            padding: 12px;
+            margin-bottom: 82px;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+            transition: .5s;
+        }
+
+        .review__earth-card-head{
+            font-weight: 600;
+            font-size: 20px;
+            color: #00001F;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 5px;
+            padding-right: 3px;
+            white-space: nowrap;
+        }
+        .review__earth-card-close-icon{
+            font-size: 18px;
+        }
+        .review__earth-card-body{
+            width: 100%;
+            height: 150px;
+            padding-left: 0px;
+            padding-right: 0px;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-gap: 0px;
+            padding-top: 3px;
+        }
+        .review__earth-card-content{
+            height: 50px;
+            width: 110px;
+        }
+        .card-contents{
+            position: relative;
+            top: 70px;
+            background: blueviolet;
+        }
+
+        .review__earth-card-item-large-text{
+            font-weight: 600;
+            font-size: 19px;
+        }
+
+        .review__earth-card-item-normal-text{
+            font-size: 10px;
+            font-weight: 500;
+            margin-left: 0px;
+        }
+        .review__arrow-forward {
+            color: var(--next-blue);
+            padding: 110px 6px 0 6px;
+            display: flex;
+        }
+        .review__earth-card-pledge-info {
+            white-space:pre;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .min{
+            position: relative;
+            top: -10px;
+        }
+        .co2-history{
+            display: flex;
+            align-items: flex-start;
+        }
+        .co2-concentration-content{
+            display: flex;
+            align-items: flex-start;
+        }
+        .earth-card-normal-text{
+            margin-left: 23px;
+        }
+        
+    }
+
+    @include respond(largeScreen){
+        .review__earth-card-active{
+            height: 198px;
+            width: 290px;
+            border: 2px solid #008600;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 82px;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+            transition: .5s;
+        }
+    
+        .review__earth-card-inactive {
+            height: 198px;
+            width: 290px;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 82px;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3), 0px 6px 10px  rgba(0, 0, 0, 0.15);
+            transition: .5s;
+        }
+
+        .review__earth-card-head{
+            font-weight: 600;
+            font-size: 20px;
+            color: #00001F;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 5px;
+            padding-right: 3px;
+            white-space: nowrap;
+        }
+        .review__earth-card-close-icon{
+            font-size: 18px;
+        }
+        .review__earth-card-body{
+            width: 100%;
+            height: 150px;
+            padding-left: 0px;
+            padding-right: 0px;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-gap: 0px;
+            padding-top: 3px;
+        }
+        .review__earth-card-content{
+            height: 50px;
+            width: 110px;
+        }
+        .card-contents{
+            position: relative;
+            top: 70px;
+            background: blueviolet;
+        }
+
+        .review__earth-card-item-large-text{
+            font-weight: 600;
+            font-size: 19px;
+        }
+
+        .review__earth-card-item-normal-text{
+            font-size: 10px;
+            font-weight: 500;
+            margin-left: 0px;
+        }
+        .review__arrow-forward {
+            color: var(--next-blue);
+            padding: 110px 21px 0 21px;
+            display: flex;
+        }
+        .review__earth-card-pledge-info {
+            white-space:pre;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .min{
+            position: relative;
+            top: -10px;
+        }
+        .co2-history{
+            display: flex;
+            align-items: flex-start;
+        }
+        .co2-concentration-content{
+            display: flex;
+            align-items: flex-start;
+        }
+        .earth-card-normal-text{
+            margin-left: 23px;
+        }
+        
+    }
+}

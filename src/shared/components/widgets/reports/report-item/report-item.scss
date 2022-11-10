@@ -1,0 +1,26 @@
+.widget__report-item {
+    color: var(--black-color);
+    display: flex;
+    justify-items: center;
+    border-bottom: 1px solid var(--grey1-color);
+    padding: 16px 0;
+
+    .widget__report-icon-wrapper {
+        margin-right: 12px;
+    }
+
+    .widget__report-icon-wrapper {
+        padding: 4px 0;
+    }
+
+    .widget__report-title {
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 19px;
+    }
+
+    .widget__report-description {
+        font-size: 10px;
+        line-height: 15px;
+    }
+}

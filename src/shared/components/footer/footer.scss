@@ -1,0 +1,95 @@
+.footer {
+
+    background: #272727;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80px;
+    padding: 16px 40px 16px 40px;
+
+    &__line {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+    }
+
+    &__disclaimer {
+        &__text {
+            color: white;
+            font-family: Lato;
+            font-size: 14px;
+            font-weight: 400;
+            margin-right: 8px;
+        }
+    }
+
+    &__beta {
+        vertical-align: middle;
+    }
+
+    &__feedback {
+        color: white;
+        cursor: pointer;
+        text-decoration: underline;
+        font-family: Poppins;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    &__poweredby {
+        color: white;
+        font-family: Lato;
+        font-size: 14px;
+        font-weight: 400;
+        margin-left: auto;
+        &__logo {
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+    }
+
+    &__menu {
+
+        display: flex;
+
+        &__items {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        &__item {
+            margin-right: 20px;
+        }
+
+        &__item:last-child {
+            margin-right: 0;
+        }
+
+        &__link {
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            font-family: Lato;
+            cursor: pointer;
+        }
+    }
+
+    &__contactus {
+        margin-left: auto;
+        &__link {
+            font-size: 14px;
+            font-weight: 700;
+            font-family: Lato;
+            color: green;
+            cursor: pointer;
+        }
+    }
+}

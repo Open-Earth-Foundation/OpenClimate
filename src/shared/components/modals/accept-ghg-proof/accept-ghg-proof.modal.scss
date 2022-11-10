@@ -1,0 +1,48 @@
+.accept-ghg-proof {
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        line-height: 26px;
+    }
+    &__content_row {
+        display: flex;
+        flex-direction: column;
+    }
+    &__btn_row {
+        font-size: 10px;
+        max-width: 600px;
+        display: flex;
+        flex-direction: row;
+        margin: 25px;
+        justify-content: flex-end
+    }
+}
+.accept-ghg-table {
+    margin-top: 50px;
+    color: var(--black-color);
+    font-size: 12px;
+    line-height: 18px;
+    border-spacing: 8px;
+
+    th {
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    tbody tr {
+        outline: 1px solid var(--grey1-color);
+        white-space: nowrap;
+    }
+
+    thead tr td {
+        padding: 0 0 10px 24px;
+    }
+
+    tbody tr td {
+        min-width: 50px;
+        padding: 12px 16px 12px 24px;
+    }
+
+}
