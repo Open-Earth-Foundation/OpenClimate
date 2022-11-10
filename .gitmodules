@@ -1,11 +1,3 @@
-[submodule "OpenClimate-hub-controller"]
-	path = OpenClimate-hub-controller
-	url = git@github.com:Open-Earth-Foundation/OpenClimate-hub-controller.git
-	branch = .
-[submodule "OpenClimate-hub-ui"]
-	path = OpenClimate-hub-ui
-	url = git@github.com:Open-Earth-Foundation/OpenClimate-hub-ui.git
-	branch = .
 [submodule "aries-acapy-plugin-toolbox"]
 	path = aries-acapy-plugin-toolbox
 	url = git@github.com:Open-Earth-Foundation/aries-acapy-plugin-toolbox.git
