@@ -1,0 +1,48 @@
+version: 0.2
+env:
+  variables:
+    TF_VERSION: "0.10.7"
+phases:
+  install:
+    commands:
+      - pwd
+      - ls
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ACCOUNTID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+  build:
+    commands:
+      - sed -i 's/<ACCOUNTID>/'$ACCOUNTID'/g' Dockerfile
+      - sed -i 's/<REGION>/'$AWS_DEFAULT_REGION'/g' Dockerfile
+      - sed -i 's/<POSGRES_ENDPOINT>/'$POSGRES_ENDPOINT'/g' taskdef.json
+      - sed -i 's/<POSGRES_USER>/'$POSGRES_USER'/g' taskdef.json
+      - sed -i 's/<POSGRES_PASSWORD>/'$POSGRES_PASSWORD'/g' taskdef.json
+      - sed -i 's/<JWT_SECRET>/'$JWT_SECRET'/g' taskdef.json
+      - sed -i 's/<SESSION_SECRET>/'$SESSION_SECRET'/g' taskdef.json
+      - sed -i 's/<POSGRES_DB>/'$POSGRES_DB'/g' taskdef.json
+      - sed -i 's/<SCHEMA_VERIFIED_EMPLOYEE>/'$SCHEMA_VERIFIED_EMPLOYEE'/g' taskdef.json
+      - sed -i 's/<SCHEMA_VALIDATED_EMAIL>/'$SCHEMA_VALIDATED_EMAIL'/g' taskdef.json
+      - sed -i 's/<ENV>/'$ENV'/g' taskdef.json
+      - sed -i 's/<UI_ENDPOINT>/'$UI_ENDPOINT'/g' taskdef.json
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t controller .
+      - echo "Version--> " `cat version.txt`
+      - VERSION=`cat version.txt`
+      - docker tag controller $ACCOUNTID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/controller:$VERSION
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $ACCOUNTID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/controller:$VERSION
+      - sed -i 's/<VERSION>/'$VERSION'/g' taskdef.json
+      - sed -i 's/<REGION>/'$AWS_DEFAULT_REGION'/g' taskdef.json
+      - sed -i 's/<ACCOUNTID>/'$ACCOUNTID'/g' taskdef.json
+      - sed -i 's/<FILESYSTEMID>/'$INPUT_FILESYSTEMID'/g' taskdef.json
+
+artifacts:
+  files:
+    - 'taskdef.json'
+    - 'buildspec.yml'
+    - 'appspec.yml'
