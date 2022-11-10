@@ -116,6 +116,7 @@ services:
       volumes:
         - ./import:/opt/import/
         - ./data:/var/local/data
+        - ./harmonize:/var/local/harmonize
       command: >
         crond -f -d 8
       networks:
