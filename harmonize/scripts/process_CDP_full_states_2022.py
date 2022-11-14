@@ -62,7 +62,7 @@ if __name__ == "__main__":
     )
     
     # convert to csv
-    df_out.to_csv(f'{outputDir}/EmissionsAgg.csv', index=False)
+    df_out.drop_duplicates().to_csv(f'{outputDir}/EmissionsAgg.csv', index=False)
     
     # -------------------------------------------
     # Tag table
@@ -108,4 +108,4 @@ if __name__ == "__main__":
             fl_climactor=fl_climactor,
             datasourceDict=datasourceDict)
 
-    df_targets.to_csv(f'{outputDir}/Target.csv', index=False)
+    df_targets.drop_duplicates().to_csv(f'{outputDir}/Target.csv', index=False)
