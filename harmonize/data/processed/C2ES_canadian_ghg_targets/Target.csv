@@ -1,0 +1,21 @@
+target_id,actor_id,target_type,baseline_year,target_year,target_value,target_unit,URL,datasource_id
+C2ES:CA-AB:2020,CA-AB,Emission intensity reduction,1990,2020,50,percent,https://www.canlii.org/en/ab/laws/astat/sa-2003-c-c-16.7/148336/sa-2003-c-c-16.7.html,C2ES:canadian_GHG_targets
+C2ES:CA-AB:2050,CA-AB,Absolute emission reduction,2005,2050,14,percent,https://open.alberta.ca/dataset/e86a9861-aa19-400e-bb7a-909ef8ccfe46/resource/ad5754f4-cc7f-40bf-a2ad-0775bd83ba7e/download/4063885-2008-albertas-2008-climate-change-strategy.pdf,C2ES:canadian_GHG_targets
+C2ES:CA-BC:2020,CA-BC,Absolute emission reduction,2007,2020,33,percent,https://www.leg.bc.ca/pages/bclass-legacy.aspx#/content/legacy/web/38th3rd/1st_read/gov44-1.htm,C2ES:canadian_GHG_targets
+C2ES:CA-BC:2030,CA-BC,Absolute emission reduction,2007,2030,40,percent,https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/00_07042_01,C2ES:canadian_GHG_targets
+C2ES:CA-BC:2040,CA-BC,Absolute emission reduction,2007,2040,60,percent,https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/00_07042_01,C2ES:canadian_GHG_targets
+C2ES:CA-BC:2050,CA-BC,Absolute emission reduction,2007,2050,80,percent,https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/00_07042_01,C2ES:canadian_GHG_targets
+C2ES:CA-MB:2012,CA-MB,Absolute emission reduction,1990,2012,6,percent,https://web2.gov.mb.ca/bills/39-2/b015e.php,C2ES:canadian_GHG_targets
+C2ES:CA-NB:2030,CA-NB,Absolute emission reduction,2005,2030,46,percent,https://www2.gnb.ca/content/dam/gnb/Corporate/Promo/climate/climate-change-action-plan.pdf,C2ES:canadian_GHG_targets
+C2ES:CA-NL:2020,CA-NL,Absolute emission reduction,1990,2020,10,percent,https://www.gov.nl.ca/ecc/files/publications-the-way-forward-climate-change.pdf,C2ES:canadian_GHG_targets
+C2ES:CA-NL:2050,CA-NL,Absolute emission reduction,2001,2050,75,percent,https://www.gov.nl.ca/ecc/files/publications-the-way-forward-climate-change.pdf,C2ES:canadian_GHG_targets
+C2ES:CA-NS:2020,CA-NS,Absolute emission reduction,1990,2020,10,percent,https://nslegislature.ca/sites/default/files/legc/statutes/environmental%20goals%20and%20sustainable%20prosperity.pdf,C2ES:canadian_GHG_targets
+C2ES:CA-NS:2030,CA-NS,Absolute emission reduction,2005,2030,53,percent,https://nslegislature.ca/legc/bills/64th_1st/3rd_read/b057.htm,C2ES:canadian_GHG_targets
+C2ES:CA-ON:2020,CA-ON,Absolute emission reduction,1990,2020,15,percent,https://www.ola.org/en/legislative-business/bills/parliament-41/session-1/bill-172,C2ES:canadian_GHG_targets
+C2ES:CA-ON:2030,CA-ON,Absolute emission reduction,1990,2030,37,percent,https://www.ola.org/en/legislative-business/bills/parliament-41/session-1/bill-172,C2ES:canadian_GHG_targets
+C2ES:CA-ON:2030,CA-ON,Absolute emission reduction,2005,2030,30,percent,https://prod-environmental-registry.s3.amazonaws.com/2018-11/EnvironmentPlan.pdf,C2ES:canadian_GHG_targets
+C2ES:CA-ON:2050,CA-ON,Absolute emission reduction,1990,2050,80,percent,https://www.ola.org/en/legislative-business/bills/parliament-41/session-1/bill-172,C2ES:canadian_GHG_targets
+C2ES:CA-PE:2030,CA-PE,Absolute emission reduction,2005,2030,30,percent,https://www.princeedwardisland.ca/en/information/communities-land-and-environment/climate-change-action-plan-2018-2023,C2ES:canadian_GHG_targets
+C2ES:CA-QC:2020,CA-QC,Absolute emission reduction,1990,2020,20,percent,https://www.environnement.gouv.qc.ca/changementsclimatiques/engagement-quebec-en.asp,C2ES:canadian_GHG_targets
+C2ES:CA-QC:2030,CA-QC,Absolute emission reduction,1990,2030,37,percent,https://www.environnement.gouv.qc.ca/changementsclimatiques/engagement-quebec-en.asp,C2ES:canadian_GHG_targets
+C2ES:CA-QC:2050,CA-QC,Absolute emission reduction,1990,2050,80,percent,https://www.environnement.gouv.qc.ca/changementsclimatiques/engagement-quebec-en.asp,C2ES:canadian_GHG_targets
