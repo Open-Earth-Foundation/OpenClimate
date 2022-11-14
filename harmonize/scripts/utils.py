@@ -223,7 +223,7 @@ def get_climactor_country(fl=None):
     #fl = 'https://raw.githubusercontent.com/datadrivenenvirolab/ClimActor/master/data-raw/country_dict_August2020.csv'
     
     if fl is None:
-        fl = '/Users/luke/Documents/work/data/ClimActor/country_dict_updated.csv'
+        fl = os.path.abspath('../resources/country_dict_updated.csv')
         
     df = pd.read_csv(fl)
     df['right'] = df['right'].str.strip()
@@ -298,9 +298,11 @@ def name_harmonize_iso():
     from utils import read_iso_codes
     #df_iso = read_iso_codes()
     # keep_default_na=False ensure ISO code NA is parsed
-    df_iso = pd.read_csv('/Users/luke/Documents/work/projects/OpenClimate-ISO-3166/ISO-3166-1/Actor.csv',
-                         keep_default_na=False)
+    #df_iso = pd.read_csv('/Users/luke/Documents/work/projects/OpenClimate-ISO-3166/ISO-3166-1/Actor.csv',
+    #                     keep_default_na=False)
 
+    df_iso = pd.read_csv('https://raw.githubusercontent.com/Open-Earth-Foundation/OpenClimate-ISO-3166/main/ISO-3166-1/Actor.csv',
+                         keep_default_na=False)
     df_climactor = get_climactor_country()
 
     #len(df_iso)
