@@ -33,7 +33,7 @@ router.get('/api/v1/actor/:actor_id', wrap(async (req:any, res:any) => {
             EmissionsAgg.findAll({where: {actor_id: actor_id}, order: [["year", "desc"]]}),
             Population.findAll({where: {actor_id: actor_id}, order: [["year", "desc"]]}),
             GDP.findAll({where: {actor_id: actor_id}, order: [["year", "desc"]]}),
-            Target.findAll({where: {actor_id: actor_id}})
+            Target.findAll({where: {actor_id: actor_id}, order: [["target_year", "asc"], ["baseline_year", "asc"], ["target_type", "asc"], ["target_value", "asc"]]})
         ])
 
     // Get unique datasources

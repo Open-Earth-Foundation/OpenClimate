@@ -170,8 +170,10 @@ beforeAll(async () => {
     await Actor.create(cityProps)
     await Territory.create(territory1Props)
     await Territory.create(territory2Props)
-    await Target.create(countryTarget1Props)
+
     await Target.create(countryTarget2Props)
+    await Target.create(countryTarget1Props)
+
     await Target.create(country2Target1Props)
 
     let vals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -679,5 +681,20 @@ it("returns territory data source", async () =>
             expect(datasource.name).toBeDefined()
             expect(datasource.published).toBeDefined()
             expect(datasource.URL).toBeDefined()
+        })
+)
+
+it("returns targets in target_year order", async () =>
+    request(app)
+        .get(`/api/v1/actor/${country1Props.actor_id}`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            expect(res.body.data).toBeDefined()
+            const data = res.body.data
+            expect(data.targets).toBeDefined()
+            expect(data.targets.length).toEqual(2)
+            const years = data.targets.map((t:any) => t.target_year)
+            expect(years).toEqual(years.slice().sort())
         })
 )
