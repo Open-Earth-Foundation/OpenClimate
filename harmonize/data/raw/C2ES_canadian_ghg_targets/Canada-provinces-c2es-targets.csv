@@ -1,0 +1,21 @@
+actor_id,province,target_type,target_value,actual_range,target_unit,intensity_unit,baseline_year,target_year,actual_range,URL
+CA-AB,Alberta,Absolute emission reduction,14,,percent,,2005,2050,,https://open.alberta.ca/dataset/e86a9861-aa19-400e-bb7a-909ef8ccfe46/resource/ad5754f4-cc7f-40bf-a2ad-0775bd83ba7e/download/4063885-2008-albertas-2008-climate-change-strategy.pdf
+CA-AB,Alberta,Emission intensity reduction,50,,percent,GDP,1990,2020,,https://www.canlii.org/en/ab/laws/astat/sa-2003-c-c-16.7/148336/sa-2003-c-c-16.7.html
+CA-BC,British Columbia,Absolute emission reduction,33,,percent,,2007,2020,,https://www.leg.bc.ca/pages/bclass-legacy.aspx#/content/legacy/web/38th3rd/1st_read/gov44-1.htm
+CA-BC,British Columbia,Absolute emission reduction,40,,percent,,2007,2030,,https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/00_07042_01
+CA-BC,British Columbia,Absolute emission reduction,60,,percent,,2007,2040,,https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/00_07042_01
+CA-BC,British Columbia,Absolute emission reduction,80,,percent,,2007,2050,,https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/00_07042_01
+CA-MB,Manitoba,Absolute emission reduction,6,,percent,,1990,2012,,https://web2.gov.mb.ca/bills/39-2/b015e.php
+CA-ON,Ontario,Absolute emission reduction,15,,percent,,1990,2020,,https://www.ola.org/en/legislative-business/bills/parliament-41/session-1/bill-172
+CA-ON,Ontario,Absolute emission reduction,37,,percent,,1990,2030,,https://www.ola.org/en/legislative-business/bills/parliament-41/session-1/bill-172
+CA-ON,Ontario,Absolute emission reduction,80,,percent,,1990,2050,,https://www.ola.org/en/legislative-business/bills/parliament-41/session-1/bill-172
+CA-ON,Ontario,Absolute emission reduction,30,,percent,,2005,2030,,https://prod-environmental-registry.s3.amazonaws.com/2018-11/EnvironmentPlan.pdf
+CA-QC,Quebec,Absolute emission reduction,20,,percent,,1990,2020,,https://www.environnement.gouv.qc.ca/changementsclimatiques/engagement-quebec-en.asp
+CA-QC,Quebec,Absolute emission reduction,37,,percent,,1990,2030,,https://www.environnement.gouv.qc.ca/changementsclimatiques/engagement-quebec-en.asp
+CA-QC,Quebec,Absolute emission reduction,80,80-95,percent,,1990,2050,80-95,https://www.environnement.gouv.qc.ca/changementsclimatiques/engagement-quebec-en.asp
+CA-NL,Newfoundland and Labrador,Absolute emission reduction,10,,percent,,1990,2020,,https://www.gov.nl.ca/ecc/files/publications-the-way-forward-climate-change.pdf
+CA-NL,Newfoundland and Labrador,Absolute emission reduction,75,75-85,percent,,2001,2050,75-85,https://www.gov.nl.ca/ecc/files/publications-the-way-forward-climate-change.pdf
+CA-NS,Novia Scotia,Absolute emission reduction,10,,percent,,1990,2020,,https://nslegislature.ca/sites/default/files/legc/statutes/environmental%20goals%20and%20sustainable%20prosperity.pdf
+CA-NS,Novia Scotia,Absolute emission reduction,53,,percent,,2005,2030,,https://nslegislature.ca/legc/bills/64th_1st/3rd_read/b057.htm
+CA-PE,Prince Edward Island,Absolute emission reduction,30,,percent,,2005,2030,,https://www.princeedwardisland.ca/en/information/communities-land-and-environment/climate-change-action-plan-2018-2023
+CA-NB,New Brunswick,Absolute emission reduction,46,,percent,,2005,2030,,https://www2.gnb.ca/content/dam/gnb/Corporate/Promo/climate/climate-change-action-plan.pdf
