@@ -11,7 +11,6 @@ import Bg from './img/Earth_Background_Home_Gray.png';
 import LevelCards from './level-cards'
 import CollaborateFAB from './CollaborateFab';
 import CollaborationCardHint from './CollaborateCardHint';
-import { CircleFlag } from 'react-circle-flags';
 import ActorFlag from './actor-flag/actor-flag';
 
 type ReviewPageParams = {
@@ -146,7 +145,7 @@ const ReviewPage: FunctionComponent = () => {
                                 (current && notJustEarth()) ?
                                     <div className="review__selected-entity">
                                         <>
-                                            <ActorFlag 
+                                            <ActorFlag
                                                 currentActorId={current.actor_id}
                                                 currentActorType={current.type}
                                                 parentActorId={parent.actor_id}
@@ -189,7 +188,7 @@ const ReviewPage: FunctionComponent = () => {
                             <CollaborateFAB />
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
