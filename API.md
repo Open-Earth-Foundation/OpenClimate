@@ -116,7 +116,7 @@ Standard output. `data` is an object representing the actor, with the following 
   - `gdp`: GDP for the actor, in USD, contemporary.
   - `year`: year of the GDP value; YYYY.
   - `datasource_id`: ID of the data source for this GDP measurement.
-- `targets`: an array of targets that the actor is trying to achieve. Ordered by baseline year, then target year, then target type, then target value. Each target has the following properties:
+- `targets`: an array of targets that the actor is trying to achieve. Ordered by target year, then baseline year, then target type, then target value. Each target has the following properties:
   - `target_id`: unique ID for the target
   - `target_type`: type of target. One of "absolute", "percentage", "percapita", ...
   - `target_year`: year the target will be achieved; YYYY.
