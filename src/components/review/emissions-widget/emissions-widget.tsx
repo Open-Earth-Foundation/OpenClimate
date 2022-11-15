@@ -253,10 +253,26 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                         </Tooltip>
                     </div>
                     <div className="emissions-widget__methodologies-tags">
-                        {
+                    {
                             tags.slice(0, 3).map((tag:any) =>
                                 <div key={`emissions-tag-${tag.tag_id}`} className="methodologies-tag">
-                                    <span className="methodologies-text">{tag.tag_name}</span>
+                                    {
+                                        tag.tag_name.length > 24 ? (<Tooltip 
+                                            classes={{
+                                                        tooltip: classes.customTooltip,
+                                                        arrow: classes.customArrow
+                                                    }}
+                                            title= {
+                                                        <div className = "tooltip">
+                                                            {tag.tag_name}
+                                                        </div>
+                                                } 
+                                            arrow placement="bottom">
+                                            <span className="methodologies-text">{tag.tag_name}</span>
+                                        </Tooltip>) :
+                                        (<span className="methodologies-text">{tag.tag_name}</span>)
+                                    }
+                                    
                                 </div>
                             )
                         }
