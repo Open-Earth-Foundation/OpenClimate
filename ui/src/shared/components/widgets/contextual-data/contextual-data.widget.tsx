@@ -63,7 +63,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
             label: 'N/A',
             color: '#D9D9D9'
         }]
-    console.log(current);
+
 
     return (
         <div className="contextual-widget" >
