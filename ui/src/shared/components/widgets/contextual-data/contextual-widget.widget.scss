@@ -157,6 +157,44 @@
     &__icon-padding {
         padding-top: 8px;
     }
+    &__contextual-empty-state{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding-top: 40px; 
+    }
+    &__contextual-empty-state p {
+        font-size: 14px;
+        line-height: 24px;
+        color: #7A7B9A;
+    }
+
+    .collaborate-cta-btn{
+        display: flex;
+        position: relative;
+        top: -20px;
+        align-items: center;
+        justify-content: space-between;
+        color: #2351DC;
+        padding: 10px;
+        background-color: transparent;
+    }
+    
+    .collaborate-cta-btn span{
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .collaborate-cta-icon{
+        position: relative;
+        top: -2px;
+        margin-right: 10px;
+        font-size: large;
+    }
     @include respond(tablet){
        margin-top: 135px;
     }
