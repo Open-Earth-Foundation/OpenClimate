@@ -81,3 +81,9 @@ In the previous case we entered the db container and ran the command sh. Tab com
 
     $ docker-compose exec
     api        db         ui         webserver
+
+# Self-signed cert
+
+https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate
+
+chrome://flags/#allow-insecure-localhost
