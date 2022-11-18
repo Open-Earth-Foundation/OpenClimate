@@ -1,0 +1,129 @@
+target_id,actor_id,target_type,baseline_year,target_year,target_value,target_unit,datasource_id
+CDP_full_states_regions_2018-2019:AT-3:2030,AT-3,Base year emissions target,2005,2030,36,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:AU-ACT:2020,AU-ACT,Base year emissions target,1990,2020,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:AU-ACT:2025,AU-ACT,Base year emissions target,1990,2025,60,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:AU-ACT:2025,AU-ACT,Base year emissions target,1990,2025,50,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:AU-ACT:2030,AU-ACT,Base year emissions target,1990,2030,75,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:AU-ACT:2030,AU-ACT,Base year emissions target,1990,2030,65,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:AU-ACT:2040,AU-ACT,Base year emissions target,1990,2040,95,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:AU-ACT:2040,AU-ACT,Base year emissions target,1990,2040,90,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:AU-ACT:2045,AU-ACT,Base year emissions target,1990,2045,100,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:AU-QLD:2030,AU-QLD,Base year emissions target,2005,2030,30,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:AU-SA:2050,AU-SA,Base year emissions target,1990,2050,60,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:BR-AM:2050,BR-AM,Baseline scenario (business as usual) target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:BR-AP:2030,BR-AP,Baseline scenario (business as usual) target,2012,2030,72,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:BR-RJ:2030,BR-RJ,Base year intensity target,2005,2030,65,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:BR-RJ:2030,BR-RJ,Base year intensity target,2010,2030,30,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:BR-SP:2020,BR-SP,Base year emissions target,2005,2020,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-AB:2025,CA-AB,Base year emissions target,2014,2025,45,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-BC:2030,CA-BC,Base year emissions target,2007,2030,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-BC:2040,CA-BC,Base year emissions target,2007,2040,60,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-BC:2050,CA-BC,Base year emissions target,2007,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-NL:2020,CA-NL,Base year emissions target,1990,2020,10,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-NL:2030,CA-NL,Base year emissions target,2005,2030,30,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-NL:2050,CA-NL,Base year emissions target,1990,2050,75,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-NT:2030,CA-NT,Base year emissions target,2005,2030,30,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-QC:2020,CA-QC,Base year emissions target,1990,2020,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-QC:2020,CA-QC,Base year emissions target,1990,2020,10,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-QC:2030,CA-QC,Base year emissions target,1990,2030,37,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-QC:2030,CA-QC,Base year emissions target,1990,2030,45,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-QC:2050,CA-QC,Base year emissions target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CA-QC:2050,CA-QC,Base year emissions target,2001,2050,85,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CH-BS:2020,CH-BS,Base year intensity target,1990,2020,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CH-BS:2035,CH-BS,Base year intensity target,1990,2035,50,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CH-BS:2050,CH-BS,Base year intensity target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:CO-AMA:2050,CO-AMA,Baseline scenario (business as usual) target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:DE-BW:2020,DE-BW,Base year emissions target,1990,2020,25,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:DE-BW:2050,DE-BW,Base year emissions target,1990,2050,90,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:DE-HE:2020,DE-HE,Base year emissions target,1990,2020,30,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:DE-HE:2025,DE-HE,Base year emissions target,1990,2025,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:DE-HE:2050,DE-HE,Base year emissions target,1990,2050,90,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:DE-RP:2020,DE-RP,Base year emissions target,1990,2020,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:DE-SH:2020,DE-SH,Base year emissions target,1990,2020,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-AN:2030,ES-AN,Base year emissions target,2005,2030,25,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-AN:2030,ES-AN,Base year emissions target,2005,2030,26,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-CB:2020,ES-CB,Base year emissions target,2005,2020,10,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-CB:2030,ES-CB,Base year emissions target,2005,2030,26,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2016,ES-NA,Base year emissions target,2005,2016,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2016,ES-NA,Base year emissions target,2005,2016,45,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2020,ES-NA,Base year emissions target,2005,2020,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2020,ES-NA,Base year emissions target,2005,2020,14,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2020,ES-NA,Base year emissions target,2005,2020,6,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2020,ES-NA,Base year emissions target,2005,2020,7,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2030,ES-NA,Base year emissions target,2005,2030,45,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2030,ES-NA,Base year emissions target,2005,2030,41,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2030,ES-NA,Base year emissions target,2005,2030,14,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2030,ES-NA,Base year emissions target,2005,2030,16,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-NA:2030,ES-NA,Base year emissions target,2005,2030,4,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-PV:2030,ES-PV,Base year emissions target,2005,2030,30,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-PV:2050,ES-PV,Base year emissions target,2005,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-S:2020,ES-S,Base year emissions target,2005,2020,10,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ES-S:2030,ES-S,Base year emissions target,2005,2030,26,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:FI-01:2030,FI-01,Base year emissions target,2005,2030,60,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:FI-01:2030,FI-01,Base year emissions target,2005,2030,50,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:GB-SCT:2020,GB-SCT,Base year emissions target,1990,2020,42,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:GB-SCT:2050,GB-SCT,Base year emissions target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:GB-WLS:2019,GB-WLS,Base year emissions target,1990,2019,27,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:GB-WLS:2020,GB-WLS,Base year emissions target,1990,2020,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:GB-WLS:2050,GB-WLS,Base year emissions target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:GR-I:2020,GR-I,Base year emissions target,2008,2020,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:GR-I:2020,GR-I,Base year emissions target,2008,2020,5,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ID-KB:2020,ID-KB,Base year emissions target,2000,2020,29,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ID-KB:2030,ID-KB,Base year emissions target,1990,2030,60,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ID-KU:2030,ID-KU,Base year emissions target,2011,2030,79,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ID-KU:2030,ID-KU,Base year emissions target,2012,2030,1,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ID-KU:2030,ID-KU,Base year emissions target,2010,2030,96,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:ID-KU:2030,ID-KU,Base year emissions target,2010,2030,98,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:IN-GJ:2030,IN-GJ,Base year intensity target,2005,2030,35,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:IT-25:2020,IT-25,Base year emissions target,2005,2020,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:IT-25:2030,IT-25,Base year emissions target,2005,2030,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:IT-25:2050,IT-25,Base year emissions target,2005,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:KR-44:2030,KR-44,Baseline scenario (business as usual) target,2016,2030,28,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-BCN:2020,MX-BCN,Base year emissions target,2010,2020,15,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-BCS:2020,MX-BCS,Base year emissions target,2010,2020,15,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-CAM:2030,MX-CAM,Baseline scenario (business as usual) target,2005,2030,50,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-CAM:2030,MX-CAM,Baseline scenario (business as usual) target,2005,2030,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-CAM:2030,MX-CAM,Baseline scenario (business as usual) target,2005,2030,18,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-CAM:2030,MX-CAM,Baseline scenario (business as usual) target,2005,2030,29,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-JAL:2050,MX-JAL,Base year emissions target,2014,2050,50,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-MEX:2050,MX-MEX,Base year emissions target,2010,2050,30,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2018,MX-YUC,Base year emissions target,2005,2018,14,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2018,MX-YUC,Base year emissions target,2005,2018,1,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2018,MX-YUC,Base year emissions target,2005,2018,5,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2018,MX-YUC,Base year emissions target,2005,2018,0,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2018,MX-YUC,Base year emissions target,2005,2018,25,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2030,MX-YUC,Base year emissions target,2005,2030,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2030,MX-YUC,Base year emissions target,2005,2030,14,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2030,MX-YUC,Base year emissions target,2005,2030,2,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2030,MX-YUC,Base year emissions target,2005,2030,5,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2030,MX-YUC,Base year emissions target,2005,2030,0,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:MX-YUC:2030,MX-YUC,Base year emissions target,2005,2030,25,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:NG-CR:2030,NG-CR,Base year emissions target,2030,2030,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:NG-CR:2030,NG-CR,Base year emissions target,2019,2030,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:NL-DR:2020,NL-DR,Base year emissions target,1990,2020,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:NO-18:2020,NO-18,Baseline scenario (business as usual) target,1991,2020,30,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:PE-AMA:2050,PE-AMA,Baseline scenario (business as usual) target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:PE-HUC:2050,PE-HUC,Baseline scenario (business as usual) target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:PE-MDD:2021,PE-MDD,Baseline scenario (business as usual) target,2017,2021,20,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:PE-MDD:2021,PE-MDD,Baseline scenario (business as usual) target,2017,2021,5,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:PE-MDD:2021,PE-MDD,Baseline scenario (business as usual) target,2017,2021,50,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:PE-SAM:2050,PE-SAM,Baseline scenario (business as usual) target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:PE-UCA:2050,PE-UCA,Baseline scenario (business as usual) target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-CA:2030,US-CA,Base year emissions target,1990,2030,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-CA:2050,US-CA,Base year emissions target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-CT:2020,US-CT,Base year emissions target,1990,2020,10,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-CT:2030,US-CT,Base year emissions target,2001,2030,45,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-CT:2050,US-CT,Base year emissions target,2001,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-HI:2020,US-HI,Base year emissions target,1990,2020,19,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-MN:2050,US-MN,Base year emissions target,2005,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-NY:2030,US-NY,Base year emissions target,1990,2030,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-NY:2050,US-NY,Base year emissions target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-NY:2050,US-NY,Base year emissions target,1990,2050,85,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-OR:2020,US-OR,Base year emissions target,1990,2020,10,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-OR:2050,US-OR,Base year emissions target,1990,2050,75,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-VT:2030,US-VT,Base year emissions target,1990,2030,40,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-VT:2050,US-VT,Base year emissions target,1990,2050,80,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-WA:2020,US-WA,Base year emissions target,1990,2020,0,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-WA:2035,US-WA,Base year emissions target,1990,2035,25,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:US-WA:2050,US-WA,Base year emissions target,1990,2050,50,percent,CDP_full_states_regions:2018-2019
+CDP_full_states_regions_2018-2019:VE-Z:2050,VE-Z,Baseline scenario (business as usual) target,1990,2050,80,percent,CDP_full_states_regions:2018-2019

@@ -190,7 +190,256 @@ def harmonize_emissions(fl=None, reportingYear=None, fl_climactor=None, datasour
     return df_emissionsAgg
 
 
+def harmonize_targets(fl=None, reportingYear=None, fl_climactor=None, datasourceDict=None):
+    df = pd.read_csv(fl)
+
+    # list of account numbers (organizations)
+    accountNumbers = list(set(df['Account Number']))
+
+    # initialize target list
+    dataFrameList = []
+
+    # this is different from year to year
+    parent_section = '5. Strategy'
+
+    for accountNumber in accountNumbers:
+        filt = (
+            (df['Year Reported to CDP'] == reportingYear) &
+            (df['Parent Section'] == parent_section) &
+            (df['Account Number'] == accountNumber)
+        )
+
+        # select emissions section
+        df_tmp = df.loc[filt]
+
+        subnational = list(set(df_tmp['Organization']))
+        country = list(set(df_tmp['Country']))
+
+        # do you have a GHG emissions reduction target in place
+        filt = (df_tmp['Question Number'] == '5.2')
+        has_target = df_tmp.loc[filt, 'Response Answer']
+
+        # list of possible target types
+        targetTypes = [
+            'Base year emissions target',
+            'Base year intensity target',
+            'Baseline scenario (business as usual) target',
+            'Fixed level target'
+        ]
+
+        # if has target then parse out information
+        if has_target.isin(targetTypes).all():
+            target_list = has_target.to_list()
+
+            for target in target_list:
+                if target == "Base year emissions target":
+                    filt = (df_tmp['Question Number'] == '5.2a')
+                    df_targ = pd.pivot(df_tmp.loc[filt],
+                                       index='Row Number',
+                                       columns='Column Name',
+                                       values='Response Answer')
+                    nRecords = len(df_targ)
+                    tmp = pd.DataFrame({**{'country': country,
+                                           'subnational': subnational,
+                                           'target_type': target,
+                                           'target_unit': 'percent',
+                                           }})
+                    df_country = pd.concat([tmp]*nRecords, ignore_index=True)
+                    df_out = pd.DataFrame({**df_country.to_dict(orient='list'),
+                                           **df_targ.to_dict(orient='list')})
+
+                    dataFrameList.append(df_out)
+                    continue
+                if target == 'Base year intensity target':
+                    filt = (df_tmp['Question Number'] == '5.2b')
+                    df_targ = pd.pivot(df_tmp.loc[filt],
+                                       index='Row Number',
+                                       columns='Column Name',
+                                       values='Response Answer')
+                    nRecords = len(df_targ)
+                    tmp = pd.DataFrame({**{'country': country,
+                                           'subnational': subnational,
+                                           'target_type': target,
+                                           'target_unit': 'percent'
+                                           }})
+                    df_country = pd.concat([tmp]*nRecords, ignore_index=True)
+
+                    df_out = pd.DataFrame({**df_country.to_dict(orient='list'),
+                                           **df_targ.to_dict(orient='list')})
+
+                    dataFrameList.append(df_out)
+                    continue
+                if target == 'Baseline scenario (business as usual) target':
+                    filt = (df_tmp['Question Number'] == '5.2c')
+                    df_targ = pd.pivot(df_tmp.loc[filt],
+                                       index='Row Number',
+                                       columns='Column Name',
+                                       values='Response Answer')
+                    nRecords = len(df_targ)
+                    tmp = pd.DataFrame({**{'country': country,
+                                           'subnational': subnational,
+                                           'target_type': target,
+                                           'target_unit': 'percent'
+                                           }})
+                    df_country = pd.concat([tmp]*nRecords, ignore_index=True)
+
+                    df_out = pd.DataFrame({**df_country.to_dict(orient='list'),
+                                           **df_targ.to_dict(orient='list')})
+
+                    dataFrameList.append(df_out)
+                    continue
+                if target == 'Fixed level target':
+                    filt = (df_tmp['Question Number'] == '5.2d')
+                    df_targ = pd.pivot(df_tmp.loc[filt],
+                                       index='Row Number',
+                                       columns='Column Name',
+                                       values='Response Answer')
+                    nRecords = len(df_targ)
+                    tmp = pd.DataFrame({**{'country': country,
+                                           'subnational': subnational,
+                                           'target_type': target,
+                                           'target_unit': 'percent'
+                                           }})
+                    df_country = pd.concat([tmp]*nRecords, ignore_index=True)
+
+                    df_out = pd.DataFrame({**df_country.to_dict(orient='list'),
+                                           **df_targ.to_dict(orient='list')})
+
+                    dataFrameList.append(df_out)
+                    continue
+                else:
+                    print(f"{target} for {accountNumber} not in {targetTypes}")
+                    continue
+
+    # stich all the target dataframes together
+    df_out = pd.concat(dataFrameList)
+
+    # replace not applicaable with NaN
+    df_out = df_out.replace("Question not applicable", np.NaN)
+
+    df_out = df_out.rename(columns={
+        'Base year': 'baseline_year',
+        'Target year': 'target_year',
+        'Percentage reduction target': 'target_value',
+        'Percentage reduction target in emissions intensity': 'percent_reduction_target_in_emissions_intensity',
+        'Percentage reduction target from business as usual': 'percent_reduction_target_from_bau',
+        'Estimated business as usual absolute emissions in target year (metric tonnes CO2e)': 'target_year_bau_emissions',
+        'Sector': 'sector',
+        'Intensity unit (Emissions per)': 'intensity_unit'
+    })
+
+    # merge values for other target_types
+    # fill 'Fixed-level target' target type with target_year_emissions
+    df_out['target_value'] = df_out.target_value.fillna(
+        df_out.percent_reduction_target_in_emissions_intensity)
+    df_out['target_value'] = df_out.target_value.fillna(
+        df_out.percent_reduction_target_from_bau)
+
+    filt = ~df_out['target_value'].isna()
+    df_out = df_out.loc[filt]
+
+    # get ISO codes for actor ID
+    df_out = df_out.copy()
+
+    # Now need to find the ISO code for each subnational
+    df_clim = pd.read_csv(fl_climactor).drop_duplicates()
+    df_clim = df_clim.loc[df_clim['entity_type'].isin(['Region', 'nan'])]
+
+    # name harmonize
+    df_out['subnational_harmonized'] = (
+        df_out['subnational']
+        .replace(to_replace=list(df_clim['wrong']),
+                 value=list(df_clim['right']))
+    )
+
+    # read ISO-3166
+    df_sub = pd.read_csv(
+        'https://raw.githubusercontent.com/Open-Earth-Foundation/OpenClimate-ISO-3166/main/ISO-3166-2/ActorName.csv')
+
+    # name harmonize ISO-3166
+    df_sub['name_harmonized'] = (
+        df_sub['name']
+        .replace(to_replace=list(df_clim['wrong']),
+                 value=list(df_clim['right']))
+    )
+
+    # final table
+    df_final = pd.merge(df_out, df_sub, left_on=[
+                        "subnational_harmonized"], right_on=["name_harmonized"], how="left")
+
+    # this is just to rename df_final
+    df_out = df_final.copy()
+
+    # create id columns
+    df_out['datasource_id'] = datasourceDict['datasource_id']
+    df_out['target_id'] = df_out.apply(lambda row:
+                                       f"CDP_full_states_regions_2018-2019:{row['actor_id']}:{row['target_year']}",
+                                       axis=1)
+
+    # replace baseline_year with target_year if fixed level target
+    filt = df_out['target_type'] == 'Fixed level target'
+    df_out.loc[filt, 'baseline_year'] = df_out.loc[filt, 'target_year']
+
+    #
+    columns = [
+        'target_id',
+        'actor_id',
+        'target_type',
+        'baseline_year',
+        'target_year',
+        'target_value',
+        'target_unit',
+        'datasource_id',
+    ]
+    df_out = df_out[columns]
+
+    filt = ~df_out['target_year'].isna()
+    df_out = df_out.loc[filt]
+
+    # drop duplicates
+    filt = ~df_out['actor_id'].isna()
+    df_out = df_out.loc[filt].drop_duplicates()
+
+    # TODO: understand these targets
+    # they are listed as a percentage in the questionnaire,
+    # but they should be in units of tCO2e
+    # drop fixed level targets for now
+    filt = (df_out['target_type'] != 'Fixed level target')
+    df_out = df_out.loc[filt]
+
+    # drop where baseline year is 0, that doesn't make sense
+    filt = ~df_out['baseline_year'].isin(['0'])
+    df_out = df_out.loc[filt]
+
+    # drop records without a baseline year
+    filt = ~df_out['baseline_year'].isna()
+    df_out = df_out.loc[filt]
+
+    # change target_value type to float
+    df_out['target_value'] = df_out['target_value'].astype(float)
+
+    # ensure data has correct types
+    df_out = df_out.astype(
+        {
+            'target_id': str,
+            'actor_id': str,
+            'target_type': str,
+            'baseline_year': int,
+            'target_year': int,
+            'target_value': int,
+            'target_unit': str,
+            'datasource_id': str
+        }
+    )
+
+    # sort by actor_id and year
+    df_out = df_out.sort_values(by=['actor_id', 'target_year'])
+
+    return df_out
+
+
 if __name__ == "__main__":
+    import numpy as np
     import os
     import pandas as pd
     from pathlib import Path
@@ -307,9 +556,22 @@ if __name__ == "__main__":
     # -------------------------------------------
     # Target table
     # -------------------------------------------
-    # df_targets = harmonize_cdp_states_regions_targets(
-    #        fl=fl,
-    #        fl_climactor=fl_climactor,
-    #        datasourceDict=datasourceDict)
+    df_target_2018 = harmonize_targets(
+        fl=fl,
+        reportingYear=2018,
+        fl_climactor=fl_climactor,
+        datasourceDict=datasourceDict
+    )
 
-    #df_targets.drop_duplicates().to_csv(f'{outputDir}/Target.csv', index=False)
+    df_target_2019 = harmonize_targets(
+        fl=fl,
+        reportingYear=2019,
+        fl_climactor=fl_climactor,
+        datasourceDict=datasourceDict
+    )
+
+    # merge 2018 and 2019 together, sort the values
+    df_targets = pd.concat([df_target_2018, df_target_2019], ignore_index=True)
+    df_targets = df_targets.sort_values(by=['actor_id', 'target_year'])
+
+    df_targets.drop_duplicates().to_csv(f'{outputDir}/Target.csv', index=False)
