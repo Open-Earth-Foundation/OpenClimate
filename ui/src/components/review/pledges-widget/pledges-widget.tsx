@@ -2,6 +2,7 @@ import React, {useState, FunctionComponent} from 'react';
 import './pledges-widget.scss';
 import {MdInfoOutline, MdArrowDownward} from "react-icons/md";
 import { Boy, AspectRatio, InfoOutlined, MonetizationOnOutlined } from '@mui/icons-material'
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 
 import PledgeItem from './pledge-item';
 
@@ -40,7 +41,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
 
     
     return(
-        <div className="pledges-widget" style={{height: targets ? '': "268px"}}>
+        <div className="pledges-widget" style={{height: targets.length ? '': "268px"}}>
             {
                 targets?.length ?
                 <div className="pledges-widget__wrapper">
@@ -104,7 +105,16 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                         </div>
                     </div>
                     <div className="pledges-widget__pledges-data no-data">
-                        <span>No data available</span>
+                        <div className="pledges-widget__pledges-empty-state">
+                            
+                            <p>There's no data available, if you have any suggested <br /> data sources or you are a provider please</p>
+                            
+                            <button className="collaborate-cta-btn">
+                                <Diversity3Icon className="collaborate-cta-icon"/>
+                                <span>COLLABORATE WITH DATA</span>
+                            </button>
+
+                        </div>
                     </div>
                 </div>
             }

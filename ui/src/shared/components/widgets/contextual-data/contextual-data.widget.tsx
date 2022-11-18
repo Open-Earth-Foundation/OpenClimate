@@ -6,6 +6,7 @@ import { DonutChart } from 'react-circle-chart';
 import { Boy, AspectRatio, InfoOutlined, MonetizationOnOutlined } from '@mui/icons-material'
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from '@mui/material/Tooltip';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 
 interface Props {
     current: any,
@@ -63,9 +64,12 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
             color: '#D9D9D9'
         }]
 
+
     return (
         <div className="contextual-widget" >
-            <div className="contextual-widget__wrapper" >
+            {
+                current.gdp && current.population && current.area ? (
+                    <div className="contextual-widget__wrapper" >
                 <div className="contextual-widget__header">
                     <div className="contextual-widget__title-wrapper">
                         <h3 className="contextual-widget__title">
@@ -196,6 +200,39 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                 </div>
 
             </div>
+                ):(
+                    <>
+                        <div className="contextual-widget__wrapper" >
+                            <div className="contextual-widget__header">
+                                <div className="contextual-widget__title-wrapper">
+                                    <h3 className="contextual-widget__title">
+                                        Contextual Data
+                                    </h3>
+                                </div>
+
+                                {   lastUpdatedYear &&
+                                        <span className="contextual-widget__updated">Last updated in {lastUpdatedYear}</span>
+                                }
+
+                            </div>
+                            <div className="contextual-widget__data">
+                                <div className="contextual-widget__contextual-empty-state">
+                                    
+                                    <p>There's no data available, if you have any suggested <br /> data sources or you are a provider please</p>
+                                    
+                                    <button className="collaborate-cta-btn">
+                                        <Diversity3Icon className="collaborate-cta-icon"/>
+                                        <span>COLLABORATE WITH DATA</span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )
+            
+            }
+            
         </div>
 
     );
