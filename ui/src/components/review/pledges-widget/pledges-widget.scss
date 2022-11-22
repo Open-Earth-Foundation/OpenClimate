@@ -1,29 +1,6 @@
 .pledges-widget{
-    ::-webkit-scrollbar {
-        width: 4px;
-       
-      }
-      
-      /* Track */
-      ::-webkit-scrollbar-track {
-        background: #D7D8FA;
-        border-radius: 100px;  
-        
-      }
-       
-      /* Handle */
-      ::-webkit-scrollbar-thumb {
-        background: #7A7B9A;
-        border-radius: 100px; 
-      }
-      
-      /* Handle on hover */
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555; 
-      }
-
-    height: 460px;
-    width: 450px;
+    height: 435px;
+    width: 440px;
     border: 1px solid #E6E7E8;
     display: relative;
     border-radius: 4px;
@@ -67,12 +44,6 @@
         line-height: 14px;
         letter-spacing: 0.02em;
         color: #818385;
-    }
-    &__pledge-item-wrapper{
-        height: 360px;
-        overflow-y: scroll;
-        padding-right: 10px;
-        margin-top: 20px;
     }
     &__pledges-data{
         padding-top: 24px;
