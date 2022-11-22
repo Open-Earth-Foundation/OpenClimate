@@ -74,7 +74,8 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                     let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}});
                     tempCards[1] = {...tempCards[1], selectedValue: option.name};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: options};
-                })
+                });
+                setStoredOptions([]);
                 break;
             case FilterTypes.National:
                 fetch(`/api/v1/actor/${actor_id}/parts?type=adm1`)
@@ -87,6 +88,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                     tempCards[1] = {...tempCards[1], selectedValue: '', options: options};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: []};
                 })
+                setStoredOptions([]);
                 break;
             }
         selectFilter(filterType, option);
@@ -117,17 +119,17 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
         deselectFilter(filterType);
     }
 
-    useEffect(() => {
+    const getOptions = async(actor_id: string, type: string) => {
+        const res = await fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
+        const json = await res.json()
+        return json.data.map((part:any) => {
+            return {
+                name: part.name, value: part.actor_id
+            }
+        })
+    }
 
-        const getOptions = async(actor_id: string, type: string) => {
-            const res = await fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
-            const json = await res.json()
-            return json.data.map((part:any) => {
-                return {
-                    name: part.name, value: part.actor_id
-                }
-            })
-        }
+    useEffect(() => {
 
         const setupLevels = async() => {
 
@@ -143,7 +145,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
             if (actors.length > 2) {
                 selected[1] = actors[2].actor_id
-                options[2] = await getOptions(actors[2].actor_id, 'city')
+                options[2] = await getOptions(actors[2].actor_id, isCity ? 'city' : 'organization')
             }
 
             if (actors.length > 3) {

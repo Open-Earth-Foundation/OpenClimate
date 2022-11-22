@@ -4,7 +4,8 @@ import {DonutChart} from 'react-circle-chart'
 import {Close} from '@mui/icons-material'
 import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
 import { deselectFilter } from "../../store/review/review.actions";
-import {readableEmissions, readablePercentagePopulation} from "./units"
+import {readableEmissions, readablePercentagePopulation} from "./util/units"
+import { showPopulationParent } from "./util/population";
 
 interface IProps {
     parent: any,
@@ -180,7 +181,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                                     <span className="review__earth-card-item-large-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}}>{currentPopulation && parentPopulation ? readablePercentagePopulation(currentPopulation, parentPopulation) : 'N/A'}%</span>
                                     <span className="review__earth-card-item-small-text"></span>
                                 </div>
-                                <div className="review__earth-card-item-normal-text target-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}} >{ currentPopulation && parentPopulation ? `Of ${parent?.name}'s Population` : 'No available data'}</div>
+                                <div className="review__earth-card-item-normal-text target-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}} >{ currentPopulation && parentPopulation ? `Of ${ showPopulationParent(label) }'s Population` : 'No available data'}</div>
                             </div>
                         </> :
                         <div className='co2-concentration-content'>

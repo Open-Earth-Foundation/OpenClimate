@@ -24,7 +24,7 @@
   "environment": [
   {
     "name": "NODE_ENV",
-    "value": "development"
+    "value": "<NODE_ENV>"
   },
   {
     "name": "REACT_APP_CONTROLLER",
