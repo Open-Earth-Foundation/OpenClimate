@@ -125,11 +125,13 @@ const ReviewPage: FunctionComponent = () => {
                             </>
                         }
 
-                        <LevelCards
-                            actors={actors}
-                            selectFilter={selectFilterHandler}
-                            deselectFilter={deselectFilterHandler}
-                        />
+                        <div className={`${notJustEarth() ? "review__levelcards-wrapper": ""}`}>
+                            <LevelCards
+                                actors={actors}
+                                selectFilter={selectFilterHandler}
+                                deselectFilter={deselectFilterHandler}
+                            />
+                        </div>
 
                         <div className="review__filter-button-wrapper">
                             <a href='/explore'>
