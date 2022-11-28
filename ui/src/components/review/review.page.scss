@@ -530,6 +530,20 @@
     .collaboration-card-arrow-icon{
         color: #9DAAEE;
     }
+    .review__levelcards-wrapper{
+        background-color: rgba(230, 231, 232, 0.4);
+        position: relative;
+        height: 350px;
+        width: calc(100% + 80px);
+        left: -40px;
+        padding-left: 40px;
+        padding-top: 30px;
+        padding-bottom: 0px;
+        top: -20px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    
     @include respond(mediumScreen){
         .review__earth-card-active{
             height: 198px;
@@ -623,6 +637,19 @@
         }
         .earth-card-normal-text{
             margin-left: 23px;
+        }
+        .review__levelcards-wrapper{
+            background-color: rgba(230, 231, 232, 0.4);
+            position: relative;
+            height: 300px;
+            width: calc(100% + 80px);
+            left: -40px;
+            padding-left: 40px;
+            padding-top: 30px;
+            padding-bottom: 0px;
+            top: -20px;
+            margin-left: 0px;
+            margin-right: 0px;
         }
         
     }
@@ -718,6 +745,19 @@
         }
         .earth-card-normal-text{
             margin-left: 23px;
+        }
+        .review__levelcards-wrapper{
+            background-color: rgba(230, 231, 232, 0.4);
+            position: relative;
+            height: 300px;
+            width: calc(100% + 80px);
+            left: -40px;
+            padding-left: 40px;
+            padding-top: 30px;
+            padding-bottom: 0px;
+            top: -20px;
+            margin-left: 0px;
+            margin-right: 0px;
         }
         
     }
