@@ -12,7 +12,6 @@ import {
 } from 'react-router-dom'
 import styled, { ThemeProvider } from 'styled-components'
 
-import AccountSetup from './UI/AccountSetup'
 import AppHeader from './UI/AppHeader'
 
 import { check } from './UI/CanUser'
@@ -36,24 +35,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { IUser } from './api/models/User/IUser';
 import IWallet from './api/models/DTO/Wallet/IWallet';
 
-import Account from './UI/Account'
-import Contact from './UI/Contact'
-import Contacts from './UI/Contacts'
-import Credential from './UI/Credential'
-import Credentials from './UI/Credentials'
-import ForgotPassword from './UI/ForgotPassword'
 import FullPageSpinner from './UI/FullPageSpinner'
-import Home from './UI/Home'
-import Login from './UI/Login'
+
 import {
   useNotification,
   NotificationProvider,
 } from './UI/NotificationProvider'
-import Organizations from './UI/Organizations'
-import PasswordReset from './UI/PasswordReset'
-import Settings from './UI/Settings'
-import User from './UI/User'
-import Users from './UI/Users'
 
 import SessionProvider from './UI/SessionProvider'
 
@@ -62,7 +49,23 @@ import './App.css'
 import * as accountActions from './store/account/account.actions';
 import * as accountSelectors from './store/account/account.selectors';
 
+const Account = React.lazy(() => import('./UI/Account'))
+const Contact = React.lazy(() => import('./UI/Contact'))
+const Contacts = React.lazy(() => import('./UI/Contacts'))
+const Credential = React.lazy(() => import('./UI/Credential'))
+const Credentials = React.lazy(() => import('./UI/Credentials'))
+const ForgotPassword = React.lazy(() => import('./UI/ForgotPassword'))
+const Home = React.lazy(() => import('./UI/Home'))
+const Login = React.lazy(() => import('./UI/Login'))
+const Organizations = React.lazy(() => import('./UI/Organizations'))
+const PasswordReset = React.lazy(() => import('./UI/PasswordReset'))
+const Settings = React.lazy(() => import('./UI/Settings'))
+const User = React.lazy(() => import('./UI/User'))
+const Users = React.lazy(() => import('./UI/Users'))
+
 // Lazy-load other pages
+
+const AccountSetup = React.lazy(() => import('./UI/AccountSetup'))
 
 const TransfersPage = React.lazy(() => import('./components/transfers/transfers.page'))
 const Emissions = React.lazy(() => import('./components/explore/emissions.page'))
@@ -1124,13 +1127,15 @@ const App: FunctionComponent<Props> = (props) => {
                       return (
                         <Frame id="app-frame">
                           <Main>
-                            <ForgotPassword
-                              logo={image}
-                              history={history}
-                              sendRequest={sendMessage}
-                              user={user}
-                              users={users}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <ForgotPassword
+                                logo={image}
+                                history={history}
+                                sendRequest={sendMessage}
+                                user={user}
+                                users={users}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1142,13 +1147,15 @@ const App: FunctionComponent<Props> = (props) => {
                       return (
                         <Frame id="app-frame">
                           <Main>
-                            <PasswordReset
-                              logo={image}
-                              history={history}
-                              sendRequest={sendMessage}
-                              user={user}
-                              users={users}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <PasswordReset
+                                logo={image}
+                                history={history}
+                                sendRequest={sendMessage}
+                                user={user}
+                                users={users}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1160,19 +1167,21 @@ const App: FunctionComponent<Props> = (props) => {
                       return (
                         <Frame id="app-frame">
                           <Main hasBackgroundColor>
-                            <AccountSetup
-                              logo={image}
-                              history={history}
-                              QRCodeURL={QRCodeURL}
-                              setUpUser={setUpUser}
-                              setLoggedIn={setLoggedIn}
-                              doLoginSuccess={doLoginSuccess}
-                              accountCredentialIssued={accountCredentialIssued}
-                              sendRequest={sendAnonMessage}
-                              messageHandler={messageHandler}
-                              user={user}
-                              users={users}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <AccountSetup
+                                logo={image}
+                                history={history}
+                                QRCodeURL={QRCodeURL}
+                                setUpUser={setUpUser}
+                                setLoggedIn={setLoggedIn}
+                                doLoginSuccess={doLoginSuccess}
+                                accountCredentialIssued={accountCredentialIssued}
+                                sendRequest={sendAnonMessage}
+                                messageHandler={messageHandler}
+                                user={user}
+                                users={users}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1184,18 +1193,20 @@ const App: FunctionComponent<Props> = (props) => {
                       return (
                         <Frame id="app-frame">
                           <Main>
-                            <Login
-                              logo={image}
-                              history={history}
-                              setUpUser={setUpUser}
-                              setLoggedIn={setLoggedIn}
-                              QRCodeURL={QRCodeURL}
-                              sendRequest={sendAnonMessage}
-                              doLogin={doLoginClick}
-                              contacts={contacts}
-                              verificationStatus={verificationStatus}
-                              verifiedCredential={verifiedCredential}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <Login
+                                logo={image}
+                                history={history}
+                                setUpUser={setUpUser}
+                                setLoggedIn={setLoggedIn}
+                                QRCodeURL={QRCodeURL}
+                                sendRequest={sendAnonMessage}
+                                doLogin={doLoginClick}
+                                contacts={contacts}
+                                verificationStatus={verificationStatus}
+                                verifiedCredential={verifiedCredential}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1323,7 +1334,7 @@ const App: FunctionComponent<Props> = (props) => {
                     <Redirect to={"/"}/>
                   </Route>
                   <Route path="/actor/:actorID" exact>
-                    <Suspense fallback={<div>Loading...</div>}>
+                  <Suspense fallback={<div>Loading...</div>}>
                       <ReviewPage />
                     </Suspense>
                   </Route>
@@ -1345,12 +1356,14 @@ const App: FunctionComponent<Props> = (props) => {
                             handleLogout={handleLogout}
                           />
                           <Main>
-                            <Home
-                              loggedInUserState={loggedInUserState}
-                              sendRequest={sendMessage}
-                              QRCodeURL={QRCodeURL}
-                              focusedConnectionID={focusedConnectionID}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <Home
+                                loggedInUserState={loggedInUserState}
+                                sendRequest={sendMessage}
+                                QRCodeURL={QRCodeURL}
+                                focusedConnectionID={focusedConnectionID}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1393,14 +1406,16 @@ const App: FunctionComponent<Props> = (props) => {
                             handleLogout={handleLogout}
                           />
                           <Main>
-                            <Contacts
-                              loggedInUserState={loggedInUserState}
-                              history={history}
-                              sendRequest={sendMessage}
-                              contacts={contacts}
-                              QRCodeURL={QRCodeURL}
-                              focusedConnectionID={focusedConnectionID}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <Contacts
+                                loggedInUserState={loggedInUserState}
+                                history={history}
+                                sendRequest={sendMessage}
+                                contacts={contacts}
+                                QRCodeURL={QRCodeURL}
+                                focusedConnectionID={focusedConnectionID}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1421,15 +1436,17 @@ const App: FunctionComponent<Props> = (props) => {
                             handleLogout={handleLogout}
                           />
                           <Main>
-                            <Contact
-                              loggedInUserState={loggedInUserState}
-                              history={history}
-                              sendRequest={sendMessage}
-                              contactId={match.params.contactId}
-                              contacts={contacts}
-                              credentials={credentials}
-                              schemas={schemas}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <Contact
+                                loggedInUserState={loggedInUserState}
+                                history={history}
+                                sendRequest={sendMessage}
+                                contactId={match.params.contactId}
+                                contacts={contacts}
+                                credentials={credentials}
+                                schemas={schemas}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1451,10 +1468,12 @@ const App: FunctionComponent<Props> = (props) => {
                             handleLogout={handleLogout}
                           />
                           <Main>
-                            <Credentials
-                              history={history}
-                              credentials={credentials}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <Credentials
+                                history={history}
+                                credentials={credentials}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1473,11 +1492,13 @@ const App: FunctionComponent<Props> = (props) => {
                             match={match}
                           />
                           <Main>
-                            <Credential
-                              history={history}
-                              credential={match.params.credentialId}
-                              credentials={credentials}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <Credential
+                                history={history}
+                                credential={match.params.credentialId}
+                                credentials={credentials}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1542,17 +1563,20 @@ const App: FunctionComponent<Props> = (props) => {
                             handleLogout={handleLogout}
                           />
                           <Main>
-                            <Users
-                              loggedInUserState={loggedInUserState}
-                              user={user}
-                              users={users}
-                              roles={roles}
-                              organizations={organizations}
-                              successMessage={successMessage}
-                              errorMessage={errorMessage}
-                              clearResponseState={clearResponseState}
-                              sendRequest={sendMessage}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+
+                              <Users
+                                loggedInUserState={loggedInUserState}
+                                user={user}
+                                users={users}
+                                roles={roles}
+                                organizations={organizations}
+                                successMessage={successMessage}
+                                errorMessage={errorMessage}
+                                clearResponseState={clearResponseState}
+                                sendRequest={sendMessage}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1573,11 +1597,13 @@ const App: FunctionComponent<Props> = (props) => {
                             handleLogout={handleLogout}
                           />
                           <Main>
-                            <User
-                              logo={image}
-                              organizationName={organizationName}
-                              history={history}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <User
+                                logo={image}
+                                organizationName={organizationName}
+                                history={history}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1599,15 +1625,17 @@ const App: FunctionComponent<Props> = (props) => {
                             handleLogout={handleLogout}
                           />
                           <Main>
-                            <Organizations
-                              loggedInUserState={loggedInUserState}
-                              organizations={organizations}
-                              user={user}
-                              successMessage={successMessage}
-                              errorMessage={errorMessage}
-                              clearResponseState={clearResponseState}
-                              sendRequest={sendMessage}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <Organizations
+                                loggedInUserState={loggedInUserState}
+                                organizations={organizations}
+                                user={user}
+                                successMessage={successMessage}
+                                errorMessage={errorMessage}
+                                clearResponseState={clearResponseState}
+                                sendRequest={sendMessage}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1627,14 +1655,16 @@ const App: FunctionComponent<Props> = (props) => {
                             handleLogout={handleLogout}
                           />
                           <Main>
-                            <Account
-                              logo={image}
-                              organizationName={organizationName}
-                              history={history}
-                              sendRequest={sendMessage}
-                              QRCodeURL={QRCodeURL}
-                              userID={loggedInUserId}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <Account
+                                logo={image}
+                                organizationName={organizationName}
+                                history={history}
+                                sendRequest={sendMessage}
+                                QRCodeURL={QRCodeURL}
+                                userID={loggedInUserId}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
@@ -1655,19 +1685,21 @@ const App: FunctionComponent<Props> = (props) => {
                             handleLogout={handleLogout}
                           />
                           <Main>
-                            <Settings
-                              updateTheme={updateTheme}
-                              saveTheme={saveTheme}
-                              undoStyle={undoStyle}
-                              errorMessage={errorMessage}
-                              successMessage={successMessage}
-                              clearResponseState={clearResponseState}
-                              imageResponse={image}
-                              stylesArray={stylesArray}
-                              addStylesToArray={addStylesToArray}
-                              removeStylesFromArray={removeStylesFromArray}
-                              sendRequest={sendMessage}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                              <Settings
+                                updateTheme={updateTheme}
+                                saveTheme={saveTheme}
+                                undoStyle={undoStyle}
+                                errorMessage={errorMessage}
+                                successMessage={successMessage}
+                                clearResponseState={clearResponseState}
+                                imageResponse={image}
+                                stylesArray={stylesArray}
+                                addStylesToArray={addStylesToArray}
+                                removeStylesFromArray={removeStylesFromArray}
+                                sendRequest={sendMessage}
+                              />
+                            </Suspense>
                           </Main>
                         </Frame>
                       )
