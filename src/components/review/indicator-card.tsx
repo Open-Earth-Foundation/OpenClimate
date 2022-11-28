@@ -96,15 +96,17 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
             const latestYear = defaultYear;
             setYear(latestYear);
             const currentEmissions = (defaultSource && defaultYear) ? current.emissions[defaultSource].data.find((e:any) => e.year == latestYear) : null;
-            const population = (defaultYear && current.population.length) ? current.population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
-            const parentPopulation = (defaultYear && parent.population.length) ? parent.population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
+            const latestPopulation = (current && current.population && current.population.length > 0) ? current.population[0] : null
+            const populationYear = latestPopulation?.datasource?.published.slice(0,4)
+            const population = (populationYear && current.population.length) ? current.population.slice().sort((p:any) => Math.abs(p.year - populationYear)).find((p:any) => Math.abs(p.year - populationYear) <= 5) : null
+            const parentPopulation = (populationYear && parent.population.length) ? parent.population.slice().sort((p:any) => Math.abs(p.year - populationYear)).find((p:any) => Math.abs(p.year - populationYear) <= 5) : null
             const target = (current?.targets.length > 0) ? current?.targets[0] : null;
             setCurrPopulation(population?.population)
             setParPopulation(parentPopulation?.population)
             setEmissionsData(currentEmissions?.total_emissions);
             target && setTargetsData(target);
         }
-    },[cardData, emsData, current, parent])
+    },[cardData, emsData, current, parent]);
 
     return (
         <div>
