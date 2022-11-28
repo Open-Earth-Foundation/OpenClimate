@@ -1221,6 +1221,9 @@ const App: FunctionComponent<Props> = (props) => {
                       <TransfersPage />
                     </Suspense>
                   </Route>
+                  <Route path="/actor/EARTH" exact>
+                    <Redirect to={"/"}/>
+                  </Route>
                   <Route path="/actor/:actorID" exact>
                     <Suspense fallback={<div>Loading...</div>}>
                       <ReviewPage />
@@ -1315,6 +1318,9 @@ const App: FunctionComponent<Props> = (props) => {
                     <Suspense fallback={<div>Loading...</div>}>
                       <ReviewPage />
                     </Suspense>
+                  </Route>
+                  <Route path="/actor/EARTH" exact>
+                    <Redirect to={"/"}/>
                   </Route>
                   <Route path="/actor/:actorID" exact>
                     <Suspense fallback={<div>Loading...</div>}>

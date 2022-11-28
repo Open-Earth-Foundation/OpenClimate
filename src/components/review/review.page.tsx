@@ -62,8 +62,9 @@ const ReviewPage: FunctionComponent = () => {
     }
 
     const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
-        insertActor(option.value, [])
-        history.push(`/actor/${option.value}`)
+        const actor_id = option.value
+        insertActor(actor_id, [])
+        history.push((actor_id === 'EARTH') ? '/' : `/actor/${option.value}`)
     }
 
     const deselectFilterHandler = (filterType: FilterTypes) => {
