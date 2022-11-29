@@ -10,7 +10,6 @@ const cookie = require('cookie')
 const cookieParser = require('cookie-parser')
 const logger = require('./logger')
 
-let userCookieParsed = undefined
 let wss = null
 
 function getWS() {
@@ -30,13 +29,29 @@ function start() {
   wss.on('connection', (ws, req) => {
     logger.info('New Websocket Connection')
 
+    let userCookieParsed = null
+    let cookies = null
+    let userCookie = null
+
     // Getting the user data from the cookie
     try {
-      const cookies = cookie.parse(req.headers.cookie)
-      logger.debug("User cookies from ui ", userCookieParsed)
-      const userCookie = cookieParser.signedCookie(cookies['user'])
+      cookies = cookie.parse(req.headers.cookie)
+      userCookie = cookieParser.signedCookie(cookies['user'])
       userCookieParsed = JSON.parse(userCookie)
-    } catch (error) {}
+      logger.debug("User cookies from ui ", userCookieParsed)
+    } catch (error) {
+      userCookieParsed = null
+      logger.error(`Error parsing cookies in authenticated web sockets`)
+      logger.error({
+        name: error.name,
+        message: error.message,
+        cookies: cookies,
+        userCookie: userCookie,
+        headers: req.headers,
+        headerCookie: req.headers.cookie,
+        userCookieParsed: userCookieParsed
+      })
+    }
 
     ws.on('message', (message) => {
       try {
@@ -48,6 +63,7 @@ function start() {
           parsedMessage.context,
           parsedMessage.type,
           parsedMessage.data,
+          userCookieParsed
         )
       } catch (error) {
         logger.error({name: error.name, message: error.message})
@@ -130,7 +146,7 @@ const sendErrorMessage = (ws, errorCode, errorReason) => {
 }
 
 // Handle inbound messages
-const messageHandler = async (ws, context, type, data) => {
+const messageHandler = async (ws, context, type, data, userCookieParsed) => {
   try {
     logger.info(`New Message with context: '${context}' and type: '${type}'`)
     switch (context) {
