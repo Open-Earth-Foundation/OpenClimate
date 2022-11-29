@@ -1,0 +1,5 @@
+datasource_id,name,publisher,published,URL
+CDP_full_states_regions:2018-2019,2018-2019 Full States and Regions Dataset,CDP,2020-04-30,https://data.cdp.net/States-and-Regions/2018-2019-Full-States-and-Regions-Dataset/hmhn-9g99
+CDP_full_states_regions:2020,2020 Full States and Regions Dataset,CDP,2021-07-15,https://data.cdp.net/Governance/2020-Full-States-and-Regions-Dataset/d4kx-9jfn
+CDP_full_states_regions:2021,2021 Full States and Regions Dataset,CDP,2022-05-06,https://data.cdp.net/Governance/2021-Full-States-and-Regions-Dataset/8t47-xqwz
+CDP_full_states_regions:2022,2022 Full States and Regions Dataset,CDP,2022-11-07,https://data.cdp.net/Governance/2022-Full-States-and-Regions-Dataset/4f7q-tgy5

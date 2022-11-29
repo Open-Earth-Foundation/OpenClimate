@@ -22,12 +22,13 @@
     <!-- Matomo -->
     <script>
         var _paq = window._paq = window._paq || [];
+        var siteID = process.env.NODE_ENV === 'PROD' ? '1' : '2';
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function() {
           var u = "https://openclimatenetwork.matomo.cloud/";
           _paq.push(['setTrackerUrl', u+'matomo.php']);
-          _paq.push(['setSiteId', "2"]);
+          _paq.push(['setSiteId', `${siteID || 2}`]);
           var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
           g.async=true; g.src='//cdn.matomo.cloud/openclimatenetwork.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
         })();

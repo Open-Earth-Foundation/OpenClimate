@@ -4,7 +4,8 @@ import {DonutChart} from 'react-circle-chart'
 import {Close} from '@mui/icons-material'
 import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
 import { deselectFilter } from "../../store/review/review.actions";
-import {readableEmissions, readablePercentagePopulation} from "./units"
+import {readableEmissions, readablePercentagePopulation} from "./util/units"
+import { showPopulationParent } from "./util/population";
 
 interface IProps {
     parent: any,
@@ -95,15 +96,17 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
             const latestYear = defaultYear;
             setYear(latestYear);
             const currentEmissions = (defaultSource && defaultYear) ? current.emissions[defaultSource].data.find((e:any) => e.year == latestYear) : null;
-            const population = (defaultYear && current.population.length) ? current.population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
-            const parentPopulation = (defaultYear && parent.population.length) ? parent.population.slice().sort((p:any) => Math.abs(p.year - defaultYear)).find((p:any) => Math.abs(p.year - defaultYear) <= 5) : null
+            const latestPopulation = (current && current.population && current.population.length > 0) ? current.population[0] : null
+            const populationYear = latestPopulation?.datasource?.published.slice(0,4)
+            const population = (populationYear && current.population.length) ? current.population.slice().sort((p:any) => Math.abs(p.year - populationYear)).find((p:any) => Math.abs(p.year - populationYear) <= 5) : null
+            const parentPopulation = (populationYear && parent.population.length) ? parent.population.slice().sort((p:any) => Math.abs(p.year - populationYear)).find((p:any) => Math.abs(p.year - populationYear) <= 5) : null
             const target = (current?.targets.length > 0) ? current?.targets[0] : null;
             setCurrPopulation(population?.population)
             setParPopulation(parentPopulation?.population)
             setEmissionsData(currentEmissions?.total_emissions);
             target && setTargetsData(target);
         }
-    },[cardData, emsData, current, parent])
+    },[cardData, emsData, current, parent]);
 
     return (
         <div>
@@ -180,7 +183,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                                     <span className="review__earth-card-item-large-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}}>{currentPopulation && parentPopulation ? readablePercentagePopulation(currentPopulation, parentPopulation) : 'N/A'}%</span>
                                     <span className="review__earth-card-item-small-text"></span>
                                 </div>
-                                <div className="review__earth-card-item-normal-text target-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}} >{ currentPopulation && parentPopulation ? `Of ${parent?.name}'s Population` : 'No available data'}</div>
+                                <div className="review__earth-card-item-normal-text target-text" style={currentPopulation && parentPopulation ? {color: '#00001F'} : { color: '#7A7B9A'}} >{ currentPopulation && parentPopulation ? `Of ${ showPopulationParent(label) }'s Population` : 'No available data'}</div>
                             </div>
                         </> :
                         <div className='co2-concentration-content'>
