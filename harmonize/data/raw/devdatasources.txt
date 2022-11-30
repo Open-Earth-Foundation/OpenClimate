@@ -1,0 +1,25 @@
+ C2ES:US_GHG_targets
+ C2ES:canadian_GHG_targets
+ CDPCitiesTargets:2021
+ CDP_full_states_regions:2022
+ DDL:EUCoM-compilation:2022
+ ECCC:GHG_inventory:2022-04-13
+ EPA:state_GHG_inventory:2022-08-31
+ IGES:NDC_db:10.57405/iges-5005
+ IMF:WEO202211
+ ISO 3166-1:2020
+ ISO 3166-2:2020
+ OEF:WB:subnational-population:20221106
+ OEF:WD:city-area:20221105
+ OEF:WD:city-area:20221106
+ OEF:WD:city-population:20221106
+ OEF:WD:subnational-area:20221103
+ OEF:WD:subnational-area:20221106
+ OEF:WD:subnational-population:20221106
+ OEF:XK
+ PRIMAP:10.5281/zenodo.7179775:v2.4
+ UNFCCC:GHG_ANNEX1:2019-11-08
+ UNLOCODE:2022-1
+ UNPD:WPP:2022
+ UN_DESA_PD:WorldPopulation:v2022
+ world_bank:LandArea:v20220916
