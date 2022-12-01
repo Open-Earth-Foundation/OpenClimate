@@ -1,0 +1,10 @@
+emissions_id,actor_id,year,total_emissions,datasource_id
+CDP_full_states_regions_2020:AU-ACT:2019,AU-ACT,2019,2798816,CDP_full_states_regions:2020
+CDP_full_states_regions_2020:DE-RP:2017,DE-RP,2017,37090000,CDP_full_states_regions:2020
+CDP_full_states_regions_2020:ES-PV:2018,ES-PV,2018,18937998,CDP_full_states_regions:2020
+CDP_full_states_regions_2020:IT-25:2018,IT-25,2018,69100000,CDP_full_states_regions:2020
+CDP_full_states_regions_2020:KR-44:2017,KR-44,2017,181770000,CDP_full_states_regions:2020
+CDP_full_states_regions_2020:MX-COL:2015,MX-COL,2015,11002540,CDP_full_states_regions:2020
+CDP_full_states_regions_2020:MX-MEX:2016,MX-MEX,2016,36243,CDP_full_states_regions:2020
+CDP_full_states_regions_2020:US-CA:2018,US-CA,2018,425280804,CDP_full_states_regions:2020
+CDP_full_states_regions_2020:US-MN:2016,US-MN,2016,139965258,CDP_full_states_regions:2020

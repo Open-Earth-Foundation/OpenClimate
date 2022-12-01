@@ -11,7 +11,6 @@ import Bg from './img/Earth_Background_Home_Gray.png';
 import LevelCards from './level-cards'
 import CollaborateFAB from './CollaborateFab';
 import CollaborationCardHint from './CollaborateCardHint';
-import { CircleFlag } from 'react-circle-flags';
 import ActorFlag from './actor-flag/actor-flag';
 
 type ReviewPageParams = {
@@ -63,8 +62,9 @@ const ReviewPage: FunctionComponent = () => {
     }
 
     const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
-        insertActor(option.value, [])
-        history.push(`/actor/${option.value}`)
+        const actor_id = option.value
+        insertActor(actor_id, [])
+        history.push((actor_id === 'EARTH') ? '/' : `/actor/${option.value}`)
     }
 
     const deselectFilterHandler = (filterType: FilterTypes) => {
@@ -126,11 +126,13 @@ const ReviewPage: FunctionComponent = () => {
                             </>
                         }
 
-                        <LevelCards
-                            actors={actors}
-                            selectFilter={selectFilterHandler}
-                            deselectFilter={deselectFilterHandler}
-                        />
+                        <div className={`${notJustEarth() ? "review__levelcards-wrapper": ""}`}>
+                            <LevelCards
+                                actors={actors}
+                                selectFilter={selectFilterHandler}
+                                deselectFilter={deselectFilterHandler}
+                            />
+                        </div>
 
                         <div className="review__filter-button-wrapper">
                             <a href='/explore'>
@@ -146,7 +148,7 @@ const ReviewPage: FunctionComponent = () => {
                                 (current && notJustEarth()) ?
                                     <div className="review__selected-entity">
                                         <>
-                                            <ActorFlag 
+                                            <ActorFlag
                                                 currentActorId={current.actor_id}
                                                 currentActorType={current.type}
                                                 parentActorId={parent.actor_id}
@@ -189,7 +191,7 @@ const ReviewPage: FunctionComponent = () => {
                             <CollaborateFAB />
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>

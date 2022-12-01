@@ -28,8 +28,8 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t controller .
-      - echo "Version--> " `cat version.txt`
-      - VERSION=`cat version.txt`
+      - VERSION=`node -pe "require('./package.json').version"`
+      - echo "Version--> " $VERSION
       - docker tag controller $ACCOUNTID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/controller:$VERSION
   post_build:
     commands:

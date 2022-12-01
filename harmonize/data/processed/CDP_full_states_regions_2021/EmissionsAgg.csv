@@ -1,0 +1,4 @@
+emissions_id,actor_id,year,total_emissions,datasource_id
+CDP_full_states_regions_2021:ES-PV:2019,ES-PV,2019,18552814,CDP_full_states_regions:2021
+CDP_full_states_regions_2021:IT-25:2019,IT-25,2019,67700000,CDP_full_states_regions:2021
+CDP_full_states_regions_2021:PT-30:2018,PT-30,2018,991295,CDP_full_states_regions:2021

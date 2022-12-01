@@ -1,0 +1,53 @@
+state,actor_id,target_type,target_value,target_unit,baseline_year,target_year,actual_range,URL
+California,US-CA,Absolute emission reduction,0,percent,1990,2020,,https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=200520060AB32
+California,US-CA,Absolute emission reduction,40,percent,1990,2030,,https://www.ca.gov/archive/gov39/wp-content/uploads/2018/09/9.10.18-Executive-Order.pdf
+California,US-CA,Absolute emission reduction,80,percent,1990,2050,,https://www.ca.gov/archive/gov39/wp-content/uploads/2018/09/9.10.18-Executive-Order.pdf
+Colorado,US-CO,Absolute emission reduction,26,percent,2005,2025,,https://leg.colorado.gov/sites/default/files/2019a_1261_signed.pdf
+Colorado,US-CO,Absolute emission reduction,50,percent,2005,2030,,https://leg.colorado.gov/sites/default/files/2019a_1261_signed.pdf
+Colorado,US-CO,Absolute emission reduction,90,percent,2005,2050,,https://leg.colorado.gov/sites/default/files/2019a_1261_signed.pdf
+Connecticut,US-CT,Absolute emission reduction,45,percent,2001,2030,,https://www.cga.ct.gov/2018/act/pa/pdf/2018PA-00082-R00SB-00007-PA.pdf
+Connecticut,US-CT,Absolute emission reduction,80,percent,2001,2050,,https://www.cga.ct.gov/2018/act/pa/pdf/2018PA-00082-R00SB-00007-PA.pdf
+Delaware,US-DE,Absolute emission reduction,26,percent,2005,2025,26-28,https://documents.dnrec.delaware.gov/energy/Documents/Climate/Plan/Delaware-Climate-Action-Plan-2021.pdf
+Hawaii,US-HI,Absolute emission reduction,50,percent,2005,2030,,https://trackbill.com/bill/hawaii-governor-message-1340-act-238/2266076/
+Illinois,US-IL,Absolute emission reduction,26,percent,2005,2030,26-28,https://www2.illinois.gov/epa/topics/climate/Pages/default.aspx
+Louisiana,US-LA,Absolute emission reduction,26,percent,2005,2025,26-28,https://gov.louisiana.gov/assets/ExecutiveOrders/2020/JBE-2020-18-Climate-Initiatives-Task-Force.pdf
+Louisiana,US-LA,Absolute emission reduction,40,percent,2005,2030,40-50,https://gov.louisiana.gov/assets/ExecutiveOrders/2020/JBE-2020-18-Climate-Initiatives-Task-Force.pdf
+Louisiana,US-LA,Absolute emission reduction,100,percent,2005,2050,,https://gov.louisiana.gov/assets/ExecutiveOrders/2020/JBE-2020-18-Climate-Initiatives-Task-Force.pdf
+Maine,US-ME,Absolute emission reduction,45,percent,1990,2030,,https://www.maine.gov/governor/mills/sites/maine.gov.governor.mills/files/inline-files/Executive%20Order%209-23-2019_0.pdf
+Maine,US-ME,Absolute emission reduction,80,percent,1990,2050,,https://www.maine.gov/governor/mills/sites/maine.gov.governor.mills/files/inline-files/Executive%20Order%209-23-2019_0.pdf
+Maryland,US-MD,Absolute emission reduction,60,percent,2006,2031,,https://www.gfrlaw.com/what-we-do/insights/climate-solutions-now-act-2022
+Maryland,US-MD,Absolute emission reduction,100,percent,2006,2045,,https://www.gfrlaw.com/what-we-do/insights/climate-solutions-now-act-2022
+Massachusetts,US-MA,Absolute emission reduction,33,percent,1990,2025,,https://www.mass.gov/doc/2025-and-2030-ghg-emission-limit-letter-of-determination/download
+Massachusetts,US-MA,Absolute emission reduction,50,percent,1990,2030,,https://www.mass.gov/doc/2025-and-2030-ghg-emission-limit-letter-of-determination/download
+Michigan,US-MI,Absolute emission reduction,28,percent,2005,2025,,https://www.michigan.gov/egle/-/media/Project/Websites/egle/Documents/Offices/OCE/MI-Healthy-Climate-Plan.pdf?rev=d13f4adc2b1d45909bd708cafccbfffa
+Michigan,US-MI,Absolute emission reduction,52,percent,2005,2030,,https://www.michigan.gov/egle/-/media/Project/Websites/egle/Documents/Offices/OCE/MI-Healthy-Climate-Plan.pdf?rev=d13f4adc2b1d45909bd708cafccbfffa
+Minnesota,US-MN,Absolute emission reduction,30,percent,2005,2025,,"https://www.pca.state.mn.us/air-water-land-climate/climate-change-initiatives#:~:text=The%20Next%20Generation%20Energy%20Act%20requires%20the%20state%20to%20reduce,renewable%20energy%20standards%20in%20Minnesota."
+Minnesota,US-MN,Absolute emission reduction,80,percent,2005,2050,,"https://www.pca.state.mn.us/air-water-land-climate/climate-change-initiatives#:~:text=The%20Next%20Generation%20Energy%20Act%20requires%20the%20state%20to%20reduce,renewable%20energy%20standards%20in%20Minnesota."
+Nevada,US-NV,Absolute emission reduction,28,percent,2005,2025,,https://www.leg.state.nv.us/App/NELIS/REL/80th2019/Bill/6431/Text
+Nevada,US-NV,Absolute emission reduction,45,percent,2005,2030,,https://www.leg.state.nv.us/App/NELIS/REL/80th2019/Bill/6431/Text
+Nevada,US-NV,Absolute emission reduction,100,percent,2005,2050,,https://www.leg.state.nv.us/App/NELIS/REL/80th2019/Bill/6431/Text
+New Jersey,US-NJ,Absolute emission reduction,0,percent,1990,2020,,https://pub.njleg.gov/bills/2018/PL19/197_.htm
+New Jersey,US-NJ,Absolute emission reduction,50,percent,2006,2030,,https://nj.gov/infobank/eo/056murphy/pdf/EO-274.pdf
+New Jersey,US-NJ,Absolute emission reduction,80,percent,2006,2050,,https://pub.njleg.gov/bills/2018/PL19/197_.htm
+New Mexico,US-NM,Absolute emission reduction,45,percent,2005,2030,,https://www.governor.state.nm.us/wp-content/uploads/2019/01/EO_2019-003.pdf
+New York,US-NY,Absolute emission reduction,40,percent,1990,2030,,https://legislation.nysenate.gov/pdf/bills/2019/S6599
+New York,US-NY,Absolute emission reduction,85,percent,1990,2050,,https://legislation.nysenate.gov/pdf/bills/2019/S6599
+North Carolina,US-NC,Absolute emission reduction,50,percent,2005,2030,,https://governor.nc.gov/media/2907/open
+North Carolina,US-NC,Absolute emission reduction,100,percent,2005,2050,,https://governor.nc.gov/media/2907/open
+Oregon,US-OR,Absolute emission reduction,45,percent,1990,2035,,https://www.oregon.gov/gov/Documents/executive_orders/eo_20-04.pdf
+Oregon,US-OR,Absolute emission reduction,80,percent,1990,2050,,https://www.oregon.gov/gov/Documents/executive_orders/eo_20-04.pdf
+Pennsylvania,US-PA,Absolute emission reduction,26,percent,2005,2025,,https://www.oa.pa.gov/Policies/eo/Documents/2019-01.pdf
+Pennsylvania,US-PA,Absolute emission reduction,80,percent,2005,2050,,https://www.oa.pa.gov/Policies/eo/Documents/2019-01.pdf
+Puerto Rico,US-PR,Absolute emission reduction,50,percent,2019,2025,,"https://www.ncsl.org/research/energy/greenhouse-gas-emission-reduction-targets-and-market-based-policies.aspx#:~:text=Description%3A%20In%202019%2C%20Puerto%20Rico,targets%20of%20100%25%20by%202041."
+Rhode Island,US-RI,Absolute emission reduction,10,percent,1990,2020,,http://webserver.rilin.state.ri.us/Statutes/TITLE42/42-6.2/42-6.2-2.HTM
+Rhode Island,US-RI,Absolute emission reduction,45,percent,1990,2035,,http://webserver.rilin.state.ri.us/Statutes/TITLE42/42-6.2/42-6.2-2.HTM
+Rhode Island,US-RI,Absolute emission reduction,80,percent,1990,2040,,http://webserver.rilin.state.ri.us/Statutes/TITLE42/42-6.2/42-6.2-2.HTM
+Rhode Island,US-RI,Absolute emission reduction,100,percent,1990,2050,,http://webserver.rilin.state.ri.us/Statutes/TITLE42/42-6.2/42-6.2-2.HTM
+Vermont,US-VT,Absolute emission reduction,26,percent,2005,2025,,https://legislature.vermont.gov/Documents/2020/Docs/ACTS/ACT153/ACT153%20As%20Enacted.pdf
+Vermont,US-VT,Absolute emission reduction,40,percent,1990,2030,,https://legislature.vermont.gov/Documents/2020/Docs/ACTS/ACT153/ACT153%20As%20Enacted.pdf
+Vermont,US-VT,Absolute emission reduction,80,percent,1990,2050,,https://legislature.vermont.gov/Documents/2020/Docs/ACTS/ACT153/ACT153%20As%20Enacted.pdf
+Washington,US-WA,Absolute emission reduction,0,percent,1990,2020,,https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session%20Laws/House/2311-S2.SL.pdf#page=1
+Washington,US-WA,Absolute emission reduction,45,percent,1990,2030,,https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session%20Laws/House/2311-S2.SL.pdf#page=1
+Washington,US-WA,Absolute emission reduction,70,percent,1990,2040,,https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session%20Laws/House/2311-S2.SL.pdf#page=1
+Washington,US-WA,Absolute emission reduction,95,percent,1990,2050,,https://lawfilesext.leg.wa.gov/biennium/2019-20/Pdf/Bills/Session%20Laws/House/2311-S2.SL.pdf#page=1
+Wisconsin,US-WI,Absolute emission reduction,26,percent,2005,2025,26-28,https://evers.wi.gov/Documents/EO%20038%20Clean%20Energy.pdf

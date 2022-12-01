@@ -2,6 +2,7 @@ import {FunctionComponent, useEffect, useState} from 'react';
 import './emissions-widget.scss';
 import {MdInfoOutline, MdArrowDropDown, MdArrowDropUp, MdOutlinePeopleAlt} from "react-icons/md";
 import { Select, MenuItem, SelectChangeEvent, FormControl } from '@mui/material';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 
 import { InfoOutlined } from '@mui/icons-material'
 
@@ -253,10 +254,26 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                         </Tooltip>
                     </div>
                     <div className="emissions-widget__methodologies-tags">
-                        {
+                    {
                             tags.slice(0, 3).map((tag:any) =>
                                 <div key={`emissions-tag-${tag.tag_id}`} className="methodologies-tag">
-                                    <span className="methodologies-text">{tag.tag_name}</span>
+                                    {
+                                        tag.tag_name.length > 24 ? (<Tooltip 
+                                            classes={{
+                                                        tooltip: classes.customTooltip,
+                                                        arrow: classes.customArrow
+                                                    }}
+                                            title= {
+                                                        <div className = "tooltip">
+                                                            {tag.tag_name}
+                                                        </div>
+                                                } 
+                                            arrow placement="bottom">
+                                            <span className="methodologies-text">{tag.tag_name}</span>
+                                        </Tooltip>) :
+                                        (<span className="methodologies-text">{tag.tag_name}</span>)
+                                    }
+                                    
                                 </div>
                             )
                         }
@@ -316,69 +333,16 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                     </div>
                 </div>
                 <div className="emissions-widget__data">
-                    <div className="emissions-widget__emissions-data divider">
-                        <div className="emissions-widget__col-1">
-                            <div>
-                                <span className="emissions-widget__total-emissions no-data">N/A</span>
-                            </div>
-                        </div>
-                        <div>
-                            <span className="emissions-widget__emissions-description no-data">Total GHG Emissions <br/> Mt CO2e</span>
-                        </div>
-                    </div>
+                    <div className="emissions-widget__emissions-empty-state">
+                        
+                        <p>There's no data available, if you have any suggested <br /> data sources or you are a provider please</p>
+                        
+                        <button className="collaborate-cta-btn">
+                            <Diversity3Icon className="collaborate-cta-icon"/>
+                            <span>COLLABORATE WITH DATA</span>
+                        </button>
 
-                    <div className="emissions-widget__emissions-data data-per-capita marg">
-                        <div className="icon-wrapper">
-                            <MdOutlinePeopleAlt className="people-alt-icon"/>
-                        </div>
-                        <div>
-                            <div className="emissions-widget__col-1">
-                                <div className="emissions-widget__row">
-                                    <div>
-                                        <span className="emissions-widget__total-tonnes-pc no-data">N/A</span>
-                                    </div>
-                                </div>
-                                <div className="emissions-widget__emissions-trend">
-                                <Tooltip 
-                                        classes={{
-                                                    tooltip: classes.customTooltip,
-                                                    arrow: classes.customArrow
-                                                }}
-                                        title= {
-                                                    <div className = "tooltip">
-                                                        Calculated by Open Climate
-                                                    </div>
-                                               } 
-                                        arrow placement="right">
-                                            <InfoOutlined className="emissions-widget__icon trend-icon"/>
-                                    </Tooltip>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="emissions-widget__emissions-description pc-text no-data">Emissions</div>
-                                <div className="emissions-widget__emissions-description pc-text no-data">per capita</div>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <div className="emissions-widget__methodologies">
-                    <div className="emissions-widget__methodologies-heading">
-                        <span>Methodology</span>
-                        <Tooltip 
-                            classes={{
-                                        tooltip: classes.customTooltip,
-                                        arrow: classes.customArrow
-                                    }}
-                            title= {
-                                        <div className = "tooltip">
-                                            Type of methodologies utilized by the selected data source
-                                        </div>
-                                   } 
-                            arrow placement="right">
-                                <InfoOutlined className="emissions-widget__icon methodologies-icon"/>
-                        </Tooltip>
-                    </div>
-
                 </div>
             </div>
             }

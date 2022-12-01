@@ -16,13 +16,15 @@ phases:
       - sed -i 's/<ACCOUNTID>/'$ACCOUNTID'/g' Dockerfile
       - sed -i 's/<REGION>/'$AWS_DEFAULT_REGION'/g' Dockerfile
       - sed -i 's/<GOOGLE_MAP_API_KEY>/'$GOOGLE_MAP_API_KEY'/g' taskdef.json
+      - sed -i 's/<NODE_ENV>/'$ENV'/g' taskdef.json
       - echo REACT_APP_CONTROLLER='https://'$REACT_APP_CONTROLLER > .env
       - cat .env
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t ui .
-      - echo "Version--> " `cat version.txt`
-      - VERSION=`cat version.txt`
+      - echo "Getting version from node"
+      - VERSION=`node -pe "require('./package.json').version"`
+      - echo "Version--> " $VERSION
       - docker tag ui $ACCOUNTID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/ui:$VERSION
   post_build:
     commands:

@@ -81,3 +81,32 @@ In the previous case we entered the db container and ran the command sh. Tab com
 
     $ docker-compose exec
     api        db         ui         webserver
+
+# Self-signed cert
+
+When you run the system locally, you might get some errors around using a self-signed certificate
+on localhost. Follow these directions to fix it.
+
+https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate
+
+chrome://flags/#allow-insecure-localhost
+
+# Importing data to a developer environment
+
+Here are the steps to import data in the developer environment. One of the containers that docker-compose creates is a shell that can be used for running import scripts.
+
+In this container, `/opt/import` includes the data importer script, and `/var/local/harmonize` is the data harmonization directory.
+
+1. In your OpenClimate directory, run `docker-compose --profile oc exec hub-importer /bin/sh` to log into the hub-importer shell.
+2. Run `cd /opt/import` to change to the importer directory.
+3. Run `pip3 install psycopg2-binary` to install the PostgreSQL library for Python.
+4. Run `python3 import_openclimate_data.py <data source directory>` to import a data source.
+
+Four important directories to import, in order:
+
+- /var/local/harmonize/data/processed/ISO-3166-1/ for countries (about 250)
+- /var/local/harmonize/data/processed/Kosovo/ for this one country
+- /var/local/harmonize/data/processed/ISO-3166-2/ for regions (about 5000)
+- /var/local/harmonize/data/processed/UNLOCODE/ for cities (about 120,000)
+
+This should get you a good geographical hierarchy.
