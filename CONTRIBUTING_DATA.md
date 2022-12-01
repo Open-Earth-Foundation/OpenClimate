@@ -42,9 +42,9 @@ If you're in doubt, you can consult with the data publisher or the OpenClimate d
 
 ### Check that it hasn't already been included
 
-We have included 30 data sets from various agencies and researchers already, with about 25 more in our queue. If you'd like to check whether the data set you've identified has already been imported, check https://openclimate.network/ . You can search for a few example actors, like a city or a region, and check if the relevant data is empty, or if the data source is marked.
+We have included 30 data sets from various agencies and researchers already, with about 25 more in our queue. If you'd like to check whether the data set you've identified has already been imported, check [OpenClimate](https://openclimate.network/) . You can search for a few example actors, like a city or a region, and check if the relevant data is empty, or if the data source is marked.
 
-In case it's not clear, you can check the (harmonize)[https://github.com/Open-Earth-Foundation/OpenClimate/tree/main/harmonize] directory for data sets that have already been imported.
+In case it's not clear, you can check the [harmonize](https://github.com/Open-Earth-Foundation/OpenClimate/tree/main/harmonize) directory for data sets that have already been imported.
 
 ## Obtaining the data
 
@@ -65,7 +65,7 @@ Data files over 25Mb require special handling.
 
 ## (Optional) convert to OpenClimate import format
 
-OpenClimate has tools to import data directly into our database using a specific file format. In this format, each data source is in a separate directory. Each table in our (schema)[https://github.com/Open-Earth-Foundation/OpenClimate-Schema] has its own CSV file, with columns matching the database columns.
+OpenClimate has tools to import data directly into our database using a specific file format. In this format, each data source is in a separate directory. Each table in our [schema](https://github.com/Open-Earth-Foundation/OpenClimate-Schema) has its own CSV file, with columns matching the database columns.
 
 If you can convert your data set into this format, it can make it much more likely that the data gets imported quickly.
 
@@ -77,7 +77,7 @@ To submit your data, you should create a pull request (PR) on the OpenClimate Gi
 
 ### If you're used to GitHub flow
 
-(Github flow)[https://docs.github.com/en/get-started/quickstart/github-flow] is a technique for making contributions to OpenClimate.
+[Github flow](https://docs.github.com/en/get-started/quickstart/github-flow) is a technique for making contributions to OpenClimate.
 
 When you make your PR, remember to include the following information:
 
@@ -91,9 +91,9 @@ When you make your PR, remember to include the following information:
 
 ### If you're not used to Git flow
 
-You'll still need a (GitHub)[https://github.com/] account.
+You'll still need a [GitHub](https://github.com/) account.
 
-- In a browser, go to https://github.com/Open-Earth-Foundation/OpenClimate/tree/develop/harmonize/data/raw .
+- In a browser, go to [the raw data directory on GitHub](https://github.com/Open-Earth-Foundation/OpenClimate/tree/develop/harmonize/data/raw) .
 - Click "Add files...", then "Upload files".
 - Choose the files you want to add.
 - In the "commit changes" dialog box, add the information about the data set, including the
