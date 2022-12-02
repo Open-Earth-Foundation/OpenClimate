@@ -8,7 +8,6 @@ tables = [
     "Publisher",
     "Tag",
     "Methodology",
-    "Sector",
     "DataSource",
     "DataSourceTag",
     "Actor",
@@ -21,6 +20,7 @@ tables = [
     "TargetTag",
     "EmissionsAgg",
     "EmissionsByScope",
+    "Sector",
     "EmissionsBySector",
     "EmissionsAggTag"
 ]
