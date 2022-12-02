@@ -57,6 +57,9 @@ if __name__ == '__main__':
     # return ISO as dataframe
     df_iso = pd.DataFrame(data, columns=['iso3', 'iso2'])
 
+    # manually add ISO2 code for Kosovo
+    df_iso.loc[df_iso['iso3'] == 'XKX', 'iso2'] = 'XK'
+
     # merge datasets
     df_out = pd.merge(df, df_iso, left_on='region', right_on='iso3')
 
