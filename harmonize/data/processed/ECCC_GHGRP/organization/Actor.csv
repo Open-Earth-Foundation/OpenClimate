@@ -1,0 +1,95 @@
+actor_id,name,type,is_part_of,datasource_id
+529900X2VMAQT2PE0V24,Rio Tinto,organization,AU-VIC,GLEIF_golden_copy:2022-12-01
+5493002HWKHG11IPOG10,ATCO Power,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300OW0ZLJM1B68Y96,Bonavista Energy Corporation,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300MMV2S26X2LA541,Calgary Energy Centre No. 2 Inc,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300ZB40TJUE9X2R65,Canadian Fertilizers Limited,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300QRKTEXGXYVPO80,Capital Power Corporation,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+5493001OC4Z0L3R1PP87,Cascades Canada ULC,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300F4XPHJ7NOSP309,Cenovus,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300HSTXVCQ4ECT255,City of Calgary,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300Z9RSLCM1W45F39,City of Medicine Hat,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300DLRO5Q625BI570,Connacher Oil and Gas Limited,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300M3Z1K0R5DPA329,ConocoPhillips Canada,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300679TRDUXPT7415,EPCOR,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300OEXJU0X6FYBQ42,Enerplus Corporation,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300V5XHJM4FKUZL63,Heartland Generation,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300VU2OWM86LFP557,Imperial Oil Limited,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+5493008Q3ORGOM7OKR62,ORLEN Upstream Canada Ltd.,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+CZ72ZHBVKZXQRV3XFE26,Ovintiv Canada ULC,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300HS6LC2Q5HWA620,Pengrowth Energy Corporation,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300EV3W9Z0M4CIP05,Shell Canada Limited,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300C45JTS75N6ZY04,Surge Energy Inc.,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+5493006YG7CTPEZTDU04,TransCanada Energy Ltd.,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+5493007C77EEJ03RCD29,TransCanada Gas Storage Partnership,organization,CA-AB,GLEIF_golden_copy:2022-12-01
+549300WQBP3HPFWQXI92,City of Vancouver,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+549300K14DXXMNZDCC47,Coastland Wood Industries Ltd.,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+549300YLYYUPRZQZB526,Elk Valley Coal Corporation,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+JSP0TNC596XKLBPR0Y26,FortisBC Energy,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+54930071Y8KNRMS4OP09,Highland Valley Copper,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+549300CMGJBVDIUXBO33,Mackenzie Pulp Mill Corporation,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+549300TQM79GI4K4AQ66,Metro Vancouver,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+5493005AT80XYWX6O536,SGO Mining Inc.,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+549300VPQHBS4LQ5JH90,Teck Coal Limited,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+HDZVMN7TWJYMZR839338,Teck Metals Ltd.,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+529900TR69X5FFZ6K955,Village Farms,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+549300EVSDWRVHUSS869,West Fraser Mills Ltd.,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+5493005WD1ZK6WBVR988,West Fraser Timber Co.,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+5493001PUKIYD340W808,Zellstoff Celgar Limited Partnership,organization,CA-BC,GLEIF_golden_copy:2022-12-01
+549300PF8VDGEXZC8V18,Manitoba Hydro,organization,CA-MB,GLEIF_golden_copy:2022-12-01
+549300GAP1EPF1RAOO58,Simplot Canada Limited,organization,CA-MB,GLEIF_golden_copy:2022-12-01
+549300SACYEXCAVI3T32,AV Terrace Bay Inc.,organization,CA-NB,GLEIF_golden_copy:2022-12-01
+549300BWBQRZ10314H05,Corner Brook Pulp and Paper Limited,organization,CA-NL,GLEIF_golden_copy:2022-12-01
+5493003PRX4V79CH9189,Fraser Papers,organization,CA-NS,GLEIF_golden_copy:2022-12-01
+5493003PRX4V79CH9189,Fraser Papers Inc.,organization,CA-NS,GLEIF_golden_copy:2022-12-01
+549300QIZNVNHW2M3G58,"Koch Fertilizer Canada, Ltd.",organization,CA-NS,GLEIF_golden_copy:2022-12-01
+549300QIZNVNHW2M3G58,"Koch Fertilizer Canada, ULC",organization,CA-NS,GLEIF_golden_copy:2022-12-01
+5XLQXOZXQGDQ492ZD098,Nova Scotia Power Incorporated,organization,CA-NS,GLEIF_golden_copy:2022-12-01
+549300ZTDJFXW180SN31,AMCO Farms,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+ZRPT83FLC26QOUQ8DT58,Air Products Canada Ltd,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300TDOX73YGYXE959,Alamos Gold Inc.,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+54930076R7DSUQLIJE29,Bayer Inc.,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+254900UE5PCIO8KZX324,Campus Energy,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300I1AHR8KMMFIS52,"Clean Harbors Canada, Inc.",organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300G5NNL3OGZRXK45,Corporation of the City of Guelph,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300ZWW04O98IXFO27,Dofasco,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300HP403ZF11T3J91,EVRAZ Inc NA Canada,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+5493006UUHUKRKECPK41,GDF Suez Energy Canada Inc.,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300THM2FZJ4FYXF38,Global Contract Inc.,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300WD2G96SSUB9088,Goldcorp Canada Ltd.,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300TKZ4DLFLQ6H023,IGPC Ethanol,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+5299000S9E1C0NBZXD39,Lafarge Canada,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300X2LGAA7O5APO58,Meridian Limited Partnership,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+254900JEXNP3HXC9XS55,Orangeline Farms,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+54930038JDDT8NGPUW59,Petro-Canada,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+529900FZ9PI17RXVVV82,Sherritt International Corporation,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+5493009981WBHS86CJ89,St. Marys Cement Inc. (Canada),organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300TE72QZCLE47467,Stelco Inc.,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+529900L1EHUYOIRVR143,Styrolution Canada Ltd.,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300JT133LZOPVH889,Terra International (Canada) Inc.,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+PRAQ4VOSFIK7OQ8Z2512,Vale Canada Limited,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300ZX1Z8QGWASPX54,Waste Connections of Canada Inc.,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+549300G0W4VLC3WELV71,Whitby Cogeneration,organization,CA-ON,GLEIF_golden_copy:2022-12-01
+529900V0I8B1ZY7TOF83,Air Liquide Canada Inc.,organization,CA-QC,GLEIF_golden_copy:2022-12-01
+549300ECEBNO2USVXZ18,Aluminerie de Bécancour inc,organization,CA-QC,GLEIF_golden_copy:2022-12-01
+549300ECEBNO2USVXZ18,Aluminerie de Bécancour inc.,organization,CA-QC,GLEIF_golden_copy:2022-12-01
+549300NCWAR841D97N65,ArcelorMittal Mining Canada G.P.,organization,CA-QC,GLEIF_golden_copy:2022-12-01
+2138007ZSQ7B17SKOX77,Rio Tinto Alcan,organization,CA-QC,GLEIF_golden_copy:2022-12-01
+549300UCIWUSZZYHYW84,Tafisa Canada,organization,CA-QC,GLEIF_golden_copy:2022-12-01
+N4BHALMXL3GMZKCUON55,Cameco Corporation,organization,CA-SK,GLEIF_golden_copy:2022-12-01
+254900ONJ1OWBRJROP98,City of Moose Jaw,organization,CA-SK,GLEIF_golden_copy:2022-12-01
+529900S0DEXF0NOKQG75,UPM,organization,DE-HE,GLEIF_golden_copy:2022-12-01
+5493002LQV1DCOPQHR04,Louis Dreyfus Company,organization,FR-75C,GLEIF_golden_copy:2022-12-01
+213800DXAY5TCEPA3S29,Rothsay,organization,GB-BDF,GLEIF_golden_copy:2022-12-01
+213800YSE7CMEU4AUB83,City of London,organization,GB-LND,GLEIF_golden_copy:2022-12-01
+984500DF73898A37C981,TMB,organization,IN-DL,GLEIF_golden_copy:2022-12-01
+8156004421C314232E74,Plasco,organization,IT-FR,GLEIF_golden_copy:2022-12-01
+549300EI29EKHZ6OGZ48,HENDRICKSON SPRING,organization,MX-COA,GLEIF_golden_copy:2022-12-01
+259400TRUXZHHIDLRL36,FCA,organization,PL-12,GLEIF_golden_copy:2022-12-01
+549300JSYEO25NNOKU11,Windset Farms,organization,US-CA,GLEIF_golden_copy:2022-12-01
+549300VQ7HOMKDCK3V73,Cardinal Power,organization,US-DE,GLEIF_golden_copy:2022-12-01
+549300VQ7HOMKDCK3V73,"Cardinal Power of Canada, L.P.",organization,US-DE,GLEIF_golden_copy:2022-12-01
+5493003S21INSLK2IP73,Dow,organization,US-DE,GLEIF_golden_copy:2022-12-01
+549300JHW9IKMK4CYJ90,IPSCO Inc.,organization,US-DE,GLEIF_golden_copy:2022-12-01
+2549003MR3W2EFW61T28,Casco Inc.,organization,US-ME,GLEIF_golden_copy:2022-12-01
+254900CX4FIIDFHO6182,"Terreau Biogaz, limited partnership",organization,US-NV,GLEIF_golden_copy:2022-12-01

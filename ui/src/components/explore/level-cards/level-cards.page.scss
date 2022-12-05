@@ -27,7 +27,6 @@
         border-radius: 8px;
         position: absolute;
         z-index: var(--explore-dropdown-list-items-z-index);
-        
     }
 
     .inner-card {
@@ -169,6 +168,7 @@
         white-space: nowrap;
         padding-left: 6px;
     }
+    
     @include respond(laptop){
         width: 260px;
         height: 82px;
@@ -218,8 +218,8 @@
             padding-right: 4px;
             color: #00001F;
             cursor: default;
-         
         }
+
         .swapto-button {
             margin-top: 76px;
             position: relative;
@@ -233,8 +233,8 @@
             border-radius: 100px;
             font-size: 12px;
             position: relative;
-            z-index: 1;
         }
+
         .swapto-button-disabled {
             margin-top: 76px;
             position: relative;
@@ -249,6 +249,5 @@
             font-size: 12px;
         }
     }
-
 
 }

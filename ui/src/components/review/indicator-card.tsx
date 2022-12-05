@@ -100,7 +100,8 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
             const populationYear = latestPopulation?.datasource?.published.slice(0,4)
             const population = (populationYear && current.population.length) ? current.population.slice().sort((p:any) => Math.abs(p.year - populationYear)).find((p:any) => Math.abs(p.year - populationYear) <= 5) : null
             const parentPopulation = (populationYear && parent.population.length) ? parent.population.slice().sort((p:any) => Math.abs(p.year - populationYear)).find((p:any) => Math.abs(p.year - populationYear) <= 5) : null
-            const target = (current?.targets.length > 0) ? current?.targets[0] : null;
+            const target = (current?.targets.length > 0) ? current?.targets?.filter(target => target.target_year > new Date().getFullYear())?.[0] : null;
+
             setCurrPopulation(population?.population)
             setParPopulation(parentPopulation?.population)
             setEmissionsData(currentEmissions?.total_emissions);
@@ -121,7 +122,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                         <div className="review__earth-card-emissions-info">
                             <MdArrowUpward className="review__earth-card-item-icon" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#F23D33'}}/>
                             <span className="review__earth-card-item-large-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent !== null ? "N/A" : emsData && readableEmissions(emsData, "array")[0] || '49.8'}</span>
-                            {!emsData && parent !== null ? <></> : <span className="review__earth-card-item-small-text">{parent === null ? 'GtCO' : `${readableEmissions(emsData, "array")[1]}CO`}<sub>2</sub>eq</span>}
+                            {!emsData && parent !== null ? <></> : <span className="review__earth-card-item-small-text">{parent === null ? 'GtCO' : `${readableEmissions(emsData, "array")[1]}CO`}<sub>2</sub>e</span>}
                         </div>
                         <div className="review__earth-card-item-normal-text earth-card-normal-text" style={!emsData && parent !== null ? {color: '#7A7B9A'} : { color: '#00001F'}}>{!emsData && parent ? 'No data available' : `in ${parent !== null ? (year || 'N/A') : '2019'}`}</div>
                     </div>
@@ -134,7 +135,7 @@ const IndicatorCard:FunctionComponent<IProps> = (props) => {
                             <div className='right-column'>
                                 <div>
                                     <span className="review__earth-card-item-large-text">287.4</span>
-                                    <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>eq</span>
+                                    <span className="review__earth-card-item-small-text">GtCO<sub>2</sub>e</span>
                                 </div>
                                 <div className="review__earth-card-item-normal-text target-text">Left based on 1.5 target</div>
                             </div>
