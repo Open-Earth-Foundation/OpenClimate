@@ -13,6 +13,37 @@ import requests
 import xlrd
 
 
+def country_to_iso2(name=None, return_input=False):
+    url = url = f"https://openclimate.network/api/v1/search/actor?name={name}"
+    #url = f"https://openclimate.network/api/v1/search/actor?q={name}"
+    region = 'country'
+    payload = {}
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers, data=payload)
+    dataList = dict(response.json())['data']
+    if dataList:
+        for data in dataList:
+            if data['type'] == region.lower():
+                if return_input:
+                    tmp = (name, data['actor_id'])
+                    break
+                else:
+                    tmp = data['actor_id']
+
+            else:
+                if return_input:
+                    tmp = (name, np.NaN)
+                else:
+                    tmp = np.NaN
+    else:
+        if return_input:
+            tmp = (name, np.NaN)
+        else:
+            tmp = np.NaN
+
+    return tmp
+
+
 def iso3_to_iso2(name=None, return_input=False):
     url = f"https://openclimate.network/api/v1/search/actor?identifier={name}&namespace=ISO-3166-1%20alpha-3"
     payload = {}
