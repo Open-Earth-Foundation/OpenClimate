@@ -74,9 +74,11 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                             }
                         </div>
                     </div>
-                    { targets?.map((pledge:any, index: number) =>
-                        <PledgeItem pledge={pledge} key={`pledge-item-${index}`} />
-                    )}
+                    <div className='pledges-widget__pledge-items'>
+                        { targets?.map((pledge:any, index: number) =>
+                            <PledgeItem pledge={pledge} key={`pledge-item-${index}`} />
+                        )}
+                    </div>
                 </div>:
                 <div className="pledges-widget__wrapper">
                     <div className="pledges-widget__metadata">
