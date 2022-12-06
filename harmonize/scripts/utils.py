@@ -856,199 +856,6 @@ def create_eccc_ghgrp_facilities_emissions_table(DataSourceDict=None,
     return df_emissions
 
 
-def create_eccc_nir_emissionsAgg(DataSourceDict=None,
-                                 PublisherDict=None):
-    fl = '/Users/luke/Documents/work/data/Can_provinces/ghg-emissions-regional-en.csv'
-
-    df = pd.read_csv(fl, header=2, names=[
-                     'province', '1990', '2005', '2020'])  # MegaTonnes
-
-    changeDict = {
-        'Newfoundland and Labrador (NL)': 'CA-NL',
-        'Prince Edward Island (PE)': 'CA-PE',
-        'Nova Scotia (NS)': 'CA-NS',
-        'New Brunswick (NB)': 'CA-NB',
-        'Quebec (QC)': 'CA-QC',
-        'Ontario (ON)': 'CA-ON',
-        'Manitoba (MB)': 'CA-MB',
-        'Saskatchewan (SK)': 'CA-SK',
-        'Alberta (AB)': 'CA-AB',
-        'British Columbia (BC)': 'CA-BC',
-        'Yukon (YT)': 'CA-YT',
-        'Northwest Territories (NT)': 'CA-NT',
-        'Nunavut (NU)[A]': 'CA-NU',
-    }
-
-    df['province'] = df['province'].replace(changeDict)
-    df = df.rename(columns={'province': 'actor_id'})
-
-    df = df[0:13]
-
-    # before 1999, CA-NU was part of CA-NT
-    df.loc[df['actor_id'] == 'CA-NT', '1990'] = 1.8
-
-    from utils import df_wide_to_long
-
-    df_out = df_wide_to_long(df=df, value_name='total_emissions')
-
-    df_out = df_out.dropna()
-
-    # convert to tonnes from megatones
-    df_out['total_emissions'] = (
-        df_out['total_emissions'].astype(float) * 10**6).astype(int)
-
-    # get datasource_id from dataSource table
-    df_out['datasource_id'] = DataSourceDict['datasource_id']
-
-    df_out['methodology_id'] = MethodologyDict['methodology_id']
-
-    df_out['emissions_id'] = df_out.apply(lambda row:
-                                          f"ECCC_NIR_2022:{row['actor_id']}:{row['year']}",
-                                          axis=1)
-
-    cols = [
-        "emissions_id",
-        "actor_id",
-        "year",
-        "total_emissions",
-        "methodology_id",
-        "datasource_id"
-    ]
-    df_out = df_out[cols]
-
-    df_out = df_out.astype({
-        'emissions_id': str,
-        'actor_id': str,
-        'year': int,
-        'total_emissions': int,
-        'methodology_id': str,
-        'datasource_id': str
-    })
-
-    return df_out
-
-
-def harmonize_unfccc_emissions(fl=None,
-                               outputDir=None,
-                               tableName=None,
-                               datasourceDict=None):
-    '''harmonize UNFCCC dataset
-
-    haramonize UNFCCC to conform to open climate schema
-
-    input
-    ------
-    fl: file path to raw data
-    outputDir: directory where table will be created
-    tableName: name of the table to create
-    datasourceDict: dictionary with datasource info
-
-    output
-    -------
-    df: final dataframe with emissions info
-    '''
-    # TODO: pull out all the nested functions and refactor the code
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
-
-    # read iso
-    df_iso = read_iso_codes()
-
-    # path to raw UNFCCC dataset
-    if fl is None:
-        fl = ('/Users/luke/Documents/work/data/UNFCCC/raw/'
-              'Time Series - GHG total without LULUCF, in kt CO₂ equivalent.xlsx')
-    # ensure input types are correct
-    assert isinstance(fl, str), f"fl must be a string"
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
-    assert isinstance(
-        datasourceDict, dict), f"datasourceDict must be a dictionary"
-
-    # read excel file into pandas
-    df = pd.read_excel(fl, skiprows=2, na_values=True)
-    df_tmp = df.copy()
-    first_row_with_all_NaN = df[df.isnull().all(
-        axis=1) == True].index.tolist()[0]
-    df = df.loc[0:first_row_with_all_NaN-1]
-
-    # alternative names for countries in UNFCCC
-    alt_names = {
-        'United States of America (the)': ['United States of America'],
-        'Russian Federation (the)': ['Russian Federation'],
-        'United Kingdom of Great Britain and Northern Ireland (the)': ['United Kingdom of Great Britain and Northern Ireland'],
-        'Netherlands (the)': ['Netherlands'],
-    }
-
-    # replace alt_names with names in ISO-3166
-    for correctName in alt_names.keys():
-        filt = df['Party'].isin(alt_names[correctName])
-        df.loc[filt, 'Party'] = correctName
-
-    # merge datasets (wide, each year is a column)
-    df_wide = pd.merge(df, df_iso,
-                       left_on=["Party"],
-                       right_on=['country'],
-                       how="left")
-
-    # filter out null values in English short name
-    filt = df_wide['country'].notnull()
-    df_wide = df_wide.loc[filt]
-
-    # convert from wide to long dataframe (was def_merged_long)
-    df_long = df_wide_to_long(df=df_wide,
-                              value_name="emissions",
-                              var_name="year")
-
-    # rename columns
-    df = df_long.rename(columns={'iso3': 'identifier',
-                                 'iso2': 'actor_id'})
-
-    # convert year to int
-    df['year'] = df['year'].astype('int16')
-
-    # create id columns
-    df['datasource_id'] = datasourceDict['datasource_id']
-    df['emissions_id'] = df.apply(lambda row:
-                                  f"UNFCCC-annex1-GHG:{row['actor_id']}:{row['year']}",
-                                  axis=1)
-
-    # CO₂ total without LULUCF, in kt
-    def kilotonne_to_metric_ton(val):
-        ''' 1 Kilotonne = 1000 tonnes  '''
-        return val * 1000
-
-    df['total_emissions'] = df['emissions'].apply(kilotonne_to_metric_ton)
-
-    # Create EmissionsAgg table
-    emissionsAggColumns = ["emissions_id",
-                           "actor_id",
-                           "year",
-                           "total_emissions",
-                           "datasource_id"]
-
-    df_emissionsAgg = df[emissionsAggColumns]
-
-    # ensure data has correct types
-    df_emissionsAgg = df_emissionsAgg.astype({'emissions_id': str,
-                                             'actor_id': str,
-                                              'year': int,
-                                              'total_emissions': int,
-                                              'datasource_id': str})
-
-    # sort by actor_id and year
-    df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
-
-    # convert to csv
-    df_emissionsAgg.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df_emissionsAgg
-
-
 def df_columns_as_str(df=None):
     df.columns = df.columns.astype(str)
     return df
@@ -1062,130 +869,12 @@ def df_drop_unnamed_columns(df=None):
     return df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
 
-def read_eccc_ghg_inventory_fl(fl=None, province=None):
-
-    assert isinstance(fl, pathlib.PurePath), (
-        f"{fl} is not a string or pathlib.PosixPath"
-    )
-
-    # get province name from filename if not provided
-    if province is None:
-        # get province from stem of file
-        result = re.search(r"EN_GHG_IPCC_(.*)", fl.stem)
-        province = ''.join(result.groups())
-
-        # change NT&NU combined to just NT
-        if province == 'NT&NU':
-            province = 'NT'
-
-    else:
-        assert isinstance(province, str), (
-            f"{province} is not type string"
-        )
-
-    # read raw dataset
-    df = pd.read_excel(fl, sheet_name='Summary', header=4)
-    df = df_columns_as_str(df)
-    df = df_drop_unnamed_columns(df)
-
-    # extract units
-    units = df.iloc[0, 1]
-
-    # filter, only get total of all GHG cats
-    filt = df['Greenhouse Gas Categories'] == 'TOTAL'
-    df = df.loc[filt]
-
-    # convert from wide to long
-    df_long = df_wide_to_long(df=df, value_name='emissions', var_name='year')
-
-    # add province column
-    df_long['actor_id'] = f"CA-{province}"
-    df_long['units'] = units
-
-    return df_long
-
-
-def harmonize_eccc_ghg_inventory(dataDir=None,
-                                 outputDir=None,
-                                 tableName=None,
-                                 datasourceDict=None):
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
-
-    assert isinstance(dataDir, str), f"dataDir must be a string"
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
-    assert isinstance(
-        datasourceDict, dict), f"datasourceDict must be a dictionary"
-
-    # get list of files
-    path = Path(dataDir)
-    files = sorted((path.glob('EN_GHG_IPCC_*.xlsx')))
-
-    # merge into one dataset, the provinces are being read the file name
-    #
-    df_out = pd.concat([read_eccc_ghg_inventory_fl(fl=fl)
-                       for fl in files], ignore_index=True)
-
-    # convert emissions to tonnes
-    if set(df_out['units']) == {'kt CO2  eq'}:
-        df_out['emissions'] = df_out['emissions'] * 10**3
-        df_out = df_out.rename(columns={'emissions': 'total_emissions'})
-
-    # create datasource and emissions id
-    df_out['datasource_id'] = datasourceDict['datasource_id']
-    df_out['emissions_id'] = df_out.apply(lambda row:
-                                          f"ECCC_GHG_inventory:{row['actor_id']}:{row['year']}",
-                                          axis=1)
-
-    # Create EmissionsAgg table
-    emissionsAggColumns = ["emissions_id",
-                           "actor_id",
-                           "year",
-                           "total_emissions",
-                           "datasource_id"]
-
-    df_emissionsAgg = df_out[emissionsAggColumns]
-
-    # ensure data has correct types
-    df_emissionsAgg = df_emissionsAgg.astype({'emissions_id': str,
-                                             'actor_id': str,
-                                              'year': int,
-                                              'total_emissions': int,
-                                              'datasource_id': str})
-
-    # sort by actor_id and year
-    df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
-
-    # convert to csv
-    df_emissionsAgg.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df_emissionsAgg
-
-
 def harmonize_eucom_emissions(fl=None,
-                              outputDir=None,
-                              tableName=None,
                               datasourceDict=None):
-    # set default path
-    if fl is None:
-        fl = '/Users/luke/Documents/work/data/EUCoM/raw/EUCovenantofMayors2022_clean_NCI_7Jun22.csv'
 
     # ensure input types are correct
     assert isinstance(fl, str), f"fl must be a string"
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
     assert isinstance(datasourceDict, dict), f"datasourceDict must be a list"
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
 
     # read EUCoM
     df = pd.read_csv(fl)
@@ -1367,10 +1056,7 @@ def harmonize_eucom_emissions(fl=None,
     # sort by actor_id and year
     df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
 
-    # convert to csv
-    df_emissionsAgg.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df
+    return df_emissionsAgg
 
 
 def match_locode_to_climactor():
@@ -1543,24 +1229,11 @@ def harmonize_epa_state_ghg(dataDir=None,
 
 
 def harmonize_eucom_pledges(fl=None,
-                            outputDir=None,
-                            tableName=None,
                             datasourceDict=None):
-    # set default path
-    if fl is None:
-        fl = '/Users/luke/Documents/work/data/EUCoM/raw/EUCovenantofMayors2022_clean_NCI_7Jun22.csv'
 
     # ensure input types are correct
     assert isinstance(fl, str), f"fl must be a string"
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
     assert isinstance(datasourceDict, dict), f"datasourceDict must be a list"
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
 
     # read EUCoM
     df = pd.read_csv(fl)
@@ -1772,10 +1445,7 @@ def harmonize_eucom_pledges(fl=None,
     # sort by actor_id and year
     df_target = df_target.sort_values(by=['actor_id', 'baseline_year'])
 
-    # convert to csv
-    df_target.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df
+    return df_target
 
 
 def harmonize_us_climate_alliance_pledge(outputDir=None,
