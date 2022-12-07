@@ -260,7 +260,8 @@ if __name__ == '__main__':
 
     df_actor['datasource_id'] = DataSourceDictLEI['datasource_id']
 
-    df_actor.to_csv(f'{outputDirCompany}/Actor.csv', index=False)
+    df_actor.drop_duplicates().to_csv(
+        f'{outputDirCompany}/Actor.csv', index=False)
 
     # ---------------------
     # ActorIdentifier.csv (company)
@@ -270,7 +271,7 @@ if __name__ == '__main__':
     df_actorIdentifier = df_tmp[actorIdentifierColumns].drop_duplicates()
     df_actorIdentifier['datasource_id'] = DataSourceDictLEI['datasource_id']
 
-    df_actorIdentifier.to_csv(
+    df_actorIdentifier.drop_duplicates().to_csv(
         f'{outputDirCompany}/ActorIdentifier.csv', index=False)
 
     # ---------------------
@@ -281,7 +282,8 @@ if __name__ == '__main__':
     df_actorName = df_tmp[actorNameColumns].drop_duplicates()
     df_actorName = df_actorName.sort_values(by=['name'])
     df_actorName['datasource_id'] = DataSourceDictLEI['datasource_id']
-    df_actorName.to_csv(f'{outputDirCompany}/ActorName.csv', index=False)
+    df_actorName.drop_duplicates().to_csv(
+        f'{outputDirCompany}/ActorName.csv', index=False)
 
     # ---------------------
     # Actor.csv (facility)
@@ -289,9 +291,13 @@ if __name__ == '__main__':
     df_tmp = df_tmp.copy()
     df_tmp['lei'] = df_tmp['actor_id']
     df_tmp['actor_id_facility'] = df_tmp.apply(
-        lambda row: f"{row['UNLOCODE']}:{row['lei']}", axis=1)
+        lambda row: f"ECCC_{row['ghgrp_id']}:{row['lei']}", axis=1)
 
-    actorColumns = ['Facility_Name', 'actor_id_facility', 'is_owned_by']
+    df_tmp['is_part_of'] = df_tmp.apply(
+        lambda row: f"{row['UNLOCODE']}", axis=1)
+
+    actorColumns = ['Facility_Name',
+                    'actor_id_facility', 'is_owned_by', 'is_part_of']
     df_actor = df_tmp[actorColumns]
     df_actor = df_actor.rename(columns={
         'Facility_Name': 'name',
@@ -300,7 +306,8 @@ if __name__ == '__main__':
 
     df_actor['datasource_id'] = DataSourceDictECCC['datasource_id']
     df_actor['type'] = 'site'
-    df_actor.to_csv(f'{outputDirFacility}/Actor.csv', index=False)
+    df_actor.drop_duplicates().to_csv(
+        f'{outputDirFacility}/Actor.csv', index=False)
 
     #df_actor = df_tmp[actorColumns].drop_duplicates()
     #df_actor = df_actor.sort_values(by=['is_part_of', 'name'])
@@ -320,7 +327,7 @@ if __name__ == '__main__':
     df_actorIdentifier['datasource_id'] = DataSourceDictECCC['datasource_id']
     df_actorIdentifier['namespace'] = 'LOCODE_LEI'
 
-    df_actorIdentifier.to_csv(
+    df_actorIdentifier.drop_duplicates().to_csv(
         f'{outputDirFacility}/ActorIdentifier.csv', index=False)
 
     # ---------------------
@@ -337,7 +344,8 @@ if __name__ == '__main__':
     df_actorName['preferred'] = 1
     df_actorName['datasource_id'] = DataSourceDictECCC['datasource_id']
 
-    df_actorName.to_csv(f'{outputDirFacility}/ActorName.csv', index=False)
+    df_actorName.drop_duplicates().to_csv(
+        f'{outputDirFacility}/ActorName.csv', index=False)
 
     # ---------------------
     # EmissionsAgg.csv (facility)
@@ -362,5 +370,5 @@ if __name__ == '__main__':
         'datasource_id': str
     })
 
-    df_emissionsAgg.to_csv(
+    df_emissionsAgg.drop_duplicates().to_csv(
         f'{outputDirFacility}/EmissionsAgg.csv', index=False)
