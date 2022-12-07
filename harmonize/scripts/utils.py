@@ -13,6 +13,18 @@ import requests
 import xlrd
 
 
+def is_actor_in_database(name=None):
+    url = f"https://openclimate.network/api/v1/search/actor?identifier={name}&namespace=ISO-3166-1%20alpha-2"
+    payload = {}
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers, data=payload)
+    dataList = dict(response.json())['data']
+    if dataList:
+        return (name, True)
+    else:
+        return (name, False)
+
+
 def state_to_iso2(name=None, return_input=False, is_part_of=None):
     url = url = f"https://openclimate.network/api/v1/search/actor?name={name}"
     payload = {}
