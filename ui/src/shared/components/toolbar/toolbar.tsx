@@ -2,12 +2,11 @@ import React, { FunctionComponent, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import MainLogoIcon from '../../img/toolbar/OpenClimate_Beta_logo.svg';
 import NavMenu from './nav-menu/nav-menu';
-import SearchToolbar from './toolbar-search/toolbar-search';
-import ToolbarAutorized from './toolbar-authorized/toolbar-autorized';
+import ToolbarAuthorized from './toolbar-authorized/toolbar-authorized';
 import { IUser } from '../../../api/models/User/IUser';
 import './toolbar.scss';
-import {VscMenu, VscArrowRight, VscChevronRight} from 'react-icons/vsc';
-import {HiUserCircle} from 'react-icons/hi';
+import {VscMenu, VscChevronRight} from 'react-icons/vsc';
+import SearchBar from '../../../components/search-bar/search-bar';
 
 
 interface Props {
@@ -48,8 +47,9 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
                         <NavMenu currentUser={user} />
 
                         <div className="toolbar__right-area">
+                                <div className={"toolbar__search-bar"}><SearchBar/></div>
                                 {user ?
-                                    <ToolbarAutorized user={user} doLogout={handleLogout} />
+                                    <ToolbarAuthorized user={user} doLogout={handleLogout} />
                                 :
                                     <div className="toolbar__login">
                                         <button

@@ -4,8 +4,8 @@ import {DonutChart} from 'react-circle-chart'
 import {Close} from '@mui/icons-material'
 import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
 import { deselectFilter } from "../../store/review/review.actions";
-import {readableEmissions, readablePercentagePopulation} from "./util/units"
-import { showPopulationParent } from "./util/population";
+import {readableEmissions, readablePercentagePopulation} from "../util/units"
+import { showPopulationParent } from "../util/population";
 
 interface IProps {
     parent: any,
