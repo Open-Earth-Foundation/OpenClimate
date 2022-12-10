@@ -1,89 +1,102 @@
 actor_id,name,language,preferred,datasource_id
-5493002HWKHG11IPOG10,ATCO Power,en,1,GLEIF_golden_copy:2022-12-06
-5493005QJZPINYFP3420,AV Group NB Inc.,en,1,GLEIF_golden_copy:2022-12-06
-549300ETZ2H2VN8K1243,Agrium,en,1,GLEIF_golden_copy:2022-12-06
-ZRPT83FLC26QOUQ8DT58,Air Products Canada Ltd,en,1,GLEIF_golden_copy:2022-12-06
-ZRPT83FLC26QOUQ8DT58,"Air Products Canada, Ltd",en,1,GLEIF_golden_copy:2022-12-06
-549300ZWW04O98IXFO27,ArcelorMittal Dofasco,en,1,GLEIF_golden_copy:2022-12-06
-549300D6IHC1ALPRUY09,BC Hydro,en,1,GLEIF_golden_copy:2022-12-06
-54930076R7DSUQLIJE29,Bayer Inc.,en,1,GLEIF_golden_copy:2022-12-06
-54930030MPVYJ0MTAS08,Bridgestone Canada inc.,en,1,GLEIF_golden_copy:2022-12-06
-5493005C3MRGJI6ZZF14,Bunge Canada,en,1,GLEIF_golden_copy:2022-12-06
-549300LM7VO08PVE7165,CGC Inc.,en,1,GLEIF_golden_copy:2022-12-06
-N4BHALMXL3GMZKCUON55,Cameco Corporation,en,1,GLEIF_golden_copy:2022-12-06
-549300ZB40TJUE9X2R65,Canadian Fertilizers Limited,en,1,GLEIF_golden_copy:2022-12-06
-549300T15RIMIKZC5Q38,Canadian Natural Resources Limited,en,1,GLEIF_golden_copy:2022-12-06
-549300VQ7HOMKDCK3V73,Cardinal Power,en,1,GLEIF_golden_copy:2022-12-06
-549300V0FRLSRFEZFU13,Carmeuse Lime,en,1,GLEIF_golden_copy:2022-12-06
-2549003MR3W2EFW61T28,Casco Inc.,en,1,GLEIF_golden_copy:2022-12-06
-549300XC9E3MQMOFK383,Catalyst Paper,en,1,GLEIF_golden_copy:2022-12-06
-54930056WZE8OYLZ0321,Cavendish Farms Corporation,en,1,GLEIF_golden_copy:2022-12-06
-549300F4XPHJ7NOSP309,Cenovus Energy Inc.,en,1,GLEIF_golden_copy:2022-12-06
-549300YUW6N7RXHA4T37,Ciment Québec inc.,en,1,GLEIF_golden_copy:2022-12-06
-549300SSW2M4U7Q46278,City of Hamilton,en,1,GLEIF_golden_copy:2022-12-06
-549300Z9RSLCM1W45F39,City of Medicine Hat,en,1,GLEIF_golden_copy:2022-12-06
-54930037NB6NXS8EKP78,City of Toronto,en,1,GLEIF_golden_copy:2022-12-06
-549300BWBQRZ10314H05,Corner Brook Pulp and Paper Limited,en,1,GLEIF_golden_copy:2022-12-06
-549300G5NNL3OGZRXK45,Corporation of the City of Guelph,en,1,GLEIF_golden_copy:2022-12-06
-5493009GMSB2VESBDR34,Covia Canada Ltd.,en,1,GLEIF_golden_copy:2022-12-06
-549300ZWW04O98IXFO27,Dofasco,en,1,GLEIF_golden_copy:2022-12-06
-XYSIJOU3HNVROZWNA008,Domtar,en,1,GLEIF_golden_copy:2022-12-06
-549300SKZOPRJXN2F307,Federal White Cement Ltd.,en,1,GLEIF_golden_copy:2022-12-06
-8ZVIH12NGFM5URTOES98,Ford of Canada,en,1,GLEIF_golden_copy:2022-12-06
-JSP0TNC596XKLBPR0Y26,FortisBC Energy,en,1,GLEIF_golden_copy:2022-12-06
-5493003PRX4V79CH9189,Fraser Papers,en,1,GLEIF_golden_copy:2022-12-06
-5493006UUHUKRKECPK41,GDF Suez Energy Canada Inc.,en,1,GLEIF_golden_copy:2022-12-06
-549300GT6BLC9T74PS32,Graymont Western Canada Inc.,en,1,GLEIF_golden_copy:2022-12-06
-254900S2XROLM5WUR914,Greater Toronto Airports Authority,en,1,GLEIF_golden_copy:2022-12-06
-254900TQNYYLYHQXGL14,Greenfield Global Inc.,en,1,GLEIF_golden_copy:2022-12-06
-549300EI29EKHZ6OGZ48,HENDRICKSON SPRING,en,1,GLEIF_golden_copy:2022-12-06
-54930071Y8KNRMS4OP09,Highland Valley Copper,en,1,GLEIF_golden_copy:2022-12-06
-5493009UL1CFLQ2GMZ46,Husky Oil Operations Limited,en,1,GLEIF_golden_copy:2022-12-06
-6THEVG93PYJH84S4D167,Hydro-Québec,en,1,GLEIF_golden_copy:2022-12-06
-549300TKZ4DLFLQ6H023,IGPC Ethanol,en,1,GLEIF_golden_copy:2022-12-06
-549300MO45LTBPAU4Z27,Imperial Oil,en,1,GLEIF_golden_copy:2022-12-06
-549300VU2OWM86LFP557,Imperial Oil Resources,en,1,GLEIF_golden_copy:2022-12-06
-549300FWQYIGXQKTLF33,Ingredion Canada Corporation,en,1,GLEIF_golden_copy:2022-12-06
-QQTTPMZD0WKQL0H5S472,Inter Pipeline Ltd.,en,1,GLEIF_golden_copy:2022-12-06
-549300I1AHR8KMMFIS52,"KRONOS Canada, Inc.",en,1,GLEIF_golden_copy:2022-12-06
-549300QIZNVNHW2M3G58,"Koch Fertilizer Canada, Ltd.",en,1,GLEIF_golden_copy:2022-12-06
-549300QIZNVNHW2M3G58,"Koch Fertilizer Canada, ULC",en,1,GLEIF_golden_copy:2022-12-06
-549300JKT5KTWQGH8W42,Kruger inc.,en,1,GLEIF_golden_copy:2022-12-06
-5299000S9E1C0NBZXD39,Lafarge Canada,en,1,GLEIF_golden_copy:2022-12-06
-5299000S9E1C0NBZXD39,Lafarge Canada Inc,en,1,GLEIF_golden_copy:2022-12-06
-5493007BP7SN5IQL5G42,Lake Shore Gold,en,1,GLEIF_golden_copy:2022-12-06
-5493002LQV1DCOPQHR04,Louis Dreyfus Company,en,1,GLEIF_golden_copy:2022-12-06
-635400MHHHT7LMKMQL03,MEGlobal Canada ULC.,en,1,GLEIF_golden_copy:2022-12-06
-5493002NPV85N4GKF844,Material Sciences Corporation,en,1,GLEIF_golden_copy:2022-12-06
-549300PTBTWUDQPGRE86,McGill University,en,1,GLEIF_golden_copy:2022-12-06
-549300WER23TDUKKMC85,Mines Wabush,en,1,GLEIF_golden_copy:2022-12-06
-VFIHQZIFDSYYZFB4MS14,Mosaic Potash Esterhazy,en,1,GLEIF_golden_copy:2022-12-06
-54930010KSPD8P06YF46,Newfoundland and Labrador Hydro,en,1,GLEIF_golden_copy:2022-12-06
-549300MG32TDSM60SX75,NuVista Energy Ltd.,en,1,GLEIF_golden_copy:2022-12-06
-549300JVK4B3OCNPFG14,O-I Canada Corp.,en,1,GLEIF_golden_copy:2022-12-06
-YDHER8SKF7V7YW8KZB55,Ontario Power Generation Inc.,en,1,GLEIF_golden_copy:2022-12-06
-CZ72ZHBVKZXQRV3XFE26,Ovintiv Canada ULC,en,1,GLEIF_golden_copy:2022-12-06
-549300HS6LC2Q5HWA620,Pengrowth Energy Corporation,en,1,GLEIF_golden_copy:2022-12-06
-549300FCRH8BIELHLK38,Region of Peel,en,1,GLEIF_golden_copy:2022-12-06
-2138007ZSQ7B17SKOX77,Rio Tinto Alcan Inc.,en,1,GLEIF_golden_copy:2022-12-06
-549300183M7GYZ90QS57,SaskEnergy Incorporated,en,1,GLEIF_golden_copy:2022-12-06
-5493009981WBHS86CJ89,St. Marys Cement Inc. (Canada),en,1,GLEIF_golden_copy:2022-12-06
-549300TE72QZCLE47467,Stelco Inc.,en,1,GLEIF_golden_copy:2022-12-06
-529900L1EHUYOIRVR143,Styrolution Canada Ltd.,en,1,GLEIF_golden_copy:2022-12-06
-254900CX4FIIDFHO6182,"TQM Pipeline and Company, Limited Partnership",en,1,GLEIF_golden_copy:2022-12-06
-549300UCIWUSZZYHYW84,Tafisa Canada,en,1,GLEIF_golden_copy:2022-12-06
-549300KV0RHWDY3ZW261,Tembec,en,1,GLEIF_golden_copy:2022-12-06
-549300QUFIU3WKO98O62,Terra Grain Fuels Inc,en,1,GLEIF_golden_copy:2022-12-06
-254900CX4FIIDFHO6182,"Terreau Biogaz, limited partnership",en,1,GLEIF_golden_copy:2022-12-06
-549300LB21L42P0HSR70,The University of Western Ontario,en,1,GLEIF_golden_copy:2022-12-06
-5493007C77EEJ03RCD29,TransCanada Gas Storage Partnership,en,1,GLEIF_golden_copy:2022-12-06
-529900S0DEXF0NOKQG75,UPM,en,1,GLEIF_golden_copy:2022-12-06
-PRAQ4VOSFIK7OQ8Z2512,Vale Canada Limited,en,1,GLEIF_golden_copy:2022-12-06
-529900TR69X5FFZ6K955,Village Farms,en,1,GLEIF_golden_copy:2022-12-06
-549300WER23TDUKKMC85,Wabush Mines,en,1,GLEIF_golden_copy:2022-12-06
-549300ZX1Z8QGWASPX54,Waste Connections of Canada Inc.,en,1,GLEIF_golden_copy:2022-12-06
-5493007F4QFHW2NTYS81,West Fraser,en,1,GLEIF_golden_copy:2022-12-06
-5493005WD1ZK6WBVR988,West Fraser Timber,en,1,GLEIF_golden_copy:2022-12-06
-5493004Z9TCQW68YVL89,WestRock,en,1,GLEIF_golden_copy:2022-12-06
-08IRJODWFYBI7QWRGS31,Weyerhaeuser Company,en,1,GLEIF_golden_copy:2022-12-06
-549300G0W4VLC3WELV71,Whitby Cogeneration,en,1,GLEIF_golden_copy:2022-12-06
+2138007ZSQ7B17SKOX77,"Rio Tinto Alcan Inc., 1188 Sherbrooke Ouest, Montréal, H3A3G",en,1,GLEIF_golden_copy
+2138008I2EJR8CKJSY80,York University,en,1,GLEIF_golden_copy
+213800SOEJGBSFCBNZ80,Shell Canada Energy,en,1,GLEIF_golden_copy
+25490034ODG52NAX6D39,Torxen Energy Ltd.,en,1,GLEIF_golden_copy
+254900ALVJUAGHGF3855,Markham District Energy Inc.,en,1,GLEIF_golden_copy
+254900CX4FIIDFHO6182,"Tqm Pipeline And Company, Limited Partnership",en,1,GLEIF_golden_copy
+254900EMECKROAZTQ810,Regional Municipality Of Niagara,en,1,GLEIF_golden_copy
+254900JZUEOQ33K2AI53,Baffinland Iron Mines,en,1,GLEIF_golden_copy
+254900SJU6CW31RVHW15,Osisko Mining Inc,en,1,GLEIF_golden_copy
+254900YQC5GNVL13O314,Chemtrade Logistics Inc.,en,1,GLEIF_golden_copy
+4B4HI3CGXMBDC0G6BM51,Air Canada,en,1,GLEIF_golden_copy
+529900L1EHUYOIRVR143,Styrolution Canada Ltd.,en,1,GLEIF_golden_copy
+529900S7UO4VPNLSFT33,"Certainteed Gypsum Canada, Inc.",en,1,GLEIF_golden_copy
+529900U45A1JKZFABZ35,Transalta Renewables Inc.,en,1,GLEIF_golden_copy
+529900VJOU2CH2WZ6949,Bonterra Energy Corp.,en,1,GLEIF_golden_copy
+529900X2VMAQT2PE0V24,Rio Tinto,en,1,GLEIF_golden_copy
+5493000QHU254ST8A805,Kirkland Lake Gold Ltd,en,1,GLEIF_golden_copy
+5493001OC4Z0L3R1PP87,Cascades Canada Ulc.,en,1,GLEIF_golden_copy
+5493001PEB90YGTDC638,Petronas Energy Canada Ltd.,en,1,GLEIF_golden_copy
+5493001Y2YY733C7D136,Northern Pulp Nova Scotia Corporation,en,1,GLEIF_golden_copy
+54930033WS7FV15TNZ44,Kuntz Electroplating Inc.,en,1,GLEIF_golden_copy
+549300423UKB9GA8NE20,Irving Paper Limited,en,1,GLEIF_golden_copy
+5493004KY4KDUR6YZG97,Polar Star Canadian Oil And Gas Inc.,en,1,GLEIF_golden_copy
+5493005C3MRGJI6ZZF14,Bunge Canada,en,1,GLEIF_golden_copy
+5493005WD1ZK6WBVR988,West Fraser Timber Co.,en,1,GLEIF_golden_copy
+54930071Y8KNRMS4OP09,Highland Valley Copper,en,1,GLEIF_golden_copy
+54930088NKV63UAHIM71,North West Redwater Partnership,en,1,GLEIF_golden_copy
+5493008S9E54YU0UYJ34,Honda Canada Inc.,en,1,GLEIF_golden_copy
+5493009IDGFQJTJXVA51,Aquatera Utilities Inc,en,1,GLEIF_golden_copy
+549300A651QASD55GW77,University Of Calgary,en,1,GLEIF_golden_copy
+549300ACXH0JD2VM9I03,University Of Waterloo,en,1,GLEIF_golden_copy
+549300C45JTS75N6ZY04,Surge Energy Inc.,en,1,GLEIF_golden_copy
+549300CW1BIQY352BD50,Skookumchuck Pulp Inc.,en,1,GLEIF_golden_copy
+549300DITPHH8W8CK636,Obsidian Energy Ltd.,en,1,GLEIF_golden_copy
+549300DLRO5Q625BI570,Connacher Oil And Gas Limited,en,1,GLEIF_golden_copy
+549300DU2IZ6JEBUFQ07,Celanese Canada Ulc.,en,1,GLEIF_golden_copy
+549300EQPJ10YHPWH780,Praxair Canada Inc.,en,1,GLEIF_golden_copy
+549300EVSDWRVHUSS869,West Fraser Mills,en,1,GLEIF_golden_copy
+549300EVSDWRVHUSS869,West Fraser Mills Ltd.,en,1,GLEIF_golden_copy
+549300F4XPHJ7NOSP309,Cenovus Energy Inc.,en,1,GLEIF_golden_copy
+549300F8Y20RYGNGV346,Constellation Energy,en,1,GLEIF_golden_copy
+549300FWQYIGXQKTLF33,Ingredion Canada Corporation,en,1,GLEIF_golden_copy
+549300HG8P317IA7F175,Lafarge North America,en,1,GLEIF_golden_copy
+549300HQTP3HFLQCDJ30,Pomas Farms Inc,en,1,GLEIF_golden_copy
+549300I02OVQ8SO8XJ85,Tree Island Industries Ltd,en,1,GLEIF_golden_copy
+549300I04PB7X2824122,Cnooc Petroleum North America Ulc,en,1,GLEIF_golden_copy
+549300I5MSH5164V0R76,Meadow Lake Mechanical Pulp,en,1,GLEIF_golden_copy
+549300IKIHK4XHBQA912,Altasteel Ltd.,en,1,GLEIF_golden_copy
+549300IT8CIDW8V5KX72,Northland Power Inc.,en,1,GLEIF_golden_copy
+549300JKT5KTWQGH8W42,Kruger Inc,en,1,GLEIF_golden_copy
+549300JNRT97HYDOBV53,The International Group Inc.,en,1,GLEIF_golden_copy
+549300JSO4G6XV6Y5V84,Paramount Resources Ltd.,en,1,GLEIF_golden_copy
+549300JT133LZOPVH889,Terra International (Canada) Inc.,en,1,GLEIF_golden_copy
+549300K9GD47N5IXZQ65,Mount Polley Mining Corporation,en,1,GLEIF_golden_copy
+549300KNDXOG0N6VEF20,Detour Gold Corporation,en,1,GLEIF_golden_copy
+549300LCTK71JIKE1S67,City Of Swift Current,en,1,GLEIF_golden_copy
+549300LLBYDSPBFN3474,Gerdau Ameristeel Corporation,en,1,GLEIF_golden_copy
+549300MB66VESRD56790,Enwave Energy Corporation,en,1,GLEIF_golden_copy
+549300MMV2S26X2LA541,Calgary Energy Centre No. 2 Inc.,en,1,GLEIF_golden_copy
+549300MOKCG3MQ3MZ073,Endurance Energy Ltd.,en,1,GLEIF_golden_copy
+549300NHZY0OLJH01Q32,Myra Falls Mine Ltd,en,1,GLEIF_golden_copy
+549300NLM9AOMVGVLF70,University Of Regina,en,1,GLEIF_golden_copy
+549300O6R1R7LCBS4490,Cervini Farms (1993) Inc.,en,1,GLEIF_golden_copy
+549300OOKI1J60ZS8Z73,"Magellan Aerospace Limited, Haley",en,1,GLEIF_golden_copy
+549300OWG39NVI2E5198,Expert Manufacturing Inc.,en,1,GLEIF_golden_copy
+549300PGU4F3PE780370,Dépôt Rive-Nord Inc.,en,1,GLEIF_golden_copy
+549300PSRJIRNHRMZ259,Essroc Canada Inc.,en,1,GLEIF_golden_copy
+549300Q0VR82VBFVR156,Basf Canada Inc.,en,1,GLEIF_golden_copy
+549300QOJASE55RBUG72,Blackpearl Resources Inc.,en,1,GLEIF_golden_copy
+549300QVRPF55YS4I188,Baytex Energy Ltd,en,1,GLEIF_golden_copy
+549300R1D8EZJODZXH23,Carleton University,en,1,GLEIF_golden_copy
+549300SG6UC67FD5T253,Spec Furniture Inc.,en,1,GLEIF_golden_copy
+549300SMZTVZQPL8DY97,Levesque Plywood Limited,en,1,GLEIF_golden_copy
+549300SULPFDEWWFVD15,"Énergir, Chaleur Et Climatisation Urbaines S.E.C.",en,1,GLEIF_golden_copy
+549300T15RIMIKZC5Q38,Canadian Natural Resources Limited,en,1,GLEIF_golden_copy
+549300TE72QZCLE47467,Stelco Inc,en,1,GLEIF_golden_copy
+549300THM2FZJ4FYXF38,Global Contract Inc.,en,1,GLEIF_golden_copy
+549300UZWTSBHM6BJE80,Canadian Forest Products,en,1,GLEIF_golden_copy
+549300UZWTSBHM6BJE80,Canadian Forest Products Ltd,en,1,GLEIF_golden_copy
+549300UZWTSBHM6BJE80,Canadian Forest Products Ltd.,en,1,GLEIF_golden_copy
+549300V5XHJM4FKUZL63,Heartland Generation Ltd.,en,1,GLEIF_golden_copy
+549300VT0U272UDFWD22,"Genpak, Division Of Great Pacific Enterprises Lp",en,1,GLEIF_golden_copy
+549300W70ZOQDVLCHY06,Suncor Energy Inc.,en,1,GLEIF_golden_copy
+549300WBITZYYTOLW358,Sun-Brite Foods Inc.,en,1,GLEIF_golden_copy
+549300WER23TDUKKMC85,Wabush Mines,en,1,GLEIF_golden_copy
+549300XEP00B177J5J47,Linde Canada Inc.,en,1,GLEIF_golden_copy
+549300XFUNZD6T00GB78,Eacom Timber Corporation,en,1,GLEIF_golden_copy
+549300XJK3PWW7NDRD70,The Governing Council Of The University Of Toronto,en,1,GLEIF_golden_copy
+549300XT75E6ZKK2RE88,London Health Sciences Centre,en,1,GLEIF_golden_copy
+549300Y06T7WDFMGWP26,Bartek Ingredients Inc.,en,1,GLEIF_golden_copy
+549300YFA038FZ2SEQ60,Styrochem Canada Ltd,en,1,GLEIF_golden_copy
+549300ZIB4JGT9EQZ445,Vesta Energy Ltd.,en,1,GLEIF_golden_copy
+824LMFJDH41EY779Q875,International Paper Company,en,1,GLEIF_golden_copy
+FDX8H7EVT2UU4KZST276,Domtar Inc.,en,1,GLEIF_golden_copy
+MJATGU4J97KOUNZJNS73,Valero Energy Inc.,en,1,GLEIF_golden_copy
+N4BHALMXL3GMZKCUON55,Cameco Corporation,en,1,GLEIF_golden_copy
+RCJ8N5WH4YK7SVJ4BO12,Quicksilver Resources Canada Inc.,en,1,GLEIF_golden_copy
+VFIHQZIFDSYYZFB4MS14,Mosaic Potash Esterhazy Limited Partnership,en,1,GLEIF_golden_copy
+YDHER8SKF7V7YW8KZB55,Ontario Power Generation Inc.,en,1,GLEIF_golden_copy
+ZRPT83FLC26QOUQ8DT58,Air Products Canada Ltd.,en,1,GLEIF_golden_copy
+ZRPT83FLC26QOUQ8DT58,Air Products Canada Ltd,en,1,GLEIF_golden_copy
