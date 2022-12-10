@@ -23,7 +23,7 @@
     &__metadata-inner{
         display: flex;
     }
-    
+
     &__title{
         font-size: 18px;
         font-weight: 500;
@@ -46,6 +46,12 @@
     &__pledges-data{
         padding-top: 24px;
     }
+
+    &__pledge-items{
+        height: 350px;
+        overflow: scroll;
+    }
+
     &__pledge-entry{
         padding-left: 20px;
         padding-right: 20px;
@@ -87,12 +93,12 @@
     &__percentage-value{
         display: flex;
         align-items: center;
-    }   
+    }
 
     &__percentage-arrow{
         color: #03AA6F;
         margin-right: 4.5px;
-    }   
+    }
 
     &__percentage-value-number{
         font-weight: 600;
@@ -156,7 +162,7 @@
         padding: 10px;
         background-color: transparent;
     }
-    
+
     .collaborate-cta-btn span{
         font-style: normal;
         font-weight: 600;
