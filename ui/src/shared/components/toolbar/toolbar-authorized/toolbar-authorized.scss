@@ -1,10 +1,12 @@
-.toolbar__autorized {
+.toolbar__authorized {
     display: flex;
     align-items: center;
     font-weight: 500;
     font-size: 16px;
     line-height: 28px;
     color: var(--white-color);
+    padding: 5px 0 0 30px;
+    cursor: pointer;
 
     .toolbar__user-pic {
         margin-right: 12px;

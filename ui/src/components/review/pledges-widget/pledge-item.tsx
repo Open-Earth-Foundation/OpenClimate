@@ -1,7 +1,7 @@
 import {FunctionComponent} from 'react';
 import './pledges-widget.scss';
 import {MdArrowDownward} from "react-icons/md";
-import {readableEmissions} from "../util/units";
+import {readableEmissions} from "../../util/units";
 
 interface Props {
     pledge: any
