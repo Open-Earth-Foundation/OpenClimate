@@ -1,10 +1,10 @@
 sector_id,name,namespace,datasource_id
-climate_trace:sector:agriculture,Greenhouse gas emissions from the growing of crops and livestock for food and raw materials for non-food consumption.,climate_trace:sector,climate_trace:country_inventory
-climate_trace:sector:buildings,"Greenhouse gas emissions from onsite fuel combustion in residential, commercial and institutional buildings.",climate_trace:sector,climate_trace:country_inventory
-climate_trace:sector:fluorinated-gases,"Greenhouse gas emissions from the release of fluorinated gases used in refrigeration, air-conditioning, transport, and industry.",climate_trace:sector,climate_trace:country_inventory
-climate_trace:sector:fossil-fuel-operations,"Greenhouse gas emissions from oil and gas production, refining, and coal mining.",climate_trace:sector,climate_trace:country_inventory
-climate_trace:sector:manufacturing,"Greenhouse gas emissions from cement, aluminum, steel, and other manufacturing processes.",climate_trace:sector,climate_trace:country_inventory
-climate_trace:sector:mineral-extraction,Greenhouse gas emissions from mining and quarrying of minerals and ores.,climate_trace:sector,climate_trace:country_inventory
-climate_trace:sector:power,Greenhouse gas emissions from electricity generation.,climate_trace:sector,climate_trace:country_inventory
-climate_trace:sector:transportation,"Greenhouse gas emissions from on-road vehicles, aviation, shipping, railways and other modes of transportation.",climate_trace:sector,climate_trace:country_inventory
-climate_trace:sector:waste,"Greenhouse gas emissions from solid waste disposal on land, wastewater, waste incineration and any other waste management activity.",climate_trace:sector,climate_trace:country_inventory
+climateTRACE:sector:agriculture,Greenhouse gas emissions from the growing of crops and livestock for food and raw materials for non-food consumption.,climateTRACE:sector,climateTRACE:country_inventory
+climateTRACE:sector:buildings,"Greenhouse gas emissions from onsite fuel combustion in residential, commercial and institutional buildings.",climateTRACE:sector,climateTRACE:country_inventory
+climateTRACE:sector:fluorinated-gases,"Greenhouse gas emissions from the release of fluorinated gases used in refrigeration, air-conditioning, transport, and industry.",climateTRACE:sector,climateTRACE:country_inventory
+climateTRACE:sector:fossil-fuel-operations,"Greenhouse gas emissions from oil and gas production, refining, and coal mining.",climateTRACE:sector,climateTRACE:country_inventory
+climateTRACE:sector:manufacturing,"Greenhouse gas emissions from cement, aluminum, steel, and other manufacturing processes.",climateTRACE:sector,climateTRACE:country_inventory
+climateTRACE:sector:mineral-extraction,Greenhouse gas emissions from mining and quarrying of minerals and ores.,climateTRACE:sector,climateTRACE:country_inventory
+climateTRACE:sector:power,Greenhouse gas emissions from electricity generation.,climateTRACE:sector,climateTRACE:country_inventory
+climateTRACE:sector:transportation,"Greenhouse gas emissions from on-road vehicles, aviation, shipping, railways and other modes of transportation.",climateTRACE:sector,climateTRACE:country_inventory
+climateTRACE:sector:waste,"Greenhouse gas emissions from solid waste disposal on land, wastewater, waste incineration and any other waste management activity.",climateTRACE:sector,climateTRACE:country_inventory
