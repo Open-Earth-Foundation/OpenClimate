@@ -1,5 +1,10 @@
 export const renderHighlightedName = (name: string, input: string) => {
-    const firstIndexMatch = name.toLowerCase().indexOf(input.toLowerCase());
+    // get rid of accents
+    const nameNorm = name.normalize('NFD').replace(/\p{Diacritic}/gu, "");
+    const inputNorm = input.normalize('NFD').replace(/\p{Diacritic}/gu, "");
+
+    const firstIndexMatch = nameNorm.toLowerCase().indexOf(inputNorm.toLowerCase());
+    if (firstIndexMatch === -1) { return name;}
     return firstIndexMatch === 0 ? 
         <><b>{name.substring(0, input.length)}</b>{name.substring(input.length)}</>
         : 

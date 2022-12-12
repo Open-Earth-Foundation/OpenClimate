@@ -7,6 +7,7 @@ import { useHistory, useLocation} from "react-router-dom";
 import { renderHighlightedName } from "../util/strings";
 
 
+let controller: AbortController | null = null;
 
 const SearchBar: FunctionComponent = () => {
 
@@ -35,14 +36,20 @@ const SearchBar: FunctionComponent = () => {
         };
     }, []);
 
-    const searchActor = (searchString: string) => {
-        fetch(`/api/v1/search/actor?q=${searchString}`)
-                .then((res) => res.json())
-                .then((json) => {
+    const fetchActors = async (searchString: string, controller: any) => {
+        fetch(`/api/v1/search/actor?q=${searchString}`, { signal: controller.signal })
+                .then(res => res.json())
+                .then(json => {
                     let actorData = json.data;
                     let actors = actorData.map((actor:any) => {return {name: actor.name, actorId: actor.actor_id, type: actor.type}});
                     setSearchedActors(actors);
-                });
+                })
+                .catch(e => {
+                    // doesn't give console error if it's an expected abort
+                    if (e.name !== "AbortError") {
+                        console.error(e);
+                    }
+                })
     }
 
     const renderActorType = (type: string) => {
@@ -60,7 +67,14 @@ const SearchBar: FunctionComponent = () => {
     }
 
     useEffect(() => {
-        inputString.length > 2 ? searchActor(inputString) : searchedActors && setSearchedActors([]);
+        // cancel previous search results (due to slower server time for <4 letter searches)
+        controller && controller.abort();
+        if (inputString.length > 2) {
+            controller = new AbortController();
+            fetchActors(inputString, controller);
+        } else if (searchedActors) {
+            setSearchedActors([]);
+        }
     }, [inputString]);
 
     useEffect(() => {
@@ -78,7 +92,7 @@ const SearchBar: FunctionComponent = () => {
                     <Card className="inner-card">
                         <div className="content">
                             <div className="dropdown">
-                                <Search/>
+                                <Search onClick={() => controller && controller.abort()}/>
                                 <input
                                     className="dropdown-text"
                                     value={inputString}
