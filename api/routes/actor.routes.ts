@@ -9,6 +9,8 @@ import { DataSource } from "../orm/datasource"
 import { DataSourceTag } from "../orm/datasourcetag"
 import { EmissionsAggTag } from "../orm/emissionsaggtag"
 import { Tag } from "../orm/tag"
+import { ActorDataCoverage } from "../orm/actordatacoverage";
+
 import {isHTTPError, NotFound} from 'http-errors'
 
 const wrap = fn => (req, res, next) => fn(req, res, next).catch((err) => next(err))
@@ -178,13 +180,21 @@ router.get('/api/v1/actor/:actor_id/parts', wrap(async (req:any, res:any) => {
         order: [["name", "ASC"]]
     })
 
+    let actor_ids = parts.map(p => p.actor_id)
+
+    let coverage = await ActorDataCoverage.findAll({where: {actor_id: actor_ids}})
+
     res.status(200).json({
         success: true,
         data: parts.map((child) => {
+            let pc = coverage.find(c => c.actor_id === child.actor_id)
             return {
                 actor_id: child.actor_id,
                 name: child.name,
-                type: child.type
+                type: child.type,
+                has_data: (pc) ? pc.has_data : null,
+                has_children: (pc) ? pc.has_children : null,
+                children_have_data: (pc) ? pc.children_have_data : null
             }
         })
     })
