@@ -11,10 +11,10 @@ import {Target} from '../orm/target'
 import { Tag } from '../orm/tag'
 import {DataSourceTag} from '../orm/datasourcetag'
 import {EmissionsAggTag} from '../orm/emissionsaggtag'
+import {ActorDataCoverage} from '../orm/actordatacoverage'
 
 import {app} from '../app'
 import request from 'supertest'
-import { emissions } from '../seeders/emissions.seeder'
 
 const disconnect = require('../orm/init').disconnect
 
@@ -140,6 +140,14 @@ async function cleanup() {
         ])
         await Tag.destroy({where: {tag_id: tag_id}})
     }
+
+    // ActorDataCoverage
+
+    await Promise.all([0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((val) =>
+        ActorDataCoverage.destroy({where: {
+            actor_id: `actor.routes.test.ts:actor:region:1${val}`}})
+    ))
+
     await Target.destroy({where: {datasource_id: datasource1Props.datasource_id}})
     await EmissionsAgg.destroy({where: {datasource_id: datasource1Props.datasource_id}})
     await EmissionsAgg.destroy({where: {datasource_id: datasource2Props.datasource_id}})
@@ -185,6 +193,15 @@ beforeAll(async () => {
             name: `Fake region actor #${val} from actor.routes.test.ts`,
             is_part_of: country1Props.actor_id,
             datasource_id: datasource1Props.datasource_id
+        })
+    ))
+
+    await Promise.all(vals.map((val) =>
+        ActorDataCoverage.create({
+            actor_id: `actor.routes.test.ts:actor:region:1${val}`,
+            has_data: false,
+            has_children: false,
+            children_have_data: null
         })
     ))
 
@@ -386,6 +403,28 @@ it("gets parts of an actor in name order", async () =>
             const sorted = res.body.data.slice()
             sorted.sort((a, b) => (a.name > b.name) ? 1 : (a.name < b.name) ? -1 : 0)
             expect(res.body.data).toEqual(sorted)
+        })
+)
+
+it("can get data coverage information for parts of an actor", async () =>
+    request(app)
+        .get(`/api/v1/actor/${country1Props.actor_id}/parts`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            // 10 regions + 1 city
+            expect(res.body.data.length).toEqual(11)
+            for (let actor of res.body.data) {
+                expect(actor.actor_id).toBeDefined()
+                expect(actor.has_data).toBeDefined()
+                expect(actor.has_children).toBeDefined()
+                expect(actor.children_have_data).toBeDefined()
+            }
+            let r1 = res.body.data.find(a => a.actor_id === 'actor.routes.test.ts:actor:region:11')
+            expect(r1.has_children).toBeFalsy()
+            // We didn't add data for this one, so all should be null
+            let c1 = res.body.data.find(a => a.actor_id === cityProps.actor_id)
+            expect(c1.has_children).toBeNull()
         })
 )
 
