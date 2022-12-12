@@ -118,6 +118,31 @@ it("can create and get ActorDataCoverage data", async () => {
     }})
 
     expect(match.actor_id).toEqual(countryCoverageProps.actor_id)
+    expect(match.has_data).toBeTruthy()
+    expect(match.has_children).toBeTruthy()
+    expect(match.children_have_data).toBeTruthy()
+
+    // Match on actor_id for region
+
+    match = await ActorDataCoverage.findOne({where: {
+        actor_id: regionProps.actor_id
+    }})
+
+    expect(match.actor_id).toEqual(regionCoverageProps.actor_id)
+    expect(match.has_data).toBeTruthy()
+    expect(match.has_children).toBeTruthy()
+    expect(match.children_have_data).toBeFalsy()
+
+    // Match on actor_id for city
+
+    match = await ActorDataCoverage.findOne({where: {
+        actor_id: cityProps.actor_id
+    }})
+
+    expect(match.actor_id).toEqual(cityCoverageProps.actor_id)
+    expect(match.has_data).toBeFalsy()
+    expect(match.has_children).toBeFalsy()
+    expect(match.children_have_data).toBeNull()
 
     // Destroy all
 
