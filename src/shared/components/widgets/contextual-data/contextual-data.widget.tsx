@@ -217,12 +217,12 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                             </div>
                             <div className="contextual-widget__data">
                                 <div className="contextual-widget__contextual-empty-state">
-                                    
+
                                     <p>There's no data available, if you have any suggested <br /> data sources or you are a provider please</p>
-                                    
+
                                     <button className="collaborate-cta-btn">
                                         <Diversity3Icon className="collaborate-cta-icon"/>
-                                        <span>COLLABORATE WITH DATA</span>
+                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfL2_FpZZr_SfT0eFs_v4T5BsZnrNBbQ4pkbZ51JhJBCcud6A/viewform?pli=1&pli=1">COLLABORATE WITH DATA</a>
                                     </button>
 
                                 </div>
@@ -230,9 +230,9 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                         </div>
                     </>
                 )
-            
+
             }
-            
+
         </div>
 
     );

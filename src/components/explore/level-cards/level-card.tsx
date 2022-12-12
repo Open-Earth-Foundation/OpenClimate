@@ -4,6 +4,7 @@ import './level-cards.page.scss'
 import { DropdownOption } from "../../../shared/interfaces/dropdown/dropdown-option";
 import { Search, ArrowDropDown, ArrowDropUp, HighlightOff, ArrowForwardIos, SwapVert } from '@mui/icons-material'
 import { FilterTypes } from "../../../api/models/review/dashboard/filterTypes";
+import { renderHighlightedName } from "../../util/strings";
 
 
 
@@ -37,14 +38,6 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
         setCardExpanded(false);
         onSelect?.(option);
         setInputString('');
-    }
-
-    const renderHighlightedName = (name: string) => {
-        const firstIndexMatch = name.toLowerCase().indexOf(inputString.toLowerCase().charAt(0));
-        return firstIndexMatch === 0 ? 
-            <><b>{name.substring(0, inputString.length)}</b>{name.substring(inputString.length)}</>
-            : 
-            <>{name.substring(0, firstIndexMatch)}<b>{name.substring(firstIndexMatch, firstIndexMatch + inputString.length)}</b>{name.substring(firstIndexMatch + inputString.length)}</>
     }
 
     useEffect(() => {
@@ -92,7 +85,7 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                             {
                                 options.filter(option => option.name.toLowerCase().includes(inputString.toLowerCase())).map((option, index) =>
                                     <div className="dropdown-select" key={`dropdown-item-${index}`} onClick={() => onOptionClick(option)}>
-                                        {inputString ? renderHighlightedName(option.name) : option.name}
+                                        {inputString ? renderHighlightedName(option.name, inputString) : option.name}
                                     </div> 
                                     )
                             }

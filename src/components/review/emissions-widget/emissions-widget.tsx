@@ -82,7 +82,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 Total emissions
                             </span>
                             <span>
-                            <Tooltip 
+                            <Tooltip
                                 classes={{
                                             tooltip: classes.customTooltip,
                                             arrow: classes.customArrow
@@ -91,7 +91,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                             <div className = "tooltip">
                                                 GHG emissions emitted by the selected actor during the selected year, according to the selected source
                                             </div>
-                                       }  
+                                       }
                                 arrow placement="right">
                                     <InfoOutlined className="emissions-widget__icon info-icon"/>
                             </Tooltip>
@@ -174,7 +174,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 <div className="emissions-widget__emissions-trend" >
                                     { trend > 0 ? <MdArrowDropUp className="emissions-widget__emissions-trend-icon-up"/> : <MdArrowDropDown className="emissions-widget__emissions-trend-icon-down"/>}
                                     <span className={ trend > 0 ? "emissions-widget__emissions-trend-value-red" : "emissions-widget__emissions-trend-value-green"} >{ `${(trend > 0) ? "+" : ""}${(trend * 100.0).toPrecision(3)}%` }</span>
-                                    <Tooltip 
+                                    <Tooltip
                                         classes={{
                                                     tooltip: classes.customTooltip,
                                                     arrow: classes.customArrow
@@ -183,7 +183,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                                     <div className = "tooltip">
                                                         Evolution compared to the previous year
                                                     </div>
-                                               } 
+                                               }
                                         arrow placement="right">
                                         <InfoOutlined className="emissions-widget__icon trend-icon"/>
                                     </Tooltip>
@@ -214,7 +214,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
                                 </div>
                                 <div className="emissions-widget__emissions-trend">
-                                    <Tooltip 
+                                    <Tooltip
                                         classes={{
                                                     tooltip: classes.customTooltip,
                                                     arrow: classes.customArrow
@@ -223,7 +223,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                                     <div className = "tooltip">
                                                         Calculated by Open Climate
                                                     </div>
-                                               } 
+                                               }
                                         arrow placement="right">
                                             <InfoOutlined className="emissions-widget__icon trend-icon"/>
                                     </Tooltip>
@@ -239,7 +239,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                 <div className="emissions-widget__methodologies">
                     <div className="emissions-widget__methodologies-heading">
                         <span>Methodologies</span>
-                        <Tooltip 
+                        <Tooltip
                             classes={{
                                         tooltip: classes.customTooltip,
                                         arrow: classes.customArrow
@@ -248,7 +248,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                         <div className = "tooltip">
                                             Type of methodologies utilized by the selected data source
                                         </div>
-                                   } 
+                                   }
                             arrow placement="right">
                                 <InfoOutlined className="emissions-widget__icon methodologies-icon"/>
                         </Tooltip>
@@ -258,7 +258,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             tags.slice(0, 3).map((tag:any) =>
                                 <div key={`emissions-tag-${tag.tag_id}`} className="methodologies-tag">
                                     {
-                                        tag.tag_name.length > 24 ? (<Tooltip 
+                                        tag.tag_name.length > 24 ? (<Tooltip
                                             classes={{
                                                         tooltip: classes.customTooltip,
                                                         arrow: classes.customArrow
@@ -267,13 +267,13 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                                         <div className = "tooltip">
                                                             {tag.tag_name}
                                                         </div>
-                                                } 
+                                                }
                                             arrow placement="bottom">
                                             <span className="methodologies-text">{tag.tag_name}</span>
                                         </Tooltip>) :
                                         (<span className="methodologies-text">{tag.tag_name}</span>)
                                     }
-                                    
+
                                 </div>
                             )
                         }
@@ -295,7 +295,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 Total emissions
                             </span>
                             <span>
-                            <Tooltip 
+                            <Tooltip
                                 classes={{
                                             tooltip: classes.customTooltip,
                                             arrow: classes.customArrow
@@ -304,7 +304,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                             <div className = "tooltip">
                                                 GHG emissions emitted by the selected actor during the selected year, according to the selected source
                                             </div>
-                                       }  
+                                       }
                                 arrow placement="right">
                                     <InfoOutlined className="emissions-widget__icon info-icon"/>
                             </Tooltip>
@@ -334,12 +334,12 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                 </div>
                 <div className="emissions-widget__data">
                     <div className="emissions-widget__emissions-empty-state">
-                        
+
                         <p>There's no data available, if you have any suggested <br /> data sources or you are a provider please</p>
-                        
+
                         <button className="collaborate-cta-btn">
                             <Diversity3Icon className="collaborate-cta-icon"/>
-                            <span>COLLABORATE WITH DATA</span>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfL2_FpZZr_SfT0eFs_v4T5BsZnrNBbQ4pkbZ51JhJBCcud6A/viewform?pli=1&pli=1">COLLABORATE WITH DATA</a>
                         </button>
 
                     </div>

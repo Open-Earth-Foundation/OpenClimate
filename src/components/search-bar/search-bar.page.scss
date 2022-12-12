@@ -1,0 +1,131 @@
+.search-bar {
+    width: 732px;
+    height: 56px;
+
+    &__disabled {
+        color: #535572;
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
+    .label {
+        font-weight: 500;
+        font-size: 14px;
+        color: #535572;
+        padding-left: 12px;
+    }
+    
+    .content {
+        padding: 16px;
+    }
+
+    .outer-card {
+        width: 732px;
+        max-height: 420px;
+        background-color: #03554C;
+        border-radius: 8px;
+        position: absolute;
+        z-index: var(--search-dropdown-z-index);
+    }
+
+    .inner-card {
+        width: 732px;
+        background-color: #03554C;
+        height: 56px;
+        border-radius: 8px;
+    }
+
+
+    .dropdown {
+        display: flex;
+        flex-direction: row;
+        color: #378279;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .dropdown-text {
+        padding-left: 8px;
+        font-size: 16px;
+        background-color: #03554C;
+        color: #FFFFFF;
+        min-width: 732px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .dropdown-text-selected {
+        padding-left: 8px;
+        font-weight: 600;
+        font-size: 20px;
+        max-width: 228px;
+        overflow: hidden;
+        white-space: nowrap;
+        padding-right: 4px;
+        color: #00001F;
+        cursor: default;
+     
+    }
+
+    .dropdown-cross-icon-container {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        justify-content: center;
+    }
+
+    .dropdown-cross-icon {
+        color: var(--red-cancel);
+        cursor: pointer;
+    }
+
+    .dropdown-container {
+        max-height: 364px;
+        z-index: var(--search-dropdown-z-index);
+        background-color: #FFFFFF;
+        overflow-y: scroll;
+        overflow-x: hidden;
+       
+    }
+
+    .dropdown-select {
+        width: 732px;
+        font-family: 'Open Sans';
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 16px;
+        padding: 12px 25px 12px;
+        
+        &:hover {
+            background-color: var(--secondary-blue-color);
+            color: var(--white-color);
+        }
+    }
+
+    .dropdown-select-subtitle {
+        padding-top: 5px;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    .drop-icon {
+        color: var(--icon-black);
+    }
+
+    .search-icon {
+        color: var(--neutral-grey);
+    }
+
+    .icon-disabled {
+        color: var(--icon-disabled);
+    }
+
+    .arrow-forward {
+        color: var(--next-blue);
+        padding: 0px 21px 0 21px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -2,14 +2,14 @@ import { FunctionComponent, useEffect } from 'react'
 import AvaIcon from '../../../img/toolbar/ava.png';
 import MenuDropdown from '../../form-elements/menu-dropdown/menu-dropdown';
 import { IUser } from '../../../../api/models/User/IUser';
-import './toolbar-autorized.scss';
+import './toolbar-authorized.scss';
 
 interface Props {
     user: IUser | null,
     doLogout: () => void,
 }
 
-const ToolbarAutorized: FunctionComponent<Props> = (props) => {
+const ToolbarAuthorized: FunctionComponent<Props> = (props) => {
 
     const { user, doLogout } = props;
 
@@ -19,7 +19,7 @@ const ToolbarAutorized: FunctionComponent<Props> = (props) => {
       }, [])
     return (
 
-        <div className="toolbar__autorized">
+        <div className="toolbar__authorized">
             <div className="toolbar__user-pic">
                 <img src={AvaIcon} alt={companyName}/>
             </div>
@@ -32,4 +32,4 @@ const ToolbarAutorized: FunctionComponent<Props> = (props) => {
 }
 
 
-export default ToolbarAutorized;
+export default ToolbarAuthorized;
