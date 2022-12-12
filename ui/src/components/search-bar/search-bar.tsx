@@ -36,7 +36,7 @@ const SearchBar: FunctionComponent = () => {
         };
     }, []);
 
-    const fetchActors = async (searchString: string, controller: any) => {
+    const fetchActors = (searchString: string, controller: any) => {
         fetch(`/api/v1/search/actor?q=${searchString}`, { signal: controller.signal })
                 .then(res => res.json())
                 .then(json => {
@@ -92,7 +92,7 @@ const SearchBar: FunctionComponent = () => {
                     <Card className="inner-card">
                         <div className="content">
                             <div className="dropdown">
-                                <Search onClick={() => controller && controller.abort()}/>
+                                <Search/>
                                 <input
                                     className="dropdown-text"
                                     value={inputString}
