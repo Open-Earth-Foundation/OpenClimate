@@ -71,7 +71,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 .then((res) => res.json())
                 .then((json) => {
                     let parts = json.data;
-                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}});
+                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id, data: part.has_data}});
                     tempCards[1] = {...tempCards[1], selectedValue: option.name};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: options};
                 });
@@ -82,7 +82,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 .then((res) => res.json())
                 .then((json) => {
                     let parts = json.data;
-                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}});
+                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id, data: part.has_data}});
 
                     tempCards[0] = {...tempCards[0], selectedValue: option.name};
                     tempCards[1] = {...tempCards[1], selectedValue: '', options: options};
@@ -124,7 +124,9 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
         const json = await res.json()
         return json.data.map((part:any) => {
             return {
-                name: part.name, value: part.actor_id
+                name: part.name,
+                value: part.actor_id,
+                data: part.has_data
             }
         })
     }
