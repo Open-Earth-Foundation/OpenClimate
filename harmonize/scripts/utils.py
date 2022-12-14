@@ -13,6 +13,26 @@ import requests
 import xlrd
 
 
+def name_to_locode(name=None, is_part_of=None, *args, **kwargs):
+    url = f"https://openclimate.network/api/v1/search/actor?q={name}"
+    payload = {}
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request(
+        "GET", url, headers=headers, data=payload, timeout=3)
+    dataList = dict(response.json())['data']
+
+    if dataList:
+        actor_id = np.NaN
+        for data in dataList:
+            if data['is_part_of'] == is_part_of:
+                actor_id = data['actor_id']
+                break
+    else:
+        actor_id = np.NaN
+
+    return (name, is_part_of, actor_id)
+
+
 def subnational_to_iso2(name=None, return_input=False):
     url = url = f"https://openclimate.network/api/v1/search/actor?name={name}"
     #url = f"https://openclimate.network/api/v1/search/actor?q={name}"
