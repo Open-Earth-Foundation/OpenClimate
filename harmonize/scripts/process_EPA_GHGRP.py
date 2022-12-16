@@ -91,6 +91,11 @@ if __name__ == '__main__':
     fl_clim = os.path.abspath(fl_clim)
     df_clim = pd.read_csv(fl_clim)
 
+    # already parsed LEI codes
+    fl_leiCodes = '../resources/EPA_GHGRP_LEI_codes_20221216.csv'
+    fl_leiCodes = os.path.abspath(fl_leiCodes)
+    fl_leiCodes = Path(fl_leiCodes)
+
     # call GLEIF API to get publish date
     publishDate = get_lei_publishdate()
 
@@ -171,18 +176,24 @@ if __name__ == '__main__':
     df_company = pd.DataFrame(data, columns=['PARENT COMPANIES', 'company'])
     df = pd.merge(df, df_company, on=['PARENT COMPANIES'], how="left")
 
-    # this takes about 10 minutes
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        results = [executor.submit(lei_from_name, name)
-                   for name in list(set(df['company']))]
-        data = [f.result() for f in concurrent.futures.as_completed(results)]
+    if fl_leiCodes.is_file():
+        df_lei = pd.read_csv(fl_leiCodes)
+    else:
+        # this takes about 10 minutes
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            results = [executor.submit(lei_from_name, name)
+                       for name in list(set(df['company']))]
+            data = [f.result()
+                    for f in concurrent.futures.as_completed(results)]
 
-    # dataframe with lei
-    df_lei = pd.DataFrame(
-        data, columns=['name', 'country', 'region', 'lei', 'status', 'datasource_id'])
+        # dataframe with lei
+        df_lei = pd.DataFrame(
+            data, columns=['name', 'country', 'region', 'lei', 'status', 'datasource_id'])
 
-    # save lei codes
-    #df_lei.to_csv('./EPA_GHGRP_LEI_codes.csv', index=False)
+        # save lei codes
+        fl_leiCodes = '../resources/EPA_GHGRP_LEI_codes.csv'
+        fl_leiCodes = os.path.abspath(fl_leiCodes)
+        df_lei.to_csv(fl_leiCodes, index=False)
 
     # merge datasets (wide, each year is a column)
     df_out = pd.merge(df, df_lei,
