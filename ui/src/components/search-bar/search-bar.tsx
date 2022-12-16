@@ -37,7 +37,20 @@ const SearchBar: FunctionComponent = () => {
     }, []);
 
     const fetchActors = (searchString: string, controller: any) => {
-        fetch(`/api/v1/search/actor?q=${searchString}`, { signal: controller.signal })
+        let modifiedSearchString = '';
+        const searchStringSplit = searchString.split(' ');
+
+        searchStringSplit.map( (string, index) => {
+            const newString = string.charAt(0).toUpperCase() + string.slice(1);
+            if (index === searchStringSplit.length - 1) {
+                modifiedSearchString = modifiedSearchString + newString;
+            } else {
+                modifiedSearchString = modifiedSearchString + newString + ' ';
+            }
+            
+        });
+
+        fetch(`/api/v1/search/actor?q=${modifiedSearchString}`, { signal: controller.signal })
                 .then(res => res.json())
                 .then(json => {
                     let actorData = json.data;

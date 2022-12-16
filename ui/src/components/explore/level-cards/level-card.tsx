@@ -6,7 +6,7 @@ import { Search, ArrowDropDown, ArrowDropUp, HighlightOff, ArrowForwardIos, Swap
 import { FilterTypes } from "../../../api/models/review/dashboard/filterTypes";
 import { renderHighlightedName } from "../../util/strings";
 import { ReactComponent as DatabaseWarningEmpty } from '../../../assets/database-warning.svg';
-import { ReactComponent as DatabaseWarningEmptyFilled } from '../../../assets/database-warning-yellow.svg';
+import { ReactComponent as DatabaseWarningEmptyFilled } from '../../../assets/database-warning-white.svg';
 
 
 
@@ -51,10 +51,6 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
             document.removeEventListener('click', handleClickOutside, true);
         };
     }, []);
-    options.map((option, index) => {
-        if (index % 2 === 0) { option.data = true;}
-        else { option.data = false;}
-    })
 
     return (
         <div className="level-card">
@@ -89,7 +85,7 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                         </div>
                     </Card>
                     <Collapse in={cardExpanded} timeout="auto" unmountOnExit>
-                        <div className="dropdown-container">
+                        <div className="dropdown-container" id={"dropdown"}>
                             {
                                 options.filter(option => option.name.toLowerCase().includes(inputString.toLowerCase())).map((option, index) =>
                                     <div
@@ -99,7 +95,7 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                                         onMouseEnter={() => setHoveredOptionIndex(index)}
                                         onMouseLeave={() => setHoveredOptionIndex(-1)}
                                     >
-                                        <div className={"dropdown-select-text"}>{inputString ? renderHighlightedName(option.name, inputString) : option.name}</div>
+                                        <div className="dropdown-select-text">{inputString ? renderHighlightedName(option.name, inputString) : option.name}</div>
                                         { hoveredOptionIndex === index && !option.data ? 
                                         <div className="dropdown-select-missing-container">
                                             <div className={"dropdown-select-missing-text"}>MISSING DATA</div>

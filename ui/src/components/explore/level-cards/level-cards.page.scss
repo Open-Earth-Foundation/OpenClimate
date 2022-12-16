@@ -119,7 +119,9 @@
         overflow: hidden;
     }
 
+
     .dropdown-select-text-hovered {
+
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -132,7 +134,7 @@
     }
     .dropdown-select-missing-text {
         white-space: nowrap;
-        color: #f9a200;
+        color: var(--white-color);
         letter-spacing: 1.5px;
         font-size: 10px;
         font-weight: 700;
