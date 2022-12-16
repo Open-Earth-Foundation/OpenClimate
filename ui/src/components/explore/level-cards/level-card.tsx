@@ -102,7 +102,8 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                                             <DatabaseWarningEmptyFilled className="dropdown-select-icon"/>
                                         </div> 
                                         :
-                                        <DatabaseWarningEmpty className="dropdown-select-icon" />
+                                        !option.data && <DatabaseWarningEmpty className="dropdown-select-icon" />
+                                        
                                         }
                                     </div> 
                                     )
