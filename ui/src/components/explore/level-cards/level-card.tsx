@@ -5,6 +5,10 @@ import { DropdownOption } from "../../../shared/interfaces/dropdown/dropdown-opt
 import { Search, ArrowDropDown, ArrowDropUp, HighlightOff, ArrowForwardIos, SwapVert } from '@mui/icons-material'
 import { FilterTypes } from "../../../api/models/review/dashboard/filterTypes";
 import { renderHighlightedName } from "../../util/strings";
+import { ReactComponent as DatabaseWarningEmpty } from '../../../assets/database-warning.svg';
+import { ReactComponent as DatabaseWarningEmptyFilled } from '../../../assets/database-warning-white.svg';
+
+
 
 
 
@@ -28,6 +32,7 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
     const {label, onSelect, onDeSelect, disabled, selectedValue, options, onButtonSwap, isCity, placeholder, buttonDisabled} = props;
     const [cardExpanded, setCardExpanded] = useState(false);
     const [inputString, setInputString] = useState<string>('');
+    const [hoveredOptionIndex, setHoveredOptionIndex] = useState<number>(-1);
     const inputComponentRef = useRef<any>(null);
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -46,7 +51,6 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
             document.removeEventListener('click', handleClickOutside, true);
         };
     }, []);
-
 
     return (
         <div className="level-card">
@@ -81,14 +85,30 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                         </div>
                     </Card>
                     <Collapse in={cardExpanded} timeout="auto" unmountOnExit>
-                        <div className="dropdown-container">
+                        <div className="dropdown-container" id={"dropdown"}>
                             {
                                 options.filter(option => option.name.toLowerCase().includes(inputString.toLowerCase())).map((option, index) =>
-                                    <div className="dropdown-select" key={`dropdown-item-${index}`} onClick={() => onOptionClick(option)}>
-                                        {inputString ? renderHighlightedName(option.name, inputString) : option.name}
+                                    <div
+                                        className="dropdown-select"
+                                        key={`dropdown-item-${index}`}
+                                        onClick={() => onOptionClick(option)}
+                                        onMouseEnter={() => setHoveredOptionIndex(index)}
+                                        onMouseLeave={() => setHoveredOptionIndex(-1)}
+                                    >
+                                        <div className="dropdown-select-text">{inputString ? renderHighlightedName(option.name, inputString) : option.name}</div>
+                                        { hoveredOptionIndex === index && !option.data ? 
+                                        <div className="dropdown-select-missing-container">
+                                            <div className={"dropdown-select-missing-text"}>MISSING DATA</div>
+                                            <DatabaseWarningEmptyFilled className="dropdown-select-icon"/>
+                                        </div> 
+                                        :
+                                        <DatabaseWarningEmpty className="dropdown-select-icon" />
+                                        }
                                     </div> 
                                     )
                             }
+
+                            
                             
                         </div>
                     </Collapse>
