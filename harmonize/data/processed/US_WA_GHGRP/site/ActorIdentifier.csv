@@ -1,0 +1,4 @@
+actor_id,identifier,namespace,datasource_id
+US GHR:EPA_1010895,US GHR:EPA_1010895,EPA GHGRP facility code,US_WA_ecology:GHG_facility_reporting
+US CRA:EPA_1010897,US CRA:EPA_1010897,EPA GHGRP facility code,US_WA_ecology:GHG_facility_reporting
+US PAE:EPA_1000640,US PAE:EPA_1000640,EPA GHGRP facility code,US_WA_ecology:GHG_facility_reporting

@@ -1,0 +1,4 @@
+actor_id,name,language,preferred,datasource_id
+US GHR:EPA_1010895,Sierra Pacific Industries - Aberdeen,en,1,US_WA_ecology:GHG_facility_reporting
+US CRA:EPA_1010897,Sierra Pacific Industries - Centralia,en,1,US_WA_ecology:GHG_facility_reporting
+US PAE:EPA_1000640,Boeing Commercial Airplanes - Everett,en,1,US_WA_ecology:GHG_facility_reporting
