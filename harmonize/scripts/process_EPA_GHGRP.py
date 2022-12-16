@@ -246,6 +246,9 @@ if __name__ == '__main__':
         .drop_duplicates()
     )
 
+    # fill nans in organization is_part_of with blank
+    # can not guarantee the organization is in the ISO2
+    df_actor['is_part_of'] = df_actor.is_part_of.fillna('')
     df_actor['type'] = 'organization'
     df_actor['datasource_id'] = datasourceDictLEI['datasource_id']
     df_actor['language'] = 'en'
