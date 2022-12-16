@@ -148,9 +148,9 @@ if __name__ == '__main__':
     # -------------------------------------------
     datasourceDictEPA = {
         "datasource_id": f"EPA_GHGRP:2021",
-        "name": "EPA Greenhouse Gas Reporting Program ",
+        "name": "EPA Greenhouse Gas Reporting Program",
         "publisher": "EPA",
-        "published": "2021",
+        "published": "2022-08-12",
         "URL": "https://www.epa.gov/ghgreporting/data-sets"
     }
 
