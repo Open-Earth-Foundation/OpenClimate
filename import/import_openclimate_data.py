@@ -6,6 +6,7 @@ from datetime import datetime
 from schema import tables, pkeys
 import logging
 
+
 def import_row(curs, table, pkey, row):
 
     # TODO: check that these always return in order
@@ -50,12 +51,14 @@ def import_row(curs, table, pkey, row):
 
     curs.execute(qry, vals)
 
+
 def import_table(curs, table, pkey, path):
 
     with path.open() as f:
         data = csv.DictReader(f)
         for row in data:
             import_row(curs, table, pkey, row)
+
 
 def delete_row(curs, table, pkey, row):
 
@@ -68,11 +71,13 @@ def delete_row(curs, table, pkey, row):
 
     curs.execute(qry, vals)
 
+
 def delete_from_table(curs, table, pkey, path):
     with path.open() as f:
         data = csv.DictReader(f)
         for row in data:
             delete_row(curs, table, pkey, row)
+
 
 def import_openclimate_data(dir, host, dbname, user, password):
 
@@ -81,24 +86,33 @@ def import_openclimate_data(dir, host, dbname, user, password):
         with conn.cursor() as curs:
 
             for table in tables:
-                p = Path(dir + "/" + table + ".csv")
+                table_file = f'{table}.csv'
+                p = Path(dir) / table_file
                 if p.is_file():
                     import_table(curs, table, pkeys[table], p)
 
             # For deletions, we work in reverse order!
             for table in reversed(tables):
-                p = Path(dir + "/" + table + ".delete.csv")
+                table_file_delete = f'{table}.delete.csv'
+                p = Path(dir) / table_file_delete
                 if p.is_file():
                     delete_from_table(curs, table, pkeys[table], p)
+
 
 if __name__ == "__main__":
     import argparse
     import os
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dbname', help='database name', default=os.environ.get('OPENCLIMATE_DATABASE'))
-    parser.add_argument('--user', help='database user', default=os.environ.get('OPENCLIMATE_USER'))
-    parser.add_argument('--password', help='database password', default=os.environ.get('OPENCLIMATE_PASSWORD'))
-    parser.add_argument('--host', help='database host', default=os.environ.get('OPENCLIMATE_HOST'))
-    parser.add_argument('dir', help='directory with CSV files for OpenClimate tables')
+    parser.add_argument('--dbname', help='database name',
+                        default=os.environ.get('OPENCLIMATE_DATABASE'))
+    parser.add_argument('--user', help='database user',
+                        default=os.environ.get('OPENCLIMATE_USER'))
+    parser.add_argument('--password', help='database password',
+                        default=os.environ.get('OPENCLIMATE_PASSWORD'))
+    parser.add_argument('--host', help='database host',
+                        default=os.environ.get('OPENCLIMATE_HOST'))
+    parser.add_argument(
+        'dir', help='directory with CSV files for OpenClimate tables')
     args = parser.parse_args()
-    import_openclimate_data(args.dir, args.host, args.dbname, args.user, args.password)
+    import_openclimate_data(args.dir, args.host,
+                            args.dbname, args.user, args.password)
