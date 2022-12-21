@@ -37,6 +37,14 @@
   {
     "name": "GOOGLE_MAP_API_KEY",
     "value": "<GOOGLE_MAP_API_KEY>"
+  },
+  {
+    "name": "MATOMO_DOMAIN_URL",
+    "value": "<MATOMO_DOMAIN_URL>"
+  },
+  {
+    "name": "MATOMO_SITE_ID",
+    "value": "<MATOMO_SITE_ID>"
   }
 ]
 }

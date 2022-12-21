@@ -3,9 +3,9 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import LevelCard from '../explore/level-cards/level-card'
 import { ArrowForwardIos } from '@mui/icons-material'
 import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option'
-import { collapseTextChangeRangesAcrossMultipleVersions, NullLiteral, setSyntheticTrailingComments } from 'typescript'
 import { FilterTypes } from '../../api/models/review/dashboard/filterTypes'
 import IndicatorCard from './indicator-card'
+import { useMatomo } from '@datapunt/matomo-tracker-react'
 
 
 interface IProps {
@@ -56,6 +56,17 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     const [cards, setCards] = useState<Array<ICardProps>>(cardsTemplate);
 
     const [storedOptions, setStoredOptions] = useState<Array<DropdownOption>>([]);
+
+    const { trackEvent } = useMatomo();
+
+    const onActorSelect = (option: DropdownOption, cardType: FilterTypes, cardLabel: string) => {
+        trackEvent({
+            category: 'Explore',
+            action: `explore-select-${cardLabel.toLowerCase()}`,
+            name: `${option.value}`,
+        })
+        selectFilterHandler(cardType, option);
+    }
 
     const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
         const actor_id = option.value;
@@ -224,7 +235,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                                 buttonDisabled={cards[1].options.length === 0}
                                 selectedValue={card.selectedValue}
                                 placeholder={card.placeholder}
-                                onSelect={(option: DropdownOption) => selectFilterHandler(card.type, option)}
+                                onSelect={(option: DropdownOption) => onActorSelect(option, card.type, card.label)}
                                 onDeSelect={() => deselectFilterHandler(card.type) }
                                 options={card.options}
                                 isCity={index === 2 ? isCity : undefined}
