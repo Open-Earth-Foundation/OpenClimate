@@ -106,8 +106,8 @@ def state_to_iso2(name=None, return_input=False, is_part_of=None):
 
 
 def country_to_iso2(name=None, return_input=False):
-    url = url = f"https://openclimate.network/api/v1/search/actor?name={name}"
-    #url = f"https://openclimate.network/api/v1/search/actor?q={name}"
+    #url = url = f"https://openclimate.network/api/v1/search/actor?name={name}"
+    url = f"https://openclimate.network/api/v1/search/actor?q={name}"
     region = 'country'
     payload = {}
     headers = {'Accept': 'application/vnd.api+json'}
