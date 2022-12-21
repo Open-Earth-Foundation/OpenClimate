@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import LevelCard from '../explore/level-cards/level-card'
 import { ArrowForwardIos } from '@mui/icons-material'
 import { DropdownOption } from '../../shared/interfaces/dropdown/dropdown-option'
-import { NullLiteral, setSyntheticTrailingComments } from 'typescript'
+import { collapseTextChangeRangesAcrossMultipleVersions, NullLiteral, setSyntheticTrailingComments } from 'typescript'
 import { FilterTypes } from '../../api/models/review/dashboard/filterTypes'
 import IndicatorCard from './indicator-card'
 
@@ -71,7 +71,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 .then((res) => res.json())
                 .then((json) => {
                     let parts = json.data;
-                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}});
+                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id, data: part.has_data}});
                     tempCards[1] = {...tempCards[1], selectedValue: option.name};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: options};
                 });
@@ -82,7 +82,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 .then((res) => res.json())
                 .then((json) => {
                     let parts = json.data;
-                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id}});
+                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id, data: part.has_data}});
 
                     tempCards[0] = {...tempCards[0], selectedValue: option.name};
                     tempCards[1] = {...tempCards[1], selectedValue: '', options: options};
@@ -122,9 +122,12 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     const getOptions = async(actor_id: string, type: string) => {
         const res = await fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
         const json = await res.json()
+
         return json.data.map((part:any) => {
             return {
-                name: part.name, value: part.actor_id
+                name: part.name,
+                value: part.actor_id,
+                data: part.has_data
             }
         })
     }
