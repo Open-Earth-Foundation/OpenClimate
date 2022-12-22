@@ -1,6 +1,6 @@
-# OpenClimate App
+# OpenClimate UI
 
-The OpenClimate App is a single-page app (SPA) for organizations who issue and verify self-sovereign identity (SSI) credentials via an Aries cloud agent (such as [ACA-Py](https://github.com/hyperledger/aries-cloudagent-python)). This app provides a friendly UI for end-users that can be easily deployed to a private or public cloud and accessed from any modern web browser.
+The OpenClimate React Application is the Front-End portion of the Independent Climate Accounting Network. It is in support of Paris Agreement goals and presents important climate data for actors in the world (countries, region/provinces, cities, and companies). The app also seeks to issue identity (SSI) credentials via an Aries cloud agent (such as [ACA-Py](https://github.com/hyperledger/aries-cloudagent-python)) for user authentication, and climate data reporting for companies.
 
 For an introduction to self-sovereign identity (SSI), please see [Phil Windley's article](https://www.windley.com/archives/2018/09/multi-source_and_self-sovereign_identity.shtml) on the topic.
 
@@ -18,11 +18,17 @@ For an introduction to self-sovereign identity (SSI), please see [Phil Windley's
 
 ## Features
 
-_TODO_
+The OpenClimate React App has three major features:
+
+- Explore Page: This is the home page for the app and can be accessed by all users, with or without an account. It allows searching or navigating through dropdowns to find different actors and their Total Emissions by source and year, Pledges, and Contextual Data. The Explore Page is the most recently designed and serves as the crux of the app. Most feedback and contributions should center around this page as of the current implementation.
+- Account page: The Account Page is limited to users with an account. It allows users to see their companies' climate data based on Climate Actions, Site, and Pledges and the ability to report additional actions, sites, and pledges. Verifying climate actions requires the addition of a business wallet with credentials to a third party that approves the emissions and site information.
+- Admin page: The Admin page is for admins of Open Climate only. It allows monitoring of Contacts, Credentials, Users, Organizations, and other Settings. This is where users are invited to Open Climate and can then create an account.
 
 ## Design
 
 _TODO_
+
+OpenClimate App utilizes Material UI for most of its components.
 
 - Philosophy
 - Goals/Requirements
