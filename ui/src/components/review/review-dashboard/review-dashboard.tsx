@@ -12,7 +12,6 @@ interface Props {
 
 const Dashboard: FunctionComponent<Props> = (props) => {
     const { current, parent } = props;
-    console.log(current.type) //delete this
 
     return (
         <div className="review__dashboard">
