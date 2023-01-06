@@ -67,7 +67,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 break;
             case FilterTypes.SubNational:
                 const type = cards[2].type === FilterTypes.City ? 'city' : 'organization';
-                fetch(`https://dev.openclimate.network/api/v1/actor/${actor_id}/parts?type=${type}`)
+                fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
                 .then((res) => res.json())
                 .then((json) => {
                     let parts = json.data;
@@ -78,7 +78,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 setStoredOptions([]);
                 break;
             case FilterTypes.National:
-                fetch(`https://dev.openclimate.network/api/v1/actor/${actor_id}/parts?type=adm1`)
+                fetch(`/api/v1/actor/${actor_id}/parts?type=adm1`)
                 .then((res) => res.json())
                 .then((json) => {
                     let parts = json.data;
@@ -120,7 +120,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     }
 
     const getOptions = async(actor_id: string, type: string) => {
-        const res = await fetch(`https://dev.openclimate.network/api/v1/actor/${actor_id}/parts?type=${type}`)
+        const res = await fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
         const json = await res.json()
         return json.data.map((part:any) => {
             return {

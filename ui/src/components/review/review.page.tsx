@@ -52,7 +52,7 @@ const ReviewPage: FunctionComponent = () => {
 
 
     const insertActor = (actorID: any, children: Array<any>) => {
-        fetch(`https://dev.openclimate.network/api/v1/actor/${actorID}`)
+        fetch(`/api/v1/actor/${actorID}`)
         .then((res) => res.json())
         .then((json) => json.data)
         .then((actor) => {
