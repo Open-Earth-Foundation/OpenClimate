@@ -25,7 +25,11 @@ const Dashboard: FunctionComponent<Props> = (props) => {
 
                     <PledgesWidget key={`pledges-${current.actor_id}`} current={current} parent={parent} />
 
-                    <ContextualDataWidget key={`contextual-${current.actor_id}`} current={current} parent={parent}/>
+                    {
+                        current.type !== "company" && (
+                            <ContextualDataWidget key={`contextual-${current.actor_id}`} current={current} parent={parent}/>
+                        )
+                    }
 
                 </Masonry>
             </div>
