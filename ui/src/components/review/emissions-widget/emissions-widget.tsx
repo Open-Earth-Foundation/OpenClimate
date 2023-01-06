@@ -194,47 +194,51 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             <span className="emissions-widget__emissions-description">Total GHG Emissions <br/> Mt CO2e</span>
                         </div>
                     </div>
-                    <div className="emissions-widget__emissions-data data-per-capita">
-                        <div className="icon-wrapper">
-                            <MdOutlinePeopleAlt className="people-alt-icon"/>
-                        </div>
-                        <div>
-                            <div className="emissions-widget__col-1">
-                                <div className="emissions-widget__row">
-                                    { perCapita ?
-                                        <div>
-                                            <span className="emissions-widget__total-tonnes-pc">{perCapita.toPrecision(3)}</span>
-                                            <span className="emissions-widget__emissions-pc-unit">T</span>
-                                        </div>
-                                      :
-                                        <div>
-                                            <span className="emissions-widget__total-tonnes-pc no-data">N/A</span>
-                                        </div>
-                                    }
-
-                                </div>
-                                <div className="emissions-widget__emissions-trend">
-                                    <Tooltip
-                                        classes={{
-                                                    tooltip: classes.customTooltip,
-                                                    arrow: classes.customArrow
-                                                }}
-                                        title= {
-                                                    <div className = "tooltip">
-                                                        Calculated by Open Climate
-                                                    </div>
-                                               }
-                                        arrow placement="right">
-                                            <InfoOutlined className="emissions-widget__icon trend-icon"/>
-                                    </Tooltip>
-                                </div>
+                    {
+                        current.type !== "company" && (
+                        <div className="emissions-widget__emissions-data data-per-capita">
+                            <div className="icon-wrapper">
+                                <MdOutlinePeopleAlt className="people-alt-icon"/>
                             </div>
                             <div>
-                                <div className="emissions-widget__emissions-description pc-text">Emissions</div>
-                                <div className="emissions-widget__emissions-description pc-text">per capita</div>
+                                <div className="emissions-widget__col-1">
+                                    <div className="emissions-widget__row">
+                                        { perCapita ?
+                                            <div>
+                                                <span className="emissions-widget__total-tonnes-pc">{perCapita.toPrecision(3)}</span>
+                                                <span className="emissions-widget__emissions-pc-unit">T</span>
+                                            </div>
+                                        :
+                                            <div>
+                                                <span className="emissions-widget__total-tonnes-pc no-data">N/A</span>
+                                            </div>
+                                        }
+
+                                    </div>
+                                    <div className="emissions-widget__emissions-trend">
+                                        <Tooltip
+                                            classes={{
+                                                        tooltip: classes.customTooltip,
+                                                        arrow: classes.customArrow
+                                                    }}
+                                            title= {
+                                                        <div className = "tooltip">
+                                                            Calculated by Open Climate
+                                                        </div>
+                                                }
+                                            arrow placement="right">
+                                                <InfoOutlined className="emissions-widget__icon trend-icon"/>
+                                        </Tooltip>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="emissions-widget__emissions-description pc-text">Emissions</div>
+                                    <div className="emissions-widget__emissions-description pc-text">per capita</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        )
+                    }
                 </div>
                 <div className="emissions-widget__methodologies">
                     <div className="emissions-widget__methodologies-heading">
