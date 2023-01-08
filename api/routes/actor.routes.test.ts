@@ -130,6 +130,45 @@ const country2Target1Props = {
 }
 
 
+const country3Props = {
+    actor_id: "actor.routes.test.ts:actor:country:3",
+    type: "country",
+    name: "Fake country actor from actor.routes.test.ts",
+    datasource_id: datasource1Props.datasource_id
+}
+
+const region1Props = {
+    actor_id: "actor.routes.test.ts:actor:region:1",
+    is_part_of: country3Props.actor_id,
+    type: "adm1",
+    name: "Fake region actor from actor.routes.test.ts",
+    datasource_id: datasource1Props.datasource_id
+}
+
+const region2Props = {
+    actor_id: "actor.routes.test.ts:actor:region:2",
+    is_part_of: region1Props.actor_id,
+    type: "adm2",
+    name: "Fake region actor from actor.routes.test.ts",
+    datasource_id: datasource1Props.datasource_id
+}
+
+const city2Props = {
+    actor_id: "actor.routes.test.ts:actor:city:2",
+    type: "city",
+    name: "Fake city actor from actor.routes.test.ts",
+    is_part_of: region1Props.actor_id,
+    datasource_id: datasource1Props.datasource_id
+}
+
+const city3Props = {
+    actor_id: "actor.routes.test.ts:actor:city:3",
+    type: "city",
+    name: "Fake city actor from actor.routes.test.ts",
+    is_part_of: region2Props.actor_id,
+    datasource_id: datasource1Props.datasource_id
+}
+
 async function cleanup() {
     // Clean up if there were failed tests
     for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) {
@@ -176,6 +215,13 @@ beforeAll(async () => {
     await Actor.create(country1Props)
     await Actor.create(country2Props)
     await Actor.create(cityProps)
+
+    await Actor.create(country3Props)
+    await Actor.create(region1Props)
+    await Actor.create(region2Props)
+    await Actor.create(city2Props)
+    await Actor.create(city3Props)
+
     await Territory.create(territory1Props)
     await Territory.create(territory2Props)
 
@@ -735,5 +781,45 @@ it("returns targets in target_year order", async () =>
             expect(data.targets.length).toEqual(2)
             const years = data.targets.map((t:any) => t.target_year)
             expect(years).toEqual(years.slice().sort())
+        })
+)
+
+
+it("returns only immediate children when deep is not set", async () =>
+    request(app)
+        .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            expect(res.body.data).toBeDefined()
+            const data = res.body.data
+            expect(data.length).toBeDefined()
+            expect(data.length).toEqual(1)
+        })
+)
+
+it("returns only immediate children when deep is set to no", async () =>
+    request(app)
+        .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city&deep=no`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            expect(res.body.data).toBeDefined()
+            const data = res.body.data
+            expect(data.length).toBeDefined()
+            expect(data.length).toEqual(1)
+        })
+)
+
+it("returns deep children when deep is set to yes", async () =>
+    request(app)
+        .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city&deep=yes`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            expect(res.body.data).toBeDefined()
+            const data = res.body.data
+            expect(data.length).toBeDefined()
+            expect(data.length).toEqual(2)
         })
 )
