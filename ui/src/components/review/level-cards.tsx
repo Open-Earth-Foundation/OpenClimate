@@ -78,7 +78,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 break;
             case FilterTypes.SubNational:
                 const type = cards[2].type === FilterTypes.City ? 'city' : 'organization';
-                fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
+                fetch(`/api/v1/actor/${actor_id}/parts?type=${type}&recursive=yes`)
                 .then((res) => res.json())
                 .then((json) => {
                     let parts = json.data;
