@@ -78,23 +78,16 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 break;
             case FilterTypes.SubNational:
                 const type = cards[2].type === FilterTypes.City ? 'city' : 'organization';
-                fetch(`/api/v1/actor/${actor_id}/parts?type=${type}&recursive=yes`)
-                .then((res) => res.json())
-                .then((json) => {
-                    let parts = json.data;
-                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id, data: part.has_data}});
+                getOptions(actor_id, type)
+                .then((options) => {
                     tempCards[1] = {...tempCards[1], selectedValue: option.name};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: options};
                 });
                 setStoredOptions([]);
                 break;
             case FilterTypes.National:
-                fetch(`/api/v1/actor/${actor_id}/parts?type=adm1`)
-                .then((res) => res.json())
-                .then((json) => {
-                    let parts = json.data;
-                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id, data: part.has_data}});
-
+                getOptions(actor_id, 'adm1')
+                .then((options) => {
                     tempCards[0] = {...tempCards[0], selectedValue: option.name};
                     tempCards[1] = {...tempCards[1], selectedValue: '', options: options};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: []};
@@ -131,7 +124,8 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     }
 
     const getOptions = async(actor_id: string, type: string) => {
-        const res = await fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
+        const recursive = (type == 'city' || type == 'company') ? 'yes' : 'no'
+        const res = await fetch(`/api/v1/actor/${actor_id}/parts?type=${type}&recursive=${recursive}`)
         const json = await res.json()
 
         return json.data.map((part:any) => {
