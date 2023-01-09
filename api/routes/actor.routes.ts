@@ -165,20 +165,42 @@ router.get('/api/v1/actor/:actor_id/parts', wrap(async (req:any, res:any) => {
         throw new NotFound(`No actor found with actor ID ${actor_id}`)
     }
 
-    let parts: Array<Actor> = null;
+    let parts: Array<Actor> = [];
 
-    const where = {
-        is_part_of: actor_id
+    const recursive = (req.query.recursive) ? req.query.recursive == 'yes' : false
+
+    if (recursive) {
+        let parents = [actor_id]
+
+        while (parents.length > 0) {
+            let allParts = await Actor.findAll({where: {is_part_of: parents}})
+            let matched
+            let unmatched
+            if (req.query.type) {
+                matched = allParts.filter((actor) => actor.type == req.query.type)
+                unmatched = allParts.filter((actor) => actor.type != req.query.type)
+            } else {
+                matched = unmatched = allParts
+            }
+            parts = parts.concat(matched)
+            parents = unmatched.map((actor) => actor.actor_id)
+        }
+
+        parts.sort((a, b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
+    } else {
+        const where = {
+            is_part_of: actor_id
+        }
+
+        if (req.query.type) {
+            where['type'] = req.query.type
+        }
+
+        parts = await Actor.findAll({
+            where: where,
+            order: [["name", "ASC"]]
+        })
     }
-
-    if (req.query.type) {
-        where['type'] = req.query.type
-    }
-
-    parts = await Actor.findAll({
-        where: where,
-        order: [["name", "ASC"]]
-    })
 
     let actor_ids = parts.map(p => p.actor_id)
 

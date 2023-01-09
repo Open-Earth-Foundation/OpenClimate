@@ -824,5 +824,7 @@ it("returns deep children when recursive is set to yes", async () =>
             const data = res.body.data
             expect(data.length).toBeDefined()
             expect(data.length).toEqual(2)
+            let names = data.map((actor) => actor.name)
+            expect(names[0] <= names[1]).toBeTruthy()
         })
 )
