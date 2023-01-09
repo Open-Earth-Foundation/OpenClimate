@@ -71,6 +71,9 @@ Standard output. `data` is an array of JSON objects, ordered by `name` property,
 - `actor_id`: ID for the part object; good for feeding to this or other API endpoints.
 - `name`: name of the part object; good for showing to humans.
 - `type`: type of the part object; one of 'planet', 'country', 'adm1', 'adm2', 'city', 'organization', 'site'.
+- `has_data`: boolean; says whether there is data available for this actor. Null if unknown.
+- `has_children`: boolean; says whether there are parts for this actor. Null if unknown.
+- `children_have_data`: boolean; says whether there is data for the parts of this actor. Null if unknown.
 
 ### Actor overview /api/v1/actor/{actor_id}
 
