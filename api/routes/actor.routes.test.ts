@@ -129,6 +129,7 @@ const country2Target1Props = {
     datasource_id: datasource1Props.datasource_id
 }
 
+// For recursive tests
 
 const country3Props = {
     actor_id: "actor.routes.test.ts:actor:country:3",
@@ -138,7 +139,7 @@ const country3Props = {
 }
 
 const region1Props = {
-    actor_id: "actor.routes.test.ts:actor:region:1",
+    actor_id: "actor.routes.test.ts:actor:country:3:region:1",
     is_part_of: country3Props.actor_id,
     type: "adm1",
     name: "Fake region actor from actor.routes.test.ts",
@@ -146,7 +147,7 @@ const region1Props = {
 }
 
 const region2Props = {
-    actor_id: "actor.routes.test.ts:actor:region:2",
+    actor_id: "actor.routes.test.ts:actor:country:3:region:2",
     is_part_of: region1Props.actor_id,
     type: "adm2",
     name: "Fake region actor from actor.routes.test.ts",
@@ -154,7 +155,7 @@ const region2Props = {
 }
 
 const city2Props = {
-    actor_id: "actor.routes.test.ts:actor:city:2",
+    actor_id: "actor.routes.test.ts:actor:country:3:city:2",
     type: "city",
     name: "Fake city actor from actor.routes.test.ts",
     is_part_of: region1Props.actor_id,
@@ -162,7 +163,7 @@ const city2Props = {
 }
 
 const city3Props = {
-    actor_id: "actor.routes.test.ts:actor:city:3",
+    actor_id: "actor.routes.test.ts:actor:country:3:city:3",
     type: "city",
     name: "Fake city actor from actor.routes.test.ts",
     is_part_of: region2Props.actor_id,
@@ -215,6 +216,8 @@ beforeAll(async () => {
     await Actor.create(country1Props)
     await Actor.create(country2Props)
     await Actor.create(cityProps)
+
+    // For recursive tests
 
     await Actor.create(country3Props)
     await Actor.create(region1Props)
@@ -785,7 +788,7 @@ it("returns targets in target_year order", async () =>
 )
 
 
-it("returns only immediate children when deep is not set", async () =>
+it("returns only immediate children when recursive is not set", async () =>
     request(app)
         .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city`)
         .expect(200)
@@ -798,9 +801,9 @@ it("returns only immediate children when deep is not set", async () =>
         })
 )
 
-it("returns only immediate children when deep is set to no", async () =>
+it("returns only immediate children when recursive is set to no", async () =>
     request(app)
-        .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city&deep=no`)
+        .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city&recursive=no`)
         .expect(200)
         .expect('Content-Type', /json/)
         .expect((res:any) => {
@@ -811,9 +814,9 @@ it("returns only immediate children when deep is set to no", async () =>
         })
 )
 
-it("returns deep children when deep is set to yes", async () =>
+it("returns deep children when recursive is set to yes", async () =>
     request(app)
-        .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city&deep=yes`)
+        .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city&recursive=yes`)
         .expect(200)
         .expect('Content-Type', /json/)
         .expect((res:any) => {
