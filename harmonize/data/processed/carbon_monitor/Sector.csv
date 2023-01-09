@@ -1,0 +1,7 @@
+sector_id,name,namespace,datasource_id
+carbon_monitor:sector:Domestic Aviation,domestic aviation,carbon_monitor:sector,carbon_monitor:2022_12_14
+carbon_monitor:sector:Ground Transport,ground transport,carbon_monitor:sector,carbon_monitor:2022_12_14
+carbon_monitor:sector:Industry,industry,carbon_monitor:sector,carbon_monitor:2022_12_14
+carbon_monitor:sector:International Aviation,international aviation,carbon_monitor:sector,carbon_monitor:2022_12_14
+carbon_monitor:sector:Power,power,carbon_monitor:sector,carbon_monitor:2022_12_14
+carbon_monitor:sector:Residential,residential,carbon_monitor:sector,carbon_monitor:2022_12_14
