@@ -17,24 +17,24 @@ exports.setup = function(options, seedLink) {
 exports.up = async (db) =>
   db.createTable('ActorDataCoverage', {
     actor_id: {
-    type: 'string',
-    primaryKey: true,
-    foreignKey: {
-      name: 'actordatacoverage_actor_actor_id',
-      table: 'Actor',
-      rules: {
-        onDelete: 'CASCADE',
-        onUpdate: 'RESTRICT'
-      },
-      mapping: 'actor_id'
-    }
-  },
-  has_data: 'boolean',
-  has_children: 'boolean',
-  children_have_data: 'boolean',
-  created_at: 'timestamptz',
-  updated_at: 'timestamptz'
-})
+      type: 'string',
+      primaryKey: true,
+      foreignKey: {
+        name: 'actordatacoverage_actor_actor_id',
+        table: 'Actor',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'actor_id'
+      }
+    },
+    has_data: 'boolean',
+    has_children: 'boolean',
+    children_have_data: 'boolean',
+    created_at: 'timestamptz',
+    updated_at: 'timestamptz'
+  })
 
 exports.down = async (db) =>
   db.dropTable('ActorDataCoverage')
