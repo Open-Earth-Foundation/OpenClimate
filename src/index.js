@@ -13,7 +13,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { PersistGate } from 'redux-persist/integration/react';
 import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react';
 
-const instance = createInstance({
+const instance = process.env.MATOMO_DOMAIN_URL && process.env.MATOMO_SITE_ID && createInstance({
   urlBase: process.env.MATOMO_DOMAIN_URL,
   siteId: process.env.MATOMO_SITE_ID,
 })
