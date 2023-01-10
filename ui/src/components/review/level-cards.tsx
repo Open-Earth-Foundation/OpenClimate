@@ -195,7 +195,9 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
             }
             cards?.[2]?.options && setStoredOptions(cards[2].options);
             toggleCard && setCards(cards.slice(0,2).concat(toggleCard));
-        })()
+        })().then(() => {
+            // noop
+        })
 
     }, [isCity])
 
