@@ -1,0 +1,265 @@
+emissions_id,sector_id,emissions_value
+carbon_monitor:BR:2019,carbon_monitor:sector:Domestic Aviation,10080266
+carbon_monitor:BR:2019,carbon_monitor:sector:Ground Transport,171168400
+carbon_monitor:BR:2019,carbon_monitor:sector:Industry,130017959
+carbon_monitor:BR:2019,carbon_monitor:sector:International Aviation,6614273
+carbon_monitor:BR:2019,carbon_monitor:sector:Power,80199986
+carbon_monitor:BR:2019,carbon_monitor:sector:Residential,36624142
+carbon_monitor:BR:2020,carbon_monitor:sector:Domestic Aviation,6073389
+carbon_monitor:BR:2020,carbon_monitor:sector:Ground Transport,145027374
+carbon_monitor:BR:2020,carbon_monitor:sector:Industry,124042622
+carbon_monitor:BR:2020,carbon_monitor:sector:International Aviation,2798260
+carbon_monitor:BR:2020,carbon_monitor:sector:Power,70788990
+carbon_monitor:BR:2020,carbon_monitor:sector:Residential,36624160
+carbon_monitor:BR:2021,carbon_monitor:sector:Domestic Aviation,8650256
+carbon_monitor:BR:2021,carbon_monitor:sector:Ground Transport,162365603
+carbon_monitor:BR:2021,carbon_monitor:sector:Industry,129403235
+carbon_monitor:BR:2021,carbon_monitor:sector:International Aviation,2984170
+carbon_monitor:BR:2021,carbon_monitor:sector:Power,122135908
+carbon_monitor:BR:2021,carbon_monitor:sector:Residential,36624142
+carbon_monitor:BR:2022,carbon_monitor:sector:Domestic Aviation,8921392
+carbon_monitor:BR:2022,carbon_monitor:sector:Ground Transport,141019834
+carbon_monitor:BR:2022,carbon_monitor:sector:Industry,108357302
+carbon_monitor:BR:2022,carbon_monitor:sector:International Aviation,4029191
+carbon_monitor:BR:2022,carbon_monitor:sector:Power,37944137
+carbon_monitor:BR:2022,carbon_monitor:sector:Residential,30520113
+carbon_monitor:CN:2019,carbon_monitor:sector:Domestic Aviation,62458510
+carbon_monitor:CN:2019,carbon_monitor:sector:Ground Transport,923995090
+carbon_monitor:CN:2019,carbon_monitor:sector:Industry,4101706000
+carbon_monitor:CN:2019,carbon_monitor:sector:International Aviation,31438998
+carbon_monitor:CN:2019,carbon_monitor:sector:Power,4569018870
+carbon_monitor:CN:2019,carbon_monitor:sector:Residential,804380350
+carbon_monitor:CN:2020,carbon_monitor:sector:Domestic Aviation,51552415
+carbon_monitor:CN:2020,carbon_monitor:sector:Ground Transport,808948121
+carbon_monitor:CN:2020,carbon_monitor:sector:Industry,4258219070
+carbon_monitor:CN:2020,carbon_monitor:sector:International Aviation,12752768
+carbon_monitor:CN:2020,carbon_monitor:sector:Power,4656292470
+carbon_monitor:CN:2020,carbon_monitor:sector:Residential,808110080
+carbon_monitor:CN:2021,carbon_monitor:sector:Domestic Aviation,57839920
+carbon_monitor:CN:2021,carbon_monitor:sector:Ground Transport,907484070
+carbon_monitor:CN:2021,carbon_monitor:sector:Industry,4371366870
+carbon_monitor:CN:2021,carbon_monitor:sector:International Aviation,10995729
+carbon_monitor:CN:2021,carbon_monitor:sector:Power,5077677780
+carbon_monitor:CN:2021,carbon_monitor:sector:Residential,798531470
+carbon_monitor:CN:2022,carbon_monitor:sector:Domestic Aviation,30244369
+carbon_monitor:CN:2022,carbon_monitor:sector:Ground Transport,732309950
+carbon_monitor:CN:2022,carbon_monitor:sector:Industry,3491438860
+carbon_monitor:CN:2022,carbon_monitor:sector:International Aviation,7967527
+carbon_monitor:CN:2022,carbon_monitor:sector:Power,4209314400
+carbon_monitor:CN:2022,carbon_monitor:sector:Residential,624436520
+carbon_monitor:DE:2019,carbon_monitor:sector:Domestic Aviation,2124094
+carbon_monitor:DE:2019,carbon_monitor:sector:Ground Transport,150481393
+carbon_monitor:DE:2019,carbon_monitor:sector:Industry,124054470
+carbon_monitor:DE:2019,carbon_monitor:sector:International Aviation,28792267
+carbon_monitor:DE:2019,carbon_monitor:sector:Power,243220002
+carbon_monitor:DE:2019,carbon_monitor:sector:Residential,138213678
+carbon_monitor:DE:2020,carbon_monitor:sector:Domestic Aviation,1018777
+carbon_monitor:DE:2020,carbon_monitor:sector:Ground Transport,149137727
+carbon_monitor:DE:2020,carbon_monitor:sector:Industry,113015205
+carbon_monitor:DE:2020,carbon_monitor:sector:International Aviation,13103238
+carbon_monitor:DE:2020,carbon_monitor:sector:Power,204702763
+carbon_monitor:DE:2020,carbon_monitor:sector:Residential,134130091
+carbon_monitor:DE:2021,carbon_monitor:sector:Domestic Aviation,917224
+carbon_monitor:DE:2021,carbon_monitor:sector:Ground Transport,150419537
+carbon_monitor:DE:2021,carbon_monitor:sector:Industry,118473848
+carbon_monitor:DE:2021,carbon_monitor:sector:International Aviation,16513773
+carbon_monitor:DE:2021,carbon_monitor:sector:Power,239625255
+carbon_monitor:DE:2021,carbon_monitor:sector:Residential,150590719
+carbon_monitor:DE:2022,carbon_monitor:sector:Domestic Aviation,967387
+carbon_monitor:DE:2022,carbon_monitor:sector:Ground Transport,124079458
+carbon_monitor:DE:2022,carbon_monitor:sector:Industry,97828600
+carbon_monitor:DE:2022,carbon_monitor:sector:International Aviation,20306389
+carbon_monitor:DE:2022,carbon_monitor:sector:Power,209344858
+carbon_monitor:DE:2022,carbon_monitor:sector:Residential,98226252
+carbon_monitor:ES:2019,carbon_monitor:sector:Domestic Aviation,5635239
+carbon_monitor:ES:2019,carbon_monitor:sector:Ground Transport,84828898
+carbon_monitor:ES:2019,carbon_monitor:sector:Industry,62248729
+carbon_monitor:ES:2019,carbon_monitor:sector:International Aviation,24254668
+carbon_monitor:ES:2019,carbon_monitor:sector:Power,55079993
+carbon_monitor:ES:2019,carbon_monitor:sector:Residential,36700338
+carbon_monitor:ES:2020,carbon_monitor:sector:Domestic Aviation,3013127
+carbon_monitor:ES:2020,carbon_monitor:sector:Ground Transport,75605146
+carbon_monitor:ES:2020,carbon_monitor:sector:Industry,55987439
+carbon_monitor:ES:2020,carbon_monitor:sector:International Aviation,8450805
+carbon_monitor:ES:2020,carbon_monitor:sector:Power,41084250
+carbon_monitor:ES:2020,carbon_monitor:sector:Residential,36259066
+carbon_monitor:ES:2021,carbon_monitor:sector:Domestic Aviation,4366966
+carbon_monitor:ES:2021,carbon_monitor:sector:Ground Transport,87814594
+carbon_monitor:ES:2021,carbon_monitor:sector:Industry,60550067
+carbon_monitor:ES:2021,carbon_monitor:sector:International Aviation,12015780
+carbon_monitor:ES:2021,carbon_monitor:sector:Power,40537278
+carbon_monitor:ES:2021,carbon_monitor:sector:Residential,37151406
+carbon_monitor:ES:2022,carbon_monitor:sector:Domestic Aviation,4925437
+carbon_monitor:ES:2022,carbon_monitor:sector:Ground Transport,68242462
+carbon_monitor:ES:2022,carbon_monitor:sector:Industry,51582304
+carbon_monitor:ES:2022,carbon_monitor:sector:International Aviation,18213453
+carbon_monitor:ES:2022,carbon_monitor:sector:Power,44893439
+carbon_monitor:ES:2022,carbon_monitor:sector:Residential,28129263
+carbon_monitor:FR:2019,carbon_monitor:sector:Domestic Aviation,2326896
+carbon_monitor:FR:2019,carbon_monitor:sector:Ground Transport,116619405
+carbon_monitor:FR:2019,carbon_monitor:sector:Industry,61666716
+carbon_monitor:FR:2019,carbon_monitor:sector:International Aviation,20113888
+carbon_monitor:FR:2019,carbon_monitor:sector:Power,29430000
+carbon_monitor:FR:2019,carbon_monitor:sector:Residential,79870397
+carbon_monitor:FR:2020,carbon_monitor:sector:Domestic Aviation,1292902
+carbon_monitor:FR:2020,carbon_monitor:sector:Ground Transport,105095110
+carbon_monitor:FR:2020,carbon_monitor:sector:Industry,54729348
+carbon_monitor:FR:2020,carbon_monitor:sector:International Aviation,8836225
+carbon_monitor:FR:2020,carbon_monitor:sector:Power,26874614
+carbon_monitor:FR:2020,carbon_monitor:sector:Residential,76023950
+carbon_monitor:FR:2021,carbon_monitor:sector:Domestic Aviation,1724649
+carbon_monitor:FR:2021,carbon_monitor:sector:Ground Transport,118219392
+carbon_monitor:FR:2021,carbon_monitor:sector:Industry,58130376
+carbon_monitor:FR:2021,carbon_monitor:sector:International Aviation,11503343
+carbon_monitor:FR:2021,carbon_monitor:sector:Power,28517283
+carbon_monitor:FR:2021,carbon_monitor:sector:Residential,83619198
+carbon_monitor:FR:2022,carbon_monitor:sector:Domestic Aviation,1654025
+carbon_monitor:FR:2022,carbon_monitor:sector:Ground Transport,98278849
+carbon_monitor:FR:2022,carbon_monitor:sector:Industry,49002919
+carbon_monitor:FR:2022,carbon_monitor:sector:International Aviation,15040001
+carbon_monitor:FR:2022,carbon_monitor:sector:Power,26810956
+carbon_monitor:FR:2022,carbon_monitor:sector:Residential,57284833
+carbon_monitor:GB:2019,carbon_monitor:sector:Domestic Aviation,2411809
+carbon_monitor:GB:2019,carbon_monitor:sector:Ground Transport,113803913
+carbon_monitor:GB:2019,carbon_monitor:sector:Industry,61208134
+carbon_monitor:GB:2019,carbon_monitor:sector:International Aviation,36135554
+carbon_monitor:GB:2019,carbon_monitor:sector:Power,76350004
+carbon_monitor:GB:2019,carbon_monitor:sector:Residential,90203261
+carbon_monitor:GB:2020,carbon_monitor:sector:Domestic Aviation,1038671
+carbon_monitor:GB:2020,carbon_monitor:sector:Ground Transport,104287624
+carbon_monitor:GB:2020,carbon_monitor:sector:Industry,61276923
+carbon_monitor:GB:2020,carbon_monitor:sector:International Aviation,14827470
+carbon_monitor:GB:2020,carbon_monitor:sector:Power,62905387
+carbon_monitor:GB:2020,carbon_monitor:sector:Residential,88431622
+carbon_monitor:GB:2021,carbon_monitor:sector:Domestic Aviation,1273229
+carbon_monitor:GB:2021,carbon_monitor:sector:Ground Transport,115309469
+carbon_monitor:GB:2021,carbon_monitor:sector:Industry,67222014
+carbon_monitor:GB:2021,carbon_monitor:sector:International Aviation,14518206
+carbon_monitor:GB:2021,carbon_monitor:sector:Power,71096723
+carbon_monitor:GB:2021,carbon_monitor:sector:Residential,90902783
+carbon_monitor:GB:2022,carbon_monitor:sector:Domestic Aviation,1500690
+carbon_monitor:GB:2022,carbon_monitor:sector:Ground Transport,98794194
+carbon_monitor:GB:2022,carbon_monitor:sector:Industry,53759968
+carbon_monitor:GB:2022,carbon_monitor:sector:International Aviation,25526672
+carbon_monitor:GB:2022,carbon_monitor:sector:Power,60393698
+carbon_monitor:GB:2022,carbon_monitor:sector:Residential,67079907
+carbon_monitor:IN:2019,carbon_monitor:sector:Domestic Aviation,7195749
+carbon_monitor:IN:2019,carbon_monitor:sector:Ground Transport,299629720
+carbon_monitor:IN:2019,carbon_monitor:sector:Industry,751124360
+carbon_monitor:IN:2019,carbon_monitor:sector:International Aviation,12043827
+carbon_monitor:IN:2019,carbon_monitor:sector:Power,1197640080
+carbon_monitor:IN:2019,carbon_monitor:sector:Residential,204052731
+carbon_monitor:IN:2020,carbon_monitor:sector:Domestic Aviation,3907665
+carbon_monitor:IN:2020,carbon_monitor:sector:Ground Transport,258160396
+carbon_monitor:IN:2020,carbon_monitor:sector:Industry,655950888
+carbon_monitor:IN:2020,carbon_monitor:sector:International Aviation,5571773
+carbon_monitor:IN:2020,carbon_monitor:sector:Power,1141346560
+carbon_monitor:IN:2020,carbon_monitor:sector:Residential,201618102
+carbon_monitor:IN:2021,carbon_monitor:sector:Domestic Aviation,5179726
+carbon_monitor:IN:2021,carbon_monitor:sector:Ground Transport,268914040
+carbon_monitor:IN:2021,carbon_monitor:sector:Industry,744472210
+carbon_monitor:IN:2021,carbon_monitor:sector:International Aviation,6043414
+carbon_monitor:IN:2021,carbon_monitor:sector:Power,1279488070
+carbon_monitor:IN:2021,carbon_monitor:sector:Residential,184706526
+carbon_monitor:IN:2022,carbon_monitor:sector:Domestic Aviation,5278484
+carbon_monitor:IN:2022,carbon_monitor:sector:Ground Transport,241284886
+carbon_monitor:IN:2022,carbon_monitor:sector:Industry,640128320
+carbon_monitor:IN:2022,carbon_monitor:sector:International Aviation,8441160
+carbon_monitor:IN:2022,carbon_monitor:sector:Power,1156779980
+carbon_monitor:IN:2022,carbon_monitor:sector:Residential,148115780
+carbon_monitor:IT:2019,carbon_monitor:sector:Domestic Aviation,1887230
+carbon_monitor:IT:2019,carbon_monitor:sector:Ground Transport,91125910
+carbon_monitor:IT:2019,carbon_monitor:sector:Industry,54386876
+carbon_monitor:IT:2019,carbon_monitor:sector:International Aviation,14985894
+carbon_monitor:IT:2019,carbon_monitor:sector:Power,93879993
+carbon_monitor:IT:2019,carbon_monitor:sector:Residential,74953493
+carbon_monitor:IT:2020,carbon_monitor:sector:Domestic Aviation,1002047
+carbon_monitor:IT:2020,carbon_monitor:sector:Ground Transport,81839576
+carbon_monitor:IT:2020,carbon_monitor:sector:Industry,47972763
+carbon_monitor:IT:2020,carbon_monitor:sector:International Aviation,4848271
+carbon_monitor:IT:2020,carbon_monitor:sector:Power,86750070
+carbon_monitor:IT:2020,carbon_monitor:sector:Residential,74246696
+carbon_monitor:IT:2021,carbon_monitor:sector:Domestic Aviation,1469125
+carbon_monitor:IT:2021,carbon_monitor:sector:Ground Transport,90644344
+carbon_monitor:IT:2021,carbon_monitor:sector:Industry,54446971
+carbon_monitor:IT:2021,carbon_monitor:sector:International Aviation,6467776
+carbon_monitor:IT:2021,carbon_monitor:sector:Power,90313068
+carbon_monitor:IT:2021,carbon_monitor:sector:Residential,77773728
+carbon_monitor:IT:2022,carbon_monitor:sector:Domestic Aviation,1682148
+carbon_monitor:IT:2022,carbon_monitor:sector:Ground Transport,74627851
+carbon_monitor:IT:2022,carbon_monitor:sector:Industry,45753153
+carbon_monitor:IT:2022,carbon_monitor:sector:International Aviation,9916362
+carbon_monitor:IT:2022,carbon_monitor:sector:Power,84377765
+carbon_monitor:IT:2022,carbon_monitor:sector:Residential,55513638
+carbon_monitor:JP:2019,carbon_monitor:sector:Domestic Aviation,9013937
+carbon_monitor:JP:2019,carbon_monitor:sector:Ground Transport,178220932
+carbon_monitor:JP:2019,carbon_monitor:sector:Industry,268825173
+carbon_monitor:JP:2019,carbon_monitor:sector:International Aviation,19574910
+carbon_monitor:JP:2019,carbon_monitor:sector:Power,524540117
+carbon_monitor:JP:2019,carbon_monitor:sector:Residential,108312329
+carbon_monitor:JP:2020,carbon_monitor:sector:Domestic Aviation,6507869
+carbon_monitor:JP:2020,carbon_monitor:sector:Ground Transport,167564757
+carbon_monitor:JP:2020,carbon_monitor:sector:Industry,241038594
+carbon_monitor:JP:2020,carbon_monitor:sector:International Aviation,8732838
+carbon_monitor:JP:2020,carbon_monitor:sector:Power,516212832
+carbon_monitor:JP:2020,carbon_monitor:sector:Residential,108409187
+carbon_monitor:JP:2021,carbon_monitor:sector:Domestic Aviation,6547198
+carbon_monitor:JP:2021,carbon_monitor:sector:Ground Transport,172089595
+carbon_monitor:JP:2021,carbon_monitor:sector:Industry,254444406
+carbon_monitor:JP:2021,carbon_monitor:sector:International Aviation,8364149
+carbon_monitor:JP:2021,carbon_monitor:sector:Power,502073999
+carbon_monitor:JP:2021,carbon_monitor:sector:Residential,107431895
+carbon_monitor:JP:2022,carbon_monitor:sector:Domestic Aviation,7551562
+carbon_monitor:JP:2022,carbon_monitor:sector:Ground Transport,148193322
+carbon_monitor:JP:2022,carbon_monitor:sector:Industry,210858923
+carbon_monitor:JP:2022,carbon_monitor:sector:International Aviation,7383791
+carbon_monitor:JP:2022,carbon_monitor:sector:Power,422847125
+carbon_monitor:JP:2022,carbon_monitor:sector:Residential,85150935
+carbon_monitor:RU:2019,carbon_monitor:sector:Domestic Aviation,15421510
+carbon_monitor:RU:2019,carbon_monitor:sector:Ground Transport,232372603
+carbon_monitor:RU:2019,carbon_monitor:sector:Industry,284324314
+carbon_monitor:RU:2019,carbon_monitor:sector:International Aviation,13277577
+carbon_monitor:RU:2019,carbon_monitor:sector:Power,840440040
+carbon_monitor:RU:2019,carbon_monitor:sector:Residential,172031816
+carbon_monitor:RU:2020,carbon_monitor:sector:Domestic Aviation,13416185
+carbon_monitor:RU:2020,carbon_monitor:sector:Ground Transport,222812639
+carbon_monitor:RU:2020,carbon_monitor:sector:Industry,287868073
+carbon_monitor:RU:2020,carbon_monitor:sector:International Aviation,5271770
+carbon_monitor:RU:2020,carbon_monitor:sector:Power,979189020
+carbon_monitor:RU:2020,carbon_monitor:sector:Residential,165454955
+carbon_monitor:RU:2021,carbon_monitor:sector:Domestic Aviation,18567124
+carbon_monitor:RU:2021,carbon_monitor:sector:Ground Transport,232167514
+carbon_monitor:RU:2021,carbon_monitor:sector:Industry,302454680
+carbon_monitor:RU:2021,carbon_monitor:sector:International Aviation,7101268
+carbon_monitor:RU:2021,carbon_monitor:sector:Power,1166676490
+carbon_monitor:RU:2021,carbon_monitor:sector:Residential,181643224
+carbon_monitor:RU:2022,carbon_monitor:sector:Domestic Aviation,14706611
+carbon_monitor:RU:2022,carbon_monitor:sector:Ground Transport,187001766
+carbon_monitor:RU:2022,carbon_monitor:sector:Industry,240608729
+carbon_monitor:RU:2022,carbon_monitor:sector:International Aviation,3950894
+carbon_monitor:RU:2022,carbon_monitor:sector:Power,942022750
+carbon_monitor:RU:2022,carbon_monitor:sector:Residential,129247539
+carbon_monitor:US:2019,carbon_monitor:sector:Domestic Aviation,173726669
+carbon_monitor:US:2019,carbon_monitor:sector:Ground Transport,1645393000
+carbon_monitor:US:2019,carbon_monitor:sector:Industry,999593990
+carbon_monitor:US:2019,carbon_monitor:sector:International Aviation,81642573
+carbon_monitor:US:2019,carbon_monitor:sector:Power,1605907480
+carbon_monitor:US:2019,carbon_monitor:sector:Residential,605181931
+carbon_monitor:US:2020,carbon_monitor:sector:Domestic Aviation,120984351
+carbon_monitor:US:2020,carbon_monitor:sector:Ground Transport,1486671380
+carbon_monitor:US:2020,carbon_monitor:sector:Industry,953197690
+carbon_monitor:US:2020,carbon_monitor:sector:International Aviation,44213349
+carbon_monitor:US:2020,carbon_monitor:sector:Power,1436348250
+carbon_monitor:US:2020,carbon_monitor:sector:Residential,556161502
+carbon_monitor:US:2021,carbon_monitor:sector:Domestic Aviation,158896452
+carbon_monitor:US:2021,carbon_monitor:sector:Ground Transport,1592589020
+carbon_monitor:US:2021,carbon_monitor:sector:Industry,976614840
+carbon_monitor:US:2021,carbon_monitor:sector:International Aviation,53928408
+carbon_monitor:US:2021,carbon_monitor:sector:Power,1535525320
+carbon_monitor:US:2021,carbon_monitor:sector:Residential,564169718
+carbon_monitor:US:2022,carbon_monitor:sector:Domestic Aviation,129974347
+carbon_monitor:US:2022,carbon_monitor:sector:Ground Transport,1299893540
+carbon_monitor:US:2022,carbon_monitor:sector:Industry,854901380
+carbon_monitor:US:2022,carbon_monitor:sector:International Aviation,54984461
+carbon_monitor:US:2022,carbon_monitor:sector:Power,1370797380
+carbon_monitor:US:2022,carbon_monitor:sector:Residential,480142173
