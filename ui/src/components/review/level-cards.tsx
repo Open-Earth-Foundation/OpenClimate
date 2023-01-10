@@ -77,7 +77,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 tempCards[2] = {...tempCards[2], selectedValue: option.name }
                 break;
             case FilterTypes.SubNational:
-                const type = cards[2].type === FilterTypes.City ? 'city' : 'organization';
+                const type = cards[2].type === FilterTypes.City ? 'city' : 'site';
                 getOptions(actor_id, type)
                 .then((options) => {
                     tempCards[1] = {...tempCards[1], selectedValue: option.name};
@@ -124,7 +124,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     }
 
     const getOptions = async(actor_id: string, type: string) => {
-        const recursive = (type == 'city' || type == 'company') ? 'yes' : 'no'
+        const recursive = (type == 'city' || type == 'site') ? 'yes' : 'no'
         const res = await fetch(`/api/v1/actor/${actor_id}/parts?type=${type}&recursive=${recursive}`)
         const json = await res.json()
 
@@ -153,7 +153,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
             if (actors.length > 2) {
                 selected[1] = actors[2].actor_id
-                options[2] = await getOptions(actors[2].actor_id, isCity ? 'city' : 'organization')
+                options[2] = await getOptions(actors[2].actor_id, isCity ? 'city' : 'site')
             }
 
             if (actors.length > 3) {
