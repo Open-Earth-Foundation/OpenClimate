@@ -172,27 +172,30 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     }, [actors])
 
     useEffect(() => {
-        let toggleCard = cards.slice().pop();
+        (async() => {
+            let toggleCard = cards.slice().pop();
+            let parentId = cards[1].selectedValue
 
-        if (!isCity && toggleCard?.type === FilterTypes.City) {
-            toggleCard = {
-                label: "Company",
-                type: FilterTypes.Company,
-                selectedValue: '',
-                placeholder: "Companies...",
-                options: storedOptions ? storedOptions : []
+            if (!isCity && toggleCard?.type === FilterTypes.City) {
+                toggleCard = {
+                    label: "Company",
+                    type: FilterTypes.Company,
+                    selectedValue: '',
+                    placeholder: "Companies...",
+                    options: storedOptions ? storedOptions : await getOptions(parentId, 'site')
+                }
+            } else if (isCity && toggleCard?.type === FilterTypes.Company) {
+                toggleCard = {
+                    label: "City",
+                    type: FilterTypes.City,
+                    selectedValue: '',
+                    placeholder: "Cities...",
+                    options: storedOptions ? storedOptions : await getOptions(parentId, 'city')
+                }
             }
-        } else if (isCity && toggleCard?.type === FilterTypes.Company) {
-            toggleCard = {
-                label: "City",
-                type: FilterTypes.City,
-                selectedValue: '',
-                placeholder: "Cities...",
-                options: storedOptions ? storedOptions : []
-            }
-        }
-        cards?.[2]?.options && setStoredOptions(cards[2].options);
-        toggleCard && setCards(cards.slice(0,2).concat(toggleCard));
+            cards?.[2]?.options && setStoredOptions(cards[2].options);
+            toggleCard && setCards(cards.slice(0,2).concat(toggleCard));
+        })()
 
     }, [isCity])
 
