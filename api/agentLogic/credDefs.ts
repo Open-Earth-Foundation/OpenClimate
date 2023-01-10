@@ -1,4 +1,5 @@
 const AdminAPI = require('../adminAPI')
+const logger = require('../logger').child({module: __filename})
 
 // Perform Agent Business Logic
 
@@ -21,11 +22,11 @@ const createdCredDefIDs = async (
       schemaVersion,
     )
 
-    console.log(credDefIDs)
+    logger.debug(credDefIDs)
 
     return credDefIDs
   } catch (error) {
-    console.error('Error Fetching Created Credential Definitions IDs')
+    logger.error('Error Fetching Created Credential Definitions IDs')
     throw error
   }
 }
@@ -38,7 +39,7 @@ const fetchCredDef = async (credDefID) => {
 
     return credDef
   } catch (error) {
-    console.error('Error Fetching Credential Definition')
+    logger.error('Error Fetching Credential Definition')
     throw error
   }
 }
@@ -53,11 +54,11 @@ const createCredDef = async (tag = 'default', schema_id) => {
       false,
     )
 
-    console.log(credDefID)
+    logger.debug(credDefID)
 
     return credDefID
   } catch (error) {
-    console.error('Error Creating Credential Definition')
+    logger.error('Error Creating Credential Definition')
     throw error
   }
 }

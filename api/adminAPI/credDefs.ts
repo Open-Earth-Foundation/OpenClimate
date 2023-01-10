@@ -1,4 +1,5 @@
 const sendAdminMessage = require('./transport')
+const logger = require('../logger').child({module: __filename})
 
 // Fetch existing Credential Definitions IDs request message to be sent to the Cloud Agent Adminstration API
 const createdCredDefIDs = async (
@@ -10,7 +11,7 @@ const createdCredDefIDs = async (
   schema_version,
 ) => {
   try {
-    console.log('Fetching Created Credential Definition IDs')
+    logger.debug('Fetching Created Credential Definition IDs')
 
     const credDefs = await sendAdminMessage(
       'get',
@@ -28,7 +29,7 @@ const createdCredDefIDs = async (
 
     return credDefs.credential_definition_ids
   } catch (error) {
-    console.error('Fetching Credential Definitions Error')
+    logger.error('Fetching Credential Definitions Error')
     throw error
   }
 }
@@ -36,7 +37,7 @@ const createdCredDefIDs = async (
 // Fetch a Credential Definition via the Admin API
 const fetchCredDef = async (cred_def_id) => {
   try {
-    console.log('Fetching Credential Definition')
+    logger.debug('Fetching Credential Definition')
 
     const credDef = await sendAdminMessage(
       'get',
@@ -47,7 +48,7 @@ const fetchCredDef = async (cred_def_id) => {
 
     return credDef.credential_definition
   } catch (error) {
-    console.error('Fetching Credential Definitions Error')
+    logger.error('Fetching Credential Definitions Error')
     throw error
   }
 }
@@ -60,7 +61,7 @@ const createCredDef = async (
   support_revocation = false,
 ) => {
   try {
-    console.log('Creating Credential Definition')
+    logger.debug('Creating Credential Definition')
 
     const credDefID = await sendAdminMessage(
       'post',
@@ -71,7 +72,7 @@ const createCredDef = async (
 
     return credDefID.credential_definition_id
   } catch (error) {
-    console.error('Creating Credential Definitions Error')
+    logger.error('Creating Credential Definitions Error')
     throw error
   }
 }

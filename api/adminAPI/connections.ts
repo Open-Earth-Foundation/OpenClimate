@@ -1,4 +1,5 @@
 const sendAdminMessage = require('./transport')
+const logger = require('../logger').child({module: __filename})
 
 // Generate operations and requests to be sent to the Cloud Agent Adminstration API
 
@@ -10,7 +11,7 @@ const createInvitation = async (
   public_ = false,
 ) => {
   try {
-    console.log('Generating Invitation')
+    logger.debug('Generating Invitation')
 
     const invitationMessage = await sendAdminMessage(
       'post',
@@ -26,14 +27,14 @@ const createInvitation = async (
 
     return invitationMessage
   } catch (error) {
-    console.error('Invitation Creation Error')
+    logger.error('Invitation Creation Error')
     throw error
   }
 }
 
 const acceptInvitation = async (invitation) => {
   try {
-    console.log('Accepting Invitation')
+    logger.debug('Accepting Invitation')
 
     let parsedInvitation = JSON.parse(invitation)
 
@@ -49,7 +50,7 @@ const acceptInvitation = async (invitation) => {
 
     return invitationMessage
   } catch (error) {
-    console.error('Invitation Acceptance Error')
+    logger.error('Invitation Acceptance Error')
     throw error
   }
 }
@@ -57,7 +58,7 @@ const acceptInvitation = async (invitation) => {
 // Fetch a Connection request message to be sent to the Cloud Agent Adminstration API
 const fetchConnection = async (connectionID) => {
   try {
-    console.log(`Fetching a Connection with connectionID: ${connectionID}`)
+    logger.debug(`Fetching a Connection with connectionID: ${connectionID}`)
 
     const connection = await sendAdminMessage(
       'get',
@@ -69,12 +70,12 @@ const fetchConnection = async (connectionID) => {
     return connection
   } catch (error) {
     if (error.response.status === 404) {
-      console.log('No Connection Found')
+      logger.debug('No Connection Found')
 
       return null
     }
 
-    console.error('Error Fetching Connection')
+    logger.error('Error Fetching Connection')
     throw error
   }
 }
@@ -90,7 +91,7 @@ const queryConnections = async (
   theirRole = null,
 ) => {
   try {
-    console.log(
+    logger.debug(
       `Fetching Connections with the parameters:`,
       alias,
       initiator,
@@ -119,12 +120,12 @@ const queryConnections = async (
     return connections
   } catch (error) {
     if (error.response.status === 404) {
-      console.log('No Connections Found')
+      logger.debug('No Connections Found')
 
       return null
     }
 
-    console.error('Error Fetching Connections')
+    logger.error('Error Fetching Connections')
     throw error
   }
 }

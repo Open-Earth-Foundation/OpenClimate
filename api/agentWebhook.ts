@@ -4,7 +4,7 @@ const express = require('express')
 
 // We use one Winston instance for the entire app
 
-const logger = require('./logger')
+const logger = require('./logger').child({module: __filename})
 
 const router = express.Router()
 

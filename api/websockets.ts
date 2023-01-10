@@ -8,7 +8,7 @@ const check = require('./canUser')
 const rules = require('./rbac-rules')
 const cookie = require('cookie')
 const cookieParser = require('cookie-parser')
-const logger = require('./logger')
+const logger = require('./logger').child({module: __filename})
 
 let wss = null
 

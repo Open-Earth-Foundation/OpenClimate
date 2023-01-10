@@ -2,6 +2,7 @@ const {Sequelize, DataTypes, Model} = require('sequelize')
 
 const init = require('./init.ts')
 const sequelize = init.connect()
+const logger = require('../logger').child({module: __filename})
 
 const {Contact} = require('./contacts.ts')
 
@@ -115,10 +116,10 @@ const createPassport = async function (
       created_at: timestamp,
       updated_at: timestamp,
     })
-    console.log('Passport data saved successfully.')
+    logger.debug('Passport data saved successfully.')
     return passport
   } catch (error) {
-    console.error('Error saving passport data to database: ', error)
+    logger.error('Error saving passport data to database: ', error)
   }
 }
 const createOrUpdatePassport = async function (
@@ -151,7 +152,7 @@ const createOrUpdatePassport = async function (
         const timestamp = Date.now()
 
         if (!passport) {
-          console.log('Creating Passport')
+          logger.debug('Creating Passport')
           const passport = await Passport.upsert({
             contact_id: contact_id,
             passport_number: passport_number,
@@ -171,7 +172,7 @@ const createOrUpdatePassport = async function (
             updated_at: timestamp,
           })
         } else {
-          console.log('Updating Passport')
+          logger.debug('Updating Passport')
           await Passport.update(
             {
               contact_id: contact_id,
@@ -200,10 +201,10 @@ const createOrUpdatePassport = async function (
         }
       },
     )
-    console.log('Passport saved successfully')
+    logger.debug('Passport saved successfully')
     return
   } catch (error) {
-    console.error('Error saving passport to database: ', error)
+    logger.error('Error saving passport to database: ', error)
   }
 }
 
@@ -219,7 +220,7 @@ const readPassports = async function () {
     })
     return passports
   } catch (error) {
-    console.error('Could not find passports in the database: ', error)
+    logger.error('Could not find passports in the database: ', error)
   }
 }
 
@@ -238,7 +239,7 @@ const readPassport = async function (contact_id) {
     })
     return passport[0]
   } catch (error) {
-    console.error('Could not find passport in database: ', error)
+    logger.error('Could not find passport in database: ', error)
   }
 }
 
@@ -286,9 +287,9 @@ const updatePassport = async function (
         },
       },
     )
-    console.log('Passport updated successfully.')
+    logger.debug('Passport updated successfully.')
   } catch (error) {
-    console.error('Error updating the Passport: ', error)
+    logger.error('Error updating the Passport: ', error)
   }
 }
 
@@ -299,9 +300,9 @@ const deletePassport = async function (contact_id) {
         contact_id: contact_id,
       },
     })
-    console.log('Successfully deleted passport')
+    logger.debug('Successfully deleted passport')
   } catch (error) {
-    console.error('Error while deleting passport: ', error)
+    logger.error('Error while deleting passport: ', error)
   }
 }
 

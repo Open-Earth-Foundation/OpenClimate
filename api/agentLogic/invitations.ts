@@ -1,5 +1,7 @@
 const AdminAPI = require('../adminAPI')
 
+const logger = require('../logger').child({module: __filename})
+
 let Connections = require('../orm/connections.ts')
 import {Utils} from '../util'
 // Perform Agent Business Logic
@@ -19,7 +21,7 @@ const createSingleUseInvitation = async (
       multiUse,
       public_,
     )
-    console.log(invitationMessage)
+    logger.debug(invitationMessage)
 
     await Connections.createOrUpdateConnection(
       invitationMessage.connection_id,
@@ -51,7 +53,7 @@ const createSingleUseInvitation = async (
     // Return to the user that triggered the generation of that invitation
     return invitation
   } catch (error) {
-    console.error('Error Creating Invitation')
+    logger.error('Error Creating Invitation')
     throw error
   }
 }
@@ -60,7 +62,7 @@ const createSingleUseInvitation = async (
 // (JamesKEbert) TODO: We've created a function for connection reuse, some stop gaps specific to overall project. Should move to using Public DIDs for this purpose, or build the capability in ACA-Py to generate invitations from a specific local-DID to allow key recognition from a client for connection reuse
 const createPersistentSingleUseInvitation = async (workflow = 'test_id') => {
   try {
-    console.log(
+    logger.debug(
       `Creating/fetching reusable invitation with workflow ${workflow}`,
     )
 
@@ -68,7 +70,7 @@ const createPersistentSingleUseInvitation = async (workflow = 'test_id') => {
       '_CONNECTION_REUSE_INVITATION',
     )
 
-    console.log(reuseInvite)
+    logger.debug(reuseInvite)
 
     let alteredInvitationRecord = {
       ...reuseInvite.dataValues,
@@ -82,13 +84,13 @@ const createPersistentSingleUseInvitation = async (workflow = 'test_id') => {
       '?c_i=' +
       Utils.encodeBase64(invitationJSON)
 
-    console.log(invitationString)
+    logger.debug(invitationString)
     alteredInvitationRecord.invitation_url = invitationString
 
     // Return to the user that triggered the generation of that invitation
     return alteredInvitationRecord
   } catch (error) {
-    console.error('Error Creating Invitation')
+    logger.error('Error Creating Invitation')
     throw error
   }
 }
@@ -108,7 +110,7 @@ const acceptInvitation = async (invitation_url) => {
     // Return some info about the new connection formed by accepting the invite so we can take further action
     return invitationMessage
   } catch (error) {
-    console.error('Error Accepting Invitation')
+    logger.error('Error Accepting Invitation')
     throw error
   }
 }
@@ -128,7 +130,7 @@ const createAccountInvitation = async (
       multiUse,
       public_,
     )
-    console.log(invitationMessage)
+    logger.debug(invitationMessage)
 
     await Connections.createOrUpdateConnection(
       invitationMessage.connection_id,
@@ -160,7 +162,7 @@ const createAccountInvitation = async (
     // Return to the user that triggered the generation of that invitation
     return invitation
   } catch (error) {
-    console.error('Error Creating Invitation')
+    logger.error('Error Creating Invitation')
     throw error
   }
 }
@@ -180,7 +182,7 @@ const createWalletInvitation = async (
       multiUse,
       public_,
     )
-    console.log(invitationMessage)
+    logger.debug(invitationMessage)
 
     await Connections.createOrUpdateConnection(
       invitationMessage.connection_id,
@@ -212,7 +214,7 @@ const createWalletInvitation = async (
     // Return to the user that triggered the generation of that invitation
     return invitation
   } catch (error) {
-    console.error('Error Creating Invitation')
+    logger.error('Error Creating Invitation')
     throw error
   }
 }

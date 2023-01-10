@@ -1,4 +1,5 @@
 const sendAdminMessage = require('./transport')
+const logger = require('../logger').child({module: __filename})
 
 // Generate operations and requests to be sent to the Cloud Agent Adminstration API
 
@@ -17,7 +18,7 @@ const autoIssueCred = async (
   autoRemove,
 ) => {
   try {
-    console.log('Auto Issue Credential to a Connection')
+    logger.debug('Auto Issue Credential to a Connection')
 
     const response = await sendAdminMessage(
       'post',
@@ -44,7 +45,7 @@ const autoIssueCred = async (
 
     return response
   } catch (error) {
-    console.error('Credential Issuance Error')
+    logger.error('Credential Issuance Error')
     throw error
   }
 }

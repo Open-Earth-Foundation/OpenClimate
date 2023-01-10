@@ -7,6 +7,7 @@ import { Tag } from './tags';
 
 const init = require('./init.ts');
 const sequelize = init.connect();
+const logger = require('../logger').child({module: __filename})
 
 export class City extends Model <InferAttributes<City>, InferCreationAttributes<City>> {
     declare city_id: CreationOptional<number>;
@@ -81,12 +82,12 @@ export const getAllCities = async () => {
         return cities;
     }
     catch (error) {
-        console.error('Country not found: ', error.message)
+        logger.error('Country not found: ', error.message)
     }
 }
 
 export const getCityDataById = async (city_id, year) => {
-    console.log(city_id)
+    logger.debug(city_id)
     try {
         const city = await City.findAll({
             where: {
@@ -107,19 +108,19 @@ export const getCityDataById = async (city_id, year) => {
                                     include: [{
                                         model: Tag
                                     }]
-                                    
+
                                 }
-                                
-                            ]  
+
+                            ]
                         }
                     ]
-                },             
+                },
             ]
         })
-        console.log("data: ",city);
+        logger.debug("data: ",city);
         return city;
 
     } catch (error) {
-        console.error('Country not found: ', error.message)
+        logger.error('Country not found: ', error.message)
     }
 }

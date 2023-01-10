@@ -11,6 +11,8 @@ let Contacts = require('../orm/contacts')
 let ContactsCompiled = require('../orm/contactsCompiled')
 let Users = require('../orm/users')
 
+const logger = require('../logger').child({module: __filename})
+
 // Perform Agent Business Logic
 
 // Fetch an existing connection
@@ -21,7 +23,7 @@ export async function fetchConnection (connectionID) {
 
     return connection
   } catch (error) {
-    console.error('Error Fetching Connection')
+    logger.error('Error Fetching Connection')
     throw error
   }
 }
@@ -33,11 +35,11 @@ export async function getContact (contactID, additionalTables) {
       additionalTables,
     )
 
-    console.log('Contact:', contact)
+    logger.debug('Contact:', contact)
 
     return contact
   } catch (error) {
-    console.error('Error Fetching Contact')
+    logger.error('Error Fetching Contact')
     throw error
   }
 }
@@ -49,11 +51,11 @@ export async function getContactByConnection (connectionID, additionalTables) {
       additionalTables,
     )
 
-    console.log('Contact:', contact)
+    logger.debug('Contact:', contact)
 
     return contact
   } catch (error) {
-    console.error('Error Fetching Contact')
+    logger.error('Error Fetching Contact')
     throw error
   }
 }
@@ -62,21 +64,21 @@ export async function getAll (additionalTables) {
   try {
     const contacts = await ContactsCompiled.readContacts(additionalTables)
 
-    console.log('Got All Contacts')
+    logger.debug('Got All Contacts')
 
     return contacts
   } catch (error) {
-    console.error('Error Fetching Contacts')
+    logger.error('Error Fetching Contacts')
     throw error
   }
 }
 
 export async function adminMessage (connectionMessage) {
   try {
-    console.log('Received new Admin Webhook Message', connectionMessage)
+    logger.debug('Received new Admin Webhook Message', connectionMessage)
 
     if (connectionMessage.state === 'invitation') {
-      console.log('State - Invitation')
+      logger.debug('State - Invitation')
 
       await Connections.createOrUpdateConnection(
         connectionMessage.connection_id,
@@ -104,8 +106,8 @@ export async function adminMessage (connectionMessage) {
     var contact
 
     if (connectionMessage.state === 'request') {
-      console.log('State - Request')
-      console.log('Creating Contact')
+      logger.debug('State - Request')
+      logger.debug('Creating Contact')
 
       contact = await Contacts.createContact(
         connectionMessage.their_label, // label
@@ -137,7 +139,7 @@ export async function adminMessage (connectionMessage) {
         connectionMessage.connection_id,
       )
     } else {
-      console.log('State - Response or later')
+      logger.debug('State - Response or later')
       await Connections.updateConnection(
         connectionMessage.connection_id,
         connectionMessage.state,
@@ -157,11 +159,11 @@ export async function adminMessage (connectionMessage) {
         connectionMessage.inbound_connection_id,
         connectionMessage.error_msg,
       )
-      
+
 
 
       if (connectionMessage.state === "active"){
-        console.log("Connection active")
+        logger.debug("Connection active")
         const connection = await Connections.readConnection(
           connectionMessage.connection_id,
         )
@@ -199,7 +201,7 @@ export async function adminMessage (connectionMessage) {
       const connection = await Connections.readConnection(
         connectionMessage.connection_id,
       )
-      console.log("Connection", connection)
+      logger.debug("Connection", connection)
       if (connection.user_id && !connection.business_wallet) {
         // If we have a user ID:
         const user = await Users.readUser(connection.user_id)
@@ -239,9 +241,9 @@ export async function adminMessage (connectionMessage) {
             attributes,
           )
 
-          // console.log("Issued an email credential!")
-          // console.log("Issuing an organization credential!")
-          // console.log("User ", user)
+          // logger.debug("Issued an email credential!")
+          // logger.debug("Issuing an organization credential!")
+          // logger.debug("User ", user)
 
           // 2/2 Offer an organization credential
           attributes = [
@@ -266,8 +268,8 @@ export async function adminMessage (connectionMessage) {
           const employeeSchema = process.env.SCHEMA_VERIFIED_EMPLOYEE
           const employeeSchemaParts = employeeSchema.split(':')
 
-          // console.log("Attributes:")
-          // console.log(attributes)
+          // logger.debug("Attributes:")
+          // logger.debug(attributes)
 
           await Credentials.autoIssueCredential(
             connectionMessage.connection_id,
@@ -292,11 +294,11 @@ export async function adminMessage (connectionMessage) {
       } else {
         // For some reason, we have a connection in the response phase
         // AND we don't have an AnonWebsocket connection that matches
-        console.log("Warning: Indeterminate connection situation")
+        logger.debug("Warning: Indeterminate connection situation")
       }
     }
   } catch (error) {
-    console.error('Error Storing Connection Message')
+    logger.error('Error Storing Connection Message')
     throw error
   }
 }

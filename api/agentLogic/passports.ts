@@ -2,6 +2,7 @@ const Websockets = require('../websockets.ts')
 
 let ContactsCompiled = require('../orm/contactsCompiled.ts')
 let Passports = require('../orm/passports.ts')
+const logger = require('../logger').child({module: __filename})
 
 const updateOrCreatePassport = async function (
   contact_id,
@@ -44,7 +45,7 @@ const updateOrCreatePassport = async function (
 
     Websockets.sendMessageToAll('CONTACTS', 'CONTACTS', {contacts: [contact]})
   } catch (error) {
-    console.error('Error Fetching Contacts')
+    logger.error('Error Fetching Contacts')
     throw error
   }
 }

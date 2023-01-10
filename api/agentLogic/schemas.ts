@@ -1,4 +1,5 @@
 const AdminAPI = require('../adminAPI')
+const logger = require('../logger').child({module: __filename})
 
 // Perform Agent Business Logic
 
@@ -7,11 +8,11 @@ const fetchSchema = async (schemaID) => {
   try {
     const schema = await AdminAPI.Schemas.fetchSchema(schemaID)
 
-    console.log(schema)
+    logger.debug(schema)
 
     return schema
   } catch (error) {
-    console.error('Error Fetching Schema')
+    logger.error('Error Fetching Schema')
     throw error
   }
 }

@@ -42,7 +42,7 @@ require('./passport-config')(passport)
 
 // We use one Winston instance for the entire app
 
-const logger = require('./logger')
+const logger = require('./logger').child({module: __filename})
 
 export const app = express()
 
