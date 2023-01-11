@@ -13,6 +13,64 @@ import requests
 import xlrd
 
 
+def lei_from_name2(name=None, iso2=None):
+
+    url = f"https://api.gleif.org/api/v1/lei-records/?filter[entity.legalName]={name}"
+    payload = {}
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    # default values
+    legal_name = np.NaN
+    lei = np.NaN
+    status = np.NaN
+    city = np.NaN
+    region = np.NaN
+    country = np.NaN
+    datasource_id = np.NaN
+
+    if response.status_code == 200:
+        # get response as dictionary
+        dic = json.loads(response.text)
+
+        # get the publish date, but only YYYY-MM-DD
+        publishDate = (
+            datetime
+            .datetime
+            .strptime(dic['meta']['goldenCopy']['publishDate'],
+                      '%Y-%m-%dT%H:%M:%SZ')
+            .strftime('%Y-%m-%d')
+        )
+
+        # check if diciontary has data
+        if 'data' in dic.keys():
+
+            # check the data has records
+            if (len(dic['data']) > 0):
+
+                # loop over each records
+                for data in dic['data']:
+                    legal_name = data['attributes']['entity']['legalName']['name']
+                    status = data['attributes']['registration']['status']
+
+                    # check lei status, make sure it is either active or lapsed
+                    if status.upper() != 'RETIRED':
+
+                        # headquarters address
+                        address = data['attributes']['entity']['headquartersAddress']['addressLines']
+                        city = data['attributes']['entity']['headquartersAddress']['city']
+                        region = data['attributes']['entity']['headquartersAddress']['region']
+                        country = data['attributes']['entity']['headquartersAddress']['country']
+                        postCode = data['attributes']['entity']['headquartersAddress']['postalCode']
+
+                        if country == iso2:
+                            lei = data['attributes']['lei']
+                            datasource_id = f"GLEIF_golden_copy:{publishDate}"
+                            break
+
+    return (name, legal_name, country, region, city, lei, status, datasource_id)
+
+
 def name_to_locode(name=None, is_part_of=None, *args, **kwargs):
     url = f"https://openclimate.network/api/v1/search/actor?q={name}"
     payload = {}
