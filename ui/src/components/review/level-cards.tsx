@@ -52,10 +52,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
     const [isCity, setIsCity] = useState<boolean>(true);
 
-
     const [cards, setCards] = useState<Array<ICardProps>>(cardsTemplate);
-
-    const [storedOptions, setStoredOptions] = useState<Array<DropdownOption>>([]);
 
     const { trackEvent } = useMatomo();
 
@@ -83,7 +80,6 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                     tempCards[1] = {...tempCards[1], selectedValue: option.name};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: options};
                 });
-                setStoredOptions([]);
                 break;
             case FilterTypes.National:
                 getOptions(actor_id, 'adm1')
@@ -92,7 +88,6 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                     tempCards[1] = {...tempCards[1], selectedValue: '', options: options};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: []};
                 })
-                setStoredOptions([]);
                 break;
             }
         selectFilter(filterType, option);
@@ -146,18 +141,33 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
             options[0] = await getOptions('EARTH', 'country')
 
-            if (actors.length > 1) {
-                selected[0] = actors[1].actor_id
-                options[1] = await getOptions(actors[1].actor_id, 'adm1')
+            const country = actors.find(actor => actor.type == 'country')
+
+            if (country) {
+                selected[0] = country.actor_id
+                options[1] = await getOptions(country.actor_id, 'adm1')
             }
 
-            if (actors.length > 2) {
-                selected[1] = actors[2].actor_id
-                options[2] = await getOptions(actors[2].actor_id, isCity ? 'city' : 'site')
+            const region = actors.find(actor => actor.type == 'adm1')
+
+            const city = actors.find(actor => actor.type == 'city')
+            const site = actors.find(actor => actor.type == 'site')
+
+            if (city && !isCity) {
+                setIsCity(true)
+            } else if (site && isCity) {
+                setIsCity(false)
             }
 
-            if (actors.length > 3) {
-                selected[2] = actors[3].actor_id
+            if (region) {
+                selected[1] = region.actor_id
+                options[2] = await getOptions(region.actor_id, isCity ? 'city' : 'site')
+            }
+
+            if (city) {
+                selected[2] = city.actor_id
+            } else if (site) {
+                selected[2] = site.actor_id
             }
 
             let tempCard = cards.slice()
@@ -172,7 +182,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     }, [actors])
 
     useEffect(() => {
-        (async() => {
+        const setupCityOrSite = async() => {
             let toggleCard = cards.slice().pop();
             let parentId = cards[1].selectedValue
 
@@ -182,7 +192,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                     type: FilterTypes.Company,
                     selectedValue: '',
                     placeholder: "Companies...",
-                    options: storedOptions ? storedOptions : await getOptions(parentId, 'site')
+                    options: await getOptions(parentId, 'site')
                 }
             } else if (isCity && toggleCard?.type === FilterTypes.Company) {
                 toggleCard = {
@@ -190,14 +200,13 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                     type: FilterTypes.City,
                     selectedValue: '',
                     placeholder: "Cities...",
-                    options: storedOptions ? storedOptions : await getOptions(parentId, 'city')
+                    options: await getOptions(parentId, 'city')
                 }
             }
-            cards?.[2]?.options && setStoredOptions(cards[2].options);
             toggleCard && setCards(cards.slice(0,2).concat(toggleCard));
-        })().then(() => {
-            // noop
         })
+
+        setupCityOrSite().catch((err) => console.error(err))
 
     }, [isCity])
 
