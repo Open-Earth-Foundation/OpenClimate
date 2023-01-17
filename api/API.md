@@ -127,6 +127,11 @@ Standard output. `data` is an object representing the actor, with the following 
   - `target_value`: value of the target.
   - `baseline_value`: value of the metric in the baseline year, for comparison.
   - `datasource_id`: data source for the target.
+  - `initiative`: an object representing the initiative this is part of, if any, with the following properties:
+    - `initiative_id`: unique ID for this initiative
+    - `name`: English name of the initiative
+    - `description`: short (~1 paragraph) description of the initiative, in English
+    - `URL`: URL to find out more about the initiative
 
 ## Search endpoints
 

@@ -12,6 +12,7 @@ import { Tag } from '../orm/tag'
 import {DataSourceTag} from '../orm/datasourcetag'
 import {EmissionsAggTag} from '../orm/emissionsaggtag'
 import {ActorDataCoverage} from '../orm/actordatacoverage'
+import {Initiative} from '../orm/initiative'
 
 import {app} from '../app'
 import request from 'supertest'
@@ -91,6 +92,14 @@ const territory2Props = {
 
 // Different targets in different years
 
+const initiativeProps = {
+    initiative_id: "actor.routes.test.ts:initiative:1",
+    name: "Fake initiative from actor.routes.test.ts",
+    description: "Fake initiative from actor.routes.test.ts",
+    URL: "https://fake.example/initiative",
+    datasource_id: datasource1Props.datasource_id
+}
+
 const countryTarget1Props = {
     target_id: "actor.routes.test.ts:target:1",
     actor_id: country1Props.actor_id,
@@ -100,7 +109,8 @@ const countryTarget1Props = {
     target_year: 2025,
     target_value: 50000000,
     target_unit: "tonnes",
-    datasource_id: datasource1Props.datasource_id
+    datasource_id: datasource1Props.datasource_id,
+    initiative_id: initiativeProps.initiative_id
 }
 
 const countryTarget2Props = {
@@ -189,6 +199,7 @@ async function cleanup() {
     ))
 
     await Target.destroy({where: {datasource_id: datasource1Props.datasource_id}})
+    await Initiative.destroy({where: {datasource_id: datasource1Props.datasource_id}})
     await EmissionsAgg.destroy({where: {datasource_id: datasource1Props.datasource_id}})
     await EmissionsAgg.destroy({where: {datasource_id: datasource2Props.datasource_id}})
     await Territory.destroy({where: {datasource_id: datasource1Props.datasource_id}})
@@ -228,6 +239,8 @@ beforeAll(async () => {
     await Territory.create(territory1Props)
     await Territory.create(territory2Props)
 
+    await Initiative.create(initiativeProps
+        )
     await Target.create(countryTarget2Props)
     await Target.create(countryTarget1Props)
 
@@ -678,8 +691,9 @@ it ("can return target_unit", async () =>
             const data = res.body.data
             expect(data.targets).toBeDefined()
             expect(data.targets.length).toBeGreaterThan(0)
-            expect(data.targets[0].target_unit).toBeDefined()
-            expect(typeof(data.targets[0].target_unit)).toEqual("string")
+            const target = data.targets[0]
+            expect(target.target_unit).toBeDefined()
+            expect(typeof(target.target_unit)).toEqual("string")
         })
 )
 
@@ -826,5 +840,43 @@ it("returns deep children when recursive is set to yes", async () =>
             expect(data.length).toEqual(2)
             let names = data.map((actor) => actor.name)
             expect(names[0] <= names[1]).toBeTruthy()
+        })
+)
+
+it("returns target initiative", async () =>
+    request(app)
+        .get(`/api/v1/actor/${country1Props.actor_id}`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            expect(res.body.data).toBeDefined()
+
+            const data = res.body.data
+
+            expect(data.targets).toBeDefined()
+            expect(data.targets.length).toBeGreaterThan(0)
+
+            const target = data.targets[0]
+
+            expect(target.initiative).toBeDefined()
+            expect(typeof(target.initiative)).toEqual("object")
+
+            const initiative = target.initiative
+
+            expect(initiative.initiative_id).toBeDefined()
+            expect(typeof(initiative.initiative_id)).toEqual("string")
+            expect(initiative.initiative_id).toEqual(initiativeProps.initiative_id)
+
+            expect(initiative.name).toBeDefined()
+            expect(typeof(initiative.name)).toEqual("string")
+            expect(initiative.name).toEqual(initiativeProps.name)
+
+            expect(initiative.description).toBeDefined()
+            expect(typeof(initiative.description)).toEqual("string")
+            expect(initiative.description).toEqual(initiativeProps.description)
+
+            expect(initiative.URL).toBeDefined()
+            expect(typeof(initiative.URL)).toEqual("string")
+            expect(initiative.URL).toEqual(initiativeProps.URL)
         })
 )
