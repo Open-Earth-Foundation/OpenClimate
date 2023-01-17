@@ -353,6 +353,19 @@ Don't repeat tags for every row from a data source; just tag the data source.
 - `created`: When this row was added to the table.
 - `last_updated`: When this row was changed.
 
+### Initiative
+
+An Initiative is an organised effort to reduce emissions, typically agreed to between multiple Actors. Some are formal, and some are informal. Examples would the the Paris Agreement or the US Climate Alliance.
+
+- `initiative_id`: Unique identifier for this initiative. Usually a memorable tag-like string
+such as "paris", but it's opaque and may come from another vocabulary.
+- `name`: name of the initiative, in English.
+- `description`: short description of a few sentences explaining the initiative.
+- `URL`: link to a human-readable page or Web site about the initiative.
+- `datasource_id`: data source for this initiative. Often, one datasource only covers a single initiative, so they will be closely connected. An example is Global Covenant of Mayors.
+- `created`: datestamp for the initiative record in the database, unrelated to the history of the initiative itself.
+- `last_updated`: datestamp for the record being updated.
+
 ## Metadata
 
 To track data provenance, we use a number of tables related to data sets and publishers.
