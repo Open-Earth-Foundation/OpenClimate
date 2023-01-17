@@ -16,6 +16,7 @@ tables = [
     "Population",
     "GDP",
     "Territory",
+    "Initiative",
     "Target",
     "TargetTag",
     "EmissionsAgg",
@@ -45,7 +46,8 @@ pkeys = {
     "DataSourceTag": ["datasource_id", "tag_id"],
     "EmissionsAggTag": ["emissions_id", "tag_id"],
     "Target": ["target_id"],
-    "TargetTag": ["target_id", "tag_id"]
+    "TargetTag": ["target_id", "tag_id"],
+    "Initiative": ["initiative_id"]
 }
 
 # Some tables are tags of other tables. They get treated
