@@ -214,49 +214,103 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
     }, [isCity])
 
+    const getActorByType = (actors, type) => {
+        switch (type) {
+            case FilterTypes.City:
+                return actors.find(actor => actor.type == 'city')
+                break
+            case FilterTypes.Company:
+                return actors.find(actor => actor.type == 'site')
+                break
+            case FilterTypes.SubNational:
+                return actors.find(actor => actor.type == 'adm1')
+                break
+            case FilterTypes.National:
+                return actors.find(actor => actor.type == 'country')
+                break
+        }
+    }
+
+    const getParentByType = (actors, type) => {
+        switch (type) {
+            case FilterTypes.City:
+            case FilterTypes.Company:
+                return actors.find(actor => actor.type == 'adm1')
+                break
+            case FilterTypes.SubNational:
+                return actors.find(actor => actor.type == 'country')
+                break
+            case FilterTypes.National:
+                return actors.find(actor => actor.type == 'planet')
+                break
+        }
+    }
+
+    const getActiveByType = (actors, type) => {
+        const last = actors[actors.length - 1]
+        switch (type) {
+            case FilterTypes.Company:
+                return last.type == 'site'
+                break
+            case FilterTypes.City:
+                return last.type == 'city'
+                break
+            case FilterTypes.SubNational:
+                return last.type == 'adm1' || last.type == 'adm2'
+                break
+            case FilterTypes.National:
+                return last.type == 'country'
+                break
+        }
+    }
 
     return (
         <div className="review__earth-main">
 
             <IndicatorCard label={"Globe"} current={actors[0]} parent={null} isActive={actors.length === 1}/>
 
-            { cards.map((card, index) =>
-                <React.Fragment key={`card-fragment-${card.label}`}>
-                    {
-                        actors.length > 1 &&
-                            <div className="review__arrow-forward" key={`arrow-forward-${index}`}>
-                                <ArrowForwardIos/>
-                            </div>
-                    }
-                    {
-                        card.selectedValue ?
-                        <IndicatorCard
-                            label={card.label}
-                            current={actors?.[index + 1]}
-                            parent={actors?.[index]}
-                            isActive={actors.length === index + 2}
-                            onDeSelect={() => deselectFilterHandler(card.type)}
-                            key={`indicator-card-${card.selectedValue}`}
-                        />
-                        :
-                        <div className={ actors.length > 1 ? "review__card-actor-selected" : "review__card" } key={`review-card-div-${index}`}>
-                            <LevelCard
+            { cards.map((card, index) => {
+                const actor = getActorByType(actors, card.type)
+                const parent = getParentByType(actors, card.type)
+                const isActive = getActiveByType(actors, card.type)
+
+                return
+                    <React.Fragment key={`card-fragment-${card.label}`}>
+                        {
+                            actors.length > 1 &&
+                                <div className="review__arrow-forward" key={`arrow-forward-${index}`}>
+                                    <ArrowForwardIos/>
+                                </div>
+                        }
+                        {
+                            card.selectedValue ?
+                            <IndicatorCard
                                 label={card.label}
-                                key={`level-card-${card.label}`}
-                                disabled={card.options?.length === 0}
-                                buttonDisabled={cards[1].options.length === 0}
-                                selectedValue={card.selectedValue}
-                                placeholder={card.placeholder}
-                                onSelect={(option: DropdownOption) => onActorSelect(option, card.type, card.label)}
-                                onDeSelect={() => deselectFilterHandler(card.type) }
-                                options={card.options}
-                                isCity={index === 2 ? isCity : undefined}
-                                onButtonSwap={index === 2 ? () => setIsCity(!isCity) : undefined}
+                                current={actor}
+                                parent={parent}
+                                isActive={isActive}
+                                onDeSelect={() => deselectFilterHandler(card.type)}
+                                key={`indicator-card-${card.selectedValue}`}
                             />
-                        </div>
-                    }
-                </React.Fragment>
-            )}
+                            :
+                            <div className={ actors.length > 1 ? "review__card-actor-selected" : "review__card" } key={`review-card-div-${index}`}>
+                                <LevelCard
+                                    label={card.label}
+                                    key={`level-card-${card.label}`}
+                                    disabled={card.options?.length === 0}
+                                    buttonDisabled={cards[1].options.length === 0}
+                                    selectedValue={card.selectedValue}
+                                    placeholder={card.placeholder}
+                                    onSelect={(option: DropdownOption) => onActorSelect(option, card.type, card.label)}
+                                    onDeSelect={() => deselectFilterHandler(card.type) }
+                                    options={card.options}
+                                    isCity={index === 2 ? isCity : undefined}
+                                    onButtonSwap={index === 2 ? () => setIsCity(!isCity) : undefined}
+                                />
+                            </div>
+                        }
+                    </React.Fragment>
+            })}
 
         </div>
     )
