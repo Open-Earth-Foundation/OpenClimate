@@ -42,7 +42,6 @@ import {
   NotificationProvider,
 } from './UI/NotificationProvider'
 
-import SessionProvider from './UI/SessionProvider'
 
 import './App.css'
 
@@ -177,7 +176,6 @@ const App: FunctionComponent<Props> = (props) => {
   const [loggedInEmail, setLoggedInEmail] = useState('')
   const [loggedInRoles, setLoggedInRoles] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
-  const [sessionTimer, setSessionTimer] = useState(60)
 
   const [QRCodeURL, setQRCodeURL] = useState('')
   const [focusedConnectionID, setFocusedConnectionID] = useState('')
@@ -1273,7 +1271,6 @@ const App: FunctionComponent<Props> = (props) => {
       return (
         <ThemeProvider theme={theme}>
           <NotificationProvider>
-            <SessionProvider logout={handleLogout} sessionTimer={sessionTimer}>
               <Router>
               <div className="main-layout">
                 <MainToolbar
@@ -1731,7 +1728,6 @@ const App: FunctionComponent<Props> = (props) => {
                 <MainFooter />
               </div>
             </Router>
-          </SessionProvider>
         </NotificationProvider>
       </ThemeProvider>
     )

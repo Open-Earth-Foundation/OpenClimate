@@ -1,10 +1,10 @@
 import {FunctionComponent, useEffect, useState} from 'react';
 import './emissions-widget.scss';
 import {MdInfoOutline, MdArrowDropDown, MdArrowDropUp, MdOutlinePeopleAlt} from "react-icons/md";
-import { Select, MenuItem, SelectChangeEvent, FormControl } from '@mui/material';
+import { Select, MenuItem, SelectChangeEvent, FormControl, Button, IconButton } from '@mui/material';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
 
-import { InfoOutlined } from '@mui/icons-material'
+import { ArrowForwardIos, ArrowRightAlt, InfoOutlined, MoreVert } from '@mui/icons-material'
 
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from '@mui/material/Tooltip';
@@ -17,6 +17,41 @@ interface Props {
 const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
     const { current } = props
+    const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+    const [toggleDownloadAsMenu, setToggleDownloadAsMenu] = useState<boolean>(false);
+    const [toggleExportAsMenu, setToggleExportAsMenu] = useState<boolean>(false);
+
+    const setMenuState = (event:any) =>{
+        event.preventDefault();
+        setToggleMenu((e)=>!e)
+
+        if(toggleExportAsMenu){
+            setToggleExportAsMenu(false)
+        }
+
+        if(toggleDownloadAsMenu){
+            setToggleDownloadAsMenu(false)
+        }
+    }
+
+    const setDownloadMenuState = (event: any)=>{
+        event.preventDefault();
+        setToggleDownloadAsMenu((e)=>!e);
+        if(toggleExportAsMenu){
+            setToggleExportAsMenu(false)
+        }
+        
+    }
+
+    const setExportMenuState = (event: any)=>{
+        event.preventDefault()
+        setToggleExportAsMenu((e)=>!e);
+        if(toggleDownloadAsMenu){
+            setToggleDownloadAsMenu(false)
+        }
+    }
+
+
 
     const useStyles = makeStyles(() => ({
         customTooltip: {
@@ -161,6 +196,69 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                                 </FormControl >
                             </div>
                         </div>
+                        <div className="emissions-widget__metadata-right-inner">
+                           <div className="emissions-widget__button-wrapper">
+                                <Tooltip
+                                        classes={{
+                                                    tooltip: classes.customTooltip,
+                                                    arrow: classes.customArrow
+                                                }}
+                                        title= {
+                                                    <div className = "tooltip">
+                                                        Download or Export Data
+                                                    </div>
+                                            }
+                                        arrow placement="right">
+                                        <IconButton onClick={setMenuState}>
+                                            <MoreVert className="download_data-icon"/> 
+                                        </IconButton>
+                                </Tooltip>
+                                {
+                                    toggleMenu && (
+                                        <>
+                                            <div className="download_data-menu">
+                                                <ul className="menu-item">
+                                                    <li onClick={setDownloadMenuState}>
+                                                        <span>Download as...</span>
+                                                        <div className="menu-item-arrow">
+                                                            <ArrowForwardIos className="menu-item-arrow-icon"/>
+                                                        </div>
+                                                    </li>
+                                                    <li onClick={setExportMenuState}>
+                                                        <span>Export as...</span>
+                                                        <div className="menu-item-arrow">
+                                                            <ArrowForwardIos className="menu-item-arrow-icon"/>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                {
+                                                    toggleDownloadAsMenu && (
+                                                        <>
+                                                            <ul className="menu-item sub-menu">
+                                                                <li>Download as CSV</li>
+                                                                <li>Download as PDF</li>
+                                                                <li>Download as JSON</li>
+                                                                <li>Download as CSV</li>
+                                                            </ul>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    toggleExportAsMenu && (
+                                                        <>
+                                                            <ul className="menu-item sub-menu exportAs">
+                                                                <li>.JPG</li>
+                                                                <li>.PNG</li>
+                                                            </ul>
+                                                        </>
+                                                    )
+                                                }
+                                            </div>
+                                        </>
+                                    )
+                                }
+                           </div>
+                        </div>
                     </div>
                 </div>
                 <div className="emissions-widget__data">
@@ -194,47 +292,51 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             <span className="emissions-widget__emissions-description">Total GHG Emissions <br/> Mt CO2e</span>
                         </div>
                     </div>
-                    <div className="emissions-widget__emissions-data data-per-capita">
-                        <div className="icon-wrapper">
-                            <MdOutlinePeopleAlt className="people-alt-icon"/>
-                        </div>
-                        <div>
-                            <div className="emissions-widget__col-1">
-                                <div className="emissions-widget__row">
-                                    { perCapita ?
-                                        <div>
-                                            <span className="emissions-widget__total-tonnes-pc">{perCapita.toPrecision(3)}</span>
-                                            <span className="emissions-widget__emissions-pc-unit">T</span>
-                                        </div>
-                                      :
-                                        <div>
-                                            <span className="emissions-widget__total-tonnes-pc no-data">N/A</span>
-                                        </div>
-                                    }
-
-                                </div>
-                                <div className="emissions-widget__emissions-trend">
-                                    <Tooltip
-                                        classes={{
-                                                    tooltip: classes.customTooltip,
-                                                    arrow: classes.customArrow
-                                                }}
-                                        title= {
-                                                    <div className = "tooltip">
-                                                        Calculated by Open Climate
-                                                    </div>
-                                               }
-                                        arrow placement="right">
-                                            <InfoOutlined className="emissions-widget__icon trend-icon"/>
-                                    </Tooltip>
-                                </div>
+                    {
+                        current.type !== "company" && (
+                        <div className="emissions-widget__emissions-data data-per-capita">
+                            <div className="icon-wrapper">
+                                <MdOutlinePeopleAlt className="people-alt-icon"/>
                             </div>
                             <div>
-                                <div className="emissions-widget__emissions-description pc-text">Emissions</div>
-                                <div className="emissions-widget__emissions-description pc-text">per capita</div>
+                                <div className="emissions-widget__col-1">
+                                    <div className="emissions-widget__row">
+                                        { perCapita ?
+                                            <div>
+                                                <span className="emissions-widget__total-tonnes-pc">{perCapita.toPrecision(3)}</span>
+                                                <span className="emissions-widget__emissions-pc-unit">T</span>
+                                            </div>
+                                        :
+                                            <div>
+                                                <span className="emissions-widget__total-tonnes-pc no-data">N/A</span>
+                                            </div>
+                                        }
+
+                                    </div>
+                                    <div className="emissions-widget__emissions-trend">
+                                        <Tooltip
+                                            classes={{
+                                                        tooltip: classes.customTooltip,
+                                                        arrow: classes.customArrow
+                                                    }}
+                                            title= {
+                                                        <div className = "tooltip">
+                                                            Calculated by Open Climate
+                                                        </div>
+                                                }
+                                            arrow placement="right">
+                                                <InfoOutlined className="emissions-widget__icon trend-icon"/>
+                                        </Tooltip>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="emissions-widget__emissions-description pc-text">Emissions</div>
+                                    <div className="emissions-widget__emissions-description pc-text">per capita</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        )
+                    }
                 </div>
                 <div className="emissions-widget__methodologies">
                     <div className="emissions-widget__methodologies-heading">

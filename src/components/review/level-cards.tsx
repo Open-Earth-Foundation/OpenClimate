@@ -77,24 +77,17 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 tempCards[2] = {...tempCards[2], selectedValue: option.name }
                 break;
             case FilterTypes.SubNational:
-                const type = cards[2].type === FilterTypes.City ? 'city' : 'organization';
-                fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
-                .then((res) => res.json())
-                .then((json) => {
-                    let parts = json.data;
-                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id, data: part.has_data}});
+                const type = cards[2].type === FilterTypes.City ? 'city' : 'site';
+                getOptions(actor_id, type)
+                .then((options) => {
                     tempCards[1] = {...tempCards[1], selectedValue: option.name};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: options};
                 });
                 setStoredOptions([]);
                 break;
             case FilterTypes.National:
-                fetch(`/api/v1/actor/${actor_id}/parts?type=adm1`)
-                .then((res) => res.json())
-                .then((json) => {
-                    let parts = json.data;
-                    let options = parts.map((part:any) => {return {name: part.name, value: part.actor_id, data: part.has_data}});
-
+                getOptions(actor_id, 'adm1')
+                .then((options) => {
                     tempCards[0] = {...tempCards[0], selectedValue: option.name};
                     tempCards[1] = {...tempCards[1], selectedValue: '', options: options};
                     tempCards[2] = {...tempCards[2], selectedValue: '', options: []};
@@ -131,7 +124,8 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     }
 
     const getOptions = async(actor_id: string, type: string) => {
-        const res = await fetch(`/api/v1/actor/${actor_id}/parts?type=${type}`)
+        const recursive = (type == 'city' || type == 'site') ? 'yes' : 'no'
+        const res = await fetch(`/api/v1/actor/${actor_id}/parts?type=${type}&recursive=${recursive}`)
         const json = await res.json()
 
         return json.data.map((part:any) => {
@@ -159,7 +153,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
             if (actors.length > 2) {
                 selected[1] = actors[2].actor_id
-                options[2] = await getOptions(actors[2].actor_id, isCity ? 'city' : 'organization')
+                options[2] = await getOptions(actors[2].actor_id, isCity ? 'city' : 'site')
             }
 
             if (actors.length > 3) {
@@ -178,27 +172,32 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     }, [actors])
 
     useEffect(() => {
-        let toggleCard = cards.slice().pop();
+        (async() => {
+            let toggleCard = cards.slice().pop();
+            let parentId = cards[1].selectedValue
 
-        if (!isCity && toggleCard?.type === FilterTypes.City) {
-            toggleCard = {
-                label: "Company",
-                type: FilterTypes.Company,
-                selectedValue: '',
-                placeholder: "Companies...",
-                options: storedOptions ? storedOptions : []
+            if (!isCity && toggleCard?.type === FilterTypes.City) {
+                toggleCard = {
+                    label: "Company",
+                    type: FilterTypes.Company,
+                    selectedValue: '',
+                    placeholder: "Companies...",
+                    options: storedOptions ? storedOptions : await getOptions(parentId, 'site')
+                }
+            } else if (isCity && toggleCard?.type === FilterTypes.Company) {
+                toggleCard = {
+                    label: "City",
+                    type: FilterTypes.City,
+                    selectedValue: '',
+                    placeholder: "Cities...",
+                    options: storedOptions ? storedOptions : await getOptions(parentId, 'city')
+                }
             }
-        } else if (isCity && toggleCard?.type === FilterTypes.Company) {
-            toggleCard = {
-                label: "City",
-                type: FilterTypes.City,
-                selectedValue: '',
-                placeholder: "Cities...",
-                options: storedOptions ? storedOptions : []
-            }
-        }
-        cards?.[2]?.options && setStoredOptions(cards[2].options);
-        toggleCard && setCards(cards.slice(0,2).concat(toggleCard));
+            cards?.[2]?.options && setStoredOptions(cards[2].options);
+            toggleCard && setCards(cards.slice(0,2).concat(toggleCard));
+        })().then(() => {
+            // noop
+        })
 
     }, [isCity])
 
