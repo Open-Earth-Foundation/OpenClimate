@@ -204,7 +204,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 }
             }
             toggleCard && setCards(cards.slice(0,2).concat(toggleCard));
-        })
+        }
 
         setupCityOrSite().catch((err) => console.error(err))
 
