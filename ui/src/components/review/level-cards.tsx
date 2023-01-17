@@ -276,48 +276,43 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
             <IndicatorCard label={"Globe"} current={actors[0]} parent={null} isActive={actors.length === 1}/>
 
-            { cards.map((card, index) => {
-                const actor = getActorByType(actors, card.type)
-                const parent = getParentByType(actors, card.type)
-                const isActive = getActiveByType(actors, card.type)
-
-                return
-                    <React.Fragment key={`card-fragment-${card.label}`}>
-                        {
-                            actors.length > 1 &&
-                                <div className="review__arrow-forward" key={`arrow-forward-${index}`}>
-                                    <ArrowForwardIos/>
-                                </div>
-                        }
-                        {
-                            card.selectedValue ?
-                            <IndicatorCard
-                                label={card.label}
-                                current={actor}
-                                parent={parent}
-                                isActive={isActive}
-                                onDeSelect={() => deselectFilterHandler(card.type)}
-                                key={`indicator-card-${card.selectedValue}`}
-                            />
-                            :
-                            <div className={ actors.length > 1 ? "review__card-actor-selected" : "review__card" } key={`review-card-div-${index}`}>
-                                <LevelCard
-                                    label={card.label}
-                                    key={`level-card-${card.label}`}
-                                    disabled={card.options?.length === 0}
-                                    buttonDisabled={cards[1].options.length === 0}
-                                    selectedValue={card.selectedValue}
-                                    placeholder={card.placeholder}
-                                    onSelect={(option: DropdownOption) => onActorSelect(option, card.type, card.label)}
-                                    onDeSelect={() => deselectFilterHandler(card.type) }
-                                    options={card.options}
-                                    isCity={index === 2 ? isCity : undefined}
-                                    onButtonSwap={index === 2 ? () => setIsCity(!isCity) : undefined}
-                                />
+            { cards.map((card, index) =>
+                <React.Fragment key={`card-fragment-${card.label}`}>
+                    {
+                        actors.length > 1 &&
+                            <div className="review__arrow-forward" key={`arrow-forward-${index}`}>
+                                <ArrowForwardIos/>
                             </div>
-                        }
-                    </React.Fragment>
-            })}
+                    }
+                    {
+                        card.selectedValue ?
+                        <IndicatorCard
+                            label={card.label}
+                            current={getActorByType(actors, card.type)}
+                            parent={getParentByType(actors, card.type)}
+                            isActive={getActiveByType(actors, card.type)}
+                            onDeSelect={() => deselectFilterHandler(card.type)}
+                            key={`indicator-card-${card.selectedValue}`}
+                        />
+                        :
+                        <div className={ actors.length > 1 ? "review__card-actor-selected" : "review__card" } key={`review-card-div-${index}`}>
+                            <LevelCard
+                                label={card.label}
+                                key={`level-card-${card.label}`}
+                                disabled={card.options?.length === 0}
+                                buttonDisabled={cards[1].options.length === 0}
+                                selectedValue={card.selectedValue}
+                                placeholder={card.placeholder}
+                                onSelect={(option: DropdownOption) => onActorSelect(option, card.type, card.label)}
+                                onDeSelect={() => deselectFilterHandler(card.type) }
+                                options={card.options}
+                                isCity={index === 2 ? isCity : undefined}
+                                onButtonSwap={index === 2 ? () => setIsCity(!isCity) : undefined}
+                            />
+                        </div>
+                    }
+                </React.Fragment>
+            )}
 
         </div>
     )
