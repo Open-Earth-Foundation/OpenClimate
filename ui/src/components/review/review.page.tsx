@@ -78,20 +78,20 @@ const ReviewPage: FunctionComponent = () => {
     }
 
     const deselectFilterHandler = (filterType: FilterTypes) => {
-        let newActorsList = actors.slice();
         switch (filterType) {
             case FilterTypes.City:
             case FilterTypes.Company:
-                newActorsList.splice(3, 1);
-                break;
+                newActorsList = actors.slice(0, 3)
+                break
             case FilterTypes.SubNational:
-                newActorsList.splice(2,2);
+                newActorsList = actors.slice(0, 2)
                 break;
             case FilterTypes.National:
-                newActorsList.splice(1,3);
+                newActorsList = actors.slice(0, 1)
                 break;
         }
-        history.push(`/actor/${newActorsList[newActorsList.length - 1].actor_id}`);
+        const actor_id = newActorsList[newActorsList.length - 1].actor_id
+        history.push((actor_id === 'EARTH') ? '/' : `/actor/${actor_id}`);
         setActors(newActorsList);
     }
 
