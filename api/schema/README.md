@@ -335,6 +335,8 @@ Targets are usually unique for a target type, target year, target unit, and acto
 - `URL`: URL of a human-readable document on the target.
 - `summary`: a short summary in English of the target.
 - `datasource_id`: ID of the [DataSource](#datasource) this sector information came from.
+- `initiative_id`: if this target is part of an
+[Initiative](#initiative), its ID goes here.
 - `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
 - `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
 
