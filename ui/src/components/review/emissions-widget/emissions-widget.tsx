@@ -293,7 +293,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                         </div>
                     </div>
                     {
-                        current.type !== "company" && (
+                        current.type !== "site" && (
                         <div className="emissions-widget__emissions-data data-per-capita">
                             <div className="icon-wrapper">
                                 <MdOutlinePeopleAlt className="people-alt-icon"/>
