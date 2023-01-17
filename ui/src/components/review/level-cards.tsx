@@ -214,6 +214,9 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
     }, [isCity])
 
+    // evanp: I broke the component because we can have hidden values when we use the 'recursive' flag.
+    // So instead of card index == actor index, we have to check by type for all these values
+
     const getActorByType = (actors, type) => {
         switch (type) {
             case FilterTypes.City:
@@ -247,20 +250,24 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
     }
 
     const getActiveByType = (actors, type) => {
-        const last = actors[actors.length - 1]
-        switch (type) {
-            case FilterTypes.Company:
-                return last.type == 'site'
-                break
-            case FilterTypes.City:
-                return last.type == 'city'
-                break
-            case FilterTypes.SubNational:
-                return last.type == 'adm1' || last.type == 'adm2'
-                break
-            case FilterTypes.National:
-                return last.type == 'country'
-                break
+        if (actors.length === 0) {
+            return false
+        } else {
+            const last = actors[actors.length - 1]
+            switch (type) {
+                case FilterTypes.Company:
+                    return last.type == 'site'
+                    break
+                case FilterTypes.City:
+                    return last.type == 'city'
+                    break
+                case FilterTypes.SubNational:
+                    return last.type == 'adm1' || last.type == 'adm2'
+                    break
+                case FilterTypes.National:
+                    return last.type == 'country'
+                    break
+            }
         }
     }
 
