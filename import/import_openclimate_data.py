@@ -38,7 +38,7 @@ def import_row(curs, table, pkey, row):
         ON CONFLICT ({", ".join(map(lambda col: f'"{col}"', pkey))})
         DO UPDATE
             SET ({", ".join(map(lambda col: f'"{col}"', toupdate))}) = ({", ".join(map(lambda col: f'EXCLUDED."{col}"', toupdate))})
-            WHERE {" OR ".join(map(lambda col: f'"{table}"."{col}" IS NOT NULL' if (row[col] == '') else f'"{table}"."{col}" != EXCLUDED."{col}"', toupdate[:-1]))}
+            WHERE {" OR ".join(map(lambda col: f'("{table}"."{col}" IS NULL AND EXCLUDED."{col}" IS NOT NULL) OR ("{table}"."{col}" IS NOT NULL AND EXCLUDED."{col}" IS NULL) OR ("{table}"."{col}" != EXCLUDED."{col}")', toupdate[:-1]))}
         '''
     else:
         qry = f'''
