@@ -4,6 +4,8 @@ import {Actor} from './actor'
 import {DataSource} from './datasource'
 import {Publisher} from './publisher'
 import {Target} from './target'
+import {Initiative} from './initiative'
+
 const disconnect = require('./init').disconnect
 
 const publisherProps = {
@@ -80,9 +82,43 @@ const regionTarget1Props = {
     summary: "#3 target by a region to make some changes"
 }
 
+// With an initiative
+
+const region2Props = {
+    actor_id: "target.test.ts:actor:region:2",
+    type: "adm1",
+    name: "Fake region actor from target.test.ts",
+    is_part_of: countryProps.actor_id,
+    datasource_id: datasourceProps.datasource_id
+}
+
+const initiativeProps = {
+    initiative_id: "target.test.ts:initiative:1",
+    name: "Fake initiative from target.test.ts",
+    description: "This initiative is fake",
+    URL: "https://fake.example/datasource",
+    datasource_id: datasourceProps.datasource_id
+}
+
+const initiativeTargetProps = {
+    target_id: "target.test.ts:target:4",
+    actor_id: region2Props.actor_id,
+    target_type: "percent",
+    baseline_year: 2022,
+    baseline_value: 10000000,
+    target_year: 2030,
+    target_value: 75,
+    target_units: "percent",
+    datasource_id: datasourceProps.datasource_id,
+    URL: "https://fake.example/regiontarget4",
+    summary: "#4 target by a region to make some changes",
+    initiative_id: initiativeProps.initiative_id
+}
+
 async function cleanup() {
 
    await Target.destroy({where: {datasource_id: datasourceProps.datasource_id}})
+   await Initiative.destroy({where: {datasource_id: datasourceProps.datasource_id}})
    await Actor.destroy({where: {datasource_id: datasourceProps.datasource_id}})
    await DataSource.destroy({where: {datasource_id: datasourceProps.datasource_id}})
    await Publisher.destroy({where: {id: publisherProps.id}})
@@ -98,6 +134,8 @@ beforeAll(async () => {
     await DataSource.create(datasourceProps)
     await Actor.create(countryProps)
     await Actor.create(regionProps)
+    await Actor.create(region2Props)
+    await Initiative.create(initiativeProps)
 })
 
 afterAll(async () => {
@@ -146,4 +184,36 @@ it("can create and get targets", async () => {
         c2.destroy(),
         r1.destroy()
     ])
+})
+
+
+it("can create and get a target with associated initiative", async () => {
+
+    let target = await Target.create(initiativeTargetProps)
+
+    // Match on primary key
+
+    let match = await Target.findByPk(initiativeTargetProps.target_id)
+
+    expect(match.initiative_id).toBeDefined()
+    expect(typeof(match.initiative_id)).toEqual("string")
+    expect(match.initiative_id).toEqual(initiativeTargetProps.initiative_id)
+
+    // Match on initiative ID
+
+    let matches = await Target.findAll({where: {
+        initiative_id: initiativeProps.initiative_id
+    }})
+
+    expect(matches.length).toEqual(1)
+
+    await target.destroy()
+
+    // Match on initiative ID
+
+    matches = await Target.findAll({where: {
+        initiative_id: initiativeProps.initiative_id
+    }})
+
+    expect(matches.length).toEqual(0)
 })

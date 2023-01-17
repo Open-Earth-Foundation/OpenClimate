@@ -3,6 +3,7 @@
 import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op, Sequelize} from 'sequelize';
 import {DataSource} from './datasource'
 import {Actor} from './actor'
+import {Initiative} from './initiative'
 
 const init = require('./init.ts');
 export const sequelize = init.connect();
@@ -22,6 +23,7 @@ export class Target extends Model <InferAttributes<Target>, InferCreationAttribu
     declare URL: string;
     declare summary: string;
     declare datasource_id: string;
+    declare initiative_id: string;
     declare created: CreationOptional<Date>;
     declare last_updated: CreationOptional<Date>;
 }
@@ -76,6 +78,13 @@ Target.init({
         references: {
             model: DataSource,
             key: "datasource_id"
+        }
+    },
+    initiative_id: {
+        type: DataTypes.STRING,
+        references: {
+            model: Initiative,
+            key: "initiative_id"
         }
     },
     created: {
