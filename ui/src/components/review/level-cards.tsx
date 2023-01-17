@@ -153,9 +153,11 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
             const city = actors.find(actor => actor.type == 'city')
             const site = actors.find(actor => actor.type == 'site')
 
-            if (city && !isCity) {
+            // evanp: these need to be in this order; a site can be in a city!
+
+            if (site && isCity) {
                 setIsCity(true)
-            } else if (site && isCity) {
+            } else if (city && !isCity)
                 setIsCity(false)
             }
 
@@ -164,10 +166,12 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
                 options[2] = await getOptions(region.actor_id, isCity ? 'city' : 'site')
             }
 
-            if (city) {
-                selected[2] = city.actor_id
-            } else if (site) {
+            // evanp: these need to be in this order; a site can be in a city!
+
+            if (site) {
                 selected[2] = site.actor_id
+            } else if (city) {
+                selected[2] = city.actor_id
             }
 
             let tempCard = cards.slice()
