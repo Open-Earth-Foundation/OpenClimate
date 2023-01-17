@@ -2,6 +2,8 @@ require('dotenv').config()
 
 let Images = require('../orm/images')
 
+const logger = require('../logger').child({module: __filename})
+
 // Perform Agent Business Logic
 
 const getAll = async () => {
@@ -9,7 +11,7 @@ const getAll = async () => {
     const images = await Images.readImages()
     return images
   } catch (error) {
-    console.error('Error Fetching Images')
+    logger.error('Error Fetching Images')
     throw error
   }
 }
@@ -19,7 +21,7 @@ const getImagesByType = async (type) => {
     const images = await Images.readImagesByType(type)
     return images
   } catch (error) {
-    console.error('Error Fetching Images by Type')
+    logger.error('Error Fetching Images by Type')
     throw error
   }
 }
@@ -38,7 +40,7 @@ const setImage = async (name, type, image) => {
     !image.includes('data:image/gif;base64,') &&
     !image.includes('data:image/webp;base64,')
   ) {
-    console.log('This is not an image.')
+    logger.debug('This is not an image.')
     return {error: 'ERROR: must be a valid image.'}
   }
 
@@ -47,7 +49,7 @@ const setImage = async (name, type, image) => {
     const updatedImage = await Images.readImagesByType('logo')
     return updatedImage
   } catch (error) {
-    console.error('Error updating logo')
+    logger.error('Error updating logo')
     throw error
   }
 }

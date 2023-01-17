@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const NodeMailer = require('../nodeMailer')
 const SMTP = require('./settings')
 import {Utils} from '../util'
+const logger = require('../logger').child({module: __filename})
 
 const Websockets = require('../websockets.ts')
 import * as Users from '../orm/users'
@@ -202,10 +203,10 @@ async function smtpCheck() {
   return new Promise((resolve, reject) => {
     transporter.verify(function (error, success) {
       if (error) {
-        console.log(error)
+        logger.debug(error)
         reject(false)
       } else {
-        console.log('Server is ready to take our messages')
+        logger.debug('Server is ready to take our messages')
         resolve(success)
       }
     })
@@ -217,7 +218,7 @@ export async function getUser(userID) {
     const user = await Users.readUser(userID)
     return user
   } catch (error) {
-    console.error('Error Fetching User')
+    logger.error('Error Fetching User')
     throw error
   }
 }
@@ -226,7 +227,7 @@ export async function getUserByToken(userToken) {
     const user = await Users.readUserByToken(userToken)
     return user
   } catch (error) {
-    console.error('Error Fetching User by Token')
+    logger.error('Error Fetching User by Token')
     throw error
   }
 }
@@ -236,7 +237,7 @@ export async function getUserByEmail(userEmail) {
     const user = await Users.readUserByEmail(userEmail)
     return user
   } catch (error) {
-    console.error('Error Fetching User by Email')
+    logger.error('Error Fetching User by Email')
     throw error
   }
 }
@@ -252,7 +253,7 @@ export async function getAll () {
 
     return users
   } catch (error) {
-    console.error('Error Fetching Users')
+    logger.error('Error Fetching Users')
     throw error
   }
 }
@@ -262,7 +263,7 @@ export async function createUser (organization_id, email, first_name, last_name,
   try {
     await smtpCheck()
   } catch (error) {
-    console.error(
+    logger.error(
       'USER ERROR: Cannot verify SMTP configurations. Error code: ',
       error,
     )
@@ -326,7 +327,7 @@ export async function createUser (organization_id, email, first_name, last_name,
     // Return true to trigger the success message
     return true
   } catch (error) {
-    console.error('Error Fetching User')
+    logger.error('Error Fetching User')
     throw error
   }
 }
@@ -345,19 +346,19 @@ export async function updateUser (
   try {
     // Checks for updating the user by admin
     if (!email) {
-      console.log('ERROR: email is empty.')
+      logger.debug('ERROR: email is empty.')
       return {error: 'USER ERROR: All fields must be filled out.'}
     }
 
     if (roles) {
       if (!Array.isArray(roles) || !roles.length) {
-        console.log('ERROR: All fields must be filled out.')
+        logger.debug('ERROR: All fields must be filled out.')
         return {error: 'USER ERROR: Roles are empty.'}
       }
     }
 
     if (!Utils.validateEmail(email)) {
-      console.log('ERROR: Must be a valid email.')
+      logger.debug('ERROR: Must be a valid email.')
       return {error: 'USER ERROR: Must be a valid email.'}
     }
 
@@ -391,7 +392,7 @@ export async function updateUser (
         try {
           await smtpCheck()
         } catch (error) {
-          console.error(
+          logger.error(
             'USER ERROR: Cannot verify SMTP configurations. Error code: ',
             error,
           )
@@ -450,12 +451,12 @@ export async function updateUser (
     // Broadcast the message to all connections
     Websockets.sendMessageToAll('USERS', 'USER_UPDATED', {updatedUser})
 
-    console.log('Updated user')
+    logger.debug('Updated user')
 
     // Return updatedUser (truthy) to trigger a success message
     return updatedUser
   } catch (error) {
-    console.error('Error Fetching User update')
+    logger.error('Error Fetching User update')
     throw new Error("Error Fetching User update")
   }
 }
@@ -473,7 +474,7 @@ export async function updatePassword (id, password) {
     const user = await Users.readUser(id)
     return user
   } catch (error) {
-    console.error('Error Fetching Password update')
+    logger.error('Error Fetching Password update')
     throw error
   }
 }
@@ -488,7 +489,7 @@ export async function deleteUser (userID) {
     // Return true to trigger a success message
     return true
   } catch (error) {
-    console.error('Error Fetching User')
+    logger.error('Error Fetching User')
     throw error
   }
 }
@@ -498,7 +499,7 @@ export async function resendAccountConfirmation (email) {
   try {
     await smtpCheck()
   } catch (error) {
-    console.error(
+    logger.error(
       "USER ERROR: can't verify SMTP configurations. Error code: ",
       error,
     )
@@ -548,7 +549,7 @@ export async function resendAccountConfirmation (email) {
     // Return true to trigger the success message
     return true
   } catch (error) {
-    console.error('Error Fetching User')
+    logger.error('Error Fetching User')
     throw error
   }
 }

@@ -1,6 +1,7 @@
 require('dotenv').config()
 const nodemailer = require('nodemailer')
 const Settings = require('./agentLogic/settings')
+const nml = require('./logger').child({module: __filename})
 
 interface currentSMTP {
   dataValues?: any
@@ -25,15 +26,15 @@ async function emailService() {
 const sendMail = async (message) => {
   const transporter = await emailService()
 
-  console.log('sending email')
+  nml.debug('sending email')
   transporter.sendMail(message, (error, info) => {
     if (error) {
-      console.log('Error occurred')
-      console.log(error.message)
+      nml.debug('Error occurred')
+      nml.debug(error.message)
     }
 
-    console.log('Message sent successfully!')
-    console.log(nodemailer.getTestMessageUrl(info))
+    nml.debug('Message sent successfully!')
+    nml.debug(nodemailer.getTestMessageUrl(info))
 
     // Only needed when using pooled connections
     transporter.close()

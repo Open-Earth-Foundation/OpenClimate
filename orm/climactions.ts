@@ -2,6 +2,7 @@ import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOpti
 
 const init = require('./init.ts')
 const sequelize = init.connect()
+const logger = require('../logger').child({module: __filename})
 
 class Climactions extends Model <InferAttributes<Climactions>, InferCreationAttributes<Climactions>> {
   declare id: CreationOptional<number>;
@@ -34,9 +35,9 @@ Climactions.init(
     },
   },
   {
-    sequelize, 
+    sequelize,
     modelName: 'Climactions',
-    tableName: 'climactions', 
+    tableName: 'climactions',
     timestamps: false,
   },
 )
@@ -53,7 +54,7 @@ const createClimaction = async function (organization_id, data) {
 
     return site
   } catch (error) {
-    console.error('Error saving climaction to the database: ', error)
+    logger.error('Error saving climaction to the database: ', error)
   }
 }
 
@@ -67,7 +68,7 @@ const readClimaction = async function (id) {
 
     return climaction[0]
   } catch (error) {
-    console.error('Could not find climaction by id in the database: ', error)
+    logger.error('Could not find climaction by id in the database: ', error)
   }
 }
 
@@ -81,7 +82,7 @@ const readClimactionsByOrgId = async function (organization_id) {
 
     return climactions
   } catch (error) {
-    console.error('Could not find climactions by id in the database: ', error)
+    logger.error('Could not find climactions by id in the database: ', error)
   }
 }
 
@@ -100,7 +101,7 @@ const readClimactionsByFacilityName = async function (facility_name, organizatio
 
     return climactions
   } catch (error) {
-    console.error('Could not find climactions by id in the database: ', error)
+    logger.error('Could not find climactions by id in the database: ', error)
   }
 }
 
@@ -110,7 +111,7 @@ const readClimactions = async function () {
 
     return climactions
   } catch (error) {
-    console.error('Could not find climactions in the database: ', error)
+    logger.error('Could not find climactions in the database: ', error)
   }
 }
 
@@ -132,10 +133,10 @@ const updateClimaction = async function (
       },
     )
 
-    console.log(`Climaction updated successfully.`)
+    logger.debug(`Climaction updated successfully.`)
     return organization
   } catch (error) {
-    console.error('Error updating the climaction: ', error)
+    logger.error('Error updating the climaction: ', error)
   }
 }
 

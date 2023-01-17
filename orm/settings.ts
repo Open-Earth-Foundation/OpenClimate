@@ -2,6 +2,7 @@ const {Sequelize, DataTypes, Model} = require('sequelize')
 
 const init = require('./init.ts')
 const sequelize = init.connect()
+const logger = require('../logger').child({module: __filename})
 
 class Setting extends Model {}
 
@@ -37,7 +38,7 @@ const readTheme = async function () {
     })
     return settings[0]
   } catch (error) {
-    console.error('Could not find theme in the database: ', error)
+    logger.error('Could not find theme in the database: ', error)
   }
 }
 
@@ -51,9 +52,9 @@ const updateTheme = async function (value) {
         },
       },
     )
-    console.log('Theme updated successfully.')
+    logger.debug('Theme updated successfully.')
   } catch (error) {
-    console.error('Error updating the theme: ', error)
+    logger.error('Error updating the theme: ', error)
   }
 }
 
@@ -67,7 +68,7 @@ const readSMTP = async function () {
     })
     return smtp[0]
   } catch (error) {
-    console.error('Could not find organization name in the database: ', error)
+    logger.error('Could not find organization name in the database: ', error)
   }
 }
 
@@ -81,9 +82,9 @@ const updateSMTP = async function (value) {
         },
       },
     )
-    console.log('SMTP updated successfully.')
+    logger.debug('SMTP updated successfully.')
   } catch (error) {
-    console.error('Error updating the SMTP: ', error)
+    logger.error('Error updating the SMTP: ', error)
   }
 }
 
@@ -97,7 +98,7 @@ const readOrganization = async function () {
     })
     return organization[0]
   } catch (error) {
-    console.error('Could not find organization name in the database: ', error)
+    logger.error('Could not find organization name in the database: ', error)
   }
 }
 
@@ -111,9 +112,9 @@ const updateOrganization = async function (value) {
         },
       },
     )
-    console.log('Organization name updated successfully.')
+    logger.debug('Organization name updated successfully.')
   } catch (error) {
-    console.error('Error updating the organization name: ', error)
+    logger.error('Error updating the organization name: ', error)
   }
 }
 

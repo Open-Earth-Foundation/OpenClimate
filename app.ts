@@ -42,7 +42,7 @@ require('./passport-config')(passport)
 
 // We use one Winston instance for the entire app
 
-const logger = require('./logger')
+const logger = require('./logger').child({module: __filename})
 
 export const app = express()
 
@@ -250,7 +250,7 @@ app.post('/api/user/passwordless-log-in', wrap(async (req, res) => {
       }
     }
   } catch (error) {
-    console.error(error)
+    req.logger.error(error)
     throw new InternalServerError('There was an error.')
   }
 }))
@@ -278,7 +278,7 @@ app.post('/api/user/token/validate', wrap(async (req, res) => {
     req.logger.debug(verify)
     res.status(200).json({status: 'The link is valid.'})
   } catch (err) {
-    console.error(err)
+    req.logger.error(err)
     throw new BadRequest('The link has expired.')
   }
 }))
@@ -447,7 +447,7 @@ app.get('/api/logo', wrap(async (req, res) => {
     req.logger.debug(logo)
     res.send(logo)
   } catch (err) {
-    console.error(err)
+    req.logger.error(err)
   }
 }))
 

@@ -10,6 +10,8 @@ const Schemas = require('./schemas')
 
 const Credentials = require('../orm/credentials.ts')
 
+const logger = require('../logger').child({module: __filename})
+
 // Perform Agent Business Logic
 
 const getCredential = async (credential_exchange_id) => {
@@ -18,11 +20,11 @@ const getCredential = async (credential_exchange_id) => {
       credential_exchange_id,
     )
 
-    console.log('Credential Record:', credentialRecord)
+    logger.debug('Credential Record:', credentialRecord)
 
     return credentialRecord
   } catch (error) {
-    console.error('Error Fetching Credential Record')
+    logger.error('Error Fetching Credential Record')
     throw error
   }
 }
@@ -34,7 +36,7 @@ const getCredentialsByConnectionId = async function (connection_id) {
     )
     return credentialRecords
   } catch (error) {
-    console.error('Error Fetching Credential Records by Connection ID')
+    logger.error('Error Fetching Credential Records by Connection ID')
   }
 }
 
@@ -42,20 +44,20 @@ const getAll = async () => {
   try {
     const credentialRecords = await Credentials.readCredentials()
 
-    console.log('Got all Credential Records')
+    logger.debug('Got all Credential Records')
 
     return credentialRecords
   } catch (error) {
-    console.error('Error Fetching Credential Records')
+    logger.error('Error Fetching Credential Records')
     throw error
   }
 }
 
 const adminMessage = async (credentialIssuanceMessage) => {
   try {
-    console.log('Received new Admin Webhook Message', credentialIssuanceMessage)
+    logger.debug('Received new Admin Webhook Message', credentialIssuanceMessage)
 
-    console.log(`State - ${credentialIssuanceMessage.state}`)
+    logger.debug(`State - ${credentialIssuanceMessage.state}`)
     var credentialRecord
     if (
       credentialIssuanceMessage.state === 'proposal_received' ||
@@ -139,7 +141,7 @@ const adminMessage = async (credentialIssuanceMessage) => {
       })
     }
   } catch (error) {
-    console.error('Error Storing Connection Message')
+    logger.error('Error Storing Connection Message')
     throw error
   }
 }
@@ -163,11 +165,11 @@ const autoIssueCredential = async (
     const connection = await Contacts.fetchConnection(connectionID)
 
     if (!connection) {
-      console.error('Connection Not Present')
+      logger.error('Connection Not Present')
       throw new ControllerError(2, 'Connection Not Present')
     }
     // else if (connection.state !== 'active') {
-    //   console.error('Connection Not Ready to Receive Credentials')
+    //   logger.error('Connection Not Ready to Receive Credentials')
     //   throw new ControllerError(3, 'Connection Not Active')
     // }
 
@@ -175,7 +177,7 @@ const autoIssueCredential = async (
     const publicDID = await DIDs.fetchPublicDID()
 
     if (!publicDID) {
-      console.error('Public DID Not Set')
+      logger.error('Public DID Not Set')
       throw new ControllerError(4, 'Public DID Not Set')
     }
 
@@ -190,7 +192,7 @@ const autoIssueCredential = async (
     )
 
     if (credDefIDs.length <= 0) {
-      console.error('Credential Definition ID Invalid')
+      logger.error('Credential Definition ID Invalid')
       throw new ControllerError(5, 'Credential Definition ID Invalid')
     }
 
@@ -201,12 +203,12 @@ const autoIssueCredential = async (
     const schema = await Schemas.fetchSchema(schemaID)
 
     if (!schema) {
-      console.error('Schema ID Invalid')
+      logger.error('Schema ID Invalid')
       throw new ControllerError(6, 'Schema ID Invalid')
     }
     // Check to see if the schema used in the cred def is the specified schema
     else if (schema.seqNo != credDef.schemaId) {
-      console.error(
+      logger.error(
         "Credential Definition's Schema Doesn't Match The Supplied Schema",
       )
       throw new ControllerError(
@@ -227,7 +229,7 @@ const autoIssueCredential = async (
       })
 
       if (!accounted) {
-        console.error('Attribute(s) Not Assigned Values')
+        logger.error('Attribute(s) Not Assigned Values')
         throw new ControllerError(8, 'Attribute(s) Not Assigned Values')
       }
     }
@@ -246,7 +248,7 @@ const autoIssueCredential = async (
       false,
     )
   } catch (error) {
-    console.error('Error Issuing Credential')
+    logger.error('Error Issuing Credential')
     throw error
   }
 }

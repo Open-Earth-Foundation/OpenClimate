@@ -1,12 +1,15 @@
 // Utilities:
 // Encode and decode Base64
+
+const logger = require('./logger').child({module: __filename})
+
 const decodeBase64 = (encodedMessage) => {
-  console.log('Decoding encoded Base64 message')
+  logger.debug('Decoding encoded Base64 message')
   return Buffer.from(encodedMessage, 'base64').toString('ascii')
 }
 
 const encodeBase64 = (message) => {
-  console.log('Encoding message to Base64')
+  logger.debug('Encoding message to Base64')
   return Buffer.from(message).toString('base64')
 }
 
@@ -19,7 +22,7 @@ function validateEmail(email) {
 
 function validateAlphaNumeric(username) {
   const re = /^[a-zA-Z0-9\.].{2,}$/ // Alphanumeric, at least 3 characters
-  console.log(re.test(username))
+  logger.debug(re.test(username))
   return re.test(String(username))
 }
 

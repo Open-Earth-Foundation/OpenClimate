@@ -1,9 +1,10 @@
 const sendAdminMessage = require('./transport')
+const logger = require('../logger').child({module: __filename})
 
 // Admin API Call to fetch a schema
 const fetchSchema = async (schema_id) => {
   try {
-    console.log('Fetching Schema')
+    logger.debug('Fetching Schema')
 
     const schema = await sendAdminMessage(
       'get',
@@ -14,7 +15,7 @@ const fetchSchema = async (schema_id) => {
 
     return schema.schema
   } catch (error) {
-    console.error('Fetching Schema Error')
+    logger.error('Fetching Schema Error')
     throw error
   }
 }

@@ -1,9 +1,10 @@
 const axios = require('axios')
+const logger = require('../logger').child({module: __filename})
 
 // Function to send a request to the Cloud Agent Administration API
 const sendAdminMessage = async (method, path, params = {}, data = {}) => {
   try {
-    console.log('Sending Admin API Message', params)
+    logger.debug('Sending Admin API Message', params)
     const response = await axios({
       method: method,
       url: `${process.env.AGENTADDRESS || 'localhost:8150'}${path}`,
@@ -13,7 +14,7 @@ const sendAdminMessage = async (method, path, params = {}, data = {}) => {
 
     return response.data
   } catch (error) {
-    console.error('Admin API Request Error')
+    logger.error('Admin API Request Error')
     throw error
   }
 }

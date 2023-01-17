@@ -2,7 +2,7 @@ import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOpti
 
 const init = require('./init.ts')
 const sequelize = init.connect()
-
+const logger = require('../logger').child({module: __filename})
 
 class TrustedRegistry extends Model <InferAttributes<TrustedRegistry>, InferCreationAttributes<TrustedRegistry>> {
   declare id: CreationOptional<number>;
@@ -35,9 +35,9 @@ TrustedRegistry.init(
     },
   },
   {
-    sequelize, 
+    sequelize,
     modelName: 'TrustedRegistry',
-    tableName: 'trusted_registry', 
+    tableName: 'trusted_registry',
     timestamps: false,
   },
 )
@@ -53,7 +53,7 @@ export async function addTrustedDID (did, organization_name) {
 
     return trusted_did
   } catch (error) {
-    console.error('Error saving trusted_did to the database: ', error)
+    logger.error('Error saving trusted_did to the database: ', error)
   }
 }
 
@@ -67,7 +67,7 @@ export async function readTrustedDID(did) {
 
     return trusted_did
   } catch (error) {
-    console.error('Could not find trusted_did by id in the database: ', error)
+    logger.error('Could not find trusted_did by id in the database: ', error)
   }
 }
 
@@ -81,7 +81,7 @@ export async function checkTrustedDID(did) {
 
     return true
   } catch (error) {
-    console.error('Could not find trusted_did by id in the database: ', error)
+    logger.error('Could not find trusted_did by id in the database: ', error)
   }
 }
 
@@ -95,7 +95,7 @@ export async function readTrustedDIDByOrgName(organization_name) {
 
     return trusted_did
   } catch (error) {
-    console.error('Could not find trusted_dids by org name in the database: ', error)
+    logger.error('Could not find trusted_dids by org name in the database: ', error)
   }
 }
 
@@ -105,6 +105,6 @@ export async function readTrustedDIDs () {
 
     return trusted_did
   } catch (error) {
-    console.error('Could not find trusted_dids in the database: ', error)
+    logger.error('Could not find trusted_dids in the database: ', error)
   }
 }

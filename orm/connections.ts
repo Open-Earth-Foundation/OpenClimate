@@ -4,6 +4,7 @@ const { Contact, readBaseContact } = require('./contacts.ts')
 
 const init = require('./init.ts')
 let sequelize = init.connect()
+const logger = require('../logger').child({module: __filename})
 
 class Connection extends Model <InferAttributes<Connection>, InferCreationAttributes<Connection>> {
   declare connection_id: CreationOptional<number>;
@@ -171,10 +172,10 @@ const createConnection = async function (
       updated_at: timestamp
     })
 
-    console.log('Connection saved successfully.')
+    logger.debug('Connection saved successfully.')
     return connection
   } catch (error) {
-    console.error('Error saving connection to the database: ', error)
+    logger.error('Error saving connection to the database: ', error)
   }
 }
 
@@ -215,7 +216,7 @@ const createOrUpdateConnection = async function (
 
         // (JamesKEbert) TODO: Change upsert for a better mechanism, such as locking potentially.
         if (!connection) {
-          console.log('Creating Connection')
+          logger.debug('Creating Connection')
           let connection = await Connection.upsert({
             connection_id: connection_id,
             state: state,
@@ -240,7 +241,7 @@ const createOrUpdateConnection = async function (
             updated_at: timestamp
           })
         } else {
-          console.log('Updating Connection')
+          logger.debug('Updating Connection')
           let connection = await Connection.update(
             {
               connection_id: connection_id,
@@ -276,10 +277,10 @@ const createOrUpdateConnection = async function (
       },
     )
 
-    console.log('Connection saved successfully.')
+    logger.debug('Connection saved successfully.')
     return connection
   } catch (error) {
-    console.error('Error saving connection to the database: ', error)
+    logger.error('Error saving connection to the database: ', error)
     throw error
   }
 }
@@ -290,9 +291,9 @@ const linkContactAndConnection = async function (contact_id, connection_id) {
     const connection = await readConnection(connection_id)
     await contact.addConnection(connection, {})
 
-    console.log('Successfully linked contact and connection')
+    logger.debug('Successfully linked contact and connection')
   } catch (error) {
-    console.error('Error linking contact and connection', error)
+    logger.error('Error linking contact and connection', error)
     throw error
   }
 }
@@ -313,7 +314,7 @@ const readConnection = async function (connection_id) {
 
     return connection[0]
   } catch (error) {
-    console.error('Could not find connection in the database: ', error)
+    logger.error('Could not find connection in the database: ', error)
     throw error
   }
 }
@@ -329,7 +330,7 @@ const readConnectionByUserId = async function(userId) {
     })
     return connection[0]
   } catch (error) {
-    console.error('Could not find connection in the database: ', error)
+    logger.error('Could not find connection in the database: ', error)
     throw error
   }
 }
@@ -344,7 +345,7 @@ const readConnectionByTheirDID = async function(did) {
     })
     return connection[0]
   } catch (error) {
-    console.error('Could not find connection in the database: ', error)
+    logger.error('Could not find connection in the database: ', error)
     throw error
   }
 }
@@ -362,7 +363,7 @@ const readConnections = async function () {
 
     return connections
   } catch (error) {
-    console.error('Could not find connections in the database: ', error)
+    logger.error('Could not find connections in the database: ', error)
     throw error
   }
 }
@@ -375,10 +376,10 @@ const readInvitations = async function (connection_id) {
       },
     })
 
-    console.log('All invitations:', JSON.stringify(invitations, null, 2))
+    logger.debug('All invitations:', JSON.stringify(invitations, null, 2))
     return invitations
   } catch (error) {
-    console.error('Could not find connection in the database: ', error)
+    logger.error('Could not find connection in the database: ', error)
     throw error
   }
 }
@@ -392,10 +393,10 @@ const readInvitationByAlias = async function (alias) {
       },
     })
 
-    console.log('Requested Invitation:', JSON.stringify(connection[0], null, 2))
+    logger.debug('Requested Invitation:', JSON.stringify(connection[0], null, 2))
     return connection[0]
   } catch (error) {
-    console.error('Could not find invitation in the database: ', error)
+    logger.error('Could not find invitation in the database: ', error)
     throw error
   }
 }
@@ -452,10 +453,10 @@ const updateConnection = async function (
       },
     )
 
-    console.log('Connection updated successfully.')
+    logger.debug('Connection updated successfully.')
     return connection
   } catch (error) {
-    console.error('Error updating the Connection: ', error)
+    logger.error('Error updating the Connection: ', error)
   }
 }
 
@@ -467,9 +468,9 @@ const deleteConnection = async function (connection_id) {
       },
     })
 
-    console.log('Successfully deleted connection')
+    logger.debug('Successfully deleted connection')
   } catch (error) {
-    console.error('Error while deleting connection: ', error)
+    logger.error('Error while deleting connection: ', error)
   }
 }
 

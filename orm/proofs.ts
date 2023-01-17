@@ -2,6 +2,7 @@ import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOpti
 
 const init = require('./init.ts')
 const sequelize = init.connect()
+const logger = require('../logger').child({module: __filename})
 
 class Proofs extends Model <InferAttributes<Proofs>, InferCreationAttributes<Proofs>> {
   declare id: CreationOptional<number>;
@@ -35,9 +36,9 @@ Proofs.init(
     },
   },
   {
-    sequelize, 
+    sequelize,
     modelName: 'Proofs',
-    tableName: 'proofs', 
+    tableName: 'proofs',
     timestamps: false,
   },
 )
@@ -54,7 +55,7 @@ const createProof = async function (user_id, cred_def_id) {
 
     return proof
   } catch (error) {
-    console.error('Error saving proof cred def to the database: ', error)
+    logger.error('Error saving proof cred def to the database: ', error)
   }
 }
 
@@ -68,7 +69,7 @@ const readProof = async function (id) {
 
     return proof[0]
   } catch (error) {
-    console.error('Could not find proof cred def by id in the database: ', error)
+    logger.error('Could not find proof cred def by id in the database: ', error)
   }
 }
 
@@ -82,7 +83,7 @@ const readProofsByUserId = async function (user_id) {
 
     return proofs
   } catch (error) {
-    console.error('Could not find proof cred def by user id in the database: ', error)
+    logger.error('Could not find proof cred def by user id in the database: ', error)
   }
 }
 
@@ -97,7 +98,7 @@ const readProofsByCredDef = async function (user_id, cred_def_id) {
 
     return proof[0]
   } catch (error) {
-    console.error('Could not find proof cred def by cred def id in the database: ', error)
+    logger.error('Could not find proof cred def by cred def id in the database: ', error)
   }
 }
 

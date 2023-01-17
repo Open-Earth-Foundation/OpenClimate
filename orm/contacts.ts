@@ -2,6 +2,7 @@ import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOpti
 
 const init = require('./init.ts')
 let sequelize = init.connect()
+const logger = require('../logger').child({module: __filename})
 
 class Contact extends Model <InferAttributes<Contact>, InferCreationAttributes<Contact>> {
   declare contact_id: CreationOptional<number>;
@@ -55,10 +56,10 @@ const createContact = async function (
       meta_data: meta_data
     })
 
-    console.log('Contact saved successfully.')
+    logger.debug('Contact saved successfully.')
     return contact
   } catch (error) {
-    console.error('Error saving contact to the database: ', error)
+    logger.error('Error saving contact to the database: ', error)
   }
 }
 
@@ -72,7 +73,7 @@ const readBaseContact = async function (contact_id) {
 
     return contact[0]
   } catch (error) {
-    console.error('Could not find contact in the database: ', error)
+    logger.error('Could not find contact in the database: ', error)
   }
 }
 
@@ -82,7 +83,7 @@ const readBaseContacts = async function () {
 
     return contacts
   } catch (error) {
-    console.error('Could not find contacts in the database: ', error)
+    logger.error('Could not find contacts in the database: ', error)
   }
 }
 
@@ -103,9 +104,9 @@ const updateContact = async function (contact_id, label, meta_data) {
       },
     )
 
-    console.log('Contact updated successfully.')
+    logger.debug('Contact updated successfully.')
   } catch (error) {
-    console.error('Error updating the Contact: ', error)
+    logger.error('Error updating the Contact: ', error)
   }
 }
 
@@ -117,9 +118,9 @@ const deleteContact = async function (contact_id) {
       },
     })
 
-    console.log('Successfully deleted contact')
+    logger.debug('Successfully deleted contact')
   } catch (error) {
-    console.error('Error while deleting contact: ', error)
+    logger.error('Error while deleting contact: ', error)
   }
 }
 

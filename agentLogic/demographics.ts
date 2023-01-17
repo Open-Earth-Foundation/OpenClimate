@@ -2,6 +2,7 @@ const Websockets = require('../websockets.ts')
 
 let ContactsCompiled = require('../orm/contactsCompiled.ts')
 let Demographics = require('../orm/demographics.ts')
+const logger = require('../logger').child({module: __filename})
 
 const updateOrCreateDemographic = async function (
   contact_id,
@@ -24,7 +25,7 @@ const updateOrCreateDemographic = async function (
 
     Websockets.sendMessageToAll('CONTACTS', 'CONTACTS', {contacts: [contact]})
   } catch (error) {
-    console.error('Error Fetching Contacts')
+    logger.error('Error Fetching Contacts')
     throw error
   }
 }

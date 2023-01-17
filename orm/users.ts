@@ -3,6 +3,7 @@ import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOpti
 
 const init = require('./init.ts')
 const sequelize = init.connect()
+const logger = require('../logger').child({module: __filename})
 
 export class User extends Model <InferAttributes<User>, InferCreationAttributes<User>> {
   declare user_id: CreationOptional<number>;
@@ -17,7 +18,7 @@ export class User extends Model <InferAttributes<User>, InferCreationAttributes<
   // updatedAt can be undefined during creation
   declare updated_at: CreationOptional<Date>;
   declare organization_id: number;
-  
+
 }
 
 User.init(
@@ -51,7 +52,7 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    
+
   },
   {
     sequelize, // Pass the connection instance
@@ -112,10 +113,10 @@ export async function linkRoleAndUser(role_id, user_id) {
       user_id,
       role_id
     })
-    console.log(addRole)
-    console.log('Successfully linked user and role')
+    logger.debug(addRole)
+    logger.debug('Successfully linked user and role')
   } catch (error) {
-    console.error('Error linking user and role', error)
+    logger.error('Error linking user and role', error)
   }
 }
 
@@ -127,10 +128,10 @@ export async function createRole (role_name) {
       role_name,
     })
 
-    console.log('Role saved successfully.')
+    logger.debug('Role saved successfully.')
     return role
   } catch (error) {
-    console.error('Error saving role to the database: ', error)
+    logger.error('Error saving role to the database: ', error)
   }
 }
 
@@ -144,7 +145,7 @@ export async function readRole (role_id) {
 
     return role[0]
   } catch (error) {
-    console.error('Could not find role in the database: ', error)
+    logger.error('Could not find role in the database: ', error)
   }
 }
 
@@ -154,7 +155,7 @@ export async function readRoles () {
 
     return roles
   } catch (error) {
-    console.error('Could not find roles in the database: ', error)
+    logger.error('Could not find roles in the database: ', error)
   }
 }
 
@@ -174,9 +175,9 @@ export async function updateRole (role_id, role_name) {
       },
     )
 
-    console.log('Role updated successfully.')
+    logger.debug('Role updated successfully.')
   } catch (error) {
-    console.error('Error updating the Role: ', error)
+    logger.error('Error updating the Role: ', error)
   }
 }
 
@@ -188,9 +189,9 @@ export async function deleteRole (role_id) {
       },
     })
 
-    console.log('Successfully deleted role')
+    logger.debug('Successfully deleted role')
   } catch (error) {
-    console.error('Error while deleting role: ', error)
+    logger.error('Error while deleting role: ', error)
   }
 }
 
@@ -206,7 +207,7 @@ export async function createUser (organization_id, email, first_name, last_name)
 
     return user
   } catch (error) {
-    console.error('Error saving user to the database: ', error)
+    logger.error('Error saving user to the database: ', error)
   }
 }
 
@@ -229,7 +230,7 @@ export async function readUser (user_id) {
 
     return user[0]
   } catch (error) {
-    console.error('Could not find user by id in the database: ', error)
+    logger.error('Could not find user by id in the database: ', error)
   }
 }
 
@@ -252,7 +253,7 @@ export async function readUserByToken (token) {
 
     return user[0]
   } catch (error) {
-    console.error('Could not find user by token in the database: ', error)
+    logger.error('Could not find user by token in the database: ', error)
   }
 }
 
@@ -275,7 +276,7 @@ export async function readUserByEmail (email) {
 
     return user[0]
   } catch (error) {
-    console.error('Could not find user by email in the database: ', error)
+    logger.error('Could not find user by email in the database: ', error)
   }
 }
 
@@ -295,7 +296,7 @@ export async function readUsers () {
 
     return users
   } catch (error) {
-    console.error('Could not find users in the database: ', error)
+    logger.error('Could not find users in the database: ', error)
   }
 }
 
@@ -327,10 +328,10 @@ export async function updateUserInfo (
 
     const user = readUser(user_id)
 
-    console.log(`User updated successfully.`)
+    logger.debug(`User updated successfully.`)
     return user
   } catch (error) {
-    console.error('Error updating the User: ', error)
+    logger.error('Error updating the User: ', error)
   }
 }
 
@@ -350,9 +351,9 @@ export async function updateUserPassword (user_id, password) {
       },
     )
 
-    console.log('Password updated successfully.')
+    logger.debug('Password updated successfully.')
   } catch (error) {
-    console.error('Error updating the password: ', error)
+    logger.error('Error updating the password: ', error)
   }
 }
 
@@ -364,10 +365,10 @@ export async function deleteUser (user_id) {
       },
     })
 
-    console.log('User was successfully deleted')
+    logger.debug('User was successfully deleted')
     return user_id
   } catch (error) {
-    console.error('Error while deleting user: ', error)
+    logger.error('Error while deleting user: ', error)
   }
 }
 
@@ -379,9 +380,9 @@ export async function deleteRolesUserConnection (user_id) {
       },
     })
 
-    console.log('User roles connection was successfully deleted')
+    logger.debug('User roles connection was successfully deleted')
   } catch (error) {
-    console.error('Error while deleting user: ', error)
+    logger.error('Error while deleting user: ', error)
   }
 }
 

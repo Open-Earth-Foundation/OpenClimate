@@ -2,6 +2,7 @@ const {Sequelize, DataTypes, Model} = require('sequelize')
 
 const init = require('./init.ts')
 const sequelize = init.connect()
+const logger = require('../logger').child({module: __filename})
 
 class Pledges extends Model {}
 
@@ -81,9 +82,9 @@ Pledges.init(
     },
   },
   {
-    sequelize, 
+    sequelize,
     modelName: 'Pledges',
-    tableName: 'pledges', 
+    tableName: 'pledges',
     timestamps: false,
   },
 )
@@ -120,7 +121,7 @@ const createPledge = async function (organization_id, data) {
 
     return pledge
   } catch (error) {
-    console.error('Error saving pledge to the database: ', error)
+    logger.error('Error saving pledge to the database: ', error)
   }
 }
 
@@ -134,7 +135,7 @@ const readPledge = async function (pledge_id) {
 
     return pledge[0]
   } catch (error) {
-    console.error('Could not find pledge by id in the database: ', error)
+    logger.error('Could not find pledge by id in the database: ', error)
   }
 }
 
@@ -148,7 +149,7 @@ const readPledgeByOrgId = async function (id) {
 
     return pledges
   } catch (error) {
-    console.error('Could not find pledges by id in the database: ', error)
+    logger.error('Could not find pledges by id in the database: ', error)
   }
 }
 
@@ -158,7 +159,7 @@ const readPledges = async function () {
 
     return pledges
   } catch (error) {
-    console.error('Could not find pledges in the database: ', error)
+    logger.error('Could not find pledges in the database: ', error)
   }
 }
 
@@ -199,10 +200,10 @@ const updatePledges = async function (
       },
     )
 
-    console.log(`Pledge updated successfully.`)
+    logger.debug(`Pledge updated successfully.`)
     return pledge
   } catch (error) {
-    console.error('Error updating the Pledge: ', error)
+    logger.error('Error updating the Pledge: ', error)
   }
 }
 

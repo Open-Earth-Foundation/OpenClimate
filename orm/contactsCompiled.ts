@@ -3,6 +3,8 @@ const { Connection } = require('./connections.ts')
 const { Demographic } = require('./demographics.ts')
 const { Passport } = require('./passports.ts')
 
+const logger = require('../logger').child({module: __filename})
+
 const readContacts = async function (additionalTables = []) {
   try {
     let models = []
@@ -31,7 +33,7 @@ const readContacts = async function (additionalTables = []) {
     })
     return contacts
   } catch (error) {
-    console.error('Could not find contacts in the database: ', error)
+    logger.error('Could not find contacts in the database: ', error)
   }
 }
 
@@ -67,7 +69,7 @@ const readContact = async function (contact_id, additionalTables = []) {
 
     return contact[0]
   } catch (error) {
-    console.error('Could not find contact in the database: ', error)
+    logger.error('Could not find contact in the database: ', error)
   }
 }
 
@@ -106,7 +108,7 @@ const readContactByConnection = async function (
 
     return contact[0]
   } catch (error) {
-    console.error('Could not find contact in the database: ', error)
+    logger.error('Could not find contact in the database: ', error)
   }
 }
 

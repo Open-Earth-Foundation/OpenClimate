@@ -4,6 +4,7 @@ import { Methodology } from "./methodologies";
 
 const init = require('./init.ts');
 const sequelize = init.connect();
+const logger = require('../logger').child({module: __filename})
 
 export class DataProvider extends Model <InferAttributes<DataProvider>, InferCreationAttributes<DataProvider>> {
     declare data_provider_id: CreationOptional<number>;
@@ -67,6 +68,6 @@ export const getAllProviders = async () => {
         });
         return providers;
     } catch (error){
-        console.error('Country not found: ', error.message)
-    }    
+        logger.error('Country not found: ', error.message)
+    }
 }
