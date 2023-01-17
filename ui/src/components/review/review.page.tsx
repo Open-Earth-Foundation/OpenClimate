@@ -78,6 +78,7 @@ const ReviewPage: FunctionComponent = () => {
     }
 
     const deselectFilterHandler = (filterType: FilterTypes) => {
+        let newActorsList = null
         switch (filterType) {
             case FilterTypes.City:
             case FilterTypes.Company:
