@@ -134,7 +134,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
     useEffect(() => {
 
-        const setupLevels = async() => {
+        const setupLevels = async () => {
 
             const options = Array(3).fill([])
             const selected = Array(3).fill('')
@@ -157,7 +157,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
             if (site && isCity) {
                 setIsCity(true)
-            } else if (city && !isCity)
+            } else if (city && !isCity) {
                 setIsCity(false)
             }
 
