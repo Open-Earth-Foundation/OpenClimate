@@ -36,15 +36,4 @@ jobs:
         docker tag $IMAGE:$VERSION $IMAGE:latest
         docker push $IMAGE:$VERSION
         docker push $IMAGE:latest
-
-    - name: Pushing OC-API to ECR
-      env:
-        VERSION: ${{ github.sha }}
-        IMAGE: public.ecr.aws/openearthfoundation/openclimate-api
-
-      run: |
-        docker build -t $IMAGE:$VERSION api
-        docker tag $IMAGE:$VERSION $IMAGE:latest
-        docker push $IMAGE:$VERSION
-        docker push $IMAGE:latest
-
+        
