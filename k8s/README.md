@@ -2,9 +2,11 @@
 
 ## postgresql
 
-Edit `postgresql-persistentvolume` so it uses a path in your own home directory.
+You need to run this first:
 
-TODO: we need to figure out a good place to put this so it works on everyone's local machine without modification.
+```
+mkdir -p /Users/Shared/data/openclimate/
+```
 
 Then, apply all these files:
 
