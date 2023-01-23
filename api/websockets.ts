@@ -414,7 +414,7 @@ const messageHandler = async (ws, context, type, data, userCookieParsed) => {
             //   if (check(rules, userCookieParsed, 'organizations:delete')) {
             //     const deletedOrganization = await Organizations.deleteOrganization(data)
             //     if (deletedOrganization === true) {
-            //       console.log('Organization was deleted WS')
+            //
             //       sendMessage(
             //         ws,
             //         'ORGANIZATIONS',
@@ -723,7 +723,6 @@ const messageHandler = async (ws, context, type, data, userCookieParsed) => {
           case 'SET_LOGO':
             if (check(rules, userCookieParsed, 'settings:update')) {
               logger.debug('SET_LOGO')
-              // console.log(data)
               const newImage = await Images.setImage(
                 data.name,
                 data.type,
@@ -766,7 +765,6 @@ const messageHandler = async (ws, context, type, data, userCookieParsed) => {
             // if (!getUser.user_id) {
             //   sendMessage(ws, 'USERS', 'USER_ERROR', getUser)
             // }
-            // console.log("User ", getUser)
             try {
               const conn = await Connections.readConnectionByTheirDID(data.did)
               if (conn.connection_id){
