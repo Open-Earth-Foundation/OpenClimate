@@ -13,7 +13,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   local:
-    path: "/var/local/openclimate/postgresql"
+    path: "/Users/evanp/data/openclimate"
   nodeAffinity:
     required:
       nodeSelectorTerms:

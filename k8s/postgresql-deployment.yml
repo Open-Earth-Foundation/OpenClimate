@@ -5,7 +5,7 @@ metadata:
   labels:
     app: postgresql
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: postgresql
@@ -14,6 +14,10 @@ spec:
       labels:
         app: postgresql
     spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: postgresql-persistentvolumeclaim
       containers:
       - name: postgresql
         image: postgres:14
@@ -29,3 +33,6 @@ spec:
             value: "development"
         ports:
           - containerPort: 5432
+        volumeMounts:
+          - mountPath: "/var/lib/postgresql/data"
+            name: data
