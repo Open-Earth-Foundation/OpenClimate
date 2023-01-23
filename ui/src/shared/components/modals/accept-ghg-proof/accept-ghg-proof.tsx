@@ -37,10 +37,6 @@ const AcceptGHGProofModal: FunctionComponent<Props> = (props) => {
     const [userSite, setUserSite] = useState<string>('');
     const { formState, register,  handleSubmit, setValue, control } = useForm();
     const setNotification = useNotification()
-
-    useEffect(() => {
-        console.log(sites)
-    },[userSite])
     
     const saveClimateAction = async () => {      
         
