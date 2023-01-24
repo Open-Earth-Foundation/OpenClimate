@@ -1,0 +1,12 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: kibana
+  labels:
+    app.kubernetes.io/name: eck-logstash
+    app.kubernetes.io/component: kibana
+spec:
+  version: 8.6.0
+  count: 1
+  elasticsearchRef:
+    name: elasticsearch

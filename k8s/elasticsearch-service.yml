@@ -1,0 +1,14 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elasticsearch
+  labels:
+    app.kubernetes.io/name: eck-logstash
+    app.kubernetes.io/component: elasticsearch
+spec:
+  version: 8.6.0
+  nodeSets:
+    - name: default
+      count: 1
+      config:
+        node.store.allow_mmap: false

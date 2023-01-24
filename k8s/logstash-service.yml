@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: logstash
+  labels:
+    app.kubernetes.io/name: eck-logstash
+    app.kubernetes.io/component: logstash
+spec:
+  ports:
+    - name: "tcp-beats"
+      port: 5044
+      targetPort: 5044
+  selector:
+    app.kubernetes.io/name: eck-logstash
+    app.kubernetes.io/component: logstash
