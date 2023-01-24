@@ -4,10 +4,12 @@ on:
   push:
     paths:
       - aries-acapy-plugin-toolbox/**
+      - k8s/**
     branches: ["develop"]
   pull_request:
     paths:
       - aries-acapy-plugin-toolbox/**
+      - k8s/**
     branches: ["develop"]
 
 jobs:
