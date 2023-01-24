@@ -26,7 +26,7 @@ spec:
         - name: CONTROLLERPORT
           value: 3100
         - name: AGENTADDRESS
-          value: http://agent-hub:8150
+          value: http://acapy-service:8150
         - name: WEB_ROOT
           value: https://localhost
         - name: JWT_SECRET
@@ -36,7 +36,7 @@ spec:
         - name: SCHEMA_VERIFIED_EMPLOYEE
           value: RSaZ64jxn2NbpH8MgBdy4C:2:Verified_Employee:1.0
         - name: POSGRES_ADDRESS
-          value: hub-db
+          value: postgresql-service
         - name: POSGRES_DB
           value: development
         - name: POSTGRES_USER
@@ -45,6 +45,6 @@ spec:
           value: development
         resources:
           limits:
-            memory: "64Mi"
-            cpu: "256m"
+            memory: "128Mi"
+            cpu: "250m"
         
