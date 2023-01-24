@@ -5,7 +5,7 @@ metadata:
   labels:
     app: openclimate-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: openclimate-api
@@ -24,14 +24,14 @@ spec:
         - name: NODE_ENV
           value: development
         - name: CONTROLLERPORT
-          value: 3100
+          value: "3100"
         - name: AGENTADDRESS
           value: http://acapy-service:8150
         - name: WEB_ROOT
           value: https://localhost
         - name: JWT_SECRET
           value: ZBVgToVv72zffZE2ksUYNAhYmNCXwgKp
-        - name: SESSION_SECRET 
+        - name: SESSION_SECRET
           value: aZj6iXNkrtmLrAT0HsTrp7dRR7r4U7P0
         - name: SCHEMA_VERIFIED_EMPLOYEE
           value: RSaZ64jxn2NbpH8MgBdy4C:2:Verified_Employee:1.0
@@ -45,6 +45,5 @@ spec:
           value: development
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "250m"
-        
+            memory: "1024Mi"
+            cpu: "1000m"
