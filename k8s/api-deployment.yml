@@ -31,7 +31,7 @@ spec:
           value: https://localhost
         - name: JWT_SECRET
           value: ZBVgToVv72zffZE2ksUYNAhYmNCXwgKp
-        - name: SESSION_SECRET
+        - name: SESSION_SECRET 
           value: aZj6iXNkrtmLrAT0HsTrp7dRR7r4U7P0
         - name: SCHEMA_VERIFIED_EMPLOYEE
           value: RSaZ64jxn2NbpH8MgBdy4C:2:Verified_Employee:1.0

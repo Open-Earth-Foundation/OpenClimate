@@ -7,6 +7,6 @@ spec:
     app: openclimate-api
   ports:
   - name: openclimate-api-service-port
-    protocol: TCP
+    protocol: TCP 
     port: 80
     targetPort: 3100
