@@ -13,18 +13,18 @@ spec:
         app: openclimate-ui
     spec:
       containers:
-      - name: openclimate-ui
-        image: public.ecr.aws/openearthfoundation/openclimate-ui
-        ports:
-          - containerPort: 3000
-        env:
-          - name: NODE_ENV
-            value: development
-          - name: BROWSER
-            value: none
-          - name: REACT_APP_CONTROLLER
-            value: https://localhost
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "250m"
+        - name: openclimate-ui
+          image: public.ecr.aws/openearthfoundation/openclimate-ui
+          ports:
+            - containerPort: 80
+          env:
+            - name: NODE_ENV
+              value: development
+            - name: BROWSER
+              value: none
+            - name: REACT_APP_CONTROLLER
+              value: https://localhost
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
