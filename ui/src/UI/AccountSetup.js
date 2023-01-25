@@ -21,6 +21,8 @@ import { handleImageSrc } from './util'
 import { userService } from '../shared/services/user.service'
 import { IUser } from '../api/models/User/IUser'
 
+import { ServerUrls } from "../shared/environments/server.environments"
+
 import {
   HeaderText,
   CopyText,
@@ -136,7 +138,7 @@ function AccountSetup(props) {
   const [inputValue2, setInputValue2] = useState('');
   const [buttonState, setButtonState] = useState(true);
   const [userData, setUserData] = useState()
-  
+
   const cookies = new Cookies()
 
   const [id, setId] = useState({})
@@ -159,7 +161,7 @@ function AccountSetup(props) {
       data: {
         token: token,
       },
-      url: `${process.env.REACT_APP_CONTROLLER}/api/user/token/validate`,
+      url: `${ServerUrls.reactAppController}/api/user/token/validate`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')
@@ -176,7 +178,7 @@ function AccountSetup(props) {
     // Fetch the logo
     Axios({
       method: 'GET',
-      url: `${process.env.REACT_APP_CONTROLLER}/api/logo`,
+      url: `${ServerUrls.reactAppController}/api/logo`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')
@@ -210,7 +212,7 @@ function AccountSetup(props) {
           token: token,
           flag: 'set-up user',
         },
-        url: `${process.env.REACT_APP_CONTROLLER}/api/user/update`,
+        url: `${ServerUrls.reactAppController}/api/user/update`,
       }).then((res) => {
         if (res.data.error) {
           setNotification(res.data.error, 'error')
@@ -224,7 +226,7 @@ function AccountSetup(props) {
             const cookieData = cookies.get('user')
             setUserData(cookieData)
           } else if (res.data.error) {
-            setNotification(res.data.error, 'error')  
+            setNotification(res.data.error, 'error')
           } else {
             setNotification(
               "User couldn't be updated. Please try again.",
@@ -236,7 +238,7 @@ function AccountSetup(props) {
     }
   }
 
-// Update user state after credentials are issued 
+// Update user state after credentials are issued
 useEffect(()=>{
   if(props.accountCredentialIssued && accountPasswordSet){
     props.setUpUser(userData.id, userData.email, userData.roles)
@@ -244,10 +246,10 @@ useEffect(()=>{
     props.setLoggedIn(true)
   }
 }, [userData, props.accountCredentialIssued])
-  
+
   // Form validation
   // Input check
-  
+
   const handleOnChange = (e) =>{
     e.preventDefault();
     const value = e.target.value;
@@ -280,8 +282,8 @@ useEffect(()=>{
 
   // check if input value contains lowercase
   if(inputValue.match(/[a-z]/)){
-    color1="green";    
-  } 
+    color1="green";
+  }
 
   // check if input value contains uppercase
   if(inputValue.match(/[A-Z]/)){
@@ -290,7 +292,7 @@ useEffect(()=>{
 
   // check if input value contains a charactor
   if(inputValue.match(/[\`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/)){
-      color3="green";    
+      color3="green";
   }
   if(inputValue.length >= "8"){
     color4="green"
@@ -371,7 +373,7 @@ useEffect(()=>{
                   required
                 />
               {
-                passM ? '': 
+                passM ? '':
                 <HintBox>
                   <HintBoxContent>
                     <div>
@@ -381,7 +383,7 @@ useEffect(()=>{
                 </HintBox>
               }
               </InputBox>
-              
+
               <SubmitBtn type="submit" disabled={buttonState} style={{"background": buttonState ? "#a9a9a9": '#007568'}}>Submit</SubmitBtn>
             </Form>
           </FormBox>

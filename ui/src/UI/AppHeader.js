@@ -7,6 +7,8 @@ import { Logo, LogoHolder } from './CommonStylesForms'
 
 import AppMenu from './AppMenu.js'
 
+import { ServerUrls } from "../shared/environments/server.environments"
+
 const Header = styled.header`
   flex: 3;
   min-width: 240px;
@@ -70,7 +72,7 @@ function AppHeader(props) {
     // Log out
     Axios({
       method: 'POST',
-      url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-out`,
+      url: `${ServerUrls.reactAppController}/api/user/log-out`,
     }).then((res) => {})
 
     props.handleLogout(props.history)

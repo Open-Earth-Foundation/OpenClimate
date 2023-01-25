@@ -8,6 +8,7 @@ import './Login.css'
 
 import { useNotification } from './NotificationProvider'
 import { handleImageSrc } from './util'
+import { ServerUrls } from "../shared/environments/server.environments"
 
 import {
   FormContainer,
@@ -83,7 +84,7 @@ function Login(props) {
         email: form.get('email'),
         password: form.get('password'),
       },
-      url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-in`,
+      url: `${ServerUrls.reactAppController}/api/user/log-in`,
     }).then((res) => {
       if (res.data.error) setNotification(res.data.error, 'error')
       else {

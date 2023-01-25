@@ -52,6 +52,7 @@ import './App.css'
 
 import * as accountActions from './store/account/account.actions'
 import * as accountSelectors from './store/account/account.selectors'
+import { ServerUrls } from "./shared/environments/server.environments"
 
 const Account = React.lazy(() => import('./UI/Account'))
 const Contact = React.lazy(() => import('./UI/Contact'))
@@ -256,11 +257,11 @@ const App: FunctionComponent<Props> = (props) => {
     if (!anonwebsocket) {
       console.log(
         'Controller address ',
-        document.location.protocol + '//' + document.location.host
+        ServerUrls.reactAppController
       )
       let url = new URL(
         '/api/anon/ws',
-        document.location.protocol + '//' + document.location.host
+        ServerUrls.reactAppController
       )
       url.protocol = url.protocol.replace('http', 'ws')
       controllerAnonSocket.current = new WebSocket(url.href)
@@ -318,7 +319,7 @@ const App: FunctionComponent<Props> = (props) => {
   useEffect(() => {
     if (session && loggedIn && !websocket && loggedInUserState) {
       console.log('Connecting controllerSocket')
-      let url = new URL('/api/admin/ws', process.env.REACT_APP_CONTROLLER)
+      let url = new URL('/api/admin/ws', ServerUrls.reactAppController)
       url.protocol = url.protocol.replace('http', 'ws')
       controllerSocket.current = new WebSocket(url.href)
 
@@ -422,7 +423,7 @@ const App: FunctionComponent<Props> = (props) => {
   useEffect(() => {
     Axios({
       method: 'GET',
-      url: `${process.env.REACT_APP_CONTROLLER}/api/session`,
+      url: `${ServerUrls.reactAppController}/api/session`,
     }).then((res) => {
       console.log('/api/session response', res)
       if (res.status) {
@@ -465,7 +466,7 @@ const App: FunctionComponent<Props> = (props) => {
       data: {
         email: email,
       },
-      url: `${process.env.REACT_APP_CONTROLLER}/api/user/passwordless-log-in`,
+      url: `${ServerUrls.reactAppController}/api/user/passwordless-log-in`,
     }).then(async (res) => {
       if (res.data.error) {
         // setNotification isn't defined everywhere we need to use it, so we can't display the error this way
@@ -501,7 +502,7 @@ const App: FunctionComponent<Props> = (props) => {
         email: email,
         password: userPassword,
       },
-      url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-in`,
+      url: `${ServerUrls.reactAppController}/api/user/log-in`,
     }).then(async (res) => {
       console.log('Response ', res)
       if (res.data.error) {

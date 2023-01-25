@@ -4,6 +4,8 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useNotification } from './NotificationProvider'
 import { handleImageSrc } from './util'
 
+import { ServerUrls } from "../shared/environments/server.environments"
+
 import {
   FormContainer,
   InputBox,
@@ -27,7 +29,7 @@ function ForgotPassword(props) {
     // Fetching the logo
     Axios({
       method: 'GET',
-      url: `${process.env.REACT_APP_CONTROLLER}/api/logo`,
+      url: `${ServerUrls.reactAppController}/api/logo`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')
@@ -51,7 +53,7 @@ function ForgotPassword(props) {
         email: email,
         flag: 'password reset',
       },
-      url: `${process.env.REACT_APP_CONTROLLER}/api/user/update`,
+      url: `${ServerUrls.reactAppController}/api/user/update`,
     }).then((res) => {
       if (res.data.error) {
         setNotification(res.data.error, 'error')
