@@ -254,9 +254,14 @@ const App: FunctionComponent<Props> = (props) => {
 
   useEffect(() => {
     if (!anonwebsocket) {
-      console.log('Environment Variables ', process.env)
-      console.log('Controller address ', process.env.REACT_APP_CONTROLLER)
-      let url = new URL('/api/anon/ws', process.env.REACT_APP_CONTROLLER)
+      console.log(
+        'Controller address ',
+        document.location.protocol + '//' + document.location.host
+      )
+      let url = new URL(
+        '/api/anon/ws',
+        document.location.protocol + '//' + document.location.host
+      )
       url.protocol = url.protocol.replace('http', 'ws')
       controllerAnonSocket.current = new WebSocket(url.href)
 
