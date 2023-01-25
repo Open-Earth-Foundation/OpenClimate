@@ -47,3 +47,12 @@ spec:
           limits:
             memory: "1024Mi"
             cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /api/second-controller
+            port: 3100
+            httpHeaders:
+            - name: X-Liveness-Probe
+              value: "True"
+          initialDelaySeconds: 60
+          periodSeconds: 30
