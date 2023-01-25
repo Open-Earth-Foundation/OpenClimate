@@ -2,7 +2,13 @@ import Axios from 'axios'
 
 import Cookies from 'universal-cookie'
 
-import React, { Suspense, FunctionComponent, useState, useEffect, useRef } from 'react'
+import React, {
+  Suspense,
+  FunctionComponent,
+  useState,
+  useEffect,
+  useRef,
+} from 'react'
 
 import {
   BrowserRouter as Router,
@@ -18,22 +24,22 @@ import { check } from './UI/CanUser'
 import rules from './UI/rbac-rules'
 
 // Envision imports
-import MainToolbar from './shared/components/toolbar/toolbar';
-import MainFooter from './shared/components/footer/footer';
+import MainToolbar from './shared/components/toolbar/toolbar'
+import MainFooter from './shared/components/footer/footer'
 
-import './layouts/main-layout/main.layout.scss';
+import './layouts/main-layout/main.layout.scss'
 
 // Envision imports
-import { DispatchThunk, RootState } from './store/root-state';
-import { doLogout, doPaswordlessLoginSucess } from './store/user/user.actions';
+import { DispatchThunk, RootState } from './store/root-state'
+import { doLogout, doPaswordlessLoginSucess } from './store/user/user.actions'
 import { connect } from 'react-redux'
-import * as userSelectors from './store/user/user.selectors';
-import { showModal } from './store/app/app.actions';
-import Modal from './shared/components/modals/modal/modal';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { IUser } from './api/models/User/IUser';
-import IWallet from './api/models/DTO/Wallet/IWallet';
+import * as userSelectors from './store/user/user.selectors'
+import { showModal } from './store/app/app.actions'
+import Modal from './shared/components/modals/modal/modal'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { IUser } from './api/models/User/IUser'
+import IWallet from './api/models/DTO/Wallet/IWallet'
 
 import FullPageSpinner from './UI/FullPageSpinner'
 
@@ -42,11 +48,10 @@ import {
   NotificationProvider,
 } from './UI/NotificationProvider'
 
-
 import './App.css'
 
-import * as accountActions from './store/account/account.actions';
-import * as accountSelectors from './store/account/account.selectors';
+import * as accountActions from './store/account/account.actions'
+import * as accountSelectors from './store/account/account.selectors'
 
 const Account = React.lazy(() => import('./UI/Account'))
 const Contact = React.lazy(() => import('./UI/Contact'))
@@ -66,13 +71,21 @@ const Users = React.lazy(() => import('./UI/Users'))
 
 const AccountSetup = React.lazy(() => import('./UI/AccountSetup'))
 
-const TransfersPage = React.lazy(() => import('./components/transfers/transfers.page'))
-const Emissions = React.lazy(() => import('./components/explore/emissions.page'))
-const NestedAccountsPage = React.lazy(() => import('./components/nested-accounts/nested-accounts.page'))
+const TransfersPage = React.lazy(() =>
+  import('./components/transfers/transfers.page')
+)
+const Emissions = React.lazy(() =>
+  import('./components/explore/emissions.page')
+)
+const NestedAccountsPage = React.lazy(() =>
+  import('./components/nested-accounts/nested-accounts.page')
+)
 const ReviewPage = React.lazy(() => import('./components/review/review.page'))
-const AccountPage = React.lazy(() => import('./components/account/account.page'))
+const AccountPage = React.lazy(() =>
+  import('./components/account/account.page')
+)
 const RegisterWalletPage = React.lazy(() => import('./UI/RegisterWallet'))
-const LoginWithWallet = React.lazy(() => import('./UI/LoginWithWallet'));
+const LoginWithWallet = React.lazy(() => import('./UI/LoginWithWallet'))
 
 const Frame = styled.div`
   display: flex;
@@ -81,40 +94,50 @@ const Frame = styled.div`
 `
 const Main = styled.main`
   flex: 9;
-  padding: ${(props) => props?.hasBackgroundColor ? '0px' : '30px' ?? '30px' };
+  padding: ${(props) => (props?.hasBackgroundColor ? '0px' : '30px' ?? '30px')};
 `
 
 // Envision Interface
 interface Props {
-  currentUser: IUser | null,
-  loading: boolean,
-  doLoginClick: (email: string, password: string) => void,
-  doLoginSuccess: (user: IUser | null) => void,
-  showModal: (type: string) => void,
-  doLogout: () => void,
-  wallets: Array<IWallet>,
-  walletsLoaded: boolean,
-  loadWallets: (orgId: string) => void,
+  currentUser: IUser | null;
+  loading: boolean;
+  doLoginClick: (email: string, password: string) => void;
+  doLoginSuccess: (user: IUser | null) => void;
+  showModal: (type: string) => void;
+  doLogout: () => void;
+  wallets: Array<IWallet>;
+  walletsLoaded: boolean;
+  loadWallets: (orgId: string) => void;
 }
 
 export interface Theme {
-  primary_color: string,
-  secondary_color: string,
-  neutral_color: string,
-  negative_color: string,
-  warning_color: string,
-  positive_color: string,
-  text_color: string,
-  text_light: string,
-  border: string,
-  drop_shadow: string,
-  background_primary: string,
-  background_secondary: string,
+  primary_color: string;
+  secondary_color: string;
+  neutral_color: string;
+  negative_color: string;
+  warning_color: string;
+  positive_color: string;
+  text_color: string;
+  text_light: string;
+  border: string;
+  drop_shadow: string;
+  background_primary: string;
+  background_secondary: string;
 }
 
 const App: FunctionComponent<Props> = (props) => {
   // Envision props
-  const { currentUser, loading, doLoginClick, doLoginSuccess, showModal, doLogout, wallets, walletsLoaded, loadWallets } = props;
+  const {
+    currentUser,
+    loading,
+    doLoginClick,
+    doLoginSuccess,
+    showModal,
+    doLogout,
+    wallets,
+    walletsLoaded,
+    loadWallets,
+  } = props
 
   const defaultTheme = {
     primary_color: '#5191CE',
@@ -186,48 +209,39 @@ const App: FunctionComponent<Props> = (props) => {
   const [accountCredentialIssued, setAccountCredentialIssued] = useState(false)
   const [scope1, setScope1] = useState()
   const [wallet, setWallet] = useState()
-  const toastError = (msg)=> {
-    toast.error(
-      msg,
-      {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        }
-    )
+  const toastError = (msg) => {
+    toast.error(msg, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
   }
-  const toastSuccess = (msg)=> {
-    toast.success(
-      msg,
-      {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        }
-    )
+  const toastSuccess = (msg) => {
+    toast.success(msg, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
   }
 
-  const toastInfo = (msg)=> {
-    toast.info(
-      msg,
-      {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        }
-    )
+  const toastInfo = (msg) => {
+    toast.info(msg, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
   }
 
   // How often to send a tickler to the WebSockets server to keep the connection open
@@ -239,9 +253,9 @@ const App: FunctionComponent<Props> = (props) => {
   // Perform First Time Setup and reconnect automatically. Connect to Controller Server via Websockets
 
   useEffect(() => {
-
     if (!anonwebsocket) {
-      console.log("Controller address ", process.env.REACT_APP_CONTROLLER)
+      console.log('Environment Variables ', process.env)
+      console.log('Controller address ', process.env.REACT_APP_CONTROLLER)
       let url = new URL('/api/anon/ws', process.env.REACT_APP_CONTROLLER)
       url.protocol = url.protocol.replace('http', 'ws')
       controllerAnonSocket.current = new WebSocket(url.href)
@@ -250,16 +264,21 @@ const App: FunctionComponent<Props> = (props) => {
 
       controllerAnonSocket.current.onopen = () => {
         controllerAnonSocketKeepaliveInterval = setInterval(() => {
-          console.log("controllerAnonSocket keepalive")
-          if (anonwebsocket && controllerAnonSocket && controllerAnonSocket.current && controllerAnonSocket.current.readyState === WebSocket.OPEN) {
-            controllerAnonSocket.current.send("\n")
+          console.log('controllerAnonSocket keepalive')
+          if (
+            anonwebsocket &&
+            controllerAnonSocket &&
+            controllerAnonSocket.current &&
+            controllerAnonSocket.current.readyState === WebSocket.OPEN
+          ) {
+            controllerAnonSocket.current.send('\n')
           }
         }, KEEPALIVE_INTERVAL)
       }
 
       controllerAnonSocket.current.onclose = (event) => {
-        console.log("controllerAnonSocket closed; event follows");
-        console.log(event);
+        console.log('controllerAnonSocket closed; event follows')
+        console.log(event)
         clearInterval(controllerAnonSocketKeepaliveInterval)
         controllerAnonSocketKeepaliveInterval = null
         // Auto Reopen websocket connection
@@ -270,8 +289,8 @@ const App: FunctionComponent<Props> = (props) => {
 
       // Error Handler
       controllerAnonSocket.current.onerror = (event) => {
-        console.log("controllerAnonSocket error; event follows");
-        console.log(event);
+        console.log('controllerAnonSocket error; event follows')
+        console.log(event)
         setNotification('Client Error - Websockets', 'error')
       }
 
@@ -293,7 +312,7 @@ const App: FunctionComponent<Props> = (props) => {
   // Setting up websocket and controllerSocket
   useEffect(() => {
     if (session && loggedIn && !websocket && loggedInUserState) {
-      console.log("Connecting controllerSocket")
+      console.log('Connecting controllerSocket')
       let url = new URL('/api/admin/ws', process.env.REACT_APP_CONTROLLER)
       url.protocol = url.protocol.replace('http', 'ws')
       controllerSocket.current = new WebSocket(url.href)
@@ -302,9 +321,14 @@ const App: FunctionComponent<Props> = (props) => {
 
       controllerSocket.current.onopen = () => {
         controllerSocketKeepaliveInterval = setInterval(() => {
-          console.log("controllerSocket keepalive")
-          if (websocket && controllerSocket && controllerSocket.current && controllerSocket.current.readyState === WebSocket.OPEN) {
-            controllerSocket.current.send("\n")
+          console.log('controllerSocket keepalive')
+          if (
+            websocket &&
+            controllerSocket &&
+            controllerSocket.current &&
+            controllerSocket.current.readyState === WebSocket.OPEN
+          ) {
+            controllerSocket.current.send('\n')
           }
         }, KEEPALIVE_INTERVAL)
         // Resetting state to false to allow spinner while waiting for messages
@@ -342,7 +366,7 @@ const App: FunctionComponent<Props> = (props) => {
 
         sendMessage('IMAGES', 'GET_ALL', {})
         addLoadingProcess('LOGO')
-        console.log("rules, loggedInUserState", rules, loggedInUserState)
+        console.log('rules, loggedInUserState', rules, loggedInUserState)
         if (check(rules, loggedInUserState, 'users:read')) {
           sendMessage('USERS', 'GET_ALL', {})
           addLoadingProcess('USERS')
@@ -355,8 +379,8 @@ const App: FunctionComponent<Props> = (props) => {
       }
 
       controllerSocket.current.onclose = (event) => {
-        console.log("controllerSocket closed; event follows");
-        console.log(event);
+        console.log('controllerSocket closed; event follows')
+        console.log(event)
         clearInterval(controllerSocketKeepaliveInterval)
         controllerSocketKeepaliveInterval = null
         // Auto Reopen websocket connection
@@ -366,8 +390,8 @@ const App: FunctionComponent<Props> = (props) => {
 
       // Error Handler
       controllerSocket.current.onerror = (event) => {
-        console.log("controllerSocket error; event follows");
-        console.log(event);
+        console.log('controllerSocket error; event follows')
+        console.log(event)
         setNotification('Client Error - Websockets', 'error')
       }
 
@@ -395,7 +419,7 @@ const App: FunctionComponent<Props> = (props) => {
       method: 'GET',
       url: `${process.env.REACT_APP_CONTROLLER}/api/session`,
     }).then((res) => {
-      console.log("/api/session response", res)
+      console.log('/api/session response', res)
       if (res.status) {
         // Check for a session and then set up the session state based on what we found
         setSession(cookies.get('sessionId'))
@@ -405,14 +429,13 @@ const App: FunctionComponent<Props> = (props) => {
 
           if (cookies.get('user')) {
             const userCookie = cookies.get('user')
-            console.log("User from cookies", userCookie)
+            console.log('User from cookies', userCookie)
             setLoggedInUserState(userCookie)
             setLoggedInUserId(userCookie.id)
             setLoggedInEmail(userCookie.email)
             setLoggedInRoles(userCookie.roles)
             setLoggedInRoles(userCookie.roles)
-            if(!walletsLoaded)
-              loadWallets(userCookie.id);
+            if (!walletsLoaded) loadWallets(userCookie.id)
           } else setAppIsLoaded(true)
         } else setAppIsLoaded(true)
       }
@@ -420,7 +443,7 @@ const App: FunctionComponent<Props> = (props) => {
   }, [loggedIn])
 
   useEffect(() => {
-    console.log('loggedInUserState', loggedInUserState);
+    console.log('loggedInUserState', loggedInUserState)
   }, [loggedInUserState])
 
   useEffect(() => {
@@ -435,7 +458,7 @@ const App: FunctionComponent<Props> = (props) => {
     Axios({
       method: 'POST',
       data: {
-        email: email
+        email: email,
       },
       url: `${process.env.REACT_APP_CONTROLLER}/api/user/passwordless-log-in`,
     }).then(async (res) => {
@@ -446,8 +469,13 @@ const App: FunctionComponent<Props> = (props) => {
         // history.push('/')
       } else {
         // Setting a session cookie this way doesn't seem to be the best way
-        cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
-        cookies.set('user', res.data);
+        cookies.set('sessionId', res.data.session, {
+          path: '/',
+          expires: res.data.session.expires,
+          httpOnly: res.data.session.httpOnly,
+          originalMaxAge: res.data.session.originalMaxAge,
+        })
+        cookies.set('user', res.data)
         // console.log("Setting up the user now")
         setUpUser(res.data.id, res.data.email, res.data.roles)
 
@@ -466,11 +494,11 @@ const App: FunctionComponent<Props> = (props) => {
       method: 'POST',
       data: {
         email: email,
-        password: userPassword
+        password: userPassword,
       },
       url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-in`,
     }).then(async (res) => {
-      console.log("Response ", res)
+      console.log('Response ', res)
       if (res.data.error) {
         // setNotification isn't defined everywhere we need to use it, so we can't display the error this way
         setNotification(res.data.error, 'error')
@@ -478,8 +506,13 @@ const App: FunctionComponent<Props> = (props) => {
         // history.push('/')
       } else {
         // Setting a session cookie this way doesn't seem to be the best way
-        cookies.set('sessionId', res.data.session, { path: '/', expires: res.data.session.expires, httpOnly: res.data.session.httpOnly, originalMaxAge: res.data.session.originalMaxAge })
-        cookies.set('user', res.data);
+        cookies.set('sessionId', res.data.session, {
+          path: '/',
+          expires: res.data.session.expires,
+          httpOnly: res.data.session.httpOnly,
+          originalMaxAge: res.data.session.originalMaxAge,
+        })
+        cookies.set('user', res.data)
         // console.log("Setting up the user now")
         setUpUser(res.data.id, res.data.email, res.data.roles)
         // Envision login
@@ -518,7 +551,7 @@ const App: FunctionComponent<Props> = (props) => {
   }
 
   // Handle inbound messages
-  async function messageHandler (context, type, data = {}, setNotification) {
+  async function messageHandler(context, type, data = {}, setNotification) {
     try {
       console.log(
         `New Message with context: '${context}' and type: '${type}' with data:`,
@@ -532,7 +565,9 @@ const App: FunctionComponent<Props> = (props) => {
               //   `Server Error - ${data.errorCode} \n Reason: '${data.errorReason}'`,
               //   'error'
               // )
-              toastError(`Server Error - ${data.errorCode} \n Reason: '${data.errorReason}'`)
+              toastError(
+                `Server Error - ${data.errorCode} \n Reason: '${data.errorReason}'`
+              )
               break
 
             default:
@@ -547,9 +582,12 @@ const App: FunctionComponent<Props> = (props) => {
         case 'INVITATIONS':
           switch (type) {
             case 'INVITATION':
-              console.log("QR", data.invitation_record.invitation_url)
-              let decoded_qr = Buffer.from(data.invitation_record.invitation_url.split('=')[1], 'base64').toString()
-              console.log("Decoded QR", decoded_qr)
+              console.log('QR', data.invitation_record.invitation_url)
+              let decoded_qr = Buffer.from(
+                data.invitation_record.invitation_url.split('=')[1],
+                'base64'
+              ).toString()
+              console.log('Decoded QR', decoded_qr)
               setQRCodeURL(data.invitation_record.invitation_url)
               break
 
@@ -560,9 +598,7 @@ const App: FunctionComponent<Props> = (props) => {
               break
 
             default:
-              toastError(
-                `Error - Unrecognized Websocket Message Type: ${type}`
-              )
+              toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
               break
           }
           break
@@ -809,8 +845,7 @@ const App: FunctionComponent<Props> = (props) => {
         case 'PRESENTATIONS':
           switch (type) {
             case 'VERIFIED':
-              if (data.address && data.address.raw)
-              {
+              if (data.address && data.address.raw) {
                 setEmailStatus(data.address.raw)
               }
               if (data.organization_name && data.organization_name.raw) {
@@ -819,30 +854,22 @@ const App: FunctionComponent<Props> = (props) => {
               break
 
             case 'VERIFICATION_FAILED':
-                setVerifiedCredential('')
-                setVerificationStatus(false)
-                toastError(
-                  `Verification failed ${data.error}`
-                )
-                break
+              setVerifiedCredential('')
+              setVerificationStatus(false)
+              toastError(`Verification failed ${data.error}`)
+              break
             default:
-              toastError(
-                `Error - Unrecognized Websocket Message Type: ${type}`
-              )
+              toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
               break
           }
           break
         case 'EMISSION_PRESENTATION':
           switch (type) {
             case 'PRESENTATION_FAILED':
-                toastError(
-                  `Verification failed ${data.error}`
-                )
-                break
+              toastError(`Verification failed ${data.error}`)
+              break
             default:
-              toastError(
-                `Error - Unrecognized Websocket Message Type: ${type}`
-              )
+              toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
               break
           }
           break
@@ -860,7 +887,7 @@ const App: FunctionComponent<Props> = (props) => {
             case 'SETTINGS_SCHEMAS':
               setSchemas(data)
               removeLoadingProcess('SCHEMAS')
-              break;
+              break
 
             case 'LOGO':
               setImage(data)
@@ -957,53 +984,59 @@ const App: FunctionComponent<Props> = (props) => {
           }
           break
         case 'EMISSIONS':
-            switch (type) {
-              case 'RECEIVED':
-                if (data.facility_emissions_scope1_co2e)
-                {
-                  console.log('Recieved facility_emissions_scope1_co2e verified report',data.facility_emissions_scope1_co2e)
-                  setScope1(data.facility_emissions_scope1_co2e)
-                }
+          switch (type) {
+            case 'RECEIVED':
+              if (data.facility_emissions_scope1_co2e) {
+                console.log(
+                  'Recieved facility_emissions_scope1_co2e verified report',
+                  data.facility_emissions_scope1_co2e
+                )
+                setScope1(data.facility_emissions_scope1_co2e)
+              }
 
-                break
-              case 'CRED_DEF_EXIST':
-                toastError(data.error)
-                break
+              break
+            case 'CRED_DEF_EXIST':
+              toastError(data.error)
+              break
 
-              default:
-                toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
-                break
-            }
-            break
+            default:
+              toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
+              break
+          }
+          break
         case 'WALLET':
-            switch (type) {
-              case 'ACCEPTED':
-                if (data.wallet)
-                {
-                  console.log('Recieved verified wallet registration', data.wallet)
-                  setWallet(data.wallet)
-                  toastSuccess(`Wallet proof recieved ${data.wallet.did}`);
-                  await loadWallets(currentUser.id)
-                }
+          switch (type) {
+            case 'ACCEPTED':
+              if (data.wallet) {
+                console.log(
+                  'Recieved verified wallet registration',
+                  data.wallet
+                )
+                setWallet(data.wallet)
+                toastSuccess(`Wallet proof recieved ${data.wallet.did}`)
+                await loadWallets(currentUser.id)
+              }
 
-                break
-              case 'WALLET_ERROR':
-                console.log('WALLET ERROR', data.error)
-                toastError(data.error)
-                break
+              break
+            case 'WALLET_ERROR':
+              console.log('WALLET ERROR', data.error)
+              toastError(data.error)
+              break
 
-              case 'WALLET_CONNECTION_SUCCESS':
-                  toastSuccess(`Connection established with wallet: ${data.did}`)
-                  break
-              case 'WALLET_PROOF_SENT':
-                  toastSuccess(`Organisation Proof request sent to wallet: ${data.did}`)
-                  break
+            case 'WALLET_CONNECTION_SUCCESS':
+              toastSuccess(`Connection established with wallet: ${data.did}`)
+              break
+            case 'WALLET_PROOF_SENT':
+              toastSuccess(
+                `Organisation Proof request sent to wallet: ${data.did}`
+              )
+              break
 
-              default:
-                toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
-                break
-            }
-            break
+            default:
+              toastError(`Error - Unrecognized Websocket Message Type: ${type}`)
+              break
+          }
+          break
 
         default:
           toastError(`Error - Unrecognized Websocket Message Type: ${context}`)
@@ -1113,7 +1146,7 @@ const App: FunctionComponent<Props> = (props) => {
           <Router>
             <div className="main-layout">
               <MainToolbar
-                showLoginModal = {() => showModal('login') }
+                showLoginModal={() => showModal('login')}
                 user={currentUser}
                 handleLogout={handleLogout}
               />
@@ -1173,7 +1206,9 @@ const App: FunctionComponent<Props> = (props) => {
                                 setUpUser={setUpUser}
                                 setLoggedIn={setLoggedIn}
                                 doLoginSuccess={doLoginSuccess}
-                                accountCredentialIssued={accountCredentialIssued}
+                                accountCredentialIssued={
+                                  accountCredentialIssued
+                                }
                                 sendRequest={sendAnonMessage}
                                 messageHandler={messageHandler}
                                 user={user}
@@ -1216,10 +1251,10 @@ const App: FunctionComponent<Props> = (props) => {
                     </Suspense>
                   </Route>
                   <Route path="/nested-accounts">
-                      <Suspense fallback={<div>Loading...</div>}>
-                        <NestedAccountsPage />
-                      </Suspense>
-                    </Route>
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <NestedAccountsPage />
+                    </Suspense>
+                  </Route>
                   <Route path="/emissions/:id" exact>
                     <Suspense fallback={<div>Loading...</div>}>
                       <Emissions />
@@ -1231,54 +1266,54 @@ const App: FunctionComponent<Props> = (props) => {
                     </Suspense>
                   </Route>
                   <Route path="/actor/EARTH" exact>
-                    <Redirect to={"/"}/>
+                    <Redirect to={'/'} />
                   </Route>
                   <Route path="/actor/:actorID" exact>
                     <Suspense fallback={<div>Loading...</div>}>
                       <ReviewPage />
                     </Suspense>
                   </Route>
-                  <Redirect to={"/"}/>
+                  <Redirect to={'/'} />
                 </Switch>
               </div>
-                <Modal
-                  handlePasswordLogin={handlePasswordLogin}
-                  QRCodeURL={QRCodeURL}
-                  verificationStatus={verificationStatus}
-                  setVerificationStatus={setVerificationStatus}
-                  handlePasswordlessLogin={handlePasswordlessLogin}
-                  sendRequest={sendAnonMessage}
-                  loggedInUserState={loggedInUserState}
-                  wallet={wallet}
-                  wallets={wallets}
-                  setScope1={setScope1}
-                />
-                <ToastContainer
-                  position="bottom-right"
-                  autoClose={2000}
-                  hideProgressBar={true}
-                  newestOnTop={true}
-                  toastStyle={{ backgroundColor: "#007568", color: "white" }}
-                />
-                <MainFooter />
-              </div>
-            </Router>
-          </NotificationProvider>
-        </ThemeProvider>
-      )
-    } else {
-      // loggedIn and appIsLoaded
-      return (
-        <ThemeProvider theme={theme}>
-          <NotificationProvider>
-              <Router>
-              <div className="main-layout">
-                <MainToolbar
-                  showLoginModal = {() => showModal('login') }
-                  user={currentUser}
-                  handleLogout={handleLogout}
-                />
-                <div className="content">
+              <Modal
+                handlePasswordLogin={handlePasswordLogin}
+                QRCodeURL={QRCodeURL}
+                verificationStatus={verificationStatus}
+                setVerificationStatus={setVerificationStatus}
+                handlePasswordlessLogin={handlePasswordlessLogin}
+                sendRequest={sendAnonMessage}
+                loggedInUserState={loggedInUserState}
+                wallet={wallet}
+                wallets={wallets}
+                setScope1={setScope1}
+              />
+              <ToastContainer
+                position="bottom-right"
+                autoClose={2000}
+                hideProgressBar={true}
+                newestOnTop={true}
+                toastStyle={{ backgroundColor: '#007568', color: 'white' }}
+              />
+              <MainFooter />
+            </div>
+          </Router>
+        </NotificationProvider>
+      </ThemeProvider>
+    )
+  } else {
+    // loggedIn and appIsLoaded
+    return (
+      <ThemeProvider theme={theme}>
+        <NotificationProvider>
+          <Router>
+            <div className="main-layout">
+              <MainToolbar
+                showLoginModal={() => showModal('login')}
+                user={currentUser}
+                handleLogout={handleLogout}
+              />
+              <div className="content">
                 <Switch>
                   <Route exact path="/forgot-password">
                     <Redirect to="/" />
@@ -1294,7 +1329,11 @@ const App: FunctionComponent<Props> = (props) => {
                   </Route>
                   <Route exact path="/wallet-login">
                     <Suspense fallback={<div>Loading...</div>}>
-                      <LoginWithWallet user={currentUser} sendRequest={sendMessage} QRCodeURL={QRCodeURL}/>
+                      <LoginWithWallet
+                        user={currentUser}
+                        sendRequest={sendMessage}
+                        QRCodeURL={QRCodeURL}
+                      />
                     </Suspense>
                   </Route>
                   <Route path="/nested-accounts">
@@ -1303,39 +1342,38 @@ const App: FunctionComponent<Props> = (props) => {
                     </Suspense>
                   </Route>
 
-                  {
-                    currentUser && (
-                      <Route path="/account">
-                        <Suspense fallback={<div>Loading...</div>}>
-                          <AccountPage user={currentUser} />
-                        </Suspense>
-                      </Route>
-                    )
-                  }
+                  {currentUser && (
+                    <Route path="/account">
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <AccountPage user={currentUser} />
+                      </Suspense>
+                    </Route>
+                  )}
 
-                  {
-                    currentUser && (
-                      <Route path="/register-wallet">
-                        <Suspense fallback={<div>Loading...</div>}>
-                          <RegisterWalletPage user={currentUser} sendRequest={sendMessage} QRCodeURL={QRCodeURL}/>
-                        </Suspense>
-                      </Route>
-                    )
-                  }
+                  {currentUser && (
+                    <Route path="/register-wallet">
+                      <Suspense fallback={<div>Loading...</div>}>
+                        <RegisterWalletPage
+                          user={currentUser}
+                          sendRequest={sendMessage}
+                          QRCodeURL={QRCodeURL}
+                        />
+                      </Suspense>
+                    </Route>
+                  )}
                   <Route path="/" exact>
                     <Suspense fallback={<div>Loading...</div>}>
                       <ReviewPage />
                     </Suspense>
                   </Route>
                   <Route path="/actor/EARTH" exact>
-                    <Redirect to={"/"}/>
+                    <Redirect to={'/'} />
                   </Route>
                   <Route path="/actor/:actorID" exact>
-                  <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<div>Loading...</div>}>
                       <ReviewPage />
                     </Suspense>
                   </Route>
-
 
                   <Route
                     path="/admin"
@@ -1561,7 +1599,6 @@ const App: FunctionComponent<Props> = (props) => {
                           />
                           <Main>
                             <Suspense fallback={<div>Loading...</div>}>
-
                               <Users
                                 loggedInUserState={loggedInUserState}
                                 user={user}
@@ -1703,31 +1740,31 @@ const App: FunctionComponent<Props> = (props) => {
                     }}
                   />
                   {/* Redirect to root if no route match is found */}
-                  <Redirect to={"/"}/>
+                  <Redirect to={'/'} />
                 </Switch>
               </div>
-                <Modal
-                  handlePasswordLogin={handlePasswordLogin}
-                  QRCodeURL={QRCodeURL}
-                  scope1={scope1}
-                  verificationStatus={verificationStatus}
-                  setVerificationStatus={setVerificationStatus}
-                  sendRequest={sendMessage}
-                  loggedInUserState={loggedInUserState}
-                  wallet={wallet}
-                  wallets={wallets}
-                  setScope1={setScope1}
-                />
-                <ToastContainer
-                  position="bottom-right"
-                  autoClose={2000}
-                  hideProgressBar={true}
-                  newestOnTop={true}
-                  toastStyle={{ backgroundColor: "#007568", color: "white" }}
-                />
-                <MainFooter />
-              </div>
-            </Router>
+              <Modal
+                handlePasswordLogin={handlePasswordLogin}
+                QRCodeURL={QRCodeURL}
+                scope1={scope1}
+                verificationStatus={verificationStatus}
+                setVerificationStatus={setVerificationStatus}
+                sendRequest={sendMessage}
+                loggedInUserState={loggedInUserState}
+                wallet={wallet}
+                wallets={wallets}
+                setScope1={setScope1}
+              />
+              <ToastContainer
+                position="bottom-right"
+                autoClose={2000}
+                hideProgressBar={true}
+                newestOnTop={true}
+                toastStyle={{ backgroundColor: '#007568', color: 'white' }}
+              />
+              <MainFooter />
+            </div>
+          </Router>
         </NotificationProvider>
       </ThemeProvider>
     )
@@ -1749,7 +1786,7 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
     doLoginSuccess: (user) => {
       dispatch(doPaswordlessLoginSucess(user))
     },
-    showModal: (type:string) => {
+    showModal: (type: string) => {
       dispatch(showModal(type))
     },
     doLogout: () => {
@@ -1757,7 +1794,7 @@ const mapDispatchToProps = (dispatch: DispatchThunk) => {
     },
     loadWallets: (orgId: string) => {
       dispatch(accountActions.doLoadWallets(orgId))
-    }
+    },
   }
 }
 
