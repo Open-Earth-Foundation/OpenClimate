@@ -6,7 +6,7 @@ spec:
   selector:
     app: openclimate-ui
   ports:
-  - name: openclimate-ui-service-port
-    protocol: TCP
-    port: 80
-    targetPort: 3000
+    - name: openclimate-ui-service-port
+      protocol: TCP
+      port: 80
+      targetPort: 80
