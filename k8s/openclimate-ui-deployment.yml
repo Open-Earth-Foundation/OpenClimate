@@ -28,3 +28,12 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /robots.txt
+              port: 80
+              httpHeaders:
+              - name: X-Liveness-Probe
+                value: "True"
+            initialDelaySeconds: 30
+            periodSeconds: 30
