@@ -23,7 +23,7 @@ spec:
             - name: BROWSER
               value: none
             - name: REACT_APP_CONTROLLER
-              value: https://localhost
+              value: http://localhost
           resources:
             limits:
               memory: "128Mi"
