@@ -4,8 +4,13 @@ metadata:
   name: openclimate-ingress
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - localhost
+    secretName: localhost-secret
   rules:
-    - http:
+    - host: localhost
+      http:
         paths:
           - path: /api
             pathType: Prefix
