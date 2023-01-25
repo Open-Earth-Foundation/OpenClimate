@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: postgresql-service
 spec:
+  type: NodePort
   selector:
     app: postgresql
   ports:
@@ -10,3 +11,4 @@ spec:
     protocol: TCP
     port: 5432
     targetPort: 5432
+    nodePort: 30543 # must be in range 30000-32767
