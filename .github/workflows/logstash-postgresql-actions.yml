@@ -29,7 +29,7 @@ jobs:
     - name: Pushing Logstash with PostgreSQL to ECR
       env:
         VERSION: ${{ github.sha }}
-        IMAGE: public.ecr.aws/openearthfoundation/openclimate-logstash-postgresql
+        IMAGE: public.ecr.aws/openearthfoundation/logstash-postgresql
       run: |
         docker build -t $IMAGE:$VERSION logstash-postgresql
         docker tag $IMAGE:$VERSION $IMAGE:latest
