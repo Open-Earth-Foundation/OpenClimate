@@ -78,9 +78,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "style-watch": "onchange 'src/*.js' 'src/**/*.js' -- prettier --write {{changed}}",
-    "style-check": "prettier --check 'src/**/*.js'",
-    "style-format": "prettier --write .",
+    "style-watch": "onchange src/**/*.js src/**/*.ts  src/**/*.tsx -- prettier --write {{changed}}",
+    "style-check": "prettier --check 'src/**/*.js' 'src/**/*.ts' 'src/**/*.tsx'",
+    "style-format": "prettier --write 'src/**/*.js' 'src/**/*.ts'  'src/**/*.tsx'",
     "build": "react-scripts build",
     "postbuild": "cp LICENSE* build && cp README.md build",
     "test": "react-scripts test",
@@ -90,10 +90,6 @@
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
   },
   "eslintConfig": {
     "extends": [
