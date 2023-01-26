@@ -37,10 +37,10 @@ server.on('upgrade', function upgrade(request, socket, head) {
 anonWebSocket.start()
 websocket.start()
 
-server.listen(process.env.CONTROLLERPORT || 3100, () =>
+server.listen(process.env.CONTROLLERPORT || 80, () =>
   logger.info(
     `Server listening at http://localhost:${
-      process.env.CONTROLLERPORT || 3100
+      process.env.CONTROLLERPORT || 80
     }`,
     `\n Agent Address: ${process.env.AGENTADDRESS || 'localhost:8150'}`,
   ),

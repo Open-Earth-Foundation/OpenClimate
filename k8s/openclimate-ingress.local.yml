@@ -18,7 +18,7 @@ spec:
               service:
                 name: openclimate-api-service
                 port:
-                  number: 3100
+                  number: 80
           - path: /
             pathType: Prefix
             backend:
