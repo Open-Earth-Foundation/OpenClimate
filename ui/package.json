@@ -56,7 +56,7 @@
     "react-router-dom": "^5.3.3",
     "react-scripts": "^4.0.3",
     "react-simple-maps": "^3.0.0",
-    "react-toastify": "^9.1.1",
+    "react-toastify": "^9.0.3",
     "react-tooltip": "^4.4.3",
     "reactjs-popup": "^2.0.4",
     "redux-persist": "^6.0.0",
