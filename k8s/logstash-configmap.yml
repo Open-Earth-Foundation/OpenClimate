@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openclimate-logstash-pipeline
+  labels:
+    app.kubernetes.io/name: eck-logstash
+    app.kubernetes.io/component: logstash
+data:
+  logstash.conf: |
+    input {
+      jdbc {
+        jdbc_driver_library => "/usr/share/logstash/vendor/jar/jdbc/postgresql-42.5.1.jar"
+        jdbc_connection_string =>"jdbc:postgresql://postgresql-service:5432/development"
+        jdbc_user => development
+        jdbc_password => development
+        jdbc_driver_class => "org.postgresql.Driver"
+        statement => "SELECT * FROM \"ActorName\""
+      }
+    }
+    output {
+      elasticsearch {
+        hosts => [ "openclimate-elasticsearch-service" ]
+        user => "elastic"
+        password => "manor claw track near buck bonus"
+      }
+    }
