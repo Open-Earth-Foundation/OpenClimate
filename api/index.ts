@@ -1,6 +1,7 @@
 require('dotenv').config()
 const http = require('http')
 const url = require('url')
+const disconnect = require('./orm/init').disconnect
 import {app} from './app'
 
 let server = http.createServer(app)
@@ -45,3 +46,23 @@ server.listen(process.env.CONTROLLERPORT || 80, () =>
     `\n Agent Address: ${process.env.AGENTADDRESS || 'localhost:8150'}`,
   ),
 )
+
+// Clean termination
+// Finish all incoming connections, then close upstream
+
+process.on('SIGTERM', () => {
+  logger.info('Shutting down on SIGTERM')
+  logger.info('Shutting down incoming connections...')
+  Promise.all([
+    server.stop(),
+    websocket.close(),
+    anonWebSocket.close()
+  ]).then(() => {
+    logger.info('Shutting down outgoing connections...')
+    disconnect()
+    .then(() => {
+      logger.info('All shut down.')
+      logger.end()
+    })
+  })
+})
