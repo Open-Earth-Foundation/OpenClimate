@@ -19,12 +19,12 @@ spec:
         image: public.ecr.aws/openearthfoundation/openclimate-api:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 3100
         env:
         - name: NODE_ENV
           value: development
         - name: CONTROLLERPORT
-          value: "80"
+          value: "3100"
         - name: AGENTADDRESS
           value: http://acapy-service:8150
         - name: WEB_ROOT
@@ -50,7 +50,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /api/second-controller
-            port: 80
+            port: 3100
             httpHeaders:
             - name: X-Liveness-Probe
               value: "True"
