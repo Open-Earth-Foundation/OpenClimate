@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgresql-persistentvolume
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 1Mi
+  mountOptions:
+    - rsize=1048576
+    - wsize=1048576
+    - hard
+    - timeo=600
+    - retrans=2
+    - noresvport
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /
+  claimRef:
+    name: postgresql-persistentvolume
