@@ -73,6 +73,7 @@
     "@types/leaflet": "^1.7.5",
     "@types/react-animations": "^1.0.0",
     "@types/react-router-dom": "^5.1.8",
+    "prettier": "^2.8.3",
     "sass": "^1.54.9"
   },
   "scripts": {
