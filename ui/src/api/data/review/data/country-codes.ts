@@ -1494,7 +1494,7 @@ const countryCodesJson = `
       "alpha-3": "ALA",
       "country-code": "248"
     }
-  ]`
+  ]`;
 /*
 const GetCountryCodes = () => {
     let countryParsed = <any[]>JSON.parse(countryCodesJson);

@@ -1,8 +1,8 @@
-const {Sequelize, DataTypes, Model} = require('sequelize')
+const { Sequelize, DataTypes, Model } = require("sequelize");
 
-const init = require('./init.ts')
-const sequelize = init.connect()
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+const sequelize = init.connect();
+const logger = require("../logger").child({ module: __filename });
 
 class Setting extends Model {}
 
@@ -22,101 +22,101 @@ Setting.init(
   },
   {
     sequelize, // Pass the connection instance
-    modelName: 'Setting',
-    tableName: 'settings', // Our table names don't follow the sequelize convention and thus must be explicitly declared
+    modelName: "Setting",
+    tableName: "settings", // Our table names don't follow the sequelize convention and thus must be explicitly declared
     timestamps: false,
-  },
-)
+  }
+);
 
 // Theme
 const readTheme = async function () {
   try {
     const settings = await Setting.findAll({
       where: {
-        key: 'theme',
+        key: "theme",
       },
-    })
-    return settings[0]
+    });
+    return settings[0];
   } catch (error) {
-    logger.error('Could not find theme in the database: ', error)
+    logger.error("Could not find theme in the database: ", error);
   }
-}
+};
 
 const updateTheme = async function (value) {
   try {
     await Setting.update(
-      {value},
+      { value },
       {
         where: {
-          key: 'theme',
+          key: "theme",
         },
-      },
-    )
-    logger.debug('Theme updated successfully.')
+      }
+    );
+    logger.debug("Theme updated successfully.");
   } catch (error) {
-    logger.error('Error updating the theme: ', error)
+    logger.error("Error updating the theme: ", error);
   }
-}
+};
 
 // SMTP
 const readSMTP = async function () {
   try {
     const smtp = await Setting.findAll({
       where: {
-        key: 'smtp',
+        key: "smtp",
       },
-    })
-    return smtp[0]
+    });
+    return smtp[0];
   } catch (error) {
-    logger.error('Could not find organization name in the database: ', error)
+    logger.error("Could not find organization name in the database: ", error);
   }
-}
+};
 
 const updateSMTP = async function (value) {
   try {
     await Setting.update(
-      {value},
+      { value },
       {
         where: {
-          key: 'smtp',
+          key: "smtp",
         },
-      },
-    )
-    logger.debug('SMTP updated successfully.')
+      }
+    );
+    logger.debug("SMTP updated successfully.");
   } catch (error) {
-    logger.error('Error updating the SMTP: ', error)
+    logger.error("Error updating the SMTP: ", error);
   }
-}
+};
 
 // Organization
 const readOrganization = async function () {
   try {
     const organization = await Setting.findAll({
       where: {
-        key: 'organization',
+        key: "organization",
       },
-    })
-    return organization[0]
+    });
+    return organization[0];
   } catch (error) {
-    logger.error('Could not find organization name in the database: ', error)
+    logger.error("Could not find organization name in the database: ", error);
   }
-}
+};
 
 const updateOrganization = async function (value) {
   try {
     await Setting.update(
-      {value},
+      { value },
       {
         where: {
-          key: 'organization',
+          key: "organization",
         },
-      },
-    )
-    logger.debug('Organization name updated successfully.')
+      }
+    );
+    logger.debug("Organization name updated successfully.");
   } catch (error) {
-    logger.error('Error updating the organization name: ', error)
+    logger.error("Error updating the organization name: ", error);
   }
-}
+};
 
 export = {
   readTheme,
@@ -125,4 +125,4 @@ export = {
   updateSMTP,
   readOrganization,
   updateOrganization,
-}
+};

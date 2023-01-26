@@ -1,12 +1,12 @@
-const {Sequelize, DataTypes, Model} = require('sequelize')
+const { Sequelize, DataTypes, Model } = require("sequelize");
 
-const init = require('./init.ts')
-const sequelize = init.connect()
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+const sequelize = init.connect();
+const logger = require("../logger").child({ module: __filename });
 
 class Pledges extends Model {}
 
-exports.Pledges = Pledges
+exports.Pledges = Pledges;
 
 Pledges.init(
   {
@@ -83,16 +83,15 @@ Pledges.init(
   },
   {
     sequelize,
-    modelName: 'Pledges',
-    tableName: 'pledges',
+    modelName: "Pledges",
+    tableName: "pledges",
     timestamps: false,
-  },
-)
-
+  }
+);
 
 const createPledge = async function (organization_id, data) {
   try {
-    const timestamp = Date.now()
+    const timestamp = Date.now();
 
     const pledge = await Pledges.create({
       credential_category: data.credential_category,
@@ -109,7 +108,7 @@ const createPledge = async function (organization_id, data) {
       pledge_emission_target: data.pledge_emission_target,
       pledge_emission_reduction: data.pledge_emission_reduction,
       pledge_carbon_intensity_target: data.pledge_carbon_intensity_target,
-      pledge_carbon_intensity_reduction:  data.pledge_carbon_intensity_reduction,
+      pledge_carbon_intensity_reduction: data.pledge_carbon_intensity_reduction,
       pledge_base_year: data.pledge_base_year,
       pledge_base_level: data.pledge_base_level,
       pledge_plan_details: data.pledge_plan_details,
@@ -117,57 +116,55 @@ const createPledge = async function (organization_id, data) {
       signature_name: data.signature_name,
       created_at: timestamp,
       updated_at: timestamp,
-    })
+    });
 
-    return pledge
+    return pledge;
   } catch (error) {
-    logger.error('Error saving pledge to the database: ', error)
+    logger.error("Error saving pledge to the database: ", error);
   }
-}
+};
 
 const readPledge = async function (pledge_id) {
   try {
     const pledge = await Pledges.findAll({
       where: {
         pledge_id,
-      }
-    })
+      },
+    });
 
-    return pledge[0]
+    return pledge[0];
   } catch (error) {
-    logger.error('Could not find pledge by id in the database: ', error)
+    logger.error("Could not find pledge by id in the database: ", error);
   }
-}
+};
 
 const readPledgeByOrgId = async function (id) {
   try {
     const pledges = await Pledges.findAll({
       where: {
-        organization_id: id
-      }
-    })
+        organization_id: id,
+      },
+    });
 
-    return pledges
+    return pledges;
   } catch (error) {
-    logger.error('Could not find pledges by id in the database: ', error)
+    logger.error("Could not find pledges by id in the database: ", error);
   }
-}
+};
 
 const readPledges = async function () {
   try {
-    const pledges = await Pledges.findAll({})
+    const pledges = await Pledges.findAll({});
 
-    return pledges
+    return pledges;
   } catch (error) {
-    logger.error('Could not find pledges in the database: ', error)
+    logger.error("Could not find pledges in the database: ", error);
   }
-}
+};
 
-const updatePledges = async function (
-  pledge_id, organization_id, data
-) {
+const updatePledges = async function (pledge_id, organization_id, data) {
   try {
-    const timestamp = Date.now()
+    const timestamp = Date.now();
 
     const pledge = await Pledges.update(
       {
@@ -185,7 +182,8 @@ const updatePledges = async function (
         pledge_emission_target: data.pledge_emission_target,
         pledge_emission_reduction: data.pledge_emission_reduction,
         pledge_carbon_intensity_target: data.pledge_carbon_intensity_target,
-        pledge_carbon_intensity_reduction:  data.pledge_carbon_intensity_reduction,
+        pledge_carbon_intensity_reduction:
+          data.pledge_carbon_intensity_reduction,
         pledge_base_year: data.pledge_base_year,
         pledge_base_level: data.pledge_base_level,
         pledge_plan_details: data.pledge_plan_details,
@@ -197,15 +195,15 @@ const updatePledges = async function (
         where: {
           pledge_id,
         },
-      },
-    )
+      }
+    );
 
-    logger.debug(`Pledge updated successfully.`)
-    return pledge
+    logger.debug(`Pledge updated successfully.`);
+    return pledge;
   } catch (error) {
-    logger.error('Error updating the Pledge: ', error)
+    logger.error("Error updating the Pledge: ", error);
   }
-}
+};
 
 export = {
   Pledges,
@@ -213,5 +211,5 @@ export = {
   readPledge,
   readPledgeByOrgId,
   readPledges,
-  updatePledges
-}
+  updatePledges,
+};

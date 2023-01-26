@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
-import { CanUser } from './CanUser'
+import { CanUser } from "./CanUser";
 
-import FormOrganization from './FormOrganization'
+import FormOrganization from "./FormOrganization";
 // import FormOrganizationDelete from './FormOrganizationDelete'
 // import FormOrganizationEdit from './FormOrganizationEdit'
-import { useNotification } from './NotificationProvider'
-import PageHeader from './PageHeader'
-import PageSection from './PageSection'
+import { useNotification } from "./NotificationProvider";
+import PageHeader from "./PageHeader";
+import PageSection from "./PageSection";
 
-import { TextAlignCenter } from './CommonStyles'
+import { TextAlignCenter } from "./CommonStyles";
 
 import {
   DataTable,
@@ -20,90 +20,93 @@ import {
   IconRemove,
   IconEdit,
   IconEmail,
-} from './CommonStylesTables'
+} from "./CommonStylesTables";
 
-import { ActionButton } from './CommonStylesForms'
+import { ActionButton } from "./CommonStylesForms";
 
 function Organizations(props) {
-  const error = props.errorMessage
-  const success = props.successMessage
+  const error = props.errorMessage;
+  const success = props.successMessage;
 
-  const [index, setIndex] = useState(false)
+  const [index, setIndex] = useState(false);
 
   // Accessing notification context
-  const setNotification = useNotification()
+  const setNotification = useNotification();
 
   useEffect(() => {
     if (success) {
-      setNotification(success, 'notice')
-      props.clearResponseState()
+      setNotification(success, "notice");
+      props.clearResponseState();
 
       // (Simon): Temporary solution. Closing all/any modals on success
-      closeOrganizationModal()
-      closeOrganizationEditModal()
-      closeDeleteModal()
+      closeOrganizationModal();
+      closeOrganizationEditModal();
+      closeDeleteModal();
     } else if (error) {
-      setNotification(error, 'error')
-      props.clearResponseState()
-      setIndex(index + 1)
+      setNotification(error, "error");
+      props.clearResponseState();
+      setIndex(index + 1);
     }
-  }, [error, success, setNotification, props])
+  }, [error, success, setNotification, props]);
 
-  const [organizationModalIsOpen, setOrganizationModalIsOpen] = useState(false)
-  const [organizationEditModalIsOpen, setOrganizationEditModalIsOpen] = useState(false)
-  const [deleteOrganizationModalIsOpen, setDeleteOrganizationModalIsOpen] = useState(false)
+  const [organizationModalIsOpen, setOrganizationModalIsOpen] = useState(false);
+  const [organizationEditModalIsOpen, setOrganizationEditModalIsOpen] =
+    useState(false);
+  const [deleteOrganizationModalIsOpen, setDeleteOrganizationModalIsOpen] =
+    useState(false);
 
-  const [buttonDisabled, setButtonDisabled] = useState(false)
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  const loggedInUserState = props.loggedInUserState
+  const loggedInUserState = props.loggedInUserState;
 
-  const organizations = props.organizations
+  const organizations = props.organizations;
 
-  const closeOrganizationModal = () => setOrganizationModalIsOpen(false)
-  const closeOrganizationEditModal = () => setOrganizationEditModalIsOpen(false)
-  const closeDeleteModal = () => setDeleteOrganizationModalIsOpen(false)
+  const closeOrganizationModal = () => setOrganizationModalIsOpen(false);
+  const closeOrganizationEditModal = () =>
+    setOrganizationEditModalIsOpen(false);
+  const closeDeleteModal = () => setDeleteOrganizationModalIsOpen(false);
 
   const addOrganization = () => {
-    setOrganizationModalIsOpen(true)
-  }
+    setOrganizationModalIsOpen(true);
+  };
 
   const editOrganization = () => {
-    setOrganizationEditModalIsOpen(true)
-  }
+    setOrganizationEditModalIsOpen(true);
+  };
 
   const deleteOrganization = () => {
-    setDeleteOrganizationModalIsOpen(true)
-  }
+    setDeleteOrganizationModalIsOpen(true);
+  };
 
-  let organizationRows = ''
+  let organizationRows = "";
 
   if (organizations) {
     organizationRows = organizations.map((organization) => {
-      let organizationId = ''
-      let organizationName = ''
-      let organizationCategory = ''
-      let organizationType = ''
-      let organizationCountry = ''
-      let organizationJurisdiction = ''
+      let organizationId = "";
+      let organizationName = "";
+      let organizationCategory = "";
+      let organizationType = "";
+      let organizationCountry = "";
+      let organizationJurisdiction = "";
 
       if (organization) {
         if (organization.organization_id) {
-          organizationId = organization.organization_id
+          organizationId = organization.organization_id;
         }
         if (organization.name) {
-          organizationName = organization.name
+          organizationName = organization.name;
         }
         if (organization.category) {
-          organizationCategory = organization.category
+          organizationCategory = organization.category;
         }
         if (organization.type) {
-          organizationType = organization.type
+          organizationType = organization.type;
         }
         if (organization.country) {
-          organizationCountry = organization.country
+          organizationCountry = organization.country;
         }
         if (organization.jurisdiction) {
-          organizationJurisdiction = organization.jurisdiction
+          organizationJurisdiction = organization.jurisdiction;
         }
       }
 
@@ -146,14 +149,14 @@ function Organizations(props) {
             )}
           /> */}
         </DataRow>
-      )
-    })
+      );
+    });
   }
 
   return (
     <>
       <div id="organizations">
-        <PageHeader title={'Organizations'} />
+        <PageHeader title={"Organizations"} />
         <PageSection>
           <DataTable>
             <thead>
@@ -183,7 +186,7 @@ function Organizations(props) {
                 /> */}
               </DataRow>
             </thead>
-            <tbody>{organizationRows ? organizationRows : ''}</tbody>
+            <tbody>{organizationRows ? organizationRows : ""}</tbody>
           </DataTable>
         </PageSection>
         <ActionButton title="Add a New Organization" onClick={addOrganization}>
@@ -212,7 +215,7 @@ function Organizations(props) {
         /> */}
       </div>
     </>
-  )
+  );
 }
 
-export default Organizations
+export default Organizations;

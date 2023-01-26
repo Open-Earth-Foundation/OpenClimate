@@ -1,4 +1,4 @@
 export default interface IGeoSubnational {
-    name: string,
-    geoData: string
+  name: string;
+  geoData: string;
 }

@@ -1,39 +1,39 @@
-import React, { FunctionComponent, useState, useEffect } from 'react'
-import Button from '../../form-elements/button/button'
-import { useTheme } from 'styled-components'
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
-import ContentCopyIcon from '@mui/icons-material/ContentCopy'
-import Modal from '../modal/modal'
+import React, { FunctionComponent, useState, useEffect } from "react";
+import Button from "../../form-elements/button/button";
+import { useTheme } from "styled-components";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import Modal from "../modal/modal";
 // import CredentialPic from '../../../img/modals/credential-qrcode.png';
-import QR from 'qrcode.react'
-import './bw-invitation.modal.scss'
-import InputText from '../../form-elements/input-text/input.text'
-import { IUser } from '../../../../api/models/User/IUser'
-import { useNotification } from '../../../../UI/NotificationProvider'
+import QR from "qrcode.react";
+import "./bw-invitation.modal.scss";
+import InputText from "../../form-elements/input-text/input.text";
+import { IUser } from "../../../../api/models/User/IUser";
+import { useNotification } from "../../../../UI/NotificationProvider";
 
 interface Props {
-  onModalShow: (modalType: string) => void
-  hideModal: () => void
-  user: IUser
+  onModalShow: (modalType: string) => void;
+  hideModal: () => void;
+  user: IUser;
 }
 
 const BWInvitationModal: FunctionComponent<Props> = (props) => {
-  const [requestedInvitation, setRequestedInvitation] = useState(false)
-  const [userEmail, setUserEmail] = useState<string>('')
+  const [requestedInvitation, setRequestedInvitation] = useState(false);
+  const [userEmail, setUserEmail] = useState<string>("");
 
-  const setNotification = useNotification()
-  const { onModalShow, hideModal, user } = props
+  const setNotification = useNotification();
+  const { onModalShow, hideModal, user } = props;
 
   useEffect(() => {
     if (!requestedInvitation) {
-      console.log('User', user)
-      console.log('Requesting wallet invitation')
-      props.sendRequest('INVITATIONS', 'CREATE_WALLET_INVITATION', {
+      console.log("User", user);
+      console.log("Requesting wallet invitation");
+      props.sendRequest("INVITATIONS", "CREATE_WALLET_INVITATION", {
         userID: user.id,
-      })
-      setRequestedInvitation(true)
+      });
+      setRequestedInvitation(true);
     }
-  }, [requestedInvitation])
+  }, [requestedInvitation]);
 
   return (
     <form action="/" className="login-credential-form">
@@ -46,7 +46,7 @@ const BWInvitationModal: FunctionComponent<Props> = (props) => {
         <div className="modal__row modal__row_content-center login-credential-form__tutorial-link">
           <a href="#" className="modal__link modal__link_blue">
             <InfoOutlinedIcon
-              className={'login-credential-form__info-icon'}
+              className={"login-credential-form__info-icon"}
               fontSize="inherit"
             />
             How does this work?
@@ -69,13 +69,13 @@ const BWInvitationModal: FunctionComponent<Props> = (props) => {
         <div className="modal__row modal__row_content-center login-credential-form__qr-content">
           <a
             onClick={() => {
-              navigator.clipboard.writeText(props.QRCodeURL)
-              alert('Link copied to clipboard!')
+              navigator.clipboard.writeText(props.QRCodeURL);
+              alert("Link copied to clipboard!");
             }}
             className="modal__link modal__link_primary"
           >
             <div className="login-credential-form__copy-link">
-              <ContentCopyIcon className={'login-credential-form__info-icon'} />
+              <ContentCopyIcon className={"login-credential-form__info-icon"} />
               Copy link
             </div>
           </a>
@@ -83,14 +83,14 @@ const BWInvitationModal: FunctionComponent<Props> = (props) => {
         <div className="modal__row modal__row_btn">
           <Button
             color="white"
-            click={() => onModalShow('send-ghg-proof')}
+            click={() => onModalShow("send-ghg-proof")}
             text="Done"
             type="button"
           />
         </div>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default BWInvitationModal
+export default BWInvitationModal;

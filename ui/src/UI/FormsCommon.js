@@ -1,17 +1,17 @@
-import styled from 'styled-components'
-import Popup from 'reactjs-popup'
+import styled from "styled-components";
+import Popup from "reactjs-popup";
 
 export const StyledPopup = styled(Popup)`
   &-overlay {
     background: rgba(0, 0, 0, 0.5);
   }
-`
+`;
 
 export const InputBox = styled.div`
   margin: 10px;
   display: flex;
   justify-content: center;
-`
+`;
 
 export const Modal = styled.div`
   font-size: 12px;
@@ -20,7 +20,7 @@ export const Modal = styled.div`
   width: 500px;
   padding: 5px;
   border: 1px solid #d7d7d7;
-`
+`;
 
 export const ModalHeader = styled.div`
   width: 100%;
@@ -28,13 +28,13 @@ export const ModalHeader = styled.div`
   font-size: 1.8em;
   text-align: center;
   padding: 5px;
-`
+`;
 
 export const ModalContentWrapper = styled.div`
   overflow: hidden;
   height: auto;
   width: 100%;
-`
+`;
 
 export const CloseBtn = styled.button`
   cursor: pointer;
@@ -52,7 +52,7 @@ export const CloseBtn = styled.button`
   &:focus {
     box-shadow: 0 0 1pt 1pt #000;
   }
-`
+`;
 
 export const Actions = styled.div`
   width: 100%;
@@ -61,7 +61,7 @@ export const Actions = styled.div`
   padding: 10px 5px;
   margin: auto;
   text-align: center;
-`
+`;
 
 export const CancelBtn = styled.button`
   border: none;
@@ -72,7 +72,7 @@ export const CancelBtn = styled.button`
   padding: 10px;
   width: 25%;
   font-size: 1.3em;
-`
+`;
 
 export const SubmitBtn = styled.button`
   border: none;
@@ -83,14 +83,14 @@ export const SubmitBtn = styled.button`
   padding: 10px;
   width: 25%;
   font-size: 1.3em;
-`
+`;
 
 export const ModalLabel = styled.label`
   color: ${(props) => props.theme.text_color};
   font-size: 1.5em;
   width: 30%;
   margin-right: 10px;
-`
+`;
 
 export const InputField = styled.input`
   color: ${(props) => props.theme.text_color};
@@ -98,20 +98,20 @@ export const InputField = styled.input`
   height: 30px;
   width: 50%;
   }
-`
+`;
 
 export const Select = styled.select`
   color: ${(props) => props.theme.text_color};
   font-size: 1.5em;
   width: 50%;
-`
+`;
 
 export const TextArea = styled.textarea`
   color: ${(props) => props.theme.text_color};
   font-size: 1.5em;
   height: 30px;
   width: 50%;
-`
+`;
 
 export const ModalContent = styled.div`
   height: 99%;
@@ -120,12 +120,12 @@ export const ModalContent = styled.div`
   overflow-y: scroll;
   padding-right: 17px;
   box-sizing: content-box;
-`
+`;
 
 export const QRModalContent = styled.div`
   width: 100%;
   padding: 10px 5px;
-`
+`;
 export const QRHolder = styled.div`
   height: 300px;
-`
+`;

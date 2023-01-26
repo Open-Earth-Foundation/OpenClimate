@@ -1,53 +1,67 @@
 // initiative.ts -- ORM mapping layer for Initiative table
 
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op, Sequelize} from 'sequelize';
-import {DataSource} from './datasource'
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+  Sequelize,
+} from "sequelize";
+import { DataSource } from "./datasource";
 
-const init = require('./init.ts');
+const init = require("./init.ts");
 export const sequelize = init.connect();
 
-export class Initiative extends Model <InferAttributes<Initiative>, InferCreationAttributes<Initiative>> {
-    declare initiative_id: string;
-    declare name: string;
-    declare description: string;
-    declare URL: string;
-    declare datasource_id: string;
-    declare created: CreationOptional<Date>;
-    declare last_updated: CreationOptional<Date>;
+export class Initiative extends Model<
+  InferAttributes<Initiative>,
+  InferCreationAttributes<Initiative>
+> {
+  declare initiative_id: string;
+  declare name: string;
+  declare description: string;
+  declare URL: string;
+  declare datasource_id: string;
+  declare created: CreationOptional<Date>;
+  declare last_updated: CreationOptional<Date>;
 }
 
-Initiative.init({
+Initiative.init(
+  {
     initiative_id: {
-        type: DataTypes.STRING,
-        primaryKey: true
+      type: DataTypes.STRING,
+      primaryKey: true,
     },
     name: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     description: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     URL: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     datasource_id: {
-        type: DataTypes.STRING,
-        references: {
-            model: DataSource,
-            key: "datasource_id"
-        }
+      type: DataTypes.STRING,
+      references: {
+        model: DataSource,
+        key: "datasource_id",
+      },
     },
     created: {
-        type: DataTypes.DATE,
+      type: DataTypes.DATE,
     },
     last_updated: {
-        type: DataTypes.DATE,
+      type: DataTypes.DATE,
     },
-},{
+  },
+  {
     sequelize,
-    modelName: 'Initiative',
-    tableName: 'Initiative',
+    modelName: "Initiative",
+    tableName: "Initiative",
     timestamps: true,
     createdAt: "created",
-    updatedAt: "last_updated"
-})
+    updatedAt: "last_updated",
+  }
+);

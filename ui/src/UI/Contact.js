@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import FormContacts from './FormContacts'
-import FormOrganization from './FormOrganization'
-import { useNotification } from './NotificationProvider'
-import PageHeader from './PageHeader.js'
-import PageSection from './PageSection.js'
+import FormContacts from "./FormContacts";
+import FormOrganization from "./FormOrganization";
+import { useNotification } from "./NotificationProvider";
+import PageHeader from "./PageHeader.js";
+import PageSection from "./PageSection.js";
 
-import { CanUser } from './CanUser'
+import { CanUser } from "./CanUser";
 
 import {
   DataTable,
@@ -17,7 +17,7 @@ import {
   DataCell,
   AttributeTable,
   AttributeRow,
-} from './CommonStylesTables'
+} from "./CommonStylesTables";
 
 const EditContact = styled.button`
   float: right;
@@ -26,7 +26,7 @@ const EditContact = styled.button`
   border: none;
   box-shadow: ${(props) => props.theme.drop_shadow};
   background: ${(props) => props.theme.primary_color};
-`
+`;
 
 const IssueCredential = styled.button`
   float: right;
@@ -35,33 +35,33 @@ const IssueCredential = styled.button`
   border: none;
   box-shadow: ${(props) => props.theme.drop_shadow};
   background: ${(props) => props.theme.primary_color};
-`
+`;
 
 function Contact(props) {
-  const localUser = props.loggedInUserState
+  const localUser = props.loggedInUserState;
 
   // Accessing notification context
-  const setNotification = useNotification()
+  const setNotification = useNotification();
 
-  const history = props.history
-  const contactId = props.contactId
+  const history = props.history;
+  const contactId = props.contactId;
 
-  let contactToSelect = ''
+  let contactToSelect = "";
 
   for (let i = 0; i < props.contacts.length; i++) {
     if (props.contacts[i].contact_id == contactId) {
-      contactToSelect = props.contacts[i]
-      break
+      contactToSelect = props.contacts[i];
+      break;
     }
   }
 
   useEffect(() => {
-    setContactSelected(contactToSelect)
-  }, [contactToSelect])
+    setContactSelected(contactToSelect);
+  }, [contactToSelect]);
 
   function openCredential(history, id) {
     if (history !== undefined) {
-      history.push('/admin/credentials/' + id)
+      history.push("/admin/credentials/" + id);
     }
   }
 
@@ -69,26 +69,26 @@ function Contact(props) {
   // const [contactSearch, setContactSearch] = useState(false)
 
   // Modal state
-  const [contactModalIsOpen, setContactModalIsOpen] = useState(false)
-  const [organizationModalIsOpen, setOrganizationModalIsOpen] = useState(false)
+  const [contactModalIsOpen, setContactModalIsOpen] = useState(false);
+  const [organizationModalIsOpen, setOrganizationModalIsOpen] = useState(false);
 
-  const closeContactModal = () => setContactModalIsOpen(false)
-  const closeOrganizationModal = () => setOrganizationModalIsOpen(false)
+  const closeContactModal = () => setContactModalIsOpen(false);
+  const closeOrganizationModal = () => setOrganizationModalIsOpen(false);
 
-  const [contactSelected, setContactSelected] = useState(contactToSelect)
+  const [contactSelected, setContactSelected] = useState(contactToSelect);
 
-  let demographicData = ''
-  let passportData = ''
+  let demographicData = "";
+  let passportData = "";
 
   if (
     contactSelected.Passport !== null &&
     contactSelected.Passport !== undefined
   ) {
-    let rawImage = contactSelected.Passport.photo
+    let rawImage = contactSelected.Passport.photo;
 
     const handleImageSrc = (rawImage) => {
-      let bytes = new Uint8Array(rawImage)
-      bytes = Buffer.from(rawImage).toString('base64')
+      let bytes = new Uint8Array(rawImage);
+      bytes = Buffer.from(rawImage).toString("base64");
       // Check the MIME type
       // let result = null
       // if (atob(bytes).charAt(0) === 'i')
@@ -100,11 +100,11 @@ function Contact(props) {
       // else if (atob(bytes).charAt(0) === 'U')
       // result = `data:image/webp;base64,${atob(bytes)}`
       // else
-      let result = atob(bytes)
-      return result
-    }
+      let result = atob(bytes);
+      return result;
+    };
 
-    let test = handleImageSrc(rawImage)
+    let test = handleImageSrc(rawImage);
     passportData = (
       <div>
         <h2>Passport Information</h2>
@@ -115,8 +115,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.passport_number || ''
-                  : ''}
+                  ? contactSelected.Passport.passport_number || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -124,8 +124,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.surname || ''
-                  : ''}
+                  ? contactSelected.Passport.surname || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -133,8 +133,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.given_names || ''
-                  : ''}
+                  ? contactSelected.Passport.given_names || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -142,8 +142,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.sex || ''
-                  : ''}
+                  ? contactSelected.Passport.sex || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -151,8 +151,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.date_of_birth || ''
-                  : ''}
+                  ? contactSelected.Passport.date_of_birth || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -160,8 +160,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.place_of_birth || ''
-                  : ''}
+                  ? contactSelected.Passport.place_of_birth || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -169,8 +169,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.nationality || ''
-                  : ''}
+                  ? contactSelected.Passport.nationality || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -178,8 +178,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.date_of_issue || ''
-                  : ''}
+                  ? contactSelected.Passport.date_of_issue || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -187,8 +187,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.date_of_expiration || ''
-                  : ''}
+                  ? contactSelected.Passport.date_of_expiration || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -196,8 +196,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.type || ''
-                  : ''}
+                  ? contactSelected.Passport.type || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -205,8 +205,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.code || ''
-                  : ''}
+                  ? contactSelected.Passport.code || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -214,8 +214,8 @@ function Contact(props) {
               <td>
                 {contactSelected.Passport !== null &&
                 contactSelected.Passport !== undefined
-                  ? contactSelected.Passport.authority || ''
-                  : ''}
+                  ? contactSelected.Passport.authority || ""
+                  : ""}
               </td>
             </AttributeRow>
             <AttributeRow>
@@ -226,29 +226,29 @@ function Contact(props) {
         </AttributeTable>
         <img src={test} alt="Error" />
       </div>
-    )
+    );
   }
 
   function updateContact(updatedDemographic, e) {
-    e.preventDefault()
+    e.preventDefault();
     const Demographic = {
       Demographic: { ...updatedDemographic },
-    }
+    };
 
-    props.sendRequest('DEMOGRAPHICS', 'UPDATE_OR_CREATE', updatedDemographic)
+    props.sendRequest("DEMOGRAPHICS", "UPDATE_OR_CREATE", updatedDemographic);
 
-    setNotification('Contact was updated!', 'notice')
+    setNotification("Contact was updated!", "notice");
 
-    setContactSelected({ ...contactSelected, ...Demographic })
+    setContactSelected({ ...contactSelected, ...Demographic });
   }
 
   // Submits the credential form and shows notification
   function submitNewCredential(newCredential, e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    props.sendRequest('CREDENTIALS', 'ISSUE_USING_SCHEMA', newCredential)
+    props.sendRequest("CREDENTIALS", "ISSUE_USING_SCHEMA", newCredential);
 
-    setNotification('Credential was successfully added!', 'notice')
+    setNotification("Credential was successfully added!", "notice");
   }
 
   const credentialRows = props.credentials.map((credential_record) => {
@@ -256,41 +256,43 @@ function Contact(props) {
       contactSelected.Connections[0].connection_id ===
       credential_record.connection_id
     ) {
-      const credential_id = credential_record.credential_exchange_id
-      const credentialState = credential_record.state.replaceAll('_', ' ') || ''
+      const credential_id = credential_record.credential_exchange_id;
+      const credentialState =
+        credential_record.state.replaceAll("_", " ") || "";
       const dateCreated =
-        new Date(credential_record.created_at).toLocaleString() || ''
+        new Date(credential_record.created_at).toLocaleString() || "";
 
-      let credentialName = ''
+      let credentialName = "";
       if (
         credential_record.credential_proposal_dict !== null &&
         credential_record.credential_proposal_dict !== undefined
       ) {
-        credentialName = credential_record.credential_proposal_dict.schema_name.replaceAll(
-          '_',
-          ' '
-        )
+        credentialName =
+          credential_record.credential_proposal_dict.schema_name.replaceAll(
+            "_",
+            " "
+          );
       }
       return (
         <DataRow
           key={credential_id}
           onClick={() => {
-            openCredential(history, credential_id)
+            openCredential(history, credential_id);
           }}
         >
           <DataCell>{credentialName}</DataCell>
           <DataCell className="title-case">{credentialState}</DataCell>
           <DataCell>{dateCreated}</DataCell>
         </DataRow>
-      )
+      );
     }
-  })
+  });
 
   return (
     <>
       <div id="contact">
         <PageHeader
-          title={'Contact Details: ' + (contactSelected.label || '')}
+          title={"Contact Details: " + (contactSelected.label || "")}
         />
         <PageSection>
           <CanUser
@@ -307,14 +309,14 @@ function Contact(props) {
             <tbody>
               <AttributeRow>
                 <th>Contact ID:</th>
-                <td>{contactSelected.contact_id || ''}</td>
+                <td>{contactSelected.contact_id || ""}</td>
               </AttributeRow>
               <AttributeRow>
                 <th>Connection Status:</th>
                 <td>
                   {contactSelected.Connections !== undefined
-                    ? contactSelected.Connections[0].state || ''
-                    : ''}
+                    ? contactSelected.Connections[0].state || ""
+                    : ""}
                 </td>
               </AttributeRow>
             </tbody>
@@ -325,15 +327,15 @@ function Contact(props) {
             <tbody>
               <AttributeRow>
                 <th>Name:</th>
-                <td>{contactSelected.label || ''}</td>
+                <td>{contactSelected.label || ""}</td>
               </AttributeRow>
               <AttributeRow>
                 <th>Email:</th>
                 <td>
                   {contactSelected.Demographic !== null &&
                   contactSelected.Demographic !== undefined
-                    ? contactSelected.Demographic.email || ''
-                    : ''}
+                    ? contactSelected.Demographic.email || ""
+                    : ""}
                 </td>
               </AttributeRow>
               <AttributeRow>
@@ -341,8 +343,8 @@ function Contact(props) {
                 <td>
                   {contactSelected.Demographic !== null &&
                   contactSelected.Demographic !== undefined
-                    ? contactSelected.Demographic.phone || ''
-                    : ''}
+                    ? contactSelected.Demographic.phone || ""
+                    : ""}
                 </td>
               </AttributeRow>
               <AttributeRow>
@@ -351,8 +353,8 @@ function Contact(props) {
                   {contactSelected.Demographic !== null &&
                   contactSelected.Demographic !== undefined &&
                   contactSelected.Demographic.address
-                    ? contactSelected.Demographic.address.address_1 || ''
-                    : ''}
+                    ? contactSelected.Demographic.address.address_1 || ""
+                    : ""}
                 </td>
               </AttributeRow>
               <AttributeRow>
@@ -361,8 +363,8 @@ function Contact(props) {
                   {contactSelected.Demographic !== null &&
                   contactSelected.Demographic !== undefined &&
                   contactSelected.Demographic.address
-                    ? contactSelected.Demographic.address.address_2 || ''
-                    : ''}
+                    ? contactSelected.Demographic.address.address_2 || ""
+                    : ""}
                 </td>
               </AttributeRow>
               <AttributeRow>
@@ -371,8 +373,8 @@ function Contact(props) {
                   {contactSelected.Demographic !== null &&
                   contactSelected.Demographic !== undefined &&
                   contactSelected.Demographic.address
-                    ? contactSelected.Demographic.address.city || ''
-                    : ''}
+                    ? contactSelected.Demographic.address.city || ""
+                    : ""}
                 </td>
               </AttributeRow>
               <AttributeRow>
@@ -381,8 +383,8 @@ function Contact(props) {
                   {contactSelected.Demographic !== null &&
                   contactSelected.Demographic !== undefined &&
                   contactSelected.Demographic.address
-                    ? contactSelected.Demographic.address.state || ''
-                    : ''}
+                    ? contactSelected.Demographic.address.state || ""
+                    : ""}
                 </td>
               </AttributeRow>
               <AttributeRow>
@@ -391,8 +393,8 @@ function Contact(props) {
                   {contactSelected.Demographic !== null &&
                   contactSelected.Demographic !== undefined &&
                   contactSelected.Demographic.address
-                    ? contactSelected.Demographic.address.zip_code || ''
-                    : ''}
+                    ? contactSelected.Demographic.address.zip_code || ""
+                    : ""}
                 </td>
               </AttributeRow>
               <AttributeRow>
@@ -401,8 +403,8 @@ function Contact(props) {
                   {contactSelected.Demographic !== null &&
                   contactSelected.Demographic !== undefined &&
                   contactSelected.Demographic.address
-                    ? contactSelected.Demographic.address.country || ''
-                    : ''}
+                    ? contactSelected.Demographic.address.country || ""
+                    : ""}
                 </td>
               </AttributeRow>
             </tbody>
@@ -414,7 +416,9 @@ function Contact(props) {
             user={localUser}
             perform="credentials:issue"
             yes={() => (
-              <IssueCredential onClick={() => setOrganizationModalIsOpen((o) => !o)}>
+              <IssueCredential
+                onClick={() => setOrganizationModalIsOpen((o) => !o)}
+              >
                 Issue Organization Credential
               </IssueCredential>
             )}
@@ -445,7 +449,7 @@ function Contact(props) {
         />
       </div>
     </>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

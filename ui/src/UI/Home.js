@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import FormQR from './FormQR'
-import FormInvitationAccept from './FormInvitationAccept'
+import FormQR from "./FormQR";
+import FormInvitationAccept from "./FormInvitationAccept";
 // import { useNotification } from './NotificationProvider'
 
-import { CanUser } from './CanUser'
+import { CanUser } from "./CanUser";
 
 const DashboardRow = styled.div`
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const DashboardButton = styled.div`
   width: 32%;
@@ -33,7 +33,7 @@ const DashboardButton = styled.div`
     background: ${(props) => props.theme.background_secondary};
     color: ${(props) => props.theme.text_color};
   }
-`
+`;
 
 const DashboardPlaceholder = styled.div`
   width: 32%;
@@ -41,31 +41,31 @@ const DashboardPlaceholder = styled.div`
   height: 150px;
   margin-bottom: 30px;
   padding: 0 25px;
-`
+`;
 
 function Home(props) {
-  const localUser = props.loggedInUserState
+  const localUser = props.loggedInUserState;
 
   // Accessing notification context
   // const setNotification = useNotification()
 
-  const [scanModalIsOpen, setScanModalIsOpen] = useState(false)
-  const [displayModalIsOpen, setDisplayModalIsOpen] = useState(false)
+  const [scanModalIsOpen, setScanModalIsOpen] = useState(false);
+  const [displayModalIsOpen, setDisplayModalIsOpen] = useState(false);
 
-  const closeScanModal = () => setScanModalIsOpen(false)
-  const closeDisplayModal = () => setDisplayModalIsOpen(false)
+  const closeScanModal = () => setScanModalIsOpen(false);
+  const closeDisplayModal = () => setDisplayModalIsOpen(false);
 
   const scanInvite = () => {
-    setScanModalIsOpen((o) => !o)
-  }
+    setScanModalIsOpen((o) => !o);
+  };
 
   const presentInvite = () => {
-    setDisplayModalIsOpen((o) => !o)
+    setDisplayModalIsOpen((o) => !o);
     // props.sendRequest('INVITATIONS', 'CREATE_SINGLE_USE', {
     //   workflow: 'test_id',
     // })
-    props.sendRequest('INVITATIONS', 'CREATE_SINGLE_USE', {})
-  }
+    props.sendRequest("INVITATIONS", "CREATE_SINGLE_USE", {});
+  };
 
   return (
     <>
@@ -100,7 +100,7 @@ function Home(props) {
         sendRequest={props.sendRequest}
       />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

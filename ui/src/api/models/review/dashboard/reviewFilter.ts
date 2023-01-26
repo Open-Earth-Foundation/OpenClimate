@@ -2,9 +2,9 @@ import { DropdownOption } from "../../../../shared/interfaces/dropdown/dropdown-
 import { FilterTypes } from "./filterTypes";
 
 export interface IReviewFilter {
-    title: string,
-    type: FilterTypes,
-    options: Array<DropdownOption>,
-    selectedValue: string,
-    isRadio?: boolean 
+  title: string;
+  type: FilterTypes;
+  options: Array<DropdownOption>;
+  selectedValue: string;
+  isRadio?: boolean;
 }

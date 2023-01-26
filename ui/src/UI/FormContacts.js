@@ -1,5 +1,5 @@
 // import { useNotification } from './NotificationProvider'
-import React, { useRef } from 'react'
+import React, { useRef } from "react";
 
 import {
   StyledPopup,
@@ -14,21 +14,21 @@ import {
   SubmitBtnModal,
   ModalLabel,
   InputFieldModal,
-} from './CommonStylesForms'
+} from "./CommonStylesForms";
 
 function FormContacts(props) {
   // Assigning contact values from props
   const contact_id = props.contactSelected
     ? JSON.parse(JSON.stringify(props.contactSelected.contact_id))
-    : ''
+    : "";
   const email =
     props.contactSelected && props.contactSelected.Demographic
       ? JSON.parse(JSON.stringify(props.contactSelected.Demographic.email))
-      : ''
+      : "";
   const phone =
     props.contactSelected && props.contactSelected.Demographic
       ? JSON.parse(JSON.stringify(props.contactSelected.Demographic.phone))
-      : ''
+      : "";
   const address_1 =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -36,7 +36,7 @@ function FormContacts(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.address_1)
         )
-      : ''
+      : "";
   const address_2 =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -44,7 +44,7 @@ function FormContacts(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.address_2)
         )
-      : ''
+      : "";
   const city =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -52,7 +52,7 @@ function FormContacts(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.city)
         )
-      : ''
+      : "";
   const state =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -60,7 +60,7 @@ function FormContacts(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.state)
         )
-      : ''
+      : "";
   const zip_code =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -68,7 +68,7 @@ function FormContacts(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.zip_code)
         )
-      : ''
+      : "";
   const country =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -76,34 +76,34 @@ function FormContacts(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.country)
         )
-      : ''
+      : "";
 
-  const contactForm = useRef()
+  const contactForm = useRef();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const form = new FormData(contactForm.current)
+    e.preventDefault();
+    const form = new FormData(contactForm.current);
 
     // Assembling contact JSON
-    const contact = {}
-    contact.contact_id = props.contactSelected.contact_id
-    contact.email = form.get('email')
-    contact.phone = form.get('phone')
-    contact.address = {}
-    contact.address.address_1 = form.get('address_1')
-    contact.address.address_2 = form.get('address_2')
-    contact.address.city = form.get('city')
-    contact.address.state = form.get('state')
-    contact.address.zip_code = form.get('zip_code')
-    contact.address.country = form.get('country')
+    const contact = {};
+    contact.contact_id = props.contactSelected.contact_id;
+    contact.email = form.get("email");
+    contact.phone = form.get("phone");
+    contact.address = {};
+    contact.address.address_1 = form.get("address_1");
+    contact.address.address_2 = form.get("address_2");
+    contact.address.city = form.get("city");
+    contact.address.state = form.get("state");
+    contact.address.zip_code = form.get("zip_code");
+    contact.address.country = form.get("country");
 
-    props.submitContact(contact, e)
+    props.submitContact(contact, e);
 
-    props.closeContactModal()
-  }
+    props.closeContactModal();
+  };
 
   function closeModal() {
-    props.closeContactModal()
+    props.closeContactModal();
   }
 
   return (
@@ -209,7 +209,7 @@ function FormContacts(props) {
         <CloseBtn onClick={closeModal}>&times;</CloseBtn>
       </Modal>
     </StyledPopup>
-  )
+  );
 }
 
-export default FormContacts
+export default FormContacts;

@@ -1,5 +1,5 @@
-const AdminAPI = require('../adminAPI')
-const logger = require('../logger').child({module: __filename})
+const AdminAPI = require("../adminAPI");
+const logger = require("../logger").child({ module: __filename });
 
 // Perform Agent Business Logic
 
@@ -10,7 +10,7 @@ const createdCredDefIDs = async (
   schemaID,
   schemaIssuerDID,
   schemaName,
-  schemaVersion,
+  schemaVersion
 ) => {
   try {
     const credDefIDs = await AdminAPI.CredDefs.createdCredDefIDs(
@@ -19,52 +19,52 @@ const createdCredDefIDs = async (
       schemaID,
       schemaIssuerDID,
       schemaName,
-      schemaVersion,
-    )
+      schemaVersion
+    );
 
-    logger.debug(credDefIDs)
+    logger.debug(credDefIDs);
 
-    return credDefIDs
+    return credDefIDs;
   } catch (error) {
-    logger.error('Error Fetching Created Credential Definitions IDs')
-    throw error
+    logger.error("Error Fetching Created Credential Definitions IDs");
+    throw error;
   }
-}
+};
 
 // Fetch Credential Definition by Credential Definition ID (JamesKEbert)TODO: how to differentiate between personally generated versus fetched cred defs in DB
 const fetchCredDef = async (credDefID) => {
   try {
     // (JamesKEbert) TODO: Query in DB before attempting to fetch via admin api
-    const credDef = await AdminAPI.CredDefs.fetchCredDef(credDefID)
+    const credDef = await AdminAPI.CredDefs.fetchCredDef(credDefID);
 
-    return credDef
+    return credDef;
   } catch (error) {
-    logger.error('Error Fetching Credential Definition')
-    throw error
+    logger.error("Error Fetching Credential Definition");
+    throw error;
   }
-}
+};
 
 // Create a new credential from a given schema.
-const createCredDef = async (tag = 'default', schema_id) => {
+const createCredDef = async (tag = "default", schema_id) => {
   try {
     const credDefID = await AdminAPI.CredDefs.createCredDef(
       tag,
       schema_id,
       0,
-      false,
-    )
+      false
+    );
 
-    logger.debug(credDefID)
+    logger.debug(credDefID);
 
-    return credDefID
+    return credDefID;
   } catch (error) {
-    logger.error('Error Creating Credential Definition')
-    throw error
+    logger.error("Error Creating Credential Definition");
+    throw error;
   }
-}
+};
 
 export = {
   createCredDef,
   createdCredDefIDs,
   fetchCredDef,
-}
+};

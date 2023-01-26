@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef } from 'react'
+import React, { useCallback, useEffect, useState, useRef } from "react";
 
 import {
   StyledPopup,
@@ -12,29 +12,29 @@ import {
   CloseBtn,
   CancelBtn,
   SubmitBtnModal,
-} from './CommonStylesForms'
+} from "./CommonStylesForms";
 
 function FormInvitationAccept(props) {
-  const invitationForm = useRef()
+  const invitationForm = useRef();
 
-  const { closeContactModal } = props
+  const { closeContactModal } = props;
   const closeModal = useCallback(() => {
-    closeContactModal()
-  }, [closeContactModal])
+    closeContactModal();
+  }, [closeContactModal]);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const form = invitationForm.current
+    const form = invitationForm.current;
 
     props.sendRequest(
-      'INVITATIONS',
-      'ACCEPT_INVITATION',
-      `${form['invitation'].value}`
-    )
+      "INVITATIONS",
+      "ACCEPT_INVITATION",
+      `${form["invitation"].value}`
+    );
 
-    closeModal()
-  }
+    closeModal();
+  };
 
   return (
     <StyledPopup
@@ -67,7 +67,7 @@ function FormInvitationAccept(props) {
         <CloseBtn onClick={closeModal}>&times;</CloseBtn>
       </Modal>
     </StyledPopup>
-  )
+  );
 }
 
-export default FormInvitationAccept
+export default FormInvitationAccept;

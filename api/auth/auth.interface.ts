@@ -1,11 +1,11 @@
 import { Request } from "express";
 
 export interface IAuthUser {
-    email: string
+  email: string;
 }
 
 interface AdditionalFields {
-    user: IAuthUser
+  user: IAuthUser;
 }
 
 export type AuthenticatedRequest = Request & AdditionalFields;

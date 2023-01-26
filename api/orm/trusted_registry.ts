@@ -1,10 +1,20 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op} from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+} from "sequelize";
 
-const init = require('./init.ts')
-const sequelize = init.connect()
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+const sequelize = init.connect();
+const logger = require("../logger").child({ module: __filename });
 
-class TrustedRegistry extends Model <InferAttributes<TrustedRegistry>, InferCreationAttributes<TrustedRegistry>> {
+class TrustedRegistry extends Model<
+  InferAttributes<TrustedRegistry>,
+  InferCreationAttributes<TrustedRegistry>
+> {
   declare id: CreationOptional<number>;
   declare did: string;
   declare organization_name: string;
@@ -36,24 +46,22 @@ TrustedRegistry.init(
   },
   {
     sequelize,
-    modelName: 'TrustedRegistry',
-    tableName: 'trusted_registry',
+    modelName: "TrustedRegistry",
+    tableName: "trusted_registry",
     timestamps: false,
-  },
-)
+  }
+);
 
-
-export async function addTrustedDID (did, organization_name) {
+export async function addTrustedDID(did, organization_name) {
   try {
-
     const trusted_did = await TrustedRegistry.create({
       did,
-      organization_name
-    })
+      organization_name,
+    });
 
-    return trusted_did
+    return trusted_did;
   } catch (error) {
-    logger.error('Error saving trusted_did to the database: ', error)
+    logger.error("Error saving trusted_did to the database: ", error);
   }
 }
 
@@ -62,12 +70,12 @@ export async function readTrustedDID(did) {
     const trusted_did = await TrustedRegistry.findOne({
       where: {
         did,
-      }
-    })
+      },
+    });
 
-    return trusted_did
+    return trusted_did;
   } catch (error) {
-    logger.error('Could not find trusted_did by id in the database: ', error)
+    logger.error("Could not find trusted_did by id in the database: ", error);
   }
 }
 
@@ -76,12 +84,12 @@ export async function checkTrustedDID(did) {
     const trusted_did = await TrustedRegistry.findAll({
       where: {
         did,
-      }
-    })
+      },
+    });
 
-    return true
+    return true;
   } catch (error) {
-    logger.error('Could not find trusted_did by id in the database: ', error)
+    logger.error("Could not find trusted_did by id in the database: ", error);
   }
 }
 
@@ -89,22 +97,25 @@ export async function readTrustedDIDByOrgName(organization_name) {
   try {
     const trusted_did = await TrustedRegistry.findAll({
       where: {
-        organization_name
-      }
-    })
+        organization_name,
+      },
+    });
 
-    return trusted_did
+    return trusted_did;
   } catch (error) {
-    logger.error('Could not find trusted_dids by org name in the database: ', error)
+    logger.error(
+      "Could not find trusted_dids by org name in the database: ",
+      error
+    );
   }
 }
 
-export async function readTrustedDIDs () {
+export async function readTrustedDIDs() {
   try {
-    const trusted_did = await TrustedRegistry.findAll({})
+    const trusted_did = await TrustedRegistry.findAll({});
 
-    return trusted_did
+    return trusted_did;
   } catch (error) {
-    logger.error('Could not find trusted_dids in the database: ', error)
+    logger.error("Could not find trusted_dids in the database: ", error);
   }
 }

@@ -1,43 +1,43 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-import { CanUser } from './CanUser'
-import FormQR from './FormQR'
-import FormInvitationAccept from './FormInvitationAccept'
-import PageHeader from './PageHeader'
-import PageSection from './PageSection'
-import { useNotification } from './NotificationProvider'
+import { CanUser } from "./CanUser";
+import FormQR from "./FormQR";
+import FormInvitationAccept from "./FormInvitationAccept";
+import PageHeader from "./PageHeader";
+import PageSection from "./PageSection";
+import { useNotification } from "./NotificationProvider";
 
-import { DataTable, DataRow, DataHeader, DataCell } from './CommonStylesTables'
-import { ActionButton } from './CommonStylesForms'
+import { DataTable, DataRow, DataHeader, DataCell } from "./CommonStylesTables";
+import { ActionButton } from "./CommonStylesForms";
 
 function Contacts(props) {
-  const localUser = props.loggedInUserState
+  const localUser = props.loggedInUserState;
 
   // Accessing notification context
-  const setNotification = useNotification()
+  const setNotification = useNotification();
 
-  const [scanModalIsOpen, setScanModalIsOpen] = useState(false)
-  const [displayModalIsOpen, setDisplayModalIsOpen] = useState(false)
+  const [scanModalIsOpen, setScanModalIsOpen] = useState(false);
+  const [displayModalIsOpen, setDisplayModalIsOpen] = useState(false);
 
-  const closeScanModal = () => setScanModalIsOpen(false)
-  const closeDisplayModal = () => setDisplayModalIsOpen(false)
+  const closeScanModal = () => setScanModalIsOpen(false);
+  const closeDisplayModal = () => setDisplayModalIsOpen(false);
 
   const scanInvite = () => {
-    setScanModalIsOpen((o) => !o)
-  }
+    setScanModalIsOpen((o) => !o);
+  };
 
   const presentInvite = () => {
-    setDisplayModalIsOpen((o) => !o)
-    props.sendRequest('INVITATIONS', 'CREATE_SINGLE_USE', {})
-  }
+    setDisplayModalIsOpen((o) => !o);
+    props.sendRequest("INVITATIONS", "CREATE_SINGLE_USE", {});
+  };
 
-  const history = props.history
+  const history = props.history;
 
-  const contacts = props.contacts
+  const contacts = props.contacts;
 
   function openContact(history, id) {
     if (history !== undefined) {
-      history.push('/admin/contacts/' + id)
+      history.push("/admin/contacts/" + id);
     }
   }
 
@@ -46,25 +46,25 @@ function Contacts(props) {
       <DataRow
         key={contact.contact_id}
         onClick={() => {
-          openContact(history, contact.contact_id, contact)
+          openContact(history, contact.contact_id, contact);
         }}
       >
         <DataCell>{contact.label}</DataCell>
         <DataCell>
           {contact.Demographic !== null && contact.Demographic !== undefined
-            ? contact.Demographic.mpid || ''
-            : ''}
+            ? contact.Demographic.mpid || ""
+            : ""}
         </DataCell>
         <DataCell>{contact.Connections[0].state}</DataCell>
         <DataCell>{new Date(contact.created_at).toLocaleString()}</DataCell>
       </DataRow>
-    )
-  })
+    );
+  });
 
   return (
     <>
       <div id="contacts">
-        <PageHeader title={'Contacts'} />
+        <PageHeader title={"Contacts"} />
         <PageSection>
           <DataTable>
             <thead>
@@ -100,7 +100,7 @@ function Contacts(props) {
         />
       </div>
     </>
-  )
+  );
 }
 
-export default Contacts
+export default Contacts;

@@ -1,11 +1,21 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op} from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+} from "sequelize";
 
-const init = require('./init.ts')
-let sequelize = init.connect()
+const init = require("./init.ts");
+let sequelize = init.connect();
 
-const logger = require('../logger').child({module: __filename})
+const logger = require("../logger").child({ module: __filename });
 
-class Credential extends Model <InferAttributes<Credential>, InferCreationAttributes<Credential>> {
+class Credential extends Model<
+  InferAttributes<Credential>,
+  InferCreationAttributes<Credential>
+> {
   declare credential_exchange_id: CreationOptional<number>;
   declare credential_id: string;
   declare credential: JSON | null;
@@ -130,11 +140,11 @@ Credential.init(
   },
   {
     sequelize, // Pass the connection instance
-    modelName: 'Credential',
-    tableName: 'issue_credentials', // Our table names don't follow the sequelize convention and thus must be explicitly declared
+    modelName: "Credential",
+    tableName: "issue_credentials", // Our table names don't follow the sequelize convention and thus must be explicitly declared
     timestamps: false,
-  },
-)
+  }
+);
 
 const createCredential = async function (
   credential_exchange_id,
@@ -169,7 +179,7 @@ const createCredential = async function (
   trace,
 
   created_at,
-  updated_at,
+  updated_at
 ) {
   try {
     const credentialRecord = await Credential.upsert({
@@ -206,14 +216,14 @@ const createCredential = async function (
 
       created_at: created_at,
       updated_at: updated_at,
-    })
+    });
 
-    logger.debug('Credential saved successfully.')
-    return credentialRecord[0]
+    logger.debug("Credential saved successfully.");
+    return credentialRecord[0];
   } catch (error) {
-    logger.error('Error saving credential to the database: ', error)
+    logger.error("Error saving credential to the database: ", error);
   }
-}
+};
 
 const readCredential = async function (credential_exchange_id) {
   try {
@@ -222,13 +232,13 @@ const readCredential = async function (credential_exchange_id) {
         credential_exchange_id: credential_exchange_id,
         // credential
       },
-    })
+    });
 
-    return credential[0]
+    return credential[0];
   } catch (error) {
-    logger.error('Could not find credential in the database: ', error)
+    logger.error("Could not find credential in the database: ", error);
   }
-}
+};
 
 const readCredentialsByConnectionId = async function (connection_id) {
   try {
@@ -237,24 +247,24 @@ const readCredentialsByConnectionId = async function (connection_id) {
         connection_id: connection_id,
         // connection
       },
-    })
-    return credentials
+    });
+    return credentials;
   } catch (error) {
     logger.error(
-      'Could not find credentials matching the provided connection ID',
-      error,
-    )
+      "Could not find credentials matching the provided connection ID",
+      error
+    );
   }
-}
+};
 
 const readCredentials = async function () {
   try {
-    const credentials = await Credential.findAll()
-    return credentials
+    const credentials = await Credential.findAll();
+    return credentials;
   } catch (error) {
-    logger.error('Could not find credentials in the database: ', error)
+    logger.error("Could not find credentials in the database: ", error);
   }
-}
+};
 
 const updateCredential = async function (
   credential_exchange_id,
@@ -289,7 +299,7 @@ const updateCredential = async function (
   trace,
 
   created_at,
-  updated_at,
+  updated_at
 ) {
   try {
     const credentialRecord = await Credential.update(
@@ -333,15 +343,15 @@ const updateCredential = async function (
           credential_exchange_id: credential_exchange_id,
         },
         returning: true,
-      },
-    )
+      }
+    );
     // Select results [1], select the first result [0]
-    logger.debug('Credential updated successfully.')
-    return credentialRecord[1][0]
+    logger.debug("Credential updated successfully.");
+    return credentialRecord[1][0];
   } catch (error) {
-    logger.error('Error updating the Credential: ', error)
+    logger.error("Error updating the Credential: ", error);
   }
-}
+};
 
 const deleteCredential = async function (credential_id) {
   try {
@@ -349,13 +359,13 @@ const deleteCredential = async function (credential_id) {
       where: {
         credential_id: credential_id,
       },
-    })
+    });
 
-    logger.debug('Successfully deleted credential')
+    logger.debug("Successfully deleted credential");
   } catch (error) {
-    logger.error('Error while deleting credential: ', error)
+    logger.error("Error while deleting credential: ", error);
   }
-}
+};
 
 export = {
   createCredential,
@@ -364,4 +374,4 @@ export = {
   readCredentials,
   updateCredential,
   deleteCredential,
-}
+};

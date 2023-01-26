@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Spinner = styled.div`
   width: 75px;
@@ -8,7 +8,7 @@ const Spinner = styled.div`
   margin: 0;
   background: transparent;
   border-top: 4px solid
-    ${(props) => (props ? props.theme.primary_color : 'green')};
+    ${(props) => (props ? props.theme.primary_color : "green")};
   //   border-top: 4px solid green;
   border-right: 4px solid transparent;
   border-radius: 50%;
@@ -34,7 +34,7 @@ const Spinner = styled.div`
       transform: rotate(360deg);
     }
   }
-`
+`;
 
 const SpinnerOverlay = styled.div`
   top: 0;
@@ -47,7 +47,7 @@ const SpinnerOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const LoadingHolder = styled.div`
   width: 50%;
@@ -59,7 +59,7 @@ const LoadingHolder = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 
 function FullPageSpinner(props) {
   return (
@@ -69,7 +69,7 @@ function FullPageSpinner(props) {
         <Spinner />
       </LoadingHolder>
     </SpinnerOverlay>
-  )
+  );
 }
 
-export default FullPageSpinner
+export default FullPageSpinner;

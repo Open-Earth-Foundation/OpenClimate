@@ -1,10 +1,10 @@
-import Axios from 'axios'
-import React, { useRef, useState, useEffect } from 'react'
+import Axios from "axios";
+import React, { useRef, useState, useEffect } from "react";
 
-import { useNotification } from './NotificationProvider'
-import { handleImageSrc } from './util'
+import { useNotification } from "./NotificationProvider";
+import { handleImageSrc } from "./util";
 
-import { ServerUrls } from "../shared/environments/server.environments"
+import { ServerUrls } from "../shared/environments/server.environments";
 
 import {
   FormContainer,
@@ -15,58 +15,58 @@ import {
   Label,
   SubmitBtn,
   InputField,
-} from './CommonStylesForms'
+} from "./CommonStylesForms";
 
 function ForgotPassword(props) {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
-  const [logo, setLogo] = useState(null)
+  const [logo, setLogo] = useState(null);
 
   // Accessing notification context
-  const setNotification = useNotification()
+  const setNotification = useNotification();
 
   useEffect(() => {
     // Fetching the logo
     Axios({
-      method: 'GET',
+      method: "GET",
       url: `${ServerUrls.reactAppController}/api/logo`,
     }).then((res) => {
       if (res.data.error) {
-        setNotification(res.data.error, 'error')
+        setNotification(res.data.error, "error");
       } else {
-        setLogo(handleImageSrc(res.data[0].image.data))
+        setLogo(handleImageSrc(res.data[0].image.data));
       }
-    })
-  }, [setNotification])
+    });
+  }, [setNotification]);
 
-  const emailForm = useRef()
+  const emailForm = useRef();
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    const form = new FormData(emailForm.current)
-    const email = form.get('email')
+    e.preventDefault();
+    const form = new FormData(emailForm.current);
+    const email = form.get("email");
 
     // Update the DB, show the notification and redirect to the login view
     Axios({
-      method: 'POST',
+      method: "POST",
       data: {
         email: email,
-        flag: 'password reset',
+        flag: "password reset",
       },
       url: `${ServerUrls.reactAppController}/api/user/update`,
     }).then((res) => {
       if (res.data.error) {
-        setNotification(res.data.error, 'error')
+        setNotification(res.data.error, "error");
       } else {
-        setUser(res.data)
+        setUser(res.data);
         setNotification(
           `The instructions on how to reset the password were sent to ${email}`,
-          'notice'
-        )
-        props.history.push('/')
+          "notice"
+        );
+        props.history.push("/");
       }
-    })
-  }
+    });
+  };
 
   return (
     <FormContainer>
@@ -81,6 +81,6 @@ function ForgotPassword(props) {
         <SubmitBtn type="submit">Reset</SubmitBtn>
       </Form>
     </FormContainer>
-  )
+  );
 }
-export default ForgotPassword
+export default ForgotPassword;

@@ -1,10 +1,20 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op} from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+} from "sequelize";
 
-const init = require('./init.ts')
-const sequelize = init.connect()
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+const sequelize = init.connect();
+const logger = require("../logger").child({ module: __filename });
 
-class Proofs extends Model <InferAttributes<Proofs>, InferCreationAttributes<Proofs>> {
+class Proofs extends Model<
+  InferAttributes<Proofs>,
+  InferCreationAttributes<Proofs>
+> {
   declare id: CreationOptional<number>;
   declare user_id: number;
   declare cred_def_id: string;
@@ -20,7 +30,7 @@ Proofs.init(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      unique: true
+      unique: true,
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -37,76 +47,83 @@ Proofs.init(
   },
   {
     sequelize,
-    modelName: 'Proofs',
-    tableName: 'proofs',
+    modelName: "Proofs",
+    tableName: "proofs",
     timestamps: false,
-  },
-)
-
+  }
+);
 
 const createProof = async function (user_id, cred_def_id) {
   try {
-    const timestamp = Date.now()
+    const timestamp = Date.now();
 
     const proof = await Proofs.create({
       user_id,
-      cred_def_id
-    })
+      cred_def_id,
+    });
 
-    return proof
+    return proof;
   } catch (error) {
-    logger.error('Error saving proof cred def to the database: ', error)
+    logger.error("Error saving proof cred def to the database: ", error);
   }
-}
+};
 
 const readProof = async function (id) {
   try {
     const proof = await Proofs.findAll({
       where: {
         id,
-      }
-    })
+      },
+    });
 
-    return proof[0]
+    return proof[0];
   } catch (error) {
-    logger.error('Could not find proof cred def by id in the database: ', error)
+    logger.error(
+      "Could not find proof cred def by id in the database: ",
+      error
+    );
   }
-}
+};
 
 const readProofsByUserId = async function (user_id) {
   try {
     const proofs = await Proofs.findAll({
       where: {
-        user_id
-      }
-    })
+        user_id,
+      },
+    });
 
-    return proofs
+    return proofs;
   } catch (error) {
-    logger.error('Could not find proof cred def by user id in the database: ', error)
+    logger.error(
+      "Could not find proof cred def by user id in the database: ",
+      error
+    );
   }
-}
+};
 
 const readProofsByCredDef = async function (user_id, cred_def_id) {
   try {
     const proof = await Proofs.findAll({
       where: {
         user_id,
-        cred_def_id
-      }
-    })
+        cred_def_id,
+      },
+    });
 
-    return proof[0]
+    return proof[0];
   } catch (error) {
-    logger.error('Could not find proof cred def by cred def id in the database: ', error)
+    logger.error(
+      "Could not find proof cred def by cred def id in the database: ",
+      error
+    );
   }
-}
-
+};
 
 export = {
   Proofs,
   createProof,
   readProof,
   readProofsByUserId,
-  readProofsByCredDef
-}
+  readProofsByCredDef,
+};

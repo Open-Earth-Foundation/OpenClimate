@@ -1,10 +1,20 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op} from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+} from "sequelize";
 
-const init = require('./init.ts')
-const sequelize = init.connect()
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+const sequelize = init.connect();
+const logger = require("../logger").child({ module: __filename });
 
-class Transfers extends Model <InferAttributes<Transfers>, InferCreationAttributes<Transfers>> {
+class Transfers extends Model<
+  InferAttributes<Transfers>,
+  InferCreationAttributes<Transfers>
+> {
   declare id: CreationOptional<number>;
   declare organization_id: number;
   declare data: JSON | null;
@@ -15,7 +25,7 @@ class Transfers extends Model <InferAttributes<Transfers>, InferCreationAttribut
   declare updated_at: CreationOptional<Date>;
 }
 
-exports.Transfers = Transfers
+exports.Transfers = Transfers;
 
 Transfers.init(
   {
@@ -38,72 +48,67 @@ Transfers.init(
   },
   {
     sequelize,
-    modelName: 'Transfers',
-    tableName: 'transfers',
+    modelName: "Transfers",
+    tableName: "transfers",
     timestamps: false,
-  },
-)
-
+  }
+);
 
 const createTransfer = async function (organization_id, data) {
   try {
-    const timestamp = Date.now()
+    const timestamp = Date.now();
 
     const site = await Transfers.create({
       organization_id: organization_id,
-      data: data
-    })
+      data: data,
+    });
 
-    return site
+    return site;
   } catch (error) {
-    logger.error('Error saving Transfers to the database: ', error)
+    logger.error("Error saving Transfers to the database: ", error);
   }
-}
+};
 
 const readTransfersByOrgId = async function (organization_id) {
   try {
     const transfers = await Transfers.findAll({
       where: {
-        organization_id
-      }
-    })
+        organization_id,
+      },
+    });
 
-    return transfers
+    return transfers;
   } catch (error) {
-    logger.error('Could not find transfers by id in the database: ', error)
+    logger.error("Could not find transfers by id in the database: ", error);
   }
-}
+};
 
-
-const updateTransfers = async function (
-  id, organization_id, data
-) {
+const updateTransfers = async function (id, organization_id, data) {
   try {
-    const timestamp = Date.now()
+    const timestamp = Date.now();
 
     const transfer = await Transfers.update(
       {
         organization_id,
-        data
+        data,
       },
       {
         where: {
           id,
         },
-      },
-    )
+      }
+    );
 
-    logger.debug(`Transfers updated successfully.`)
-    return transfer
+    logger.debug(`Transfers updated successfully.`);
+    return transfer;
   } catch (error) {
-    logger.error('Error updating the Transfers: ', error)
+    logger.error("Error updating the Transfers: ", error);
   }
-}
+};
 
 export = {
   Transfers,
   createTransfer,
   readTransfersByOrgId,
-  updateTransfers
-
-}
+  updateTransfers,
+};

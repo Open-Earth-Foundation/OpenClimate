@@ -1,40 +1,54 @@
 // publisher.ts -- ORM mapping layer for Publisher table
 
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op, Sequelize} from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+  Sequelize,
+} from "sequelize";
 
-const init = require('./init.ts');
+const init = require("./init.ts");
 export const sequelize = init.connect();
 
-export class Publisher extends Model <InferAttributes<Publisher>, InferCreationAttributes<Publisher>> {
-    declare id: string;
-    declare name: string;
-    declare URL: string;
-    declare created: CreationOptional<Date>;
-    declare last_updated: CreationOptional<Date>;
+export class Publisher extends Model<
+  InferAttributes<Publisher>,
+  InferCreationAttributes<Publisher>
+> {
+  declare id: string;
+  declare name: string;
+  declare URL: string;
+  declare created: CreationOptional<Date>;
+  declare last_updated: CreationOptional<Date>;
 }
 
-Publisher.init({
+Publisher.init(
+  {
     id: {
-        type: DataTypes.STRING,
-        primaryKey: true,
+      type: DataTypes.STRING,
+      primaryKey: true,
     },
     name: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
     URL: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
     created: {
-        type: DataTypes.DATE,
+      type: DataTypes.DATE,
     },
     last_updated: {
-        type: DataTypes.DATE,
+      type: DataTypes.DATE,
     },
-},{
+  },
+  {
     sequelize,
-    modelName: 'Publisher',
-    tableName: 'Publisher',
+    modelName: "Publisher",
+    tableName: "Publisher",
     timestamps: true,
     createdAt: "created",
-    updatedAt: "last_updated"
-})
+    updatedAt: "last_updated",
+  }
+);

@@ -1,10 +1,10 @@
-const {Sequelize, DataTypes, Model} = require('sequelize')
+const { Sequelize, DataTypes, Model } = require("sequelize");
 
-const init = require('./init.ts')
-const sequelize = init.connect()
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+const sequelize = init.connect();
+const logger = require("../logger").child({ module: __filename });
 
-const {Contact} = require('./contacts.ts')
+const { Contact } = require("./contacts.ts");
 
 class Passport extends Model {}
 
@@ -62,22 +62,22 @@ Passport.init(
   },
   {
     sequelize,
-    modelName: 'Passport',
-    tableName: 'passports',
+    modelName: "Passport",
+    tableName: "passports",
     timestamps: false,
-  },
-)
+  }
+);
 
 Contact.hasOne(Passport, {
   foreignKey: {
-    name: 'contact_id',
+    name: "contact_id",
   },
-})
+});
 Passport.belongsTo(Contact, {
   foreignKey: {
-    name: 'contact_id',
+    name: "contact_id",
   },
-})
+});
 
 const createPassport = async function (
   contact_id,
@@ -93,10 +93,10 @@ const createPassport = async function (
   type,
   code,
   authority,
-  photo,
+  photo
 ) {
   try {
-    const timestamp = Date.now()
+    const timestamp = Date.now();
 
     const passport = await Passport.create({
       contact_id: contact_id,
@@ -115,13 +115,13 @@ const createPassport = async function (
       photo: photo,
       created_at: timestamp,
       updated_at: timestamp,
-    })
-    logger.debug('Passport data saved successfully.')
-    return passport
+    });
+    logger.debug("Passport data saved successfully.");
+    return passport;
   } catch (error) {
-    logger.error('Error saving passport data to database: ', error)
+    logger.error("Error saving passport data to database: ", error);
   }
-}
+};
 const createOrUpdatePassport = async function (
   contact_id,
   passport_number,
@@ -136,7 +136,7 @@ const createOrUpdatePassport = async function (
   type,
   code,
   authority,
-  photo,
+  photo
 ) {
   try {
     await sequelize.transaction(
@@ -148,11 +148,11 @@ const createOrUpdatePassport = async function (
           where: {
             contact_id: contact_id,
           },
-        })
-        const timestamp = Date.now()
+        });
+        const timestamp = Date.now();
 
         if (!passport) {
-          logger.debug('Creating Passport')
+          logger.debug("Creating Passport");
           const passport = await Passport.upsert({
             contact_id: contact_id,
             passport_number: passport_number,
@@ -170,9 +170,9 @@ const createOrUpdatePassport = async function (
             photo: photo,
             created_at: timestamp,
             updated_at: timestamp,
-          })
+          });
         } else {
-          logger.debug('Updating Passport')
+          logger.debug("Updating Passport");
           await Passport.update(
             {
               contact_id: contact_id,
@@ -196,17 +196,17 @@ const createOrUpdatePassport = async function (
               where: {
                 contact_id: contact_id,
               },
-            },
-          )
+            }
+          );
         }
-      },
-    )
-    logger.debug('Passport saved successfully')
-    return
+      }
+    );
+    logger.debug("Passport saved successfully");
+    return;
   } catch (error) {
-    logger.error('Error saving passport to database: ', error)
+    logger.error("Error saving passport to database: ", error);
   }
-}
+};
 
 const readPassports = async function () {
   try {
@@ -217,12 +217,12 @@ const readPassports = async function () {
           require: true,
         },
       ],
-    })
-    return passports
+    });
+    return passports;
   } catch (error) {
-    logger.error('Could not find passports in the database: ', error)
+    logger.error("Could not find passports in the database: ", error);
   }
-}
+};
 
 const readPassport = async function (contact_id) {
   try {
@@ -236,12 +236,12 @@ const readPassport = async function (contact_id) {
           required: true,
         },
       ],
-    })
-    return passport[0]
+    });
+    return passport[0];
   } catch (error) {
-    logger.error('Could not find passport in database: ', error)
+    logger.error("Could not find passport in database: ", error);
   }
-}
+};
 
 const updatePassport = async function (
   contact_id,
@@ -257,10 +257,10 @@ const updatePassport = async function (
   type,
   code,
   authority,
-  photo,
+  photo
 ) {
   try {
-    const timestamp = Date.now()
+    const timestamp = Date.now();
 
     await Passport.update(
       {
@@ -285,13 +285,13 @@ const updatePassport = async function (
         where: {
           contact_id: contact_id,
         },
-      },
-    )
-    logger.debug('Passport updated successfully.')
+      }
+    );
+    logger.debug("Passport updated successfully.");
   } catch (error) {
-    logger.error('Error updating the Passport: ', error)
+    logger.error("Error updating the Passport: ", error);
   }
-}
+};
 
 const deletePassport = async function (contact_id) {
   try {
@@ -299,12 +299,12 @@ const deletePassport = async function (contact_id) {
       where: {
         contact_id: contact_id,
       },
-    })
-    logger.debug('Successfully deleted passport')
+    });
+    logger.debug("Successfully deleted passport");
   } catch (error) {
-    logger.error('Error while deleting passport: ', error)
+    logger.error("Error while deleting passport: ", error);
   }
-}
+};
 
 export = {
   Passport,
@@ -314,4 +314,4 @@ export = {
   readPassport,
   updatePassport,
   deletePassport,
-}
+};

@@ -1,4 +1,4 @@
 export class SchemaFieldOption {
-    name?: string;
-    value?: string;
+  name?: string;
+  value?: string;
 }

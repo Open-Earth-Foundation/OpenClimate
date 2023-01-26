@@ -1,19 +1,19 @@
-export{}
-const bcrypt = require('bcryptjs')
-require('dotenv').config()
+export {};
+const bcrypt = require("bcryptjs");
+require("dotenv").config();
 
-const jwt = require('jsonwebtoken')
-const NodeMailer = require('../nodeMailer')
-const SMTP = require('./settings')
-import {Utils} from '../util'
-const logger = require('../logger').child({module: __filename})
+const jwt = require("jsonwebtoken");
+const NodeMailer = require("../nodeMailer");
+const SMTP = require("./settings");
+import { Utils } from "../util";
+const logger = require("../logger").child({ module: __filename });
 
-const Websockets = require('../websockets.ts')
-import * as Users from '../orm/users'
+const Websockets = require("../websockets.ts");
+import * as Users from "../orm/users";
 
 // New Account Email
-export async function sendEmailNewAccount (from, to, organization, token) {
-  const link = process.env.WEB_ROOT + `/account-setup/#${token}`
+export async function sendEmailNewAccount(from, to, organization, token) {
+  const link = process.env.WEB_ROOT + `/account-setup/#${token}`;
 
   const emailNewAccount = `
   <style type="text/css">
@@ -87,24 +87,19 @@ export async function sendEmailNewAccount (from, to, organization, token) {
         </tr>
       </tbody>
     </table>
-  </div>`
+  </div>`;
 
   await NodeMailer.sendMail({
     from: from,
     to: to,
     subject: `${organization} Enterprise Agent Account Registration`,
     html: emailNewAccount,
-  })
+  });
 }
 
 // Password Reset Email
-export async function sendEmailPasswordReset(
-  from,
-  to,
-  organization,
-  token,
-) {
-  const link = process.env.WEB_ROOT + `/password-reset/#${token}`
+export async function sendEmailPasswordReset(from, to, organization, token) {
+  const link = process.env.WEB_ROOT + `/password-reset/#${token}`;
 
   const emailPasswordReset = `
   <style type="text/css">
@@ -183,14 +178,14 @@ export async function sendEmailPasswordReset(
         </tr>
       </tbody>
     </table>
-  </div>`
+  </div>`;
 
   await NodeMailer.sendMail({
     from: from,
     to: to,
     subject: `${organization} Enterprise Agent Password Reset Request`,
     html: emailPasswordReset,
-  })
+  });
 }
 
 // Perform Agent Business Logic
@@ -198,106 +193,123 @@ export async function sendEmailPasswordReset(
 // Verify SMTP connection and return an error message witht the prompt to set up SMTP server.
 async function smtpCheck() {
   // Accessing transporter
-  const transporter = await NodeMailer.emailService()
+  const transporter = await NodeMailer.emailService();
   // Verifying SMTP configs
   return new Promise((resolve, reject) => {
     transporter.verify(function (error, success) {
       if (error) {
-        logger.debug(error)
-        reject(false)
+        logger.debug(error);
+        reject(false);
       } else {
-        logger.debug('Server is ready to take our messages')
-        resolve(success)
+        logger.debug("Server is ready to take our messages");
+        resolve(success);
       }
-    })
-  })
+    });
+  });
 }
 
 export async function getUser(userID) {
   try {
-    const user = await Users.readUser(userID)
-    return user
+    const user = await Users.readUser(userID);
+    return user;
   } catch (error) {
-    logger.error('Error Fetching User')
-    throw error
+    logger.error("Error Fetching User");
+    throw error;
   }
 }
 export async function getUserByToken(userToken) {
   try {
-    const user = await Users.readUserByToken(userToken)
-    return user
+    const user = await Users.readUserByToken(userToken);
+    return user;
   } catch (error) {
-    logger.error('Error Fetching User by Token')
-    throw error
+    logger.error("Error Fetching User by Token");
+    throw error;
   }
 }
 
 export async function getUserByEmail(userEmail) {
   try {
-    const user = await Users.readUserByEmail(userEmail)
-    return user
+    const user = await Users.readUserByEmail(userEmail);
+    return user;
   } catch (error) {
-    logger.error('Error Fetching User by Email')
-    throw error
+    logger.error("Error Fetching User by Email");
+    throw error;
   }
 }
 
-export async function getAll () {
+export async function getAll() {
   try {
-    const users = await Users.readUsers()
+    const users = await Users.readUsers();
     // Trim password and jwt
     for (let i = 0; i < users.length; i++) {
-      delete users[i].password
-      delete users[i].token
+      delete users[i].password;
+      delete users[i].token;
     }
 
-    return users
+    return users;
   } catch (error) {
-    logger.error('Error Fetching Users')
-    throw error
+    logger.error("Error Fetching Users");
+    throw error;
   }
 }
 
-export async function createUser (organization_id, email, first_name, last_name, roles) {
+export async function createUser(
+  organization_id,
+  email,
+  first_name,
+  last_name,
+  roles
+) {
   // Resolving SMTP check promise
   try {
-    await smtpCheck()
+    await smtpCheck();
   } catch (error) {
     logger.error(
-      'USER ERROR: Cannot verify SMTP configurations. Error code: ',
-      error,
-    )
+      "USER ERROR: Cannot verify SMTP configurations. Error code: ",
+      error
+    );
     return {
       error:
         "USER ERROR: The confirmation email can't be sent. Please, check your SMTP configurations.",
-    }
+    };
   }
 
   // Empty/data checks
-  if (!first_name || !last_name || !email || !Array.isArray(roles) || !roles.length)
-    return {error: 'USER ERROR: All fields must be filled out.'}
+  if (
+    !first_name ||
+    !last_name ||
+    !email ||
+    !Array.isArray(roles) ||
+    !roles.length
+  )
+    return { error: "USER ERROR: All fields must be filled out." };
 
   if (!Utils.validateEmail(email))
-    return {error: 'USER ERROR: Must be a valid email.'}
+    return { error: "USER ERROR: Must be a valid email." };
 
   try {
     // Checking for duplicate email
-    const duplicateUser = await Users.readUserByEmail(email)
+    const duplicateUser = await Users.readUserByEmail(email);
     if (duplicateUser)
-      return {error: 'USER ERROR: A user with this email already exists.'}
+      return { error: "USER ERROR: A user with this email already exists." };
 
-    const user = await Users.createUser(organization_id, email, first_name, last_name)
+    const user = await Users.createUser(
+      organization_id,
+      email,
+      first_name,
+      last_name
+    );
 
     for (let i = 0; i < roles.length; i++) {
-      await Users.linkRoleAndUser(roles[i], user.user_id)
+      await Users.linkRoleAndUser(roles[i], user.user_id);
     }
 
-    const token = jwt.sign({id: user.user_id}, process.env.JWT_SECRET, {
-      expiresIn: '24h',
-    })
+    const token = jwt.sign({ id: user.user_id }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
+    });
 
-    const user_id = user.user_id
-    const password = ''
+    const user_id = user.user_id;
+    const password = "";
 
     const newUser = await Users.updateUserInfo(
       user_id,
@@ -306,33 +318,33 @@ export async function createUser (organization_id, email, first_name, last_name,
       first_name,
       last_name,
       password,
-      token,
-    )
+      token
+    );
 
     // Get email from SMTP config
-    const currentSMTP = await SMTP.getSMTP()
-    const currentOrganization = await SMTP.getOrganization()
+    const currentSMTP = await SMTP.getSMTP();
+    const currentOrganization = await SMTP.getOrganization();
 
     // Send new account email
     sendEmailNewAccount(
       currentSMTP.dataValues.value.auth.user,
       user.email,
       currentOrganization.value.companyName,
-      token,
-    )
+      token
+    );
 
     // Broadcast the message to all connections
-    Websockets.sendMessageToAll('USERS', 'USER_CREATED', {user: [newUser]})
+    Websockets.sendMessageToAll("USERS", "USER_CREATED", { user: [newUser] });
 
     // Return true to trigger the success message
-    return true
+    return true;
   } catch (error) {
-    logger.error('Error Fetching User')
-    throw error
+    logger.error("Error Fetching User");
+    throw error;
   }
 }
 
-export async function updateUser (
+export async function updateUser(
   user_id,
   organization_id,
   email,
@@ -341,39 +353,39 @@ export async function updateUser (
   password,
   token,
   roles,
-  flag?,
+  flag?
 ) {
   try {
     // Checks for updating the user by admin
     if (!email) {
-      logger.debug('ERROR: email is empty.')
-      return {error: 'USER ERROR: All fields must be filled out.'}
+      logger.debug("ERROR: email is empty.");
+      return { error: "USER ERROR: All fields must be filled out." };
     }
 
     if (roles) {
       if (!Array.isArray(roles) || !roles.length) {
-        logger.debug('ERROR: All fields must be filled out.')
-        return {error: 'USER ERROR: Roles are empty.'}
+        logger.debug("ERROR: All fields must be filled out.");
+        return { error: "USER ERROR: Roles are empty." };
       }
     }
 
     if (!Utils.validateEmail(email)) {
-      logger.debug('ERROR: Must be a valid email.')
-      return {error: 'USER ERROR: Must be a valid email.'}
+      logger.debug("ERROR: Must be a valid email.");
+      return { error: "USER ERROR: Must be a valid email." };
     }
 
     // Checking for duplicate email
-    const duplicateEmail = await Users.readUserByEmail(email)
+    const duplicateEmail = await Users.readUserByEmail(email);
     if (duplicateEmail && duplicateEmail.user_id !== user_id) {
-      return {error: 'USER ERROR: A user with this email already exists.'}
+      return { error: "USER ERROR: A user with this email already exists." };
     }
 
-    const userToUpdate = await Users.readUser(user_id)
+    const userToUpdate = await Users.readUser(user_id);
 
     // Update user on user account setup
     if (password && userToUpdate.password !== password) {
-      const hashedPassword = await bcrypt.hash(password, 10)
-      const emptyToken = ''
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const emptyToken = "";
       await Users.updateUserInfo(
         user_id,
         organization_id,
@@ -381,142 +393,158 @@ export async function updateUser (
         first_name,
         last_name,
         hashedPassword,
-        emptyToken,
-      )
+        emptyToken
+      );
     } else {
       // Update user on user password forgot password/admin user edit
 
       // Check if updating the user by adding the token from forgot-password component
-      if (flag === 'password reset') {
+      if (flag === "password reset") {
         // Resolving SMTP check promise
         try {
-          await smtpCheck()
+          await smtpCheck();
         } catch (error) {
           logger.error(
-            'USER ERROR: Cannot verify SMTP configurations. Error code: ',
-            error,
-          )
+            "USER ERROR: Cannot verify SMTP configurations. Error code: ",
+            error
+          );
           return {
             error:
               "USER ERROR: The password reset email can't be sent. Talk to your administrator.",
-          }
+          };
         }
 
-        const newToken = jwt.sign({id: user_id}, process.env.JWT_SECRET, {
-          expiresIn: '10m',
-        })
+        const newToken = jwt.sign({ id: user_id }, process.env.JWT_SECRET, {
+          expiresIn: "10m",
+        });
 
-        await Users.updateUserInfo(user_id, organization_id, email, password, first_name, last_name, newToken)
+        await Users.updateUserInfo(
+          user_id,
+          organization_id,
+          email,
+          password,
+          first_name,
+          last_name,
+          newToken
+        );
 
         // Get email from SMTP config
-        const currentSMTP = await SMTP.getSMTP()
-        const currentOrganization = await SMTP.getOrganization()
+        const currentSMTP = await SMTP.getSMTP();
+        const currentOrganization = await SMTP.getOrganization();
 
         if (email) {
           sendEmailPasswordReset(
             currentSMTP.dataValues.value.auth.user,
             email,
             currentOrganization.value.companyName, // This is the ISSUING organization, not the user's organization
-            newToken,
-          )
+            newToken
+          );
         } else {
           // This user isn't set up yet, so resend the new account email
           sendEmailNewAccount(
             currentSMTP.dataValues.value.auth.user,
             email,
             currentOrganization.value.companyName,
-            newToken,
-          )
+            newToken
+          );
         }
       } else {
         // User update by admin
-        await Users.updateUserInfo(user_id, organization_id, email, password, first_name, last_name, token)
+        await Users.updateUserInfo(
+          user_id,
+          organization_id,
+          email,
+          password,
+          first_name,
+          last_name,
+          token
+        );
       }
     }
 
     if (roles) {
       // If roles need to get updated (user edit by admin) clear old roles-user connections
-      await Users.deleteRolesUserConnection(user_id)
+      await Users.deleteRolesUserConnection(user_id);
 
       // Loop roles and create connections with the user
       for (let i = 0; i < roles.length; i++) {
-        await Users.linkRoleAndUser(roles[i], user_id)
+        await Users.linkRoleAndUser(roles[i], user_id);
       }
     }
 
-    const updatedUser = await Users.readUser(user_id)
+    const updatedUser = await Users.readUser(user_id);
     // Hack: update the password and send it back
-    updatedUser.password = password
+    updatedUser.password = password;
 
     // Broadcast the message to all connections
-    Websockets.sendMessageToAll('USERS', 'USER_UPDATED', {updatedUser})
+    Websockets.sendMessageToAll("USERS", "USER_UPDATED", { updatedUser });
 
-    logger.debug('Updated user')
+    logger.debug("Updated user");
 
     // Return updatedUser (truthy) to trigger a success message
-    return updatedUser
+    return updatedUser;
   } catch (error) {
-    logger.error('Error Fetching User update')
-    throw new Error("Error Fetching User update")
+    logger.error("Error Fetching User update");
+    throw new Error("Error Fetching User update");
   }
 }
 
-export async function updatePassword (id, password) {
+export async function updatePassword(id, password) {
   try {
-    const userToUpdate = await Users.readUser(id)
+    const userToUpdate = await Users.readUser(id);
 
     if (userToUpdate.password !== password) {
-      const hashedPassword = await bcrypt.hash(password, 10)
-      await Users.updateUserPassword(id, hashedPassword)
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await Users.updateUserPassword(id, hashedPassword);
     } else {
-      await Users.updateUserPassword(id, password)
+      await Users.updateUserPassword(id, password);
     }
-    const user = await Users.readUser(id)
-    return user
+    const user = await Users.readUser(id);
+    return user;
   } catch (error) {
-    logger.error('Error Fetching Password update')
-    throw error
+    logger.error("Error Fetching Password update");
+    throw error;
   }
 }
 
-export async function deleteUser (userID) {
+export async function deleteUser(userID) {
   try {
-    const deletedUser = await Users.deleteUser(userID)
+    const deletedUser = await Users.deleteUser(userID);
 
     // Broadcast the message to all connections
-    Websockets.sendMessageToAll('USERS', 'USER_DELETED', deletedUser)
+    Websockets.sendMessageToAll("USERS", "USER_DELETED", deletedUser);
 
     // Return true to trigger a success message
-    return true
+    return true;
   } catch (error) {
-    logger.error('Error Fetching User')
-    throw error
+    logger.error("Error Fetching User");
+    throw error;
   }
 }
 
-export async function resendAccountConfirmation (email) {
+export async function resendAccountConfirmation(email) {
   // Resolving SMTP check promise
   try {
-    await smtpCheck()
+    await smtpCheck();
   } catch (error) {
     logger.error(
       "USER ERROR: can't verify SMTP configurations. Error code: ",
-      error,
-    )
+      error
+    );
     return {
       error:
         "USER ERROR: The confirmation email can't be sent. Please, check your SMTP configurations.",
-    }
+    };
   }
 
   try {
-    const user = await Users.readUserByEmail(email)
+    const user = await Users.readUserByEmail(email);
 
-    const token = jwt.sign({id: user.user_id}, process.env.JWT_SECRET, {
-      expiresIn: '24h',
-    })
+    const token = jwt.sign({ id: user.user_id }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
+    });
 
-    const password = ''
+    const password = "";
 
     const updatedUser = await Users.updateUserInfo(
       user.user_id,
@@ -525,32 +553,32 @@ export async function resendAccountConfirmation (email) {
       password,
       user.first_name,
       user.last_name,
-      token,
-    )
+      token
+    );
 
     if (!updatedUser)
       return {
         error:
           "USER ERROR: The confirmation email can't be re-sent. Try again later.",
-      }
+      };
 
     // Get email from SMTP config
-    const currentSMTP = await SMTP.getSMTP()
-    const currentOrganization = await SMTP.getOrganization()
+    const currentSMTP = await SMTP.getSMTP();
+    const currentOrganization = await SMTP.getOrganization();
 
     // Send new account email
     sendEmailNewAccount(
       currentSMTP.dataValues.value.auth.user,
       email,
       currentOrganization.value.companyName,
-      token,
-    )
+      token
+    );
 
     // Return true to trigger the success message
-    return true
+    return true;
   } catch (error) {
-    logger.error('Error Fetching User')
-    throw error
+    logger.error("Error Fetching User");
+    throw error;
   }
 }
 

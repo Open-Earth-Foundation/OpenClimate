@@ -1,9 +1,19 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op} from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+} from "sequelize";
 
-const init = require('./init.ts')
-const sequelize = init.connect()
+const init = require("./init.ts");
+const sequelize = init.connect();
 
-class AggrEmissions extends Model <InferAttributes<AggrEmissions>, InferCreationAttributes<AggrEmissions>> {
+class AggrEmissions extends Model<
+  InferAttributes<AggrEmissions>,
+  InferCreationAttributes<AggrEmissions>
+> {
   declare id: CreationOptional<number>;
   declare organization_id: number;
   declare data: JSON | null;
@@ -13,7 +23,6 @@ class AggrEmissions extends Model <InferAttributes<AggrEmissions>, InferCreation
   // updatedAt can be undefined during creation
   declare updated_at: CreationOptional<Date>;
 }
-
 
 AggrEmissions.init(
   {
@@ -36,64 +45,61 @@ AggrEmissions.init(
   },
   {
     sequelize,
-    modelName: 'AggrEmissions',
-    tableName: 'aggremissions',
+    modelName: "AggrEmissions",
+    tableName: "aggremissions",
     timestamps: false,
-  },
-)
+  }
+);
 
 const createAggrEmissions = async function (organization_id, data) {
-    const timestamp = Date.now()
+  const timestamp = Date.now();
 
-    const site = await AggrEmissions.create({
-      organization_id: organization_id,
-      data: data
-    })
+  const site = await AggrEmissions.create({
+    organization_id: organization_id,
+    data: data,
+  });
 
-    return site
-}
+  return site;
+};
 
 const readAggrEmissionsByOrgId = async function (organization_id) {
-    const aggrEmissions = await AggrEmissions.findAll({
-      where: {
-        organization_id
-      }
-    })
+  const aggrEmissions = await AggrEmissions.findAll({
+    where: {
+      organization_id,
+    },
+  });
 
-    return aggrEmissions
-}
-
+  return aggrEmissions;
+};
 
 const readAggrEmissions = async function () {
-    const aggrEmissions = await AggrEmissions.findAll({})
+  const aggrEmissions = await AggrEmissions.findAll({});
 
-    return aggrEmissions
-}
+  return aggrEmissions;
+};
 
-const updateAggrEmissions = async function (
-  id, organization_id, data
-) {
-  const timestamp = Date.now()
+const updateAggrEmissions = async function (id, organization_id, data) {
+  const timestamp = Date.now();
 
   const organization = await AggrEmissions.update(
     {
       organization_id,
-      data
+      data,
     },
     {
       where: {
         id,
       },
-    },
-  )
+    }
+  );
 
-  return organization
-}
+  return organization;
+};
 
 export = {
   AggrEmissions,
   createAggrEmissions,
   readAggrEmissions,
   readAggrEmissionsByOrgId,
-  updateAggrEmissions
-}
+  updateAggrEmissions,
+};

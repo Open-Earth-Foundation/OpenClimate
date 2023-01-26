@@ -1,33 +1,37 @@
-export {}
+export {};
 
-const { Sequelize } = require('sequelize')
-const logger = require('../logger').child({module: __filename})
+const { Sequelize } = require("sequelize");
+const logger = require("../logger").child({ module: __filename });
 
-let sequelize = null
+let sequelize = null;
 
 let connect = function () {
-
   if (!sequelize) {
-    sequelize = new Sequelize(process.env.POSGRES_DB, process.env.POSTGRES_USER, process.env.POSGRES_PASSWORD, {
-      host: process.env.POSGRES_ADDRESS,
-      dialect: 'postgres',
-      logging: (value) => logger.debug(value),
-      omitNull: true,
-    })
+    sequelize = new Sequelize(
+      process.env.POSGRES_DB,
+      process.env.POSTGRES_USER,
+      process.env.POSGRES_PASSWORD,
+      {
+        host: process.env.POSGRES_ADDRESS,
+        dialect: "postgres",
+        logging: (value) => logger.debug(value),
+        omitNull: true,
+      }
+    );
   }
 
-  return sequelize
-}
+  return sequelize;
+};
 
 let disconnect = async function () {
   if (sequelize) {
-    await sequelize.close()
-    sequelize = null
+    await sequelize.close();
+    sequelize = null;
   }
-  return
-}
+  return;
+};
 
 export = {
   connect,
-  disconnect
-}
+  disconnect,
+};

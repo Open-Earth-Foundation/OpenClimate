@@ -1,7 +1,7 @@
 export enum PledgeTargetType {
-    None,
-    TargetEmissions,
-    TargetReduction,
-    TargetCarbonIntensity,
-    TargetCarbonIntensityReduction
+  None,
+  TargetEmissions,
+  TargetReduction,
+  TargetCarbonIntensity,
+  TargetCarbonIntensityReduction,
 }

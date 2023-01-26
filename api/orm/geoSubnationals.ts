@@ -1,9 +1,19 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op} from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+} from "sequelize";
 
-const init = require('./init.ts')
-const sequelize = init.connect()
+const init = require("./init.ts");
+const sequelize = init.connect();
 
-class Geosubnationals extends Model <InferAttributes<Geosubnationals>, InferCreationAttributes<Geosubnationals>>{
+class Geosubnationals extends Model<
+  InferAttributes<Geosubnationals>,
+  InferCreationAttributes<Geosubnationals>
+> {
   declare id: CreationOptional<number>;
   declare countryCode: number;
   declare data: JSON | null;
@@ -34,13 +44,13 @@ Geosubnationals.init(
     },
   },
   {
-    sequelize, 
-    modelName: 'Geosubnationals',
-    tableName: 'geosubnationals', 
+    sequelize,
+    modelName: "Geosubnationals",
+    tableName: "geosubnationals",
     timestamps: false,
-  },
-)
+  }
+);
 
 export = {
-  Geosubnationals
-}
+  Geosubnationals,
+};
