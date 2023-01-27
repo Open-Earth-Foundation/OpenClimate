@@ -5,6 +5,6 @@ COPY . /opt/openclimate-import/
 
 RUN pip install -r requirements.txt
 
-ENV IMPORT_DATA_DIR /data/
+ENV PROCESSED_DATA_DIR /data/
 
-CMD ["/opt/openclimate-import/import-all.sh"]
+CMD ["/bin/sh", "/opt/openclimate-import/import-all.sh"]
