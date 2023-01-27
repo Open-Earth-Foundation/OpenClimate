@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openclimate-kibana-deployment
+  labels:
+    app: openclimate-kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openclimate-kibana
+  template:
+    metadata:
+      labels:
+        app: openclimate-kibana
+    spec:
+      containers:
+      - name: openclimate-kibana
+        image: docker.elastic.co/kibana/kibana:8.6.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5601
+        env:
+        - name: ELASTICSEARCH_URL
+          value: "http://localhost:9200"
+
