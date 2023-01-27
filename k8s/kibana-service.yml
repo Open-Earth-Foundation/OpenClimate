@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: openclimate-kibana-service
+  labels:
+    app: openclimate-kibana
+spec:
+  selector:
+    app: openclimate-kibana
+  ports:
+    - name: openclimate-kibana-service-port
+      protocol: TCP
+      port: 5601
+      targetPort: 5601
+      
