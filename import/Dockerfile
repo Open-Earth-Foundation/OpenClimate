@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 
 ENV PROCESSED_DATA_DIR /data/
 
-CMD ["/bin/sh", "/opt/openclimate-import/import-all.sh"]
+CMD ["python3", "/opt/openclimate-import/import_all_data.py"]
