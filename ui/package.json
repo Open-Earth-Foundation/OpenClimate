@@ -82,7 +82,6 @@
     "style-check": "prettier --check 'src/**/*.js' 'src/**/*.ts' 'src/**/*.tsx'",
     "style-format": "prettier --write 'src/**/*.js' 'src/**/*.ts'  'src/**/*.tsx'",
     "build": "react-scripts build",
-    "postbuild": "cp LICENSE* build && cp README.md build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
