@@ -182,3 +182,11 @@ Standard output. `data` is an object representing the list of matching actors, e
   - `datasource_id`: the source of the identifier
   - `created`: when this identifier record was first imported
   - `last_updated`: when this identifier was last updated
+- `has_data`: boolean; says whether there is data available for this actor. Null if unknown.
+- `has_children`: boolean; says whether there are parts for this actor. Null if unknown.
+- `children_have_data`: boolean; says whether there is data for the parts of this actor. Null if unknown.
+- `root_path_geo`: an array of actors that this actor is part of    geographically, up to and including EARTH, the root actor. It is in order from the most immediate parent to the root. Each actor in the array has the following properties:
+  - `actor_id`: ID of the actor
+  - `name`: default name for the actor; an OK fallback if no language
+  match
+  - `type`: type of the actor
