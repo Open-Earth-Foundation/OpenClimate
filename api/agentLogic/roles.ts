@@ -1,4 +1,5 @@
 const Users = require('../orm/users')
+const logger = require('../logger').child({module: __filename})
 
 // Perform Agent Business Logic
 const getRole = async (roleID) => {
@@ -7,7 +8,7 @@ const getRole = async (roleID) => {
 
     return role
   } catch (error) {
-    console.error('Error Fetching Role')
+    logger.error('Error Fetching Role')
     throw error
   }
 }
@@ -18,7 +19,7 @@ const getAll = async () => {
 
     return roles
   } catch (error) {
-    console.error('Error Fetching Roles')
+    logger.error('Error Fetching Roles')
     throw error
   }
 }
@@ -27,7 +28,7 @@ const createRole = async function (rolename) {
   try {
     await Users.createRole(rolename)
   } catch (error) {
-    console.error('Error Fetching Roles')
+    logger.error('Error Fetching Roles')
     throw error
   }
 }

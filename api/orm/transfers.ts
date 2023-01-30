@@ -2,6 +2,7 @@ import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOpti
 
 const init = require('./init.ts')
 const sequelize = init.connect()
+const logger = require('../logger').child({module: __filename})
 
 class Transfers extends Model <InferAttributes<Transfers>, InferCreationAttributes<Transfers>> {
   declare id: CreationOptional<number>;
@@ -36,9 +37,9 @@ Transfers.init(
     },
   },
   {
-    sequelize, 
+    sequelize,
     modelName: 'Transfers',
-    tableName: 'transfers', 
+    tableName: 'transfers',
     timestamps: false,
   },
 )
@@ -55,7 +56,7 @@ const createTransfer = async function (organization_id, data) {
 
     return site
   } catch (error) {
-    console.error('Error saving Transfers to the database: ', error)
+    logger.error('Error saving Transfers to the database: ', error)
   }
 }
 
@@ -69,7 +70,7 @@ const readTransfersByOrgId = async function (organization_id) {
 
     return transfers
   } catch (error) {
-    console.error('Could not find transfers by id in the database: ', error)
+    logger.error('Could not find transfers by id in the database: ', error)
   }
 }
 
@@ -92,10 +93,10 @@ const updateTransfers = async function (
       },
     )
 
-    console.log(`Transfers updated successfully.`)
+    logger.debug(`Transfers updated successfully.`)
     return transfer
   } catch (error) {
-    console.error('Error updating the Transfers: ', error)
+    logger.error('Error updating the Transfers: ', error)
   }
 }
 

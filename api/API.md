@@ -71,6 +71,9 @@ Standard output. `data` is an array of JSON objects, ordered by `name` property,
 - `actor_id`: ID for the part object; good for feeding to this or other API endpoints.
 - `name`: name of the part object; good for showing to humans.
 - `type`: type of the part object; one of 'planet', 'country', 'adm1', 'adm2', 'city', 'organization', 'site'.
+- `has_data`: boolean; says whether there is data available for this actor. Null if unknown.
+- `has_children`: boolean; says whether there are parts for this actor. Null if unknown.
+- `children_have_data`: boolean; says whether there is data for the parts of this actor. Null if unknown.
 
 ### Actor overview /api/v1/actor/{actor_id}
 
@@ -124,6 +127,11 @@ Standard output. `data` is an object representing the actor, with the following 
   - `target_value`: value of the target.
   - `baseline_value`: value of the metric in the baseline year, for comparison.
   - `datasource_id`: data source for the target.
+  - `initiative`: an object representing the initiative this is part of, if any, with the following properties:
+    - `initiative_id`: unique ID for this initiative
+    - `name`: English name of the initiative
+    - `description`: short (~1 paragraph) description of the initiative, in English
+    - `URL`: URL to find out more about the initiative
 
 ## Search endpoints
 

@@ -1,14 +1,15 @@
 const Websockets = require('../websockets.ts')
 
 const Presentations = require('./presentations')
+const logger = require('../logger').child({module: __filename})
 
 const adminMessage = async (message) => {
-  console.log('New Basic Message')
+  logger.debug('New Basic Message')
 
   // Connection Reuse Method
   switch (message.content) {
     case 'test_id':
-      console.log('Connection Request Employee Workflow')
+      logger.debug('Connection Request Employee Workflow')
 
       await Websockets.sendMessageToAll('INVITATIONS', 'SINGLE_USE_USED', {
         workflow: message.content,
@@ -17,7 +18,7 @@ const adminMessage = async (message) => {
 
       break
     case 'test_result':
-      console.log('Connection Request Immunization Workflow')
+      logger.debug('Connection Request Immunization Workflow')
 
       await Websockets.sendMessageToAll('INVITATIONS', 'SINGLE_USE_USED', {
         workflow: message.content,

@@ -1,0 +1,218 @@
+ISO-3166-1,Region Name, ISO-3166-2
+BE,Région de Bruxelles-Capitale - Brussels Hoofdstedelijk Gewest,BE-BRU
+BE,Vlaanderen,BE-VLG
+BE,Wallonie,BE-WAL
+BG,Област_Благоевград,BG-01
+BG,Област_Бургас,BG-02
+BG,Област_Варна,BG-03
+BG,Област_Велико Търново,BG-04
+BG,Област_Видин,BG-05
+BG,Област_Враца,BG-06
+BG,Област_Габрово,BG-07
+BG,Област_Добрич,BG-08
+BG,Област_Кърджали,BG-09
+BG,Област_Кюстендил,BG-10
+BG,Област_Ловеч,BG-11
+BG,Област_Монтана,BG-12
+BG,Област_Пазарджик,BG-13
+BG,Област_Перник,BG-14
+BG,Област_Плевен,BG-15
+BG,Област_Пловдив,BG-16
+BG,Област_Разград,BG-17
+BG,Област_Русе,BG-18
+BG,Област_Силистра,BG-19
+BG,Област_Сливен,BG-20
+BG,Област_Смолян,BG-21
+BG,Област_София-град,BG-22
+BG,Област_Стара Загора,BG-23
+BG,Област_Търговище,BG-24
+BG,Област_Хасково,BG-25
+BG,Област_Шумен,BG-26
+BG,Област_Ямбол,BG-27
+BG,Софийска,BG-28
+CH,Kanton_Aargau,CH-AG
+CH,Kanton_Appenzell Ausserrhoden,CH-AR
+CH,Kanton_Appenzell Innerrhoden,CH-AI
+CH,Kanton_Basel-Landschaft,CH-BL
+CH,Kanton_Basel-Stadt,CH-BS
+CH,Kanton_BernBerne,CH-BE
+CH,Kanton_FribourgFreiburg,CH-FR
+CH,Kanton_Genève,CH-GE
+CH,Kanton_Glarus,CH-GL
+CH,Kanton_GraubündenGrigioniGrischun,CH-GR
+CH,Kanton_Jura,CH-JU
+CH,Kanton_Luzern,CH-LU
+CH,Kanton_Neuchâtel,CH-NE
+CH,Kanton_Nidwalden,CH-NW
+CH,Kanton_Obwalden,CH-OW
+CH,Kanton_Sankt Gallen,CH-SG
+CH,Kanton_Schaffhausen,CH-SH
+CH,Kanton_Schwyz,CH-SZ
+CH,Kanton_Solothurn,CH-SO
+CH,Kanton_Thurgau,CH-TG
+CH,Kanton_Ticino,CH-TI
+CH,Kanton_Uri,CH-UR
+CH,Kanton_ValaisWallis,CH-VS
+CH,Kanton_Vaud,CH-VD
+CH,Kanton_Zug,CH-ZG
+CH,Kanton_Zürich,CH-ZH
+CZ,Jihozápad,CZ-JM
+CZ,Moravskoslezsko,CZ-MO
+CZ,Praha,CZ-PR
+CZ,Severovýchod,CZ-SA
+CZ,Severozápad,CZ-SZ
+CZ,Střední Morava,CZ-ST
+CZ,Střední Čechy,CZ-SC
+DE,Bundesland_Baden-Württemberg,DE-BW
+DE,Bundesland_Brandenburg,DE-BB
+DE,Bundesland_Bremen,DE-HB
+DE,Bundesland_Hessen,DE-HE
+DE,Bundesland_Mecklenburg-Vorpommern,DE-MV
+DE,Bundesland_Niedersachsen,DE-NI
+DE,Bundesland_Nordrhein-Westfalen,DE-NW
+DE,Bundesland_Rheinland-Pfalz,DE-RP
+DE,Bundesland_Saarland,DE-SL
+DE,Bundesland_Sachsen-Anhalt,DE-ST
+DE,Bundesland_Sachsen,DE-SN
+DE,Bundesland_Schleswig-Holstein,DE-SH
+DE,Bundesland_Thüringen,DE-TH
+DE,Freie und Hansestadt_Hamburg,DE-HH
+DE,Freistaat_Bayern,DE-BY
+DK,Region Hovedstaden,DK-84
+DK,Region Midtjylland,DK-82
+DK,Region Nordjylland,DK-81
+DK,Region Sjælland,DK-85
+DK,Region Syddanmark,DK-83
+ES,Asturias Asturies,ES-O
+ES,Catalunya,ES-CT
+ES,Comunidad de Madrid,ES-M
+ES,Comunitat Valenciana,ES-VC
+ES,Euskadi,ES-PV
+ES,Galicia Galiza,ES-GA
+ES,Gibraltar,ES-GI
+ES,Illes Balears,ES-IB
+ES,La Rioja,ES-RI
+ES,Navarra - Nafarroa,ES-NA
+ES,Región de Murcia,ES-MC
+FI,Kanta-Häme,FI-07
+FI,Landskapet Åland,FI-06
+FI,Pirkanmaa,FI-16
+FI,Pohjois-Karjala,FI-15
+FI,Pohjois-Pohjanmaa,FI-14
+FI,Pohjois-Savo,FI-13
+FI,Päijät-Häme,FI-12
+FI,Satakunta,FI-08
+FI,Uusimaa,FI-19
+FI,Varsinais-Suomi,FI-17
+FI,Österbotten,FI-10
+FR,Grand Est,FR-47
+FR,Pays de la Loire,FR-52
+FR,Provence-Alpes-Côte d'Azur,FR-93
+GB,Cymru Wales,GB-WLS
+GB,England,GB-ENG
+GB,Scotland,GB-SCT
+GR,Αποκεντρωμένη Διοίκηση Αιγαίου,GR-71
+GR,Αποκεντρωμένη Διοίκηση Αττικής,GR-A1
+GR,Αποκεντρωμένη Διοίκηση Ηπείρου - Δυτικής Μακεδονίας,GR-D1
+GR,Αποκεντρωμένη Διοίκηση Θεσσαλίας - Στερεάς Ελλάδας,GR-G1
+GR,Αποκεντρωμένη Διοίκηση Κρήτης,GR-C1
+GR,Αποκεντρωμένη Διοίκηση Μακεδονίας - Θράκης,GR-E1
+GR,"Αποκεντρωμένη Διοίκηση Πελοποννήσου, Δυτικής Ελλάδας και Ιονίου",GR-F1
+GR,Вардарски СР,GR-92
+HU,Alföld és Észak,HU-BU
+HU,Dunántúl,HU-KM
+HU,Közép-Magyarország,HU-GS
+IT,Trentino-Alto AdigeSüdtirol,IT-TN
+IT,Valle d'AostaVallée d'Aoste,IT-AO
+LV,Kurzeme,LV-KU
+LV,Latgale,LV-LA
+LV,Vidzeme,LV-VI
+LV,Zemgale,LV-ZE
+MT,Għawdex,MT-01
+MT,Nofsinhar,MT-02
+MT,Tramuntana,MT-03
+MT,Xlokk,MT-04
+MT,Ċentrali,MT-05
+NL,Limburg,NL-LI
+NO,Jan Mayen,NO-22
+NO,Svalbard,NO-21
+NO,Troms og Finnmark,NO-19
+NO,Trøndelag,NO-18
+PL,województwo dolnośląskie,PL-DS
+PL,województwo kujawsko-pomorskie,PL-KP
+PL,województwo lubelskie,PL-LU
+PL,województwo lubuskie,PL-LB
+PL,województwo mazowieckie,PL-MZ
+PL,województwo małopolskie,PL-MA
+PL,województwo opolskie,PL-OP
+PL,województwo podkarpackie,PL-PK
+PL,województwo podlaskie,PL-PD
+PL,województwo pomorskie,PL-PM
+PL,województwo warmińsko-mazurskie,PL-WM
+PL,województwo wielkopolskie,PL-WP
+PL,województwo zachodniopomorskie,PL-ZP
+PL,województwo łódzkie,PL-LD
+PL,województwo śląskie,PL-SL
+PL,województwo świętokrzyskie,PL-SK
+PL,Закарпатська область,PL-ZZ
+PT,Alentejo,PT-07
+PT,Algarve,PT-08
+PT,Açores,PT-20
+PT,Centro,PT-18
+PT,Madeira,PT-30
+PT,Norte,PT-03
+PT,Área Metropolitana de Lisboa,PT-11
+RO,Călărași,RO-CL
+RO,Municipiul București,RO-B
+SE,Blekinge län,SE-K
+SE,Dalarnas län,SE-W
+SE,Gotlands län,SE-I
+SE,Gävleborgs län,SE-X
+SE,Hallands län,SE-N
+SE,Jämtlands län,SE-Z
+SE,Jönköpings län,SE-F
+SE,Kalmar län,SE-H
+SE,Kronobergs län,SE-G
+SE,Norrbottens län,SE-BD
+SE,Region Hovedstaden,SE-AB
+SE,Skåne län,SE-M
+SE,Stockholms län,SE-AB
+SE,Södermanlands län,SE-D
+SE,Uppsala län,SE-C
+SE,Värmlands län,SE-S
+SE,Västerbottens län,SE-AC
+SE,Västernorrlands län,SE-Y
+SE,Västmanlands län,SE-U
+SE,Västra Götalands län,SE-O
+SE,Örebro län,SE-T
+SE,Östergötlands län,SE-E
+SK,Nitrianský kraj,SK-NC
+SK,Trenčianský kraj,SK-TC
+TR,Hakkari,TR-26
+UA,Івано-Франківська область,UA-IF
+UA,Автономна Республіка Крим,UA-43
+UA,Волинська область,UA-VO
+UA,Вінницька область,UA-VI
+UA,Дніпропетровська область,UA-DP
+UA,Донецька область,UA-DO
+UA,Житомирська область,UA-ZK
+UA,Закарпатська область,UA-ZA
+UA,Запорізька область,UA-ZP
+UA,Київ,UA-30
+UA,Київська міська громада,UA-32
+UA,Київська область,UA-31
+UA,Кіровоградська область,UA-KV
+UA,Луганська область,UA-14
+UA,Львівська область,UA-46
+UA,Миколаївська область,UA-48
+UA,Полтавська область,UA-53
+UA,Республика Крым,UA-40
+UA,Рівненська область,UA-56
+UA,Севастополь,UA-61
+UA,Тернопільська область,UA-59
+UA,Харківська область,UA-63
+UA,Херсонська область,UA-65
+UA,Хмельницька область,UA-68
+UA,Черкаська область,UA-71
+UA,Чернівецька область,UA-74
+UA,Чернігівська область,UA-77

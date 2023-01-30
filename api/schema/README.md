@@ -222,7 +222,145 @@ For governments, we keep information about the territory governed as well as sim
 
 ### GDP
 
-(TBD)
+This table represents the [gross domestic product](https://en.wikipedia.org/wiki/Gross_domestic_product) history of the Actor. There is one row per actor per year, maximum. We don't keep different estimates of GDP for the same actor for one year.
+
+- `actor_id`: Actor ID for the economy in question.
+- `gdp`: GDP in US dollars, units. 100000000000 is 100 billion USD.
+- `year`: Year of measurement, YYYY
+- `datasource_id`: ID of the [DataSource](#datasource) this economic information came from
+- `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
+- `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
+
+## Emissions
+
+To track carbon dioxide (CO2) emissions and equivalent levels of emissions of other greenhouse gases, this part of the schema uses a few tables. The aggregate table [EmissionsAgg](#emissionsagg) holds annual emissions for an Actor for a year. The aggregates can be broken down by scope 1, 2, and 3 in [EmissionsByScope](#emissionsbyscope) or by sector in [EmissionsBySector](#emissionsbysector), or both.
+
+### EmissionsAgg
+
+Each row in this table represents aggregate emissions of CO2 and other greenhouse gases by an actor during a single year. The rows are unique by actor_id, year, and datasource_id; there may be multiple rows for a single actor for a single year. This lets us compare different models of truth from different data sources.
+
+- `emissions_id`: Unique identifier for this record. Typically constructed as `<datasource_id>:<actor_id>:<year>`, although the identifier is opaque. Note that a single identifier is used because this table is referenced in the breakdown tables.
+- `actor_id`: Responsible party for the emissions.
+- `year`: Year of emissions, YYYY.
+- `total_emissions`: Integer value of tonnes of CO2 equivalent.
+- `datasource_id`: ID of the [DataSource](#datasource) this emissions information came from.
+- `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
+- `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
+
+### EmissionsAggTag
+
+A [Tag](#tag) on an [EmissionsAgg](#emissionsagg) row is used if there are notable features on the emissions row are different from those on the data source. For example, the methodology for an emissions data source is self-reported, but for this row, it's also validated by an auditor.
+
+Note that this table doesn't have a `datasource_id`. The tag is assumed to derive from the same [DataSource](#datasource) as the EmissionsAgg row it references.
+
+Don't repeat tags for every row from a data source; just tag the data source.
+
+- `emissions_id`: ID of the tagged emissions row.
+- `tag_id`: Referenced tag. This must exist in the [Tag](#tag) table.
+- `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
+- `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
+
+### EmissionsByScope
+
+This table represents a breakdown of a single emissions row by [scope](https://www.epa.gov/climateleadership/scope-1-and-scope-2-inventory-guidance) where those breakdowns are provided. The sum of the emissions values for the different scopes should be less than or equal to the [EmissionsAgg](#emissionsagg) row's total, but might not due to reporting differences that aren't represented in this schema.
+
+Note that there is no `datasource_id`; the DataSource is assumed to be the same as the parent EmissionsAgg row.
+
+- `emissions_id`: What emissions this is aggregated to
+- `scope`: An integer for the scope; one of 1, 2, or 3. Additional scope integers may be added.
+- `emissions_value`: metric tonnes of CO2 equivalent.
+- `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
+- `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
+
+### EmissionsBySector
+
+A group of emissions by sector rows represents a breakdown of the total emissions by the actor according to the activity that caused the emissions, such as transportation, electricity generation, or agriculture. See [Sector](#sector) for a description of how sectors are represented.
+
+The rows are unique by emissions ID and sector ID.
+
+The sum of the emissions values for the different sectors in a single namespace should be less than or equal to the [EmissionsAgg](#emissionsagg) row's total, but discrepancies might occur due to reporting differences that aren't represented in this schema.
+
+Note that there is no `datasource_id`; the DataSource is assumed to be the same as the parent EmissionsAgg row.
+
+- `emissions_id`: Which emissions aggregate this is a part of.
+- `sector_id`: The sector for the emissions.
+- `emissions_value`: metric tonnes of CO2 equivalent attributed to this sector.
+- `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
+- `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
+
+### Sector
+
+Each row represents a sector of activity that produces CO2 or equivalent greenhouse gases. Different reporting tools and regulatory agencies track sectors of activity slightly differently, so this table allows a `namespace` to control uniqueness of the rows.
+
+- `sector_id`: Unique ID for the sector
+- `name`: A human-readable name for the sector
+- `namespace`: A namespace or vocabulary for the sector. This may be a standards name or identifier, or an identifier for a regulatory agency that maintains its own sector vocabulary.
+- `datasource_id`: ID of the [DataSource](#datasource) this sector information came from.
+- `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
+- `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
+
+## Targets
+
+This cluster of tables represents targets for emissions reductions or similar mitigations for climate change.
+
+### Target
+
+A Target is a goal set by the [Actor](#actor), often as part of a treaty or other agreement with similar Actors, but sometimes a voluntary reduction.
+
+Targets are usually unique for a target type, target year, target unit, and actor, but there may be exceptions.
+
+- `target_id`: Unique identifier for this target. Usually composed of
+`<datasource_id>:<actor_id>:<baseline_year>:<target_year>:<target_type>`, but it's opaque and may come from another vocabulary.
+- `actor_id`: The Actor responsible for the target.
+- `target_type`: The type of target; used in exact-match comparisons by software. An open vocabulary, but the following values are widely used:
+    - 'Peak of carbon emissions': A goal to reach a peak carbon emissions,
+    after which emissions will begin going down. Peak value is given as the target value.
+    - 'Relative emission reduction': A reduction in emissions versus baseline year. Percentage is the typical unit.
+    - 'Absolute emission reduction': An absolute reduction in emissions. Despite the name, both tonnes of CO2 equivalent and percentage versus baseline value are used.
+    - 'Carbon intensity reduction': reducing the amount of CO2 equivalent
+    produced relative to economic output, such as GDP or revenue. Typically measured in percent.
+- `target_year`: Year of completion, YYYY. Targets may have year values in the past, for historical targets.
+- `target_unit`: Unit for the value. Current units supported are:
+    - 'tCO2e': tonnes of CO2 equivalent
+    - 'percent': percentage reduction
+- `target_value`: Value of the target. This is delimited in units by `target_unit`.
+- `baseline_year`: Year of comparison, YYYY. If the baseline year and target year are identical, the target is against "business as usual" or "BAU", that is, what would or could happen if no mitigation effort was attempted.
+- `baseline_value` Value of comparison. Units are the same as `target_unit`.
+- `URL`: URL of a human-readable document on the target.
+- `summary`: a short summary in English of the target.
+- `datasource_id`: ID of the [DataSource](#datasource) this sector information came from.
+- `initiative_id`: if this target is part of an
+[Initiative](#initiative), its ID goes here.
+- `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
+- `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
+
+### TargetTag
+
+Targets that have properties that aren't well-represented by the standard table columns can add [Tag](#tag)s to the rows for the target to represent those properties. For example, the nationally-defined commitments (NDCs) of the Paris Agreement are often marked as "conditional" (won't happen without financial aid) or "unconditional" (will happen with or without aid). Since that aspect is specific to the Paris Agreement, we represent the property with a tag.
+
+Note that this table doesn't have a `datasource_id`. The tag is assumed to derive from the same [DataSource](#datasource) as the Target row it references.
+
+TargetTag rows provide a many-to-many relationship between Target rows and Tag rows.
+
+Don't repeat tags for every row from a data source; just tag the data source.
+
+- `target_id`: Which target is being tagged.
+- `tag_id`: What the tag is. ID must exist in the [Tag](#tag) table.
+- `created`: When this row was added to the table.
+- `last_updated`: When this row was changed.
+
+### Initiative
+
+An Initiative is an organised effort to reduce emissions, typically agreed to between multiple Actors. Some are formal, and some are informal. Examples would the the Paris Agreement or the US Climate Alliance.
+
+- `initiative_id`: Unique identifier for this initiative. Usually a memorable tag-like string
+such as "paris", but it's opaque and may come from another vocabulary.
+- `name`: name of the initiative, in English.
+- `description`: short description of a few sentences explaining the initiative.
+- `URL`: link to a human-readable page or Web site about the initiative.
+- `datasource_id`: data source for this initiative. Often, one datasource only covers a single initiative, so they will be closely connected. An example is Global Covenant of Mayors.
+- `created`: datestamp for the initiative record in the database, unrelated to the history of the initiative itself.
+- `last_updated`: datestamp for the record being updated.
 
 ## Metadata
 

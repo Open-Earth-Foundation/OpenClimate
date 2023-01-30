@@ -11,8 +11,10 @@ let TrustedRegistry = require('../orm/trusted_registry')
 let Users = require('../orm/users')
 let Proofs = require('../orm/proofs')
 
+const logger = require('../logger').child({module: __filename})
+
 const requestPresentation = async (connectionID) => {
-  console.log(`Requesting Presentation from Connection: ${connectionID}`)
+  logger.debug(`Requesting Presentation from Connection: ${connectionID}`)
 
   AdminAPI.Presentations.requestPresentation(
     connectionID,
@@ -68,8 +70,8 @@ function isAttrParams(obj: any): obj is AttrParams {
 
 function isOrgVerificationCreds(obj: any): obj is OrgVerificationCreds {
   return (
-    obj != null && 
-    isAttrParams(obj.organization_name) && 
+    obj != null &&
+    isAttrParams(obj.organization_name) &&
     isAttrParams(obj.registration_date) &&
     isAttrParams(obj.organization_id)
     );
@@ -77,8 +79,8 @@ function isOrgVerificationCreds(obj: any): obj is OrgVerificationCreds {
 
 function isScope1Creds(obj: any): obj is Scope1Creds {
   return (
-    obj != null && 
-    isAttrParams(obj.facility_jurisdiction) && 
+    obj != null &&
+    isAttrParams(obj.facility_jurisdiction) &&
     isAttrParams(obj.credential_reporting_date_start) &&
     isAttrParams(obj.credential_reporting_date_end) &&
     isAttrParams(obj.facility_country) &&
@@ -89,15 +91,15 @@ function isScope1Creds(obj: any): obj is Scope1Creds {
 }
 
 const adminMessage = async (message) => {
-  console.log('Received Presentations Message', message)
+  logger.debug('Received Presentations Message', message)
 
   if (message.state === 'verified') {
     // Check if proof DID is in our trusted registry
-    console.log('Received Presentations DID', message.presentation.identifiers[0].cred_def_id)
-    
+    logger.debug('Received Presentations DID', message.presentation.identifiers[0].cred_def_id)
+
     const cred_issuer = await TrustedRegistry.readTrustedDID(message.presentation.identifiers[0].cred_def_id.split(':')[0]);
     if (cred_issuer) {
-      console.log('DID verified', cred_issuer)
+      logger.debug('DID verified', cred_issuer)
       if (AnonWebsockets.checkWebsocketID(message.connection_id)) {
         let values: Value
         // (mikekebert) Check the data format to see if the presentation requires the referrant pattern
@@ -111,12 +113,12 @@ const adminMessage = async (message) => {
         } else {
           values = message.presentation.requested_proof.revealed_attrs
         }
-  
+
         if (values.address) {
           // Now that we have verified the credential, we need to add a user_id to the connection
           const user = await Users.readUserByEmail(values.address.raw)
           const connection = await Connections.readConnection(message.connection_id)
-  
+
           Connections.updateConnection(
             connection.connection_id,
             connection.state,
@@ -137,7 +139,7 @@ const adminMessage = async (message) => {
             connection.error_msg,
             user.user_id // <-- the user ID from the user needs to go here
           )
-  
+
           // We tell people that we verified the email address
           AnonWebsockets.sendMessageToConnectionId(
             message.connection_id,
@@ -147,7 +149,7 @@ const adminMessage = async (message) => {
               address: values.address,
             },
           )
-  
+
           // Finally, we request the next presentation
           AdminAPI.Presentations.requestPresentation(
             message.connection_id,
@@ -156,8 +158,8 @@ const adminMessage = async (message) => {
             'Requesting Presentation',
             false,
           )
-        }  
-        
+        }
+
         if (values.organization_name) {
           // We also need to validate the organization and send a message
           AnonWebsockets.sendMessageToConnectionId(
@@ -170,10 +172,10 @@ const adminMessage = async (message) => {
           )
         }
 
-           
+
       } else {
-        console.log("Message ", message.presentation.requested_proof.revealed_attrs)
-        
+        logger.debug("Message ", message.presentation.requested_proof.revealed_attrs)
+
         if (isScope1Creds(message.presentation.requested_proof.revealed_attrs)) {
           let Scope1Creds: Scope1Creds = message.presentation.requested_proof.revealed_attrs
           Scope1Creds.credential_issuer = { "sub_proof_index": 0, "raw": cred_issuer.did, "encoded": cred_issuer.did };

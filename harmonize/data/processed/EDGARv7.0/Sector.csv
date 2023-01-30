@@ -1,0 +1,6 @@
+sector_id,name,namespace,datasource_id
+EDGARv7.0:sector:Buildings,Buildings,EDGARv7.0:sector,EDGARv7.0:ghg
+EDGARv7.0:sector:Other industrial combustion,Other industrial combustion,EDGARv7.0:sector,EDGARv7.0:ghg
+EDGARv7.0:sector:Other sectors,Other sectors,EDGARv7.0:sector,EDGARv7.0:ghg
+EDGARv7.0:sector:Power Industry,Power Industry,EDGARv7.0:sector,EDGARv7.0:ghg
+EDGARv7.0:sector:Transport,Transport,EDGARv7.0:sector,EDGARv7.0:ghg

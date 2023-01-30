@@ -11,10 +11,11 @@ import {Target} from '../orm/target'
 import { Tag } from '../orm/tag'
 import {DataSourceTag} from '../orm/datasourcetag'
 import {EmissionsAggTag} from '../orm/emissionsaggtag'
+import {ActorDataCoverage} from '../orm/actordatacoverage'
+import {Initiative} from '../orm/initiative'
 
 import {app} from '../app'
 import request from 'supertest'
-import { emissions } from '../seeders/emissions.seeder'
 
 const disconnect = require('../orm/init').disconnect
 
@@ -91,6 +92,14 @@ const territory2Props = {
 
 // Different targets in different years
 
+const initiativeProps = {
+    initiative_id: "actor.routes.test.ts:initiative:1",
+    name: "Fake initiative from actor.routes.test.ts",
+    description: "Fake initiative from actor.routes.test.ts",
+    URL: "https://fake.example/initiative",
+    datasource_id: datasource1Props.datasource_id
+}
+
 const countryTarget1Props = {
     target_id: "actor.routes.test.ts:target:1",
     actor_id: country1Props.actor_id,
@@ -100,7 +109,8 @@ const countryTarget1Props = {
     target_year: 2025,
     target_value: 50000000,
     target_unit: "tonnes",
-    datasource_id: datasource1Props.datasource_id
+    datasource_id: datasource1Props.datasource_id,
+    initiative_id: initiativeProps.initiative_id
 }
 
 const countryTarget2Props = {
@@ -129,6 +139,46 @@ const country2Target1Props = {
     datasource_id: datasource1Props.datasource_id
 }
 
+// For recursive tests
+
+const country3Props = {
+    actor_id: "actor.routes.test.ts:actor:country:3",
+    type: "country",
+    name: "Fake country actor from actor.routes.test.ts",
+    datasource_id: datasource1Props.datasource_id
+}
+
+const region1Props = {
+    actor_id: "actor.routes.test.ts:actor:country:3:region:1",
+    is_part_of: country3Props.actor_id,
+    type: "adm1",
+    name: "Fake region actor from actor.routes.test.ts",
+    datasource_id: datasource1Props.datasource_id
+}
+
+const region2Props = {
+    actor_id: "actor.routes.test.ts:actor:country:3:region:2",
+    is_part_of: region1Props.actor_id,
+    type: "adm2",
+    name: "Fake region actor from actor.routes.test.ts",
+    datasource_id: datasource1Props.datasource_id
+}
+
+const city2Props = {
+    actor_id: "actor.routes.test.ts:actor:country:3:city:2",
+    type: "city",
+    name: "Fake city actor from actor.routes.test.ts",
+    is_part_of: region1Props.actor_id,
+    datasource_id: datasource1Props.datasource_id
+}
+
+const city3Props = {
+    actor_id: "actor.routes.test.ts:actor:country:3:city:3",
+    type: "city",
+    name: "Fake city actor from actor.routes.test.ts",
+    is_part_of: region2Props.actor_id,
+    datasource_id: datasource1Props.datasource_id
+}
 
 async function cleanup() {
     // Clean up if there were failed tests
@@ -140,7 +190,16 @@ async function cleanup() {
         ])
         await Tag.destroy({where: {tag_id: tag_id}})
     }
+
+    // ActorDataCoverage
+
+    await Promise.all([0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((val) =>
+        ActorDataCoverage.destroy({where: {
+            actor_id: `actor.routes.test.ts:actor:region:1${val}`}})
+    ))
+
     await Target.destroy({where: {datasource_id: datasource1Props.datasource_id}})
+    await Initiative.destroy({where: {datasource_id: datasource1Props.datasource_id}})
     await EmissionsAgg.destroy({where: {datasource_id: datasource1Props.datasource_id}})
     await EmissionsAgg.destroy({where: {datasource_id: datasource2Props.datasource_id}})
     await Territory.destroy({where: {datasource_id: datasource1Props.datasource_id}})
@@ -168,9 +227,20 @@ beforeAll(async () => {
     await Actor.create(country1Props)
     await Actor.create(country2Props)
     await Actor.create(cityProps)
+
+    // For recursive tests
+
+    await Actor.create(country3Props)
+    await Actor.create(region1Props)
+    await Actor.create(region2Props)
+    await Actor.create(city2Props)
+    await Actor.create(city3Props)
+
     await Territory.create(territory1Props)
     await Territory.create(territory2Props)
 
+    await Initiative.create(initiativeProps
+        )
     await Target.create(countryTarget2Props)
     await Target.create(countryTarget1Props)
 
@@ -185,6 +255,15 @@ beforeAll(async () => {
             name: `Fake region actor #${val} from actor.routes.test.ts`,
             is_part_of: country1Props.actor_id,
             datasource_id: datasource1Props.datasource_id
+        })
+    ))
+
+    await Promise.all(vals.map((val) =>
+        ActorDataCoverage.create({
+            actor_id: `actor.routes.test.ts:actor:region:1${val}`,
+            has_data: false,
+            has_children: false,
+            children_have_data: null
         })
     ))
 
@@ -389,6 +468,28 @@ it("gets parts of an actor in name order", async () =>
         })
 )
 
+it("can get data coverage information for parts of an actor", async () =>
+    request(app)
+        .get(`/api/v1/actor/${country1Props.actor_id}/parts`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            // 10 regions + 1 city
+            expect(res.body.data.length).toEqual(11)
+            for (let actor of res.body.data) {
+                expect(actor.actor_id).toBeDefined()
+                expect(actor.has_data).toBeDefined()
+                expect(actor.has_children).toBeDefined()
+                expect(actor.children_have_data).toBeDefined()
+            }
+            let r1 = res.body.data.find(a => a.actor_id === 'actor.routes.test.ts:actor:region:11')
+            expect(r1.has_children).toBeFalsy()
+            // We didn't add data for this one, so all should be null
+            let c1 = res.body.data.find(a => a.actor_id === cityProps.actor_id)
+            expect(c1.has_children).toBeNull()
+        })
+)
+
 it("can get actor details", async () =>
     request(app)
         .get(`/api/v1/actor/${country1Props.actor_id}`)
@@ -590,8 +691,9 @@ it ("can return target_unit", async () =>
             const data = res.body.data
             expect(data.targets).toBeDefined()
             expect(data.targets.length).toBeGreaterThan(0)
-            expect(data.targets[0].target_unit).toBeDefined()
-            expect(typeof(data.targets[0].target_unit)).toEqual("string")
+            const target = data.targets[0]
+            expect(target.target_unit).toBeDefined()
+            expect(typeof(target.target_unit)).toEqual("string")
         })
 )
 
@@ -696,5 +798,85 @@ it("returns targets in target_year order", async () =>
             expect(data.targets.length).toEqual(2)
             const years = data.targets.map((t:any) => t.target_year)
             expect(years).toEqual(years.slice().sort())
+        })
+)
+
+
+it("returns only immediate children when recursive is not set", async () =>
+    request(app)
+        .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            expect(res.body.data).toBeDefined()
+            const data = res.body.data
+            expect(data.length).toBeDefined()
+            expect(data.length).toEqual(1)
+        })
+)
+
+it("returns only immediate children when recursive is set to no", async () =>
+    request(app)
+        .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city&recursive=no`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            expect(res.body.data).toBeDefined()
+            const data = res.body.data
+            expect(data.length).toBeDefined()
+            expect(data.length).toEqual(1)
+        })
+)
+
+it("returns deep children when recursive is set to yes", async () =>
+    request(app)
+        .get(`/api/v1/actor/${region1Props.actor_id}/parts?type=city&recursive=yes`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            expect(res.body.data).toBeDefined()
+            const data = res.body.data
+            expect(data.length).toBeDefined()
+            expect(data.length).toEqual(2)
+            let names = data.map((actor) => actor.name)
+            expect(names[0] <= names[1]).toBeTruthy()
+        })
+)
+
+it("returns target initiative", async () =>
+    request(app)
+        .get(`/api/v1/actor/${country1Props.actor_id}`)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .expect((res:any) => {
+            expect(res.body.data).toBeDefined()
+
+            const data = res.body.data
+
+            expect(data.targets).toBeDefined()
+            expect(data.targets.length).toBeGreaterThan(0)
+
+            const target = data.targets[0]
+
+            expect(target.initiative).toBeDefined()
+            expect(typeof(target.initiative)).toEqual("object")
+
+            const initiative = target.initiative
+
+            expect(initiative.initiative_id).toBeDefined()
+            expect(typeof(initiative.initiative_id)).toEqual("string")
+            expect(initiative.initiative_id).toEqual(initiativeProps.initiative_id)
+
+            expect(initiative.name).toBeDefined()
+            expect(typeof(initiative.name)).toEqual("string")
+            expect(initiative.name).toEqual(initiativeProps.name)
+
+            expect(initiative.description).toBeDefined()
+            expect(typeof(initiative.description)).toEqual("string")
+            expect(initiative.description).toEqual(initiativeProps.description)
+
+            expect(initiative.URL).toBeDefined()
+            expect(typeof(initiative.URL)).toEqual("string")
+            expect(initiative.URL).toEqual(initiativeProps.URL)
         })
 )

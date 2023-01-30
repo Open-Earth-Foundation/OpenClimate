@@ -1,4 +1,5 @@
 const AdminAPI = require('../adminAPI')
+const logger = require('../logger').child({module: __filename})
 
 // Perform Agent Business Logic
 
@@ -9,7 +10,7 @@ const fetchTAA = async () => {
 
     return TAA
   } catch (error) {
-    console.error('Error Fetching Ledger TAA')
+    logger.error('Error Fetching Ledger TAA')
     throw error
   }
 }
@@ -21,7 +22,7 @@ const acceptTAA = async (version, text, mechanism = 'wallet_agreement') => {
 
     return
   } catch (error) {
-    console.error('Error Accepting Ledger TAA')
+    logger.error('Error Accepting Ledger TAA')
     throw error
   }
 }

@@ -10,6 +10,7 @@ ActorName
 Population
 GDP
 Territory
+Initiative
 Target
 TargetTag
 EmissionsAgg

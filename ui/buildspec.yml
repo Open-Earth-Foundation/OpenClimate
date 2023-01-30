@@ -17,6 +17,8 @@ phases:
       - sed -i 's/<REGION>/'$AWS_DEFAULT_REGION'/g' Dockerfile
       - sed -i 's/<GOOGLE_MAP_API_KEY>/'$GOOGLE_MAP_API_KEY'/g' taskdef.json
       - sed -i 's/<NODE_ENV>/'$ENV'/g' taskdef.json
+      - sed -i 's/<MATOMO_SITE_ID>/'$MATOMO_SITE_ID'/g' taskdef.json
+      - sed -i 's/<MATOMO_DOMAIN_URL>/'$MATOMO_DOMAIN_URL'/g' taskdef.json
       - echo REACT_APP_CONTROLLER='https://'$REACT_APP_CONTROLLER > .env
       - cat .env
       - echo Build started on `date`

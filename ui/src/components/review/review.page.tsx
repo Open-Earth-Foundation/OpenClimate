@@ -30,14 +30,24 @@ const ReviewPage: FunctionComponent = () => {
 
     const loading = false
 
+    const handleParams = (actorID: string) => {
+        if (actorID === 'EARTH') {
+            actors.length > 1 && deselectFilterHandler(FilterTypes.National);
+        } else {
+            if (actors.length === 1 || (actors.length > 1 && actorID !== current.actor_id)) {
+                insertActor(actorID, []);
+            }
+        }
+    }
+
     // Load the provided actor
 
     useEffect(() => {
-        insertActor(actorID, [])
+        insertActor(actorID, []);
     }, [])
 
     useEffect(() => {
-        actorID === 'EARTH' && actors.length > 1 && deselectFilterHandler(FilterTypes.National);
+        handleParams(actorID);
     }, [actorID])
 
 
@@ -47,41 +57,42 @@ const ReviewPage: FunctionComponent = () => {
         .then((json) => json.data)
         .then((actor) => {
             if (!actor?.is_part_of) {
-                setActors([actor].concat(children))
+                setActors([actor].concat(children));
             } else {
-                const pi = actors?.findIndex((a: any) => a.actor_id == actor.is_part_of)
+                const pi = actors?.findIndex((a: any) => a.actor_id == actor.is_part_of);
                 if (pi !== -1) {
                     // Parent is already part of the array, so just slice and concat
-                    setActors(actors?.slice(0, pi + 1).concat([actor]).concat(children))
+                    setActors(actors?.slice(0, pi + 1).concat([actor]).concat(children));
                 } else {
                     // Parent is not part of the array, so go up one level and try again
-                    insertActor(actor?.is_part_of, [actor].concat(children))
+                    insertActor(actor?.is_part_of, [actor].concat(children));
                 }
             }
         })
     }
 
     const selectFilterHandler = (filterType: FilterTypes, option: DropdownOption) => {
-        const actor_id = option.value
-        insertActor(actor_id, [])
-        history.push((actor_id === 'EARTH') ? '/' : `/actor/${option.value}`)
+        const actor_id = option.value;
+        insertActor(actor_id, []);
+        history.push((actor_id === 'EARTH') ? '/' : `/actor/${option.value}`);
     }
 
     const deselectFilterHandler = (filterType: FilterTypes) => {
-        let newActorsList = actors.slice();
+        let newActorsList = null
         switch (filterType) {
             case FilterTypes.City:
             case FilterTypes.Company:
-                newActorsList.splice(3, 1);
-                break;
+                newActorsList = actors.slice(0, 3)
+                break
             case FilterTypes.SubNational:
-                newActorsList.splice(2,2);
+                newActorsList = actors.slice(0, 2)
                 break;
             case FilterTypes.National:
-                newActorsList.splice(1,3);
+                newActorsList = actors.slice(0, 1)
                 break;
         }
-        history.push(`/actor/${newActorsList[newActorsList.length - 1].actor_id}`)
+        const actor_id = newActorsList[newActorsList.length - 1].actor_id
+        history.push((actor_id === 'EARTH') ? '/' : `/actor/${actor_id}`);
         setActors(newActorsList);
     }
 

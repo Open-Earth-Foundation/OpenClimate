@@ -1,0 +1,4 @@
+actor_id,type,name,is_part_of,is_owned_by,datasource_id
+US GHR:EPA_1010895,site,Sierra Pacific Industries - Aberdeen,US GHR,549300WDDKEXOHTWRW72,US_WA_ecology:GHG_facility_reporting
+US CRA:EPA_1010897,site,Sierra Pacific Industries - Centralia,US CRA,549300WDDKEXOHTWRW72,US_WA_ecology:GHG_facility_reporting
+US PAE:EPA_1000640,site,Boeing Commercial Airplanes - Everett,US PAE,RVHJWBXLJ1RFUBSY1F30,US_WA_ecology:GHG_facility_reporting

@@ -9,6 +9,7 @@ import { Tag } from './tags';
 
 const init = require('./init.ts');
 const sequelize = init.connect();
+const logger = require('../logger').child({module: __filename})
 
 export class Subnational extends Model <InferAttributes<Subnational>, InferCreationAttributes<Subnational>> {
     declare subnational_id: CreationOptional<number>;
@@ -117,7 +118,7 @@ export const getAllSubnationalDataByID = async (subnational_id, year) => {
                     include: [
                         {
                             model: DataProvider,
-                            
+
                             include: [
                                 {
                                     model: Methodology,
@@ -127,7 +128,7 @@ export const getAllSubnationalDataByID = async (subnational_id, year) => {
                                         }
                                     ]
                                 }
-                            ]  
+                            ]
                         }
                     ]
                 },
@@ -139,7 +140,7 @@ export const getAllSubnationalDataByID = async (subnational_id, year) => {
                             include: [
                                 {
                                     model: DataProvider,
-                                    
+
                                     include: [
                                         {
                                             model: Methodology,
@@ -149,19 +150,19 @@ export const getAllSubnationalDataByID = async (subnational_id, year) => {
                                                 }
                                             ]
                                         }
-                                    ]  
+                                    ]
                                 }
                             ]
                         }
-                    ]  
+                    ]
                 },
-                
+
             ]
         });
         return subnationals;
     }
     catch (error) {
-        console.error('Subnational not found: ', error.message)
+        logger.error('Subnational not found: ', error.message)
     }
 }
 
@@ -171,6 +172,6 @@ export const getAllSubnationals = async () => {
         return subnationals;
     }
     catch (error) {
-        console.error('Country not found: ', error.message)
+        logger.error('Country not found: ', error.message)
     }
 }

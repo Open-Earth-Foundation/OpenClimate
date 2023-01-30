@@ -1,0 +1,3 @@
+datasource_id,tag_id
+carbon_monitor:2022_12_14,CO2_only
+carbon_monitor:2022_12_14,activity_data_and_other_sources

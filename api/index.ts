@@ -13,7 +13,7 @@ let anonWebSocket = require('./anonwebsockets')
 
 // We use one Winston instance for the entire app
 
-const logger = require('./logger')
+const logger = require('./logger').child({module: __filename})
 
 server.on('upgrade', function upgrade(request, socket, head) {
   logger.debug('upgrade')

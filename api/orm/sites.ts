@@ -2,7 +2,7 @@ import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOpti
 
 const init = require('./init.ts')
 export const sequelize = init.connect()
-
+const logger = require('../logger').child({module: __filename})
 
 class Sites extends Model <InferAttributes<Sites>, InferCreationAttributes<Sites>> {
   declare id: CreationOptional<number>;
@@ -36,9 +36,9 @@ Sites.init(
     },
   },
   {
-    sequelize, 
+    sequelize,
     modelName: 'Sites',
-    tableName: 'sites', 
+    tableName: 'sites',
     timestamps: false,
   },
 )
@@ -54,7 +54,7 @@ export async function createSite (organization_id, data) {
 
     return site
   } catch (error) {
-    console.error('Error saving site to the database: ', error)
+    logger.error('Error saving site to the database: ', error)
   }
 }
 
@@ -68,7 +68,7 @@ export async function readSite(id) {
 
     return site[0]
   } catch (error) {
-    console.error('Could not find site by id in the database: ', error)
+    logger.error('Could not find site by id in the database: ', error)
   }
 }
 
@@ -82,7 +82,7 @@ export async function readSitesByOrgId (organization_id) {
 
     return sites
   } catch (error) {
-    console.error('Could not find sites by id in the database: ', error)
+    logger.error('Could not find sites by id in the database: ', error)
   }
 }
 
@@ -92,7 +92,7 @@ export async function readSites () {
 
     return sites
   } catch (error) {
-    console.error('Could not find sites in the database: ', error)
+    logger.error('Could not find sites in the database: ', error)
   }
 }
 
@@ -114,17 +114,17 @@ export async function updateSites (
       },
     )
 
-    console.log(`Site updated successfully.`)
+    logger.debug(`Site updated successfully.`)
     return organization
   } catch (error) {
-    console.error('Error updating the site: ', error)
+    logger.error('Error updating the site: ', error)
   }
 }
 
 export async function findAllByCountry (countryName: string) {
   try {
     const allSitesByCountry = await Sites.findAll({
-   
+
       where: {
         data: {
           facility_country: {
@@ -132,19 +132,19 @@ export async function findAllByCountry (countryName: string) {
           }
         }
       }
-     
+
     });
-    console.log(`Site updated successfully.`)
+    logger.debug(`Site updated successfully.`)
     return allSitesByCountry
   } catch (error) {
-    console.error('Error updating the site: ', error)
+    logger.error('Error updating the site: ', error)
   }
 }
 
 export async function findAllByCountryAndJur (countryName: string, jurisdiction:string) {
   try {
     const allSites = await Sites.findAll({
-   
+
       where: {
         data: {
           facility_country: {
@@ -155,11 +155,11 @@ export async function findAllByCountryAndJur (countryName: string, jurisdiction:
           }
         }
       }
-     
+
     });
-    console.log(`Site updated successfully.`)
+    logger.debug(`Site updated successfully.`)
     return allSites
   } catch (error) {
-    console.error('Error updating the site: ', error)
+    logger.error('Error updating the site: ', error)
   }
 }

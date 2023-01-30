@@ -1,6 +1,6 @@
 const crypto = require('crypto')
-
 const sendAdminMessage = require('./transport')
+const logger = require('../logger').child({module: __filename})
 
 // Generate operations and requests to be sent to the Cloud Agent Adminstration API
 
@@ -12,7 +12,7 @@ const requestPresentation = async (
   trace = false,
 ) => {
   try {
-    console.log(`Requesting Presentation from Connection: ${connectionID}`)
+    logger.debug(`Requesting Presentation from Connection: ${connectionID}`)
 
     let nonce = crypto.randomBytes(40).join('')
 
@@ -48,7 +48,7 @@ const requestPresentation = async (
       connection_id: connectionID,
     }
 
-    console.log(presentationRequest)
+    logger.debug(presentationRequest)
 
     const response = await sendAdminMessage(
       'post',
@@ -57,11 +57,11 @@ const requestPresentation = async (
       presentationRequest,
     )
 
-    console.log(response)
+    logger.debug(response)
 
     return response
   } catch (error) {
-    console.error('Presentations Error')
+    logger.error('Presentations Error')
     throw error
   }
 }

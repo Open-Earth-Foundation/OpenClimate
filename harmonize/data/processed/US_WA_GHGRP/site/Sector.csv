@@ -1,0 +1,3 @@
+sector_id,name,namespace,datasource_id
+US_WA_GHGRP:sector:Manufacturing,Manufacturing,US_WA_GHGRP:sector,US_WA_ecology:GHG_facility_reporting
+US_WA_GHGRP:sector:Wood Products,Wood Products,US_WA_GHGRP:sector,US_WA_ecology:GHG_facility_reporting

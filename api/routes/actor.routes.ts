@@ -9,6 +9,9 @@ import { DataSource } from "../orm/datasource"
 import { DataSourceTag } from "../orm/datasourcetag"
 import { EmissionsAggTag } from "../orm/emissionsaggtag"
 import { Tag } from "../orm/tag"
+import { ActorDataCoverage } from "../orm/actordatacoverage";
+import { Initiative } from "../orm/initiative";
+
 import {isHTTPError, NotFound} from 'http-errors'
 
 const wrap = fn => (req, res, next) => fn(req, res, next).catch((err) => next(err))
@@ -39,6 +42,7 @@ router.get('/api/v1/actor/:actor_id', wrap(async (req:any, res:any) => {
     // Get unique datasources
 
     const unique = (v, i, a) => a.indexOf(v) == i
+
     const dataSourceIDs = emissions
         .map(ea => ea.datasource_id)
         .concat(population.map(p => p.datasource_id))
@@ -46,11 +50,17 @@ router.get('/api/v1/actor/:actor_id', wrap(async (req:any, res:any) => {
         .concat((territory) ? [territory.datasource_id] : [])
         .filter(unique)
 
-    const [dataSources, dataSourceTags, emissionsAggTags] =
+    // Get unique initiative IDs
+
+    const initiative_ids = targets.filter(t => t.initiative_id).map(t => t.initiative_id).filter(unique)
+
+
+    const [dataSources, dataSourceTags, emissionsAggTags, initiatives] =
         await Promise.all([
             DataSource.findAll({where: {datasource_id: dataSourceIDs}}),
             DataSourceTag.findAll({where: {datasource_id: dataSourceIDs}}),
-            EmissionsAggTag.findAll({where: {emissions_id: emissions.map(e => e.emissions_id)}})
+            EmissionsAggTag.findAll({where: {emissions_id: emissions.map(e => e.emissions_id)}}),
+            Initiative.findAll({where: {initiative_id: initiative_ids}})
         ])
 
     // Extract unique tag_ids
@@ -136,6 +146,7 @@ router.get('/api/v1/actor/:actor_id', wrap(async (req:any, res:any) => {
                 }
             }),
             targets: targets.map((t) => {
+                const i = (t.initiative_id) ? initiatives.find(i => i.initiative_id == t.initiative_id) : null
                 return {
                     target_id: t.target_id,
                     target_type: t.target_type,
@@ -144,7 +155,13 @@ router.get('/api/v1/actor/:actor_id', wrap(async (req:any, res:any) => {
                     target_year: t.target_year,
                     target_value: t.target_value,
                     target_unit: t.target_unit,
-                    datasource_id: t.datasource_id
+                    datasource_id: t.datasource_id,
+                    initiative: (i) ? {
+                        initiative_id: i.initiative_id,
+                        name: i.name,
+                        description: i.description,
+                        URL: i.URL
+                    } : undefined
                 }
             })
         }
@@ -163,28 +180,58 @@ router.get('/api/v1/actor/:actor_id/parts', wrap(async (req:any, res:any) => {
         throw new NotFound(`No actor found with actor ID ${actor_id}`)
     }
 
-    let parts: Array<Actor> = null;
+    let parts: Array<Actor> = [];
 
-    const where = {
-        is_part_of: actor_id
+    const recursive = (req.query.recursive) ? req.query.recursive == 'yes' : false
+
+    if (recursive) {
+        let parents = [actor_id]
+
+        while (parents.length > 0) {
+            let allParts = await Actor.findAll({where: {is_part_of: parents}})
+            let matched
+            let unmatched
+            if (req.query.type) {
+                matched = allParts.filter((actor) => actor.type == req.query.type)
+                unmatched = allParts.filter((actor) => actor.type != req.query.type)
+            } else {
+                matched = unmatched = allParts
+            }
+            parts = parts.concat(matched)
+            parents = unmatched.map((actor) => actor.actor_id)
+        }
+
+        parts.sort((a, b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0)
+    } else {
+        const where = {
+            is_part_of: actor_id
+        }
+
+        if (req.query.type) {
+            where['type'] = req.query.type
+        }
+
+        parts = await Actor.findAll({
+            where: where,
+            order: [["name", "ASC"]]
+        })
     }
 
-    if (req.query.type) {
-        where['type'] = req.query.type
-    }
+    let actor_ids = parts.map(p => p.actor_id)
 
-    parts = await Actor.findAll({
-        where: where,
-        order: [["name", "ASC"]]
-    })
+    let coverage = await ActorDataCoverage.findAll({where: {actor_id: actor_ids}})
 
     res.status(200).json({
         success: true,
         data: parts.map((child) => {
+            let pc = coverage.find(c => c.actor_id === child.actor_id)
             return {
                 actor_id: child.actor_id,
                 name: child.name,
-                type: child.type
+                type: child.type,
+                has_data: (pc) ? pc.has_data : null,
+                has_children: (pc) ? pc.has_children : null,
+                children_have_data: (pc) ? pc.children_have_data : null
             }
         })
     })

@@ -1,4 +1,5 @@
 const Settings = require('../orm/settings')
+const logger = require('../logger').child({module: __filename})
 
 // Perform Agent Business Logic
 
@@ -9,7 +10,7 @@ const setTheme = async (data = {}) => {
     const updatedTheme = await Settings.readTheme()
     return updatedTheme
   } catch (error) {
-    console.error('Error updating settings')
+    logger.error('Error updating settings')
     throw error
   }
 }
@@ -19,7 +20,7 @@ const getTheme = async () => {
     const currentTheme = await Settings.readTheme()
     return currentTheme
   } catch (error) {
-    console.error('Error getting Theme')
+    logger.error('Error getting Theme')
     throw error
   }
 }
@@ -30,7 +31,7 @@ const getSMTP = async () => {
     const currentSMTP = await Settings.readSMTP()
     return currentSMTP
   } catch (error) {
-    console.error('Error getting SMTP')
+    logger.error('Error getting SMTP')
     throw error
   }
 }
@@ -41,7 +42,7 @@ const setSMTP = async (data = {}) => {
     const updatedSMTP = await Settings.readSMTP()
     return updatedSMTP
   } catch (error) {
-    console.error('Error updating SMTP')
+    logger.error('Error updating SMTP')
     throw error
   }
 }
@@ -52,7 +53,7 @@ const getOrganization = async () => {
     const currentOrganization = await Settings.readOrganization()
     return currentOrganization
   } catch (error) {
-    console.error('Error getting Organization')
+    logger.error('Error getting Organization')
     throw error
   }
 }
@@ -63,7 +64,7 @@ const setOrganization = async (data = {}) => {
     const updatedOrganization = await Settings.readOrganization()
     return updatedOrganization
   } catch (error) {
-    console.error('Error updating organization name')
+    logger.error('Error updating organization name')
     throw error
   }
 }

@@ -4,6 +4,7 @@ const Util = require('../util')
 
 const init = require('./init.ts')
 let sequelize = init.connect()
+const logger = require('../logger').child({module: __filename})
 
 class Image extends Model {}
 
@@ -40,7 +41,7 @@ const readImagesByType = async function (type) {
     })
     return image
   } catch (error) {
-    console.error('Could not find image in the database: ', error)
+    logger.error('Could not find image in the database: ', error)
   }
 }
 
@@ -50,7 +51,7 @@ const readImages = async function () {
 
     return images
   } catch (error) {
-    console.error('Could not find images in the database: ', error)
+    logger.error('Could not find images in the database: ', error)
   }
 }
 
@@ -68,10 +69,10 @@ const updateImage = async function (name, type, image) {
         },
       },
     )
-    console.log('Image updated successfully.')
+    logger.debug('Image updated successfully.')
     return updatedImage
   } catch (error) {
-    console.error('Error updating the image: ', error)
+    logger.error('Error updating the image: ', error)
   }
 }
 
@@ -83,9 +84,9 @@ const deleteImage = async function (image_id) {
       },
     })
 
-    console.log('Successfully deleted image')
+    logger.debug('Successfully deleted image')
   } catch (error) {
-    console.error('Error while deleting image: ', error)
+    logger.error('Error while deleting image: ', error)
   }
 }
 

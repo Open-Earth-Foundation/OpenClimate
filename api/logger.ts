@@ -1,4 +1,5 @@
 const winston = require('winston')
+const { format } = winston
 
 // We have a single app-wide root logger
 
@@ -12,5 +13,9 @@ module.exports = winston.createLogger({
         new winston.transports.Console()
     ],
     defaultMeta: { service: 'OpenClimate-hub-controller' },
-    format: winston.format.json()
+    format: format.combine(
+        format.errors({ stack: true }),
+        format.metadata(),
+        format.json()
+    )
 })

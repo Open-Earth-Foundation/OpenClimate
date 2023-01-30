@@ -1,5 +1,6 @@
 const Websockets = require('../websockets.ts')
 let Organizations = require('../orm/organizations')
+const logger = require('../logger').child({module: __filename})
 
 // Perform Agent Business Logic
 const createOrganization = async function (
@@ -12,7 +13,7 @@ const createOrganization = async function (
   // Empty/data checks
   if (!name || !category || !type || !country || ! jurisdiction)
     return {error: 'ORGANIZATION ERROR: All fields must be filled out.'}
-  
+
   try {
     // Checking for duplicate organization
     const duplicateOrganization = await Organizations.readOrganizationByName(name)
@@ -27,7 +28,7 @@ const createOrganization = async function (
     // Return true to trigger the success message
     return true
   } catch (error) {
-    console.error('Error Fetching Organization')
+    logger.error('Error Fetching Organization')
     throw error
   }
 }
@@ -37,7 +38,7 @@ const getOrganization = async (organization_id) => {
     const organization = await Organizations.readOrganization(organization_id)
     return organization
   } catch (error) {
-    console.error('Error Fetching Organization')
+    logger.error('Error Fetching Organization')
     throw error
   }
 }
@@ -47,7 +48,7 @@ const getAll = async () => {
     const organizations = await Organizations.readOrganizations()
     return organizations
   } catch (error) {
-    console.error('Error Fetching Organizations')
+    logger.error('Error Fetching Organizations')
     throw error
   }
 }
@@ -62,7 +63,7 @@ const updateOrganization = async function (
 ) {
   try {
     if (!organization_id || !name || !category || !type || !country || !jurisdiction) {
-      console.log('ERROR: a field is empty.')
+      logger.error('a field is empty.')
       return {error: 'ORGANIZATION ERROR: All fields must be filled out.'}
     }
 
@@ -87,12 +88,12 @@ const updateOrganization = async function (
     // Broadcast the message to all connections
     Websockets.sendMessageToAll('ORGANIZATIONS', 'ORGANIZATIONS', {organizations: [organization_id]})
 
-    console.log('Updated organization')
+    logger.debug('Updated organization')
 
     // Return true to trigger a success message
     return true
   } catch (error) {
-    console.error('Error Fetching Organization update')
+    logger.error('Error Fetching Organization update')
     throw error
   }
 }
@@ -109,7 +110,7 @@ const updateOrganization = async function (
 //     // Return true to trigger a success message
 //     return true
 //   } catch (error) {
-//     console.error('Error Fetching Organization')
+//     logger.error('Error Fetching Organization')
 //     throw error
 //   }
 // }

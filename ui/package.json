@@ -1,9 +1,10 @@
 {
   "name": "open-climate-ui",
-  "version": "1.3.1",
+  "version": "1.4.0-rc0",
   "private": true,
   "dependencies": {
     "-": "0.0.1",
+    "@datapunt/matomo-tracker-react": "^0.5.1",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.10.4",
     "@material-ui/core": "^4.12.3",

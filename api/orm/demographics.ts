@@ -4,6 +4,7 @@ const { Sequelize, Transaction } = require('sequelize');
 const init = require('./init.ts')
 let sequelize = init.connect()
 const {Contact} = require('./contacts.ts')
+const logger = require('../logger').child({module: __filename})
 
 class Demographic extends Model <InferAttributes<Demographic>, InferCreationAttributes<Demographic>>{
   declare contact_id: CreationOptional<number>;
@@ -69,10 +70,10 @@ const createDemographic = async function (contact_id, email, phone, address) {
       address: address
     })
 
-    console.log('Demographic data saved successfully.')
+    logger.debug('Demographic data saved successfully.')
     return demographic
   } catch (error) {
-    console.error('Error saving demographic data to the database: ', error)
+    logger.error('Error saving demographic data to the database: ', error)
   }
 }
 
@@ -98,7 +99,7 @@ const createOrUpdateDemographic = async function (
 
         // (JamesKEbert) TODO: Change upsert for a better mechanism, such as locking potentially.
         if (!demographic) {
-          console.log('Creating Demographic')
+          logger.debug('Creating Demographic')
           const demographic = await Demographic.upsert({
             contact_id: contact_id,
             email: email,
@@ -106,7 +107,7 @@ const createOrUpdateDemographic = async function (
             address: address
           })
         } else {
-          console.log('Updating Demographic')
+          logger.debug('Updating Demographic')
           await Demographic.update(
             {
               contact_id: contact_id,
@@ -124,10 +125,10 @@ const createOrUpdateDemographic = async function (
       },
     )
 
-    console.log('Demographic saved successfully.')
+    logger.debug('Demographic saved successfully.')
     return
   } catch (error) {
-    console.error('Error saving demographic to the database: ', error)
+    logger.error('Error saving demographic to the database: ', error)
   }
 }
 
@@ -144,7 +145,7 @@ const readDemographics = async function () {
 
     return demographics
   } catch (error) {
-    console.error('Could not find demographics in the database: ', error)
+    logger.error('Could not find demographics in the database: ', error)
   }
 }
 
@@ -164,7 +165,7 @@ const readDemographic = async function (contact_id) {
 
     return demographic[0]
   } catch (error) {
-    console.error('Could not find demographic in the database: ', error)
+    logger.error('Could not find demographic in the database: ', error)
   }
 }
 
@@ -185,9 +186,9 @@ const updateDemographic = async function (contact_id, email, phone, address) {
       },
     )
 
-    console.log('Demographic updated successfully.')
+    logger.debug('Demographic updated successfully.')
   } catch (error) {
-    console.error('Error updating the Demographic: ', error)
+    logger.error('Error updating the Demographic: ', error)
   }
 }
 
@@ -199,9 +200,9 @@ const deleteDemographic = async function (contact_id) {
       },
     })
 
-    console.log('Successfully deleted demographic')
+    logger.debug('Successfully deleted demographic')
   } catch (error) {
-    console.error('Error while deleting demographic: ', error)
+    logger.error('Error while deleting demographic: ', error)
   }
 }
 

@@ -9,6 +9,7 @@ import { Tag } from './tags';
 
 const init = require('./init.ts');
 export const sequelize = init.connect();
+const logger = require('../logger').child({module: __filename})
 
 export class Country extends Model <InferAttributes<Country>, InferCreationAttributes<Country>> {
     declare country_id: CreationOptional<number>;
@@ -105,7 +106,7 @@ export const getAllCountries = async () => {
         return countries;
     }
     catch (error) {
-        console.error('Country not found: ', error.message)
+        logger.error('Country not found: ', error.message)
     }
 }
 
@@ -121,14 +122,14 @@ export const getAllCountriesEmissions = async (year) => {
                     include: [
                         {
                             model: DataProvider,
-                            
+
                             include: [
                                 {
                                     model: Methodology
                                 }
-                            ]  
+                            ]
                         }
-                        
+
                     ]
                 },
                 {
@@ -139,7 +140,7 @@ export const getAllCountriesEmissions = async (year) => {
                             include: [
                                 {
                                     model: DataProvider,
-                                    
+
                                     include: [
                                         {
                                             model: Methodology,
@@ -149,9 +150,9 @@ export const getAllCountriesEmissions = async (year) => {
                                                 }
                                             ]
                                         }
-                                    ]  
+                                    ]
                                 }
-                                
+
                             ]
                         },
                         {
@@ -162,34 +163,34 @@ export const getAllCountriesEmissions = async (year) => {
                                     include: [
                                         {
                                             model: DataProvider,
-                                            
+
                                             include: [
                                                 {
                                                     model: Methodology
                                                 }
-                                            ]  
+                                            ]
                                         }
-                                        
+
                                     ]
                                 },
                             ]
-                            
+
                         }
                     ]
-                    
-            
-                },                
+
+
+                },
             ]
         });
         return countries;
     }
     catch (error) {
-        console.error('Country not found: ', error.message)
+        logger.error('Country not found: ', error.message)
     }
 }
 
 export const getCountryDataById = async (country_id, year) => {
-    console.log(country_id)
+    logger.debug(country_id)
     try {
         const country = await Country.findAll({
             where: {
@@ -203,7 +204,7 @@ export const getCountryDataById = async (country_id, year) => {
                     },
                     include: [
                         {
-                            model: DataProvider,                            
+                            model: DataProvider,
                             include: [
                                 {
                                     model: Methodology,
@@ -213,9 +214,9 @@ export const getCountryDataById = async (country_id, year) => {
                                         }
                                     ]
                                 }
-                            ]  
+                            ]
                         }
-                        
+
                     ]
                 },
                 {
@@ -225,7 +226,7 @@ export const getCountryDataById = async (country_id, year) => {
                             model: Emissions,
                             include: [
                                 {
-                                    model: DataProvider,                            
+                                    model: DataProvider,
                                     include: [
                                         {
                                             model: Methodology,
@@ -235,24 +236,23 @@ export const getCountryDataById = async (country_id, year) => {
                                                 }
                                             ]
                                         }
-                                    ]  
+                                    ]
                                 }
-                                
+
                             ]
                         }
                     ]
 
-                },                
+                },
             ]
         })
-        console.log("data: ",country);
+        logger.debug("data: ",country);
         return country;
 
     } catch (error) {
-        console.error('Country not found: ', error.message)
+        logger.error('Country not found: ', error.message)
         return null;
     }
 }
 
 // Get data providers
-

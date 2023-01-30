@@ -4,6 +4,11 @@ import './level-cards.page.scss'
 import { DropdownOption } from "../../../shared/interfaces/dropdown/dropdown-option";
 import { Search, ArrowDropDown, ArrowDropUp, HighlightOff, ArrowForwardIos, SwapVert } from '@mui/icons-material'
 import { FilterTypes } from "../../../api/models/review/dashboard/filterTypes";
+import { renderHighlightedName } from "../../util/strings";
+import { ReactComponent as DatabaseWarningEmpty } from '../../../assets/database-warning.svg';
+import { ReactComponent as DatabaseWarningEmptyFilled } from '../../../assets/database-warning-white.svg';
+
+
 
 
 
@@ -27,6 +32,7 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
     const {label, onSelect, onDeSelect, disabled, selectedValue, options, onButtonSwap, isCity, placeholder, buttonDisabled} = props;
     const [cardExpanded, setCardExpanded] = useState(false);
     const [inputString, setInputString] = useState<string>('');
+    const [hoveredOptionIndex, setHoveredOptionIndex] = useState<number>(-1);
     const inputComponentRef = useRef<any>(null);
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -39,21 +45,12 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
         setInputString('');
     }
 
-    const renderHighlightedName = (name: string) => {
-        const firstIndexMatch = name.toLowerCase().indexOf(inputString.toLowerCase().charAt(0));
-        return firstIndexMatch === 0 ? 
-            <><b>{name.substring(0, inputString.length)}</b>{name.substring(inputString.length)}</>
-            : 
-            <>{name.substring(0, firstIndexMatch)}<b>{name.substring(firstIndexMatch, firstIndexMatch + inputString.length)}</b>{name.substring(firstIndexMatch + inputString.length)}</>
-    }
-
     useEffect(() => {
         document.addEventListener('click', handleClickOutside, true);
         return () => {
             document.removeEventListener('click', handleClickOutside, true);
         };
     }, []);
-
 
     return (
         <div className="level-card">
@@ -88,14 +85,31 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                         </div>
                     </Card>
                     <Collapse in={cardExpanded} timeout="auto" unmountOnExit>
-                        <div className="dropdown-container">
+                        <div className="dropdown-container" id={"dropdown"}>
                             {
                                 options.filter(option => option.name.toLowerCase().includes(inputString.toLowerCase())).map((option, index) =>
-                                    <div className="dropdown-select" key={`dropdown-item-${index}`} onClick={() => onOptionClick(option)}>
-                                        {inputString ? renderHighlightedName(option.name) : option.name}
+                                    <div
+                                        className="dropdown-select"
+                                        key={`dropdown-item-${index}`}
+                                        onClick={() => onOptionClick(option)}
+                                        onMouseEnter={() => setHoveredOptionIndex(index)}
+                                        onMouseLeave={() => setHoveredOptionIndex(-1)}
+                                    >
+                                        <div className="dropdown-select-text">{inputString ? renderHighlightedName(option.name, inputString) : option.name}</div>
+                                        { hoveredOptionIndex === index && !option.data ? 
+                                        <div className="dropdown-select-missing-container">
+                                            <div className={"dropdown-select-missing-text"}>MISSING DATA</div>
+                                            <DatabaseWarningEmptyFilled className="dropdown-select-icon"/>
+                                        </div> 
+                                        :
+                                        !option.data && <DatabaseWarningEmpty className="dropdown-select-icon" />
+                                        
+                                        }
                                     </div> 
                                     )
                             }
+
+                            
                             
                         </div>
                     </Collapse>

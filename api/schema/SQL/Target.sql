@@ -17,11 +17,15 @@ CREATE TABLE "Target" (
   "datasource_id" varchar(255), /* Source of this data */
   "created" timestamp,
   "last_updated" timestamp,
+  "initiative_id" varchar(255), /* ID of related initiative, if any */
   PRIMARY KEY ("target_id"),
   CONSTRAINT "FK_Target.actor_id"
     FOREIGN KEY ("actor_id")
       REFERENCES "Actor"("actor_id"),
   CONSTRAINT "FK_Target.datasource_id"
     FOREIGN KEY ("datasource_id")
-      REFERENCES "DataSource"("datasource_id")
+      REFERENCES "DataSource"("datasource_id"),
+  CONSTRAINT "FK_Target.initiative_id"
+    FOREIGN KEY ("initiative_id")
+      REFERENCES "Initiative"("initiative_id")
 );

@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 import {Strategy} from 'passport-local'
 const localStrategy = Strategy
-
+const logger = require('./logger').child({module: __filename})
 const User = require('./agentLogic/users')
 
 module.exports = function (passport) {
@@ -22,7 +22,7 @@ module.exports = function (passport) {
           return done(null, false, {message: 'Incorrect password'})
         }
       } catch (error) {
-        console.error('Error logging in user')
+        logger.error('Error logging in user')
         throw error
       }
     }),

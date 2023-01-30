@@ -1,7 +1,7 @@
 import {FunctionComponent} from 'react';
 import './pledges-widget.scss';
 import {MdArrowDownward} from "react-icons/md";
-import {readableEmissions} from "../util/units";
+import {readableEmissions} from "../../util/units";
 
 interface Props {
     pledge: any
@@ -14,7 +14,7 @@ const PledgeItem: FunctionComponent<Props> = (props) => {
         <div className="pledges-widget__pledges-data">
             <div className="pledges-widget__pledge-entry">
                 <div className="pledges-widget__pledge-source">
-                    <span>{pledge.datasource_id}</span>
+                    <span>{(pledge.initiative && pledge.initiative.name) ? pledge.initiative.name : "(Voluntary or Unknown)"}</span>
                 </div>
                 <div className="pledges-widget__pledge-source-info">
                     <div className="pledges-widget__pledge-type">

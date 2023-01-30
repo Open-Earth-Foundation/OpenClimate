@@ -3,8 +3,7 @@ import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOpti
 
 const init = require('./init.ts')
 let sequelize = init.connect()
-
-
+const logger = require('../logger').child({module: __filename})
 
 class Organization extends Model  <InferAttributes<Organization>, InferCreationAttributes<Organization>> {
   declare organization_id: CreationOptional<number>;
@@ -19,7 +18,6 @@ class Organization extends Model  <InferAttributes<Organization>, InferCreationA
   // updatedAt can be undefined during creation
   declare updated_at: CreationOptional<Date>;
 }
-
 
 Organization.init(
   {
@@ -83,7 +81,7 @@ const createOrganization = async function (name, category, type, country, jurisd
 
     return organization
   } catch (error) {
-    console.error('Error saving organization to the database: ', error)
+    logger.error('Error saving organization to the database: ', error)
   }
 }
 
@@ -97,7 +95,7 @@ const readOrganization = async function (organization_id) {
 
     return organization[0]
   } catch (error) {
-    console.error('Could not find organization by id in the database: ', error)
+    logger.error('Could not find organization by id in the database: ', error)
   }
 }
 
@@ -111,7 +109,7 @@ const readOrganizationByName = async function (name) {
 
     return organization[0]
   } catch (error) {
-    console.error('Could not find organization by id in the database: ', error)
+    logger.error('Could not find organization by id in the database: ', error)
   }
 }
 
@@ -121,7 +119,7 @@ const readOrganizations = async function () {
 
     return organizations
   } catch (error) {
-    console.error('Could not find organizations in the database: ', error)
+    logger.error('Could not find organizations in the database: ', error)
   }
 }
 
@@ -146,10 +144,10 @@ const updateOrganization = async function (
       },
     )
 
-    console.log(`Organization updated successfully.`)
+    logger.debug(`Organization updated successfully.`)
     return organization
   } catch (error) {
-    console.error('Error updating the Organization: ', error)
+    logger.error('Error updating the Organization: ', error)
   }
 }
 
@@ -163,10 +161,10 @@ const updateOrganization = async function (
 //       },
 //     })
 
-//     console.log('Organization was successfully deleted')
+//     logger.debug('Organization was successfully deleted')
 //     return organization_id
 //   } catch (error) {
-//     console.error('Error while deleting organization: ', error)
+//     logger.error('Error while deleting organization: ', error)
 //   }
 // }
 

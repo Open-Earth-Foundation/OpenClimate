@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const ControllerError = require('./errors.ts')
 const WebSocket = require('ws')
-const logger = require('./logger')
+const logger = require('./logger').child({module: __filename})
 
 let connectionIDWebSocket = []
 let awss = null

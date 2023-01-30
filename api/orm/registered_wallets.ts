@@ -2,7 +2,7 @@ import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOpti
 
 const init = require('./init.ts')
 const sequelize = init.connect()
-
+const logger = require('../logger').child({module: __filename})
 
 class RegisteredWallets extends Model <InferAttributes<RegisteredWallets>, InferCreationAttributes<RegisteredWallets>> {
   declare id: CreationOptional<number>;
@@ -35,9 +35,9 @@ RegisteredWallets.init(
     },
   },
   {
-    sequelize, 
+    sequelize,
     modelName: 'RegisteredWallets',
-    tableName: 'registered_wallets', 
+    tableName: 'registered_wallets',
     timestamps: false,
   },
 )
@@ -53,7 +53,7 @@ export async function addWallet (did, user_id) {
 
     return wallet
   } catch (error) {
-    console.error('Error saving trusted_did to the database: ', error)
+    logger.error('Error saving trusted_did to the database: ', error)
   }
 }
 
@@ -67,7 +67,7 @@ export async function readWalletByDid(did) {
 
     return wallet
   } catch (error) {
-    console.error('Could not find trusted_did by id in the database: ', error)
+    logger.error('Could not find trusted_did by id in the database: ', error)
   }
 }
 
@@ -81,7 +81,7 @@ export async function readWalletByUserId(user_id) {
 
     return wallets
   } catch (error) {
-    console.error('Could not find trusted_dids by org name in the database: ', error)
+    logger.error('Could not find trusted_dids by org name in the database: ', error)
   }
 }
 
@@ -91,6 +91,6 @@ export async function readWallets () {
 
     return wallets
   } catch (error) {
-    console.error('Could not find trusted_dids in the database: ', error)
+    logger.error('Could not find trusted_dids in the database: ', error)
   }
 }

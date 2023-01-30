@@ -13,6 +13,187 @@ import requests
 import xlrd
 
 
+def lei_from_name2(name=None, iso2=None):
+
+    url = f"https://api.gleif.org/api/v1/lei-records/?filter[entity.legalName]={name}"
+    payload = {}
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    # default values
+    legal_name = np.NaN
+    lei = np.NaN
+    status = np.NaN
+    city = np.NaN
+    region = np.NaN
+    country = np.NaN
+    datasource_id = np.NaN
+
+    if response.status_code == 200:
+        # get response as dictionary
+        dic = json.loads(response.text)
+
+        # get the publish date, but only YYYY-MM-DD
+        publishDate = (
+            datetime
+            .datetime
+            .strptime(dic['meta']['goldenCopy']['publishDate'],
+                      '%Y-%m-%dT%H:%M:%SZ')
+            .strftime('%Y-%m-%d')
+        )
+
+        # check if diciontary has data
+        if 'data' in dic.keys():
+
+            # check the data has records
+            if (len(dic['data']) > 0):
+
+                # loop over each records
+                for data in dic['data']:
+                    legal_name = data['attributes']['entity']['legalName']['name']
+                    status = data['attributes']['registration']['status']
+
+                    # check lei status, make sure it is either active or lapsed
+                    if status.upper() != 'RETIRED':
+
+                        # headquarters address
+                        address = data['attributes']['entity']['headquartersAddress']['addressLines']
+                        city = data['attributes']['entity']['headquartersAddress']['city']
+                        region = data['attributes']['entity']['headquartersAddress']['region']
+                        country = data['attributes']['entity']['headquartersAddress']['country']
+                        postCode = data['attributes']['entity']['headquartersAddress']['postalCode']
+
+                        if country == iso2:
+                            lei = data['attributes']['lei']
+                            datasource_id = f"GLEIF_golden_copy:{publishDate}"
+                            break
+
+    return (name, legal_name, country, region, city, lei, status, datasource_id)
+
+
+def name_to_locode(name=None, is_part_of=None, *args, **kwargs):
+    url = f"https://openclimate.network/api/v1/search/actor?q={name}"
+    payload = {}
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request(
+        "GET", url, headers=headers, data=payload, timeout=3)
+    dataList = dict(response.json())['data']
+
+    if dataList:
+        actor_id = np.NaN
+        for data in dataList:
+            if data['is_part_of'] == is_part_of:
+                actor_id = data['actor_id']
+                break
+    else:
+        actor_id = np.NaN
+
+    return (name, is_part_of, actor_id)
+
+
+def subnational_to_iso2(name=None, return_input=False):
+    url = url = f"https://openclimate.network/api/v1/search/actor?name={name}"
+    #url = f"https://openclimate.network/api/v1/search/actor?q={name}"
+    region = 'adm1'
+    payload = {}
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers, data=payload)
+    dataList = dict(response.json())['data']
+    if dataList:
+        for data in dataList:
+            if data['type'] == region.lower():
+                if return_input:
+                    tmp = (name, data['actor_id'])
+                    break
+                else:
+                    tmp = data['actor_id']
+
+            else:
+                if return_input:
+                    tmp = (name, np.NaN)
+                else:
+                    tmp = np.NaN
+    else:
+        if return_input:
+            tmp = (name, np.NaN)
+        else:
+            tmp = np.NaN
+
+    return tmp
+
+
+def is_actor_in_database(name=None):
+    url = f"https://openclimate.network/api/v1/search/actor?identifier={name}&namespace=ISO-3166-1%20alpha-2"
+    payload = {}
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers, data=payload)
+    dataList = dict(response.json())['data']
+    if dataList:
+        return (name, True)
+    else:
+        return (name, False)
+
+
+def state_to_iso2(name=None, return_input=False, is_part_of=None):
+    url = url = f"https://openclimate.network/api/v1/search/actor?name={name}"
+    payload = {}
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers, data=payload)
+    dataList = dict(response.json())['data']
+    if dataList:
+        for data in dataList:
+            if data['is_part_of'] == is_part_of:
+                if return_input:
+                    tmp = (name, data['actor_id'])
+                    break
+                else:
+                    tmp = data['actor_id']
+
+            else:
+                if return_input:
+                    tmp = (name, np.NaN)
+                else:
+                    tmp = np.NaN
+    else:
+        if return_input:
+            tmp = (name, np.NaN)
+        else:
+            tmp = np.NaN
+
+    return tmp
+
+
+def country_to_iso2(name=None, return_input=False):
+    #url = url = f"https://openclimate.network/api/v1/search/actor?name={name}"
+    url = f"https://openclimate.network/api/v1/search/actor?q={name}"
+    region = 'country'
+    payload = {}
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers, data=payload)
+    dataList = dict(response.json())['data']
+    if dataList:
+        for data in dataList:
+            if data['type'] == region.lower():
+                if return_input:
+                    tmp = (name, data['actor_id'])
+                    break
+                else:
+                    tmp = data['actor_id']
+
+            else:
+                if return_input:
+                    tmp = (name, np.NaN)
+                else:
+                    tmp = np.NaN
+    else:
+        if return_input:
+            tmp = (name, np.NaN)
+        else:
+            tmp = np.NaN
+
+    return tmp
+
+
 def iso3_to_iso2(name=None, return_input=False):
     url = f"https://openclimate.network/api/v1/search/actor?identifier={name}&namespace=ISO-3166-1%20alpha-3"
     payload = {}
@@ -348,12 +529,6 @@ def check_all_names_match(df=None, column=None):
     assert len(df.loc[filt]) == len(df)
 
 
-def read_goc_facilities():
-    fl = '/Users/luke/Documents/work/data/GoC_large_facilities/raw/Greenhouse_gas_emissions_from_large_facilities.csv'
-    df = pd.read_csv(fl, encoding='latin-1')
-    return df
-
-
 def read_subdivisions():
     fl = "https://raw.githubusercontent.com/Open-Earth-Foundation/OpenClimate-UNLOCODE/main/loc221csv/2022-1%20SubdivisionCodes.csv"
     colnames = ['country', 'subdivision', 'name', 'type']
@@ -430,882 +605,6 @@ def name_harmonize_iso():
     return df_iso
 
 
-def read_primap(fl=None):
-    ''' read primap from web
-
-    this reads the PRIMAP data from the zenoodo server.
-
-    input
-    ------
-    fl: path to file
-
-    output
-    ------
-    pandas dataframe
-
-    source:
-    -------
-    https://zenodo.org/record/5494497
-
-    Datasets on zenodo server
-    - https://zenodo.org/record/5494497/files/Guetschow-et-al-2021-PRIMAP-hist_v2.3.1_20-Sep_2021.csv
-    - https://zenodo.org/record/5494497/files/Guetschow-et-al-2021-PRIMAP-hist_v2.3.1_no_extrap_20-Sep_2021.csv
-    - https://zenodo.org/record/5494497/files/Guetschow-et-al-2021-PRIMAP-hist_v2.3.1_no_extrap_no_rounding_20-Sep_2021.csv
-    - https://zenodo.org/record/5494497/files/Guetschow-et-al-2021-PRIMAP-hist_v2.3.1_no_rounding_20-Sep_2021.csv
-    - https://zenodo.org/record/5494497/files/PRIMAP-hist_v2.3.1_data-description.pdf
-    - https://zenodo.org/record/5494497/files/PRIMAP-hist_v2.3.1_updated_figures.pdf
-
-    '''
-    # set default path
-    if fl is None:
-        fl = "https://zenodo.org/record/5494497/files/Guetschow-et-al-2021-PRIMAP-hist_v2.3.1_no_extrap_20-Sep_2021.csv"
-
-    # read as pandas dataframe
-    df = pd.read_csv(fl)
-
-    return df
-
-# formerly filter primap
-
-
-def subset_primap(df=None, entity=None, category=None, scenario=None):
-    '''filter primap dataset
-
-    input
-    -----
-    df: primap dataframe
-    entity: Gas categories using global warming potentials (GWP)
-            from either Second Assessment Report (SAR) or Fourth Assessment Report (AR4).
-            (see table in notes) [default: CO2]
-    category: IPCC (Intergovernmental Panel on Climate Change) 2006 categories for emissions.
-            (see table in notes) [default: M.0.EL]
-    scenario: HISTCR or HISTTP [default: HISTCR]
-        - HISTCR: In this scenario country-reported data (CRF, BUR, UNFCCC)
-                  is prioritized over third-party data (CDIAC, FAO, Andrew, EDGAR, BP).
-        - HISTTP: In this scenario third-party data (CDIAC, FAO, Andrew, EDGAR, BP)
-                  is prioritized over country-reported data (CRF, BUR, UNFCCC)
-
-    output
-    ------
-    filtered dataframe
-
-    notes:
-    -----
-
-    -----------------------------------------------------------------------
-    Entity_code            Description
-    -----------------      ------------------------------------------------
-    CH4                    Methane
-    CO2                    Carbon Dioxide
-    N2O                    Nitrous Oxide
-    HFCS (SARGWP100)       Hydrofluorocarbons (SAR)
-    HFCS (AR4GWP100)       Hydrofluorocarbons (AR4)
-    PFCS SARGWP100         Perfluorocarbons (SAR)
-    PFCS (AR4GWP100)       Perfluorocarbons (AR4)
-    SF6                    Sulfur Hexafluoride
-    NF3                    Nitrogen Trifluoride
-    FGASES SARGWP100       Fluorinated Gases (SAR): HFCs, PFCs, SF$_6$, NF$_3$
-    FGASES (AR4GWP100)     Fluorinated Gases (AR4): HFCs, PFCs, SF$_6$, NF$_3$
-    KYOTOGHG SARGWP100     Kyoto greenhouse gases (SAR)
-    KYOTOGHG (AR4GWP100)   Kyoto greenhouse gases (AR4)
-
-
-    -----------------------------------------------------------------------
-    Category_code Description
-    ---------     -----------------------------------------------------------
-    M.0.EL        National Total excluding LULUCF
-    1             Energy
-    1.A           Fuel Combustion Activities
-    1.B           Fugitive Emissions from Fuels
-    1.B.1         Solid Fuels
-    1.B.2         Oil and Natural Gas
-    1.B.3         Other Emissions from Energy Production
-    1.C           Carbon Dioxide Transport and Storage
-                  (currently no data available)
-    2             Industrial Processes and Product Use (IPPU)
-    2.  A         Mineral Industry
-    2.B           Chemical Industry
-    2.C           Metal Industry
-    2.D           Non-Energy Products from Fuels and Solvent Use
-    2.E           Electronics Industry
-                  (no data available as the category is only used for
-                  fluorinated gases which are only resolved at the level
-                  of category IPC2)
-    2 F           Product uses as Substitutes for Ozone Depleting Substances
-                  (no data available as the category is only used for
-                  fluorinated gases which are only resolved at the level
-                  of category IPC2)
-    2.G           Other Product Manufacture and Use
-    2.H           Other
-    M.AG          Agriculture, sum of IPC3A and IPCMAGELV
-    3.A           Livestock
-    M.AG.ELV      Agriculture excluding Livestock
-    4             Waste
-    5             Other
-    -----------------------------------------------------------------------
-
-
-    ----------------------------------------------------------------------
-    code       Region_Description
-    ---------  -----------------------------------------------------------
-    EARTH      Aggregated emissions for all countries.
-    ANNEXI     Annex I Parties to the Convention
-    NONANNEXI  Non-Annex I Parties to the Convention
-    AOSIS      Alliance of Small Island States
-    BASIC      BASIC countries (Brazil, South Africa, India and China)
-    EU27BX     European Union post Brexit
-    LDC        Least Developed Countries
-    UMBRELLA   Umbrella Group
-    '''
-
-    # set default values
-    entity = 'CO2' if entity is None else entity
-    category = 'M.0.EL' if category is None else category
-    scenario = 'HISTCR' if scenario is None else scenario
-
-    # filtering criteria
-    filt = (
-        (df['entity'] == entity) &
-        (df['category (IPCC2006_PRIMAP)'] == category) &
-        (df['scenario (PRIMAP-hist)'] == scenario)
-    )
-
-    # filtered dataset
-    return df.loc[filt]
-
-
-def filter_primap(df=None, identifier=None, emissions=None):
-
-    identifier = 'identifier' if identifier is None else identifier
-    emissions = 'emissions' if emissions is None else emissions
-
-    # drop PRIMAP specific ISO codes and ANT
-    # ANT = The Netherlands Antilles
-    # which dissolved on October 10, 2010
-    isoCodesToDrop = [
-        'EARTH',
-        'ANNEXI',
-        'NONANNEXI',
-        'AOSIS',
-        'BASIC',
-        'EU27BX',
-        'LDC',
-        'UMBRELLA',
-        'ANT',
-    ]
-
-    # filtered dataset
-    filt = ~ df[identifier].isin(isoCodesToDrop)
-    df = df.loc[filt]
-
-    # filter where total emissions NaN
-    filt = ~df[emissions].isna()
-    df = df.loc[filt]
-    return df
-
-
-def remove_country_groups(df, column=None):
-    """This needs to happen after you remove whitespace from names"""
-
-    # set column name
-    column = 'country' if column is None else column
-
-    country_groups = [
-        'ASEAN-5',
-        'Australia and New Zealand',
-        'Advanced economies',
-        'Africa (Region)',
-        'Asia and Pacific',
-        'Caribbean',
-        'Central America',
-        'Central Asia and the Caucasus',
-        'East Asia',
-        'Eastern Europe',
-        'Emerging and Developing Asia',
-        'Emerging and Developing Europe',
-        'Emerging market and developing economies',
-        'Euro area',
-        'Europe',
-        'European Union',
-        'Latin America and the Caribbean',
-        'Major advanced economies (G7)',
-        'Middle East (Region)',
-        'Middle East and Central Asia',
-        'North Africa',
-        'North America',
-        'Other advanced economies',
-        'Pacific Islands',
-        'South America',
-        'South Asia',
-        'Southeast Asia',
-        'Sub-Saharan Africa',
-        'Sub-Saharan Africa (Region)',
-        'West Bank and Gaza',
-        'Western Europe',
-        'Western Hemisphere (Region)',
-        'World',
-    ]
-
-    # remove country_groups
-    filt = ~df[column].isin(country_groups)
-    df = df.loc[filt]
-    return df
-
-
-# TODO: separate into primap specific file (?)
-def harmonize_primap_emissions(fl=None,
-                               outputDir=None,
-                               tableName=None,
-                               datasourceDict=None,
-                               entity=None,
-                               category=None,
-                               scenario=None):
-    '''harmonize primap dataset
-
-    haramonize primap to conform to open cliamte schema
-
-    input
-    ------
-    outputDir: directory where table will be created
-    tableName: name of the table to create
-    datasourceDict: dictionary with datasource info
-
-    output
-    -------
-    df: final dataframe with emissions info
-    '''
-
-    # set default values
-    entity = 'KYOTOGHG (AR4GWP100)' if entity is None else entity
-    category = 'M.0.EL' if category is None else category
-    scenario = 'HISTCR' if scenario is None else scenario
-
-    # set default path
-    if fl is None:
-        fl = "https://zenodo.org/record/5494497/files/Guetschow-et-al-2021-PRIMAP-hist_v2.3.1_no_extrap_20-Sep_2021.csv"
-
-    # ensure input types are correct
-    assert isinstance(fl, str), f"fl must be a string"
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
-    assert isinstance(
-        datasourceDict, dict), f"datasourceDict must be a dictionary"
-
-    # TODO add section to ensure datasourceDict have correct keys
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
-
-    # read iso
-    df_iso = read_iso_codes()
-
-    # read subset of primap
-    df_pri_tmp = read_primap(fl=fl)
-    df_pri = subset_primap(df_pri_tmp, entity=entity,
-                           category=category, scenario=scenario)
-
-    # merge datasets
-    df_merged = pd.merge(df_pri, df_iso,
-                         left_on=['area (ISO3)'],
-                         right_on=["iso3"],
-                         how="left")
-
-    # convert from wide to long dataframe
-    df_long = df_wide_to_long(df=df_merged,
-                              value_name="emissions",
-                              var_name="year")
-
-    # filter un-necessary ISO codes and where emissions ana (removes 251 records)
-    df = filter_primap(df=df_long, identifier="iso3", emissions="emissions")
-
-    # rename columns
-    df = df.rename(columns={'iso2': 'actor_id'})
-
-    # filter out ISO3 code ANT (netherland antilles)
-    filt = ~(df['area (ISO3)'] == 'ANT')
-    df = df.loc[filt]
-
-    def gigagram_to_metric_ton(val):
-        ''' 1 gigagram = 1000 tonnes  '''
-        return val * 1000
-
-    # create id columns
-    df['datasource_id'] = datasourceDict['datasource_id']
-    df['emissions_id'] = df.apply(lambda row:
-                                  f"{row['source']}:{row['actor_id']}:{row['year']}",
-                                  axis=1)
-
-    # convert emissions to metric tons
-    df['total_emissions'] = df['emissions'].apply(gigagram_to_metric_ton)
-
-    # Create EmissionsAgg table
-    emissionsAggColumns = ["emissions_id",
-                           "actor_id",
-                           "year",
-                           "total_emissions",
-                           "datasource_id"]
-
-    df_emissionsAgg = df[emissionsAggColumns]
-
-    # ensure columns have correct types
-    df_emissionsAgg = df_emissionsAgg.astype({'emissions_id': str,
-                                              'actor_id': str,
-                                              'year': int,
-                                              'total_emissions': int,
-                                              'datasource_id': str})
-
-    # sort by actor_id and year
-    df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
-
-    # convert to csv
-    df_emissionsAgg.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df
-
-
-def harmonize_imf_gdp(outputDir=None,
-                      tableName=None,
-                      datasourceDict=None):
-
-    # ensure input types are correct
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
-    assert isinstance(
-        datasourceDict, dict), f"datasourceDict must be a dictionary"
-
-    # TODO add section to ensure methodologyDict and datasourceDict have correct keys
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
-
-    # read dataset
-    workbook = xlrd.open_workbook_xls('/Users/luke/Documents/work/data/GDP/country/imf-dm-export-20221017.xls',
-                                      ignore_workbook_corruption=True)
-    df_gdp_tmp = pd.read_excel(workbook)
-
-    # open climactor and isocode dataset
-    df_climactor = get_climactor_country()
-    df_iso = name_harmonize_iso()
-
-    # rename column
-    df_gdp_tmp = df_gdp_tmp.rename(
-        columns={"GDP, current prices (Billions of U.S. dollars)": "country"})
-
-    # filter out NaN country names and IMF lines
-    filt = (
-        ~(df_gdp_tmp['country'].isna()) &
-        ~(df_gdp_tmp['country'] == '©IMF, 2022')
-    )
-
-    df_gdp_tmp = df_gdp_tmp.loc[filt]
-
-    # avoids a SettingWithCopyWarning
-    df_tmp = df_gdp_tmp.copy()
-
-    # remove trailing white space
-    df_tmp['country'] = df_tmp['country'].str.strip()
-    df_out = df_tmp.copy()
-    df_out = remove_country_groups(df_out, column='country')
-
-    # name harmonize country column
-    df_out['country_harmonized'] = (
-        df_out['country']
-        .replace(to_replace=list(df_climactor['wrong']),
-                 value=list(df_climactor['right']))
-    )
-
-    # sanity check that names match
-    check_all_names_match(df_out, 'country_harmonized')
-
-    # unpivot the dataset wide to long
-    df_long = df_wide_to_long(df=df_out, value_name='GDP')
-
-    # remove any records with no GDP data
-    filt = ~(df_long['GDP'] == 'no data')
-    df_long = df_long.loc[filt]
-
-    # convert to float
-    df_long['GDP'] = df_long['GDP'].astype(float)
-
-    # convert GDP to USD instead of billion USD
-    df_long['GDP'] = df_long['GDP'] * 10**9
-
-    # filter years
-    filt = (df_long['year'] <= 2021)
-    df_long = df_long.loc[filt]
-
-    # change type
-    df_long['GDP'] = df_long['GDP'].astype(int)
-
-    # merge ISO codes into dataframe to get actor_id
-    df_out = pd.merge(df_long, df_iso, left_on=[
-                      "country_harmonized"], right_on=["name"], how="left")
-
-    # filter out Kosovo (not in our emission or pledge databases)
-    filt = (df_out['country_harmonized'] != 'Kosovo')
-    df_out = df_out.loc[filt]
-
-    # rename GDP to lowercase
-    df_out = df_out.rename(columns={'GDP': 'gdp'})
-
-    # set datasource ID
-    df_out['datasource_id'] = datasourceDict['datasource_id']
-
-    # create final dataframe
-    columns = ['actor_id', 'gdp', 'year', 'datasource_id']
-    df_out = df_out[columns]
-
-    # ensure types are correct
-    df_out = df_out.astype({
-        'actor_id': str,
-        'gdp': int,
-        'year': int,
-        'datasource_id': str
-    })
-
-    # sort dataframe and save
-    df_out = df_out.sort_values(by=['actor_id', 'year'])
-
-    # convert to csv
-    df_out.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df_out
-
-
-def create_eccc_ghgrp_actor_tables(DataSourceDict=None,
-                                   PublisherDict=None):
-    # get iso codes
-    df_iso = read_iso_codes()
-
-    # get canadian provinces
-    df_subdiv = read_subdivisions()
-    filt = df_subdiv['country'] == 'CA'
-    df_provinces = df_subdiv.loc[filt]
-
-    # read facility GHGs
-    df = read_goc_facilities()
-
-    # create companies dataframe
-    columns = [
-        'Facility ID',
-        'Facility name',
-        'Company name',
-        'City',
-        'Province',
-        'Latitude',
-        'Longitude',
-    ]
-
-    # only get company information
-    df_companies = df[columns]
-
-    # drop duplicates
-    df_companies = df_companies.drop_duplicates()
-
-    # merge on province names
-    df_out = pd.merge(df_companies, df_provinces, left_on=[
-                      "Province"], right_on=["name"], how="left")
-
-    # drop uneeded columns
-    df_out = df_out.drop(columns=['name'])
-
-    # sanity check, make sure all match
-    assert ~sum(df_out['subdivision'].isna())
-
-    # add type, datasource_id, actor_id, and is_part_of
-    df_out["namespace"] = 'ECCC GHGRP'
-    df_out['type'] = "site"
-
-    df_out['datasource_id'] = DataSourceDict['datasource_id']
-
-    df_out['actor_id'] = df_out.apply(lambda row:
-                                      f"{PublisherDict['id']}:GHGRP:{row['Facility ID']}",
-                                      axis=1)
-
-    df_out['is_part_of'] = df_out.apply(lambda row:
-                                        f"{row['country']}-{row['subdivision']}",
-                                        axis=1)
-
-    df_out['identifier'] = df_out.apply(lambda row:
-                                        f"ECCC_GHGRP{row['Facility ID']}",
-                                        axis=1)
-
-    # rename columns
-    df_out = df_out.rename(
-        columns={'Facility name': 'name', 'Company name': 'is_owned_by'})
-
-    # create Actor table
-    columns = [
-        'actor_id',
-        'type',
-        'name',
-        'is_part_of',
-        'is_owned_by',
-        'datasource_id'
-    ]
-
-    df_actor = df_out[columns]
-
-    # ensure types are correct
-    df_actor = df_actor.astype({
-        'actor_id': str,
-        'type': str,
-        'name': str,
-        'is_part_of': str,
-        'is_owned_by': str,
-        'datasource_id': str,
-    })
-
-    columns = [
-        "actor_id",
-        "identifier",
-        "namespace",
-        "datasource_id"
-    ]
-
-    df_actorIdentifier = df_out[columns]
-
-    # ensure types are correct
-    df_actorIdentifier = df_actorIdentifier.astype({
-        'actor_id': str,
-        'identifier': str,
-        'namespace': str,
-        'datasource_id': str,
-    })
-
-    df_out['language'] = 'und'
-    df_out['preferred'] = 0
-
-    columns = [
-        "actor_id",
-        "name",
-        "language",
-        "preferred",
-        "datasource_id"
-    ]
-
-    df_actorName = df_out[columns]
-
-    # ensure types are correct
-    df_actorName = df_actorName.astype({
-        'actor_id': str,
-        'name': str,
-        'language': str,
-        "preferred": bool,
-        'datasource_id': str,
-    })
-
-    df_out = df_out.rename(columns={'Latitude': 'lat', 'Longitude': 'lng'})
-    df_out['lat'] = df_out['lat'] * 10000
-    df_out['lng'] = df_out['lng'] * 10000
-
-    columns = [
-        "actor_id",
-        "lat",
-        "lng",
-        "datasource_id"
-    ]
-
-    # how should we handle pipelines?
-    # lat/lng are 0 for these fornow
-
-    df_territory = df_out[columns]
-
-    # ensure types are correct
-    df_territory = df_territory.astype({
-        'actor_id': str,
-        'lat': int,
-        'lng': int,
-        'datasource_id': str,
-    })
-
-    dict_out = {'Actor': df_actor,
-                'ActorIdentifier': df_actorIdentifier,
-                'ActorName': df_actorName,
-                'Territory': df_territory}
-    return dict_out
-
-
-def create_eccc_ghgrp_facilities_emissions_table(DataSourceDict=None,
-                                                 MethodologyDict=None):
-    # get canadian provinces
-    df_subdiv = read_subdivisions()
-    filt = df_subdiv['country'] == 'CA'
-    df_provinces = df_subdiv.loc[filt]
-
-    # read facility GHGs
-    df = read_goc_facilities()
-
-    # merge on province names
-    df_out = pd.merge(df, df_provinces, left_on=[
-                      "Province"], right_on=["name"], how="left")
-
-    # drop uneeded columns
-    df_out = df_out.drop(columns=['name'])
-
-    # sanity check, make sure all match
-    assert ~sum(df_out['subdivision'].isna())
-
-    # some facilities emissions reported as "3 234.123", whats with the white space?
-    filt = ~(df_out['Total emissions'].str.contains(' '))
-    df_out = df_out.loc[filt]
-
-    # merge on Actor table to get actor_id
-    fl = '/Users/luke/Documents/jupyterlab/OpenClimate/Actor_ECCC-GHGRP_facilities/Actor.csv'
-    df_actor = pd.read_csv(fl)
-
-    # merge on province names
-    df_out = pd.merge(df_out, df_actor,
-                      left_on=["Facility name", "Company name"],
-                      right_on=["name", "is_owned_by"], how="left")
-
-    # ensure they all match
-    assert (~sum(df_out['actor_id'].isna()))
-
-    # get datasource_id from dataSource table
-    df_out['datasource_id'] = DataSourceDict['datasource_id']
-
-    df_out['methodology_id'] = MethodologyDict['methodology_id']
-
-    df_out['emissions_id'] = df_out.apply(lambda row:
-                                          f"ECCC:GHGRP:{row['Facility ID']}:{row['Report year']}",
-                                          axis=1)
-
-    df_out = df_out.rename(
-        columns={'Report year': 'year', 'Total emissions': 'total_emissions'})
-
-    # make units are kilotonnes
-    assert all(
-        list(df_out['Units'] == 'kilotonnes of carbon dioxide equivalents (kt CO2 eq)'))
-
-    df_out['total_emissions'] = df_out['total_emissions'].astype('float')
-
-    # convert from kilotonnes to tonnes
-    df_out['total_emissions'] = df_out['total_emissions'] * 1000
-
-    columns = [
-        'emissions_id',
-        'actor_id',
-        'year',
-        'total_emissions',
-        'methodology_id',
-        'datasource_id',
-    ]
-
-    # only get company information
-    df_emissions = df_out[columns]
-
-    df_emissions = df_emissions.astype({
-        'emissions_id': str,
-        'actor_id': str,
-        'year': int,
-        'total_emissions': int,
-        'methodology_id': str,
-        'datasource_id': str
-    })
-
-    return df_emissions
-
-
-def create_eccc_nir_emissionsAgg(DataSourceDict=None,
-                                 PublisherDict=None):
-    fl = '/Users/luke/Documents/work/data/Can_provinces/ghg-emissions-regional-en.csv'
-
-    df = pd.read_csv(fl, header=2, names=[
-                     'province', '1990', '2005', '2020'])  # MegaTonnes
-
-    changeDict = {
-        'Newfoundland and Labrador (NL)': 'CA-NL',
-        'Prince Edward Island (PE)': 'CA-PE',
-        'Nova Scotia (NS)': 'CA-NS',
-        'New Brunswick (NB)': 'CA-NB',
-        'Quebec (QC)': 'CA-QC',
-        'Ontario (ON)': 'CA-ON',
-        'Manitoba (MB)': 'CA-MB',
-        'Saskatchewan (SK)': 'CA-SK',
-        'Alberta (AB)': 'CA-AB',
-        'British Columbia (BC)': 'CA-BC',
-        'Yukon (YT)': 'CA-YT',
-        'Northwest Territories (NT)': 'CA-NT',
-        'Nunavut (NU)[A]': 'CA-NU',
-    }
-
-    df['province'] = df['province'].replace(changeDict)
-    df = df.rename(columns={'province': 'actor_id'})
-
-    df = df[0:13]
-
-    # before 1999, CA-NU was part of CA-NT
-    df.loc[df['actor_id'] == 'CA-NT', '1990'] = 1.8
-
-    from utils import df_wide_to_long
-
-    df_out = df_wide_to_long(df=df, value_name='total_emissions')
-
-    df_out = df_out.dropna()
-
-    # convert to tonnes from megatones
-    df_out['total_emissions'] = (
-        df_out['total_emissions'].astype(float) * 10**6).astype(int)
-
-    # get datasource_id from dataSource table
-    df_out['datasource_id'] = DataSourceDict['datasource_id']
-
-    df_out['methodology_id'] = MethodologyDict['methodology_id']
-
-    df_out['emissions_id'] = df_out.apply(lambda row:
-                                          f"ECCC_NIR_2022:{row['actor_id']}:{row['year']}",
-                                          axis=1)
-
-    cols = [
-        "emissions_id",
-        "actor_id",
-        "year",
-        "total_emissions",
-        "methodology_id",
-        "datasource_id"
-    ]
-    df_out = df_out[cols]
-
-    df_out = df_out.astype({
-        'emissions_id': str,
-        'actor_id': str,
-        'year': int,
-        'total_emissions': int,
-        'methodology_id': str,
-        'datasource_id': str
-    })
-
-    return df_out
-
-
-def harmonize_unfccc_emissions(fl=None,
-                               outputDir=None,
-                               tableName=None,
-                               datasourceDict=None):
-    '''harmonize UNFCCC dataset
-
-    haramonize UNFCCC to conform to open climate schema
-
-    input
-    ------
-    fl: file path to raw data
-    outputDir: directory where table will be created
-    tableName: name of the table to create
-    datasourceDict: dictionary with datasource info
-
-    output
-    -------
-    df: final dataframe with emissions info
-    '''
-    # TODO: pull out all the nested functions and refactor the code
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
-
-    # read iso
-    df_iso = read_iso_codes()
-
-    # path to raw UNFCCC dataset
-    if fl is None:
-        fl = ('/Users/luke/Documents/work/data/UNFCCC/raw/'
-              'Time Series - GHG total without LULUCF, in kt CO₂ equivalent.xlsx')
-    # ensure input types are correct
-    assert isinstance(fl, str), f"fl must be a string"
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
-    assert isinstance(
-        datasourceDict, dict), f"datasourceDict must be a dictionary"
-
-    # read excel file into pandas
-    df = pd.read_excel(fl, skiprows=2, na_values=True)
-    df_tmp = df.copy()
-    first_row_with_all_NaN = df[df.isnull().all(
-        axis=1) == True].index.tolist()[0]
-    df = df.loc[0:first_row_with_all_NaN-1]
-
-    # alternative names for countries in UNFCCC
-    alt_names = {
-        'United States of America (the)': ['United States of America'],
-        'Russian Federation (the)': ['Russian Federation'],
-        'United Kingdom of Great Britain and Northern Ireland (the)': ['United Kingdom of Great Britain and Northern Ireland'],
-        'Netherlands (the)': ['Netherlands'],
-    }
-
-    # replace alt_names with names in ISO-3166
-    for correctName in alt_names.keys():
-        filt = df['Party'].isin(alt_names[correctName])
-        df.loc[filt, 'Party'] = correctName
-
-    # merge datasets (wide, each year is a column)
-    df_wide = pd.merge(df, df_iso,
-                       left_on=["Party"],
-                       right_on=['country'],
-                       how="left")
-
-    # filter out null values in English short name
-    filt = df_wide['country'].notnull()
-    df_wide = df_wide.loc[filt]
-
-    # convert from wide to long dataframe (was def_merged_long)
-    df_long = df_wide_to_long(df=df_wide,
-                              value_name="emissions",
-                              var_name="year")
-
-    # rename columns
-    df = df_long.rename(columns={'iso3': 'identifier',
-                                 'iso2': 'actor_id'})
-
-    # convert year to int
-    df['year'] = df['year'].astype('int16')
-
-    # create id columns
-    df['datasource_id'] = datasourceDict['datasource_id']
-    df['emissions_id'] = df.apply(lambda row:
-                                  f"UNFCCC-annex1-GHG:{row['actor_id']}:{row['year']}",
-                                  axis=1)
-
-    # CO₂ total without LULUCF, in kt
-    def kilotonne_to_metric_ton(val):
-        ''' 1 Kilotonne = 1000 tonnes  '''
-        return val * 1000
-
-    df['total_emissions'] = df['emissions'].apply(kilotonne_to_metric_ton)
-
-    # Create EmissionsAgg table
-    emissionsAggColumns = ["emissions_id",
-                           "actor_id",
-                           "year",
-                           "total_emissions",
-                           "datasource_id"]
-
-    df_emissionsAgg = df[emissionsAggColumns]
-
-    # ensure data has correct types
-    df_emissionsAgg = df_emissionsAgg.astype({'emissions_id': str,
-                                             'actor_id': str,
-                                              'year': int,
-                                              'total_emissions': int,
-                                              'datasource_id': str})
-
-    # sort by actor_id and year
-    df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
-
-    # convert to csv
-    df_emissionsAgg.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df_emissionsAgg
-
-
 def df_columns_as_str(df=None):
     df.columns = df.columns.astype(str)
     return df
@@ -1319,130 +618,12 @@ def df_drop_unnamed_columns(df=None):
     return df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
 
-def read_eccc_ghg_inventory_fl(fl=None, province=None):
-
-    assert isinstance(fl, pathlib.PurePath), (
-        f"{fl} is not a string or pathlib.PosixPath"
-    )
-
-    # get province name from filename if not provided
-    if province is None:
-        # get province from stem of file
-        result = re.search(r"EN_GHG_IPCC_(.*)", fl.stem)
-        province = ''.join(result.groups())
-
-        # change NT&NU combined to just NT
-        if province == 'NT&NU':
-            province = 'NT'
-
-    else:
-        assert isinstance(province, str), (
-            f"{province} is not type string"
-        )
-
-    # read raw dataset
-    df = pd.read_excel(fl, sheet_name='Summary', header=4)
-    df = df_columns_as_str(df)
-    df = df_drop_unnamed_columns(df)
-
-    # extract units
-    units = df.iloc[0, 1]
-
-    # filter, only get total of all GHG cats
-    filt = df['Greenhouse Gas Categories'] == 'TOTAL'
-    df = df.loc[filt]
-
-    # convert from wide to long
-    df_long = df_wide_to_long(df=df, value_name='emissions', var_name='year')
-
-    # add province column
-    df_long['actor_id'] = f"CA-{province}"
-    df_long['units'] = units
-
-    return df_long
-
-
-def harmonize_eccc_ghg_inventory(dataDir=None,
-                                 outputDir=None,
-                                 tableName=None,
-                                 datasourceDict=None):
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
-
-    assert isinstance(dataDir, str), f"dataDir must be a string"
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
-    assert isinstance(
-        datasourceDict, dict), f"datasourceDict must be a dictionary"
-
-    # get list of files
-    path = Path(dataDir)
-    files = sorted((path.glob('EN_GHG_IPCC_*.xlsx')))
-
-    # merge into one dataset, the provinces are being read the file name
-    #
-    df_out = pd.concat([read_eccc_ghg_inventory_fl(fl=fl)
-                       for fl in files], ignore_index=True)
-
-    # convert emissions to tonnes
-    if set(df_out['units']) == {'kt CO2  eq'}:
-        df_out['emissions'] = df_out['emissions'] * 10**3
-        df_out = df_out.rename(columns={'emissions': 'total_emissions'})
-
-    # create datasource and emissions id
-    df_out['datasource_id'] = datasourceDict['datasource_id']
-    df_out['emissions_id'] = df_out.apply(lambda row:
-                                          f"ECCC_GHG_inventory:{row['actor_id']}:{row['year']}",
-                                          axis=1)
-
-    # Create EmissionsAgg table
-    emissionsAggColumns = ["emissions_id",
-                           "actor_id",
-                           "year",
-                           "total_emissions",
-                           "datasource_id"]
-
-    df_emissionsAgg = df_out[emissionsAggColumns]
-
-    # ensure data has correct types
-    df_emissionsAgg = df_emissionsAgg.astype({'emissions_id': str,
-                                             'actor_id': str,
-                                              'year': int,
-                                              'total_emissions': int,
-                                              'datasource_id': str})
-
-    # sort by actor_id and year
-    df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
-
-    # convert to csv
-    df_emissionsAgg.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df_emissionsAgg
-
-
 def harmonize_eucom_emissions(fl=None,
-                              outputDir=None,
-                              tableName=None,
                               datasourceDict=None):
-    # set default path
-    if fl is None:
-        fl = '/Users/luke/Documents/work/data/EUCoM/raw/EUCovenantofMayors2022_clean_NCI_7Jun22.csv'
 
     # ensure input types are correct
     assert isinstance(fl, str), f"fl must be a string"
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
     assert isinstance(datasourceDict, dict), f"datasourceDict must be a list"
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
 
     # read EUCoM
     df = pd.read_csv(fl)
@@ -1624,10 +805,7 @@ def harmonize_eucom_emissions(fl=None,
     # sort by actor_id and year
     df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
 
-    # convert to csv
-    df_emissionsAgg.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df
+    return df_emissionsAgg
 
 
 def match_locode_to_climactor():
@@ -1707,117 +885,12 @@ def match_locode_to_climactor():
     return df_output
 
 
-def harmonize_epa_state_ghg(dataDir=None,
-                            outputDir=None,
-                            tableName=None,
-                            datasourceDict=None):
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
-
-    # get list of files
-    if dataDir is None:
-        dataDir = '/Users/luke/Documents/work/data/EPA_state_GHG'
-
-    assert isinstance(dataDir, str), f"dataDir must be a string"
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
-    assert isinstance(
-        datasourceDict, dict), f"datasourceDict must be a dictionary"
-
-    path = Path(dataDir)
-    files = sorted((path.glob('*.csv')))
-
-    df_sub = pd.read_csv(
-        'https://raw.githubusercontent.com/Open-Earth-Foundation/OpenClimate-ISO-3166/main/ISO-3166-2/Actor.csv')
-    df_sub = df_sub[['actor_id', 'is_part_of', 'name']]
-    filt = (df_sub['is_part_of'] == 'US')
-    df_sub = df_sub.loc[filt]
-    df_sub['name'] = df_sub['name'].str.title()
-
-    def read_each_file(fl):
-        df = pd.read_csv(fl)
-        firstColumnName = df.columns[0]
-        filt = df[f"{firstColumnName}"] == 'Total'
-        df = df.loc[filt]
-        result = re.search(r"(.*)\sEmissions.*", firstColumnName)
-        state = ''.join(result.groups())
-        df = df.rename(columns={f"{firstColumnName}": "state"})
-        df["state"] = f"{state}"
-        df_long = df_wide_to_long(df=df,
-                                  value_name='total_emissions',
-                                  var_name="year")
-        return df_long
-
-    # concatenate the files
-    df_concat = pd.concat([read_each_file(fl=fl)
-                          for fl in files], ignore_index=True)
-
-    # convert to metric tonnes
-    df_concat['total_emissions'] = df_concat.apply(lambda row:
-                                                   row['total_emissions'] *
-                                                   10**6,
-                                                   axis=1)
-
-    # merge on subnationals to get actor_id
-    df_out = pd.merge(df_concat, df_sub,
-                      left_on=["state"],
-                      right_on=["name"],
-                      how="left")
-
-    # create datasource and emissions id
-    df_out['datasource_id'] = datasourceDict['datasource_id']
-    df_out['emissions_id'] = df_out.apply(lambda row:
-                                          f"EPA_state_GHG_inventory:{row['actor_id']}:{row['year']}",
-                                          axis=1)
-
-    # Create EmissionsAgg table
-    emissionsAggColumns = ["emissions_id",
-                           "actor_id",
-                           "year",
-                           "total_emissions",
-                           "datasource_id"]
-
-    df_emissionsAgg = df_out[emissionsAggColumns]
-
-    # ensure data has correct types
-    df_emissionsAgg = df_emissionsAgg.astype({'emissions_id': str,
-                                             'actor_id': str,
-                                              'year': int,
-                                              'total_emissions': int,
-                                              'datasource_id': str})
-
-    # sort by actor_id and year
-    df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
-
-    # convert to csv
-    df_emissionsAgg.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df_emissionsAgg
-
-
 def harmonize_eucom_pledges(fl=None,
-                            outputDir=None,
-                            tableName=None,
                             datasourceDict=None):
-    # set default path
-    if fl is None:
-        fl = '/Users/luke/Documents/work/data/EUCoM/raw/EUCovenantofMayors2022_clean_NCI_7Jun22.csv'
 
     # ensure input types are correct
     assert isinstance(fl, str), f"fl must be a string"
-    assert isinstance(outputDir, str), f"outputDir must a be string"
-    assert isinstance(tableName, str), f"tableName must be a string"
     assert isinstance(datasourceDict, dict), f"datasourceDict must be a list"
-
-    # output directory
-    out_dir = Path(outputDir).as_posix()
-
-    # create out_dir if does not exist
-    make_dir(path=out_dir)
 
     # read EUCoM
     df = pd.read_csv(fl)
@@ -2029,10 +1102,7 @@ def harmonize_eucom_pledges(fl=None,
     # sort by actor_id and year
     df_target = df_target.sort_values(by=['actor_id', 'baseline_year'])
 
-    # convert to csv
-    df_target.to_csv(f'{out_dir}/{tableName}.csv', index=False)
-
-    return df
+    return df_target
 
 
 def harmonize_us_climate_alliance_pledge(outputDir=None,

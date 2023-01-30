@@ -20,7 +20,7 @@ if __name__ == '__main__':
     # Publisher
     # =================================================================
     publisherDict = {
-        'id': 'climate_trace',
+        'id': 'climate TRACE',
         'name': 'Climate TRACE',
         'URL': 'https://climatetrace.org/'
     }
@@ -33,9 +33,9 @@ if __name__ == '__main__':
     # DataSource
     # =================================================================
     datasourceDict = {
-        'datasource_id': 'climate_trace:country_inventory',
+        'datasource_id': 'climateTRACE:country_inventory',
         'name': 'climate TRACE: country inventory',
-        'publisher': 'climate_trace',
+        'publisher': 'climate TRACE',
         'published': '2022-12-02',
         'URL': 'https://climatetrace.org/inventory'
     }
@@ -64,11 +64,11 @@ if __name__ == '__main__':
     df_out = pd.merge(df, df_iso, left_on='region', right_on='iso3')
 
     df_out['emissions_id'] = df_out.apply(lambda row:
-                                          f"climate_trace:{row['iso2']}:{row['year']}",
+                                          f"climateTRACE:{row['iso2']}:{row['year']}",
                                           axis=1)
 
     df_out['sector_id'] = df_out.apply(lambda row:
-                                       f"climate_trace:sector:{row['sector/subsector']}",
+                                       f"climateTRACE:sector:{row['sector/subsector']}",
                                        axis=1)
 
     # =================================================================
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     df_tmp['datasource_id'] = datasourceDict['datasource_id']
 
     df_tmp['emissions_id'] = df_tmp.apply(lambda row:
-                                          f"climate_trace:{row['actor_id']}:{row['year']}",
+                                          f"climateTRACE:{row['actor_id']}:{row['year']}",
                                           axis=1)
 
     # clean up the column and make sure type is correct
@@ -133,11 +133,11 @@ if __name__ == '__main__':
     }
 
     df_sector = pd.DataFrame({
-        'sector_id': [f"climate_trace:sector:{val}" for val in list(sectors.keys())],
+        'sector_id': [f"climateTRACE:sector:{val}" for val in list(sectors.keys())],
         'name': list(sectors.values())}
     )
 
-    df_sector['namespace'] = 'climate_trace:sector'
+    df_sector['namespace'] = 'climateTRACE:sector'
     df_sector['datasource_id'] = datasourceDict['datasource_id']
 
     # clean up the column and make sure type is correct

@@ -1,11 +1,12 @@
 const sendAdminMessage = require('./transport')
+const logger = require('../logger').child({module: __filename})
 
 // Generate operations and requests to be sent to the Cloud Agent Adminstration API
 
 // Set the Agent's public DID
 const setPublicDID = async (did) => {
   try {
-    console.log('Setting Public DID')
+    logger.debug('Setting Public DID')
 
     const response = await sendAdminMessage(
       'post',
@@ -16,7 +17,7 @@ const setPublicDID = async (did) => {
 
     return response.result
   } catch (error) {
-    console.error('Public DID Setting Error')
+    logger.error('Public DID Setting Error')
     throw error
   }
 }
@@ -24,7 +25,7 @@ const setPublicDID = async (did) => {
 // Fetch the set public DID message to be sent to the Cloud Agent Adminstration API
 const fetchPublicDID = async () => {
   try {
-    console.log('Fetching Public DID from AdminAPI')
+    logger.debug('Fetching Public DID from AdminAPI')
 
     const publicDID = await sendAdminMessage(
       'get',
@@ -35,7 +36,7 @@ const fetchPublicDID = async () => {
 
     return publicDID.result
   } catch (error) {
-    console.error('Public DID Fetching Error')
+    logger.error('Public DID Fetching Error')
     throw error
   }
 }
@@ -43,13 +44,13 @@ const fetchPublicDID = async () => {
 // Create a DID message to be sent to the Cloud Agent Adminstration API
 const createDID = async () => {
   try {
-    console.log('Creating DID')
+    logger.debug('Creating DID')
 
     const did = await sendAdminMessage('post', `/wallet/did/create`, {}, {})
 
     return did.result
   } catch (error) {
-    console.error('Error Creating DID')
+    logger.error('Error Creating DID')
     throw error
   }
 }

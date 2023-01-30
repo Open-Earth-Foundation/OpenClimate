@@ -3,6 +3,8 @@ import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOpti
 const init = require('./init.ts')
 let sequelize = init.connect()
 
+const logger = require('../logger').child({module: __filename})
+
 class Credential extends Model <InferAttributes<Credential>, InferCreationAttributes<Credential>> {
   declare credential_exchange_id: CreationOptional<number>;
   declare credential_id: string;
@@ -206,10 +208,10 @@ const createCredential = async function (
       updated_at: updated_at,
     })
 
-    console.log('Credential saved successfully.')
+    logger.debug('Credential saved successfully.')
     return credentialRecord[0]
   } catch (error) {
-    console.error('Error saving credential to the database: ', error)
+    logger.error('Error saving credential to the database: ', error)
   }
 }
 
@@ -224,7 +226,7 @@ const readCredential = async function (credential_exchange_id) {
 
     return credential[0]
   } catch (error) {
-    console.error('Could not find credential in the database: ', error)
+    logger.error('Could not find credential in the database: ', error)
   }
 }
 
@@ -238,7 +240,7 @@ const readCredentialsByConnectionId = async function (connection_id) {
     })
     return credentials
   } catch (error) {
-    console.error(
+    logger.error(
       'Could not find credentials matching the provided connection ID',
       error,
     )
@@ -250,7 +252,7 @@ const readCredentials = async function () {
     const credentials = await Credential.findAll()
     return credentials
   } catch (error) {
-    console.error('Could not find credentials in the database: ', error)
+    logger.error('Could not find credentials in the database: ', error)
   }
 }
 
@@ -334,10 +336,10 @@ const updateCredential = async function (
       },
     )
     // Select results [1], select the first result [0]
-    console.log('Credential updated successfully.')
+    logger.debug('Credential updated successfully.')
     return credentialRecord[1][0]
   } catch (error) {
-    console.error('Error updating the Credential: ', error)
+    logger.error('Error updating the Credential: ', error)
   }
 }
 
@@ -349,9 +351,9 @@ const deleteCredential = async function (credential_id) {
       },
     })
 
-    console.log('Successfully deleted credential')
+    logger.debug('Successfully deleted credential')
   } catch (error) {
-    console.error('Error while deleting credential: ', error)
+    logger.error('Error while deleting credential: ', error)
   }
 }
 
