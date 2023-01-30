@@ -24,7 +24,7 @@
     "nodemailer": "^6.9.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "pg": "^8.8.0",
+    "pg": "^8.9.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.28.0",
     "supertest": "^6.3.3",
