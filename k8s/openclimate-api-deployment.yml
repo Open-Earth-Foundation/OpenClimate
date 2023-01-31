@@ -56,3 +56,13 @@ spec:
               value: "True"
           initialDelaySeconds: 5
           periodSeconds: 5
+        startupProbe:
+          httpGet:
+            path: /api/second-controller
+            port: 3100
+            httpHeaders:
+            - name: X-Liveness-Probe
+              value: "True"
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 30
