@@ -55,8 +55,6 @@ jobs:
 
     - name: Deploying service
       run: |
-        kubectl get all -n default
         kubectl apply -f k8s/openclimate-api-deployment.yml -n default
-        kubectl apply -f k8s/openclimate-api-service.yml -n default
         kubectl rollout restart deployment openclimate-api-deployment -n default
- 
+        kubectl apply -f k8s/openclimate-api-service.yml -n default
