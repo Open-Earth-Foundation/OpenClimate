@@ -1,4 +1,4 @@
-name: Push OpenClimate API to ECR
+name: Push OpenClimate importer to ECR
 
 on:
   push:
