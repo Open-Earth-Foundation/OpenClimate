@@ -6,14 +6,11 @@ const passport = require("passport");
 const session = require("express-session");
 import { Utils } from "./util";
 const expressWinston = require("express-winston");
-import createError, {
+import {
   BadRequest,
   InternalServerError,
   NotFound,
 } from "http-errors";
-
-import { ACCESS_TOKEN_SECRET } from "./auth/secret";
-import { sign } from "jsonwebtoken";
 
 // Envision imports
 import schemaRoutes from "./routes/schema.routes";
@@ -526,9 +523,9 @@ app.get(
 app.use(
   "/",
   wrap(async (req, res) => {
-    req.logger.debug("Request outside of normal paths", req.url);
-    req.logger.debug(req.body);
-    res.status(404).send();
+    const name = "openclimate-hub-controller"
+    const version = (name in process.versions) ? process.versions[name] : null
+    res.status(200).send({ status: "healthy", name: name, version: version});
   })
 );
 
