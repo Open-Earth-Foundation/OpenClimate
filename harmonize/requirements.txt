@@ -1,0 +1,3 @@
+pycountry
+pyshorteners
+xlrd
