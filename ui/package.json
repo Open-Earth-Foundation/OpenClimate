@@ -1,6 +1,6 @@
 {
   "name": "open-climate-ui",
-  "version": "1.4.0-dev",
+  "version": "1.5.0-dev",
   "private": true,
   "dependencies": {
     "-": "0.0.1",
@@ -63,7 +63,6 @@
     "style-check": "prettier --check 'src/**/*.js' 'src/**/*.ts' 'src/**/*.tsx'",
     "style-format": "prettier --write 'src/**/*.js' 'src/**/*.ts'  'src/**/*.tsx'",
     "build": "react-scripts build",
-    "postbuild": "cp LICENSE* build && cp README.md build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

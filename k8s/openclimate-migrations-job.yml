@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: openclimate-migrations-
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: openclimate-migrations
+        image: public.ecr.aws/openearthfoundation/openclimate-api:latest
+        imagePullPolicy: Always
+        env:
+        - name: NODE_ENV
+          value: development
+        - name: POSGRES_ADDRESS
+          value: postgresql-service
+        - name: POSGRES_DB
+          value: development
+        - name: POSTGRES_USER
+          value: development
+        - name: POSGRES_PASSWORD
+          value: development
+        command: ["npm",  "run", "migrate_up_all"]
+        resources:
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"

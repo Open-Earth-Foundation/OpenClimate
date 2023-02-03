@@ -36,5 +36,5 @@ spec:
               httpHeaders:
               - name: X-Liveness-Probe
                 value: "True"
-            initialDelaySeconds: 30
-            periodSeconds: 30
+            initialDelaySeconds: 5
+            periodSeconds: 5

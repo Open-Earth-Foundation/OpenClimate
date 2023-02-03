@@ -133,6 +133,48 @@ Standard output. `data` is an object representing the actor, with the following 
     - `description`: short (~1 paragraph) description of the initiative, in English
     - `URL`: URL to find out more about the initiative
 
+### Actor emissions /api/v1/actor/{actor_id}/emissions
+
+Returns just emissions data for an actor.
+
+#### Output
+
+Standard output. `data` is an object representing the actor's emissions. Each key is the code for a data source. Each value is an object with the following properties:
+
+- `datasource_id`: ID code for the datasource; should be identical to the key.
+- `name`: name for the data source.
+- `publisher`: Publisher code for the data source.
+- `published`: Date this data source was published.
+- `URL`: URL to retrieve the data source or learn more about it. For humans,
+  not computers.
+- `tags`: an array of tags for this data source. Each tag is an object with
+  the following properties:
+  - `tag_id`: short tag.
+  - `tag_name`: description of the tag.
+- `data`: an array of emissions data provided by this data source, in
+  descending order by year. Each element is a JSON object with these properties:
+  - `year`: year the emissions were made.
+  - `total_emissions`: total CO2E emissions for the actor this year.
+  - `tags`: an array of tags for this year. Each tag is an object with the following properties:
+    - `tag_id`: short tag.
+    - `tag_name`: description of the tag.
+
+### Actor emissions /api/v1/actor/{actor_id}/emissions.csv
+
+Returns just emissions data for an actor, in CSV format.
+
+#### Output
+
+A CSV with the following columns. The output includes a header row.
+
+- `emissions_id`: Unique identifier for this record. Typically constructed as `<datasource_id>:<actor_id>:<year>`, although the identifier is opaque. Note that a single identifier is used because this table is referenced in the breakdown tables.
+- `actor_id`: Responsible party for the emissions.
+- `year`: Year of emissions, YYYY.
+- `total_emissions`: Integer value of tonnes of CO2 equivalent.
+- `datasource_id`: ID of the [DataSource](#datasource) this emissions information came from.
+- `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
+- `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
+
 ## Search endpoints
 
 ### Actor search /api/v1/search/actor?name={name}(&language={language})
@@ -182,3 +224,11 @@ Standard output. `data` is an object representing the list of matching actors, e
   - `datasource_id`: the source of the identifier
   - `created`: when this identifier record was first imported
   - `last_updated`: when this identifier was last updated
+- `has_data`: boolean; says whether there is data available for this actor. Null if unknown.
+- `has_children`: boolean; says whether there are parts for this actor. Null if unknown.
+- `children_have_data`: boolean; says whether there is data for the parts of this actor. Null if unknown.
+- `root_path_geo`: an array of actors that this actor is part of    geographically, up to and including EARTH, the root actor. It is in order from the most immediate parent to the root. Each actor in the array has the following properties:
+  - `actor_id`: ID of the actor
+  - `name`: default name for the actor; an OK fallback if no language
+  match
+  - `type`: type of the actor

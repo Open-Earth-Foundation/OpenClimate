@@ -24,8 +24,8 @@ spec:
         imagePullPolicy: Always
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "250m"
+            memory: "512Mi"
+            cpu: "500m"
         env:
           - name: "POSTGRES_USER"
             value: "development"
@@ -34,5 +34,5 @@ spec:
         ports:
           - containerPort: 5432
         volumeMounts:
-          - mountPath: "/data"
+          - mountPath: "/var/lib/postgresql/data"
             name: data

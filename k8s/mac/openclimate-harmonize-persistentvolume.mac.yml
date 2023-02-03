@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: openclimate-harmonize-persistentvolume
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local:
+    path: "/Users/evanp/Documents/GitHub/OpenClimate/harmonize"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - docker-desktop
