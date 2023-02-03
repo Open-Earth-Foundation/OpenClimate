@@ -9,8 +9,7 @@ spec:
     - localhost
     secretName: localhost-secret
   rules:
-    - host: localhost
-      http:
+    - http:
         paths:
           - path: /api
             pathType: Prefix
@@ -18,7 +17,7 @@ spec:
               service:
                 name: openclimate-api-service
                 port:
-                  number: 80
+                  number: 3100
           - path: /
             pathType: Prefix
             backend:
