@@ -1,49 +1,37 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: openclimate-acapy-deployment
-#   labels:
-#     app: openclimate-acapy
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: openclimate-acapy
-#   template:
-#     metadata:
-#       labels:
-#         app: openclimate-acapy
-#     spec:
-#       containers:
-#         - name: openclimate-acapy
-#           image: public.ecr.aws/openearthfoundation/openclimate-acapy:latest
-#           imagePullPolicy: Always
-#           ports:
-#             - containerPort: 3005
-#           env:
-#             - name: NODE_ENV
-#               value: development
-#             - name: CONTROLLERPORT
-#               value: "3100"
-#             - name: AGENTADDRESS
-#               value: http://acapy-service:8150
-#             - name: WEB_ROOT
-#               value: https://localhost
-#             - name: JWT_SECRET
-#               value: ZBVgToVv72zffZE2ksUYNAhYmNCXwgKp
-#             - name: SESSION_SECRET
-#               value: aZj6iXNkrtmLrAT0HsTrp7dRR7r4U7P0
-#             - name: SCHEMA_VERIFIED_EMPLOYEE
-#               value: RSaZ64jxn2NbpH8MgBdy4C:2:Verified_Employee:1.0
-#             - name: POSGRES_ADDRESS
-#               value: postgresql-service
-#             - name: POSGRES_DB
-#               value: development
-#             - name: POSTGRES_USER
-#               value: development
-#             - name: POSGRES_PASSWORD
-#               value: development
-#           resources:
-#             limits:
-#               memory: "1024Mi"
-#               cpu: "1000m"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openclimate-acapy-deployment
+  labels:
+    app: openclimate-acapy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openclimate-acapy
+  template:
+    metadata:
+      labels:
+        app: openclimate-acapy
+    spec:
+      containers:
+        - name: openclimate-acapy
+          image: public.ecr.aws/openearthfoundation/openclimate-acapy:1.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3005
+          env:
+            - name: AGENT_NAME
+              value: Hub
+            - name: PORT
+              value: "3005"
+            - name: ADMIN_PORT
+              value: "8150"
+            - name: WEBHOOK_ADDRESS
+              value: https://openclimate.openearth.dev/api/controller-webhook
+            - name: ACAPY_ENDPOINT
+              value: https://openclimate.openearth.dev
+          resources:
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
