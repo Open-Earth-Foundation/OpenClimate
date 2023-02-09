@@ -24,9 +24,11 @@ create table if not exists "Coverage" (
     city_targets int,
     city_population int,
     city_gdp int,
-    city_territory int);
+    city_territory int,
+    PRIMARY KEY ("actor_id")
+);
 
-insert into "Coverage" select actor_id from "Actor" where type = 'country';
+insert into "Coverage" select actor_id from "Actor" where type = 'country' and not exists (select actor_id from "Coverage" where "Coverage".actor_id = "Actor".actor_id);
 
 update "Coverage" set country_emissions = (select count(distinct actor_id) from "EmissionsAgg" where "EmissionsAgg".actor_id = "Coverage".actor_id);
 update "Coverage" set country_targets = (select count(distinct actor_id) from "Target" where "Target".actor_id = "Coverage".actor_id);
