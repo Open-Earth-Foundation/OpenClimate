@@ -6,7 +6,7 @@ create temp view Region as select * from "Actor" where type in ('adm1', 'adm2');
 create temp view Region_Country as select Region.actor_id as region_id, Country.actor_id as country_id from Region join Country on Region.is_part_of = Country.actor_id;
 create temp view City_Country as select City.actor_id as city_id, Country.actor_id as country_id from (City join Region on City.is_part_of = Region.actor_id) join Country on Region.is_part_of = Country.actor_id;
 
-create table "Coverage" (
+create table if not exists "Coverage" (
     actor_id varchar(255),
     country_emissions int,
     country_targets int,
