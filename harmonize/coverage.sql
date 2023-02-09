@@ -41,6 +41,7 @@ update "Coverage" set subnational_emissions = (select count(distinct "Actor".act
 update "Coverage" set subnational_targets = (select count(distinct "Actor".actor_id) from "Actor" join "Target" on "Actor".actor_id = "Target".actor_id where "Actor".type = 'adm1' and "Actor".is_part_of = "Coverage".actor_id);
 update "Coverage" set subnational_population = (select count(distinct "Actor".actor_id) from "Actor" join "Population" on "Actor".actor_id = "Population".actor_id where "Actor".type = 'adm1' and "Actor".is_part_of = "Coverage".actor_id);
 update "Coverage" set subnational_gdp = (select count(distinct "Actor".actor_id) from "Actor" join "GDP" on "Actor".actor_id = "GDP".actor_id where "Actor".type = 'adm1' and "Actor".is_part_of = "Coverage".actor_id);
+update "Coverage" set subnational_territory = (select count(distinct city_id) from (Region_Country join "Territory" on Region_Country.region_id = "Territory".actor_id) where Region_Country.country_id = "Coverage".actor_id);
 
 update "Coverage" set city_count = (select count(*) from City_Country where City_Country.country_id = "Coverage".actor_id);
 
@@ -48,3 +49,4 @@ update "Coverage" set city_targets = (select count(distinct city_id) from (City_
 update "Coverage" set city_emissions = (select count(distinct city_id) from (City_Country join "EmissionsAgg" on City_Country.city_id = "EmissionsAgg".actor_id) where City_Country.country_id = "Coverage".actor_id);
 update "Coverage" set city_population = (select count(distinct city_id) from (City_Country join "Population" on City_Country.city_id = "Population".actor_id) where City_Country.country_id = "Coverage".actor_id);
 update "Coverage" set city_gdp = (select count(distinct city_id) from (City_Country join "GDP" on City_Country.city_id = "GDP".actor_id) where City_Country.country_id = "Coverage".actor_id);
+update "Coverage" set city_territory = (select count(distinct city_id) from (City_Country join "Territory" on City_Country.city_id = "Territory".actor_id) where City_Country.country_id = "Coverage".actor_id);
