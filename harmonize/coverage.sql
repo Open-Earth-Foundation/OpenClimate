@@ -41,7 +41,7 @@ update "Coverage" set subnational_emissions = (select count(distinct "Actor".act
 update "Coverage" set subnational_targets = (select count(distinct "Actor".actor_id) from "Actor" join "Target" on "Actor".actor_id = "Target".actor_id where "Actor".type = 'adm1' and "Actor".is_part_of = "Coverage".actor_id);
 update "Coverage" set subnational_population = (select count(distinct "Actor".actor_id) from "Actor" join "Population" on "Actor".actor_id = "Population".actor_id where "Actor".type = 'adm1' and "Actor".is_part_of = "Coverage".actor_id);
 update "Coverage" set subnational_gdp = (select count(distinct "Actor".actor_id) from "Actor" join "GDP" on "Actor".actor_id = "GDP".actor_id where "Actor".type = 'adm1' and "Actor".is_part_of = "Coverage".actor_id);
-update "Coverage" set subnational_territory = (select count(distinct city_id) from (Region_Country join "Territory" on Region_Country.region_id = "Territory".actor_id) where Region_Country.country_id = "Coverage".actor_id);
+update "Coverage" set subnational_territory = (select count(distinct region_id) from (Region_Country join "Territory" on Region_Country.region_id = "Territory".actor_id) where Region_Country.country_id = "Coverage".actor_id);
 
 update "Coverage" set city_count = (select count(*) from City_Country where City_Country.country_id = "Coverage".actor_id);
 
