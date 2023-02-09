@@ -4,11 +4,15 @@ import { ActorName } from "../orm/actorname";
 import { ActorIdentifier } from "../orm/actoridentifier";
 import { BadRequest } from "http-errors";
 import { Op } from "sequelize";
+import {client} from '../elasticsearch/elasticsearch';
+
 
 const wrap = (fn) => (req, res, next) =>
   fn(req, res, next).catch((err) => next(err));
 
 const router = Router();
+
+
 
 export default router;
 
@@ -72,17 +76,32 @@ router.get(
 
       actor_ids = byName.map((an) => an.actor_id);
     } else if (q) {
-      const [byNameQ, byIdQ] = await Promise.all([
-        ActorName.findAll({ where: { name: { [Op.like]: `%${q}%` } } }),
-        ActorIdentifier.findAll({
-          where: { identifier: { [Op.like]: `%${q}%` } },
-        }),
-      ]);
-      actor_ids = byNameQ
-        .map((an) => an.actor_id)
-        .concat(byIdQ.map((ai) => ai.actor_id))
-        .filter((a, i, l) => l.indexOf(a) === i);
-    }
+      
+      if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
+        const ActorIDS = await client.search({
+          index: process.env.ELASTIC_SEARCH_INDEX_NAME,
+          query: {
+            match: {
+              actor_name: q
+            }
+          }
+        })
+
+        actor_ids = ActorIDS.hits.hits.map((res:any)=>res._source.actor_id)
+        
+      } else{
+        const [byNameQ, byIdQ] = await Promise.all([
+          ActorName.findAll({ where: { name: { [Op.like]: `%${q}%` } } }),
+          ActorIdentifier.findAll({
+            where: { identifier: { [Op.like]: `%${q}%` } },
+          }),
+        ]);
+        actor_ids = byNameQ
+          .map((an) => an.actor_id)
+          .concat(byIdQ.map((ai) => ai.actor_id))
+          .filter((a, i, l) => l.indexOf(a) === i);
+      }
+    } 
 
     if (actor_ids.length === 0) {
       res.status(200).json({
