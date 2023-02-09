@@ -8,21 +8,3 @@ export const client = new Client({
     }
 });
 
-const actors = async () => {
-    if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
-        const ActorIDS = await client.search({
-          // index: process.env.ELASTIC_SEARCH_INDEX_NAME,
-          index: 'actors',
-          query: {
-            match: {
-              actor_name: 'new'
-            }
-        }
-
-        
-    })
-    console.log(ActorIDS.hits.hits)
-    }
-}
-
-actors()
