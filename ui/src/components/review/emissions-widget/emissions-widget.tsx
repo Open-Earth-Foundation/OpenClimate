@@ -42,29 +42,29 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     event.preventDefault();
     setToggleMenu((e) => !e);
 
-    if (toggleExportAsMenu) {
-      setToggleExportAsMenu(false);
-    }
+  //   if (toggleExportAsMenu) {
+  //     setToggleExportAsMenu(false);
+  //   }
 
-    if (toggleDownloadAsMenu) {
-      setToggleDownloadAsMenu(false);
-    }
-  };
+  //   if (toggleDownloadAsMenu) {
+  //     setToggleDownloadAsMenu(false);
+  //   }
+  // };
 
-  const setDownloadMenuState = (event: any) => {
-    event.preventDefault();
-    setToggleDownloadAsMenu((e) => !e);
-    if (toggleExportAsMenu) {
-      setToggleExportAsMenu(false);
-    }
-  };
+  // const setDownloadMenuState = (event: any) => {
+  //   event.preventDefault();
+  //   setToggleDownloadAsMenu((e) => !e);
+  //   if (toggleExportAsMenu) {
+  //     setToggleExportAsMenu(false);
+  //   }
+  // };
 
-  const setExportMenuState = (event: any) => {
-    event.preventDefault();
-    setToggleExportAsMenu((e) => !e);
-    if (toggleDownloadAsMenu) {
-      setToggleDownloadAsMenu(false);
-    }
+  // const setExportMenuState = (event: any) => {
+  //   event.preventDefault();
+  //   setToggleExportAsMenu((e) => !e);
+  //   if (toggleDownloadAsMenu) {
+  //     setToggleDownloadAsMenu(false);
+  //   }
   };
 
   const useStyles = makeStyles(() => ({
@@ -135,6 +135,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     const value = e.target.value as number;
     setCurrentYear(value);
   };
+
 
   const sourceChangeHandler = (e: SelectChangeEvent<number>) => {
     const source = e.target.value as number;
@@ -275,49 +276,61 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
               </div>
               <div className="emissions-widget__metadata-right-inner">
                 <div className="emissions-widget__button-wrapper">
-                  <Tooltip
-                    classes={{
-                      tooltip: classes.customTooltip,
-                      arrow: classes.customArrow,
-                    }}
-                    title={
-                      <div className="tooltip">Download or Export Data</div>
-                    }
-                    arrow
-                    placement="right"
-                  >
-                    <IconButton onClick={setMenuState}>
-                      <MoreVert className="download_data-icon" />
-                    </IconButton>
-                  </Tooltip>
+                    <Tooltip
+                      classes={{
+                        tooltip: classes.customTooltip,
+                        arrow: classes.customArrow,
+                      }}
+                      title={
+                        <div className="tooltip">Download or Export Data</div>
+                      }
+                      sx={
+                        {
+                          display: toggleMenu ? "hidden" : "inline"
+                        }
+                      }
+                      arrow
+                      placement="right"
+                    >
+                      <IconButton onClick={setMenuState}>
+                        <MoreVert className="download_data-icon" />
+                      </IconButton>
+                    </Tooltip>
                   {toggleMenu && (
                     <>
                       <div className="download_data-menu">
                         <ul className="menu-item">
+                          <li>Download as CSV</li>
+                          <li>Download as JSON</li>
+
+                          {/* Add back when exporting is added
                           <li onClick={setDownloadMenuState}>
                             <span>Download as...</span>
                             <div className="menu-item-arrow">
                               <ArrowForwardIos className="menu-item-arrow-icon" />
                             </div>
                           </li>
-                          <li onClick={setExportMenuState}>
+                           
+                           <li onClick={setExportMenuState}>
                             <span>Export as...</span>
                             <div className="menu-item-arrow">
                               <ArrowForwardIos className="menu-item-arrow-icon" />
                             </div>
-                          </li>
+                          </li> */}
                         </ul>
+                        
                         {toggleDownloadAsMenu && (
                           <>
                             <ul className="menu-item sub-menu">
                               <li>Download as CSV</li>
-                              <li>Download as PDF</li>
+                              {/* Add when implemented
+                               <li>Download as PDF</li>
+                              <li>Download as XML</li> */}
                               <li>Download as JSON</li>
-                              <li>Download as CSV</li>
                             </ul>
                           </>
                         )}
-                        {toggleExportAsMenu && (
+                         {toggleExportAsMenu && (
                           <>
                             <ul className="menu-item sub-menu exportAs">
                               <li>.JPG</li>

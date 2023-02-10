@@ -140,7 +140,7 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                       ? renderHighlightedName(option.name, inputString)
                       : option.name}
                   </div>
-                  {hoveredOptionIndex === index && !option.data ? (
+                  {hoveredOptionIndex === index && option?.data === false ? (
                     <div className="dropdown-select-missing-container">
                       <div className={"dropdown-select-missing-text"}>
                         MISSING DATA
