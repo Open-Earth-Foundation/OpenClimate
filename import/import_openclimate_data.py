@@ -91,6 +91,29 @@ def import_openclimate_data(dir, host, dbname, user, password):
                 if p.is_file():
                     delete_from_table(curs, table, pkeys[table], p)
 
+def update_actor_data_coverage(host, dbname, user, password):
+
+    with psycopg2.connect(dbname=dbname, user=user, password=password, host=host) as conn:
+
+        with conn.cursor() as curs:
+
+            qry = f'''
+            insert into "ActorDataCoverage" (actor_id, has_data, created_at, updated_at)
+            SELECT actor_id,
+            (0 < (select count(*) from "EmissionsAgg" where "EmissionsAgg".actor_id = "Actor".actor_id))
+            OR (0 < (select count(*) from "Target" where "Target".actor_id = "Actor".actor_id))
+            OR (0 < (select count(*) from "Territory" where "Territory".actor_id = "Actor".actor_id))
+            as has_data,
+            NOW() as created_at,
+            NOW() as updated_at
+            FROM "Actor"
+            ON CONFLICT (actor_id)
+                DO UPDATE
+                    SET (has_data, updated_at) = (EXCLUDED.has_data, EXCLUDED.updated_at);
+            '''
+
+            curs.execute(qry)
+
 if __name__ == "__main__":
     import argparse
     import os
@@ -102,3 +125,4 @@ if __name__ == "__main__":
     parser.add_argument('dir', help='directory with CSV files for OpenClimate tables')
     args = parser.parse_args()
     import_openclimate_data(args.dir, args.host, args.dbname, args.user, args.password)
+    update_actor_data_coverage(args.host, args.dbname, args.user, args.password)

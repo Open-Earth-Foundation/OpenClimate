@@ -2,7 +2,7 @@
 
 import logging
 from pathlib import Path
-from import_openclimate_data import import_openclimate_data
+from import_openclimate_data import import_openclimate_data,update_actor_data_coverage
 from download_and_expand_zipfile import download_and_expand_zipfile
 import shutil
 
@@ -56,3 +56,4 @@ if __name__ == "__main__":
     parser.add_argument('--processed', help='directory with subdirectories', default=os.environ.get('PROCESSED_DATA_DIR'))
     args = parser.parse_args()
     import_all_data(args.zipfileurl, args.processed, args.host, args.dbname, args.user, args.password)
+    update_actor_data_coverage(args.host, args.dbname, args.user, args.password)
