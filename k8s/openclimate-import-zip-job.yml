@@ -1,6 +1,7 @@
 # openclimate-import-zip-job.yml
 # Runs a single task that imports all the processed harmonized data in the develop
 # branch by downloading it from GitHub. Kind of crazy but it just might work.
+# It should work on both remote and local.
 apiVersion: batch/v1
 kind: Job
 metadata:
