@@ -34,9 +34,10 @@ interface Props {
 const EmissionsWidget: FunctionComponent<Props> = (props) => {
   const { current } = props;
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
-  const [toggleDownloadAsMenu, setToggleDownloadAsMenu] =
-    useState<boolean>(false);
-  const [toggleExportAsMenu, setToggleExportAsMenu] = useState<boolean>(false);
+  // Uncomment when adding Export As
+  // const [toggleDownloadAsMenu, setToggleDownloadAsMenu] =
+  //   useState<boolean>(false);
+  // const [toggleExportAsMenu, setToggleExportAsMenu] = useState<boolean>(false);
 
   const setMenuState = (event: any) => {
     event.preventDefault();
@@ -319,25 +320,20 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                           </li> */}
                         </ul>
                         
-                        {toggleDownloadAsMenu && (
-                          <>
-                            <ul className="menu-item sub-menu">
+                        
+                            {/* <ul className="menu-item sub-menu">
                               <li>Download as CSV</li>
-                              {/* Add when implemented
                                <li>Download as PDF</li>
-                              <li>Download as XML</li> */}
+                              <li>Download as XML</li> 
                               <li>Download as JSON</li>
                             </ul>
-                          </>
-                        )}
-                         {toggleExportAsMenu && (
-                          <>
+                        
+                        
                             <ul className="menu-item sub-menu exportAs">
                               <li>.JPG</li>
                               <li>.PNG</li>
-                            </ul>
-                          </>
-                        )}
+                            </ul> */}
+                        
                       </div>
                     </>
                   )}
