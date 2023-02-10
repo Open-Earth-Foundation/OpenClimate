@@ -4,12 +4,10 @@ on:
   push:
     paths:
       - logstash-postgresql/**
-      - k8s/**
     branches: [ "develop" ]
   pull_request:
     paths:
       - logstash-postgresql/**
-      - k8s/**
     branches: [ "develop" ]
 
 jobs:

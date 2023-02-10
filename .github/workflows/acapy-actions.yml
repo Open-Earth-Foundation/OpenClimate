@@ -4,12 +4,12 @@ on:
   push:
     paths:
       - aries-acapy-plugin-toolbox/**
-      - k8s/**
+      - k8s/openclimate-acapy-**
     branches: ["develop"]
   pull_request:
     paths:
       - aries-acapy-plugin-toolbox/**
-      - k8s/**
+      - k8s/openclimate-acapy-**
     branches: ["develop"]
 
 jobs:
