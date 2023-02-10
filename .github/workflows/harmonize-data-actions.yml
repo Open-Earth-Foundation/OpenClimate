@@ -1,4 +1,4 @@
-name: Build and Push OpenClimate importer
+name: Run OpenClimate importer
 
 on:
   push:
@@ -15,7 +15,6 @@ on:
 jobs:
 
   runImportJobOnEKS:
-      needs: pushToECR
       runs-on: ubuntu-latest
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_EKS_DEV_USER }}
