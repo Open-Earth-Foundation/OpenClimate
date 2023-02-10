@@ -4,12 +4,12 @@ on:
   push:
     paths:
       - harmonize/data/processed/**
-      - 'k8s/openclimate-import-**.yml'
+      - k8s/openclimate-import-zip-job.yml
     branches: [ "develop" ]
   pull_request:
     paths:
       - harmonize/data/processed/**
-      - 'k8s/openclimate-import-**.yml'
+      - k8s/openclimate-import-zip-job.yml
     branches: [ "develop" ]
 
 jobs:

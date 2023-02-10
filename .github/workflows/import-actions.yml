@@ -4,12 +4,12 @@ on:
   push:
     paths:
       - import/**
-      - 'openclimate-import-**.yml'
+      - k8s/openclimate-import-zip-job.yml
     branches: [ "develop" ]
   pull_request:
     paths:
       - import/**
-      - 'openclimate-import-**.yml'
+      - k8s/openclimate-import-zip-job.yml
     branches: [ "develop" ]
 
 jobs:
