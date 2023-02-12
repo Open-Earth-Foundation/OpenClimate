@@ -23,6 +23,9 @@ def main(args):
 
             logging.info(f'Querying all ActorName rows')
 
+            # To avoid surprises, we explicitly list out the columns we expect from the database
+            # instead of using SELECT *
+
             qry = f'''
             SELECT actor_id, name, language, preferred, datasource_id, created, last_updated
             FROM "ActorName"
@@ -32,12 +35,16 @@ def main(args):
 
             for an in curs:
 
-                logging.info(f'Indexing actor {an.actor_id} name {an.name} in language {an.language}')
+                # Unpack the tuple
 
-                id = an.actor_id + ":" + an.language + ":" + an.name
+                (actor_id, name, language, preferred, datasource_id, created, last_updated) = an
 
-                doc ={"actor_id": an.actor_id, "name": an.name, "language": an.language, "preferred": an.preferred}
-                meta = {"created": an.created, "last_updated": an.last_update, "datasource_id": an.datasource_id}
+                logging.info(f'Indexing actor {actor_id} name {name} in language {language}')
+
+                id = actor_id + ":" + language + ":" + name
+
+                doc ={"actor_id": actor_id, "name": name, "language": language, "preferred": preferred}
+                meta = {"created": created, "last_updated": last_update, "datasource_id": datasource_id}
 
                 # TODO: need to figure out how to insert metadata
 
