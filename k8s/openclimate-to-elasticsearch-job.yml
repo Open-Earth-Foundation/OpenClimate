@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: openclimate-to-elasticsearch-
+spec:
+  template:
+    spec:
+      containers:
+      - name: openclimate-to-elasticsearch
+        image: public.ecr.aws/openearthfoundation/openclimate-to-elasticsearch:latest
+        env:
+          - name: OPENCLIMATE_DATABASE
+            value: development
+          - name: OPENCLIMATE_HOST
+            value: postgresql-service
+          - name: OPENCLIMATE_USER
+            value: development
+          - name: OPENCLIMATE_PASSWORD
+            value: development
+          - name: OPENCLIMATE_ES_NODE
+            value: "https://openclimate-elasticsearch-service:9200/"
+          - name: OPENCLIMATE_ES_INDEX
+            value: actors
+          - name: OPENCLIMATE_ES_USER
+            value: "elastic"
+          - name: OPENCLIMATE_ES_PASSWORD
+            value: "manor claw track near buck bonus"
+      restartPolicy: OnFailure
+  backoffLimit: 4
