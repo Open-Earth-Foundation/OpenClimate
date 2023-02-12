@@ -36,8 +36,8 @@ def main(args):
 
                 id = an.actor_id + ":" + an.language + ":" + an.name
 
-                doc = dict(actor_id: an.actor_id, name: an.name, language: an.language, preferred: an.preferred)
-                meta = dict(created: an.created, last_updated: an.last_update, datasource_id: an.datasource_id)
+                doc ={"actor_id": an.actor_id, "name": an.name, "language": an.language, "preferred": an.preferred}
+                meta = {"created": an.created, "last_updated": an.last_update, "datasource_id": an.datasource_id}
 
                 # TODO: need to figure out how to insert metadata
 
