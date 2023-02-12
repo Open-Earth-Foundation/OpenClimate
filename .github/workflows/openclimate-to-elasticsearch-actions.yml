@@ -29,7 +29,7 @@ jobs:
         IMAGE: public.ecr.aws/openearthfoundation/openclimate-to-elasticsearch
 
       run: |
-        docker build -t $IMAGE:$VERSION import
+        docker build -t $IMAGE:$VERSION openclimate-to-elasticsearch
         docker tag $IMAGE:$VERSION $IMAGE:latest
         docker push $IMAGE:$VERSION
         docker push $IMAGE:latest
