@@ -23,6 +23,10 @@ spec:
           env:
             - name: ELASTICSEARCH_URL
               value: "http://openclimate-elasticsearch-service:9200/"
+            - name: ELASTICSEARCH_HOSTS
+              value: '[ "http://openclimate-elasticsearch-service:9200/" ]'
+            - name: ELASTIC_PASSWORD
+              value: "manor claw track near buck bonus"
           resources:
             limits:
               memory: "256Mi"
