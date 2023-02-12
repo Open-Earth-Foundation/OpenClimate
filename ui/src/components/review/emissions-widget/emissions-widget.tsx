@@ -43,29 +43,29 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     event.preventDefault();
     setToggleMenu((e) => !e);
 
-  //   if (toggleExportAsMenu) {
-  //     setToggleExportAsMenu(false);
-  //   }
+    //   if (toggleExportAsMenu) {
+    //     setToggleExportAsMenu(false);
+    //   }
 
-  //   if (toggleDownloadAsMenu) {
-  //     setToggleDownloadAsMenu(false);
-  //   }
-  // };
+    //   if (toggleDownloadAsMenu) {
+    //     setToggleDownloadAsMenu(false);
+    //   }
+    // };
 
-  // const setDownloadMenuState = (event: any) => {
-  //   event.preventDefault();
-  //   setToggleDownloadAsMenu((e) => !e);
-  //   if (toggleExportAsMenu) {
-  //     setToggleExportAsMenu(false);
-  //   }
-  // };
+    // const setDownloadMenuState = (event: any) => {
+    //   event.preventDefault();
+    //   setToggleDownloadAsMenu((e) => !e);
+    //   if (toggleExportAsMenu) {
+    //     setToggleExportAsMenu(false);
+    //   }
+    // };
 
-  // const setExportMenuState = (event: any) => {
-  //   event.preventDefault();
-  //   setToggleExportAsMenu((e) => !e);
-  //   if (toggleDownloadAsMenu) {
-  //     setToggleDownloadAsMenu(false);
-  //   }
+    // const setExportMenuState = (event: any) => {
+    //   event.preventDefault();
+    //   setToggleExportAsMenu((e) => !e);
+    //   if (toggleDownloadAsMenu) {
+    //     setToggleDownloadAsMenu(false);
+    //   }
   };
 
   const useStyles = makeStyles(() => ({
@@ -136,7 +136,6 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     const value = e.target.value as number;
     setCurrentYear(value);
   };
-
 
   const sourceChangeHandler = (e: SelectChangeEvent<number>) => {
     const source = e.target.value as number;
@@ -277,26 +276,24 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
               </div>
               <div className="emissions-widget__metadata-right-inner">
                 <div className="emissions-widget__button-wrapper">
-                    <Tooltip
-                      classes={{
-                        tooltip: classes.customTooltip,
-                        arrow: classes.customArrow,
-                      }}
-                      title={
-                        <div className="tooltip">Download or Export Data</div>
-                      }
-                      sx={
-                        {
-                          display: toggleMenu ? "hidden" : "inline"
-                        }
-                      }
-                      arrow
-                      placement="right"
-                    >
-                      <IconButton onClick={setMenuState}>
-                        <MoreVert className="download_data-icon" />
-                      </IconButton>
-                    </Tooltip>
+                  <Tooltip
+                    classes={{
+                      tooltip: classes.customTooltip,
+                      arrow: classes.customArrow,
+                    }}
+                    title={
+                      <div className="tooltip">Download or Export Data</div>
+                    }
+                    sx={{
+                      display: toggleMenu ? "hidden" : "inline",
+                    }}
+                    arrow
+                    placement="right"
+                  >
+                    <IconButton onClick={setMenuState}>
+                      <MoreVert className="download_data-icon" />
+                    </IconButton>
+                  </Tooltip>
                   {toggleMenu && (
                     <>
                       <div className="download_data-menu">
@@ -319,9 +316,8 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                             </div>
                           </li> */}
                         </ul>
-                        
-                        
-                            {/* <ul className="menu-item sub-menu">
+
+                        {/* <ul className="menu-item sub-menu">
                               <li>Download as CSV</li>
                                <li>Download as PDF</li>
                               <li>Download as XML</li> 
@@ -333,7 +329,6 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                               <li>.JPG</li>
                               <li>.PNG</li>
                             </ul> */}
-                        
                       </div>
                     </>
                   )}
