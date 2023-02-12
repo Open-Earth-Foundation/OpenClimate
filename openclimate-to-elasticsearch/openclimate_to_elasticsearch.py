@@ -1,16 +1,27 @@
+# openclimate_to_elasticsearch.py -- import and hopefully update data from OC to ES
+# Copyright 2023 Open Earth Foundation.
+# License: Apache-2.0
+
 from elasticsearch import Elasticsearch
 import psycopg2
+import logging
 
 def main(args):
+
+    logging.info(f'Connecting to ElasticSearch node {args.esnode} as user {args.esuser}')
 
     es = Elasticsearch(
         args.esnode,
         basic_auth=(args.esuser, args.espassword)
     )
 
+    logging.info(f'Connecting to PostgreSQL server {args.host} database {args.dbname} as user {args.user}')
+
     with psycopg2.connect(dbname=args.dbname, user=args.user, password=args.password, host=args.host) as conn:
 
         with conn.cursor() as curs:
+
+            logging.info(f'Querying all ActorName rows')
 
             qry = f'''
             SELECT actor_id, name, language, preferred, datasource_id, created, last_updated
@@ -21,6 +32,8 @@ def main(args):
 
             for an in curs:
 
+                logging.info(f'Indexing actor {an.actor_id} name {an.name} in language {an.language}')
+
                 id = an.actor_id + ":" + an.language + ":" + an.name
 
                 doc = dict(actor_id: an.actor_id, name: an.name, language: an.language, preferred: an.preferred)
@@ -30,11 +43,14 @@ def main(args):
 
                 resp = es.index(index=args.esindex, id=id, document=doc)
 
+                logging.debug(f'ElasticSearch response: {resp}')
+
     es.close()
 
 if __name__ == "__main__":
     import argparse
     import os
+    logging.basicConfig(level=logging.INFO)
     parser = argparse.ArgumentParser()
     parser.add_argument('--dbname', help='database name', default=os.environ.get('OPENCLIMATE_DATABASE'))
     parser.add_argument('--user', help='database user', default=os.environ.get('OPENCLIMATE_USER'))
