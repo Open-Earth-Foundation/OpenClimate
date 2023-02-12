@@ -18,7 +18,7 @@ spec:
           - name: OPENCLIMATE_PASSWORD
             value: development
           - name: OPENCLIMATE_ES_NODE
-            value: "https://openclimate-elasticsearch-service:9200/"
+            value: "http://openclimate-elasticsearch-service:9200/"
           - name: OPENCLIMATE_ES_INDEX
             value: actors
           - name: OPENCLIMATE_ES_USER
