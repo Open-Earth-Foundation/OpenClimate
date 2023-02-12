@@ -15,7 +15,6 @@ spec:
       containers:
         - name: openclimate-ui
           image: public.ecr.aws/openearthfoundation/openclimate-ui
-          imagePullPolicy: Never
           ports:
             - containerPort: 80
           env:
