@@ -22,4 +22,8 @@ spec:
             - containerPort: 5601
           env:
             - name: ELASTICSEARCH_URL
-              value: "https://elasticsearch.openearth.dev/"
+              value: "https://openclimate-elasticsearch-service:9200/"
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
