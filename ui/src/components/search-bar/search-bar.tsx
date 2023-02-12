@@ -59,7 +59,7 @@ const SearchBar: FunctionComponent = () => {
             name: actor.name,
             actorId: actor.actor_id,
             type: actor.type,
-            parentPath: actor.root_path_geo
+            parentPath: actor.root_path_geo,
           };
         });
         setSearchedActors(actors);
@@ -91,13 +91,13 @@ const SearchBar: FunctionComponent = () => {
 
     path.map((parent) => {
       if (pathString) {
-        pathString = pathString + ' > '
+        pathString = pathString + " > ";
       }
       pathString = pathString + parent.name.toUpperCase();
-    })
+    });
 
     return pathString;
-  }
+  };
 
   useEffect(() => {
     // cancel previous search results (due to slower server time for <4 letter searches)
@@ -147,7 +147,9 @@ const SearchBar: FunctionComponent = () => {
               >
                 {renderHighlightedName(option.name, inputString)}
                 <div className="dropdown-select-subtitle">
-                  {option?.parentPath?.length > 0 && option.type === 'country' ? renderActorType(option.type): renderParentPath(option.parentPath)}
+                  {option?.parentPath?.length > 0 && option.type === "country"
+                    ? renderActorType(option.type)
+                    : renderParentPath(option.parentPath)}
                 </div>
               </div>
             ))}
