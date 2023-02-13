@@ -89,7 +89,7 @@ const SearchBar: FunctionComponent = () => {
   const renderParentPath = (path: Array<any>) => {
     let pathString = "";
 
-    path.map((parent) => {
+    path?.map((parent) => {
       if (pathString) {
         pathString = pathString + " > ";
       }
@@ -147,9 +147,8 @@ const SearchBar: FunctionComponent = () => {
               >
                 {renderHighlightedName(option.name, inputString)}
                 <div className="dropdown-select-subtitle">
-                  {option?.parentPath?.length > 0 && option.type === "country"
-                    ? renderActorType(option.type)
-                    : renderParentPath(option.parentPath)}
+                  {option?.parentPath?.length > 0 && option.type !== "country"
+                    ? renderParentPath(option.parentPath) : renderActorType(option.type)}
                 </div>
               </div>
             ))}
