@@ -4,6 +4,8 @@ import { ActorName } from "../orm/actorname";
 import { ActorIdentifier } from "../orm/actoridentifier";
 import { BadRequest } from "http-errors";
 import { Op } from "sequelize";
+import {getClient} from '../elasticsearch/elasticsearch';
+import { ActorDataCoverage } from "../orm/actordatacoverage";
 
 const wrap = (fn) => (req, res, next) =>
   fn(req, res, next).catch((err) => next(err));
@@ -72,16 +74,32 @@ router.get(
 
       actor_ids = byName.map((an) => an.actor_id);
     } else if (q) {
-      const [byNameQ, byIdQ] = await Promise.all([
-        ActorName.findAll({ where: { name: { [Op.like]: `%${q}%` } } }),
-        ActorIdentifier.findAll({
-          where: { identifier: { [Op.like]: `%${q}%` } },
-        }),
-      ]);
-      actor_ids = byNameQ
-        .map((an) => an.actor_id)
-        .concat(byIdQ.map((ai) => ai.actor_id))
-        .filter((a, i, l) => l.indexOf(a) === i);
+
+      if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
+        const client = getClient()
+        const ActorIDS = await client.search({
+          index: process.env.ELASTIC_SEARCH_INDEX_NAME,
+          query: {
+            match: {
+              actor_name: q
+            }
+          }
+        })
+
+        actor_ids = ActorIDS.hits.hits.map((res:any)=>res._source.actor_id)
+
+      } else{
+        const [byNameQ, byIdQ] = await Promise.all([
+          ActorName.findAll({ where: { name: { [Op.like]: `%${q}%` } } }),
+          ActorIdentifier.findAll({
+            where: { identifier: { [Op.like]: `%${q}%` } },
+          }),
+        ]);
+        actor_ids = byNameQ
+          .map((an) => an.actor_id)
+          .concat(byIdQ.map((ai) => ai.actor_id))
+          .filter((a, i, l) => l.indexOf(a) === i);
+      }
     }
 
     if (actor_ids.length === 0) {
@@ -90,15 +108,17 @@ router.get(
         data: [],
       });
     } else {
-      const [actors, identifiers, names] = await Promise.all([
+      const [actors, identifiers, names, coverage] = await Promise.all([
         Actor.findAll({ where: { actor_id: actor_ids } }),
         ActorIdentifier.findAll({ where: { actor_id: actor_ids } }),
         ActorName.findAll({ where: { actor_id: actor_ids } }),
+        ActorDataCoverage.findAll({where: { actor_id: actor_ids } })
       ]);
 
       res.status(200).json({
         success: true,
         data: actors.map((actor) => {
+          let pc = coverage.find((c) => c.actor_id === actor.actor_id)
           return {
             actor_id: actor.actor_id,
             name: actor.name,
@@ -107,6 +127,9 @@ router.get(
             datasource_id: actor.datasource_id,
             created: actor.created,
             last_updated: actor.last_updated,
+            has_data: pc ? pc.has_data : null,
+            has_children: pc ? pc.has_children : null,
+            children_have_data: pc ? pc.children_have_data : null,
             names: names
               .filter((n) => n.actor_id == actor.actor_id)
               .map((n) => {

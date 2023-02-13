@@ -393,3 +393,22 @@ it("can get results by q for identifiers", async () => {
       ).toEqual(1);
     });
 });
+
+it("can get data coverage information for search results", async () => {
+  const q = `identifier:1`;
+  return request(app)
+    .get(`/api/v1/search/actor?q=${q}`)
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .expect((res: any) => {
+      expect(res.body.success).toBeTruthy();
+      expect(res.body.data).toBeDefined();
+      expect(res.body.data.length).toBeGreaterThan(0);
+      for (let actor of res.body.data) {
+        expect(actor.has_data).toBeDefined();
+        expect(actor.has_children).toBeDefined();
+        expect(actor.children_have_data).toBeDefined();
+      }
+    })
+  }
+);
