@@ -4,7 +4,7 @@ import { ActorName } from "../orm/actorname";
 import { ActorIdentifier } from "../orm/actoridentifier";
 import { BadRequest } from "http-errors";
 import { Op } from "sequelize";
-import {client} from '../elasticsearch/elasticsearch';
+import {getClient} from '../elasticsearch/elasticsearch';
 import { ActorDataCoverage } from "../orm/actordatacoverage";
 
 const wrap = (fn) => (req, res, next) =>
@@ -76,6 +76,7 @@ router.get(
     } else if (q) {
 
       if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
+        const client = getClient()
         const ActorIDS = await client.search({
           index: process.env.ELASTIC_SEARCH_INDEX_NAME,
           query: {
