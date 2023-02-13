@@ -17,6 +17,7 @@ spec:
       containers:
       - name: openclimate-api
         image: public.ecr.aws/openearthfoundation/openclimate-api:latest
+        # Set to Never for local
         imagePullPolicy: Always
         ports:
         - containerPort: 3100
@@ -56,3 +57,13 @@ spec:
               value: "True"
           initialDelaySeconds: 5
           periodSeconds: 5
+        startupProbe:
+          httpGet:
+            path: /api/second-controller
+            port: 3100
+            httpHeaders:
+            - name: X-Liveness-Probe
+              value: "True"
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 30

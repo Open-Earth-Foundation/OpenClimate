@@ -77,6 +77,17 @@ if __name__ == "__main__":
                  dataDict=publisherDict,
                  mode='w')
 
+    gleifPublisherDict = {
+        'id': 'GLEIF',
+        'name': 'Global Legal Entity Identifier Foundation',
+        'URL': 'https://www.gleif.org/en'
+    }
+
+    write_to_csv(outputDir=outputDir,
+                 tableName='Publisher',
+                 dataDict=gleifPublisherDict,
+                 mode='a')
+
     # ------------------------------------------
     # DataSource table
     # ------------------------------------------
@@ -92,6 +103,19 @@ if __name__ == "__main__":
                  tableName='DataSource',
                  dataDict=datasourceDict,
                  mode='w')
+
+    gleifDataSourceDict = {
+        'datasource_id': 'GLEIF_golden_copy',
+        'name': 'information on Legal Entity Identifiers (LEIs) and related reference data in a ready-to-use format',
+        'publisher': 'GLEIF',
+        'published': '2022-12-16',
+        'URL': 'https://www.gleif.org/en/lei-data/gleif-golden-copy/download-the-golden-copy#/'
+    }
+
+    write_to_csv(outputDir=outputDir,
+                 tableName='DataSource',
+                 dataDict=gleifDataSourceDict,
+                 mode='a')
 
     # ------------------------------------------
     # Target table

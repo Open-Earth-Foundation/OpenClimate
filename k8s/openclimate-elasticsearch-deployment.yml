@@ -15,30 +15,41 @@ spec:
         app: openclimate-elasticsearch
     spec:
       volumes:
-          - name: openclimate-elasticsearch-data
-            persistentVolumeClaim:
-              claimName: openclimate-elasticsearch-persistentvolumeclaim
+        - name: openclimate-elasticsearch-data
+          persistentVolumeClaim:
+            claimName: openclimate-elasticsearch-persistentvolumeclaim
+      initContainers:
+        - name: take-data-dir-ownership
+          image: alpine:3
+          command:
+          - chown
+          - -R
+          - 1000:0
+          - /usr/share/elasticsearch/data
+          volumeMounts:
+            - mountPath: "/usr/share/elasticsearch/data"
+              name: openclimate-elasticsearch-data
       containers:
-      - name: openclimate-elasticsearch
-        image: docker.elastic.co/elasticsearch/elasticsearch:8.6.1
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 9200
-        env:
-        - name: node.name
-          value: oces01
-        - name: ELASTIC_PASSWORD
-          value: "manor claw track near buck bonus"
-        - name: xpack.security.enabled
-          value: "false"
-        - name: cluster.name
-          value: oces
-        - name: discovery.type
-          value: single-node
-        resources:
-          limits:
-            memory: "1024Mi"
-            cpu: "1000m"
-        volumeMounts:
-          - mountPath: "/usr/share/elasticsearch/data"
-            name: openclimate-elasticsearch-data
+        - name: openclimate-elasticsearch
+          image: docker.elastic.co/elasticsearch/elasticsearch:8.6.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9200
+          env:
+            - name: node.name
+              value: oces01
+            - name: ELASTIC_PASSWORD
+              value: "manor claw track near buck bonus"
+            - name: xpack.security.enabled
+              value: "false"
+            - name: cluster.name
+              value: oces
+            - name: discovery.type
+              value: single-node
+          resources:
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
+          volumeMounts:
+            - mountPath: "/usr/share/elasticsearch/data"
+              name: openclimate-elasticsearch-data

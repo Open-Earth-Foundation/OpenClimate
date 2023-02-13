@@ -321,7 +321,8 @@ def get_fieldnames(tableName=None, schema_json=None):
     """
 
     if schema_json is None:
-        schema_json = '/Users/luke/Documents/jupyterlab/OpenClimate/openClimate_schema.json'
+        schema_json = '../resources/openClimate_schema.json'
+        schema_json = os.path.abspath(schema_json)
 
     assert isinstance(schema_json, str), (
         f"schema_json must be a string; not a {type(schema_json)}"
@@ -329,7 +330,7 @@ def get_fieldnames(tableName=None, schema_json=None):
 
     # switcher stuff needs to be a JSON
     switcher = read_json(
-        fl='/Users/luke/Documents/jupyterlab/OpenClimate/openClimate_schema.json')
+        fl=schema_json)
     return switcher.get(tableName.lower(), f"{tableName} not in {list(switcher.keys())}")
 
 

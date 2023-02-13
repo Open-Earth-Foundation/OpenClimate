@@ -1,17 +1,16 @@
-name: Push Logstash with PostgreSQL to ECR
+name: Push OpenClimate-to-ElasticSearch indexer to ECR
 
 on:
   push:
     paths:
-      - logstash-postgresql/**
+      - openclimate-to-elasticsearch/**
     branches: [ "develop" ]
   pull_request:
     paths:
-      - logstash-postgresql/**
+      - openclimate-to-elasticsearch/**
     branches: [ "develop" ]
 
 jobs:
-
   pushToECR:
     runs-on: ubuntu-latest
     steps:
@@ -24,12 +23,13 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/openearthfoundation
 
-    - name: Pushing Logstash with PostgreSQL to ECR
+    - name: Pushing OC2ES to ECR
       env:
         VERSION: ${{ github.sha }}
-        IMAGE: public.ecr.aws/openearthfoundation/logstash-postgresql
+        IMAGE: public.ecr.aws/openearthfoundation/openclimate-to-elasticsearch
+
       run: |
-        docker build -t $IMAGE:$VERSION logstash-postgresql
+        docker build -t $IMAGE:$VERSION openclimate-to-elasticsearch
         docker tag $IMAGE:$VERSION $IMAGE:latest
         docker push $IMAGE:$VERSION
         docker push $IMAGE:latest

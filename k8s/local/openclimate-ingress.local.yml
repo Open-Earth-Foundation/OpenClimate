@@ -9,8 +9,7 @@ spec:
     - localhost
     secretName: localhost-secret
   rules:
-    - host: localhost
-      http:
+    - http:
         paths:
           - path: /api
             pathType: Prefix
@@ -26,3 +25,10 @@ spec:
                 name: openclimate-ui-service
                 port:
                   number: 80
+          - path: /kibana
+            pathType: Prefix
+            backend:
+              service:
+                name: openclimate-kibana-service
+                port:
+                  number: 5601

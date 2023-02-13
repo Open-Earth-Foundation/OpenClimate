@@ -1,0 +1,29 @@
+# openclimate-import-zip-job.yml
+# Runs a single task that imports all the processed harmonized data in the develop
+# branch by downloading it from GitHub. Kind of crazy but it just might work.
+# It should work on both remote and local.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: openclimate-import-zip-
+spec:
+  template:
+    spec:
+      containers:
+      - name: openclimate-import
+        image: public.ecr.aws/openearthfoundation/openclimate-import:latest
+        env:
+          - name: OPENCLIMATE_DATABASE
+            value: development
+          - name: OPENCLIMATE_HOST
+            value: postgresql-service
+          - name: OPENCLIMATE_USER
+            value: development
+          - name: OPENCLIMATE_PASSWORD
+            value: development
+          - name: ZIP_FILE_URL
+            value: https://github.com/Open-Earth-Foundation/OpenClimate/archive/refs/heads/develop.zip
+          - name: PROCESSED_DATA_DIR
+            value: OpenClimate-develop/harmonize/data/processed/
+      restartPolicy: OnFailure
+  backoffLimit: 4

@@ -34,37 +34,38 @@ interface Props {
 const EmissionsWidget: FunctionComponent<Props> = (props) => {
   const { current } = props;
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
-  const [toggleDownloadAsMenu, setToggleDownloadAsMenu] =
-    useState<boolean>(false);
-  const [toggleExportAsMenu, setToggleExportAsMenu] = useState<boolean>(false);
+  // Uncomment when adding Export As
+  // const [toggleDownloadAsMenu, setToggleDownloadAsMenu] =
+  //   useState<boolean>(false);
+  // const [toggleExportAsMenu, setToggleExportAsMenu] = useState<boolean>(false);
 
   const setMenuState = (event: any) => {
     event.preventDefault();
     setToggleMenu((e) => !e);
 
-    if (toggleExportAsMenu) {
-      setToggleExportAsMenu(false);
-    }
+    //   if (toggleExportAsMenu) {
+    //     setToggleExportAsMenu(false);
+    //   }
 
-    if (toggleDownloadAsMenu) {
-      setToggleDownloadAsMenu(false);
-    }
-  };
+    //   if (toggleDownloadAsMenu) {
+    //     setToggleDownloadAsMenu(false);
+    //   }
+    // };
 
-  const setDownloadMenuState = (event: any) => {
-    event.preventDefault();
-    setToggleDownloadAsMenu((e) => !e);
-    if (toggleExportAsMenu) {
-      setToggleExportAsMenu(false);
-    }
-  };
+    // const setDownloadMenuState = (event: any) => {
+    //   event.preventDefault();
+    //   setToggleDownloadAsMenu((e) => !e);
+    //   if (toggleExportAsMenu) {
+    //     setToggleExportAsMenu(false);
+    //   }
+    // };
 
-  const setExportMenuState = (event: any) => {
-    event.preventDefault();
-    setToggleExportAsMenu((e) => !e);
-    if (toggleDownloadAsMenu) {
-      setToggleDownloadAsMenu(false);
-    }
+    // const setExportMenuState = (event: any) => {
+    //   event.preventDefault();
+    //   setToggleExportAsMenu((e) => !e);
+    //   if (toggleDownloadAsMenu) {
+    //     setToggleDownloadAsMenu(false);
+    //   }
   };
 
   const useStyles = makeStyles(() => ({
@@ -283,6 +284,9 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                     title={
                       <div className="tooltip">Download or Export Data</div>
                     }
+                    sx={{
+                      display: toggleMenu ? "hidden" : "inline",
+                    }}
                     arrow
                     placement="right"
                   >
@@ -294,37 +298,37 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                     <>
                       <div className="download_data-menu">
                         <ul className="menu-item">
+                          <li>Download as CSV</li>
+                          <li>Download as JSON</li>
+
+                          {/* Add back when exporting is added
                           <li onClick={setDownloadMenuState}>
                             <span>Download as...</span>
                             <div className="menu-item-arrow">
                               <ArrowForwardIos className="menu-item-arrow-icon" />
                             </div>
                           </li>
-                          <li onClick={setExportMenuState}>
+                           
+                           <li onClick={setExportMenuState}>
                             <span>Export as...</span>
                             <div className="menu-item-arrow">
                               <ArrowForwardIos className="menu-item-arrow-icon" />
                             </div>
-                          </li>
+                          </li> */}
                         </ul>
-                        {toggleDownloadAsMenu && (
-                          <>
-                            <ul className="menu-item sub-menu">
+
+                        {/* <ul className="menu-item sub-menu">
                               <li>Download as CSV</li>
-                              <li>Download as PDF</li>
+                               <li>Download as PDF</li>
+                              <li>Download as XML</li> 
                               <li>Download as JSON</li>
-                              <li>Download as CSV</li>
                             </ul>
-                          </>
-                        )}
-                        {toggleExportAsMenu && (
-                          <>
+                        
+                        
                             <ul className="menu-item sub-menu exportAs">
                               <li>.JPG</li>
                               <li>.PNG</li>
-                            </ul>
-                          </>
-                        )}
+                            </ul> */}
                       </div>
                     </>
                   )}
