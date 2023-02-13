@@ -5,6 +5,8 @@ import "./search-bar.page.scss";
 import { Search } from "@mui/icons-material";
 import { useHistory, useLocation } from "react-router-dom";
 import { renderHighlightedName } from "../util/strings";
+import { renderDataMissingDropdown } from "../util/showDataMissingDropdown";
+
 
 let controller: AbortController | null = null;
 
@@ -12,6 +14,7 @@ const SearchBar: FunctionComponent = () => {
   const [cardExpanded, setCardExpanded] = useState(false);
   const [inputString, setInputString] = useState<string>("");
   const [searchedActors, setSearchedActors] = useState<Array<any>>();
+  const [hoverActorIndex, setHoverActorIndex] = useState<number>(-1);
   const history = useHistory();
   const location = useLocation();
   const inputComponentRef = useRef<any>(null);
@@ -59,6 +62,7 @@ const SearchBar: FunctionComponent = () => {
             name: actor.name,
             actorId: actor.actor_id,
             type: actor.type,
+            data: actor.has_data,
             parentPath: actor.root_path_geo,
           };
         });
@@ -126,7 +130,7 @@ const SearchBar: FunctionComponent = () => {
             <div className="dropdown">
               <Search />
               <input
-                className="dropdown-text"
+                className={inputString ? "dropdown-text" : "dropdown-text-placeholder"}
                 value={inputString}
                 ref={inputComponentRef}
                 onClick={() => searchedActors?.length && setCardExpanded(true)}
@@ -144,11 +148,19 @@ const SearchBar: FunctionComponent = () => {
                 className="dropdown-select"
                 key={`dropdown-item-${index}`}
                 onClick={() => onActorClick(option)}
+                onMouseEnter={() => setHoverActorIndex(index)}
+                onMouseLeave={() => setHoverActorIndex(-1)}
               >
-                {renderHighlightedName(option.name, inputString)}
-                <div className="dropdown-select-subtitle">
-                  {option?.parentPath?.length > 0 && option.type !== "country"
-                    ? renderParentPath(option.parentPath) : renderActorType(option.type)}
+                <div>
+                  {renderHighlightedName(option.name, inputString)}
+                  <div className="dropdown-select-subtitle">
+                    {
+                      option?.parentPath?.length > 0 && option.type !== "country" ? renderParentPath(option.parentPath) : renderActorType(option.type)
+                    }
+                  </div>
+                </div>
+                <div className="dropdown-select-missing-container">
+                  {renderDataMissingDropdown(hoverActorIndex === index, option?.data === true)}
                 </div>
               </div>
             ))}

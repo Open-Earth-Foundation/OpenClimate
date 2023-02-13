@@ -7,13 +7,11 @@ import {
   ArrowDropDown,
   ArrowDropUp,
   HighlightOff,
-  ArrowForwardIos,
   SwapVert,
 } from "@mui/icons-material";
 import { FilterTypes } from "../../../api/models/review/dashboard/filterTypes";
 import { renderHighlightedName } from "../../util/strings";
-import { ReactComponent as DatabaseWarningEmpty } from "../../../assets/database-warning.svg";
-import { ReactComponent as DatabaseWarningEmptyFilled } from "../../../assets/database-warning-white.svg";
+import { renderDataMissingDropdown } from "../../util/showDataMissingDropdown";
 
 interface IProps {
   label: string;
@@ -140,18 +138,9 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                       ? renderHighlightedName(option.name, inputString)
                       : option.name}
                   </div>
-                  {hoveredOptionIndex === index && option?.data === false ? (
-                    <div className="dropdown-select-missing-container">
-                      <div className={"dropdown-select-missing-text"}>
-                        MISSING DATA
-                      </div>
-                      <DatabaseWarningEmptyFilled className="dropdown-select-icon" />
-                    </div>
-                  ) : (
-                    !option.data && (
-                      <DatabaseWarningEmpty className="dropdown-select-icon" />
-                    )
-                  )}
+                  <div className="dropdown-select-missing-container">
+                    { renderDataMissingDropdown(hoveredOptionIndex === index, option?.data === true) }
+                  </div>
                 </div>
               ))}
           </div>

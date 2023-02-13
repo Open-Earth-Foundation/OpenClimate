@@ -131,7 +131,9 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: space-between;
     }
+    
     .dropdown-select-missing-text {
         white-space: nowrap;
         color: var(--white-color);
