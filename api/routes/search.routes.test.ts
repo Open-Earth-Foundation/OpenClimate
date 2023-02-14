@@ -8,6 +8,9 @@ import { ActorName } from "../orm/actorname";
 
 import { app } from "../app";
 import request from "supertest";
+import { getClient } from "../elasticsearch/elasticsearch";
+
+const client = getClient()
 
 const disconnect = require("../orm/init").disconnect;
 
@@ -94,6 +97,19 @@ async function cleanup() {
     where: { datasource_id: datasourceProps.datasource_id },
   });
   await Publisher.destroy({ where: { id: publisherProps.id } });
+
+  // clean up elastic search indices
+  if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
+    if(client) {
+      await client.indices?.delete({
+        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST
+      }).then((res:any)=> {
+        console.log("Successful query!")
+        console.log(JSON.stringify(res, null, 4))
+      });
+    }
+  }
+
   return;
 }
 
@@ -114,6 +130,30 @@ beforeAll(async () => {
     ActorName.create(name2_2),
   ]);
 
+  
+// index to elastic search
+if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
+  
+  if(client){
+    await client.index({
+      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+      body: name1_1
+    });
+    await client.index({
+      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+      body: name1_2
+    });
+    await client.index({
+      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+      body: name2_1
+    });
+    await client.index({
+      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+      body: name2_2
+    });
+  }
+}
+
   const MAX = 2;
 
   for (let i of Array(MAX).keys()) {
@@ -129,7 +169,7 @@ beforeAll(async () => {
       identifier: `identifier:${i + MAX}`,
       datasource_id: datasourceProps.datasource_id,
     });
-  }
+  } 
 });
 
 afterAll(async () => {
@@ -412,3 +452,23 @@ it("can get data coverage information for search results", async () => {
     })
   }
 );
+
+
+it("can get the right indexed actor", async () =>{
+  const actorName = "Country 1"
+    
+  if(client){
+    const res = await client.search({
+      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+      query: {
+       match: {
+        actor_name: actorName
+       }
+      }
+    })
+    expect(actorName).toEqual(String);
+    expect(res.hits.hits[0]._source).toEqual({
+      name1_1
+    })
+  } 
+});
