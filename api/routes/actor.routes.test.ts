@@ -920,3 +920,57 @@ it("returns target initiative", async () =>
       expect(typeof initiative.URL).toEqual("string");
       expect(initiative.URL).toEqual(initiativeProps.URL);
     }));
+
+it("can get actor emissions in json", async () =>
+  request(app)
+    .get(`/api/v1/actor/${country1Props.actor_id}/emissions`)
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .expect((res: any) => {
+      const emissions = res.body.data;
+
+      const emissions1 = emissions[datasource1Props.datasource_id];
+
+      expect(emissions1.tags).toBeDefined();
+      expect(emissions1.tags.length).toEqual(4);
+      expect(emissions1.tags[0].tag_id).toBeDefined();
+      expect(emissions1.tags[0].tag_name).toBeDefined();
+      expect(emissions1.data.length).toEqual(20);
+
+      const ea1992 = emissions1.data.find((ea) => ea.year == 1992);
+
+      expect(ea1992).toBeDefined();
+      expect(ea1992.tags).toBeDefined();
+      expect(ea1992.tags.length).toEqual(1);
+      expect(ea1992.tags[0].tag_id).toBeDefined();
+      expect(ea1992.tags[0].tag_name).toBeDefined();
+
+      expect(emissions[datasource2Props.datasource_id]).toBeDefined();
+
+      const emissions2 = emissions[datasource2Props.datasource_id];
+
+      expect(emissions2).toBeDefined();
+      expect(emissions2.tags).toBeDefined();
+      expect(emissions2.tags.length).toEqual(2);
+      expect(emissions2.tags[0].tag_id).toBeDefined();
+      expect(emissions2.tags[0].tag_name).toBeDefined();
+
+      expect(emissions2.data).toBeDefined();
+      expect(emissions2.data.length).toEqual(20);
+
+      // 2002 is divisible by 7 and 11
+
+      const ea2002 = emissions2.data.find((ea) => ea.year == 2002);
+
+      expect(ea2002).toBeDefined();
+      expect(ea2002.tags).toBeDefined();
+      expect(ea2002.tags.length).toEqual(1);
+      expect(ea2002.tags[0].tag_id).toBeDefined();
+      expect(ea2002.tags[0].tag_name).toBeDefined();
+    }));
+
+it("gets 404 when actor id is nonexistent", async () =>
+  request(app)
+    .get(`/api/v1/actor/${ACTOR_DNE}/emissions`)
+    .expect(404)
+);

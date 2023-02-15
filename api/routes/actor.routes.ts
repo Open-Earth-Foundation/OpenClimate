@@ -276,4 +276,86 @@ router.get(
   })
 );
 
+router.get(
+  "/api/v1/actor/:actor_id/emissions",
+  wrap(async (req: any, res: any) => {
+    const actor_id: string = req.params.actor_id;
+
+    const actor = await Actor.findByPk(actor_id);
+
+    if (!actor) {
+      throw new NotFound(`No actor found with actor ID ${actor_id}`);
+    }
+
+    const emissions = await EmissionsAgg.findAll({
+      where: { actor_id: actor_id },
+      order: [["year", "desc"]],
+    });
+
+    // Get unique datasources
+
+    const unique = (v, i, a) => a.indexOf(v) == i;
+
+    const dataSourceIDs = emissions
+      .map((ea) => ea.datasource_id)
+      .filter(unique);
+
+    const [dataSources, dataSourceTags, emissionsAggTags] =
+      await Promise.all([
+        DataSource.findAll({ where: { datasource_id: dataSourceIDs } }),
+        DataSourceTag.findAll({ where: { datasource_id: dataSourceIDs } }),
+        EmissionsAggTag.findAll({
+          where: { emissions_id: emissions.map((e) => e.emissions_id) },
+        })
+      ]);
+
+    // Extract unique tag_ids
+
+    const tagIDs = dataSourceTags
+      .map((dst) => dst.tag_id)
+      .filter(unique)
+      .concat(emissionsAggTags.map((eat) => eat.tag_id).filter(unique));
+
+    const tags = await Tag.findAll({
+      where: { tag_id: tagIDs },
+    });
+
+    const emissionMap = {};
+    const emissionSources = dataSources.filter(
+      (ds) =>
+        -1 !== emissions.findIndex((ea) => ea.datasource_id == ds.datasource_id)
+    );
+
+    emissionSources.forEach((ds) => {
+      emissionMap[ds.datasource_id] = {
+        datasource_id: ds.datasource_id,
+        name: ds.name,
+        publisher: ds.publisher,
+        published: ds.published,
+        URL: ds.URL,
+        tags: dataSourceTags
+          .filter((dst) => dst.datasource_id == ds.datasource_id)
+          .map((dst) => tags.find((tag) => tag.tag_id == dst.tag_id)),
+        data: [],
+      };
+    });
+
+    for (let emission of emissions) {
+      emissionMap[emission.datasource_id].data.push({
+        emissions_id: emission.emissions_id,
+        total_emissions: parseInt(String(emission.total_emissions), 10),
+        year: emission.year,
+        tags: emissionsAggTags
+          .filter((eat) => eat.emissions_id == emission.emissions_id)
+          .map((eat) => tags.find((tag) => tag.tag_id == eat.tag_id)),
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: emissionMap,
+    });
+  })
+);
+
 export default router;
