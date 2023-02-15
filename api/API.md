@@ -75,6 +75,21 @@ Standard output. `data` is an array of JSON objects, ordered by `name` property,
 - `has_children`: boolean; says whether there are parts for this actor. Null if unknown.
 - `children_have_data`: boolean; says whether there is data for the parts of this actor. Null if unknown.
 
+### Actor path /api/v1/actor/{actor_id}/path
+
+Returns the path from the root actor 'EARTH' to the Actor, inclusively. The path is in order from the most
+specific actor to the most general, for example, searching for Montreal will result in: Montreal, Quebec,
+Canada, Earth.
+
+#### Output
+
+Standard output. `data` is an array of JSON objects, ordered by hierarchy from the smallest to the largest,
+including the actor.
+
+- `actor_id`: ID for the actor; good for feeding to this or other API endpoints.
+- `name`: name of the actor; good for showing to humans.
+- `type`: type of the actor; one of 'planet', 'country', 'adm1', 'adm2', 'city', 'organization', 'site'.
+
 ### Actor overview /api/v1/actor/{actor_id}
 
 Returns climate-related data, including historical data, for an actor.

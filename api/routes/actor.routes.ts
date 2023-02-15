@@ -276,4 +276,31 @@ router.get(
   })
 );
 
+
+// Get all parts of the actor
+
+router.get(
+  "/api/v1/actor/:actor_id/path",
+  wrap(async (req: any, res: any) => {
+    const actor_id: string = req.params.actor_id;
+
+    const path = await Actor.path(actor_id)
+
+    if (path.length == 0) {
+      throw new NotFound(`No actor found with actor ID ${actor_id}`);
+    }
+
+    res.status(200).json({
+      success: true,
+      data: path.map((actor) => {
+        return {
+          actor_id: actor.actor_id,
+          name: actor.name,
+          type: actor.type
+        };
+      }),
+    });
+  })
+);
+
 export default router;

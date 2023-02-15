@@ -146,6 +146,7 @@ const country3Props = {
   type: "country",
   name: "Fake country actor from actor.routes.test.ts",
   datasource_id: datasource1Props.datasource_id,
+  is_part_of: "EARTH"
 };
 
 const region1Props = {
@@ -919,4 +920,31 @@ it("returns target initiative", async () =>
       expect(initiative.URL).toBeDefined();
       expect(typeof initiative.URL).toEqual("string");
       expect(initiative.URL).toEqual(initiativeProps.URL);
+    }));
+
+it("gets a 404 on path to non-existent actor", async () =>
+request(app)
+  .get(`/api/v1/actor/${ACTOR_DNE}/path`)
+  .expect(404))
+
+it("can get path to the actor", async () =>
+  request(app)
+    .get(`/api/v1/actor/${city3Props.actor_id}/path`)
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .expect((res: any) => {
+      expect(res.body.data).toBeDefined();
+      const data = res.body.data;
+      expect(data.length).toBeDefined();
+      expect(data.length).toEqual(5);
+      for (let actor of data) {
+        expect(actor.actor_id).toBeDefined()
+        expect(actor.name).toBeDefined()
+        expect(actor.type).toBeDefined()
+      }
+      expect(data[0].actor_id).toEqual(city3Props.actor_id)
+      expect(data[1].actor_id).toEqual(region2Props.actor_id)
+      expect(data[2].actor_id).toEqual(region1Props.actor_id)
+      expect(data[3].actor_id).toEqual(country3Props.actor_id)
+      expect(data[4].actor_id).toEqual('EARTH')
     }));
