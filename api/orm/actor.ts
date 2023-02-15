@@ -2,6 +2,7 @@
 
 import {
   DataTypes,
+  QueryTypes,
   Model,
   InferAttributes,
   InferCreationAttributes,
@@ -26,6 +27,29 @@ export class Actor extends Model<
   declare datasource_id: string; /* Where the record came from */
   declare created: CreationOptional<Date>;
   declare last_updated: CreationOptional<Date>;
+  static async path(actor_id:string) : Promise<Actor[]> {
+    const qry = `
+    WITH RECURSIVE actor_path(actor_id, type, name, icon, hq, is_part_of, is_owned_by,
+       datasource_id, created, last_updated)
+    AS (SELECT actor_id, type, name, icon, hq, is_part_of, is_owned_by, datasource_id,
+          created, last_updated
+        FROM "Actor"
+        WHERE actor_id = :actor_id
+        UNION ALL
+        SELECT a.actor_id, a.type, a.name, a.icon, a.hq, a.is_part_of, a.is_owned_by,
+          a.datasource_id, a.created, a.last_updated
+        FROM "Actor" a, actor_path ap
+        WHERE a.actor_id = ap.is_part_of)
+    SELECT actor_id, type, name, icon, hq, is_part_of, is_owned_by,
+      datasource_id, created, last_updated
+    FROM actor_path
+    `
+    return sequelize.query(qry, {
+      type: QueryTypes.SELECT,
+      model: Actor,
+      replacements: { "actor_id": actor_id }
+    });
+  }
 }
 
 Actor.init(
