@@ -6,11 +6,7 @@ const passport = require("passport");
 const session = require("express-session");
 import { Utils } from "./util";
 const expressWinston = require("express-winston");
-import {
-  BadRequest,
-  InternalServerError,
-  NotFound,
-} from "http-errors";
+import { BadRequest, InternalServerError, NotFound } from "http-errors";
 
 // Envision imports
 import schemaRoutes from "./routes/schema.routes";
@@ -523,9 +519,9 @@ app.get(
 app.use(
   "/",
   wrap(async (req, res) => {
-    const name = "openclimate-hub-controller"
-    const version = (name in process.versions) ? process.versions[name] : null
-    res.status(200).send({ status: "healthy", name: name, version: version});
+    const name = "openclimate-hub-controller";
+    const version = name in process.versions ? process.versions[name] : null;
+    res.status(200).send({ status: "healthy", name: name, version: version });
   })
 );
 
@@ -545,13 +541,11 @@ app.use((err, req, res, next) => {
       .status(500)
       .json({ success: false, message: "A server error occurred" });
   } else {
-    res
-      .status(500)
-      .json({
-        success: false,
-        name: err.name,
-        message: err.message,
-        trace: err.trace,
-      });
+    res.status(500).json({
+      success: false,
+      name: err.name,
+      message: err.message,
+      trace: err.trace,
+    });
   }
 });

@@ -283,7 +283,7 @@ router.get(
   wrap(async (req: any, res: any) => {
     const actor_id: string = req.params.actor_id;
 
-    const path = await Actor.path(actor_id)
+    const path = await Actor.path(actor_id);
 
     if (path.length == 0) {
       throw new NotFound(`No actor found with actor ID ${actor_id}`);
@@ -295,7 +295,7 @@ router.get(
         return {
           actor_id: actor.actor_id,
           name: actor.name,
-          type: actor.type
+          type: actor.type,
         };
       }),
     });
@@ -328,14 +328,13 @@ router.get(
       .map((ea) => ea.datasource_id)
       .filter(unique);
 
-    const [dataSources, dataSourceTags, emissionsAggTags] =
-      await Promise.all([
-        DataSource.findAll({ where: { datasource_id: dataSourceIDs } }),
-        DataSourceTag.findAll({ where: { datasource_id: dataSourceIDs } }),
-        EmissionsAggTag.findAll({
-          where: { emissions_id: emissions.map((e) => e.emissions_id) },
-        })
-      ]);
+    const [dataSources, dataSourceTags, emissionsAggTags] = await Promise.all([
+      DataSource.findAll({ where: { datasource_id: dataSourceIDs } }),
+      DataSourceTag.findAll({ where: { datasource_id: dataSourceIDs } }),
+      EmissionsAggTag.findAll({
+        where: { emissions_id: emissions.map((e) => e.emissions_id) },
+      }),
+    ]);
 
     // Extract unique tag_ids
 
@@ -382,7 +381,7 @@ router.get(
     res.attachment(`${actor_id}_emissions.json`).status(200).json({
       success: true,
       data: emissionMap,
-    })
+    });
   })
 );
 

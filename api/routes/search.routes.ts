@@ -4,7 +4,7 @@ import { ActorName } from "../orm/actorname";
 import { ActorIdentifier } from "../orm/actoridentifier";
 import { BadRequest } from "http-errors";
 import { Op } from "sequelize";
-import {getClient} from '../elasticsearch/elasticsearch';
+import { getClient } from "../elasticsearch/elasticsearch";
 import { ActorDataCoverage } from "../orm/actordatacoverage";
 
 const wrap = (fn) => (req, res, next) =>
@@ -74,21 +74,19 @@ router.get(
 
       actor_ids = byName.map((an) => an.actor_id);
     } else if (q) {
-
-      if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
-        const client = getClient()
+      if (process.env.ELASTIC_SEARCH_ENABLED === "yes") {
+        const client = getClient();
         const ActorIDS = await client.search({
           index: process.env.ELASTIC_SEARCH_INDEX_NAME,
           query: {
             match: {
-              actor_name: q
-            }
-          }
-        })
+              actor_name: q,
+            },
+          },
+        });
 
-        actor_ids = ActorIDS.hits.hits.map((res:any)=>res._source.actor_id)
-
-      } else{
+        actor_ids = ActorIDS.hits.hits.map((res: any) => res._source.actor_id);
+      } else {
         const [byNameQ, byIdQ] = await Promise.all([
           ActorName.findAll({ where: { name: { [Op.like]: `%${q}%` } } }),
           ActorIdentifier.findAll({
@@ -112,16 +110,16 @@ router.get(
         Actor.findAll({ where: { actor_id: actor_ids } }),
         ActorIdentifier.findAll({ where: { actor_id: actor_ids } }),
         ActorName.findAll({ where: { actor_id: actor_ids } }),
-        ActorDataCoverage.findAll({where: { actor_id: actor_ids } })
+        ActorDataCoverage.findAll({ where: { actor_id: actor_ids } }),
       ]);
 
-      const paths = await Actor.paths(actor_ids)
+      const paths = await Actor.paths(actor_ids);
 
       res.status(200).json({
         success: true,
         data: actors.map((actor, i) => {
-          let pc = coverage.find((c) => c.actor_id === actor.actor_id)
-          let path = paths[i].slice(1)
+          let pc = coverage.find((c) => c.actor_id === actor.actor_id);
+          let path = paths[i].slice(1);
           return {
             actor_id: actor.actor_id,
             name: actor.name,
@@ -137,8 +135,8 @@ router.get(
               return {
                 actor_id: ancestor.actor_id,
                 name: ancestor.name,
-                type: ancestor.type
-              }
+                type: ancestor.type,
+              };
             }),
             names: names
               .filter((n) => n.actor_id == actor.actor_id)

@@ -75,23 +75,19 @@ exports.up = async function (db) {
                   data.baseline_emissions !== "NA" &&
                   data.baseline_year !== "NA"
                 ) {
-                  gcom
-                    .get(data.GCoM_ID)
-                    .emissions.push({
-                      year: parseInt(data.baseline_year),
-                      emissions: parseFloat(data.baseline_emissions),
-                    });
+                  gcom.get(data.GCoM_ID).emissions.push({
+                    year: parseInt(data.baseline_year),
+                    emissions: parseFloat(data.baseline_emissions),
+                  });
                 }
                 if (
                   data.total_co2_emissions !== "NA" &&
                   data.total_co2_emissions_year !== "NA"
                 ) {
-                  gcom
-                    .get(data.GCoM_ID)
-                    .emissions.push({
-                      year: parseInt(data.total_co2_emissions_year),
-                      emissions: parseFloat(data.total_co2_emissions),
-                    });
+                  gcom.get(data.GCoM_ID).emissions.push({
+                    year: parseInt(data.total_co2_emissions_year),
+                    emissions: parseFloat(data.total_co2_emissions),
+                  });
                 }
               }
               if (
@@ -100,15 +96,13 @@ exports.up = async function (db) {
                 data.baseline_emissions !== "NA" &&
                 data.target_year !== "NA"
               ) {
-                gcom
-                  .get(data.GCoM_ID)
-                  .pledges.push({
-                    baseline_year: parseInt(data.baseline_year),
-                    baseline_emissions: parseFloat(data.baseline_emissions),
-                    target_year: parseInt(data.target_year),
-                    percent_reduction: parseInt(data.percent_reduction),
-                    type: data.ghg_reduction_target_type,
-                  });
+                gcom.get(data.GCoM_ID).pledges.push({
+                  baseline_year: parseInt(data.baseline_year),
+                  baseline_emissions: parseFloat(data.baseline_emissions),
+                  target_year: parseInt(data.target_year),
+                  percent_reduction: parseInt(data.percent_reduction),
+                  type: data.ghg_reduction_target_type,
+                });
               }
             }
           })

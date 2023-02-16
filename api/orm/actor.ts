@@ -27,7 +27,7 @@ export class Actor extends Model<
   declare datasource_id: string; /* Where the record came from */
   declare created: CreationOptional<Date>;
   declare last_updated: CreationOptional<Date>;
-  static async path(actor_id:string) : Promise<Actor[]> {
+  static async path(actor_id: string): Promise<Actor[]> {
     const qry = `
     WITH RECURSIVE actor_path(actor_id, type, name, icon, hq, is_part_of, is_owned_by,
        datasource_id, created, last_updated)
@@ -43,14 +43,14 @@ export class Actor extends Model<
     SELECT actor_id, type, name, icon, hq, is_part_of, is_owned_by,
       datasource_id, created, last_updated
     FROM actor_path
-    `
+    `;
     return sequelize.query(qry, {
       type: QueryTypes.SELECT,
       model: Actor,
-      replacements: { "actor_id": actor_id }
+      replacements: { actor_id: actor_id },
     });
   }
-  static async paths(actor_ids:string[]) : Promise<Actor[][]> {
+  static async paths(actor_ids: string[]): Promise<Actor[][]> {
     const qry = `
     WITH RECURSIVE actor_path(actor_id, type, name, icon, hq, is_part_of, is_owned_by,
        datasource_id, created, last_updated)
@@ -66,22 +66,22 @@ export class Actor extends Model<
     SELECT actor_id, type, name, icon, hq, is_part_of, is_owned_by,
       datasource_id, created, last_updated
     FROM actor_path
-    `
-    const actors:Actor[] = await sequelize.query(qry, {
+    `;
+    const actors: Actor[] = await sequelize.query(qry, {
       type: QueryTypes.SELECT,
       model: Actor,
-      replacements: { "actor_ids": actor_ids }
+      replacements: { actor_ids: actor_ids },
     });
 
     return actor_ids.map((actor_id) => {
-      let actor = actors.find((a) => a.actor_id == actor_id)
-      let l:Actor[] = [actor]
+      let actor = actors.find((a) => a.actor_id == actor_id);
+      let l: Actor[] = [actor];
       while (actor.is_part_of) {
-        actor = actors.find((a) => a.actor_id == actor.is_part_of)
-        l.push(actor)
+        actor = actors.find((a) => a.actor_id == actor.is_part_of);
+        l.push(actor);
       }
-      return l
-    })
+      return l;
+    });
   }
 }
 

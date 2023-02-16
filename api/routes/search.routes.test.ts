@@ -87,7 +87,7 @@ const country3Props = {
   type: "country",
   name: "Fake country actor 2 from search.routes.test.ts",
   datasource_id: datasourceProps.datasource_id,
-  is_part_of: "EARTH"
+  is_part_of: "EARTH",
 };
 
 const region2Props = {
@@ -163,12 +163,14 @@ beforeAll(async () => {
   await Actor.create(region4Props);
   await Actor.create(city2Props);
 
-  const defaultName = (props) => { return {
-    actor_id: props.actor_id,
-    name: props.name,
-    language: 'en',
-    datasource_id: datasourceProps.datasource_id
-  } }
+  const defaultName = (props) => {
+    return {
+      actor_id: props.actor_id,
+      name: props.name,
+      language: "en",
+      datasource_id: datasourceProps.datasource_id,
+    };
+  };
 
   await Promise.all([
     ActorName.create(name1_1),
@@ -180,7 +182,7 @@ beforeAll(async () => {
     ActorName.create(defaultName(region3Props)),
     ActorName.create(defaultName(city1Props)),
     ActorName.create(defaultName(region4Props)),
-    ActorName.create(defaultName(city2Props))
+    ActorName.create(defaultName(city2Props)),
   ]);
 
   const MAX = 2;
@@ -478,9 +480,8 @@ it("can get data coverage information for search results", async () => {
         expect(actor.has_children).toBeDefined();
         expect(actor.children_have_data).toBeDefined();
       }
-    })
-  }
-);
+    });
+});
 
 it("can get path information for search results", async () => {
   const q = `Flednax`;
@@ -496,12 +497,11 @@ it("can get path information for search results", async () => {
         expect(actor.root_path_geo).toBeDefined();
         expect(actor.root_path_geo.length).toBeGreaterThan(0);
         for (let ancestor of actor.root_path_geo) {
-          expect(ancestor.actor_id).toBeDefined()
-          expect(ancestor.type).toBeDefined()
-          expect(ancestor.name).toBeDefined()
-          expect(ancestor.actor_id).not.toEqual(actor.actor_id)
+          expect(ancestor.actor_id).toBeDefined();
+          expect(ancestor.type).toBeDefined();
+          expect(ancestor.name).toBeDefined();
+          expect(ancestor.actor_id).not.toEqual(actor.actor_id);
         }
       }
-    })
-  }
-);
+    });
+});
