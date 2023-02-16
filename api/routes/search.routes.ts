@@ -115,10 +115,13 @@ router.get(
         ActorDataCoverage.findAll({where: { actor_id: actor_ids } })
       ]);
 
+      const paths = await Actor.paths(actor_ids)
+
       res.status(200).json({
         success: true,
-        data: actors.map((actor) => {
+        data: actors.map((actor, i) => {
           let pc = coverage.find((c) => c.actor_id === actor.actor_id)
+          let path = paths[i].slice(1)
           return {
             actor_id: actor.actor_id,
             name: actor.name,
@@ -130,6 +133,13 @@ router.get(
             has_data: pc ? pc.has_data : null,
             has_children: pc ? pc.has_children : null,
             children_have_data: pc ? pc.children_have_data : null,
+            root_path_geo: path.map((ancestor) => {
+              return {
+                actor_id: ancestor.actor_id,
+                name: ancestor.name,
+                type: ancestor.type
+              }
+            }),
             names: names
               .filter((n) => n.actor_id == actor.actor_id)
               .map((n) => {

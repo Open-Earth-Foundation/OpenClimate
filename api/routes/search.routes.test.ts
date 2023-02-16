@@ -80,6 +80,56 @@ const name2_2 = {
   datasource_id: datasourceProps.datasource_id,
 };
 
+// For Path investigations
+
+const country3Props = {
+  actor_id: "search.routes.test.ts:actor:country:3",
+  type: "country",
+  name: "Fake country actor 2 from search.routes.test.ts",
+  datasource_id: datasourceProps.datasource_id,
+  is_part_of: "EARTH"
+};
+
+const region2Props = {
+  actor_id: "search.routes.test.ts:actor:region:2",
+  type: "adm1",
+  name: "Fake region actor 2 from search.routes.test.ts",
+  is_part_of: country3Props.actor_id,
+  datasource_id: datasourceProps.datasource_id,
+};
+
+const region3Props = {
+  actor_id: "search.routes.test.ts:actor:region:3",
+  type: "adm2",
+  name: "Fake region actor 3 from search.routes.test.ts",
+  is_part_of: region2Props.actor_id,
+  datasource_id: datasourceProps.datasource_id,
+};
+
+const city1Props = {
+  actor_id: "search.routes.test.ts:actor:city:1",
+  type: "city",
+  name: "New Flednax fake city from search.routes.test.ts",
+  is_part_of: region3Props.actor_id,
+  datasource_id: datasourceProps.datasource_id,
+};
+
+const region4Props = {
+  actor_id: "search.routes.test.ts:actor:region:4",
+  type: "adm1",
+  name: "Fake region actor 4 from search.routes.test.ts",
+  is_part_of: country3Props.actor_id,
+  datasource_id: datasourceProps.datasource_id,
+};
+
+const city2Props = {
+  actor_id: "search.routes.test.ts:actor:city:2",
+  type: "city",
+  name: "Old Flednax fake city from search.routes.test.ts",
+  is_part_of: region4Props.actor_id,
+  datasource_id: datasourceProps.datasource_id,
+};
+
 async function cleanup() {
   await ActorName.destroy({
     where: { datasource_id: datasourceProps.datasource_id },
@@ -106,12 +156,31 @@ beforeAll(async () => {
   await Actor.create(planetProps);
   await Actor.create(country1Props);
   await Actor.create(country2Props);
+  await Actor.create(country3Props);
+  await Actor.create(region2Props);
+  await Actor.create(region3Props);
+  await Actor.create(city1Props);
+  await Actor.create(region4Props);
+  await Actor.create(city2Props);
+
+  const defaultName = (props) => { return {
+    actor_id: props.actor_id,
+    name: props.name,
+    language: 'en',
+    datasource_id: datasourceProps.datasource_id
+  } }
 
   await Promise.all([
     ActorName.create(name1_1),
     ActorName.create(name1_2),
     ActorName.create(name2_1),
     ActorName.create(name2_2),
+    ActorName.create(defaultName(country3Props)),
+    ActorName.create(defaultName(region2Props)),
+    ActorName.create(defaultName(region3Props)),
+    ActorName.create(defaultName(city1Props)),
+    ActorName.create(defaultName(region4Props)),
+    ActorName.create(defaultName(city2Props))
   ]);
 
   const MAX = 2;
@@ -408,6 +477,30 @@ it("can get data coverage information for search results", async () => {
         expect(actor.has_data).toBeDefined();
         expect(actor.has_children).toBeDefined();
         expect(actor.children_have_data).toBeDefined();
+      }
+    })
+  }
+);
+
+it("can get path information for search results", async () => {
+  const q = `Flednax`;
+  return request(app)
+    .get(`/api/v1/search/actor?q=${q}`)
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .expect((res: any) => {
+      expect(res.body.success).toBeTruthy();
+      expect(res.body.data).toBeDefined();
+      expect(res.body.data.length).toBeGreaterThan(0);
+      for (let actor of res.body.data) {
+        expect(actor.root_path_geo).toBeDefined();
+        expect(actor.root_path_geo.length).toBeGreaterThan(0);
+        for (let ancestor of actor.root_path_geo) {
+          expect(ancestor.actor_id).toBeDefined()
+          expect(ancestor.type).toBeDefined()
+          expect(ancestor.name).toBeDefined()
+          expect(ancestor.actor_id).not.toEqual(actor.actor_id)
+        }
       }
     })
   }
