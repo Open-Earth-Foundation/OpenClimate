@@ -146,6 +146,7 @@ const country3Props = {
   type: "country",
   name: "Fake country actor from actor.routes.test.ts",
   datasource_id: datasource1Props.datasource_id,
+  is_part_of: "EARTH",
 };
 
 const region1Props = {
@@ -920,3 +921,79 @@ it("returns target initiative", async () =>
       expect(typeof initiative.URL).toEqual("string");
       expect(initiative.URL).toEqual(initiativeProps.URL);
     }));
+
+it("gets a 404 on path to non-existent actor", async () =>
+  request(app).get(`/api/v1/actor/${ACTOR_DNE}/path`).expect(404));
+
+it("can get path to the actor", async () =>
+  request(app)
+    .get(`/api/v1/actor/${city3Props.actor_id}/path`)
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .expect((res: any) => {
+      expect(res.body.data).toBeDefined();
+      const data = res.body.data;
+      expect(data.length).toBeDefined();
+      expect(data.length).toEqual(5);
+      for (let actor of data) {
+        expect(actor.actor_id).toBeDefined();
+        expect(actor.name).toBeDefined();
+        expect(actor.type).toBeDefined();
+      }
+      expect(data[0].actor_id).toEqual(city3Props.actor_id);
+      expect(data[1].actor_id).toEqual(region2Props.actor_id);
+      expect(data[2].actor_id).toEqual(region1Props.actor_id);
+      expect(data[3].actor_id).toEqual(country3Props.actor_id);
+      expect(data[4].actor_id).toEqual("EARTH");
+    }));
+
+it("can get actor emissions in json", async () =>
+  request(app)
+    .get(`/api/v1/actor/${country1Props.actor_id}/emissions`)
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .expect((res: any) => {
+      const emissions = res.body.data;
+
+      const emissions1 = emissions[datasource1Props.datasource_id];
+
+      expect(emissions1.tags).toBeDefined();
+      expect(emissions1.tags.length).toEqual(4);
+      expect(emissions1.tags[0].tag_id).toBeDefined();
+      expect(emissions1.tags[0].tag_name).toBeDefined();
+      expect(emissions1.data.length).toEqual(20);
+
+      const ea1992 = emissions1.data.find((ea) => ea.year == 1992);
+
+      expect(ea1992).toBeDefined();
+      expect(ea1992.tags).toBeDefined();
+      expect(ea1992.tags.length).toEqual(1);
+      expect(ea1992.tags[0].tag_id).toBeDefined();
+      expect(ea1992.tags[0].tag_name).toBeDefined();
+
+      expect(emissions[datasource2Props.datasource_id]).toBeDefined();
+
+      const emissions2 = emissions[datasource2Props.datasource_id];
+
+      expect(emissions2).toBeDefined();
+      expect(emissions2.tags).toBeDefined();
+      expect(emissions2.tags.length).toEqual(2);
+      expect(emissions2.tags[0].tag_id).toBeDefined();
+      expect(emissions2.tags[0].tag_name).toBeDefined();
+
+      expect(emissions2.data).toBeDefined();
+      expect(emissions2.data.length).toEqual(20);
+
+      // 2002 is divisible by 7 and 11
+
+      const ea2002 = emissions2.data.find((ea) => ea.year == 2002);
+
+      expect(ea2002).toBeDefined();
+      expect(ea2002.tags).toBeDefined();
+      expect(ea2002.tags.length).toEqual(1);
+      expect(ea2002.tags[0].tag_id).toBeDefined();
+      expect(ea2002.tags[0].tag_name).toBeDefined();
+    }));
+
+it("gets 404 when actor id is nonexistent for emissions", async () =>
+  request(app).get(`/api/v1/actor/${ACTOR_DNE}/emissions`).expect(404));
