@@ -55,7 +55,7 @@
     "@types/google.maps": "^3.50.4",
     "@types/react-router-dom": "^5.1.8",
     "prettier": "^2.8.3",
-    "sass": "^1.54.9"
+    "sass": "^1.58.1"
   },
   "scripts": {
     "start": "react-scripts start",
