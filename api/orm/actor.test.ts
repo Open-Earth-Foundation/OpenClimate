@@ -177,6 +177,25 @@ it("can get paths", async () => {
   expect(path[3].actor_id).toEqual(country2Props.actor_id)
   expect(path[4].actor_id).toEqual('EARTH')
 
+  let paths = await Actor.paths([city1Props.actor_id, city2Props.actor_id])
+
+  expect(paths.length).toBeDefined()
+  expect(paths.length).toEqual(2)
+
+  expect(paths[0].length).toEqual(5) // city, adm2, adm1, country, planet
+  expect(paths[0][0].actor_id).toEqual(city1Props.actor_id)
+  expect(paths[0][1].actor_id).toEqual(region3Props.actor_id)
+  expect(paths[0][2].actor_id).toEqual(region2Props.actor_id)
+  expect(paths[0][3].actor_id).toEqual(country2Props.actor_id)
+  expect(paths[0][4].actor_id).toEqual('EARTH')
+
+
+  expect(paths[1].length).toEqual(4) // city, adm1, country, planet
+  expect(paths[1][0].actor_id).toEqual(city2Props.actor_id)
+  expect(paths[1][1].actor_id).toEqual(region4Props.actor_id)
+  expect(paths[1][2].actor_id).toEqual(country2Props.actor_id)
+  expect(paths[1][3].actor_id).toEqual('EARTH')
+
   // evanp: the created actors should get reaped in the cleanup() function
   // run afterAll()
 });
