@@ -379,7 +379,7 @@ router.get(
       });
     }
 
-    res.status(200).json({
+    res.attachment(`${actor_id}_emissions.json`).status(200).json({
       success: true,
       data: emissionMap,
     })
