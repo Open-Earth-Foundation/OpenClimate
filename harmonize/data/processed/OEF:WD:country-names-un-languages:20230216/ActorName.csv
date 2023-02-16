@@ -1,0 +1,1519 @@
+actor_id,name,language,datasource_id
+JP,Japan,en,OEF:WD:country-names-un-languages:20230216
+JP,Japon,fr,OEF:WD:country-names-un-languages:20230216
+JP,Japón,es,OEF:WD:country-names-un-languages:20230216
+JP,Япония,ru,OEF:WD:country-names-un-languages:20230216
+JP,اليابان,ar,OEF:WD:country-names-un-languages:20230216
+JP,日本,zh,OEF:WD:country-names-un-languages:20230216
+IE,Republic of Ireland,en,OEF:WD:country-names-un-languages:20230216
+IE,Irlande,fr,OEF:WD:country-names-un-languages:20230216
+IE,Irlanda,es,OEF:WD:country-names-un-languages:20230216
+IE,Ирландия,ru,OEF:WD:country-names-un-languages:20230216
+IE,جمهورية أيرلندا,ar,OEF:WD:country-names-un-languages:20230216
+IE,爱尔兰共和国,zh,OEF:WD:country-names-un-languages:20230216
+US,United States of America,en,OEF:WD:country-names-un-languages:20230216
+US,États-Unis,fr,OEF:WD:country-names-un-languages:20230216
+US,Estados Unidos,es,OEF:WD:country-names-un-languages:20230216
+US,США,ru,OEF:WD:country-names-un-languages:20230216
+US,الولايات المتحدة,ar,OEF:WD:country-names-un-languages:20230216
+US,美國,zh,OEF:WD:country-names-un-languages:20230216
+IT,Italy,en,OEF:WD:country-names-un-languages:20230216
+IT,Italie,fr,OEF:WD:country-names-un-languages:20230216
+IT,Italia,es,OEF:WD:country-names-un-languages:20230216
+IT,Италия,ru,OEF:WD:country-names-un-languages:20230216
+IT,إيطاليا,ar,OEF:WD:country-names-un-languages:20230216
+IT,意大利,zh,OEF:WD:country-names-un-languages:20230216
+ES,Spain,en,OEF:WD:country-names-un-languages:20230216
+ES,Espagne,fr,OEF:WD:country-names-un-languages:20230216
+ES,España,es,OEF:WD:country-names-un-languages:20230216
+ES,Испания,ru,OEF:WD:country-names-un-languages:20230216
+ES,إسبانيا,ar,OEF:WD:country-names-un-languages:20230216
+ES,西班牙,zh,OEF:WD:country-names-un-languages:20230216
+CA,Canada,en,OEF:WD:country-names-un-languages:20230216
+CA,Canada,fr,OEF:WD:country-names-un-languages:20230216
+CA,Canadá,es,OEF:WD:country-names-un-languages:20230216
+CA,Канада,ru,OEF:WD:country-names-un-languages:20230216
+CA,كندا,ar,OEF:WD:country-names-un-languages:20230216
+CA,加拿大,zh,OEF:WD:country-names-un-languages:20230216
+UY,Uruguay,en,OEF:WD:country-names-un-languages:20230216
+UY,Uruguay,fr,OEF:WD:country-names-un-languages:20230216
+UY,Uruguay,es,OEF:WD:country-names-un-languages:20230216
+UY,Уругвай,ru,OEF:WD:country-names-un-languages:20230216
+UY,الأوروغواي,ar,OEF:WD:country-names-un-languages:20230216
+UY,烏拉圭,zh,OEF:WD:country-names-un-languages:20230216
+NO,Norway,en,OEF:WD:country-names-un-languages:20230216
+NO,Norvège,fr,OEF:WD:country-names-un-languages:20230216
+NO,Noruega,es,OEF:WD:country-names-un-languages:20230216
+NO,Норвегия,ru,OEF:WD:country-names-un-languages:20230216
+NO,النرويج,ar,OEF:WD:country-names-un-languages:20230216
+NO,挪威,zh,OEF:WD:country-names-un-languages:20230216
+SE,Sweden,en,OEF:WD:country-names-un-languages:20230216
+SE,Suède,fr,OEF:WD:country-names-un-languages:20230216
+SE,Suecia,es,OEF:WD:country-names-un-languages:20230216
+SE,Швеция,ru,OEF:WD:country-names-un-languages:20230216
+SE,السويد,ar,OEF:WD:country-names-un-languages:20230216
+SE,瑞典,zh,OEF:WD:country-names-un-languages:20230216
+DK,Denmark,en,OEF:WD:country-names-un-languages:20230216
+DK,Danemark,fr,OEF:WD:country-names-un-languages:20230216
+DK,Dinamarca,es,OEF:WD:country-names-un-languages:20230216
+DK,Дания,ru,OEF:WD:country-names-un-languages:20230216
+DK,الدنمارك,ar,OEF:WD:country-names-un-languages:20230216
+DK,丹麥,zh,OEF:WD:country-names-un-languages:20230216
+HU,Hungary,en,OEF:WD:country-names-un-languages:20230216
+HU,Hongrie,fr,OEF:WD:country-names-un-languages:20230216
+HU,Hungría,es,OEF:WD:country-names-un-languages:20230216
+HU,Венгрия,ru,OEF:WD:country-names-un-languages:20230216
+HU,المجر,ar,OEF:WD:country-names-un-languages:20230216
+HU,匈牙利,zh,OEF:WD:country-names-un-languages:20230216
+BE,Belgium,en,OEF:WD:country-names-un-languages:20230216
+BE,Belgique,fr,OEF:WD:country-names-un-languages:20230216
+BE,Bélgica,es,OEF:WD:country-names-un-languages:20230216
+BE,Бельгия,ru,OEF:WD:country-names-un-languages:20230216
+BE,بلجيكا,ar,OEF:WD:country-names-un-languages:20230216
+BE,比利時,zh,OEF:WD:country-names-un-languages:20230216
+NL,Netherlands,en,OEF:WD:country-names-un-languages:20230216
+NL,Pays-Bas,fr,OEF:WD:country-names-un-languages:20230216
+NL,Países Bajos,es,OEF:WD:country-names-un-languages:20230216
+NL,Нидерланды,ru,OEF:WD:country-names-un-languages:20230216
+NL,هولندا,ar,OEF:WD:country-names-un-languages:20230216
+NL,荷蘭,zh,OEF:WD:country-names-un-languages:20230216
+LU,Luxembourg,en,OEF:WD:country-names-un-languages:20230216
+LU,Luxembourg,fr,OEF:WD:country-names-un-languages:20230216
+LU,Luxemburgo,es,OEF:WD:country-names-un-languages:20230216
+LU,Люксембург,ru,OEF:WD:country-names-un-languages:20230216
+LU,لوكسمبورغ,ar,OEF:WD:country-names-un-languages:20230216
+LU,卢森堡,zh,OEF:WD:country-names-un-languages:20230216
+EG,Egypt,en,OEF:WD:country-names-un-languages:20230216
+EG,Égypte,fr,OEF:WD:country-names-un-languages:20230216
+EG,Egipto,es,OEF:WD:country-names-un-languages:20230216
+EG,Египет,ru,OEF:WD:country-names-un-languages:20230216
+EG,مصر,ar,OEF:WD:country-names-un-languages:20230216
+EG,埃及,zh,OEF:WD:country-names-un-languages:20230216
+GB,United Kingdom,en,OEF:WD:country-names-un-languages:20230216
+GB,Royaume-Uni,fr,OEF:WD:country-names-un-languages:20230216
+GB,Reino Unido,es,OEF:WD:country-names-un-languages:20230216
+GB,Великобритания,ru,OEF:WD:country-names-un-languages:20230216
+GB,المملكة المتحدة,ar,OEF:WD:country-names-un-languages:20230216
+GB,英国,zh,OEF:WD:country-names-un-languages:20230216
+AD,Andorra,en,OEF:WD:country-names-un-languages:20230216
+AD,Andorre,fr,OEF:WD:country-names-un-languages:20230216
+AD,Andorra,es,OEF:WD:country-names-un-languages:20230216
+AD,Андорра,ru,OEF:WD:country-names-un-languages:20230216
+AD,أندورا,ar,OEF:WD:country-names-un-languages:20230216
+AD,安道尔,zh,OEF:WD:country-names-un-languages:20230216
+GH,Ghana,en,OEF:WD:country-names-un-languages:20230216
+GH,Ghana,fr,OEF:WD:country-names-un-languages:20230216
+GH,Ghana,es,OEF:WD:country-names-un-languages:20230216
+GH,Гана,ru,OEF:WD:country-names-un-languages:20230216
+GH,غانا,ar,OEF:WD:country-names-un-languages:20230216
+GH,迦納,zh,OEF:WD:country-names-un-languages:20230216
+FI,Finland,en,OEF:WD:country-names-un-languages:20230216
+FI,Finlande,fr,OEF:WD:country-names-un-languages:20230216
+FI,Finlandia,es,OEF:WD:country-names-un-languages:20230216
+FI,Финляндия,ru,OEF:WD:country-names-un-languages:20230216
+FI,فنلندا,ar,OEF:WD:country-names-un-languages:20230216
+FI,芬蘭,zh,OEF:WD:country-names-un-languages:20230216
+ID,Indonesia,en,OEF:WD:country-names-un-languages:20230216
+ID,Indonésie,fr,OEF:WD:country-names-un-languages:20230216
+ID,Indonesia,es,OEF:WD:country-names-un-languages:20230216
+ID,Индонезия,ru,OEF:WD:country-names-un-languages:20230216
+ID,إندونيسيا,ar,OEF:WD:country-names-un-languages:20230216
+ID,印度尼西亚,zh,OEF:WD:country-names-un-languages:20230216
+PL,Poland,en,OEF:WD:country-names-un-languages:20230216
+PL,Pologne,fr,OEF:WD:country-names-un-languages:20230216
+PL,Polonia,es,OEF:WD:country-names-un-languages:20230216
+PL,Польша,ru,OEF:WD:country-names-un-languages:20230216
+PL,بولندا,ar,OEF:WD:country-names-un-languages:20230216
+PL,波蘭,zh,OEF:WD:country-names-un-languages:20230216
+MX,Mexico,en,OEF:WD:country-names-un-languages:20230216
+MX,Mexique,fr,OEF:WD:country-names-un-languages:20230216
+MX,México,es,OEF:WD:country-names-un-languages:20230216
+MX,Мексика,ru,OEF:WD:country-names-un-languages:20230216
+MX,المكسيك,ar,OEF:WD:country-names-un-languages:20230216
+MX,墨西哥,zh,OEF:WD:country-names-un-languages:20230216
+BY,Belarus,en,OEF:WD:country-names-un-languages:20230216
+BY,Biélorussie,fr,OEF:WD:country-names-un-languages:20230216
+BY,Bielorrusia,es,OEF:WD:country-names-un-languages:20230216
+BY,Белоруссия,ru,OEF:WD:country-names-un-languages:20230216
+BY,بيلاروس,ar,OEF:WD:country-names-un-languages:20230216
+BY,白俄羅斯,zh,OEF:WD:country-names-un-languages:20230216
+ET,Ethiopia,en,OEF:WD:country-names-un-languages:20230216
+ET,Éthiopie,fr,OEF:WD:country-names-un-languages:20230216
+ET,Etiopía,es,OEF:WD:country-names-un-languages:20230216
+ET,Эфиопия,ru,OEF:WD:country-names-un-languages:20230216
+ET,إثيوبيا,ar,OEF:WD:country-names-un-languages:20230216
+ET,埃塞俄比亚,zh,OEF:WD:country-names-un-languages:20230216
+CH,Switzerland,en,OEF:WD:country-names-un-languages:20230216
+CH,Suisse,fr,OEF:WD:country-names-un-languages:20230216
+CH,Suiza,es,OEF:WD:country-names-un-languages:20230216
+CH,Швейцария,ru,OEF:WD:country-names-un-languages:20230216
+CH,سويسرا,ar,OEF:WD:country-names-un-languages:20230216
+CH,瑞士,zh,OEF:WD:country-names-un-languages:20230216
+LT,Lithuania,en,OEF:WD:country-names-un-languages:20230216
+LT,Lituanie,fr,OEF:WD:country-names-un-languages:20230216
+LT,Lituania,es,OEF:WD:country-names-un-languages:20230216
+LT,Литва,ru,OEF:WD:country-names-un-languages:20230216
+LT,ليتوانيا,ar,OEF:WD:country-names-un-languages:20230216
+LT,立陶宛,zh,OEF:WD:country-names-un-languages:20230216
+UA,Ukraine,en,OEF:WD:country-names-un-languages:20230216
+UA,Ukraine,fr,OEF:WD:country-names-un-languages:20230216
+UA,Ucrania,es,OEF:WD:country-names-un-languages:20230216
+UA,Украина,ru,OEF:WD:country-names-un-languages:20230216
+UA,أوكرانيا,ar,OEF:WD:country-names-un-languages:20230216
+UA,烏克蘭,zh,OEF:WD:country-names-un-languages:20230216
+CY,Cyprus,en,OEF:WD:country-names-un-languages:20230216
+CY,Chypre,fr,OEF:WD:country-names-un-languages:20230216
+CY,Chipre,es,OEF:WD:country-names-un-languages:20230216
+CY,Кипр,ru,OEF:WD:country-names-un-languages:20230216
+CY,قبرص,ar,OEF:WD:country-names-un-languages:20230216
+CY,塞浦路斯,zh,OEF:WD:country-names-un-languages:20230216
+GR,Greece,en,OEF:WD:country-names-un-languages:20230216
+GR,Grèce,fr,OEF:WD:country-names-un-languages:20230216
+GR,Grecia,es,OEF:WD:country-names-un-languages:20230216
+GR,Греция,ru,OEF:WD:country-names-un-languages:20230216
+GR,اليونان,ar,OEF:WD:country-names-un-languages:20230216
+GR,希腊,zh,OEF:WD:country-names-un-languages:20230216
+AT,Austria,en,OEF:WD:country-names-un-languages:20230216
+AT,Autriche,fr,OEF:WD:country-names-un-languages:20230216
+AT,Austria,es,OEF:WD:country-names-un-languages:20230216
+AT,Австрия,ru,OEF:WD:country-names-un-languages:20230216
+AT,النمسا,ar,OEF:WD:country-names-un-languages:20230216
+AT,奧地利,zh,OEF:WD:country-names-un-languages:20230216
+LV,Latvia,en,OEF:WD:country-names-un-languages:20230216
+LV,Lettonie,fr,OEF:WD:country-names-un-languages:20230216
+LV,Letonia,es,OEF:WD:country-names-un-languages:20230216
+LV,Латвия,ru,OEF:WD:country-names-un-languages:20230216
+LV,لاتفيا,ar,OEF:WD:country-names-un-languages:20230216
+LV,拉脫維亞,zh,OEF:WD:country-names-un-languages:20230216
+FR,France,en,OEF:WD:country-names-un-languages:20230216
+FR,France,fr,OEF:WD:country-names-un-languages:20230216
+FR,Francia,es,OEF:WD:country-names-un-languages:20230216
+FR,Франция,ru,OEF:WD:country-names-un-languages:20230216
+FR,فرنسا,ar,OEF:WD:country-names-un-languages:20230216
+FR,法國,zh,OEF:WD:country-names-un-languages:20230216
+CN,People's Republic of China,en,OEF:WD:country-names-un-languages:20230216
+CN,République populaire de Chine,fr,OEF:WD:country-names-un-languages:20230216
+CN,República Popular China,es,OEF:WD:country-names-un-languages:20230216
+CN,Китай,ru,OEF:WD:country-names-un-languages:20230216
+CN,الصين,ar,OEF:WD:country-names-un-languages:20230216
+CN,中华人民共和国,zh,OEF:WD:country-names-un-languages:20230216
+TR,Turkey,en,OEF:WD:country-names-un-languages:20230216
+TR,Turquie,fr,OEF:WD:country-names-un-languages:20230216
+TR,Turquía,es,OEF:WD:country-names-un-languages:20230216
+TR,Турция,ru,OEF:WD:country-names-un-languages:20230216
+TR,تركيا,ar,OEF:WD:country-names-un-languages:20230216
+TR,土耳其,zh,OEF:WD:country-names-un-languages:20230216
+UZ,Uzbekistan,en,OEF:WD:country-names-un-languages:20230216
+UZ,Ouzbékistan,fr,OEF:WD:country-names-un-languages:20230216
+UZ,Uzbekistán,es,OEF:WD:country-names-un-languages:20230216
+UZ,Узбекистан,ru,OEF:WD:country-names-un-languages:20230216
+UZ,أوزبكستان,ar,OEF:WD:country-names-un-languages:20230216
+UZ,烏茲別克,zh,OEF:WD:country-names-un-languages:20230216
+SK,Slovakia,en,OEF:WD:country-names-un-languages:20230216
+SK,Slovaquie,fr,OEF:WD:country-names-un-languages:20230216
+SK,Eslovaquia,es,OEF:WD:country-names-un-languages:20230216
+SK,Словакия,ru,OEF:WD:country-names-un-languages:20230216
+SK,سلوفاكيا,ar,OEF:WD:country-names-un-languages:20230216
+SK,斯洛伐克,zh,OEF:WD:country-names-un-languages:20230216
+TD,Chad,en,OEF:WD:country-names-un-languages:20230216
+TD,Tchad,fr,OEF:WD:country-names-un-languages:20230216
+TD,Chad,es,OEF:WD:country-names-un-languages:20230216
+TD,Чад,ru,OEF:WD:country-names-un-languages:20230216
+TD,تشاد,ar,OEF:WD:country-names-un-languages:20230216
+TD,乍得,zh,OEF:WD:country-names-un-languages:20230216
+MD,Moldova,en,OEF:WD:country-names-un-languages:20230216
+MD,Moldavie,fr,OEF:WD:country-names-un-languages:20230216
+MD,Moldavia,es,OEF:WD:country-names-un-languages:20230216
+MD,Молдавия,ru,OEF:WD:country-names-un-languages:20230216
+MD,مولدوفا,ar,OEF:WD:country-names-un-languages:20230216
+MD,摩爾多瓦,zh,OEF:WD:country-names-un-languages:20230216
+PT,Portugal,en,OEF:WD:country-names-un-languages:20230216
+PT,Portugal,fr,OEF:WD:country-names-un-languages:20230216
+PT,Portugal,es,OEF:WD:country-names-un-languages:20230216
+PT,Португалия,ru,OEF:WD:country-names-un-languages:20230216
+PT,البرتغال,ar,OEF:WD:country-names-un-languages:20230216
+PT,葡萄牙,zh,OEF:WD:country-names-un-languages:20230216
+DZ,Algeria,en,OEF:WD:country-names-un-languages:20230216
+DZ,Algérie,fr,OEF:WD:country-names-un-languages:20230216
+DZ,Argelia,es,OEF:WD:country-names-un-languages:20230216
+DZ,Алжир,ru,OEF:WD:country-names-un-languages:20230216
+DZ,الجزائر,ar,OEF:WD:country-names-un-languages:20230216
+DZ,阿爾及利亞,zh,OEF:WD:country-names-un-languages:20230216
+AZ,Azerbaijan,en,OEF:WD:country-names-un-languages:20230216
+AZ,Azerbaïdjan,fr,OEF:WD:country-names-un-languages:20230216
+AZ,Azerbaiyán,es,OEF:WD:country-names-un-languages:20230216
+AZ,Азербайджан,ru,OEF:WD:country-names-un-languages:20230216
+AZ,أذربيجان,ar,OEF:WD:country-names-un-languages:20230216
+AZ,阿塞拜疆,zh,OEF:WD:country-names-un-languages:20230216
+KE,Kenya,en,OEF:WD:country-names-un-languages:20230216
+KE,Kenya,fr,OEF:WD:country-names-un-languages:20230216
+KE,Kenia,es,OEF:WD:country-names-un-languages:20230216
+KE,Кения,ru,OEF:WD:country-names-un-languages:20230216
+KE,كينيا,ar,OEF:WD:country-names-un-languages:20230216
+KE,肯尼亚,zh,OEF:WD:country-names-un-languages:20230216
+BR,Brazil,en,OEF:WD:country-names-un-languages:20230216
+BR,Brésil,fr,OEF:WD:country-names-un-languages:20230216
+BR,Brasil,es,OEF:WD:country-names-un-languages:20230216
+BR,Бразилия,ru,OEF:WD:country-names-un-languages:20230216
+BR,البرازيل,ar,OEF:WD:country-names-un-languages:20230216
+BR,巴西,zh,OEF:WD:country-names-un-languages:20230216
+AU,Australia,en,OEF:WD:country-names-un-languages:20230216
+AU,Australie,fr,OEF:WD:country-names-un-languages:20230216
+AU,Australia,es,OEF:WD:country-names-un-languages:20230216
+AU,Австралия,ru,OEF:WD:country-names-un-languages:20230216
+AU,أستراليا,ar,OEF:WD:country-names-un-languages:20230216
+AU,澳大利亚,zh,OEF:WD:country-names-un-languages:20230216
+EC,Ecuador,en,OEF:WD:country-names-un-languages:20230216
+EC,Équateur,fr,OEF:WD:country-names-un-languages:20230216
+EC,Ecuador,es,OEF:WD:country-names-un-languages:20230216
+EC,Эквадор,ru,OEF:WD:country-names-un-languages:20230216
+EC,الإكوادور,ar,OEF:WD:country-names-un-languages:20230216
+EC,厄瓜多尔,zh,OEF:WD:country-names-un-languages:20230216
+RU,Russia,en,OEF:WD:country-names-un-languages:20230216
+RU,Russie,fr,OEF:WD:country-names-un-languages:20230216
+RU,Rusia,es,OEF:WD:country-names-un-languages:20230216
+RU,Россия,ru,OEF:WD:country-names-un-languages:20230216
+RU,روسيا,ar,OEF:WD:country-names-un-languages:20230216
+RU,俄罗斯,zh,OEF:WD:country-names-un-languages:20230216
+KZ,Kazakhstan,en,OEF:WD:country-names-un-languages:20230216
+KZ,Kazakhstan,fr,OEF:WD:country-names-un-languages:20230216
+KZ,Kazajistán,es,OEF:WD:country-names-un-languages:20230216
+KZ,Казахстан,ru,OEF:WD:country-names-un-languages:20230216
+KZ,كازاخستان,ar,OEF:WD:country-names-un-languages:20230216
+KZ,哈萨克斯坦,zh,OEF:WD:country-names-un-languages:20230216
+PY,Paraguay,en,OEF:WD:country-names-un-languages:20230216
+PY,Paraguay,fr,OEF:WD:country-names-un-languages:20230216
+PY,Paraguay,es,OEF:WD:country-names-un-languages:20230216
+PY,Парагвай,ru,OEF:WD:country-names-un-languages:20230216
+PY,باراغواي,ar,OEF:WD:country-names-un-languages:20230216
+PY,巴拉圭,zh,OEF:WD:country-names-un-languages:20230216
+KH,Cambodia,en,OEF:WD:country-names-un-languages:20230216
+KH,Cambodge,fr,OEF:WD:country-names-un-languages:20230216
+KH,Camboya,es,OEF:WD:country-names-un-languages:20230216
+KH,Камбоджа,ru,OEF:WD:country-names-un-languages:20230216
+KH,كمبوديا,ar,OEF:WD:country-names-un-languages:20230216
+KH,柬埔寨,zh,OEF:WD:country-names-un-languages:20230216
+GE,Georgia,en,OEF:WD:country-names-un-languages:20230216
+GE,Géorgie,fr,OEF:WD:country-names-un-languages:20230216
+GE,Georgia,es,OEF:WD:country-names-un-languages:20230216
+GE,Грузия,ru,OEF:WD:country-names-un-languages:20230216
+GE,جورجيا,ar,OEF:WD:country-names-un-languages:20230216
+GE,格鲁吉亚,zh,OEF:WD:country-names-un-languages:20230216
+DE,Germany,en,OEF:WD:country-names-un-languages:20230216
+DE,Allemagne,fr,OEF:WD:country-names-un-languages:20230216
+DE,Alemania,es,OEF:WD:country-names-un-languages:20230216
+DE,Германия,ru,OEF:WD:country-names-un-languages:20230216
+DE,ألمانيا,ar,OEF:WD:country-names-un-languages:20230216
+DE,德國,zh,OEF:WD:country-names-un-languages:20230216
+FJ,Fiji,en,OEF:WD:country-names-un-languages:20230216
+FJ,Fidji,fr,OEF:WD:country-names-un-languages:20230216
+FJ,Fiyi,es,OEF:WD:country-names-un-languages:20230216
+FJ,Фиджи,ru,OEF:WD:country-names-un-languages:20230216
+FJ,فيجي,ar,OEF:WD:country-names-un-languages:20230216
+FJ,斐濟,zh,OEF:WD:country-names-un-languages:20230216
+GY,Guyana,en,OEF:WD:country-names-un-languages:20230216
+GY,Guyana,fr,OEF:WD:country-names-un-languages:20230216
+GY,Guyana,es,OEF:WD:country-names-un-languages:20230216
+GY,Гайана,ru,OEF:WD:country-names-un-languages:20230216
+GY,غيانا,ar,OEF:WD:country-names-un-languages:20230216
+GY,圭亚那,zh,OEF:WD:country-names-un-languages:20230216
+SM,San Marino,en,OEF:WD:country-names-un-languages:20230216
+SM,Saint-Marin,fr,OEF:WD:country-names-un-languages:20230216
+SM,San Marino,es,OEF:WD:country-names-un-languages:20230216
+SM,Сан-Марино,ru,OEF:WD:country-names-un-languages:20230216
+SM,سان مارينو,ar,OEF:WD:country-names-un-languages:20230216
+SM,圣马力诺,zh,OEF:WD:country-names-un-languages:20230216
+HR,Croatia,en,OEF:WD:country-names-un-languages:20230216
+HR,Croatie,fr,OEF:WD:country-names-un-languages:20230216
+HR,Croacia,es,OEF:WD:country-names-un-languages:20230216
+HR,Хорватия,ru,OEF:WD:country-names-un-languages:20230216
+HR,كرواتيا,ar,OEF:WD:country-names-un-languages:20230216
+HR,克羅地亞,zh,OEF:WD:country-names-un-languages:20230216
+IR,Iran,en,OEF:WD:country-names-un-languages:20230216
+IR,Iran,fr,OEF:WD:country-names-un-languages:20230216
+IR,Irán,es,OEF:WD:country-names-un-languages:20230216
+IR,Иран,ru,OEF:WD:country-names-un-languages:20230216
+IR,إيران,ar,OEF:WD:country-names-un-languages:20230216
+IR,伊朗,zh,OEF:WD:country-names-un-languages:20230216
+RS,Serbia,en,OEF:WD:country-names-un-languages:20230216
+RS,Serbie,fr,OEF:WD:country-names-un-languages:20230216
+RS,Serbia,es,OEF:WD:country-names-un-languages:20230216
+RS,Сербия,ru,OEF:WD:country-names-un-languages:20230216
+RS,صربيا,ar,OEF:WD:country-names-un-languages:20230216
+RS,塞尔维亚,zh,OEF:WD:country-names-un-languages:20230216
+PE,Peru,en,OEF:WD:country-names-un-languages:20230216
+PE,Pérou,fr,OEF:WD:country-names-un-languages:20230216
+PE,Perú,es,OEF:WD:country-names-un-languages:20230216
+PE,Перу,ru,OEF:WD:country-names-un-languages:20230216
+PE,بيرو,ar,OEF:WD:country-names-un-languages:20230216
+PE,秘鲁,zh,OEF:WD:country-names-un-languages:20230216
+CZ,Czech Republic,en,OEF:WD:country-names-un-languages:20230216
+CZ,Tchéquie,fr,OEF:WD:country-names-un-languages:20230216
+CZ,República Checa,es,OEF:WD:country-names-un-languages:20230216
+CZ,Чехия,ru,OEF:WD:country-names-un-languages:20230216
+CZ,التشيك,ar,OEF:WD:country-names-un-languages:20230216
+CZ,捷克,zh,OEF:WD:country-names-un-languages:20230216
+BB,Barbados,en,OEF:WD:country-names-un-languages:20230216
+BB,Barbade,fr,OEF:WD:country-names-un-languages:20230216
+BB,Barbados,es,OEF:WD:country-names-un-languages:20230216
+BB,Барбадос,ru,OEF:WD:country-names-un-languages:20230216
+BB,باربادوس,ar,OEF:WD:country-names-un-languages:20230216
+BB,巴巴多斯,zh,OEF:WD:country-names-un-languages:20230216
+AM,Armenia,en,OEF:WD:country-names-un-languages:20230216
+AM,Arménie,fr,OEF:WD:country-names-un-languages:20230216
+AM,Armenia,es,OEF:WD:country-names-un-languages:20230216
+AM,Армения,ru,OEF:WD:country-names-un-languages:20230216
+AM,أرمينيا,ar,OEF:WD:country-names-un-languages:20230216
+AM,亞美尼亞,zh,OEF:WD:country-names-un-languages:20230216
+BZ,Belize,en,OEF:WD:country-names-un-languages:20230216
+BZ,Belize,fr,OEF:WD:country-names-un-languages:20230216
+BZ,Belice,es,OEF:WD:country-names-un-languages:20230216
+BZ,Белиз,ru,OEF:WD:country-names-un-languages:20230216
+BZ,بليز,ar,OEF:WD:country-names-un-languages:20230216
+BZ,伯利兹,zh,OEF:WD:country-names-un-languages:20230216
+JM,Jamaica,en,OEF:WD:country-names-un-languages:20230216
+JM,Jamaïque,fr,OEF:WD:country-names-un-languages:20230216
+JM,Jamaica,es,OEF:WD:country-names-un-languages:20230216
+JM,Ямайка,ru,OEF:WD:country-names-un-languages:20230216
+JM,جامايكا,ar,OEF:WD:country-names-un-languages:20230216
+JM,牙買加,zh,OEF:WD:country-names-un-languages:20230216
+WS,Samoa,en,OEF:WD:country-names-un-languages:20230216
+WS,Samoa,fr,OEF:WD:country-names-un-languages:20230216
+WS,Samoa,es,OEF:WD:country-names-un-languages:20230216
+WS,Самоа,ru,OEF:WD:country-names-un-languages:20230216
+WS,ساموا,ar,OEF:WD:country-names-un-languages:20230216
+WS,萨摩亚,zh,OEF:WD:country-names-un-languages:20230216
+EE,Estonia,en,OEF:WD:country-names-un-languages:20230216
+EE,Estonie,fr,OEF:WD:country-names-un-languages:20230216
+EE,Estonia,es,OEF:WD:country-names-un-languages:20230216
+EE,Эстония,ru,OEF:WD:country-names-un-languages:20230216
+EE,إستونيا,ar,OEF:WD:country-names-un-languages:20230216
+EE,愛沙尼亞,zh,OEF:WD:country-names-un-languages:20230216
+SI,Slovenia,en,OEF:WD:country-names-un-languages:20230216
+SI,Slovénie,fr,OEF:WD:country-names-un-languages:20230216
+SI,Eslovenia,es,OEF:WD:country-names-un-languages:20230216
+SI,Словения,ru,OEF:WD:country-names-un-languages:20230216
+SI,سلوفينيا,ar,OEF:WD:country-names-un-languages:20230216
+SI,斯洛文尼亞,zh,OEF:WD:country-names-un-languages:20230216
+IS,Iceland,en,OEF:WD:country-names-un-languages:20230216
+IS,Islande,fr,OEF:WD:country-names-un-languages:20230216
+IS,Islandia,es,OEF:WD:country-names-un-languages:20230216
+IS,Исландия,ru,OEF:WD:country-names-un-languages:20230216
+IS,آيسلندا,ar,OEF:WD:country-names-un-languages:20230216
+IS,冰島,zh,OEF:WD:country-names-un-languages:20230216
+CU,Cuba,en,OEF:WD:country-names-un-languages:20230216
+CU,Cuba,fr,OEF:WD:country-names-un-languages:20230216
+CU,Cuba,es,OEF:WD:country-names-un-languages:20230216
+CU,Куба,ru,OEF:WD:country-names-un-languages:20230216
+CU,كوبا,ar,OEF:WD:country-names-un-languages:20230216
+CU,古巴,zh,OEF:WD:country-names-un-languages:20230216
+HT,Haiti,en,OEF:WD:country-names-un-languages:20230216
+HT,Haïti,fr,OEF:WD:country-names-un-languages:20230216
+HT,Haití,es,OEF:WD:country-names-un-languages:20230216
+HT,Республика Гаити,ru,OEF:WD:country-names-un-languages:20230216
+HT,هايتي,ar,OEF:WD:country-names-un-languages:20230216
+HT,海地,zh,OEF:WD:country-names-un-languages:20230216
+LI,Liechtenstein,en,OEF:WD:country-names-un-languages:20230216
+LI,Liechtenstein,fr,OEF:WD:country-names-un-languages:20230216
+LI,Liechtenstein,es,OEF:WD:country-names-un-languages:20230216
+LI,Лихтенштейн,ru,OEF:WD:country-names-un-languages:20230216
+LI,ليختنشتاين,ar,OEF:WD:country-names-un-languages:20230216
+LI,列支敦斯登,zh,OEF:WD:country-names-un-languages:20230216
+YE,Yemen,en,OEF:WD:country-names-un-languages:20230216
+YE,Yémen,fr,OEF:WD:country-names-un-languages:20230216
+YE,Yemen,es,OEF:WD:country-names-un-languages:20230216
+YE,Йемен,ru,OEF:WD:country-names-un-languages:20230216
+YE,اليمن,ar,OEF:WD:country-names-un-languages:20230216
+YE,也门,zh,OEF:WD:country-names-un-languages:20230216
+SR,Suriname,en,OEF:WD:country-names-un-languages:20230216
+SR,Suriname,fr,OEF:WD:country-names-un-languages:20230216
+SR,Surinam,es,OEF:WD:country-names-un-languages:20230216
+SR,Суринам,ru,OEF:WD:country-names-un-languages:20230216
+SR,سورينام,ar,OEF:WD:country-names-un-languages:20230216
+SR,蘇利南,zh,OEF:WD:country-names-un-languages:20230216
+OM,Oman,en,OEF:WD:country-names-un-languages:20230216
+OM,Oman,fr,OEF:WD:country-names-un-languages:20230216
+OM,Omán,es,OEF:WD:country-names-un-languages:20230216
+OM,Оман,ru,OEF:WD:country-names-un-languages:20230216
+OM,عُمان,ar,OEF:WD:country-names-un-languages:20230216
+OM,阿曼,zh,OEF:WD:country-names-un-languages:20230216
+MV,Maldives,en,OEF:WD:country-names-un-languages:20230216
+MV,Maldives,fr,OEF:WD:country-names-un-languages:20230216
+MV,Maldivas,es,OEF:WD:country-names-un-languages:20230216
+MV,Мальдивы,ru,OEF:WD:country-names-un-languages:20230216
+MV,المالديف,ar,OEF:WD:country-names-un-languages:20230216
+MV,馬爾代夫,zh,OEF:WD:country-names-un-languages:20230216
+IN,India,en,OEF:WD:country-names-un-languages:20230216
+IN,Inde,fr,OEF:WD:country-names-un-languages:20230216
+IN,India,es,OEF:WD:country-names-un-languages:20230216
+IN,Индия,ru,OEF:WD:country-names-un-languages:20230216
+IN,الهند,ar,OEF:WD:country-names-un-languages:20230216
+IN,印度,zh,OEF:WD:country-names-un-languages:20230216
+AL,Albania,en,OEF:WD:country-names-un-languages:20230216
+AL,Albanie,fr,OEF:WD:country-names-un-languages:20230216
+AL,Albania,es,OEF:WD:country-names-un-languages:20230216
+AL,Албания,ru,OEF:WD:country-names-un-languages:20230216
+AL,ألبانيا,ar,OEF:WD:country-names-un-languages:20230216
+AL,阿爾巴尼亞,zh,OEF:WD:country-names-un-languages:20230216
+PW,Palau,en,OEF:WD:country-names-un-languages:20230216
+PW,Palaos,fr,OEF:WD:country-names-un-languages:20230216
+PW,Palaos,es,OEF:WD:country-names-un-languages:20230216
+PW,Палау,ru,OEF:WD:country-names-un-languages:20230216
+PW,بالاو,ar,OEF:WD:country-names-un-languages:20230216
+PW,帛琉,zh,OEF:WD:country-names-un-languages:20230216
+RO,Romania,en,OEF:WD:country-names-un-languages:20230216
+RO,Roumanie,fr,OEF:WD:country-names-un-languages:20230216
+RO,Rumania,es,OEF:WD:country-names-un-languages:20230216
+RO,Румыния,ru,OEF:WD:country-names-un-languages:20230216
+RO,رومانيا,ar,OEF:WD:country-names-un-languages:20230216
+RO,羅馬尼亞,zh,OEF:WD:country-names-un-languages:20230216
+TT,Trinidad and Tobago,en,OEF:WD:country-names-un-languages:20230216
+TT,Trinité-et-Tobago,fr,OEF:WD:country-names-un-languages:20230216
+TT,Trinidad y Tobago,es,OEF:WD:country-names-un-languages:20230216
+TT,Тринидад и Тобаго,ru,OEF:WD:country-names-un-languages:20230216
+TT,ترينيداد وتوباغو,ar,OEF:WD:country-names-un-languages:20230216
+TT,千里達及托巴哥,zh,OEF:WD:country-names-un-languages:20230216
+GL,Greenland,en,OEF:WD:country-names-un-languages:20230216
+GL,Groenland,fr,OEF:WD:country-names-un-languages:20230216
+GL,Groenlandia,es,OEF:WD:country-names-un-languages:20230216
+GL,Гренландия,ru,OEF:WD:country-names-un-languages:20230216
+GL,جرينلاند,ar,OEF:WD:country-names-un-languages:20230216
+GL,格陵兰,zh,OEF:WD:country-names-un-languages:20230216
+NP,Nepal,en,OEF:WD:country-names-un-languages:20230216
+NP,Népal,fr,OEF:WD:country-names-un-languages:20230216
+NP,Nepal,es,OEF:WD:country-names-un-languages:20230216
+NP,Непал,ru,OEF:WD:country-names-un-languages:20230216
+NP,نيبال,ar,OEF:WD:country-names-un-languages:20230216
+NP,尼泊爾,zh,OEF:WD:country-names-un-languages:20230216
+KW,Kuwait,en,OEF:WD:country-names-un-languages:20230216
+KW,Koweït,fr,OEF:WD:country-names-un-languages:20230216
+KW,Kuwait,es,OEF:WD:country-names-un-languages:20230216
+KW,Кувейт,ru,OEF:WD:country-names-un-languages:20230216
+KW,الكويت,ar,OEF:WD:country-names-un-languages:20230216
+KW,科威特,zh,OEF:WD:country-names-un-languages:20230216
+MK,North Macedonia,en,OEF:WD:country-names-un-languages:20230216
+MK,Macédoine du Nord,fr,OEF:WD:country-names-un-languages:20230216
+MK,Macedonia del Norte,es,OEF:WD:country-names-un-languages:20230216
+MK,Северная Македония,ru,OEF:WD:country-names-un-languages:20230216
+MK,مقدونيا الشمالية,ar,OEF:WD:country-names-un-languages:20230216
+MK,北马其顿,zh,OEF:WD:country-names-un-languages:20230216
+TL,East Timor,en,OEF:WD:country-names-un-languages:20230216
+TL,Timor oriental,fr,OEF:WD:country-names-un-languages:20230216
+TL,Timor Oriental,es,OEF:WD:country-names-un-languages:20230216
+TL,Восточный Тимор,ru,OEF:WD:country-names-un-languages:20230216
+TL,تيمور الشرقية,ar,OEF:WD:country-names-un-languages:20230216
+TL,東帝汶,zh,OEF:WD:country-names-un-languages:20230216
+TW,Taiwan,en,OEF:WD:country-names-un-languages:20230216
+TW,Taïwan,fr,OEF:WD:country-names-un-languages:20230216
+TW,República de China,es,OEF:WD:country-names-un-languages:20230216
+TW,Китайская Республика (Тайвань),ru,OEF:WD:country-names-un-languages:20230216
+TW,تايوان,ar,OEF:WD:country-names-un-languages:20230216
+TW,中華民國,zh,OEF:WD:country-names-un-languages:20230216
+GT,Guatemala,en,OEF:WD:country-names-un-languages:20230216
+GT,Guatemala,fr,OEF:WD:country-names-un-languages:20230216
+GT,Guatemala,es,OEF:WD:country-names-un-languages:20230216
+GT,Гватемала,ru,OEF:WD:country-names-un-languages:20230216
+GT,غواتيمالا,ar,OEF:WD:country-names-un-languages:20230216
+GT,危地马拉,zh,OEF:WD:country-names-un-languages:20230216
+TM,Turkmenistan,en,OEF:WD:country-names-un-languages:20230216
+TM,Turkménistan,fr,OEF:WD:country-names-un-languages:20230216
+TM,Turkmenistán,es,OEF:WD:country-names-un-languages:20230216
+TM,Туркменистан,ru,OEF:WD:country-names-un-languages:20230216
+TM,تركمانستان,ar,OEF:WD:country-names-un-languages:20230216
+TM,土庫曼斯坦,zh,OEF:WD:country-names-un-languages:20230216
+BA,Bosnia and Herzegovina,en,OEF:WD:country-names-un-languages:20230216
+BA,Bosnie-Herzégovine,fr,OEF:WD:country-names-un-languages:20230216
+BA,Bosnia y Herzegovina,es,OEF:WD:country-names-un-languages:20230216
+BA,Босния и Герцеговина,ru,OEF:WD:country-names-un-languages:20230216
+BA,البوسنة والهرسك,ar,OEF:WD:country-names-un-languages:20230216
+BA,波斯尼亚和黑塞哥维那,zh,OEF:WD:country-names-un-languages:20230216
+KN,Saint Kitts and Nevis,en,OEF:WD:country-names-un-languages:20230216
+KN,Saint-Christophe-et-Niévès,fr,OEF:WD:country-names-un-languages:20230216
+KN,San Cristóbal y Nieves,es,OEF:WD:country-names-un-languages:20230216
+KN,Сент-Китс и Невис,ru,OEF:WD:country-names-un-languages:20230216
+KN,سانت كيتس ونيفيس,ar,OEF:WD:country-names-un-languages:20230216
+KN,聖克里斯多福及尼維斯,zh,OEF:WD:country-names-un-languages:20230216
+VA,Vatican City,en,OEF:WD:country-names-un-languages:20230216
+VA,Cité du Vatican,fr,OEF:WD:country-names-un-languages:20230216
+VA,Ciudad del Vaticano,es,OEF:WD:country-names-un-languages:20230216
+VA,Ватикан,ru,OEF:WD:country-names-un-languages:20230216
+VA,الفاتيكان,ar,OEF:WD:country-names-un-languages:20230216
+VA,梵蒂岡,zh,OEF:WD:country-names-un-languages:20230216
+AG,Antigua and Barbuda,en,OEF:WD:country-names-un-languages:20230216
+AG,Antigua-et-Barbuda,fr,OEF:WD:country-names-un-languages:20230216
+AG,Antigua y Barbuda,es,OEF:WD:country-names-un-languages:20230216
+AG,Антигуа и Барбуда,ru,OEF:WD:country-names-un-languages:20230216
+AG,أنتيغوا وباربودا,ar,OEF:WD:country-names-un-languages:20230216
+AG,安提瓜和巴布达,zh,OEF:WD:country-names-un-languages:20230216
+BG,Bulgaria,en,OEF:WD:country-names-un-languages:20230216
+BG,Bulgarie,fr,OEF:WD:country-names-un-languages:20230216
+BG,Bulgaria,es,OEF:WD:country-names-un-languages:20230216
+BG,Болгария,ru,OEF:WD:country-names-un-languages:20230216
+BG,بلغاريا,ar,OEF:WD:country-names-un-languages:20230216
+BG,保加利亚,zh,OEF:WD:country-names-un-languages:20230216
+ME,Montenegro,en,OEF:WD:country-names-un-languages:20230216
+ME,Monténégro,fr,OEF:WD:country-names-un-languages:20230216
+ME,Montenegro,es,OEF:WD:country-names-un-languages:20230216
+ME,Черногория,ru,OEF:WD:country-names-un-languages:20230216
+ME,الجبل الأسود,ar,OEF:WD:country-names-un-languages:20230216
+ME,蒙特內哥羅,zh,OEF:WD:country-names-un-languages:20230216
+JE,Jersey,en,OEF:WD:country-names-un-languages:20230216
+JE,Jersey,fr,OEF:WD:country-names-un-languages:20230216
+JE,Jersey,es,OEF:WD:country-names-un-languages:20230216
+JE,Джерси,ru,OEF:WD:country-names-un-languages:20230216
+JE,جيرزي,ar,OEF:WD:country-names-un-languages:20230216
+JE,澤西,zh,OEF:WD:country-names-un-languages:20230216
+LK,Sri Lanka,en,OEF:WD:country-names-un-languages:20230216
+LK,Sri Lanka,fr,OEF:WD:country-names-un-languages:20230216
+LK,Sri Lanka,es,OEF:WD:country-names-un-languages:20230216
+LK,Шри-Ланка,ru,OEF:WD:country-names-un-languages:20230216
+LK,سريلانكا,ar,OEF:WD:country-names-un-languages:20230216
+LK,斯里蘭卡,zh,OEF:WD:country-names-un-languages:20230216
+BO,Bolivia,en,OEF:WD:country-names-un-languages:20230216
+BO,Bolivie,fr,OEF:WD:country-names-un-languages:20230216
+BO,Bolivia,es,OEF:WD:country-names-un-languages:20230216
+BO,Боливия,ru,OEF:WD:country-names-un-languages:20230216
+BO,بوليفيا,ar,OEF:WD:country-names-un-languages:20230216
+BO,玻利維亞,zh,OEF:WD:country-names-un-languages:20230216
+BF,Burkina Faso,en,OEF:WD:country-names-un-languages:20230216
+BF,Burkina Faso,fr,OEF:WD:country-names-un-languages:20230216
+BF,Burkina Faso,es,OEF:WD:country-names-un-languages:20230216
+BF,Буркина-Фасо,ru,OEF:WD:country-names-un-languages:20230216
+BF,بوركينا فاسو,ar,OEF:WD:country-names-un-languages:20230216
+BF,布吉納法索,zh,OEF:WD:country-names-un-languages:20230216
+TZ,Tanzania,en,OEF:WD:country-names-un-languages:20230216
+TZ,Tanzanie,fr,OEF:WD:country-names-un-languages:20230216
+TZ,Tanzania,es,OEF:WD:country-names-un-languages:20230216
+TZ,Танзания,ru,OEF:WD:country-names-un-languages:20230216
+TZ,تنزانيا,ar,OEF:WD:country-names-un-languages:20230216
+TZ,坦桑尼亞,zh,OEF:WD:country-names-un-languages:20230216
+CF,Central African Republic,en,OEF:WD:country-names-un-languages:20230216
+CF,République centrafricaine,fr,OEF:WD:country-names-un-languages:20230216
+CF,República Centroafricana,es,OEF:WD:country-names-un-languages:20230216
+CF,Центральноафриканская Республика,ru,OEF:WD:country-names-un-languages:20230216
+CF,جمهورية أفريقيا الوسطى,ar,OEF:WD:country-names-un-languages:20230216
+CF,中非共和國,zh,OEF:WD:country-names-un-languages:20230216
+ZW,Zimbabwe,en,OEF:WD:country-names-un-languages:20230216
+ZW,Zimbabwe,fr,OEF:WD:country-names-un-languages:20230216
+ZW,Zimbabue,es,OEF:WD:country-names-un-languages:20230216
+ZW,Зимбабве,ru,OEF:WD:country-names-un-languages:20230216
+ZW,زيمبابوي,ar,OEF:WD:country-names-un-languages:20230216
+ZW,津巴布韦,zh,OEF:WD:country-names-un-languages:20230216
+DJ,Djibouti,en,OEF:WD:country-names-un-languages:20230216
+DJ,Djibouti,fr,OEF:WD:country-names-un-languages:20230216
+DJ,Yibuti,es,OEF:WD:country-names-un-languages:20230216
+DJ,Джибути,ru,OEF:WD:country-names-un-languages:20230216
+DJ,جيبوتي,ar,OEF:WD:country-names-un-languages:20230216
+DJ,吉布提,zh,OEF:WD:country-names-un-languages:20230216
+HN,Honduras,en,OEF:WD:country-names-un-languages:20230216
+HN,Honduras,fr,OEF:WD:country-names-un-languages:20230216
+HN,Honduras,es,OEF:WD:country-names-un-languages:20230216
+HN,Гондурас,ru,OEF:WD:country-names-un-languages:20230216
+HN,هندوراس,ar,OEF:WD:country-names-un-languages:20230216
+HN,洪都拉斯,zh,OEF:WD:country-names-un-languages:20230216
+BW,Botswana,en,OEF:WD:country-names-un-languages:20230216
+BW,Botswana,fr,OEF:WD:country-names-un-languages:20230216
+BW,Botsuana,es,OEF:WD:country-names-un-languages:20230216
+BW,Ботсвана,ru,OEF:WD:country-names-un-languages:20230216
+BW,بوتسوانا,ar,OEF:WD:country-names-un-languages:20230216
+BW,波札那,zh,OEF:WD:country-names-un-languages:20230216
+MT,Malta,en,OEF:WD:country-names-un-languages:20230216
+MT,Malte,fr,OEF:WD:country-names-un-languages:20230216
+MT,Malta,es,OEF:WD:country-names-un-languages:20230216
+MT,Мальта,ru,OEF:WD:country-names-un-languages:20230216
+MT,مالطا,ar,OEF:WD:country-names-un-languages:20230216
+MT,馬耳他,zh,OEF:WD:country-names-un-languages:20230216
+BS,The Bahamas,en,OEF:WD:country-names-un-languages:20230216
+BS,Bahamas,fr,OEF:WD:country-names-un-languages:20230216
+BS,Bahamas,es,OEF:WD:country-names-un-languages:20230216
+BS,Багамские Острова,ru,OEF:WD:country-names-un-languages:20230216
+BS,باهاماس,ar,OEF:WD:country-names-un-languages:20230216
+BS,巴哈馬,zh,OEF:WD:country-names-un-languages:20230216
+CL,Chile,en,OEF:WD:country-names-un-languages:20230216
+CL,Chili,fr,OEF:WD:country-names-un-languages:20230216
+CL,Chile,es,OEF:WD:country-names-un-languages:20230216
+CL,Чили,ru,OEF:WD:country-names-un-languages:20230216
+CL,تشيلي,ar,OEF:WD:country-names-un-languages:20230216
+CL,智利,zh,OEF:WD:country-names-un-languages:20230216
+MC,Monaco,en,OEF:WD:country-names-un-languages:20230216
+MC,Monaco,fr,OEF:WD:country-names-un-languages:20230216
+MC,Mónaco,es,OEF:WD:country-names-un-languages:20230216
+MC,Монако,ru,OEF:WD:country-names-un-languages:20230216
+MC,موناكو,ar,OEF:WD:country-names-un-languages:20230216
+MC,摩納哥,zh,OEF:WD:country-names-un-languages:20230216
+MW,Malawi,en,OEF:WD:country-names-un-languages:20230216
+MW,Malawi,fr,OEF:WD:country-names-un-languages:20230216
+MW,Malaui,es,OEF:WD:country-names-un-languages:20230216
+MW,Малави,ru,OEF:WD:country-names-un-languages:20230216
+MW,مالاوي,ar,OEF:WD:country-names-un-languages:20230216
+MW,馬拉威,zh,OEF:WD:country-names-un-languages:20230216
+NI,Nicaragua,en,OEF:WD:country-names-un-languages:20230216
+NI,Nicaragua,fr,OEF:WD:country-names-un-languages:20230216
+NI,Nicaragua,es,OEF:WD:country-names-un-languages:20230216
+NI,Никарагуа,ru,OEF:WD:country-names-un-languages:20230216
+NI,نيكاراغوا,ar,OEF:WD:country-names-un-languages:20230216
+NI,尼加拉瓜,zh,OEF:WD:country-names-un-languages:20230216
+XK,Kosovo,en,OEF:WD:country-names-un-languages:20230216
+XK,Kosovo,fr,OEF:WD:country-names-un-languages:20230216
+XK,Kosovo,es,OEF:WD:country-names-un-languages:20230216
+XK,Республика Косово,ru,OEF:WD:country-names-un-languages:20230216
+XK,كوسوفو,ar,OEF:WD:country-names-un-languages:20230216
+XK,科索沃,zh,OEF:WD:country-names-un-languages:20230216
+SV,El Salvador,en,OEF:WD:country-names-un-languages:20230216
+SV,Salvador,fr,OEF:WD:country-names-un-languages:20230216
+SV,El Salvador,es,OEF:WD:country-names-un-languages:20230216
+SV,Сальвадор,ru,OEF:WD:country-names-un-languages:20230216
+SV,السلفادور,ar,OEF:WD:country-names-un-languages:20230216
+SV,薩爾瓦多,zh,OEF:WD:country-names-un-languages:20230216
+IQ,Iraq,en,OEF:WD:country-names-un-languages:20230216
+IQ,Irak,fr,OEF:WD:country-names-un-languages:20230216
+IQ,Irak,es,OEF:WD:country-names-un-languages:20230216
+IQ,Ирак,ru,OEF:WD:country-names-un-languages:20230216
+IQ,العراق,ar,OEF:WD:country-names-un-languages:20230216
+IQ,伊拉克,zh,OEF:WD:country-names-un-languages:20230216
+AR,Argentina,en,OEF:WD:country-names-un-languages:20230216
+AR,Argentine,fr,OEF:WD:country-names-un-languages:20230216
+AR,Argentina,es,OEF:WD:country-names-un-languages:20230216
+AR,Аргентина,ru,OEF:WD:country-names-un-languages:20230216
+AR,الأرجنتين,ar,OEF:WD:country-names-un-languages:20230216
+AR,阿根廷,zh,OEF:WD:country-names-un-languages:20230216
+JO,Jordan,en,OEF:WD:country-names-un-languages:20230216
+JO,Jordanie,fr,OEF:WD:country-names-un-languages:20230216
+JO,Jordania,es,OEF:WD:country-names-un-languages:20230216
+JO,Иордания,ru,OEF:WD:country-names-un-languages:20230216
+JO,الأردن,ar,OEF:WD:country-names-un-languages:20230216
+JO,約旦,zh,OEF:WD:country-names-un-languages:20230216
+KP,North Korea,en,OEF:WD:country-names-un-languages:20230216
+KP,Corée du Nord,fr,OEF:WD:country-names-un-languages:20230216
+KP,Corea del Norte,es,OEF:WD:country-names-un-languages:20230216
+KP,КНДР,ru,OEF:WD:country-names-un-languages:20230216
+KP,كوريا الشمالية,ar,OEF:WD:country-names-un-languages:20230216
+KP,朝鮮民主主義人民共和國,zh,OEF:WD:country-names-un-languages:20230216
+SG,Singapore,en,OEF:WD:country-names-un-languages:20230216
+SG,Singapour,fr,OEF:WD:country-names-un-languages:20230216
+SG,Singapur,es,OEF:WD:country-names-un-languages:20230216
+SG,Сингапур,ru,OEF:WD:country-names-un-languages:20230216
+SG,سنغافورة,ar,OEF:WD:country-names-un-languages:20230216
+SG,新加坡,zh,OEF:WD:country-names-un-languages:20230216
+CG,Republic of the Congo,en,OEF:WD:country-names-un-languages:20230216
+CG,République du Congo,fr,OEF:WD:country-names-un-languages:20230216
+CG,República del Congo,es,OEF:WD:country-names-un-languages:20230216
+CG,Республика Конго,ru,OEF:WD:country-names-un-languages:20230216
+CG,جمهورية الكونغو,ar,OEF:WD:country-names-un-languages:20230216
+CG,剛果共和國,zh,OEF:WD:country-names-un-languages:20230216
+NZ,New Zealand,en,OEF:WD:country-names-un-languages:20230216
+NZ,Nouvelle-Zélande,fr,OEF:WD:country-names-un-languages:20230216
+NZ,Nueva Zelanda,es,OEF:WD:country-names-un-languages:20230216
+NZ,Новая Зеландия,ru,OEF:WD:country-names-un-languages:20230216
+NZ,نيوزيلندا,ar,OEF:WD:country-names-un-languages:20230216
+NZ,新西兰,zh,OEF:WD:country-names-un-languages:20230216
+KY,Cayman Islands,en,OEF:WD:country-names-un-languages:20230216
+KY,îles Caïmans,fr,OEF:WD:country-names-un-languages:20230216
+KY,Islas Caimán,es,OEF:WD:country-names-un-languages:20230216
+KY,Острова Кайман,ru,OEF:WD:country-names-un-languages:20230216
+KY,جزر كايمان,ar,OEF:WD:country-names-un-languages:20230216
+KY,開曼群島,zh,OEF:WD:country-names-un-languages:20230216
+MY,Malaysia,en,OEF:WD:country-names-un-languages:20230216
+MY,Malaisie,fr,OEF:WD:country-names-un-languages:20230216
+MY,Malasia,es,OEF:WD:country-names-un-languages:20230216
+MY,Малайзия,ru,OEF:WD:country-names-un-languages:20230216
+MY,ماليزيا,ar,OEF:WD:country-names-un-languages:20230216
+MY,馬來西亞,zh,OEF:WD:country-names-un-languages:20230216
+DO,Dominican Republic,en,OEF:WD:country-names-un-languages:20230216
+DO,République dominicaine,fr,OEF:WD:country-names-un-languages:20230216
+DO,República Dominicana,es,OEF:WD:country-names-un-languages:20230216
+DO,Доминиканская Республика,ru,OEF:WD:country-names-un-languages:20230216
+DO,جمهورية الدومينيكان,ar,OEF:WD:country-names-un-languages:20230216
+DO,多明尼加,zh,OEF:WD:country-names-un-languages:20230216
+BH,Bahrain,en,OEF:WD:country-names-un-languages:20230216
+BH,Bahreïn,fr,OEF:WD:country-names-un-languages:20230216
+BH,Baréin,es,OEF:WD:country-names-un-languages:20230216
+BH,Бахрейн,ru,OEF:WD:country-names-un-languages:20230216
+BH,البحرين,ar,OEF:WD:country-names-un-languages:20230216
+BH,巴林,zh,OEF:WD:country-names-un-languages:20230216
+KG,Kyrgyzstan,en,OEF:WD:country-names-un-languages:20230216
+KG,Kirghizistan,fr,OEF:WD:country-names-un-languages:20230216
+KG,Kirguistán,es,OEF:WD:country-names-un-languages:20230216
+KG,Киргизия,ru,OEF:WD:country-names-un-languages:20230216
+KG,قيرغيزستان,ar,OEF:WD:country-names-un-languages:20230216
+KG,吉尔吉斯斯坦,zh,OEF:WD:country-names-un-languages:20230216
+VU,Vanuatu,en,OEF:WD:country-names-un-languages:20230216
+VU,Vanuatu,fr,OEF:WD:country-names-un-languages:20230216
+VU,Vanuatu,es,OEF:WD:country-names-un-languages:20230216
+VU,Вануату,ru,OEF:WD:country-names-un-languages:20230216
+VU,فانواتو,ar,OEF:WD:country-names-un-languages:20230216
+VU,萬那杜,zh,OEF:WD:country-names-un-languages:20230216
+GQ,Equatorial Guinea,en,OEF:WD:country-names-un-languages:20230216
+GQ,Guinée équatoriale,fr,OEF:WD:country-names-un-languages:20230216
+GQ,Guinea Ecuatorial,es,OEF:WD:country-names-un-languages:20230216
+GQ,Экваториальная Гвинея,ru,OEF:WD:country-names-un-languages:20230216
+GQ,غينيا الاستوائية,ar,OEF:WD:country-names-un-languages:20230216
+GQ,赤道几内亚,zh,OEF:WD:country-names-un-languages:20230216
+TG,Togo,en,OEF:WD:country-names-un-languages:20230216
+TG,Togo,fr,OEF:WD:country-names-un-languages:20230216
+TG,Togo,es,OEF:WD:country-names-un-languages:20230216
+TG,Того,ru,OEF:WD:country-names-un-languages:20230216
+TG,توغو,ar,OEF:WD:country-names-un-languages:20230216
+TG,多哥,zh,OEF:WD:country-names-un-languages:20230216
+SB,Solomon Islands,en,OEF:WD:country-names-un-languages:20230216
+SB,Îles Salomon,fr,OEF:WD:country-names-un-languages:20230216
+SB,Islas Salomón,es,OEF:WD:country-names-un-languages:20230216
+SB,Соломоновы Острова,ru,OEF:WD:country-names-un-languages:20230216
+SB,جزر سليمان,ar,OEF:WD:country-names-un-languages:20230216
+SB,所罗门群岛,zh,OEF:WD:country-names-un-languages:20230216
+EH,Western Sahara,en,OEF:WD:country-names-un-languages:20230216
+EH,Sahara occidental,fr,OEF:WD:country-names-un-languages:20230216
+EH,Sahara Occidental,es,OEF:WD:country-names-un-languages:20230216
+EH,Западная Сахара,ru,OEF:WD:country-names-un-languages:20230216
+EH,الصحراء الغربية,ar,OEF:WD:country-names-un-languages:20230216
+EH,西撒哈拉,zh,OEF:WD:country-names-un-languages:20230216
+SA,Saudi Arabia,en,OEF:WD:country-names-un-languages:20230216
+SA,Arabie saoudite,fr,OEF:WD:country-names-un-languages:20230216
+SA,Arabia Saudita,es,OEF:WD:country-names-un-languages:20230216
+SA,Саудовская Аравия,ru,OEF:WD:country-names-un-languages:20230216
+SA,السعودية,ar,OEF:WD:country-names-un-languages:20230216
+SA,沙特阿拉伯,zh,OEF:WD:country-names-un-languages:20230216
+ER,Eritrea,en,OEF:WD:country-names-un-languages:20230216
+ER,Érythrée,fr,OEF:WD:country-names-un-languages:20230216
+ER,Eritrea,es,OEF:WD:country-names-un-languages:20230216
+ER,Эритрея,ru,OEF:WD:country-names-un-languages:20230216
+ER,إريتريا,ar,OEF:WD:country-names-un-languages:20230216
+ER,厄立特里亞,zh,OEF:WD:country-names-un-languages:20230216
+MP,Northern Mariana Islands,en,OEF:WD:country-names-un-languages:20230216
+MP,îles Mariannes du Nord,fr,OEF:WD:country-names-un-languages:20230216
+MP,Islas Marianas del Norte,es,OEF:WD:country-names-un-languages:20230216
+MP,Северные Марианские острова,ru,OEF:WD:country-names-un-languages:20230216
+MP,جزر ماريانا الشمالية,ar,OEF:WD:country-names-un-languages:20230216
+MP,北马里亚纳群岛,zh,OEF:WD:country-names-un-languages:20230216
+QA,Qatar,en,OEF:WD:country-names-un-languages:20230216
+QA,Qatar,fr,OEF:WD:country-names-un-languages:20230216
+QA,Catar,es,OEF:WD:country-names-un-languages:20230216
+QA,Катар,ru,OEF:WD:country-names-un-languages:20230216
+QA,قطر,ar,OEF:WD:country-names-un-languages:20230216
+QA,卡塔尔,zh,OEF:WD:country-names-un-languages:20230216
+MF,Saint Martin,en,OEF:WD:country-names-un-languages:20230216
+MF,Saint-Martin,fr,OEF:WD:country-names-un-languages:20230216
+MF,San Martín,es,OEF:WD:country-names-un-languages:20230216
+MF,Сен-Мартен,ru,OEF:WD:country-names-un-languages:20230216
+MF,تجمع سان مارتين,ar,OEF:WD:country-names-un-languages:20230216
+MF,法屬聖馬丁,zh,OEF:WD:country-names-un-languages:20230216
+TO,Tonga,en,OEF:WD:country-names-un-languages:20230216
+TO,Tonga,fr,OEF:WD:country-names-un-languages:20230216
+TO,Tonga,es,OEF:WD:country-names-un-languages:20230216
+TO,Тонга,ru,OEF:WD:country-names-un-languages:20230216
+TO,تونغا,ar,OEF:WD:country-names-un-languages:20230216
+TO,東加,zh,OEF:WD:country-names-un-languages:20230216
+ZA,South Africa,en,OEF:WD:country-names-un-languages:20230216
+ZA,Afrique du Sud,fr,OEF:WD:country-names-un-languages:20230216
+ZA,Sudáfrica,es,OEF:WD:country-names-un-languages:20230216
+ZA,ЮАР,ru,OEF:WD:country-names-un-languages:20230216
+ZA,جنوب إفريقيا,ar,OEF:WD:country-names-un-languages:20230216
+ZA,南非,zh,OEF:WD:country-names-un-languages:20230216
+PK,Pakistan,en,OEF:WD:country-names-un-languages:20230216
+PK,Pakistan,fr,OEF:WD:country-names-un-languages:20230216
+PK,Pakistán,es,OEF:WD:country-names-un-languages:20230216
+PK,Пакистан,ru,OEF:WD:country-names-un-languages:20230216
+PK,باكستان,ar,OEF:WD:country-names-un-languages:20230216
+PK,巴基斯坦,zh,OEF:WD:country-names-un-languages:20230216
+NR,Nauru,en,OEF:WD:country-names-un-languages:20230216
+NR,Nauru,fr,OEF:WD:country-names-un-languages:20230216
+NR,Nauru,es,OEF:WD:country-names-un-languages:20230216
+NR,Науру,ru,OEF:WD:country-names-un-languages:20230216
+NR,ناورو,ar,OEF:WD:country-names-un-languages:20230216
+NR,瑙鲁,zh,OEF:WD:country-names-un-languages:20230216
+VC,Saint Vincent and the Grenadines,en,OEF:WD:country-names-un-languages:20230216
+VC,Saint-Vincent-et-les-Grenadines,fr,OEF:WD:country-names-un-languages:20230216
+VC,San Vicente y las Granadinas,es,OEF:WD:country-names-un-languages:20230216
+VC,Сент-Винсент и Гренадины,ru,OEF:WD:country-names-un-languages:20230216
+VC,سانت فينسنت والغرينادين,ar,OEF:WD:country-names-un-languages:20230216
+VC,圣文森特和格林纳丁斯,zh,OEF:WD:country-names-un-languages:20230216
+KM,Comoros,en,OEF:WD:country-names-un-languages:20230216
+KM,Comores,fr,OEF:WD:country-names-un-languages:20230216
+KM,Comoras,es,OEF:WD:country-names-un-languages:20230216
+KM,Коморы,ru,OEF:WD:country-names-un-languages:20230216
+KM,جزر القمر,ar,OEF:WD:country-names-un-languages:20230216
+KM,葛摩,zh,OEF:WD:country-names-un-languages:20230216
+TV,Tuvalu,en,OEF:WD:country-names-un-languages:20230216
+TV,Tuvalu,fr,OEF:WD:country-names-un-languages:20230216
+TV,Tuvalu,es,OEF:WD:country-names-un-languages:20230216
+TV,Тувалу,ru,OEF:WD:country-names-un-languages:20230216
+TV,توفالو,ar,OEF:WD:country-names-un-languages:20230216
+TV,吐瓦魯,zh,OEF:WD:country-names-un-languages:20230216
+PH,Philippines,en,OEF:WD:country-names-un-languages:20230216
+PH,Philippines,fr,OEF:WD:country-names-un-languages:20230216
+PH,Filipinas,es,OEF:WD:country-names-un-languages:20230216
+PH,Филиппины,ru,OEF:WD:country-names-un-languages:20230216
+PH,الفلبين,ar,OEF:WD:country-names-un-languages:20230216
+PH,菲律賓,zh,OEF:WD:country-names-un-languages:20230216
+CO,Colombia,en,OEF:WD:country-names-un-languages:20230216
+CO,Colombie,fr,OEF:WD:country-names-un-languages:20230216
+CO,Colombia,es,OEF:WD:country-names-un-languages:20230216
+CO,Колумбия,ru,OEF:WD:country-names-un-languages:20230216
+CO,كولومبيا,ar,OEF:WD:country-names-un-languages:20230216
+CO,哥伦比亚,zh,OEF:WD:country-names-un-languages:20230216
+ZM,Zambia,en,OEF:WD:country-names-un-languages:20230216
+ZM,Zambie,fr,OEF:WD:country-names-un-languages:20230216
+ZM,Zambia,es,OEF:WD:country-names-un-languages:20230216
+ZM,Замбия,ru,OEF:WD:country-names-un-languages:20230216
+ZM,زامبيا,ar,OEF:WD:country-names-un-languages:20230216
+ZM,贊比亞,zh,OEF:WD:country-names-un-languages:20230216
+MM,Myanmar,en,OEF:WD:country-names-un-languages:20230216
+MM,Birmanie,fr,OEF:WD:country-names-un-languages:20230216
+MM,Birmania,es,OEF:WD:country-names-un-languages:20230216
+MM,Мьянма,ru,OEF:WD:country-names-un-languages:20230216
+MM,ميانمار,ar,OEF:WD:country-names-un-languages:20230216
+MM,緬甸,zh,OEF:WD:country-names-un-languages:20230216
+GN,Guinea,en,OEF:WD:country-names-un-languages:20230216
+GN,Guinée,fr,OEF:WD:country-names-un-languages:20230216
+GN,Guinea,es,OEF:WD:country-names-un-languages:20230216
+GN,Гвинея,ru,OEF:WD:country-names-un-languages:20230216
+GN,غينيا,ar,OEF:WD:country-names-un-languages:20230216
+GN,几内亚,zh,OEF:WD:country-names-un-languages:20230216
+MN,Mongolia,en,OEF:WD:country-names-un-languages:20230216
+MN,Mongolie,fr,OEF:WD:country-names-un-languages:20230216
+MN,Mongolia,es,OEF:WD:country-names-un-languages:20230216
+MN,Монголия,ru,OEF:WD:country-names-un-languages:20230216
+MN,منغوليا,ar,OEF:WD:country-names-un-languages:20230216
+MN,蒙古國,zh,OEF:WD:country-names-un-languages:20230216
+PG,Papua New Guinea,en,OEF:WD:country-names-un-languages:20230216
+PG,Papouasie-Nouvelle-Guinée,fr,OEF:WD:country-names-un-languages:20230216
+PG,Papúa Nueva Guinea,es,OEF:WD:country-names-un-languages:20230216
+PG,Папуа — Новая Гвинея,ru,OEF:WD:country-names-un-languages:20230216
+PG,بابوا غينيا الجديدة,ar,OEF:WD:country-names-un-languages:20230216
+PG,巴布亞新畿內亞,zh,OEF:WD:country-names-un-languages:20230216
+FM,Federated States of Micronesia,en,OEF:WD:country-names-un-languages:20230216
+FM,États fédérés de Micronésie,fr,OEF:WD:country-names-un-languages:20230216
+FM,Estados Federados de Micronesia,es,OEF:WD:country-names-un-languages:20230216
+FM,Федеративные Штаты Микронезии,ru,OEF:WD:country-names-un-languages:20230216
+FM,ولايات ميكرونيسيا المتحدة,ar,OEF:WD:country-names-un-languages:20230216
+FM,密克罗尼西亚联邦,zh,OEF:WD:country-names-un-languages:20230216
+SX,Sint Maarten,en,OEF:WD:country-names-un-languages:20230216
+SX,Saint-Martin,fr,OEF:WD:country-names-un-languages:20230216
+SX,San Martín,es,OEF:WD:country-names-un-languages:20230216
+SX,Синт-Мартен,ru,OEF:WD:country-names-un-languages:20230216
+SX,سينت مارتن,ar,OEF:WD:country-names-un-languages:20230216
+SX,荷屬聖馬丁,zh,OEF:WD:country-names-un-languages:20230216
+MH,Marshall Islands,en,OEF:WD:country-names-un-languages:20230216
+MH,Îles Marshall,fr,OEF:WD:country-names-un-languages:20230216
+MH,Islas Marshall,es,OEF:WD:country-names-un-languages:20230216
+MH,Маршалловы Острова,ru,OEF:WD:country-names-un-languages:20230216
+MH,جزر مارشال,ar,OEF:WD:country-names-un-languages:20230216
+MH,馬紹爾群島,zh,OEF:WD:country-names-un-languages:20230216
+DM,Dominica,en,OEF:WD:country-names-un-languages:20230216
+DM,Dominique,fr,OEF:WD:country-names-un-languages:20230216
+DM,Dominica,es,OEF:WD:country-names-un-languages:20230216
+DM,Доминика,ru,OEF:WD:country-names-un-languages:20230216
+DM,دومينيكا,ar,OEF:WD:country-names-un-languages:20230216
+DM,多米尼克,zh,OEF:WD:country-names-un-languages:20230216
+VE,Venezuela,en,OEF:WD:country-names-un-languages:20230216
+VE,Venezuela,fr,OEF:WD:country-names-un-languages:20230216
+VE,Venezuela,es,OEF:WD:country-names-un-languages:20230216
+VE,Венесуэла,ru,OEF:WD:country-names-un-languages:20230216
+VE,فنزويلا,ar,OEF:WD:country-names-un-languages:20230216
+VE,委內瑞拉,zh,OEF:WD:country-names-un-languages:20230216
+AF,Afghanistan,en,OEF:WD:country-names-un-languages:20230216
+AF,Afghanistan,fr,OEF:WD:country-names-un-languages:20230216
+AF,Afganistán,es,OEF:WD:country-names-un-languages:20230216
+AF,Афганистан,ru,OEF:WD:country-names-un-languages:20230216
+AF,أفغانستان,ar,OEF:WD:country-names-un-languages:20230216
+AF,阿富汗,zh,OEF:WD:country-names-un-languages:20230216
+GD,Grenada,en,OEF:WD:country-names-un-languages:20230216
+GD,Grenade,fr,OEF:WD:country-names-un-languages:20230216
+GD,Granada,es,OEF:WD:country-names-un-languages:20230216
+GD,Гренада,ru,OEF:WD:country-names-un-languages:20230216
+GD,غرينادا,ar,OEF:WD:country-names-un-languages:20230216
+GD,格瑞那達,zh,OEF:WD:country-names-un-languages:20230216
+KI,Kiribati,en,OEF:WD:country-names-un-languages:20230216
+KI,Kiribati,fr,OEF:WD:country-names-un-languages:20230216
+KI,Kiribati,es,OEF:WD:country-names-un-languages:20230216
+KI,Кирибати,ru,OEF:WD:country-names-un-languages:20230216
+KI,كيريباتي,ar,OEF:WD:country-names-un-languages:20230216
+KI,吉里巴斯,zh,OEF:WD:country-names-un-languages:20230216
+CD,Democratic Republic of the Congo,en,OEF:WD:country-names-un-languages:20230216
+CD,République démocratique du Congo,fr,OEF:WD:country-names-un-languages:20230216
+CD,República Democrática del Congo,es,OEF:WD:country-names-un-languages:20230216
+CD,Демократическая Республика Конго,ru,OEF:WD:country-names-un-languages:20230216
+CD,جمهورية الكونغو الديمقراطية,ar,OEF:WD:country-names-un-languages:20230216
+CD,刚果民主共和国,zh,OEF:WD:country-names-un-languages:20230216
+HM,Heard Island and McDonald Islands,en,OEF:WD:country-names-un-languages:20230216
+HM,îles Heard-et-MacDonald,fr,OEF:WD:country-names-un-languages:20230216
+HM,Islas Heard y McDonald,es,OEF:WD:country-names-un-languages:20230216
+HM,Остров Херд и острова Макдональд,ru,OEF:WD:country-names-un-languages:20230216
+HM,جزيرة هيرد وجزر ماكدونالد,ar,OEF:WD:country-names-un-languages:20230216
+HM,赫德島和麥克唐納群島,zh,OEF:WD:country-names-un-languages:20230216
+PA,Panama,en,OEF:WD:country-names-un-languages:20230216
+PA,Panama,fr,OEF:WD:country-names-un-languages:20230216
+PA,Panamá,es,OEF:WD:country-names-un-languages:20230216
+PA,Панама,ru,OEF:WD:country-names-un-languages:20230216
+PA,بنما,ar,OEF:WD:country-names-un-languages:20230216
+PA,巴拿馬,zh,OEF:WD:country-names-un-languages:20230216
+DG,Diego Garcia,en,OEF:WD:country-names-un-languages:20230216
+DG,Diego Garcia,fr,OEF:WD:country-names-un-languages:20230216
+DG,Diego García,es,OEF:WD:country-names-un-languages:20230216
+DG,Диего-Гарсия,ru,OEF:WD:country-names-un-languages:20230216
+DG,دييغو غارسيا,ar,OEF:WD:country-names-un-languages:20230216
+DG,迪戈加西亚岛,zh,OEF:WD:country-names-un-languages:20230216
+YU,Yugoslavia,en,OEF:WD:country-names-un-languages:20230216
+YU,Yougoslavie,fr,OEF:WD:country-names-un-languages:20230216
+YU,Yugoslavia,es,OEF:WD:country-names-un-languages:20230216
+YU,Югославия,ru,OEF:WD:country-names-un-languages:20230216
+YU,يوغوسلافيا,ar,OEF:WD:country-names-un-languages:20230216
+YU,南斯拉夫,zh,OEF:WD:country-names-un-languages:20230216
+LC,Saint Lucia,en,OEF:WD:country-names-un-languages:20230216
+LC,Sainte-Lucie,fr,OEF:WD:country-names-un-languages:20230216
+LC,Santa Lucía,es,OEF:WD:country-names-un-languages:20230216
+LC,Сент-Люсия,ru,OEF:WD:country-names-un-languages:20230216
+LC,سانت لوسيا,ar,OEF:WD:country-names-un-languages:20230216
+LC,圣卢西亚,zh,OEF:WD:country-names-un-languages:20230216
+CM,Cameroon,en,OEF:WD:country-names-un-languages:20230216
+CM,Cameroun,fr,OEF:WD:country-names-un-languages:20230216
+CM,Camerún,es,OEF:WD:country-names-un-languages:20230216
+CM,Камерун,ru,OEF:WD:country-names-un-languages:20230216
+CM,الكاميرون,ar,OEF:WD:country-names-un-languages:20230216
+CM,喀麦隆,zh,OEF:WD:country-names-un-languages:20230216
+LS,Lesotho,en,OEF:WD:country-names-un-languages:20230216
+LS,Lesotho,fr,OEF:WD:country-names-un-languages:20230216
+LS,Lesoto,es,OEF:WD:country-names-un-languages:20230216
+LS,Лесото,ru,OEF:WD:country-names-un-languages:20230216
+LS,ليسوتو,ar,OEF:WD:country-names-un-languages:20230216
+LS,莱索托,zh,OEF:WD:country-names-un-languages:20230216
+VN,Vietnam,en,OEF:WD:country-names-un-languages:20230216
+VN,Viêt Nam,fr,OEF:WD:country-names-un-languages:20230216
+VN,Vietnam,es,OEF:WD:country-names-un-languages:20230216
+VN,Вьетнам,ru,OEF:WD:country-names-un-languages:20230216
+VN,فيتنام,ar,OEF:WD:country-names-un-languages:20230216
+VN,越南,zh,OEF:WD:country-names-un-languages:20230216
+LR,Liberia,en,OEF:WD:country-names-un-languages:20230216
+LR,Liberia,fr,OEF:WD:country-names-un-languages:20230216
+LR,Liberia,es,OEF:WD:country-names-un-languages:20230216
+LR,Либерия,ru,OEF:WD:country-names-un-languages:20230216
+LR,ليبيريا,ar,OEF:WD:country-names-un-languages:20230216
+LR,利比里亞,zh,OEF:WD:country-names-un-languages:20230216
+GW,Guinea-Bissau,en,OEF:WD:country-names-un-languages:20230216
+GW,Guinée-Bissau,fr,OEF:WD:country-names-un-languages:20230216
+GW,Guinea-Bisáu,es,OEF:WD:country-names-un-languages:20230216
+GW,Гвинея-Бисау,ru,OEF:WD:country-names-un-languages:20230216
+GW,غينيا بيساو,ar,OEF:WD:country-names-un-languages:20230216
+GW,畿內亞比紹,zh,OEF:WD:country-names-un-languages:20230216
+NL,Kingdom of the Netherlands,en,OEF:WD:country-names-un-languages:20230216
+NL,Pays-Bas,fr,OEF:WD:country-names-un-languages:20230216
+NL,Reino de los Países Bajos,es,OEF:WD:country-names-un-languages:20230216
+NL,Королевство Нидерландов,ru,OEF:WD:country-names-un-languages:20230216
+NL,مملكة هولندا,ar,OEF:WD:country-names-un-languages:20230216
+NL,荷兰王国,zh,OEF:WD:country-names-un-languages:20230216
+NC,New Caledonia,en,OEF:WD:country-names-un-languages:20230216
+NC,Nouvelle-Calédonie,fr,OEF:WD:country-names-un-languages:20230216
+NC,Nueva Caledonia,es,OEF:WD:country-names-un-languages:20230216
+NC,Новая Каледония,ru,OEF:WD:country-names-un-languages:20230216
+NC,كاليدونيا الجديدة,ar,OEF:WD:country-names-un-languages:20230216
+NC,新喀里多尼亞,zh,OEF:WD:country-names-un-languages:20230216
+MZ,Mozambique,en,OEF:WD:country-names-un-languages:20230216
+MZ,Mozambique,fr,OEF:WD:country-names-un-languages:20230216
+MZ,Mozambique,es,OEF:WD:country-names-un-languages:20230216
+MZ,Мозамбик,ru,OEF:WD:country-names-un-languages:20230216
+MZ,موزمبيق,ar,OEF:WD:country-names-un-languages:20230216
+MZ,莫桑比克,zh,OEF:WD:country-names-un-languages:20230216
+TJ,Tajikistan,en,OEF:WD:country-names-un-languages:20230216
+TJ,Tadjikistan,fr,OEF:WD:country-names-un-languages:20230216
+TJ,Tayikistán,es,OEF:WD:country-names-un-languages:20230216
+TJ,Таджикистан,ru,OEF:WD:country-names-un-languages:20230216
+TJ,طاجيكستان,ar,OEF:WD:country-names-un-languages:20230216
+TJ,塔吉克斯坦,zh,OEF:WD:country-names-un-languages:20230216
+MU,Mauritius,en,OEF:WD:country-names-un-languages:20230216
+MU,Maurice,fr,OEF:WD:country-names-un-languages:20230216
+MU,Mauricio,es,OEF:WD:country-names-un-languages:20230216
+MU,Маврикий,ru,OEF:WD:country-names-un-languages:20230216
+MU,موريشيوس,ar,OEF:WD:country-names-un-languages:20230216
+MU,毛里求斯,zh,OEF:WD:country-names-un-languages:20230216
+MR,Mauritania,en,OEF:WD:country-names-un-languages:20230216
+MR,Mauritanie,fr,OEF:WD:country-names-un-languages:20230216
+MR,Mauritania,es,OEF:WD:country-names-un-languages:20230216
+MR,Мавритания,ru,OEF:WD:country-names-un-languages:20230216
+MR,موريتانيا,ar,OEF:WD:country-names-un-languages:20230216
+MR,毛里塔尼亞,zh,OEF:WD:country-names-un-languages:20230216
+LA,Laos,en,OEF:WD:country-names-un-languages:20230216
+LA,Laos,fr,OEF:WD:country-names-un-languages:20230216
+LA,Laos,es,OEF:WD:country-names-un-languages:20230216
+LA,Лаос,ru,OEF:WD:country-names-un-languages:20230216
+LA,لاوس,ar,OEF:WD:country-names-un-languages:20230216
+LA,老撾,zh,OEF:WD:country-names-un-languages:20230216
+MG,Madagascar,en,OEF:WD:country-names-un-languages:20230216
+MG,Madagascar,fr,OEF:WD:country-names-un-languages:20230216
+MG,Madagascar,es,OEF:WD:country-names-un-languages:20230216
+MG,Мадагаскар,ru,OEF:WD:country-names-un-languages:20230216
+MG,مدغشقر,ar,OEF:WD:country-names-un-languages:20230216
+MG,馬達加斯加,zh,OEF:WD:country-names-un-languages:20230216
+SY,Syria,en,OEF:WD:country-names-un-languages:20230216
+SY,Syrie,fr,OEF:WD:country-names-un-languages:20230216
+SY,Siria,es,OEF:WD:country-names-un-languages:20230216
+SY,Сирия,ru,OEF:WD:country-names-un-languages:20230216
+SY,الجمهورية العربية السورية,ar,OEF:WD:country-names-un-languages:20230216
+SY,敘利亞,zh,OEF:WD:country-names-un-languages:20230216
+IL,Israel,en,OEF:WD:country-names-un-languages:20230216
+IL,Israël,fr,OEF:WD:country-names-un-languages:20230216
+IL,Israel,es,OEF:WD:country-names-un-languages:20230216
+IL,Израиль,ru,OEF:WD:country-names-un-languages:20230216
+IL,إسرائيل,ar,OEF:WD:country-names-un-languages:20230216
+IL,以色列,zh,OEF:WD:country-names-un-languages:20230216
+NA,Namibia,en,OEF:WD:country-names-un-languages:20230216
+NA,Namibie,fr,OEF:WD:country-names-un-languages:20230216
+NA,Namibia,es,OEF:WD:country-names-un-languages:20230216
+NA,Намибия,ru,OEF:WD:country-names-un-languages:20230216
+NA,ناميبيا,ar,OEF:WD:country-names-un-languages:20230216
+NA,纳米比亚,zh,OEF:WD:country-names-un-languages:20230216
+LY,Libya,en,OEF:WD:country-names-un-languages:20230216
+LY,Libye,fr,OEF:WD:country-names-un-languages:20230216
+LY,Libia,es,OEF:WD:country-names-un-languages:20230216
+LY,Ливия,ru,OEF:WD:country-names-un-languages:20230216
+LY,ليبيا,ar,OEF:WD:country-names-un-languages:20230216
+LY,利比亞,zh,OEF:WD:country-names-un-languages:20230216
+GA,Gabon,en,OEF:WD:country-names-un-languages:20230216
+GA,Gabon,fr,OEF:WD:country-names-un-languages:20230216
+GA,Gabón,es,OEF:WD:country-names-un-languages:20230216
+GA,Габон,ru,OEF:WD:country-names-un-languages:20230216
+GA,الغابون,ar,OEF:WD:country-names-un-languages:20230216
+GA,加蓬,zh,OEF:WD:country-names-un-languages:20230216
+BD,Bangladesh,en,OEF:WD:country-names-un-languages:20230216
+BD,Bangladesh,fr,OEF:WD:country-names-un-languages:20230216
+BD,Bangladés,es,OEF:WD:country-names-un-languages:20230216
+BD,Бангладеш,ru,OEF:WD:country-names-un-languages:20230216
+BD,بنغلاديش,ar,OEF:WD:country-names-un-languages:20230216
+BD,孟加拉國,zh,OEF:WD:country-names-un-languages:20230216
+LB,Lebanon,en,OEF:WD:country-names-un-languages:20230216
+LB,Liban,fr,OEF:WD:country-names-un-languages:20230216
+LB,Líbano,es,OEF:WD:country-names-un-languages:20230216
+LB,Ливан,ru,OEF:WD:country-names-un-languages:20230216
+LB,لبنان,ar,OEF:WD:country-names-un-languages:20230216
+LB,黎巴嫩,zh,OEF:WD:country-names-un-languages:20230216
+FO,Faroe Islands,en,OEF:WD:country-names-un-languages:20230216
+FO,îles Féroé,fr,OEF:WD:country-names-un-languages:20230216
+FO,Islas Feroe,es,OEF:WD:country-names-un-languages:20230216
+FO,Фарерские острова,ru,OEF:WD:country-names-un-languages:20230216
+FO,جزر فارو,ar,OEF:WD:country-names-un-languages:20230216
+FO,法罗群岛,zh,OEF:WD:country-names-un-languages:20230216
+CR,Costa Rica,en,OEF:WD:country-names-un-languages:20230216
+CR,Costa Rica,fr,OEF:WD:country-names-un-languages:20230216
+CR,Costa Rica,es,OEF:WD:country-names-un-languages:20230216
+CR,Коста-Рика,ru,OEF:WD:country-names-un-languages:20230216
+CR,كوستاريكا,ar,OEF:WD:country-names-un-languages:20230216
+CR,哥斯达黎加,zh,OEF:WD:country-names-un-languages:20230216
+KR,South Korea,en,OEF:WD:country-names-un-languages:20230216
+KR,Corée du Sud,fr,OEF:WD:country-names-un-languages:20230216
+KR,Corea del Sur,es,OEF:WD:country-names-un-languages:20230216
+KR,Республика Корея,ru,OEF:WD:country-names-un-languages:20230216
+KR,كوريا الجنوبية,ar,OEF:WD:country-names-un-languages:20230216
+KR,大韩民国,zh,OEF:WD:country-names-un-languages:20230216
+RW,Rwanda,en,OEF:WD:country-names-un-languages:20230216
+RW,Rwanda,fr,OEF:WD:country-names-un-languages:20230216
+RW,Ruanda,es,OEF:WD:country-names-un-languages:20230216
+RW,Руанда,ru,OEF:WD:country-names-un-languages:20230216
+RW,رواندا,ar,OEF:WD:country-names-un-languages:20230216
+RW,卢旺达,zh,OEF:WD:country-names-un-languages:20230216
+SN,Senegal,en,OEF:WD:country-names-un-languages:20230216
+SN,Sénégal,fr,OEF:WD:country-names-un-languages:20230216
+SN,Senegal,es,OEF:WD:country-names-un-languages:20230216
+SN,Сенегал,ru,OEF:WD:country-names-un-languages:20230216
+SN,السنغال,ar,OEF:WD:country-names-un-languages:20230216
+SN,塞内加尔,zh,OEF:WD:country-names-un-languages:20230216
+BN,Brunei,en,OEF:WD:country-names-un-languages:20230216
+BN,Brunei,fr,OEF:WD:country-names-un-languages:20230216
+BN,Brunéi,es,OEF:WD:country-names-un-languages:20230216
+BN,Бруней,ru,OEF:WD:country-names-un-languages:20230216
+BN,بروناي,ar,OEF:WD:country-names-un-languages:20230216
+BN,汶莱,zh,OEF:WD:country-names-un-languages:20230216
+HK,Hong Kong,en,OEF:WD:country-names-un-languages:20230216
+HK,Hong Kong,fr,OEF:WD:country-names-un-languages:20230216
+HK,Hong Kong,es,OEF:WD:country-names-un-languages:20230216
+HK,Гонконг,ru,OEF:WD:country-names-un-languages:20230216
+HK,هونغ كونغ,ar,OEF:WD:country-names-un-languages:20230216
+HK,香港,zh,OEF:WD:country-names-un-languages:20230216
+NG,Nigeria,en,OEF:WD:country-names-un-languages:20230216
+NG,Nigeria,fr,OEF:WD:country-names-un-languages:20230216
+NG,Nigeria,es,OEF:WD:country-names-un-languages:20230216
+NG,Нигерия,ru,OEF:WD:country-names-un-languages:20230216
+NG,نيجيريا,ar,OEF:WD:country-names-un-languages:20230216
+NG,奈及利亞,zh,OEF:WD:country-names-un-languages:20230216
+AO,Angola,en,OEF:WD:country-names-un-languages:20230216
+AO,Angola,fr,OEF:WD:country-names-un-languages:20230216
+AO,Angola,es,OEF:WD:country-names-un-languages:20230216
+AO,Ангола,ru,OEF:WD:country-names-un-languages:20230216
+AO,أنغولا,ar,OEF:WD:country-names-un-languages:20230216
+AO,安哥拉,zh,OEF:WD:country-names-un-languages:20230216
+SZ,Eswatini,en,OEF:WD:country-names-un-languages:20230216
+SZ,Eswatini,fr,OEF:WD:country-names-un-languages:20230216
+SZ,Eswatini,es,OEF:WD:country-names-un-languages:20230216
+SZ,Эсватини,ru,OEF:WD:country-names-un-languages:20230216
+SZ,إسواتيني,ar,OEF:WD:country-names-un-languages:20230216
+SZ,斯威士兰,zh,OEF:WD:country-names-un-languages:20230216
+UG,Uganda,en,OEF:WD:country-names-un-languages:20230216
+UG,Ouganda,fr,OEF:WD:country-names-un-languages:20230216
+UG,Uganda,es,OEF:WD:country-names-un-languages:20230216
+UG,Уганда,ru,OEF:WD:country-names-un-languages:20230216
+UG,أوغندا,ar,OEF:WD:country-names-un-languages:20230216
+UG,烏干達,zh,OEF:WD:country-names-un-languages:20230216
+AE,United Arab Emirates,en,OEF:WD:country-names-un-languages:20230216
+AE,Émirats arabes unis,fr,OEF:WD:country-names-un-languages:20230216
+AE,Emiratos Árabes Unidos,es,OEF:WD:country-names-un-languages:20230216
+AE,Объединённые Арабские Эмираты,ru,OEF:WD:country-names-un-languages:20230216
+AE,الإمارات العربية المتحدة,ar,OEF:WD:country-names-un-languages:20230216
+AE,阿拉伯联合酋长国,zh,OEF:WD:country-names-un-languages:20230216
+TH,Thailand,en,OEF:WD:country-names-un-languages:20230216
+TH,Thaïlande,fr,OEF:WD:country-names-un-languages:20230216
+TH,Tailandia,es,OEF:WD:country-names-un-languages:20230216
+TH,Таиланд,ru,OEF:WD:country-names-un-languages:20230216
+TH,تايلاند,ar,OEF:WD:country-names-un-languages:20230216
+TH,泰國,zh,OEF:WD:country-names-un-languages:20230216
+IM,Isle of Man,en,OEF:WD:country-names-un-languages:20230216
+IM,île de Man,fr,OEF:WD:country-names-un-languages:20230216
+IM,Isla de Man,es,OEF:WD:country-names-un-languages:20230216
+IM,Остров Мэн,ru,OEF:WD:country-names-un-languages:20230216
+IM,جزيرة مان,ar,OEF:WD:country-names-un-languages:20230216
+IM,曼島,zh,OEF:WD:country-names-un-languages:20230216
+MO,Macau,en,OEF:WD:country-names-un-languages:20230216
+MO,Macao,fr,OEF:WD:country-names-un-languages:20230216
+MO,Macao,es,OEF:WD:country-names-un-languages:20230216
+MO,Макао,ru,OEF:WD:country-names-un-languages:20230216
+MO,ماكاو,ar,OEF:WD:country-names-un-languages:20230216
+MO,澳門特別行政區,zh,OEF:WD:country-names-un-languages:20230216
+SC,Seychelles,en,OEF:WD:country-names-un-languages:20230216
+SC,Seychelles,fr,OEF:WD:country-names-un-languages:20230216
+SC,Seychelles,es,OEF:WD:country-names-un-languages:20230216
+SC,Сейшельские Острова,ru,OEF:WD:country-names-un-languages:20230216
+SC,سيشل,ar,OEF:WD:country-names-un-languages:20230216
+SC,塞舌尔,zh,OEF:WD:country-names-un-languages:20230216
+AX,Åland,en,OEF:WD:country-names-un-languages:20230216
+AX,Åland,fr,OEF:WD:country-names-un-languages:20230216
+AX,Åland,es,OEF:WD:country-names-un-languages:20230216
+AX,Аландские острова,ru,OEF:WD:country-names-un-languages:20230216
+AX,جزر أولاند,ar,OEF:WD:country-names-un-languages:20230216
+AX,奥兰,zh,OEF:WD:country-names-un-languages:20230216
+GU,Guam,en,OEF:WD:country-names-un-languages:20230216
+GU,Guam,fr,OEF:WD:country-names-un-languages:20230216
+GU,Guam,es,OEF:WD:country-names-un-languages:20230216
+GU,Гуам,ru,OEF:WD:country-names-un-languages:20230216
+GU,غوام,ar,OEF:WD:country-names-un-languages:20230216
+GU,關島,zh,OEF:WD:country-names-un-languages:20230216
+BV,Bouvet Island,en,OEF:WD:country-names-un-languages:20230216
+BV,île Bouvet,fr,OEF:WD:country-names-un-languages:20230216
+BV,Isla Bouvet,es,OEF:WD:country-names-un-languages:20230216
+BV,Остров Буве,ru,OEF:WD:country-names-un-languages:20230216
+BV,جزيرة بوفيه,ar,OEF:WD:country-names-un-languages:20230216
+BV,布韦岛,zh,OEF:WD:country-names-un-languages:20230216
+GM,The Gambia,en,OEF:WD:country-names-un-languages:20230216
+GM,Gambie,fr,OEF:WD:country-names-un-languages:20230216
+GM,Gambia,es,OEF:WD:country-names-un-languages:20230216
+GM,Гамбия,ru,OEF:WD:country-names-un-languages:20230216
+GM,غامبيا,ar,OEF:WD:country-names-un-languages:20230216
+GM,岡比亞,zh,OEF:WD:country-names-un-languages:20230216
+FK,Falkland Islands,en,OEF:WD:country-names-un-languages:20230216
+FK,îles Malouines,fr,OEF:WD:country-names-un-languages:20230216
+FK,Islas Malvinas,es,OEF:WD:country-names-un-languages:20230216
+FK,Фолклендские острова,ru,OEF:WD:country-names-un-languages:20230216
+FK,جزر فوكلاند,ar,OEF:WD:country-names-un-languages:20230216
+FK,福克蘭群島,zh,OEF:WD:country-names-un-languages:20230216
+BT,Bhutan,en,OEF:WD:country-names-un-languages:20230216
+BT,Bhoutan,fr,OEF:WD:country-names-un-languages:20230216
+BT,Bután,es,OEF:WD:country-names-un-languages:20230216
+BT,Бутан,ru,OEF:WD:country-names-un-languages:20230216
+BT,بوتان,ar,OEF:WD:country-names-un-languages:20230216
+BT,不丹,zh,OEF:WD:country-names-un-languages:20230216
+AS,American Samoa,en,OEF:WD:country-names-un-languages:20230216
+AS,Samoa américaines,fr,OEF:WD:country-names-un-languages:20230216
+AS,Samoa Estadounidense,es,OEF:WD:country-names-un-languages:20230216
+AS,Американское Самоа,ru,OEF:WD:country-names-un-languages:20230216
+AS,ساموا الأمريكية,ar,OEF:WD:country-names-un-languages:20230216
+AS,美屬薩摩亞,zh,OEF:WD:country-names-un-languages:20230216
+ML,Mali,en,OEF:WD:country-names-un-languages:20230216
+ML,Mali,fr,OEF:WD:country-names-un-languages:20230216
+ML,Malí,es,OEF:WD:country-names-un-languages:20230216
+ML,Мали,ru,OEF:WD:country-names-un-languages:20230216
+ML,مالي,ar,OEF:WD:country-names-un-languages:20230216
+ML,马里,zh,OEF:WD:country-names-un-languages:20230216
+SS,South Sudan,en,OEF:WD:country-names-un-languages:20230216
+SS,Soudan du Sud,fr,OEF:WD:country-names-un-languages:20230216
+SS,Sudán del Sur,es,OEF:WD:country-names-un-languages:20230216
+SS,Южный Судан,ru,OEF:WD:country-names-un-languages:20230216
+SS,جنوب السودان,ar,OEF:WD:country-names-un-languages:20230216
+SS,南蘇丹,zh,OEF:WD:country-names-un-languages:20230216
+AI,Anguilla,en,OEF:WD:country-names-un-languages:20230216
+AI,Anguilla,fr,OEF:WD:country-names-un-languages:20230216
+AI,Anguila,es,OEF:WD:country-names-un-languages:20230216
+AI,Ангилья,ru,OEF:WD:country-names-un-languages:20230216
+AI,أنغويلا,ar,OEF:WD:country-names-un-languages:20230216
+AI,安圭拉,zh,OEF:WD:country-names-un-languages:20230216
+CW,Curaçao,en,OEF:WD:country-names-un-languages:20230216
+CW,Curaçao,fr,OEF:WD:country-names-un-languages:20230216
+CW,Curazao,es,OEF:WD:country-names-un-languages:20230216
+CW,Кюрасао,ru,OEF:WD:country-names-un-languages:20230216
+CW,كوراساو,ar,OEF:WD:country-names-un-languages:20230216
+CW,库拉索,zh,OEF:WD:country-names-un-languages:20230216
+CI,Ivory Coast,en,OEF:WD:country-names-un-languages:20230216
+CI,Côte d'Ivoire,fr,OEF:WD:country-names-un-languages:20230216
+CI,Costa de Marfil,es,OEF:WD:country-names-un-languages:20230216
+CI,Кот-д’Ивуар,ru,OEF:WD:country-names-un-languages:20230216
+CI,ساحل العاج,ar,OEF:WD:country-names-un-languages:20230216
+CI,科特迪瓦,zh,OEF:WD:country-names-un-languages:20230216
+GG,Bailiwick of Guernsey,en,OEF:WD:country-names-un-languages:20230216
+GG,bailliage de Guernesey,fr,OEF:WD:country-names-un-languages:20230216
+GG,Guernsey,es,OEF:WD:country-names-un-languages:20230216
+GG,Гернси,ru,OEF:WD:country-names-un-languages:20230216
+GG,غيرنزي,ar,OEF:WD:country-names-un-languages:20230216
+GG,根西,zh,OEF:WD:country-names-un-languages:20230216
+TN,Tunisia,en,OEF:WD:country-names-un-languages:20230216
+TN,Tunisie,fr,OEF:WD:country-names-un-languages:20230216
+TN,Túnez,es,OEF:WD:country-names-un-languages:20230216
+TN,Тунис,ru,OEF:WD:country-names-un-languages:20230216
+TN,تونس,ar,OEF:WD:country-names-un-languages:20230216
+TN,突尼西亞,zh,OEF:WD:country-names-un-languages:20230216
+GP,Guadeloupe,en,OEF:WD:country-names-un-languages:20230216
+GP,Guadeloupe,fr,OEF:WD:country-names-un-languages:20230216
+GP,Guadalupe,es,OEF:WD:country-names-un-languages:20230216
+GP,Гваделупа,ru,OEF:WD:country-names-un-languages:20230216
+GP,غوادلوب,ar,OEF:WD:country-names-un-languages:20230216
+GP,瓜德羅普,zh,OEF:WD:country-names-un-languages:20230216
+CV,Cape Verde,en,OEF:WD:country-names-un-languages:20230216
+CV,Cap-Vert,fr,OEF:WD:country-names-un-languages:20230216
+CV,Cabo Verde,es,OEF:WD:country-names-un-languages:20230216
+CV,Кабо-Верде,ru,OEF:WD:country-names-un-languages:20230216
+CV,الرأس الأخضر,ar,OEF:WD:country-names-un-languages:20230216
+CV,佛得角,zh,OEF:WD:country-names-un-languages:20230216
+BJ,Benin,en,OEF:WD:country-names-un-languages:20230216
+BJ,Bénin,fr,OEF:WD:country-names-un-languages:20230216
+BJ,Benín,es,OEF:WD:country-names-un-languages:20230216
+BJ,Бенин,ru,OEF:WD:country-names-un-languages:20230216
+BJ,بنين,ar,OEF:WD:country-names-un-languages:20230216
+BJ,貝南,zh,OEF:WD:country-names-un-languages:20230216
+MQ,Martinique,en,OEF:WD:country-names-un-languages:20230216
+MQ,Martinique,fr,OEF:WD:country-names-un-languages:20230216
+MQ,Martinica,es,OEF:WD:country-names-un-languages:20230216
+MQ,Мартиника,ru,OEF:WD:country-names-un-languages:20230216
+MQ,مارتينيك,ar,OEF:WD:country-names-un-languages:20230216
+MQ,馬提尼克,zh,OEF:WD:country-names-un-languages:20230216
+MA,Morocco,en,OEF:WD:country-names-un-languages:20230216
+MA,Maroc,fr,OEF:WD:country-names-un-languages:20230216
+MA,Marruecos,es,OEF:WD:country-names-un-languages:20230216
+MA,Марокко,ru,OEF:WD:country-names-un-languages:20230216
+MA,المغرب,ar,OEF:WD:country-names-un-languages:20230216
+MA,摩洛哥,zh,OEF:WD:country-names-un-languages:20230216
+AW,Aruba,en,OEF:WD:country-names-un-languages:20230216
+AW,Aruba,fr,OEF:WD:country-names-un-languages:20230216
+AW,Aruba,es,OEF:WD:country-names-un-languages:20230216
+AW,Аруба,ru,OEF:WD:country-names-un-languages:20230216
+AW,أروبا,ar,OEF:WD:country-names-un-languages:20230216
+AW,阿魯巴,zh,OEF:WD:country-names-un-languages:20230216
+CK,Cook Islands,en,OEF:WD:country-names-un-languages:20230216
+CK,Îles Cook,fr,OEF:WD:country-names-un-languages:20230216
+CK,Islas Cook,es,OEF:WD:country-names-un-languages:20230216
+CK,Острова Кука,ru,OEF:WD:country-names-un-languages:20230216
+CK,جزر كوك,ar,OEF:WD:country-names-un-languages:20230216
+CK,库克群岛,zh,OEF:WD:country-names-un-languages:20230216
+YT,Mayotte,en,OEF:WD:country-names-un-languages:20230216
+YT,Mayotte,fr,OEF:WD:country-names-un-languages:20230216
+YT,Mayotte,es,OEF:WD:country-names-un-languages:20230216
+YT,Майотта,ru,OEF:WD:country-names-un-languages:20230216
+YT,مايوت,ar,OEF:WD:country-names-un-languages:20230216
+YT,马约特,zh,OEF:WD:country-names-un-languages:20230216
+GS,South Georgia and the South Sandwich Islands,en,OEF:WD:country-names-un-languages:20230216
+GS,Géorgie du Sud-et-les Îles Sandwich du Sud,fr,OEF:WD:country-names-un-languages:20230216
+GS,Islas Georgias del Sur y Sandwich del Sur,es,OEF:WD:country-names-un-languages:20230216
+GS,Южная Георгия и Южные Сандвичевы острова,ru,OEF:WD:country-names-un-languages:20230216
+GS,جورجيا الجنوبية وجزر ساندويتش الجنوبية,ar,OEF:WD:country-names-un-languages:20230216
+GS,南乔治亚和南桑威奇群岛,zh,OEF:WD:country-names-un-languages:20230216
+PR,Puerto Rico,en,OEF:WD:country-names-un-languages:20230216
+PR,Porto Rico,fr,OEF:WD:country-names-un-languages:20230216
+PR,Puerto Rico,es,OEF:WD:country-names-un-languages:20230216
+PR,Пуэрто-Рико,ru,OEF:WD:country-names-un-languages:20230216
+PR,بورتوريكو,ar,OEF:WD:country-names-un-languages:20230216
+PR,波多黎各,zh,OEF:WD:country-names-un-languages:20230216
+BI,Burundi,en,OEF:WD:country-names-un-languages:20230216
+BI,Burundi,fr,OEF:WD:country-names-un-languages:20230216
+BI,Burundi,es,OEF:WD:country-names-un-languages:20230216
+BI,Бурунди,ru,OEF:WD:country-names-un-languages:20230216
+BI,بوروندي,ar,OEF:WD:country-names-un-languages:20230216
+BI,蒲隆地,zh,OEF:WD:country-names-un-languages:20230216
+TK,Tokelau,en,OEF:WD:country-names-un-languages:20230216
+TK,Tokelau,fr,OEF:WD:country-names-un-languages:20230216
+TK,Tokelau,es,OEF:WD:country-names-un-languages:20230216
+TK,Токелау,ru,OEF:WD:country-names-un-languages:20230216
+TK,توكيلاو,ar,OEF:WD:country-names-un-languages:20230216
+TK,托克劳,zh,OEF:WD:country-names-un-languages:20230216
+BQ,Caribbean Netherlands,en,OEF:WD:country-names-un-languages:20230216
+BQ,Pays-Bas caribéens,fr,OEF:WD:country-names-un-languages:20230216
+BQ,Caribe neerlandés,es,OEF:WD:country-names-un-languages:20230216
+BQ,"Бонайре, Синт-Эстатиус и Саба",ru,OEF:WD:country-names-un-languages:20230216
+BQ,الجزر الكاريبية الهولندية,ar,OEF:WD:country-names-un-languages:20230216
+BQ,荷蘭加勒比區,zh,OEF:WD:country-names-un-languages:20230216
+NE,Niger,en,OEF:WD:country-names-un-languages:20230216
+NE,Niger,fr,OEF:WD:country-names-un-languages:20230216
+NE,Níger,es,OEF:WD:country-names-un-languages:20230216
+NE,Нигер,ru,OEF:WD:country-names-un-languages:20230216
+NE,النيجر,ar,OEF:WD:country-names-un-languages:20230216
+NE,尼日尔,zh,OEF:WD:country-names-un-languages:20230216
+SL,Sierra Leone,en,OEF:WD:country-names-un-languages:20230216
+SL,Sierra Leone,fr,OEF:WD:country-names-un-languages:20230216
+SL,Sierra Leona,es,OEF:WD:country-names-un-languages:20230216
+SL,Сьерра-Леоне,ru,OEF:WD:country-names-un-languages:20230216
+SL,سيراليون,ar,OEF:WD:country-names-un-languages:20230216
+SL,塞拉利昂,zh,OEF:WD:country-names-un-languages:20230216
+BM,Bermuda,en,OEF:WD:country-names-un-languages:20230216
+BM,Bermudes,fr,OEF:WD:country-names-un-languages:20230216
+BM,Bermudas,es,OEF:WD:country-names-un-languages:20230216
+BM,Бермудские Острова,ru,OEF:WD:country-names-un-languages:20230216
+BM,برمودا,ar,OEF:WD:country-names-un-languages:20230216
+BM,百慕大,zh,OEF:WD:country-names-un-languages:20230216
+VG,British Virgin Islands,en,OEF:WD:country-names-un-languages:20230216
+VG,îles Vierges britanniques,fr,OEF:WD:country-names-un-languages:20230216
+VG,Islas Vírgenes Británicas,es,OEF:WD:country-names-un-languages:20230216
+VG,Британские Виргинские острова,ru,OEF:WD:country-names-un-languages:20230216
+VG,جزر العذراء البريطانية,ar,OEF:WD:country-names-un-languages:20230216
+VG,英屬維爾京群島,zh,OEF:WD:country-names-un-languages:20230216
+GF,French Guiana,en,OEF:WD:country-names-un-languages:20230216
+GF,Guyane,fr,OEF:WD:country-names-un-languages:20230216
+GF,Guayana Francesa,es,OEF:WD:country-names-un-languages:20230216
+GF,Французская Гвиана,ru,OEF:WD:country-names-un-languages:20230216
+GF,غويانا الفرنسية,ar,OEF:WD:country-names-un-languages:20230216
+GF,法屬圭亞那,zh,OEF:WD:country-names-un-languages:20230216
+ST,São Tomé and Príncipe,en,OEF:WD:country-names-un-languages:20230216
+ST,Sao Tomé-et-Principe,fr,OEF:WD:country-names-un-languages:20230216
+ST,Santo Tomé y Príncipe,es,OEF:WD:country-names-un-languages:20230216
+ST,Сан-Томе и Принсипи,ru,OEF:WD:country-names-un-languages:20230216
+ST,ساو تومي وبرينسيب,ar,OEF:WD:country-names-un-languages:20230216
+ST,圣多美和普林西比,zh,OEF:WD:country-names-un-languages:20230216
+PN,Pitcairn Islands,en,OEF:WD:country-names-un-languages:20230216
+PN,Iles Pitcairn,fr,OEF:WD:country-names-un-languages:20230216
+PN,Islas Pitcairn,es,OEF:WD:country-names-un-languages:20230216
+PN,Острова Питкэрн,ru,OEF:WD:country-names-un-languages:20230216
+PN,جزر بيتكيرن,ar,OEF:WD:country-names-un-languages:20230216
+PN,皮特凯恩群岛,zh,OEF:WD:country-names-un-languages:20230216
+GI,Gibraltar,en,OEF:WD:country-names-un-languages:20230216
+GI,Gibraltar,fr,OEF:WD:country-names-un-languages:20230216
+GI,Gibraltar,es,OEF:WD:country-names-un-languages:20230216
+GI,Гибралтар,ru,OEF:WD:country-names-un-languages:20230216
+GI,جبل طارق,ar,OEF:WD:country-names-un-languages:20230216
+GI,直布羅陀,zh,OEF:WD:country-names-un-languages:20230216
+SD,Sudan,en,OEF:WD:country-names-un-languages:20230216
+SD,Soudan,fr,OEF:WD:country-names-un-languages:20230216
+SD,Sudán,es,OEF:WD:country-names-un-languages:20230216
+SD,Судан,ru,OEF:WD:country-names-un-languages:20230216
+SD,السودان,ar,OEF:WD:country-names-un-languages:20230216
+SD,苏丹,zh,OEF:WD:country-names-un-languages:20230216
+NU,Niue,en,OEF:WD:country-names-un-languages:20230216
+NU,Niue,fr,OEF:WD:country-names-un-languages:20230216
+NU,Niue,es,OEF:WD:country-names-un-languages:20230216
+NU,Ниуэ,ru,OEF:WD:country-names-un-languages:20230216
+NU,نييوي,ar,OEF:WD:country-names-un-languages:20230216
+NU,紐埃,zh,OEF:WD:country-names-un-languages:20230216
+SO,Somalia,en,OEF:WD:country-names-un-languages:20230216
+SO,Somalie,fr,OEF:WD:country-names-un-languages:20230216
+SO,Somalia,es,OEF:WD:country-names-un-languages:20230216
+SO,Сомали,ru,OEF:WD:country-names-un-languages:20230216
+SO,الصومال,ar,OEF:WD:country-names-un-languages:20230216
+SO,索馬里,zh,OEF:WD:country-names-un-languages:20230216
+TF,French Southern and Antarctic Lands,en,OEF:WD:country-names-un-languages:20230216
+TF,Terres australes et antarctiques françaises,fr,OEF:WD:country-names-un-languages:20230216
+TF,Tierras Australes y Antárticas Francesas,es,OEF:WD:country-names-un-languages:20230216
+TF,Французские Южные и Антарктические территории,ru,OEF:WD:country-names-un-languages:20230216
+TF,أراض فرنسية جنوبية وأنتارتيكية,ar,OEF:WD:country-names-un-languages:20230216
+TF,法属南部和南极领地,zh,OEF:WD:country-names-un-languages:20230216
+BL,Saint Barthélemy,en,OEF:WD:country-names-un-languages:20230216
+BL,Saint-Barthélemy,fr,OEF:WD:country-names-un-languages:20230216
+BL,Saint-Barthélemy,es,OEF:WD:country-names-un-languages:20230216
+BL,Сен-Бартелеми,ru,OEF:WD:country-names-un-languages:20230216
+BL,سان بارتيلمي,ar,OEF:WD:country-names-un-languages:20230216
+BL,聖巴泰勒米,zh,OEF:WD:country-names-un-languages:20230216
+PM,Saint Pierre and Miquelon,en,OEF:WD:country-names-un-languages:20230216
+PM,Saint-Pierre-et-Miquelon,fr,OEF:WD:country-names-un-languages:20230216
+PM,San Pedro y Miquelón,es,OEF:WD:country-names-un-languages:20230216
+PM,Сен-Пьер и Микелон,ru,OEF:WD:country-names-un-languages:20230216
+PM,سان بيير وميكلون,ar,OEF:WD:country-names-un-languages:20230216
+PM,圣皮埃尔和密克隆,zh,OEF:WD:country-names-un-languages:20230216
+CX,Christmas Island,en,OEF:WD:country-names-un-languages:20230216
+CX,île Christmas,fr,OEF:WD:country-names-un-languages:20230216
+CX,Isla de Navidad,es,OEF:WD:country-names-un-languages:20230216
+CX,Остров Рождества,ru,OEF:WD:country-names-un-languages:20230216
+CX,جزيرة عيد الميلاد,ar,OEF:WD:country-names-un-languages:20230216
+CX,聖誕島,zh,OEF:WD:country-names-un-languages:20230216
+SJ,Svalbard and Jan Mayen,en,OEF:WD:country-names-un-languages:20230216
+SJ,Svalbard et Jan Mayen,fr,OEF:WD:country-names-un-languages:20230216
+SJ,Svalbard y Jan Mayen,es,OEF:WD:country-names-un-languages:20230216
+SJ,Шпицберген и Ян-Майен,ru,OEF:WD:country-names-un-languages:20230216
+SJ,سفالبارد ويان ماين,ar,OEF:WD:country-names-un-languages:20230216
+SJ,斯瓦巴和扬马延,zh,OEF:WD:country-names-un-languages:20230216
+RE,Réunion,en,OEF:WD:country-names-un-languages:20230216
+RE,La Réunion,fr,OEF:WD:country-names-un-languages:20230216
+RE,Reunión,es,OEF:WD:country-names-un-languages:20230216
+RE,Реюньон,ru,OEF:WD:country-names-un-languages:20230216
+RE,لا ريونيون,ar,OEF:WD:country-names-un-languages:20230216
+RE,留尼汪,zh,OEF:WD:country-names-un-languages:20230216
+UM,United States Minor Outlying Islands,en,OEF:WD:country-names-un-languages:20230216
+UM,Îles mineures éloignées des États-Unis,fr,OEF:WD:country-names-un-languages:20230216
+UM,Islas ultramarinas de Estados Unidos,es,OEF:WD:country-names-un-languages:20230216
+UM,Внешние малые острова США,ru,OEF:WD:country-names-un-languages:20230216
+UM,جزر الولايات المتحدة الصغيرة النائية,ar,OEF:WD:country-names-un-languages:20230216
+UM,美国本土外小岛屿,zh,OEF:WD:country-names-un-languages:20230216
+CC,Cocos (Keeling) Islands,en,OEF:WD:country-names-un-languages:20230216
+CC,îles Cocos,fr,OEF:WD:country-names-un-languages:20230216
+CC,islas Cocos,es,OEF:WD:country-names-un-languages:20230216
+CC,Кокосовые острова,ru,OEF:WD:country-names-un-languages:20230216
+CC,جزر كوكوس,ar,OEF:WD:country-names-un-languages:20230216
+CC,科科斯（基林）群島,zh,OEF:WD:country-names-un-languages:20230216
+PF,French Polynesia,en,OEF:WD:country-names-un-languages:20230216
+PF,Polynésie française,fr,OEF:WD:country-names-un-languages:20230216
+PF,Polinesia Francesa,es,OEF:WD:country-names-un-languages:20230216
+PF,Французская Полинезия,ru,OEF:WD:country-names-un-languages:20230216
+PF,بولينزيا الفرنسية,ar,OEF:WD:country-names-un-languages:20230216
+PF,法屬玻里尼西亞,zh,OEF:WD:country-names-un-languages:20230216
+VI,United States Virgin Islands,en,OEF:WD:country-names-un-languages:20230216
+VI,îles Vierges des États-Unis,fr,OEF:WD:country-names-un-languages:20230216
+VI,Islas Vírgenes de los Estados Unidos,es,OEF:WD:country-names-un-languages:20230216
+VI,Американские Виргинские Острова,ru,OEF:WD:country-names-un-languages:20230216
+VI,الجزر العذراء الأمريكية,ar,OEF:WD:country-names-un-languages:20230216
+VI,美屬維爾京群島,zh,OEF:WD:country-names-un-languages:20230216
+WF,Wallis and Futuna,en,OEF:WD:country-names-un-languages:20230216
+WF,Wallis-et-Futuna,fr,OEF:WD:country-names-un-languages:20230216
+WF,Wallis y Futuna,es,OEF:WD:country-names-un-languages:20230216
+WF,Уоллис и Футуна,ru,OEF:WD:country-names-un-languages:20230216
+WF,واليس وفوتونا,ar,OEF:WD:country-names-un-languages:20230216
+WF,瓦利斯和富圖納,zh,OEF:WD:country-names-un-languages:20230216
+SH,"Saint Helena, Ascension and Tristan da Cunha",en,OEF:WD:country-names-un-languages:20230216
+SH,"Sainte-Hélène, Ascension et Tristan da Cunha",fr,OEF:WD:country-names-un-languages:20230216
+SH,"Santa Elena, Ascensión y Tristán de Acuña",es,OEF:WD:country-names-un-languages:20230216
+SH,"Острова Святой Елены, Вознесения и Тристан-да-Кунья",ru,OEF:WD:country-names-un-languages:20230216
+SH,سانت هيلانة وأسينشين وتريستان دا كونا,ar,OEF:WD:country-names-un-languages:20230216
+SH,圣赫勒拿、阿森松和特里斯坦-达库尼亚,zh,OEF:WD:country-names-un-languages:20230216
+NF,Norfolk Island,en,OEF:WD:country-names-un-languages:20230216
+NF,île Norfolk,fr,OEF:WD:country-names-un-languages:20230216
+NF,Isla Norfolk,es,OEF:WD:country-names-un-languages:20230216
+NF,Норфолк,ru,OEF:WD:country-names-un-languages:20230216
+NF,جزيرة نورفولك,ar,OEF:WD:country-names-un-languages:20230216
+NF,诺福克岛,zh,OEF:WD:country-names-un-languages:20230216
+MS,Montserrat,en,OEF:WD:country-names-un-languages:20230216
+MS,Montserrat,fr,OEF:WD:country-names-un-languages:20230216
+MS,Montserrat,es,OEF:WD:country-names-un-languages:20230216
+MS,Монтсеррат,ru,OEF:WD:country-names-un-languages:20230216
+MS,مونتسرات,ar,OEF:WD:country-names-un-languages:20230216
+MS,蒙塞拉特島,zh,OEF:WD:country-names-un-languages:20230216
+TC,Turks and Caicos Islands,en,OEF:WD:country-names-un-languages:20230216
+TC,îles Turques-et-Caïques,fr,OEF:WD:country-names-un-languages:20230216
+TC,Islas Turcas y Caicos,es,OEF:WD:country-names-un-languages:20230216
+TC,Теркс и Кайкос,ru,OEF:WD:country-names-un-languages:20230216
+TC,جزر توركس وكايكوس,ar,OEF:WD:country-names-un-languages:20230216
+TC,特克斯和凯科斯群岛,zh,OEF:WD:country-names-un-languages:20230216
+AQ,Antarctic Treaty area,en,OEF:WD:country-names-un-languages:20230216
+AQ,région du Traité sur l'Antarctique,fr,OEF:WD:country-names-un-languages:20230216
+AQ,Región del Tratado Antártico,es,OEF:WD:country-names-un-languages:20230216
+AQ,Территория Антарктического договора,ru,OEF:WD:country-names-un-languages:20230216
+AQ,منطقة معاهدة القطب الجنوبي,ar,OEF:WD:country-names-un-languages:20230216
+AQ,南极条约地区,zh,OEF:WD:country-names-un-languages:20230216
+IO,British Indian Ocean Territory,en,OEF:WD:country-names-un-languages:20230216
+IO,Territoire britannique de l’océan Indien,fr,OEF:WD:country-names-un-languages:20230216
+IO,Territorio Británico del Océano Índico,es,OEF:WD:country-names-un-languages:20230216
+IO,Британская территория в Индийском океане,ru,OEF:WD:country-names-un-languages:20230216
+IO,إقليم المحيط الهندي البريطاني,ar,OEF:WD:country-names-un-languages:20230216
+IO,英屬印度洋領地,zh,OEF:WD:country-names-un-languages:20230216
+PS,State of Palestine,en,OEF:WD:country-names-un-languages:20230216
+PS,État de Palestine,fr,OEF:WD:country-names-un-languages:20230216
+PS,Palestina,es,OEF:WD:country-names-un-languages:20230216
+PS,Государство Палестина,ru,OEF:WD:country-names-un-languages:20230216
+PS,دولة فلسطين,ar,OEF:WD:country-names-un-languages:20230216
+PS,巴勒斯坦,zh,OEF:WD:country-names-un-languages:20230216
