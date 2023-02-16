@@ -952,7 +952,7 @@ it("can get actor emissions in json", async () =>
     .get(`/api/v1/actor/${country1Props.actor_id}/emissions`)
     .expect(200)
     .expect("Content-Type", /json/)
-    .expect("Content-Disposition", /attachment; filename=`/)
+    .expect("Content-Disposition", /attachment; filename=/)
     .expect((res: any) => {
       const emissions = res.body.data;
 
