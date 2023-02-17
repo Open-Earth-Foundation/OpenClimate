@@ -58,12 +58,13 @@ const SearchBar: FunctionComponent = () => {
       .then((json) => {
         let actorData = json.data;
         let actors = actorData.map((actor: any) => {
+          const reversePathWithoutEarth = [...actor.root_path_geo].reverse().slice(1)
           return {
             name: actor.name,
             actorId: actor.actor_id,
             type: actor.type,
             data: actor.has_data,
-            parentPath: actor.root_path_geo,
+            parentPath: reversePathWithoutEarth,
           };
         });
         setSearchedActors(actors);
@@ -81,6 +82,7 @@ const SearchBar: FunctionComponent = () => {
       case "city":
         return "City";
       case "organization":
+      case "site":
         return "Company";
       case "adm1":
         return "Region/Province";
@@ -122,6 +124,17 @@ const SearchBar: FunctionComponent = () => {
     }
   }, [searchedActors]);
 
+  const nonPathActor = (type: string): boolean => {
+    switch(type) {
+      case "site":
+      case "organization":
+      case "country":
+        return true;
+      default:
+        return false;
+    }
+  }
+
   return (
     <div className="search-bar">
       <Card className="outer-card">
@@ -155,7 +168,7 @@ const SearchBar: FunctionComponent = () => {
                   {renderHighlightedName(option.name, inputString)}
                   <div className="dropdown-select-subtitle">
                     {
-                      option?.parentPath?.length > 0 && option.type !== "country" ? renderParentPath(option.parentPath) : renderActorType(option.type)
+                      option?.parentPath?.length > 0 && !nonPathActor(option.type) ? renderParentPath(option.parentPath) : renderActorType(option.type)
                     }
                   </div>
                 </div>
