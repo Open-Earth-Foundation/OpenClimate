@@ -4,12 +4,7 @@ on:
   push:
     paths:
       - ui/**
-      - 'openclimate-ui-**.yml'
-    branches: [ "develop" ]
-  pull_request:
-    paths:
-      - ui/**
-      - 'openclimate-ui-**.yml'
+      - k8s/openclimate-ui-**
     branches: [ "develop" ]
 
 jobs:
