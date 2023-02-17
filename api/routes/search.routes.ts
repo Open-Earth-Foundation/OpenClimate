@@ -117,9 +117,9 @@ router.get(
 
       res.status(200).json({
         success: true,
-        data: actors.map((actor, i) => {
+        data: actors.map((actor) => {
           let pc = coverage.find((c) => c.actor_id === actor.actor_id);
-          let path = paths[i].slice(1);
+          let path = paths.find((p) => p && p.length > 0 && p[0].actor_id == actor.actor_id);
           return {
             actor_id: actor.actor_id,
             name: actor.name,
@@ -131,7 +131,7 @@ router.get(
             has_data: pc ? pc.has_data : null,
             has_children: pc ? pc.has_children : null,
             children_have_data: pc ? pc.children_have_data : null,
-            root_path_geo: path.map((ancestor) => {
+            root_path_geo: path.slice(1).map((ancestor) => {
               return {
                 actor_id: ancestor.actor_id,
                 name: ancestor.name,
