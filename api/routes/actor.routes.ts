@@ -486,9 +486,7 @@ router.get(
       emdata.push(...emissionMap[k].data);
     }
 
-    // console.log(emdata)
-
-    // Write the data to the CSV file
+    // Write the data to the CSV file and send for download
 
     await csvWriter.writeRecords(emdata).then(() => {
       res.status(200).download(`${actor.actor_id}-emissions.csv`);
