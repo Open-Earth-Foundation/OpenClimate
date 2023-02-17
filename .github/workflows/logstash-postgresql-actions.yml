@@ -5,10 +5,6 @@ on:
     paths:
       - logstash-postgresql/**
     branches: [ "develop" ]
-  pull_request:
-    paths:
-      - logstash-postgresql/**
-    branches: [ "develop" ]
 
 jobs:
 

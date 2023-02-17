@@ -4,12 +4,7 @@ on:
   push:
     paths:
       - api/**
-      - 'openclimate-api-**.yml'
-    branches: [ "develop" ]
-  pull_request:
-    paths:
-      - api/**
-      - 'openclimate-api-**.yml'
+      - k8s/openclimate-api-**
     branches: [ "develop" ]
 
 jobs:

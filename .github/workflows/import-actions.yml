@@ -5,10 +5,6 @@ on:
     paths:
       - import/**
     branches: [ "develop" ]
-  pull_request:
-    paths:
-      - import/**
-    branches: [ "develop" ]
 
 jobs:
   pushToECR:
