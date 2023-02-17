@@ -2,6 +2,9 @@ from pathlib import Path
 from utils import make_dir
 from utils import write_to_csv
 import csv
+import requests
+
+OPENCLIMATE_SERVER='openclimate.openearth.dev'
 
 DATASOURCE = {
     "datasource_id": "OEF:WD:country-names-un-languages:20230216",
@@ -40,6 +43,13 @@ TAGS = [
     }
 ]
 
+def is_country_id(id):
+    namespace = "ISO-3166-1 alpha-2"
+    url = f'''https://{OPENCLIMATE_SERVER}/api/v1/search/actor?namespace={namespace}&identifier={id}'''
+    res = requests.get(url)
+    json = res.json()
+    return json['success'] and len(json['data']) == 1 and json['data'][0]['type'] == 'country'
+
 def process_wikidata_country_names(inputfile, outputDir):
 
     write_to_csv(outputDir=outputDir,
@@ -69,6 +79,8 @@ def process_wikidata_country_names(inputfile, outputDir):
             writer = csv.DictWriter(csvout, fieldnames=["actor_id", "name", "language", "datasource_id"])
             writer.writeheader()
             for row in reader:
+                if not is_country_id(row["iso31661"]):
+                    continue
                 for language in ['en','fr','es','ru','ar','zh']:
                     writer.writerow({
                         "actor_id": row['iso31661'],
