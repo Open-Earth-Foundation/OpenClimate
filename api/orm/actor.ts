@@ -48,7 +48,6 @@ export class Actor extends Model<
       type: QueryTypes.SELECT,
       model: Actor,
       replacements: { actor_id: actor_id },
-<<<<<<< HEAD
     });
   }
   static async paths(actor_ids: string[]): Promise<Actor[][]> {
@@ -82,8 +81,6 @@ export class Actor extends Model<
         l.push(actor);
       }
       return l;
-=======
->>>>>>> 729817e (chore(styling): run prettier)
     });
   }
 }
