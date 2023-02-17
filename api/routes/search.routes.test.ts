@@ -495,12 +495,23 @@ it("can get path information for search results", async () => {
       expect(res.body.data.length).toBeGreaterThan(0);
       for (let actor of res.body.data) {
         expect(actor.root_path_geo).toBeDefined();
-        expect(actor.root_path_geo.length).toBeGreaterThan(0);
-        for (let ancestor of actor.root_path_geo) {
+        let path = actor.root_path_geo;
+        expect(path.length).toBeGreaterThan(0);
+        for (let ancestor of path) {
           expect(ancestor.actor_id).toBeDefined();
           expect(ancestor.type).toBeDefined();
           expect(ancestor.name).toBeDefined();
           expect(ancestor.actor_id).not.toEqual(actor.actor_id);
+        }
+        if (actor.actor_id == city1Props.actor_id) {
+          expect(path[0].actor_id).toEqual(region3Props.actor_id)
+          expect(path[1].actor_id).toEqual(region2Props.actor_id)
+          expect(path[2].actor_id).toEqual(country3Props.actor_id)
+          expect(path[3].actor_id).toEqual('EARTH')
+        } else if (actor.actor_id == city2Props.actor_id) {
+          expect(path[0].actor_id).toEqual(region4Props.actor_id)
+          expect(path[1].actor_id).toEqual(country3Props.actor_id)
+          expect(path[2].actor_id).toEqual('EARTH')
         }
       }
     });

@@ -30,7 +30,7 @@
     "sequelize": "^6.28.0",
     "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
-    "typescript": "^4.8.4",
+    "typescript": "^4.9.5",
     "uuid": "^9.0.0",
     "winston": "^3.8.2",
     "ws": "^8.8.1"
@@ -46,7 +46,7 @@
     "husky": "^4.3.8",
     "jest": "^27.5.1",
     "nodemon": "^2.0.20",
-    "prettier": "^2.7.1",
+    "prettier": "^2.8.4",
     "sequelize-cli": "^6.6.0",
     "ts-jest": "^27.1.4"
   },

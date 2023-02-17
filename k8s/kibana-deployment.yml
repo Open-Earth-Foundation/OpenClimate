@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: openclimate-kibana
-          image: docker.elastic.co/kibana/kibana:8.6.1
+          image: docker.elastic.co/kibana/kibana:8.6.2
           imagePullPolicy: Always
           ports:
             - containerPort: 5601
