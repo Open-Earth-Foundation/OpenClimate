@@ -14,6 +14,8 @@ import { Initiative } from "../orm/initiative";
 
 import { isHTTPError, NotFound } from "http-errors";
 
+const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+
 const wrap = (fn) => (req, res, next) =>
   fn(req, res, next).catch((err) => next(err));
 
@@ -381,6 +383,113 @@ router.get(
     res.attachment(`${actor_id}_emissions.json`).status(200).json({
       success: true,
       data: emissionMap,
+    });
+  })
+);
+
+// Get all actor emissions agg and return downloadable csv
+// download/CA_emissions.csv
+router.get(
+  "/api/v1/download/:actor_id-emissions.csv",
+  wrap(async (req: any, res: any) => {
+    const actor_id: string = req.params.actor_id;
+    console.log(actor_id);
+
+    const actor = await Actor.findByPk(actor_id);
+
+    if (!actor) {
+      throw new NotFound(`No actor found with actor ID ${actor_id}`);
+    }
+
+    const [emissions] = await Promise.all([
+      EmissionsAgg.findAll({
+        where: { actor_id: actor_id },
+        order: [["year", "desc"]],
+      }),
+    ]);
+
+    // Get unique datasources
+
+    const unique = (v, i, a) => a.indexOf(v) == i;
+
+    const dataSourceIDs = emissions
+      .map((ea) => ea.datasource_id)
+      .filter(unique);
+
+    const [dataSources] = await Promise.all([
+      DataSource.findAll({ where: { datasource_id: dataSourceIDs } }),
+
+      EmissionsAggTag.findAll({
+        where: { emissions_id: emissions.map((e) => e.emissions_id) },
+      }),
+    ]);
+
+    const emissionMap = {};
+    const emissionSources = dataSources.filter(
+      (ds) =>
+        -1 !== emissions.findIndex((ea) => ea.datasource_id == ds.datasource_id)
+    );
+
+    emissionSources.forEach((ds) => {
+      emissionMap[ds.datasource_id] = {
+        datasource_id: ds.datasource_id,
+        name: ds.name,
+        publisher: ds.publisher,
+        published: ds.published,
+        created: ds.created,
+        last_updated: ds.last_updated,
+        URL: ds.URL,
+        data: [],
+      };
+    });
+
+    const convertTimeStampToDateString = (tt: any) => {
+      return new Date(tt).toLocaleDateString("en-Us");
+    };
+
+    for (let emission of emissions) {
+      emissionMap[emission.datasource_id].data.push({
+        actor_id: actor_id,
+        datasource_id: emission.datasource_id,
+        emissions_id: emission.emissions_id,
+        total_emissions: parseInt(String(emission.total_emissions), 10),
+        year: emission.year,
+        created: convertTimeStampToDateString(
+          emissionMap[emission.datasource_id].created
+        ),
+        last_updated: convertTimeStampToDateString(
+          emissionMap[emission.datasource_id].last_updated
+        ),
+      });
+    }
+
+    // Define the headers for the CSV file
+
+    const csvWriter = createCsvWriter({
+      path: `${actor.actor_id}-emissions.csv`,
+      headerIdDelimiter: ".",
+      header: [
+        { id: "emissions_id", title: "emissions_id" },
+        { id: "actor_id", title: "actor_id" },
+        { id: "datasource_id", title: "datasource_id" },
+        { id: "total_emissions", title: "total_emissions" },
+        { id: "year", title: "year" },
+        { id: "created", title: "Created" },
+        { id: "last_updated", title: "last_updated" },
+      ],
+    });
+
+    // Prepare emissions data
+
+    let emdata = [];
+    for (const k in emissionMap) {
+      emdata.push(...emissionMap[k].data);
+    }
+
+    // Write the data to the CSV file and send for download
+
+    await csvWriter.writeRecords(emdata).then(() => {
+      res.status(200).download(`${actor.actor_id}-emissions.csv`);
     });
   })
 );
