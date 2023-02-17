@@ -1049,3 +1049,20 @@ it("can download actor emissions in json", async () =>
 
 it("gets 404 when actor id is nonexistent for downloading emissions in json", async () =>
   request(app).get(`/api/v1/download/${ACTOR_DNE}-emissions.json`).expect(404));
+
+it("responds with a CSV file", (done) => {
+  request(app)
+    .get(`/api/v1/download/${country1Props.actor_id}-emissions.csv`)
+    .expect("Content-Type", "text/csv; charset=UTF-8")
+    .expect(200)
+    .expect((res) => {
+      expect(res.text).toBeDefined();
+    })
+    .end((err, res) => {
+      if (err) return done(err);
+      done();
+    });
+});
+
+it("gets 404 when actor id is nonexistent for downloading emissions in json", async () =>
+  request(app).get(`/api/v1/download/${ACTOR_DNE}-emissions.csv`).expect(404));
