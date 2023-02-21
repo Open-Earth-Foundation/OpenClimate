@@ -6,7 +6,7 @@ from pathlib import Path
 import pandas as pd
 from typing import List
 from typing import Dict
-from utils import df_wide_to_long
+from utils_UNFCCC import df_wide_to_long
 from utils import make_dir
 from utils_UNFCCC import UNFCCC
 
