@@ -11,7 +11,21 @@ import pathlib
 import re
 import requests
 import xlrd
+from typing import List
+from typing import Dict
 
+
+def simple_write_csv(output_dir: str = None,
+                     name: str = None,
+                     rows: List[Dict] | Dict = None) -> None:
+
+    if isinstance(rows, dict):
+        rows = [rows]
+
+    with open(f'{output_dir}/{name}.csv', mode='w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
 
 def lei_from_name2(name=None, iso2=None):
 
@@ -287,7 +301,7 @@ def lei_from_name(name=None):
 
 
 def make_dir(path=None):
-    """Create a new directory at this given path. 
+    """Create a new directory at this given path.
 
     path = None
     """
