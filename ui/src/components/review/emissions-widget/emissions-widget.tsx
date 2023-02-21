@@ -85,6 +85,9 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
   sources.sort();
 
+  // get current actor id
+  const {actor_id} = current;
+
   const defaultSource = sources.length > 0 ? sources[0] : null;
   const defaultYear =
     defaultSource && current.emissions[defaultSource].data.length > 0
@@ -290,7 +293,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                     arrow
                     placement="right"
                   >
-                    <IconButton onClick={setMenuState}>
+                    <IconButton onClick={setMenuState} className="download_data-button">
                       <MoreVert className="download_data-icon" />
                     </IconButton>
                   </Tooltip>
@@ -298,9 +301,12 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                     <>
                       <div className="download_data-menu">
                         <ul className="menu-item">
-                          <li>Download as CSV</li>
-                          <li>Download as JSON</li>
-
+                          <a className="download-link" href={`/api/v1/download/${actor_id}-emissions.csv`} download>
+                            Download as CSV
+                          </a>
+                          <a className="download-link" href={`/api/v1/download/${actor_id}-emissions.json`} download>
+                            Download as JSON
+                          </a>
                           {/* Add back when exporting is added
                           <li onClick={setDownloadMenuState}>
                             <span>Download as...</span>
