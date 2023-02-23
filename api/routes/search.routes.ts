@@ -76,16 +76,49 @@ router.get(
     } else if (q) {
       if (process.env.ELASTIC_SEARCH_ENABLED === "yes") {
         const client = getClient();
-        const ActorIDS = await client.search({
-          index: process.env.ELASTIC_SEARCH_INDEX_NAME,
+        const query = {
           query: {
-            match: {
-              actor_name: q,
+            function_score: {
+              query: {
+                bool: {
+                  should: [
+                    { match: { name: { query: q, boost: 1.0 } } },
+                    { match: { type: { query: 'country', boost: 1.1 } } },
+                    { match: { type: { query: 'adm1', boost: 1.05 } } },
+                    { match: { type: { query: 'adm2', boost: 1.05 } } },
+                    { match: { type: { query: 'company', boost: 1.1 } } },
+                  ],
+                },
+              },
+              functions: [
+                {
+                  field_value_factor: {
+                    field: 'population',
+                    factor: 0.0000001,
+                    modifier: 'log1p',
+                    missing: 1,
+                  },
+                },
+                {
+                  script_score: {
+                    script: {
+                      source: "1",
+                    },
+                  },
+                },
+              ],
+              boost_mode: 'sum',
             },
           },
+        };
+
+        const ActorIDS = await client.search({
+          index: process.env.ELASTIC_SEARCH_INDEX_NAME,
+          body: query
         });
 
         actor_ids = ActorIDS.hits.hits.map((res: any) => res._source.actor_id);
+
       } else {
         const [byNameQ, byIdQ] = await Promise.all([
           ActorName.findAll({ where: { name: { [Op.like]: `%${q}%` } } }),
