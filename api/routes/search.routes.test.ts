@@ -155,14 +155,15 @@ async function cleanup() {
     const client = getClient();
 
     if (client) {
-      await client.indices
-        ?.delete({
+      await Promise.all([name1_1, name1_2, name2_1, name2_2].map((props) =>
+        client.deleteByQuery({
           index: indexName,
-        })
-        .then((res: any) => {
-          console.log("Successful query!");
-          console.log(JSON.stringify(res, null, 4));
-        });
+          query: {match: {actor_id: props.actor_id}},
+          conflicts: "proceed",
+          refresh: true
+        })));
+
+      await client.indices.refresh({index: indexName})
     }
   }
 
@@ -228,6 +229,8 @@ beforeAll(async () => {
         index: indexName,
         body: name2_2,
       });
+
+      await client.indices.refresh({index: indexName})
     }
   }
 
