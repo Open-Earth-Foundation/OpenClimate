@@ -7,6 +7,9 @@ import { Op } from "sequelize";
 import { getClient } from "../elasticsearch/elasticsearch";
 import { ActorDataCoverage } from "../orm/actordatacoverage";
 
+const indexName = process.env.ELASTIC_SEARCH_INDEX_NAME || "actors"
+const esEnabled = process.env.ELASTIC_SEARCH_ENABLED || "no"
+
 const wrap = (fn) => (req, res, next) =>
   fn(req, res, next).catch((err) => next(err));
 
@@ -74,7 +77,7 @@ router.get(
 
       actor_ids = byName.map((an) => an.actor_id);
     } else if (q) {
-      if (process.env.ELASTIC_SEARCH_ENABLED === "yes") {
+      if (esEnabled) {
         const client = getClient();
         const query = {
           query: {
@@ -113,7 +116,7 @@ router.get(
         };
 
         const ActorIDS = await client.search({
-          index: process.env.ELASTIC_SEARCH_INDEX_NAME,
+          index: indexName,
           body: query,
         });
 

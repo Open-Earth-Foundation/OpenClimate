@@ -10,6 +10,9 @@ import { app } from "../app";
 import request from "supertest";
 import { getClient } from "../elasticsearch/elasticsearch";
 
+const indexName = process.env.ELASTIC_SEARCH_INDEX_NAME || "actors"
+const esEnabled = process.env.ELASTIC_SEARCH_ENABLED || "no"
+
 const disconnect = require("../orm/init").disconnect;
 
 const publisherProps = {
@@ -147,11 +150,14 @@ async function cleanup() {
   await Publisher.destroy({ where: { id: publisherProps.id } });
 
   // clean up elastic search indices
-  if (process.env.ELASTIC_SEARCH_ENABLED === "yes") {
+  if (esEnabled === "yes") {
+
+    const client = getClient();
+
     if (client) {
       await client.indices
         ?.delete({
-          index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+          index: indexName,
         })
         .then((res: any) => {
           console.log("Successful query!");
@@ -202,24 +208,24 @@ beforeAll(async () => {
   ]);
 
   // index to elastic search
-  if (process.env.ELASTIC_SEARCH_ENABLED === "yes") {
+  if (esEnabled === "yes") {
     const client = getClient();
 
     if (client) {
       await client.index({
-        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+        index: indexName,
         body: name1_1,
       });
       await client.index({
-        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+        index: indexName,
         body: name1_2,
       });
       await client.index({
-        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+        index: indexName,
         body: name2_1,
       });
       await client.index({
-        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+        index: indexName,
         body: name2_2,
       });
     }
