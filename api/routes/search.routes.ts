@@ -90,27 +90,45 @@ router.get(
                     { match: { type: { query: "adm1", boost: 1.05 } } },
                     { match: { type: { query: "adm2", boost: 1.05 } } },
                     { match: { type: { query: "company", boost: 1.1 } } },
-                  ],
-                },
-              },
-              functions: [
-                {
-                  field_value_factor: {
-                    field: "population",
-                    factor: 0.0000001,
-                    modifier: "log1p",
-                    missing: 1,
-                  },
-                },
-                {
-                  script_score: {
-                    script: {
-                      source: "1",
+                    {
+                      range: {
+                        population: {
+                          gte: 0,
+                          lte: 1e4,
+                          boost: 1.02
+                        }
+                      }
                     },
-                  },
-                },
-              ],
-              boost_mode: "sum",
+                    {
+                      range: {
+                        population: {
+                          gt: 1e4,
+                          lte: 1e7,
+                          boost: 1.03
+                        }
+                      }
+                    },
+                    {
+                      range: {
+                        population: {
+                          gt: 1e7,
+                          lte: 1e8,
+                          boost: 1.04
+                        }
+                      }
+                    },
+                    {
+                      range: {
+                        population: {
+                          gt: 1e8,
+                          lte: 1e10,
+                          boost: 1.05
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
             },
           },
         };
