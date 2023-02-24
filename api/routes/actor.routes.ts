@@ -304,7 +304,6 @@ router.get(
   })
 );
 
-
 // Get emissions of the actor
 
 router.get(
@@ -472,7 +471,7 @@ router.get(
 // Get all actor emissions agg and return downloadable csv
 // download/[actor-id]-emissions.csv
 router.get(
-"/api/v1/download/:actor_id-emissions.csv",
+  "/api/v1/download/:actor_id-emissions.csv",
   wrap(async (req: any, res: any) => {
     const actor_id: string = req.params.actor_id;
     console.log(actor_id);

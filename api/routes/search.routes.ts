@@ -83,19 +83,19 @@ router.get(
                 bool: {
                   should: [
                     { match: { name: { query: q, boost: 1.0 } } },
-                    { match: { type: { query: 'country', boost: 1.1 } } },
-                    { match: { type: { query: 'adm1', boost: 1.05 } } },
-                    { match: { type: { query: 'adm2', boost: 1.05 } } },
-                    { match: { type: { query: 'company', boost: 1.1 } } },
+                    { match: { type: { query: "country", boost: 1.1 } } },
+                    { match: { type: { query: "adm1", boost: 1.05 } } },
+                    { match: { type: { query: "adm2", boost: 1.05 } } },
+                    { match: { type: { query: "company", boost: 1.1 } } },
                   ],
                 },
               },
               functions: [
                 {
                   field_value_factor: {
-                    field: 'population',
+                    field: "population",
                     factor: 0.0000001,
-                    modifier: 'log1p',
+                    modifier: "log1p",
                     missing: 1,
                   },
                 },
@@ -107,18 +107,17 @@ router.get(
                   },
                 },
               ],
-              boost_mode: 'sum',
+              boost_mode: "sum",
             },
           },
         };
 
         const ActorIDS = await client.search({
           index: process.env.ELASTIC_SEARCH_INDEX_NAME,
-          body: query
+          body: query,
         });
 
         actor_ids = ActorIDS.hits.hits.map((res: any) => res._source.actor_id);
-
       } else {
         const [byNameQ, byIdQ] = await Promise.all([
           ActorName.findAll({ where: { name: { [Op.like]: `%${q}%` } } }),
@@ -152,7 +151,9 @@ router.get(
         success: true,
         data: actors.map((actor) => {
           let pc = coverage.find((c) => c.actor_id === actor.actor_id);
-          let path = paths.find((p) => p && p.length > 0 && p[0].actor_id == actor.actor_id);
+          let path = paths.find(
+            (p) => p && p.length > 0 && p[0].actor_id == actor.actor_id
+          );
           return {
             actor_id: actor.actor_id,
             name: actor.name,

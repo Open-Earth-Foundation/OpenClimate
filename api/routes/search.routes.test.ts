@@ -10,8 +10,6 @@ import { app } from "../app";
 import request from "supertest";
 import { getClient } from "../elasticsearch/elasticsearch";
 
-const client = getClient()
-
 const disconnect = require("../orm/init").disconnect;
 
 const publisherProps = {
@@ -149,14 +147,16 @@ async function cleanup() {
   await Publisher.destroy({ where: { id: publisherProps.id } });
 
   // clean up elastic search indices
-  if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
-    if(client) {
-      await client.indices?.delete({
-        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST
-      }).then((res:any)=> {
-        console.log("Successful query!")
-        console.log(JSON.stringify(res, null, 4))
-      });
+  if (process.env.ELASTIC_SEARCH_ENABLED === "yes") {
+    if (client) {
+      await client.indices
+        ?.delete({
+          index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+        })
+        .then((res: any) => {
+          console.log("Successful query!");
+          console.log(JSON.stringify(res, null, 4));
+        });
     }
   }
 
@@ -201,29 +201,29 @@ beforeAll(async () => {
     ActorName.create(defaultName(city2Props)),
   ]);
 
+  // index to elastic search
+  if (process.env.ELASTIC_SEARCH_ENABLED === "yes") {
+    const client = getClient();
 
-// index to elastic search
-if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
-
-  if(client){
-    await client.index({
-      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
-      body: name1_1
-    });
-    await client.index({
-      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
-      body: name1_2
-    });
-    await client.index({
-      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
-      body: name2_1
-    });
-    await client.index({
-      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
-      body: name2_2
-    });
+    if (client) {
+      await client.index({
+        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+        body: name1_1,
+      });
+      await client.index({
+        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+        body: name1_2,
+      });
+      await client.index({
+        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+        body: name2_1,
+      });
+      await client.index({
+        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+        body: name2_2,
+      });
+    }
   }
-}
 
   const MAX = 2;
 
@@ -544,14 +544,14 @@ it("can get path information for search results", async () => {
           expect(ancestor.actor_id).not.toEqual(actor.actor_id);
         }
         if (actor.actor_id == city1Props.actor_id) {
-          expect(path[0].actor_id).toEqual(region3Props.actor_id)
-          expect(path[1].actor_id).toEqual(region2Props.actor_id)
-          expect(path[2].actor_id).toEqual(country3Props.actor_id)
-          expect(path[3].actor_id).toEqual('EARTH')
+          expect(path[0].actor_id).toEqual(region3Props.actor_id);
+          expect(path[1].actor_id).toEqual(region2Props.actor_id);
+          expect(path[2].actor_id).toEqual(country3Props.actor_id);
+          expect(path[3].actor_id).toEqual("EARTH");
         } else if (actor.actor_id == city2Props.actor_id) {
-          expect(path[0].actor_id).toEqual(region4Props.actor_id)
-          expect(path[1].actor_id).toEqual(country3Props.actor_id)
-          expect(path[2].actor_id).toEqual('EARTH')
+          expect(path[0].actor_id).toEqual(region4Props.actor_id);
+          expect(path[1].actor_id).toEqual(country3Props.actor_id);
+          expect(path[2].actor_id).toEqual("EARTH");
         }
       }
     });
