@@ -6,7 +6,53 @@ from elasticsearch import Elasticsearch
 import psycopg2
 import logging
 
+def get_actor_types(dbname=None, user=None, password=None, host=None):
+    with psycopg2.connect(dbname=dbname, user=user, password=password, host=host) as conn:
+        with conn.cursor() as curs:
+            columns = ("actor_id", "type")
+            table_name = "Actor"
+
+            qry = f'''
+            SELECT {', '.join(columns)}
+            FROM "{table_name}"
+            '''
+
+            curs.execute(qry)
+            records = curs.fetchall()
+            return dict(records)
+
+def get_actor_populations(dbname=None, user=None, password=None, host=None):
+    with psycopg2.connect(dbname=dbname, user=user, password=password, host=host) as conn:
+        with conn.cursor() as curs:
+            columns = ("actor_id", "population")
+            table_name = "Population"
+
+            qry = f'''
+            SELECT {', '.join(columns)}
+            FROM "{table_name}"
+            WHERE (actor_id, year) IN (
+                SELECT actor_id, MAX(year) AS max_year
+                FROM "{table_name}"
+                GROUP BY actor_id
+            )
+            '''
+
+            curs.execute(qry)
+            records = curs.fetchall()
+            return dict(records)
+
 def main(args):
+
+    db_params = dict(
+        dbname=args.dbname,
+        user=args.user,
+        password=args.password,
+        host=args.host
+    )
+
+    logging.info(f'get dictionary of actor type and population')
+    actor_types = get_actor_types(**db_params)
+    actor_populations = get_actor_populations(**db_params)
 
     logging.info(f'Connecting to ElasticSearch node {args.esnode} as user {args.esuser}')
 
@@ -39,11 +85,15 @@ def main(args):
 
                 (actor_id, name, language, preferred, datasource_id, created, last_updated) = an
 
+                actor_type = actor_types.get(actor_id, None)
+                actor_population = actor_populations.get(actor_id, None)
+
                 logging.info(f'Indexing actor {actor_id} name {name} in language {language}')
 
                 id = actor_id + ":" + language + ":" + name
 
-                doc ={"actor_id": actor_id, "name": name, "language": language, "preferred": preferred}
+                doc ={"actor_id": actor_id, "name": name, "language": language, "preferred": preferred, 
+                      "type": actor_type, "population": actor_population}
                 meta = {"created": created, "last_updated": last_updated, "datasource_id": datasource_id}
 
                 # TODO: need to figure out how to insert metadata
