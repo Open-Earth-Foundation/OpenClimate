@@ -44,6 +44,8 @@ spec:
           value: development
         - name: POSGRES_PASSWORD
           value: development
+        - name: ELASTIC_SEARCH_ENABLED
+          value: "yes"
         resources:
           limits:
             memory: "1024Mi"
