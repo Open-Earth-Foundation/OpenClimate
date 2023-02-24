@@ -8,6 +8,9 @@ import { ActorName } from "../orm/actorname";
 
 import { app } from "../app";
 import request from "supertest";
+import { getClient } from "../elasticsearch/elasticsearch";
+
+const client = getClient()
 
 const disconnect = require("../orm/init").disconnect;
 
@@ -144,6 +147,19 @@ async function cleanup() {
     where: { datasource_id: datasourceProps.datasource_id },
   });
   await Publisher.destroy({ where: { id: publisherProps.id } });
+
+  // clean up elastic search indices
+  if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
+    if(client) {
+      await client.indices?.delete({
+        index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST
+      }).then((res:any)=> {
+        console.log("Successful query!")
+        console.log(JSON.stringify(res, null, 4))
+      });
+    }
+  }
+
   return;
 }
 
@@ -184,6 +200,30 @@ beforeAll(async () => {
     ActorName.create(defaultName(region4Props)),
     ActorName.create(defaultName(city2Props)),
   ]);
+
+
+// index to elastic search
+if(process.env.ELASTIC_SEARCH_ENABLED === "yes"){
+
+  if(client){
+    await client.index({
+      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+      body: name1_1
+    });
+    await client.index({
+      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+      body: name1_2
+    });
+    await client.index({
+      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+      body: name2_1
+    });
+    await client.index({
+      index: process.env.ELASTIC_SEARCH_INDEX_NAME_TEST,
+      body: name2_2
+    });
+  }
+}
 
   const MAX = 2;
 
