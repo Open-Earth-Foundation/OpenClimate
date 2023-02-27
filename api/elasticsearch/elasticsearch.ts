@@ -21,5 +21,6 @@ export function getClient() {
         password: ELASTIC_SEARCH_PASSWORD,
       },
     });
+    return client;
   }
 }
