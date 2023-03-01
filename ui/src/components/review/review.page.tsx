@@ -22,12 +22,27 @@ const ReviewPage: FunctionComponent = () => {
   const params = useParams<ReviewPageParams>();
   const actorID = "actorID" in params ? params["actorID"] : "EARTH";
 
+  const [prevTitle, setPrevtitle] = useState<string>(document.title);
+
   const [actors, setActors] = useState<any>([]);
 
   const current = actors.length > 0 ? actors[actors.length - 1] : null;
   const parent = actors.length > 1 ? actors[actors.length - 2] : null;
 
   const loading = false;
+
+  // Dynamically update page title to include actor name
+
+  useEffect(()=> {
+    if(current){
+        const {name: actorName} = current
+        if(actorName !== "Earth"){
+          document.title = `${actorName} historic emissions and climate data tracker`
+        } else {
+          document.title = prevTitle
+        }
+    }
+  }, [current])
 
   const handleParams = (actorID: string) => {
     if (actorID === "EARTH") {
