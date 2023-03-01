@@ -836,6 +836,10 @@ if __name__ == "__main__":
     # merge dataframes
     df_target = pd.concat(dataframe_list+net_zero_list)
 
+    # fill nan URL with blank string
+    df_target['URL'] = df_target['URL'].fillna('')
+    df_target.loc[df_target['URL'] == 'nan', 'URL'] = ''
+
     # shorten long URLs (could be streamliend by not scanning entire file)
     filt = df_target['URL'].fillna('').str.len() > 250
     df_target.loc[filt, 'URL'] = df_target.loc[filt, 'URL'].apply(shorten_url)
