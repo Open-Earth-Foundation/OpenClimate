@@ -153,11 +153,11 @@ const ReviewPage: FunctionComponent = () => {
                     </p>
                   </div>
                   <div className="review-info__content">
-                    Visualize, report, and participate with relevant data to a{" "}
+                    Explore, download & contribute historic GHG emissions{" "}
                     <span>
-                      nested, aggregated, and interoperable open source
+                      and climate progress data to an aggregated
                     </span>{" "}
-                    portal for climate accounting.
+                    open source portal for climate accounting.
                   </div>
                 </div>
               </>
