@@ -12,6 +12,7 @@ import LevelCards from "./level-cards";
 import CollaborateFAB from "./CollaborateFab";
 import CollaborationCardHint from "./CollaborateCardHint";
 import ActorFlag from "./actor-flag/actor-flag";
+import {Helmet} from "react-helmet";
 
 type ReviewPageParams = {
   actorID: string;
@@ -30,19 +31,6 @@ const ReviewPage: FunctionComponent = () => {
   const parent = actors.length > 1 ? actors[actors.length - 2] : null;
 
   const loading = false;
-
-  // Dynamically update page title to include actor name
-
-  useEffect(()=> {
-    if(current){
-        const {name: actorName} = current
-        if(actorName !== "Earth"){
-          document.title = `${actorName} historic emissions and climate data tracker`
-        } else {
-          document.title = prevTitle
-        }
-    }
-  }, [current])
 
   const handleParams = (actorID: string) => {
     if (actorID === "EARTH") {
@@ -126,6 +114,9 @@ const ReviewPage: FunctionComponent = () => {
 
   return (
     <div className="review">
+      <Helmet>
+        <title>{`OpenClimate | ${current && current.name !== "Earth" ? current.name + " historic emissions and climate data tracker" : "Country, city & company GHG emissions data tracker"}`}</title>
+      </Helmet>
       <div
         className="review__wrapper"
         style={{ backgroundImage: notJustEarth() ? `url(${Bg})` : "" }}
