@@ -88,7 +88,7 @@ const ReviewPage: FunctionComponent = () => {
   ) => {
     const actor_id = option.value;
     insertActor(actor_id, []);
-    history.push(actor_id === "EARTH" ? "/" : `/actor/${option.value}`);
+    history.push(actor_id === "EARTH" ? "/" : `/actor/${option.value}/${option.name}_emissions`);
   };
 
   const deselectFilterHandler = (filterType: FilterTypes) => {
@@ -106,7 +106,8 @@ const ReviewPage: FunctionComponent = () => {
         break;
     }
     const actor_id = newActorsList[newActorsList.length - 1].actor_id;
-    history.push(actor_id === "EARTH" ? "/" : `/actor/${actor_id}`);
+    const actor_name = newActorsList[newActorsList.length - 1].name
+    history.push(actor_id === "EARTH" ? "/" : `/actor/${actor_id}/${actor_name}_emissions`);
     setActors(newActorsList);
   };
 
