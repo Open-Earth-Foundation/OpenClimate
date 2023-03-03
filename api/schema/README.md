@@ -325,6 +325,9 @@ Targets are usually unique for a target type, target year, target unit, and acto
     - 'Absolute emission reduction': An absolute reduction in emissions. Despite the name, both tonnes of CO2 equivalent and percentage versus baseline value are used.
     - 'Carbon intensity reduction': reducing the amount of CO2 equivalent
     produced relative to economic output, such as GDP or revenue. Typically measured in percent.
+    - 'Net zero': A state in which greenhouse gases (GHGs) emissions are balanced by removal out of the atmosphere.
+    - 'GHG neutral': An actor’s net contribution to global GHG emissions is zero. Any GHG emissions attributable to an actor’s activities are fully compensated by GHG reductions or removals exclusively claimed by the actor. This definition is from [Net Zero Climate](https://netzeroclimate.org/what-is-net-zero/), but the exact definition may differ across actors, see section 2 of [Navigating the nuances of net-zero targets](https://newclimate.org/sites/default/files/2020/10/NewClimate_NetZeroReport_October2020.pdf).
+    - 'Climate neutral': An actor’s activities result in no net effect on the climate system. A near synonym for GHG neutral, but climate neutral also includes non-GHG radiative forcing effects, such as land use changes with albedo effects. This definition is from [Net Zero Climate](https://netzeroclimate.org/what-is-net-zero/), but the exact definition may differ across actors, see section 2 of [Navigating the nuances of net-zero targets](https://newclimate.org/sites/default/files/2020/10/NewClimate_NetZeroReport_October2020.pdf).
 - `target_year`: Year of completion, YYYY. Targets may have year values in the past, for historical targets.
 - `target_unit`: Unit for the value. Current units supported are:
     - 'tCO2e': tonnes of CO2 equivalent
