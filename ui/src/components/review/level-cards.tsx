@@ -130,7 +130,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
   const getOptions = async (actor_id: string, type: string) => {
     const recursive = type == "city" || type == "site" ? "yes" : "no";
     const res = await fetch(
-      `/actor/${actor_id}/parts?type=${type}&recursive=${recursive}`
+      `/api/v1/actor/${actor_id}/parts?type=${type}&recursive=${recursive}`
     );
     const json = await res.json();
 
