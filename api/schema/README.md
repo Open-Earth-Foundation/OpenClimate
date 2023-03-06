@@ -428,6 +428,24 @@ underscores. For example, to tag a geographic data source, use 'geo' as the tag.
 - `created`: When this row was added to the table.
 - `last_updated`: When this row was changed.
 
+### DataSourceQuality
+
+A score on each data source for the type of information it is canonical for.
+
+This is used in the OpenClimate UI to decide which datasources to use by default for particular output.
+
+The rows are unique by `datasource_id` and `score_type`.
+
+- `datasource_id`: The datasource that is being scored.
+- `score_type`: A short string defining the type of score under discussion. Known types include:
+    - `GHG target completion`: data sources with emissions
+      data that can be used to estimate target completion.
+- `score`: A quality score for this data source for this
+type of use. Values range from 0.0 to 1.0, inclusive.
+- `notes`: Notes on the score, for information only.
+- `created`: When this row was added to the table.
+- `last_updated`: When this row was changed.
+
 # Comments and questions
 
 Comments, questions and suggestions for this schema are tracked in the [Open-Earth-Foundation/OpenClimate-Schema repo issues](https://github.com/Open-Earth-Foundation/OpenClimate-Schema/issues).
