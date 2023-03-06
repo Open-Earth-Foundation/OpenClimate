@@ -1,6 +1,7 @@
-name: Push OpenClimate UI to ECR
+name: Push OpenClimate UI develop to ECR latest
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - ui/**
@@ -54,5 +55,3 @@ jobs:
         kubectl apply -f k8s/openclimate-ui-deployment.yml -n default
         kubectl apply -f k8s/openclimate-ui-service.yml -n default
         kubectl rollout restart deployment openclimate-ui-deployment -n default
-
-        

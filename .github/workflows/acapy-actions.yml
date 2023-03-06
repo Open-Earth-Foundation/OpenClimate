@@ -1,6 +1,8 @@
-name: Push OpenClimate acapy to ECR
+name: Push OpenClimate acapy dev to ECR latest
 
 on:
+  workflow_dispatch:
+
   push:
     paths:
       - aries-acapy-plugin-toolbox/**

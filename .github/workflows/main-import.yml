@@ -1,6 +1,7 @@
-name: Push OpenClimate importer to ECR
+name: Push OpenClimate importer main to ECR stable
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - import/**

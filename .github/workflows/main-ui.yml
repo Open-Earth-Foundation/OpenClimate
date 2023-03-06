@@ -1,6 +1,7 @@
-name: Push main UI to ECR
+name: Push UI main to ECR stable
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - ui/**

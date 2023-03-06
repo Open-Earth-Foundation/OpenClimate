@@ -1,6 +1,7 @@
-name: Push main API to ECR
+name: Push API main to ECR stable
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - api/**
