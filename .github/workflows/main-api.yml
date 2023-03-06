@@ -25,7 +25,7 @@ jobs:
         IMAGE: public.ecr.aws/openearthfoundation/openclimate-api
 
       run: |
-        export VERSION=`node -pe "require('./package.json').version"`
+        export VERSION=`node -pe "require('./api/package.json').version"`
         export MAJOR=${VERSION%.*.*}
         export MINOR=${VERSION%.*}
         echo Version: ${VERSION} Major: ${MAJOR} Minor: ${MINOR}
