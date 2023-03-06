@@ -1,6 +1,6 @@
 export enum ScopeType {
-    All,
-    Scope1,
-    Scope2,
-    Scope3
+  All,
+  Scope1,
+  Scope2,
+  Scope3,
 }

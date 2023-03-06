@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 // import styled from 'styled-components'
 
 // import FormUserEdit from './FormUserEdit'
 // import { useNotification } from './NotificationProvider'
-import PageHeader from './PageHeader'
-import PageSection from './PageSection'
+import PageHeader from "./PageHeader";
+import PageSection from "./PageSection";
 
 import {
   DataTable,
@@ -14,7 +14,7 @@ import {
   // DataCell,
   // AttributeTable,
   // AttributeRow,
-} from './CommonStylesTables'
+} from "./CommonStylesTables";
 
 // const EditCell = styled.td`
 //   color: ${(props) => props.theme.primary_color};
@@ -30,9 +30,9 @@ function User(props) {
   // Accessing notification context
   // const setNotification = useNotification()
 
-  const [userEditModalIsOpen, setUserEditModalIsOpen] = useState(false)
+  const [userEditModalIsOpen, setUserEditModalIsOpen] = useState(false);
 
-  const closeUserEditModal = () => setUserEditModalIsOpen(false)
+  const closeUserEditModal = () => setUserEditModalIsOpen(false);
 
   // const editUser = (email) => {
   //   setUserEditModalIsOpen(true)
@@ -41,7 +41,7 @@ function User(props) {
   return (
     <>
       <div id="profile">
-        <PageHeader title={'Profile'} />
+        <PageHeader title={"Profile"} />
         <PageSection>
           <DataTable>
             <thead>
@@ -62,7 +62,7 @@ function User(props) {
         /> */}
       </div>
     </>
-  )
+  );
 }
 
-export default User
+export default User;

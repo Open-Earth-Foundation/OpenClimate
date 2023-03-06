@@ -1,13 +1,14 @@
-import Axios from 'axios'
-import React, { useRef, useState, useEffect } from 'react'
-import styled from 'styled-components'
-import Cookies from 'universal-cookie'
+import Axios from "axios";
+import React, { useRef, useState, useEffect } from "react";
+import styled from "styled-components";
+import Cookies from "universal-cookie";
 
-import QR from 'qrcode.react'
-import './Login.css'
+import QR from "qrcode.react";
+import "./Login.css";
 
-import { useNotification } from './NotificationProvider'
-import { handleImageSrc } from './util'
+import { useNotification } from "./NotificationProvider";
+import { handleImageSrc } from "./util";
+import { ServerUrls } from "../shared/environments/server.environments";
 
 import {
   FormContainer,
@@ -19,7 +20,7 @@ import {
   QRHolder,
   SubmitBtn,
   InputField,
-} from './CommonStylesForms'
+} from "./CommonStylesForms";
 
 const ForgotPasswordLink = styled.a`
   margin-top: 30px;
@@ -27,71 +28,71 @@ const ForgotPasswordLink = styled.a`
   :hover {
     cursor: pointer;
   }
-`
+`;
 
 function Login(props) {
-  const [logo, setLogo] = useState(null)
+  const [logo, setLogo] = useState(null);
 
-  const cookies = new Cookies()
+  const cookies = new Cookies();
 
   // Accessing notification context
-  const setNotification = useNotification()
+  const setNotification = useNotification();
 
-  const [waitingForInvitation, setWaitingForInvitation] = useState(false)
-  const [waitingForConnection, setWaitingForConnection] = useState(false)
-  const [connected, setConnected] = useState(false)
+  const [waitingForInvitation, setWaitingForInvitation] = useState(false);
+  const [waitingForConnection, setWaitingForConnection] = useState(false);
+  const [connected, setConnected] = useState(false);
 
   if (!waitingForInvitation) {
-    props.sendRequest('INVITATIONS', 'CREATE_SINGLE_USE', {})
-    setWaitingForInvitation(true)
+    props.sendRequest("INVITATIONS", "CREATE_SINGLE_USE", {});
+    setWaitingForInvitation(true);
   }
 
   useEffect(() => {
-    if (props.QRCodeURL !== '') {
-      setWaitingForConnection(true)
+    if (props.QRCodeURL !== "") {
+      setWaitingForConnection(true);
     }
     if (props.contacts.length > 0 && waitingForConnection) {
-      setConnected(true)
+      setConnected(true);
     }
-  }, [props.QRCodeURL, props.contacts, waitingForConnection])
+  }, [props.QRCodeURL, props.contacts, waitingForConnection]);
 
   useEffect(() => {
     // Fetching the logo
     Axios({
-      method: 'GET',
-      url: '/api/logo',
+      method: "GET",
+      url: "/api/logo",
     }).then((res) => {
       if (res.data.error) {
-        setNotification(res.data.error, 'error')
+        setNotification(res.data.error, "error");
       } else {
-        setLogo(handleImageSrc(res.data[0].image.data))
+        setLogo(handleImageSrc(res.data[0].image.data));
       }
-    })
-  }, [setNotification])
+    });
+  }, [setNotification]);
 
-  const loginForm = useRef()
+  const loginForm = useRef();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const form = new FormData(loginForm.current)
+    e.preventDefault();
+    const form = new FormData(loginForm.current);
 
     // props.doLogin(form.get('email'), form.get('password'))
 
     Axios({
-      method: 'POST',
+      method: "POST",
       data: {
-        email: form.get('email'),
-        password: form.get('password'),
+        email: form.get("email"),
+        password: form.get("password"),
       },
-      url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-in`,
+      url: `${ServerUrls.reactAppController}/api/user/log-in`,
     }).then((res) => {
-      if (res.data.error) setNotification(res.data.error, 'error')
+      if (res.data.error) setNotification(res.data.error, "error");
       else {
-        props.setLoggedIn(true)
-        props.setUpUser(res.data.id, res.data.email, res.data.roles)
+        props.setLoggedIn(true);
+        props.setUpUser(res.data.id, res.data.email, res.data.roles);
       }
-    })
-  }
+    });
+  };
 
   // This passwordless login will basically be for the admin user...
   // But the admin won't usually have a login credential, so we only need the form on this page.
@@ -121,9 +122,9 @@ function Login(props) {
   // }
 
   const handleForgot = (e) => {
-    e.preventDefault()
-    props.history.push('/forgot-password')
-  }
+    e.preventDefault();
+    props.history.push("/forgot-password");
+  };
 
   return (
     <>
@@ -234,7 +235,7 @@ function Login(props) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;

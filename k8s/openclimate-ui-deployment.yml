@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openclimate-ui-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openclimate-ui
+  template:
+    metadata:
+      labels:
+        app: openclimate-ui
+    spec:
+      containers:
+        - name: openclimate-ui
+          image: public.ecr.aws/openearthfoundation/openclimate-ui
+          ports:
+            - containerPort: 80
+          env:
+            - name: NODE_ENV
+              value: development
+            - name: BROWSER
+              value: none
+            - name: REACT_APP_CONTROLLER
+              value: http://localhost
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /robots.txt
+              port: 80
+              httpHeaders:
+              - name: X-Liveness-Probe
+                value: "True"
+            initialDelaySeconds: 5
+            periodSeconds: 5

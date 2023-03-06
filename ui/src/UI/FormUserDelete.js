@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect } from "react";
 
 import {
   StyledPopup,
@@ -10,38 +10,38 @@ import {
   Actions,
   CancelBtn,
   SubmitBtnModal,
-} from './CommonStylesForms'
+} from "./CommonStylesForms";
 
 function FormUserDelete(props) {
-  const userID = props.userId
-  const success = props.successMessage
+  const userID = props.userId;
+  const success = props.successMessage;
 
-  const error = props.error
+  const error = props.error;
 
-  const submitBtn = useRef()
+  const submitBtn = useRef();
 
   useEffect(() => {
     if (error && submitBtn.current) {
-      submitBtn.current.removeAttribute('disabled')
+      submitBtn.current.removeAttribute("disabled");
     }
-  }, [error])
+  }, [error]);
 
   // Disable button on submit
   const onBtnClick = (e) => {
     if (submitBtn.current) {
-      submitBtn.current.setAttribute('disabled', 'disabled')
+      submitBtn.current.setAttribute("disabled", "disabled");
     }
-  }
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    onBtnClick()
+    e.preventDefault();
+    onBtnClick();
 
-    props.sendRequest('USERS', 'DELETE', userID)
-  }
+    props.sendRequest("USERS", "DELETE", userID);
+  };
 
   function closeModal() {
-    props.closeDeleteModal()
+    props.closeDeleteModal();
   }
 
   return (
@@ -69,7 +69,7 @@ function FormUserDelete(props) {
         <CloseBtn onClick={closeModal}>&times;</CloseBtn>
       </Modal>
     </StyledPopup>
-  )
+  );
 }
 
-export default FormUserDelete
+export default FormUserDelete;

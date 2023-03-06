@@ -1,11 +1,13 @@
-import Axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { handleImageSrc } from './util'
+import Axios from "axios";
+import React, { useEffect, useState } from "react";
+import { handleImageSrc } from "./util";
 
-import styled from 'styled-components'
-import { Logo, LogoHolder } from './CommonStylesForms'
+import styled from "styled-components";
+import { Logo, LogoHolder } from "./CommonStylesForms";
 
-import AppMenu from './AppMenu.js'
+import AppMenu from "./AppMenu.js";
+
+import { ServerUrls } from "../shared/environments/server.environments";
 
 const Header = styled.header`
   flex: 3;
@@ -14,7 +16,7 @@ const Header = styled.header`
   min-height: 100vh;
   border-right: 1px solid ${(props) => props.theme.border};
   background: ${(props) => props.theme.background_primary};
-`
+`;
 
 const LogoutWrapper = styled.div`
   display: flex;
@@ -23,14 +25,14 @@ const LogoutWrapper = styled.div`
   justify-content: center;
   padding-bottom: 20px;
   width: 100%;
-`
+`;
 
 const OrganizationName = styled.h3`
   margin: 10px 0;
   color: ${(props) => props.theme.secondary_color};
   text-align: center;
   text-transform: uppercase;
-`
+`;
 
 const UserName = styled.h4`
   color: ${(props) => props.theme.primary_color};
@@ -42,7 +44,7 @@ const UserName = styled.h4`
   //   text-decoration: underline;
   //   cursor: pointer;
   // }
-`
+`;
 
 const Logout = styled.button`
   margin: 5px 12px 0 12px;
@@ -53,32 +55,32 @@ const Logout = styled.button`
     text-decoration: underline;
     cursor: pointer;
   }
-`
+`;
 
 function AppHeader(props) {
-  const [src, setSrc] = useState(null)
-  const logo = props.logo
-  const organizationName = props.organizationName
+  const [src, setSrc] = useState(null);
+  const logo = props.logo;
+  const organizationName = props.organizationName;
 
   useEffect(() => {
     if (logo && logo.image) {
-      setSrc(handleImageSrc(logo.image.data))
+      setSrc(handleImageSrc(logo.image.data));
     }
-  }, [logo])
+  }, [logo]);
 
   const handleUILogout = () => {
     // Log out
     Axios({
-      method: 'POST',
-      url: `${process.env.REACT_APP_CONTROLLER}/api/user/log-out`,
-    }).then((res) => {})
+      method: "POST",
+      url: `${ServerUrls.reactAppController}/api/user/log-out`,
+    }).then((res) => {});
 
-    props.handleLogout(props.history)
-  }
+    props.handleLogout(props.history);
+  };
 
   const handleUserProfile = (e) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
 
   return (
     <Header id="app-header">
@@ -87,14 +89,12 @@ function AppHeader(props) {
       </LogoHolder>
       <OrganizationName>{organizationName}</OrganizationName>
       <LogoutWrapper>
-        <UserName onClick={handleUserProfile}>
-          {props.loggedInEmail}
-        </UserName>
+        <UserName onClick={handleUserProfile}>{props.loggedInEmail}</UserName>
         <Logout onClick={handleUILogout}>Log Out</Logout>
       </LogoutWrapper>
       <AppMenu match={props.match} userRole={props.userRole} />
     </Header>
-  )
+  );
 }
 
-export default AppHeader
+export default AppHeader;

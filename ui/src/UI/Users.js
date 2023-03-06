@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
-import { CanUser } from './CanUser'
+import { CanUser } from "./CanUser";
 
-import FormUsers from './FormUsers'
-import FormUsersDelete from './FormUserDelete'
-import FormUserEdit from './FormUserEdit'
-import { useNotification } from './NotificationProvider'
-import PageHeader from './PageHeader'
-import PageSection from './PageSection'
+import FormUsers from "./FormUsers";
+import FormUsersDelete from "./FormUserDelete";
+import FormUserEdit from "./FormUserEdit";
+import { useNotification } from "./NotificationProvider";
+import PageHeader from "./PageHeader";
+import PageSection from "./PageSection";
 
-import { TextAlignCenter } from './CommonStyles'
+import { TextAlignCenter } from "./CommonStyles";
 
 import {
   DataTable,
@@ -20,93 +20,93 @@ import {
   IconRemove,
   IconEdit,
   IconEmail,
-} from './CommonStylesTables'
+} from "./CommonStylesTables";
 
-import { ActionButton } from './CommonStylesForms'
+import { ActionButton } from "./CommonStylesForms";
 
 function Users(props) {
-  const error = props.errorMessage
-  const success = props.successMessage
+  const error = props.errorMessage;
+  const success = props.successMessage;
 
-  const [index, setIndex] = useState(false)
+  const [index, setIndex] = useState(false);
 
   // Accessing notification context
-  const setNotification = useNotification()
+  const setNotification = useNotification();
 
   useEffect(() => {
     if (success) {
-      setNotification(success, 'notice')
-      props.clearResponseState()
+      setNotification(success, "notice");
+      props.clearResponseState();
 
       // (Simon): Temporary solution. Closing all/any modals on success
-      closeUserModal()
-      closeUserEditModal()
-      closeDeleteModal()
+      closeUserModal();
+      closeUserEditModal();
+      closeDeleteModal();
     } else if (error) {
-      setNotification(error, 'error')
-      props.clearResponseState()
-      setIndex(index + 1)
+      setNotification(error, "error");
+      props.clearResponseState();
+      setIndex(index + 1);
     }
-  }, [error, success, setNotification, props])
+  }, [error, success, setNotification, props]);
 
-  const [userModalIsOpen, setUserModalIsOpen] = useState(false)
-  const [userEditModalIsOpen, setUserEditModalIsOpen] = useState(false)
-  const [deleteUserModalIsOpen, setDeleteUserModalIsOpen] = useState(false)
-  const [userEmail, setUserEmail] = useState('')
-  const [userId, setUserId] = useState('')
+  const [userModalIsOpen, setUserModalIsOpen] = useState(false);
+  const [userEditModalIsOpen, setUserEditModalIsOpen] = useState(false);
+  const [deleteUserModalIsOpen, setDeleteUserModalIsOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const [userId, setUserId] = useState("");
 
-  const [buttonDisabled, setButtonDisabled] = useState(false)
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
-  console.log(buttonDisabled)
+  console.log(buttonDisabled);
 
-  const loggedInUserState = props.loggedInUserState
+  const loggedInUserState = props.loggedInUserState;
 
-  const users = props.users
-  console.log(users)
-  const roles = props.roles
-  const organizations = props.organizations
-  console.log(organizations)
+  const users = props.users;
+  console.log(users);
+  const roles = props.roles;
+  const organizations = props.organizations;
+  console.log(organizations);
 
-  const closeUserModal = () => setUserModalIsOpen(false)
-  const closeUserEditModal = () => setUserEditModalIsOpen(false)
-  const closeDeleteModal = () => setDeleteUserModalIsOpen(false)
+  const closeUserModal = () => setUserModalIsOpen(false);
+  const closeUserEditModal = () => setUserEditModalIsOpen(false);
+  const closeDeleteModal = () => setDeleteUserModalIsOpen(false);
 
   const addUser = () => {
-    setUserModalIsOpen(true)
-  }
+    setUserModalIsOpen(true);
+  };
 
   const editUser = () => {
-    setUserEditModalIsOpen(true)
-  }
+    setUserEditModalIsOpen(true);
+  };
 
   const deleteUser = () => {
-    setDeleteUserModalIsOpen(true)
-  }
+    setDeleteUserModalIsOpen(true);
+  };
 
   const resendEmail = (email) => {
-    props.sendRequest('USERS', 'RESEND_CONFIRMATION', email)
-    setButtonDisabled(true)
-  }
+    props.sendRequest("USERS", "RESEND_CONFIRMATION", email);
+    setButtonDisabled(true);
+  };
 
-  let userRows = ''
+  let userRows = "";
 
   if (users) {
     userRows = users.map((user) => {
-      let userId = ''
-      let userName = ''
-      let userEmail = ''
-      let userRoles = ' | '
+      let userId = "";
+      let userName = "";
+      let userEmail = "";
+      let userRoles = " | ";
 
       if (user) {
         if (user.user_id) {
-          userId = user.user_id
+          userId = user.user_id;
         }
         if (user.email) {
-          userEmail = user.email
+          userEmail = user.email;
         }
 
         for (var key in user.Roles) {
-          userRoles += user.Roles[key].role_name + ' | '
+          userRoles += user.Roles[key].role_name + " | ";
         }
       }
 
@@ -121,8 +121,8 @@ function Users(props) {
             yes={() => (
               <IconCell
                 onClick={() => {
-                  editUser()
-                  setUserEmail(userEmail)
+                  editUser();
+                  setUserEmail(userEmail);
                 }}
               >
                 <IconEdit alt="Edit" />
@@ -136,8 +136,8 @@ function Users(props) {
               yes={() => (
                 <IconCell
                   onClick={() => {
-                    deleteUser()
-                    setUserId(userId)
+                    deleteUser();
+                    setUserId(userId);
                   }}
                 >
                   <IconRemove alt="Remove" />
@@ -155,7 +155,7 @@ function Users(props) {
                 !buttonDisabled ? (
                   <IconCell
                     onClick={() => {
-                      resendEmail(userEmail)
+                      resendEmail(userEmail);
                     }}
                   >
                     <IconEmail
@@ -177,14 +177,14 @@ function Users(props) {
             <IconCell></IconCell>
           )}
         </DataRow>
-      )
-    })
+      );
+    });
   }
 
   return (
     <>
       <div id="users">
-        <PageHeader title={'Users'} />
+        <PageHeader title={"Users"} />
         <PageSection>
           <DataTable>
             <thead>
@@ -220,7 +220,7 @@ function Users(props) {
                 />
               </DataRow>
             </thead>
-            <tbody>{userRows ? userRows : ''}</tbody>
+            <tbody>{userRows ? userRows : ""}</tbody>
           </DataTable>
         </PageSection>
         <ActionButton title="Add a New User" onClick={addUser}>
@@ -253,7 +253,7 @@ function Users(props) {
         />
       </div>
     </>
-  )
+  );
 }
 
-export default Users
+export default Users;

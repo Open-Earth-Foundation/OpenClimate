@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: openclimate-import-
+spec:
+  template:
+    spec:
+      volumes:
+          - name: openclimate-harmonize-data
+            persistentVolumeClaim:
+              claimName: openclimate-harmonize-persistentvolumeclaim
+      containers:
+      - name: openclimate-import
+        image: public.ecr.aws/openearthfoundation/openclimate-import:latest
+        env:
+          - name: OPENCLIMATE_DATABASE
+            value: development
+          - name: OPENCLIMATE_HOST
+            value: postgresql-service
+          - name: OPENCLIMATE_USER
+            value: development
+          - name: OPENCLIMATE_PASSWORD
+            value: development
+          - name: PROCESSED_DATA_DIR
+            value: /harmonize/data/processed/
+        volumeMounts:
+          - mountPath: "/harmonize"
+            name: openclimate-harmonize-data
+      restartPolicy: OnFailure
+  backoffLimit: 4

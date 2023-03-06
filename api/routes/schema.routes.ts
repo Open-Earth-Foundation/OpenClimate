@@ -1,14 +1,14 @@
-import {Router} from 'express';
+import { Router } from "express";
 
-const router = Router()
+const router = Router();
 
 // router.post('/api/schema', (req: any, res: any) => {
 //     try {
 //         const schema: SchemaEntity = req.body;
-        
+
 //         const schemaRepo = getConnection().getRepository(SchemaEntity);
 //         schemaRepo.save(schema);
-        
+
 //         req.logger.debug('Schema created');
 //     }
 //     catch(err:any) {
@@ -33,7 +33,6 @@ const router = Router()
 //     }
 // })
 
-
 // router.get('/api/schemas', async (req: any, res: any) => {
 //     try {
 //         const schemaCategory = req.query.category;
@@ -51,6 +50,4 @@ const router = Router()
 //     }
 // })
 
-
-
-export default router
+export default router;

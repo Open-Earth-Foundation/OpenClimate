@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const SectionDiv = styled.div`
   margin-bottom: 30px;
@@ -9,10 +9,10 @@ const SectionDiv = styled.div`
   color: ${(props) => props.theme.text_color};
   box-shadow: ${(props) => props.theme.drop_shadow};
   background: ${(props) => props.theme.background_primary};
-`
+`;
 
 function PageSection(props) {
-  return <SectionDiv>{props.children}</SectionDiv>
+  return <SectionDiv>{props.children}</SectionDiv>;
 }
 
-export default PageSection
+export default PageSection;

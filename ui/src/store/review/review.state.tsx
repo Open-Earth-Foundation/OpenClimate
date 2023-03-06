@@ -4,8 +4,8 @@ import { IReviewFilter } from "../../api/models/review/dashboard/reviewFilter";
 import ITrackedEntity from "../../api/models/review/entity/tracked-entity";
 
 export interface ReviewState {
-    loading: boolean,
-    filters: Array<IReviewFilter>,
-    dashboardType: FilterTypes | null,
-    selectedEntities: Array<ITrackedEntity>
-} 
+  loading: boolean;
+  filters: Array<IReviewFilter>;
+  dashboardType: FilterTypes | null;
+  selectedEntities: Array<ITrackedEntity>;
+}

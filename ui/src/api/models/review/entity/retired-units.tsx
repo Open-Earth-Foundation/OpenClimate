@@ -1,6 +1,6 @@
 export default interface RetiredUnits {
-    certificateId: string,
-    type: string, //todo
-    unit: string,
-    status: string
+  certificateId: string;
+  type: string; //todo
+  unit: string;
+  status: string;
 }

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openclimate-acapy-deployment
+  labels:
+    app: openclimate-acapy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openclimate-acapy
+  template:
+    metadata:
+      labels:
+        app: openclimate-acapy
+    spec:
+      containers:
+        - name: openclimate-acapy
+          image: public.ecr.aws/openearthfoundation/openclimate-acapy:1.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3005
+          env:
+            - name: AGENT_NAME
+              value: Hub
+            - name: PORT
+              value: "3005"
+            - name: ADMIN_PORT
+              value: "8150"
+            - name: WEBHOOK_ADDRESS
+              value: https://openclimate.openearth.dev/api/controller-webhook
+            - name: ACAPY_ENDPOINT
+              value: https://openclimate.openearth.dev
+          resources:
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"

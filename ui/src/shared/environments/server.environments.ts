@@ -1,3 +1,9 @@
+const url =
+  document && document.location
+    ? document.location.protocol + "//" + document.location.host
+    : "http://localhost";
+
 export const ServerUrls = {
-    api: `${process.env.REACT_APP_CONTROLLER}/api`
-}
+  api: `${url}/api`,
+  reactAppController: url,
+};

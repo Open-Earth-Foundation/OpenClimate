@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Header = styled.header`
   margin-bottom: 30px;
@@ -11,7 +11,7 @@ const Header = styled.header`
   color: ${(props) => props.theme.text_color};
   box-shadow: ${(props) => props.theme.drop_shadow};
   background: ${(props) => props.theme.background_primary};
-`
+`;
 
 function PageHeader(props) {
   return (
@@ -19,7 +19,7 @@ function PageHeader(props) {
       {props.title}
       {props.children}
     </Header>
-  )
+  );
 }
 
-export default PageHeader
+export default PageHeader;

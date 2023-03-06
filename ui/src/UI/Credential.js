@@ -1,48 +1,48 @@
-import React from 'react'
+import React from "react";
 
-import PageHeader from './PageHeader.js'
-import PageSection from './PageSection.js'
+import PageHeader from "./PageHeader.js";
+import PageSection from "./PageSection.js";
 
-import { AttributeTable, AttributeRow } from './CommonStylesTables'
+import { AttributeTable, AttributeRow } from "./CommonStylesTables";
 
 function Credential(props) {
-  const history = props.history
-  const credential = props.credential
-  const credentials = props.credentials
+  const history = props.history;
+  const credential = props.credential;
+  const credentials = props.credentials;
 
-  let credentialSelected = ''
+  let credentialSelected = "";
 
   for (let i = 0; i < credentials.length; i++) {
     if (credentials[i].credential_exchange_id == credential) {
-      credentialSelected = credentials[i]
-      break
+      credentialSelected = credentials[i];
+      break;
     }
   }
 
   // Initialize variables to blank (to prevent errors during loading)
   let showCredential = {
-    name: '',
-    credential_exchange_id: '',
-    state: '',
-    date_created: '',
-  }
+    name: "",
+    credential_exchange_id: "",
+    state: "",
+    date_created: "",
+  };
 
   // Attributes of this kind of credential
-  let showAttributes = {}
-  let attributesSection = ''
+  let showAttributes = {};
+  let attributesSection = "";
 
   // Now set the values if we have a credential
-  if (credentialSelected !== '') {
+  if (credentialSelected !== "") {
     showCredential.name =
       credentialSelected.credential_proposal_dict.schema_name.replaceAll(
-        '_',
-        ' '
-      ) || ''
+        "_",
+        " "
+      ) || "";
     showCredential.credential_exchange_id =
-      credentialSelected.credential_exchange_id || ''
-    showCredential.state = credentialSelected.state.replaceAll('_', ' ')
+      credentialSelected.credential_exchange_id || "";
+    showCredential.state = credentialSelected.state.replaceAll("_", " ");
     showCredential.created_at =
-      new Date(credentialSelected.created_at).toLocaleString() || ''
+      new Date(credentialSelected.created_at).toLocaleString() || "";
 
     // Values that depend on the credential being issued
     if (
@@ -51,38 +51,38 @@ function Credential(props) {
       credentialSelected.credential.values !== null &&
       credentialSelected.credential.values !== undefined
     ) {
-      const values = credentialSelected.credential.values
+      const values = credentialSelected.credential.values;
 
-      if (showCredential.name === 'Test ID') {
+      if (showCredential.name === "Test ID") {
         showAttributes.ordering_facility_name =
-          values.ordering_facility_name.raw || ''
+          values.ordering_facility_name.raw || "";
         showAttributes.ordering_facility_address =
-          values.ordering_facility_address.raw || ''
-        showAttributes.visit_location = values.visit_location.raw || ''
-        showAttributes.lab_order_id = values.lab_order_id.raw || ''
-        showAttributes.lab_code = values.lab_code.raw || ''
+          values.ordering_facility_address.raw || "";
+        showAttributes.visit_location = values.visit_location.raw || "";
+        showAttributes.lab_order_id = values.lab_order_id.raw || "";
+        showAttributes.lab_code = values.lab_code.raw || "";
         showAttributes.lab_coding_qualifier =
-          values.lab_coding_qualifier.raw || ''
-        showAttributes.lab_description = values.lab_description.raw || ''
+          values.lab_coding_qualifier.raw || "";
+        showAttributes.lab_description = values.lab_description.raw || "";
         showAttributes.lab_specimen_collected_date =
-          values.lab_specimen_collected_date.raw || ''
-        showAttributes.mpid = values.mpid.raw || ''
-        showAttributes.patient_local_id = values.patient_local_id.raw || ''
+          values.lab_specimen_collected_date.raw || "";
+        showAttributes.mpid = values.mpid.raw || "";
+        showAttributes.patient_local_id = values.patient_local_id.raw || "";
         showAttributes.patient_name =
-          values.patient_first_name.raw + ' ' + values.patient_last_name.raw
-        showAttributes.patient_first_name = values.patient_first_name.raw || ''
-        showAttributes.patient_last_name = values.patient_last_name.raw || ''
+          values.patient_first_name.raw + " " + values.patient_last_name.raw;
+        showAttributes.patient_first_name = values.patient_first_name.raw || "";
+        showAttributes.patient_last_name = values.patient_last_name.raw || "";
         showAttributes.patient_date_of_birth =
-          values.patient_date_of_birth.raw || ''
+          values.patient_date_of_birth.raw || "";
         showAttributes.patient_gender_legal =
-          values.patient_gender_legal.raw || ''
-        showAttributes.patient_phone = values.patient_phone.raw || ''
+          values.patient_gender_legal.raw || "";
+        showAttributes.patient_phone = values.patient_phone.raw || "";
         showAttributes.patient_street_address =
-          values.patient_street_address.raw || ''
-        showAttributes.patient_city = values.patient_city.raw || ''
-        showAttributes.patient_state = values.patient_state.raw || ''
-        showAttributes.patient_postalcode = values.patient_postalcode.raw || ''
-        showAttributes.patient_country = values.patient_country.raw || ''
+          values.patient_street_address.raw || "";
+        showAttributes.patient_city = values.patient_city.raw || "";
+        showAttributes.patient_state = values.patient_state.raw || "";
+        showAttributes.patient_postalcode = values.patient_postalcode.raw || "";
+        showAttributes.patient_country = values.patient_country.raw || "";
         attributesSection = (
           <div>
             <h2>Test Information</h2>
@@ -176,47 +176,47 @@ function Credential(props) {
               </tbody>
             </AttributeTable>
           </div>
-        )
-      } else if (showCredential.name === 'Covid 19 Lab Result') {
-        showAttributes.result = values.result.raw || ''
-        showAttributes.normality = values.normality.raw || ''
-        showAttributes.result_status = values.result_status.raw || ''
+        );
+      } else if (showCredential.name === "Covid 19 Lab Result") {
+        showAttributes.result = values.result.raw || "";
+        showAttributes.normality = values.normality.raw || "";
+        showAttributes.result_status = values.result_status.raw || "";
         showAttributes.date_time_of_message =
-          values.date_time_of_message.raw || ''
-        showAttributes.sending_facility = values.sending_facility.raw || ''
+          values.date_time_of_message.raw || "";
+        showAttributes.sending_facility = values.sending_facility.raw || "";
         showAttributes.ordering_facility_name =
-          values.ordering_facility_name.raw || ''
+          values.ordering_facility_name.raw || "";
         showAttributes.ordering_facility_address =
-          values.ordering_facility_address.raw || ''
-        showAttributes.visit_location = values.visit_location.raw || ''
-        showAttributes.lab_order_id = values.lab_order_id.raw || ''
-        showAttributes.lab_code = values.lab_code.raw || ''
+          values.ordering_facility_address.raw || "";
+        showAttributes.visit_location = values.visit_location.raw || "";
+        showAttributes.lab_order_id = values.lab_order_id.raw || "";
+        showAttributes.lab_code = values.lab_code.raw || "";
         showAttributes.lab_coding_qualifier =
-          values.lab_coding_qualifier.raw || ''
-        showAttributes.lab_description = values.lab_description.raw || ''
+          values.lab_coding_qualifier.raw || "";
+        showAttributes.lab_description = values.lab_description.raw || "";
         showAttributes.lab_specimen_collected_date =
-          values.lab_specimen_collected_date.raw || ''
+          values.lab_specimen_collected_date.raw || "";
         showAttributes.observation_date_time =
-          values.observation_date_time.raw || ''
+          values.observation_date_time.raw || "";
         // showAttributes.performing_lab = values.performing_lab.raw || ''
         // showAttributes.comment = values.comment.raw || ''
-        showAttributes.mpid = values.mpid.raw || ''
-        showAttributes.patient_local_id = values.patient_local_id.raw || ''
+        showAttributes.mpid = values.mpid.raw || "";
+        showAttributes.patient_local_id = values.patient_local_id.raw || "";
         showAttributes.patient_name =
-          values.patient_first_name.raw + ' ' + values.patient_last_name.raw
-        showAttributes.patient_first_name = values.patient_first_name.raw || ''
-        showAttributes.patient_last_name = values.patient_last_name.raw || ''
+          values.patient_first_name.raw + " " + values.patient_last_name.raw;
+        showAttributes.patient_first_name = values.patient_first_name.raw || "";
+        showAttributes.patient_last_name = values.patient_last_name.raw || "";
         showAttributes.patient_date_of_birth =
-          values.patient_date_of_birth.raw || ''
+          values.patient_date_of_birth.raw || "";
         showAttributes.patient_gender_legal =
-          values.patient_gender_legal.raw || ''
-        showAttributes.patient_phone = values.patient_phone.raw || ''
+          values.patient_gender_legal.raw || "";
+        showAttributes.patient_phone = values.patient_phone.raw || "";
         showAttributes.patient_street_address =
-          values.patient_street_address.raw || ''
-        showAttributes.patient_city = values.patient_city.raw || ''
-        showAttributes.patient_state = values.patient_state.raw || ''
-        showAttributes.patient_postalcode = values.patient_postalcode.raw || ''
-        showAttributes.patient_country = values.patient_country.raw || ''
+          values.patient_street_address.raw || "";
+        showAttributes.patient_city = values.patient_city.raw || "";
+        showAttributes.patient_state = values.patient_state.raw || "";
+        showAttributes.patient_postalcode = values.patient_postalcode.raw || "";
+        showAttributes.patient_country = values.patient_country.raw || "";
         attributesSection = (
           <div>
             <h2>Test Information</h2>
@@ -342,7 +342,7 @@ function Credential(props) {
               </tbody>
             </AttributeTable>
           </div>
-        )
+        );
       }
     }
   }
@@ -350,7 +350,7 @@ function Credential(props) {
   return (
     <div id="contact">
       <PageHeader
-        title={showCredential.name + ' for ' + showAttributes.patient_name}
+        title={showCredential.name + " for " + showAttributes.patient_name}
       />
       <PageSection>
         <h2>General Information</h2>
@@ -377,7 +377,7 @@ function Credential(props) {
         {attributesSection}
       </PageSection>
     </div>
-  )
+  );
 }
 
-export default Credential
+export default Credential;

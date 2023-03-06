@@ -1,93 +1,93 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from "react";
 
-import styled, { useTheme } from 'styled-components'
+import styled, { useTheme } from "styled-components";
 
-import { useNotification } from './NotificationProvider'
-import PageHeader from './PageHeader'
-import PageSection from './PageSection'
+import { useNotification } from "./NotificationProvider";
+import PageHeader from "./PageHeader";
+import PageSection from "./PageSection";
 
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip from "react-tooltip";
 
-import { IconHelp } from './CommonStylesTables'
+import { IconHelp } from "./CommonStylesTables";
 
 const SettingsHeader = styled.h2`
   display: inline;
   margin-right: 10px;
-`
+`;
 
 const PrimaryColorTest = styled.input`
   background: ${(props) => props.theme.primary_color};
   border: none;
   margin-left: 50px;
   width: 17px;
-`
+`;
 const SecondaryColorTest = styled.input`
   background: ${(props) => props.theme.secondary_color};
   border: none;
   margin-left: 50px;
   width: 17px;
-`
+`;
 const NeutralColorTest = styled.input`
   background: ${(props) => props.theme.neutral_color};
   border: none;
   margin-left: 50px;
   width: 17px;
-`
+`;
 const NegativeColorTest = styled.input`
   background: ${(props) => props.theme.negative_color};
   border: none;
   margin-left: 50px;
   width: 17px;
-`
+`;
 const WarningColorTest = styled.input`
   background: ${(props) => props.theme.warning_color};
   border: none;
   margin-left: 50px;
   width: 17px;
-`
+`;
 const PositiveColorTest = styled.input`
   background: ${(props) => props.theme.positive_color};
   border: none;
   margin-left: 50px;
   width: 17px;
-`
+`;
 const TextColorTest = styled.input`
   background: ${(props) => props.theme.text_color};
   border: none;
   margin-left: 50px;
   width: 17px;
-`
+`;
 const TextLightTest = styled.input`
   background: ${(props) => props.theme.text_light};
   border: none;
   margin-left: 50px;
   width: 17px;
-`
+`;
 const BorderTest = styled.input`
   background: ${(props) => props.theme.secondary_color};
   border: ${(props) => props.theme.border};
   margin-left: 50px;
   width: 17px;
-`
+`;
 const DropShadowTest = styled.input`
   background: ${(props) => props.theme.neutral_color};
   border: none;
   margin-left: 50px;
   width: 17px;
   box-shadow: ${(props) => props.theme.drop_shadow};
-`
+`;
 const PrimaryBackgroundTest = styled.input`
   background: ${(props) => props.theme.background_primary};
   border: none;
   margin-left: 50px;
   width: 17px;
-`
+`;
 const SecondaryBackgroundTest = styled.input`
   background: ${(props) => props.theme.background_secondary};
   border: none;
   margin-left: 50px;
   width: 17px;
-`
+`;
 const UndoStyle = styled.button`
   width: 60px;
   background: ${(props) => props.theme.warning_color};
@@ -101,7 +101,7 @@ const UndoStyle = styled.button`
   &.active {
     display: inline-block;
   }
-`
+`;
 
 const SaveBtn = styled.button`
   width: 80px;
@@ -111,165 +111,165 @@ const SaveBtn = styled.button`
   border: none;
   float: right;
   box-shadow: ${(props) => props.theme.drop_shadow};
-`
+`;
 
-const SubmitFormBtn = styled.button``
+const SubmitFormBtn = styled.button``;
 const SMTPInput = styled.input`
   display: block;
   margin-bottom: 15px;
-`
-const ColorInput = styled.input``
-const FileInput = styled.input``
-const SMTPForm = styled.form``
-const OrganizationNameForm = styled.form``
+`;
+const ColorInput = styled.input``;
+const FileInput = styled.input``;
+const SMTPForm = styled.form``;
+const OrganizationNameForm = styled.form``;
 const Form = styled.form`
   margin-bottom: 15px;
   height: 72px;
-`
+`;
 
 function Settings(props) {
   // Accessing notification context
-  const setNotification = useNotification()
+  const setNotification = useNotification();
 
-  const error = props.errorMessage
-  const success = props.successMessage
+  const error = props.errorMessage;
+  const success = props.successMessage;
   // const messageEventCounter = props.messageEventCounter
 
   useEffect(() => {
     if (success) {
       // console.log('SUCCESS RAN')
-      setNotification(success, 'notice')
-      props.clearResponseState()
+      setNotification(success, "notice");
+      props.clearResponseState();
     } else if (error) {
       // console.log('ERROR RAN')
-      setNotification(error, 'error')
-      props.clearResponseState()
+      setNotification(error, "error");
+      props.clearResponseState();
     }
-  }, [error, success, props, setNotification])
+  }, [error, success, props, setNotification]);
 
   // File state
-  const [selectedFile, setSelectedFile] = useState('')
-  const [fileName, setFileName] = useState('Choose file')
+  const [selectedFile, setSelectedFile] = useState("");
+  const [fileName, setFileName] = useState("Choose file");
 
   // Color input references
-  const primaryColorInput = useRef(null)
-  const secondaryColorInput = useRef(null)
-  const neutralColorInput = useRef(null)
-  const negativeColorInput = useRef(null)
-  const warningColorInput = useRef(null)
-  const positiveColorInput = useRef(null)
-  const textColorInput = useRef(null)
-  const textLightInput = useRef(null)
-  const borderInput = useRef(null)
-  const dropShadowInput = useRef(null)
-  const primaryBackgroundInput = useRef(null)
-  const secondaryBackgroundInput = useRef(null)
+  const primaryColorInput = useRef(null);
+  const secondaryColorInput = useRef(null);
+  const neutralColorInput = useRef(null);
+  const negativeColorInput = useRef(null);
+  const warningColorInput = useRef(null);
+  const positiveColorInput = useRef(null);
+  const textColorInput = useRef(null);
+  const textLightInput = useRef(null);
+  const borderInput = useRef(null);
+  const dropShadowInput = useRef(null);
+  const primaryBackgroundInput = useRef(null);
+  const secondaryBackgroundInput = useRef(null);
 
   // SMTP input references
-  const smtpForm = useRef(null)
-  const host = useRef(null)
-  const userEmail = useRef(null)
-  const userPassword = useRef(null)
+  const smtpForm = useRef(null);
+  const host = useRef(null);
+  const userEmail = useRef(null);
+  const userPassword = useRef(null);
 
   // Organization input references
-  const organizationForm = useRef(null)
-  const organizationName = useRef(null)
+  const organizationForm = useRef(null);
+  const organizationName = useRef(null);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    e.target.reset()
-  }
+    e.preventDefault();
+    e.target.reset();
+  };
 
   // Theme style attribute change
   const changeThemeStyles = (key, value) => {
     if (value) {
-      props.updateTheme({ [`${key}`]: value })
-      props.addStylesToArray(key)
+      props.updateTheme({ [`${key}`]: value });
+      props.addStylesToArray(key);
     }
-  }
+  };
 
   // Setting the style to the default value
   const undoStyle = (key) => {
-    props.undoStyle(key)
-    props.removeStylesFromArray(key)
-  }
+    props.undoStyle(key);
+    props.removeStylesFromArray(key);
+  };
 
   // Save style settings
   function saveStyle() {
-    props.saveTheme()
+    props.saveTheme();
   }
 
   // Save SMTP settings
   const handleSMTP = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const form = new FormData(smtpForm.current)
+    const form = new FormData(smtpForm.current);
 
     const smtpConfigs = {
-      host: form.get('host'),
+      host: form.get("host"),
       auth: {
-        user: form.get('email'),
-        pass: form.get('password'),
+        user: form.get("email"),
+        pass: form.get("password"),
       },
-    }
-    props.sendRequest('SETTINGS', 'SET_SMTP', smtpConfigs)
+    };
+    props.sendRequest("SETTINGS", "SET_SMTP", smtpConfigs);
 
-    smtpForm.current.reset()
-  }
+    smtpForm.current.reset();
+  };
 
   // Save organization name
   const handleOrganizationName = (e) => {
-    e.preventDefault()
-    const form = new FormData(organizationForm.current)
+    e.preventDefault();
+    const form = new FormData(organizationForm.current);
     const name = {
-      companyName: form.get('organizationName'),
-    }
-    props.sendRequest('SETTINGS', 'SET_ORGANIZATION_NAME', name)
-    organizationForm.current.reset()
-  }
+      companyName: form.get("organizationName"),
+    };
+    props.sendRequest("SETTINGS", "SET_ORGANIZATION_NAME", name);
+    organizationForm.current.reset();
+  };
 
   // File upload
 
   // Setting up file and file name
   let fileSelectHandler = (event) => {
-    const file = event.target.files[0]
+    const file = event.target.files[0];
 
     // The image is over 0.67Mb size. It will grow 33% (1mb) as it's converted to base64
     if (file && file.size > 670000) {
-      setNotification('The image is over 1Mb.', 'error')
-      return
+      setNotification("The image is over 1Mb.", "error");
+      return;
     }
 
     if (file) {
       // Converting the image to base64
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onloadend = function () {
-        setSelectedFile(reader.result)
-      }
-      reader.readAsDataURL(file)
+        setSelectedFile(reader.result);
+      };
+      reader.readAsDataURL(file);
 
-      setFileName(event.target.files[0].name)
+      setFileName(event.target.files[0].name);
     }
-  }
+  };
 
   const handleFileSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (selectedFile) {
       const image = {
         name: fileName,
-        type: 'logo',
+        type: "logo",
         image: selectedFile,
-      }
+      };
 
-      props.sendRequest('IMAGES', 'SET_LOGO', image)
+      props.sendRequest("IMAGES", "SET_LOGO", image);
     } else {
-      setNotification('The image is not selected.', 'error')
+      setNotification("The image is not selected.", "error");
     }
-  }
+  };
 
   return (
     <div id="settings">
-      <PageHeader title={'Settings'} />
+      <PageHeader title={"Settings"} />
       <PageSection>
         <SettingsHeader>Organization name</SettingsHeader>
         <IconHelp
@@ -296,7 +296,7 @@ function Settings(props) {
             name="organizationName"
             placeholder="organization name"
             ref={organizationName}
-            style={{ display: 'inline-block' }}
+            style={{ display: "inline-block" }}
           />
           <SaveBtn onClick={handleOrganizationName}>Save</SaveBtn>
         </OrganizationNameForm>
@@ -360,7 +360,7 @@ function Settings(props) {
             name="password"
             placeholder="user password"
             ref={userPassword}
-            style={{ display: 'inline-block' }}
+            style={{ display: "inline-block" }}
           />
           <SaveBtn onClick={handleSMTP}>Save</SaveBtn>
         </SMTPForm>
@@ -393,7 +393,7 @@ function Settings(props) {
             type="submit"
             onClick={() =>
               changeThemeStyles(
-                'primary_color',
+                "primary_color",
                 primaryColorInput.current.value
               )
             }
@@ -403,9 +403,9 @@ function Settings(props) {
           <PrimaryColorTest disabled></PrimaryColorTest>
           <UndoStyle
             className={
-              props.stylesArray.includes('primary_color') ? 'active' : ''
+              props.stylesArray.includes("primary_color") ? "active" : ""
             }
-            onClick={() => undoStyle('primary_color')}
+            onClick={() => undoStyle("primary_color")}
           >
             Undo
           </UndoStyle>
@@ -417,7 +417,7 @@ function Settings(props) {
             type="submit"
             onClick={() =>
               changeThemeStyles(
-                'secondary_color',
+                "secondary_color",
                 secondaryColorInput.current.value
               )
             }
@@ -427,9 +427,9 @@ function Settings(props) {
           <SecondaryColorTest disabled></SecondaryColorTest>
           <UndoStyle
             className={
-              props.stylesArray.includes('secondary_color') ? 'active' : ''
+              props.stylesArray.includes("secondary_color") ? "active" : ""
             }
-            onClick={() => undoStyle('secondary_color')}
+            onClick={() => undoStyle("secondary_color")}
           >
             Undo
           </UndoStyle>
@@ -441,7 +441,7 @@ function Settings(props) {
             type="submit"
             onClick={() =>
               changeThemeStyles(
-                'neutral_color',
+                "neutral_color",
                 neutralColorInput.current.value
               )
             }
@@ -451,9 +451,9 @@ function Settings(props) {
           <NeutralColorTest disabled></NeutralColorTest>
           <UndoStyle
             className={
-              props.stylesArray.includes('neutral_color') ? 'active' : ''
+              props.stylesArray.includes("neutral_color") ? "active" : ""
             }
-            onClick={() => undoStyle('neutral_color')}
+            onClick={() => undoStyle("neutral_color")}
           >
             Undo
           </UndoStyle>
@@ -465,7 +465,7 @@ function Settings(props) {
             type="submit"
             onClick={() =>
               changeThemeStyles(
-                'negative_color',
+                "negative_color",
                 negativeColorInput.current.value
               )
             }
@@ -475,9 +475,9 @@ function Settings(props) {
           <NegativeColorTest disabled></NegativeColorTest>
           <UndoStyle
             className={
-              props.stylesArray.includes('negative_color') ? 'active' : ''
+              props.stylesArray.includes("negative_color") ? "active" : ""
             }
-            onClick={() => undoStyle('negative_color')}
+            onClick={() => undoStyle("negative_color")}
           >
             Undo
           </UndoStyle>
@@ -489,7 +489,7 @@ function Settings(props) {
             type="submit"
             onClick={() =>
               changeThemeStyles(
-                'warning_color',
+                "warning_color",
                 warningColorInput.current.value
               )
             }
@@ -499,9 +499,9 @@ function Settings(props) {
           <WarningColorTest disabled></WarningColorTest>
           <UndoStyle
             className={
-              props.stylesArray.includes('warning_color') ? 'active' : ''
+              props.stylesArray.includes("warning_color") ? "active" : ""
             }
-            onClick={() => undoStyle('warning_color')}
+            onClick={() => undoStyle("warning_color")}
           >
             Undo
           </UndoStyle>
@@ -513,7 +513,7 @@ function Settings(props) {
             type="submit"
             onClick={() =>
               changeThemeStyles(
-                'positive_color',
+                "positive_color",
                 positiveColorInput.current.value
               )
             }
@@ -523,9 +523,9 @@ function Settings(props) {
           <PositiveColorTest disabled></PositiveColorTest>
           <UndoStyle
             className={
-              props.stylesArray.includes('positive_color') ? 'active' : ''
+              props.stylesArray.includes("positive_color") ? "active" : ""
             }
-            onClick={() => undoStyle('positive_color')}
+            onClick={() => undoStyle("positive_color")}
           >
             Undo
           </UndoStyle>
@@ -536,15 +536,15 @@ function Settings(props) {
           <SubmitFormBtn
             type="submit"
             onClick={() =>
-              changeThemeStyles('text_color', textColorInput.current.value)
+              changeThemeStyles("text_color", textColorInput.current.value)
             }
           >
             Change
           </SubmitFormBtn>
           <TextColorTest disabled></TextColorTest>
           <UndoStyle
-            className={props.stylesArray.includes('text_color') ? 'active' : ''}
-            onClick={() => undoStyle('text_color')}
+            className={props.stylesArray.includes("text_color") ? "active" : ""}
+            onClick={() => undoStyle("text_color")}
           >
             Undo
           </UndoStyle>
@@ -555,15 +555,15 @@ function Settings(props) {
           <SubmitFormBtn
             type="submit"
             onClick={() =>
-              changeThemeStyles('text_light', textLightInput.current.value)
+              changeThemeStyles("text_light", textLightInput.current.value)
             }
           >
             Change
           </SubmitFormBtn>
           <TextLightTest disabled></TextLightTest>
           <UndoStyle
-            className={props.stylesArray.includes('text_light') ? 'active' : ''}
-            onClick={() => undoStyle('text_light')}
+            className={props.stylesArray.includes("text_light") ? "active" : ""}
+            onClick={() => undoStyle("text_light")}
           >
             Undo
           </UndoStyle>
@@ -577,15 +577,15 @@ function Settings(props) {
           <SubmitFormBtn
             type="submit"
             onClick={() =>
-              changeThemeStyles('border', borderInput.current.value)
+              changeThemeStyles("border", borderInput.current.value)
             }
           >
             Change
           </SubmitFormBtn>
           <BorderTest disabled></BorderTest>
           <UndoStyle
-            className={props.stylesArray.includes('border') ? 'active' : ''}
-            onClick={() => undoStyle('border')}
+            className={props.stylesArray.includes("border") ? "active" : ""}
+            onClick={() => undoStyle("border")}
           >
             Undo
           </UndoStyle>
@@ -599,7 +599,7 @@ function Settings(props) {
           <SubmitFormBtn
             type="submit"
             onClick={() =>
-              changeThemeStyles('drop_shadow', dropShadowInput.current.value)
+              changeThemeStyles("drop_shadow", dropShadowInput.current.value)
             }
           >
             Change
@@ -607,9 +607,9 @@ function Settings(props) {
           <DropShadowTest disabled></DropShadowTest>
           <UndoStyle
             className={
-              props.stylesArray.includes('drop_shadow') ? 'active' : ''
+              props.stylesArray.includes("drop_shadow") ? "active" : ""
             }
-            onClick={() => undoStyle('drop_shadow')}
+            onClick={() => undoStyle("drop_shadow")}
           >
             Undo
           </UndoStyle>
@@ -624,7 +624,7 @@ function Settings(props) {
             type="submit"
             onClick={() =>
               changeThemeStyles(
-                'background_primary',
+                "background_primary",
                 primaryBackgroundInput.current.value
               )
             }
@@ -634,9 +634,9 @@ function Settings(props) {
           <PrimaryBackgroundTest disabled></PrimaryBackgroundTest>
           <UndoStyle
             className={
-              props.stylesArray.includes('background_primary') ? 'active' : ''
+              props.stylesArray.includes("background_primary") ? "active" : ""
             }
-            onClick={() => undoStyle('background_primary')}
+            onClick={() => undoStyle("background_primary")}
           >
             Undo
           </UndoStyle>
@@ -651,7 +651,7 @@ function Settings(props) {
             type="submit"
             onClick={() =>
               changeThemeStyles(
-                'background_secondary',
+                "background_secondary",
                 secondaryBackgroundInput.current.value
               )
             }
@@ -661,9 +661,9 @@ function Settings(props) {
           <SecondaryBackgroundTest disabled></SecondaryBackgroundTest>
           <UndoStyle
             className={
-              props.stylesArray.includes('background_secondary') ? 'active' : ''
+              props.stylesArray.includes("background_secondary") ? "active" : ""
             }
-            onClick={() => undoStyle('background_secondary')}
+            onClick={() => undoStyle("background_secondary")}
           >
             Undo
           </UndoStyle>
@@ -671,7 +671,7 @@ function Settings(props) {
         </Form>
       </PageSection>
     </div>
-  )
+  );
 }
 
-export default Settings
+export default Settings;

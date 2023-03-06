@@ -1,4 +1,4 @@
 export interface IEarthData {
-    title?: string, 
-    content?: string
+  title?: string;
+  content?: string;
 }

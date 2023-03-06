@@ -1,4 +1,4 @@
 export enum ClimateActionVerified {
-    Verified,
-    Unverified
+  Verified,
+  Unverified,
 }

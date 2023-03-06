@@ -1,10 +1,20 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op} from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+} from "sequelize";
 
-const init = require('./init.ts')
-export const sequelize = init.connect()
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+export const sequelize = init.connect();
+const logger = require("../logger").child({ module: __filename });
 
-class Sites extends Model <InferAttributes<Sites>, InferCreationAttributes<Sites>> {
+class Sites extends Model<
+  InferAttributes<Sites>,
+  InferCreationAttributes<Sites>
+> {
   declare id: CreationOptional<number>;
   declare organization_id: number;
   declare data: JSON | null;
@@ -37,24 +47,22 @@ Sites.init(
   },
   {
     sequelize,
-    modelName: 'Sites',
-    tableName: 'sites',
+    modelName: "Sites",
+    tableName: "sites",
     timestamps: false,
-  },
-)
+  }
+);
 
-
-export async function createSite (organization_id, data) {
+export async function createSite(organization_id, data) {
   try {
-
     const site = await Sites.create({
       organization_id: organization_id,
-      data: data
-    })
+      data: data,
+    });
 
-    return site
+    return site;
   } catch (error) {
-    logger.error('Error saving site to the database: ', error)
+    logger.error("Error saving site to the database: ", error);
   }
 }
 
@@ -63,103 +71,100 @@ export async function readSite(id) {
     const site = await Sites.findAll({
       where: {
         id,
-      }
-    })
+      },
+    });
 
-    return site[0]
+    return site[0];
   } catch (error) {
-    logger.error('Could not find site by id in the database: ', error)
+    logger.error("Could not find site by id in the database: ", error);
   }
 }
 
-export async function readSitesByOrgId (organization_id) {
+export async function readSitesByOrgId(organization_id) {
   try {
     const sites = await Sites.findAll({
       where: {
-        organization_id
-      }
-    })
+        organization_id,
+      },
+    });
 
-    return sites
+    return sites;
   } catch (error) {
-    logger.error('Could not find sites by id in the database: ', error)
+    logger.error("Could not find sites by id in the database: ", error);
   }
 }
 
-export async function readSites () {
+export async function readSites() {
   try {
-    const sites = await Sites.findAll({})
+    const sites = await Sites.findAll({});
 
-    return sites
+    return sites;
   } catch (error) {
-    logger.error('Could not find sites in the database: ', error)
+    logger.error("Could not find sites in the database: ", error);
   }
 }
 
-export async function updateSites (
-  id, organization_id, data
-) {
+export async function updateSites(id, organization_id, data) {
   try {
-    const timestamp = Date.now()
+    const timestamp = Date.now();
 
     const organization = await Sites.update(
       {
         organization_id,
-        data
+        data,
       },
       {
         where: {
           id,
         },
-      },
-    )
+      }
+    );
 
-    logger.debug(`Site updated successfully.`)
-    return organization
+    logger.debug(`Site updated successfully.`);
+    return organization;
   } catch (error) {
-    logger.error('Error updating the site: ', error)
+    logger.error("Error updating the site: ", error);
   }
 }
 
-export async function findAllByCountry (countryName: string) {
+export async function findAllByCountry(countryName: string) {
   try {
     const allSitesByCountry = await Sites.findAll({
-
       where: {
         data: {
           facility_country: {
-            [Op.eq]: countryName
-          }
-        }
-      }
-
+            [Op.eq]: countryName,
+          },
+        },
+      },
     });
-    logger.debug(`Site updated successfully.`)
-    return allSitesByCountry
+    logger.debug(`Site updated successfully.`);
+    return allSitesByCountry;
   } catch (error) {
-    logger.error('Error updating the site: ', error)
+    logger.error("Error updating the site: ", error);
   }
 }
 
-export async function findAllByCountryAndJur (countryName: string, jurisdiction:string) {
+export async function findAllByCountryAndJur(
+  countryName: string,
+  jurisdiction: string
+) {
   try {
     const allSites = await Sites.findAll({
-
       where: {
         data: {
           facility_country: {
-            [Op.eq]: countryName
+            [Op.eq]: countryName,
           },
           facility_jurisdiction: {
-            [Op.eq]: jurisdiction
-          }
-        }
-      }
-
+            [Op.eq]: jurisdiction,
+          },
+        },
+      },
     });
-    logger.debug(`Site updated successfully.`)
-    return allSites
+    logger.debug(`Site updated successfully.`);
+    return allSites;
   } catch (error) {
-    logger.error('Error updating the site: ', error)
+    logger.error("Error updating the site: ", error);
   }
 }

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef } from "react";
 
 import {
   StyledPopup,
@@ -14,37 +14,37 @@ import {
   ModalLabel,
   InputFieldModal,
   TextItem,
-} from './CommonStylesForms'
+} from "./CommonStylesForms";
 
-import { useNotification } from './NotificationProvider'
+import { useNotification } from "./NotificationProvider";
 
 function FormOrganization(props) {
-  const credentialForm = useRef(null)
-  const dateValidated = new Date()
+  const credentialForm = useRef(null);
+  const dateValidated = new Date();
 
-  const setNotification = useNotification()
+  const setNotification = useNotification();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const form = new FormData(credentialForm.current)
+    e.preventDefault();
+    const form = new FormData(credentialForm.current);
 
     let newOrganization = {
-      name: form.get('name'),
-      category: form.get('category'),
-      type: form.get('type'),
-      country: form.get('country'),
-      jurisdiction: form.get('jurisdiction'),
-    }
+      name: form.get("name"),
+      category: form.get("category"),
+      type: form.get("type"),
+      country: form.get("country"),
+      jurisdiction: form.get("jurisdiction"),
+    };
 
     // Submits the organization form and shows notification
-    props.sendRequest('ORGANIZATIONS', 'CREATE', newOrganization)
-    setNotification('Organization was successfully added!', 'notice')
+    props.sendRequest("ORGANIZATIONS", "CREATE", newOrganization);
+    setNotification("Organization was successfully added!", "notice");
 
-    props.closeCredentialModal()
-  }
+    props.closeCredentialModal();
+  };
 
   function closeModal() {
-    props.closeCredentialModal()
+    props.closeCredentialModal();
   }
 
   return (
@@ -115,7 +115,7 @@ function FormOrganization(props) {
         <CloseBtn onClick={closeModal}>&times;</CloseBtn>
       </Modal>
     </StyledPopup>
-  )
+  );
 }
 
-export default FormOrganization
+export default FormOrganization;

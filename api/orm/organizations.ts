@@ -1,11 +1,21 @@
-import {User} from './users'
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op} from 'sequelize';
+import { User } from "./users";
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+} from "sequelize";
 
-const init = require('./init.ts')
-let sequelize = init.connect()
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+let sequelize = init.connect();
+const logger = require("../logger").child({ module: __filename });
 
-class Organization extends Model  <InferAttributes<Organization>, InferCreationAttributes<Organization>> {
+class Organization extends Model<
+  InferAttributes<Organization>,
+  InferCreationAttributes<Organization>
+> {
   declare organization_id: CreationOptional<number>;
   declare name: string;
   declare category: string;
@@ -49,27 +59,33 @@ Organization.init(
   },
   {
     sequelize, // Pass the connection instance
-    modelName: 'Organization',
-    tableName: 'organizations', // Our table names don't follow the sequelize convention and thus must be explicitly declared
+    modelName: "Organization",
+    tableName: "organizations", // Our table names don't follow the sequelize convention and thus must be explicitly declared
     timestamps: false,
-  },
-)
+  }
+);
 
 Organization.hasMany(User, {
   foreignKey: {
-    name: 'organization_id'
-  }
-})
+    name: "organization_id",
+  },
+});
 
 User.belongsTo(Organization, {
   foreignKey: {
-    name: 'organization_id'
-  }
-})
+    name: "organization_id",
+  },
+});
 
-const createOrganization = async function (name, category, type, country, jurisdiction) {
+const createOrganization = async function (
+  name,
+  category,
+  type,
+  country,
+  jurisdiction
+) {
   try {
-    const timestamp = Date.now()
+    const timestamp = Date.now();
 
     const organization = await Organization.create({
       name,
@@ -77,57 +93,62 @@ const createOrganization = async function (name, category, type, country, jurisd
       type,
       country,
       jurisdiction,
-    })
+    });
 
-    return organization
+    return organization;
   } catch (error) {
-    logger.error('Error saving organization to the database: ', error)
+    logger.error("Error saving organization to the database: ", error);
   }
-}
+};
 
 const readOrganization = async function (organization_id) {
   try {
     const organization = await Organization.findAll({
       where: {
         organization_id,
-      }
-    })
+      },
+    });
 
-    return organization[0]
+    return organization[0];
   } catch (error) {
-    logger.error('Could not find organization by id in the database: ', error)
+    logger.error("Could not find organization by id in the database: ", error);
   }
-}
+};
 
 const readOrganizationByName = async function (name) {
   try {
     const organization = await Organization.findAll({
       where: {
-        name
-      }
-    })
+        name,
+      },
+    });
 
-    return organization[0]
+    return organization[0];
   } catch (error) {
-    logger.error('Could not find organization by id in the database: ', error)
+    logger.error("Could not find organization by id in the database: ", error);
   }
-}
+};
 
 const readOrganizations = async function () {
   try {
-    const organizations = await Organization.findAll({})
+    const organizations = await Organization.findAll({});
 
-    return organizations
+    return organizations;
   } catch (error) {
-    logger.error('Could not find organizations in the database: ', error)
+    logger.error("Could not find organizations in the database: ", error);
   }
-}
+};
 
 const updateOrganization = async function (
-  organization_id, name, category, type, country, jurisdiction
+  organization_id,
+  name,
+  category,
+  type,
+  country,
+  jurisdiction
 ) {
   try {
-    const timestamp = Date.now()
+    const timestamp = Date.now();
 
     const organization = await Organization.update(
       {
@@ -141,15 +162,15 @@ const updateOrganization = async function (
         where: {
           organization_id,
         },
-      },
-    )
+      }
+    );
 
-    logger.debug(`Organization updated successfully.`)
-    return organization
+    logger.debug(`Organization updated successfully.`);
+    return organization;
   } catch (error) {
-    logger.error('Error updating the Organization: ', error)
+    logger.error("Error updating the Organization: ", error);
   }
-}
+};
 
 // Need a strategy for updating users who had this organization...
 // So we're waiting to handle this scenario later
@@ -177,4 +198,4 @@ export = {
   updateOrganization,
   sequelize,
   // deleteOrganization
-}
+};

@@ -1,8 +1,8 @@
-const Websockets = require('../websockets.ts')
+const Websockets = require("../websockets.ts");
 
-let ContactsCompiled = require('../orm/contactsCompiled.ts')
-let Passports = require('../orm/passports.ts')
-const logger = require('../logger').child({module: __filename})
+let ContactsCompiled = require("../orm/contactsCompiled.ts");
+let Passports = require("../orm/passports.ts");
+const logger = require("../logger").child({ module: __filename });
 
 const updateOrCreatePassport = async function (
   contact_id,
@@ -18,7 +18,7 @@ const updateOrCreatePassport = async function (
   type,
   code,
   authority,
-  photo,
+  photo
 ) {
   try {
     await Passports.createOrUpdatePassport(
@@ -35,21 +35,23 @@ const updateOrCreatePassport = async function (
       type,
       code,
       authority,
-      photo,
-    )
+      photo
+    );
 
     const contact = await ContactsCompiled.readContact(contact_id, [
-      'Demographic',
-      'Passport',
-    ])
+      "Demographic",
+      "Passport",
+    ]);
 
-    Websockets.sendMessageToAll('CONTACTS', 'CONTACTS', {contacts: [contact]})
+    Websockets.sendMessageToAll("CONTACTS", "CONTACTS", {
+      contacts: [contact],
+    });
   } catch (error) {
-    logger.error('Error Fetching Contacts')
-    throw error
+    logger.error("Error Fetching Contacts");
+    throw error;
   }
-}
+};
 
 export = {
   updateOrCreatePassport,
-}
+};

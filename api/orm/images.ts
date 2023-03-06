@@ -1,10 +1,10 @@
-const { DataTypes, Model } = require('sequelize')
+const { DataTypes, Model } = require("sequelize");
 
-const Util = require('../util')
+const Util = require("../util");
 
-const init = require('./init.ts')
-let sequelize = init.connect()
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+let sequelize = init.connect();
+const logger = require("../logger").child({ module: __filename });
 
 class Image extends Model {}
 
@@ -26,11 +26,11 @@ Image.init(
   },
   {
     sequelize, // Pass the connection instance
-    modelName: 'Image',
-    tableName: 'images', // Our table names don't follow the sequelize convention and thus must be explicitly declared
+    modelName: "Image",
+    tableName: "images", // Our table names don't follow the sequelize convention and thus must be explicitly declared
     timestamps: false,
-  },
-)
+  }
+);
 
 const readImagesByType = async function (type) {
   try {
@@ -38,22 +38,22 @@ const readImagesByType = async function (type) {
       where: {
         type,
       },
-    })
-    return image
+    });
+    return image;
   } catch (error) {
-    logger.error('Could not find image in the database: ', error)
+    logger.error("Could not find image in the database: ", error);
   }
-}
+};
 
 const readImages = async function () {
   try {
-    const images = await Image.findAll()
+    const images = await Image.findAll();
 
-    return images
+    return images;
   } catch (error) {
-    logger.error('Could not find images in the database: ', error)
+    logger.error("Could not find images in the database: ", error);
   }
-}
+};
 
 const updateImage = async function (name, type, image) {
   try {
@@ -65,16 +65,16 @@ const updateImage = async function (name, type, image) {
       },
       {
         where: {
-          type: 'logo',
+          type: "logo",
         },
-      },
-    )
-    logger.debug('Image updated successfully.')
-    return updatedImage
+      }
+    );
+    logger.debug("Image updated successfully.");
+    return updatedImage;
   } catch (error) {
-    logger.error('Error updating the image: ', error)
+    logger.error("Error updating the image: ", error);
   }
-}
+};
 
 const deleteImage = async function (image_id) {
   try {
@@ -82,13 +82,13 @@ const deleteImage = async function (image_id) {
       where: {
         image_id,
       },
-    })
+    });
 
-    logger.debug('Successfully deleted image')
+    logger.debug("Successfully deleted image");
   } catch (error) {
-    logger.error('Error while deleting image: ', error)
+    logger.error("Error while deleting image: ", error);
   }
-}
+};
 
 export = {
   Image,
@@ -96,4 +96,4 @@ export = {
   readImages,
   updateImage,
   deleteImage,
-}
+};

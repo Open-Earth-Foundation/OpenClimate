@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef } from "react";
 
 import {
   StyledPopup,
@@ -14,27 +14,27 @@ import {
   ModalLabel,
   InputFieldModal,
   TextItem,
-} from './CommonStylesForms'
+} from "./CommonStylesForms";
 
 function FormTestResult(props) {
-  const credentialForm = useRef(null)
+  const credentialForm = useRef(null);
 
   const surname =
     props.contactSelected && props.contactSelected.Passport
       ? JSON.parse(JSON.stringify(props.contactSelected.Passport.surname))
-      : ''
+      : "";
   const given_names =
     props.contactSelected && props.contactSelected.Passport
       ? JSON.parse(JSON.stringify(props.contactSelected.Passport.given_names))
-      : ''
+      : "";
   const date_of_birth =
     props.contactSelected && props.contactSelected.Passport
       ? JSON.parse(JSON.stringify(props.contactSelected.Passport.date_of_birth))
-      : ''
+      : "";
   const sex =
     props.contactSelected && props.contactSelected.Passport
       ? JSON.parse(JSON.stringify(props.contactSelected.Passport.sex))
-      : ''
+      : "";
   const address_1 =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -42,7 +42,7 @@ function FormTestResult(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.address_1)
         )
-      : ''
+      : "";
   const address_2 =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -50,8 +50,8 @@ function FormTestResult(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.address_2)
         )
-      : ''
-  const address_null = address_2 === null ? '' : address_2
+      : "";
+  const address_null = address_2 === null ? "" : address_2;
   const city =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -59,7 +59,7 @@ function FormTestResult(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.city)
         )
-      : ''
+      : "";
   const state =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -67,7 +67,7 @@ function FormTestResult(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.state)
         )
-      : ''
+      : "";
   const zip_code =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -75,7 +75,7 @@ function FormTestResult(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.zip_code)
         )
-      : ''
+      : "";
   const country =
     props.contactSelected &&
     props.contactSelected.Demographic &&
@@ -83,158 +83,158 @@ function FormTestResult(props) {
       ? JSON.parse(
           JSON.stringify(props.contactSelected.Demographic.address.country)
         )
-      : ''
+      : "";
   const phone =
     props.contactSelected && props.contactSelected.Demographic
       ? JSON.parse(JSON.stringify(props.contactSelected.Demographic.phone))
-      : ''
+      : "";
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const form = new FormData(credentialForm.current)
+    e.preventDefault();
+    const form = new FormData(credentialForm.current);
 
-    let attributes = {}
+    let attributes = {};
     if (
       props.contactSelected &&
       props.contactSelected.Demographic &&
       props.contactSelected.Passport
     ) {
-      const demographics = props.contactSelected.Demographic
-      const passport = props.contactSelected.Passport
+      const demographics = props.contactSelected.Demographic;
+      const passport = props.contactSelected.Passport;
 
       attributes = [
         {
-          name: 'mpid',
-          value: form.get('mpid') || '',
+          name: "mpid",
+          value: form.get("mpid") || "",
         },
         {
-          name: 'patient_local_id',
-          value: form.get('patient_local_id') || '',
+          name: "patient_local_id",
+          value: form.get("patient_local_id") || "",
         },
         {
-          name: 'patient_last_name',
-          value: passport.surname || '',
+          name: "patient_last_name",
+          value: passport.surname || "",
         },
         {
-          name: 'patient_first_name',
-          value: passport.given_names || '',
+          name: "patient_first_name",
+          value: passport.given_names || "",
         },
         {
-          name: 'patient_date_of_birth',
-          value: passport.date_of_birth || '',
+          name: "patient_date_of_birth",
+          value: passport.date_of_birth || "",
         },
         {
-          name: 'patient_gender_legal',
-          value: passport.sex || '',
+          name: "patient_gender_legal",
+          value: passport.sex || "",
         },
         {
-          name: 'patient_street_address',
+          name: "patient_street_address",
           value:
             demographics.address.address_1 +
-              ' ' +
-              demographics.address.address_2 || '',
+              " " +
+              demographics.address.address_2 || "",
         },
         {
-          name: 'patient_city',
-          value: demographics.address.city || '',
+          name: "patient_city",
+          value: demographics.address.city || "",
         },
         {
-          name: 'patient_state',
-          value: demographics.address.state || '',
+          name: "patient_state",
+          value: demographics.address.state || "",
         },
         {
-          name: 'patient_postalcode',
-          value: demographics.address.zip_code || '',
+          name: "patient_postalcode",
+          value: demographics.address.zip_code || "",
         },
         {
-          name: 'patient_country',
-          value: demographics.address.country || '',
+          name: "patient_country",
+          value: demographics.address.country || "",
         },
         {
-          name: 'patient_phone',
-          value: demographics.phone || '',
+          name: "patient_phone",
+          value: demographics.phone || "",
         },
         {
-          name: 'sending_facility',
-          value: form.get('sending_facility') || 'Horacio Oduber Hospital Lab',
+          name: "sending_facility",
+          value: form.get("sending_facility") || "Horacio Oduber Hospital Lab",
         },
         {
-          name: 'visit_location',
-          value: form.get('visit_location') || 'Horacio Oduber Hospital Lab',
+          name: "visit_location",
+          value: form.get("visit_location") || "Horacio Oduber Hospital Lab",
         },
         {
-          name: 'observation_date_time',
-          value: form.get('observation_date_time') || '',
+          name: "observation_date_time",
+          value: form.get("observation_date_time") || "",
         },
         {
-          name: 'lab_specimen_collected_date',
-          value: form.get('lab_specimen_collected_date') || '',
+          name: "lab_specimen_collected_date",
+          value: form.get("lab_specimen_collected_date") || "",
         },
         {
-          name: 'result_status',
-          value: form.get('result_status') || '',
+          name: "result_status",
+          value: form.get("result_status") || "",
         },
         {
-          name: 'lab_coding_qualifier',
-          value: form.get('lab_coding_qualifier') || '',
+          name: "lab_coding_qualifier",
+          value: form.get("lab_coding_qualifier") || "",
         },
         {
-          name: 'lab_code',
-          value: form.get('lab_code') || '',
+          name: "lab_code",
+          value: form.get("lab_code") || "",
         },
         {
-          name: 'lab_description',
-          value: form.get('lab_description') || 'COVID-19 PCR Test',
+          name: "lab_description",
+          value: form.get("lab_description") || "COVID-19 PCR Test",
         },
         {
-          name: 'lab_order_id',
-          value: form.get('lab_order_id') || '',
+          name: "lab_order_id",
+          value: form.get("lab_order_id") || "",
         },
         {
-          name: 'ordering_facility_address',
-          value: form.get('ordering_facility_address') || '',
+          name: "ordering_facility_address",
+          value: form.get("ordering_facility_address") || "",
         },
         {
-          name: 'ordering_facility_name',
-          value: form.get('ordering_facility_name') || '',
+          name: "ordering_facility_name",
+          value: form.get("ordering_facility_name") || "",
         },
         {
-          name: 'date_time_of_message',
-          value: form.get('date_time_of_message') || '',
+          name: "date_time_of_message",
+          value: form.get("date_time_of_message") || "",
         },
         {
-          name: 'normality',
-          value: form.get('normality') || '',
+          name: "normality",
+          value: form.get("normality") || "",
         },
         {
-          name: 'result',
-          value: form.get('result') || '',
+          name: "result",
+          value: form.get("result") || "",
         },
         {
-          name: 'comment',
-          value: form.get('comment') || '',
+          name: "comment",
+          value: form.get("comment") || "",
         },
         {
-          name: 'performing_lab',
-          value: form.get('performing_lab') || '',
+          name: "performing_lab",
+          value: form.get("performing_lab") || "",
         },
-      ]
+      ];
     }
     let newCredential = {
       connectionID: props.contactSelected.Connections[0].connection_id,
-      schemaID: 'X2JpGAqC7ZFY4hwKG6kLw9:2:Covid_19_Lab_Result:1.5',
-      schemaVersion: '1.5',
-      schemaName: 'Covid_19_Lab_Result',
-      schemaIssuerDID: 'X2JpGAqC7ZFY4hwKG6kLw9',
-      comment: form.get('comment'),
+      schemaID: "X2JpGAqC7ZFY4hwKG6kLw9:2:Covid_19_Lab_Result:1.5",
+      schemaVersion: "1.5",
+      schemaName: "Covid_19_Lab_Result",
+      schemaIssuerDID: "X2JpGAqC7ZFY4hwKG6kLw9",
+      comment: form.get("comment"),
       attributes: attributes,
-    }
-    props.submitCredential(newCredential, e)
-    props.closeCredentialModal()
-  }
+    };
+    props.submitCredential(newCredential, e);
+    props.closeCredentialModal();
+  };
 
   function closeModal() {
-    props.closeCredentialModal()
+    props.closeCredentialModal();
   }
 
   return (
@@ -546,7 +546,7 @@ function FormTestResult(props) {
         <CloseBtn onClick={closeModal}>&times;</CloseBtn>
       </Modal>
     </StyledPopup>
-  )
+  );
 }
 
-export default FormTestResult
+export default FormTestResult;

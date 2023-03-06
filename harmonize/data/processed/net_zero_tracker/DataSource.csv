@@ -1,2 +1,3 @@
 datasource_id,name,publisher,published,URL
 net_zero_tracker,Net Zero Tracker,net_zero_tracker,2022-01-01,https://zerotracker.net/
+GLEIF_golden_copy,information on Legal Entity Identifiers (LEIs) and related reference data in a ready-to-use format,GLEIF,2022-12-16,https://www.gleif.org/en/lei-data/gleif-golden-copy/download-the-golden-copy#/

@@ -1,0 +1,104 @@
+{
+    "publisher" : [
+        "id",
+        "name", 
+        "URL"
+        ],
+    "datasource" : [
+        "datasource_id",
+        "name", 
+        "publisher", 
+        "published",
+        "URL"
+        ],
+    "datasourcetag": [
+        "datasource_id",
+        "tag_id"
+        ],
+    "methodology": [
+        "methodology_id", 
+        "name", 
+        "methodology_link"
+        ],
+    "emissionsagg": [
+        "emissions_id",
+        "actor_id",
+        "year",
+        "total_emissions",
+        "methodology_id",
+        "datasource_id"
+        ],
+    "population": [
+        "actor_id",
+        "population",
+        "year",
+        "created"
+        ],
+    "territory": [
+        "actor_id",
+        "area",
+        "lat",
+        "lng",
+        "admin_bound",
+        "datasource_id"
+        ],
+    "gdp": [
+        "actor_id",
+        "gdp",
+        "year",
+        "datasource_id"
+        ],
+    "actor": [
+        "actor_id",
+        "type", 
+        "name", 
+        "icon", 
+        "hq", 
+        "is_part_of", 
+        "is_owned_by", 
+        "datasource_id"
+        ],
+    "initiativepledge": [
+        "initiative_id",
+        "actor_id",
+        "initiative_type",
+        "initiative_name",
+        "initiative_statement",
+        "datasource_id"
+        ],
+    "action": [
+        "action_id",
+        "actor_id",
+        "action_type",
+        "sector",
+        "year",
+        "description",
+        "emissions_reductions",
+        "percent_achieved",
+        "datasource_id"
+        ],
+    "target": [
+        "target_id",
+        "actor_id",
+        "target_type",
+        "baseline_year",
+        "target_year",
+        "baseline_value",
+        "target_value",
+        "target_unit",
+        "bau_value",
+        "is_net_zero",
+        "percent_achieved",
+        "URL",
+        "summary",
+        "datasource_id"
+        ],
+    "targettag": [
+        "target_id",
+        "tag_id"
+        ],
+    "tag": [
+        "tag_id",
+        "tag_name"
+        ]
+}

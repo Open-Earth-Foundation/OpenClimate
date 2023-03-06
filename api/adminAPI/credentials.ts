@@ -1,5 +1,5 @@
-const sendAdminMessage = require('./transport')
-const logger = require('../logger').child({module: __filename})
+const sendAdminMessage = require("./transport");
+const logger = require("../logger").child({ module: __filename });
 
 // Generate operations and requests to be sent to the Cloud Agent Adminstration API
 
@@ -12,16 +12,16 @@ const autoIssueCred = async (
   schemaVersion,
   schemaName,
   schemaIssuerDID,
-  comment = '',
+  comment = "",
   attributes = [],
   trace,
-  autoRemove,
+  autoRemove
 ) => {
   try {
-    logger.debug('Auto Issue Credential to a Connection')
+    logger.debug("Auto Issue Credential to a Connection");
 
     const response = await sendAdminMessage(
-      'post',
+      "post",
       `/issue-credential/send`,
       {},
       {
@@ -29,8 +29,8 @@ const autoIssueCred = async (
         schema_id: schemaID,
         auto_remove: autoRemove,
         credential_proposal: {
-          '@type':
-            'did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/issue-credential/1.0/credential-preview',
+          "@type":
+            "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/issue-credential/1.0/credential-preview",
           attributes: attributes,
         },
         schema_issuer_did: schemaIssuerDID,
@@ -40,16 +40,16 @@ const autoIssueCred = async (
         connection_id: connectionID,
         schema_version: schemaVersion,
         trace: trace,
-      },
-    )
+      }
+    );
 
-    return response
+    return response;
   } catch (error) {
-    logger.error('Credential Issuance Error')
-    throw error
+    logger.error("Credential Issuance Error");
+    throw error;
   }
-}
+};
 
 export = {
   autoIssueCred,
-}
+};

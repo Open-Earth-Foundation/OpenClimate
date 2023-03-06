@@ -1,5 +1,5 @@
-export enum EmissionIcon{
-    Down,
-    Up,
-    Equal
+export enum EmissionIcon {
+  Down,
+  Up,
+  Equal,
 }

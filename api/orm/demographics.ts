@@ -1,12 +1,22 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op} from 'sequelize';
-const { Sequelize, Transaction } = require('sequelize');
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+} from "sequelize";
+const { Sequelize, Transaction } = require("sequelize");
 
-const init = require('./init.ts')
-let sequelize = init.connect()
-const {Contact} = require('./contacts.ts')
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+let sequelize = init.connect();
+const { Contact } = require("./contacts.ts");
+const logger = require("../logger").child({ module: __filename });
 
-class Demographic extends Model <InferAttributes<Demographic>, InferCreationAttributes<Demographic>>{
+class Demographic extends Model<
+  InferAttributes<Demographic>,
+  InferCreationAttributes<Demographic>
+> {
   declare contact_id: CreationOptional<number>;
   declare email: string;
   declare phone: string;
@@ -43,45 +53,44 @@ Demographic.init(
   },
   {
     sequelize, // Pass the connection instance
-    modelName: 'Demographic',
-    tableName: 'demographic_data', // Our table names don't follow the sequelize convention and thus must be explicitly declared
+    modelName: "Demographic",
+    tableName: "demographic_data", // Our table names don't follow the sequelize convention and thus must be explicitly declared
     timestamps: false,
-  },
-)
+  }
+);
 
 Contact.hasOne(Demographic, {
   foreignKey: {
-    name: 'contact_id',
+    name: "contact_id",
   },
-})
+});
 Demographic.belongsTo(Contact, {
   foreignKey: {
-    name: 'contact_id',
+    name: "contact_id",
   },
-})
+});
 
 const createDemographic = async function (contact_id, email, phone, address) {
   try {
-
     const demographic = await Demographic.create({
       contact_id: contact_id,
       email: email,
       phone: phone,
-      address: address
-    })
+      address: address,
+    });
 
-    logger.debug('Demographic data saved successfully.')
-    return demographic
+    logger.debug("Demographic data saved successfully.");
+    return demographic;
   } catch (error) {
-    logger.error('Error saving demographic data to the database: ', error)
+    logger.error("Error saving demographic data to the database: ", error);
   }
-}
+};
 
 const createOrUpdateDemographic = async function (
   contact_id,
   email,
   phone,
-  address,
+  address
 ) {
   try {
     await sequelize.transaction(
@@ -93,44 +102,44 @@ const createOrUpdateDemographic = async function (
           where: {
             contact_id: contact_id,
           },
-        })
+        });
 
-        const timestamp = Date.now()
+        const timestamp = Date.now();
 
         // (JamesKEbert) TODO: Change upsert for a better mechanism, such as locking potentially.
         if (!demographic) {
-          logger.debug('Creating Demographic')
+          logger.debug("Creating Demographic");
           const demographic = await Demographic.upsert({
             contact_id: contact_id,
             email: email,
             phone: phone,
-            address: address
-          })
+            address: address,
+          });
         } else {
-          logger.debug('Updating Demographic')
+          logger.debug("Updating Demographic");
           await Demographic.update(
             {
               contact_id: contact_id,
               email: email,
               phone: phone,
-              address: address
+              address: address,
             },
             {
               where: {
                 contact_id: contact_id,
               },
-            },
-          )
+            }
+          );
         }
-      },
-    )
+      }
+    );
 
-    logger.debug('Demographic saved successfully.')
-    return
+    logger.debug("Demographic saved successfully.");
+    return;
   } catch (error) {
-    logger.error('Error saving demographic to the database: ', error)
+    logger.error("Error saving demographic to the database: ", error);
   }
-}
+};
 
 const readDemographics = async function () {
   try {
@@ -141,13 +150,13 @@ const readDemographics = async function () {
           required: true,
         },
       ],
-    })
+    });
 
-    return demographics
+    return demographics;
   } catch (error) {
-    logger.error('Could not find demographics in the database: ', error)
+    logger.error("Could not find demographics in the database: ", error);
   }
-}
+};
 
 const readDemographic = async function (contact_id) {
   try {
@@ -161,36 +170,35 @@ const readDemographic = async function (contact_id) {
           required: true,
         },
       ],
-    })
+    });
 
-    return demographic[0]
+    return demographic[0];
   } catch (error) {
-    logger.error('Could not find demographic in the database: ', error)
+    logger.error("Could not find demographic in the database: ", error);
   }
-}
+};
 
 const updateDemographic = async function (contact_id, email, phone, address) {
   try {
-
     await Demographic.update(
       {
         contact_id: contact_id,
         email: email,
         phone: phone,
-        address: address
+        address: address,
       },
       {
         where: {
           contact_id: contact_id,
         },
-      },
-    )
+      }
+    );
 
-    logger.debug('Demographic updated successfully.')
+    logger.debug("Demographic updated successfully.");
   } catch (error) {
-    logger.error('Error updating the Demographic: ', error)
+    logger.error("Error updating the Demographic: ", error);
   }
-}
+};
 
 const deleteDemographic = async function (contact_id) {
   try {
@@ -198,13 +206,13 @@ const deleteDemographic = async function (contact_id) {
       where: {
         contact_id: contact_id,
       },
-    })
+    });
 
-    logger.debug('Successfully deleted demographic')
+    logger.debug("Successfully deleted demographic");
   } catch (error) {
-    logger.error('Error while deleting demographic: ', error)
+    logger.error("Error while deleting demographic: ", error);
   }
-}
+};
 
 export = {
   Demographic,
@@ -214,4 +222,4 @@ export = {
   readDemographics,
   updateDemographic,
   deleteDemographic,
-}
+};

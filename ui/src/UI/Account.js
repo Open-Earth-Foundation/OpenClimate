@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import styled from "styled-components";
 
-import PageHeader from './PageHeader'
-import PageSection from './PageSection'
-import FormQR from './FormQR'
+import PageHeader from "./PageHeader";
+import PageSection from "./PageSection";
+import FormQR from "./FormQR";
 
-import {
-  DataTable,
-  DataRow,
-  DataHeader,
-} from './CommonStylesTables'
+import { DataTable, DataRow, DataHeader } from "./CommonStylesTables";
 
 const DashboardButton = styled.div`
   width: 32%;
@@ -30,23 +26,25 @@ const DashboardButton = styled.div`
     background: ${(props) => props.theme.background_primary};
     color: ${(props) => props.theme.text_color};
   }
-`
+`;
 
 function Account(props) {
-  const [displayModalIsOpen, setDisplayModalIsOpen] = useState(false)
+  const [displayModalIsOpen, setDisplayModalIsOpen] = useState(false);
 
-  const closeDisplayModal = () => setDisplayModalIsOpen(false)
+  const closeDisplayModal = () => setDisplayModalIsOpen(false);
 
   const presentInvite = () => {
-    setDisplayModalIsOpen((o) => !o)
+    setDisplayModalIsOpen((o) => !o);
 
-    props.sendRequest('INVITATIONS', 'CREATE_ACCOUNT_INVITATION', {userID: props.userID})
-  }
-  console.log(props.userID)
+    props.sendRequest("INVITATIONS", "CREATE_ACCOUNT_INVITATION", {
+      userID: props.userID,
+    });
+  };
+  console.log(props.userID);
   return (
     <>
       <div id="profile">
-        <PageHeader title={'Profile'} />
+        <PageHeader title={"Profile"} />
         <PageSection>
           <DataTable>
             <thead>
@@ -61,18 +59,16 @@ function Account(props) {
             </thead>
           </DataTable>
         </PageSection>
-        <DashboardButton onClick={presentInvite}>
-           Connect
-        </DashboardButton>
+        <DashboardButton onClick={presentInvite}>Connect</DashboardButton>
         <FormQR
-        contactModalIsOpen={displayModalIsOpen}
-        closeContactModal={closeDisplayModal}
-        QRCodeURL={props.QRCodeURL}
-        sendRequest={props.sendRequest}
+          contactModalIsOpen={displayModalIsOpen}
+          closeContactModal={closeDisplayModal}
+          QRCodeURL={props.QRCodeURL}
+          sendRequest={props.sendRequest}
         />
       </div>
     </>
-  )
+  );
 }
 
-export default Account
+export default Account;

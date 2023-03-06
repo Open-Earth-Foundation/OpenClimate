@@ -1,6 +1,6 @@
 export enum FilterTypes {
-    National,
-    SubNational,
-    City,
-    Company
+  National,
+  SubNational,
+  City,
+  Company,
 }

@@ -526,4 +526,4 @@ const organizations = `
     }
   ]`;
 
-  export default organizations;
+export default organizations;

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
-import styled from 'styled-components'
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
-import { CanUser } from './CanUser'
-import Cookies from 'universal-cookie'
+import { CanUser } from "./CanUser";
+import Cookies from "universal-cookie";
 
 const List = styled.ul`
   margin: 0;
@@ -14,7 +14,7 @@ const List = styled.ul`
     position: relative;
     padding: 0 0 0 20px;
   }
-`
+`;
 const Item = styled.li`
   border-bottom: 1px solid ${(props) => props.theme.border};
   &:first-child {
@@ -31,7 +31,7 @@ const Item = styled.li`
   &.active ul {
     display: block;
   }
-`
+`;
 const StyledLink = styled(NavLink)`
   display: block;
   padding: 20px 0 20px 20px;
@@ -47,7 +47,7 @@ const StyledLink = styled(NavLink)`
     border-right: 3px solid ${(props) => props.theme.primary_color};
     background: ${(props) => props.theme.background_secondary};
   }
-`
+`;
 const StyledSubLink = styled(NavLink)`
   display: block;
   padding: 10px 0 10px 20px;
@@ -60,28 +60,28 @@ const StyledSubLink = styled(NavLink)`
     color: ${(props) => props.theme.primary_color};
     background: none;
   }
-`
+`;
 function AppMenu(props) {
-  const cookies = new Cookies()
+  const cookies = new Cookies();
 
-  const [localUser, setLocalUser] = useState(null)
+  const [localUser, setLocalUser] = useState(null);
 
   useEffect(() => {
-    if (cookies.get('user')) {
-      const userCookie = cookies.get('user')
-      setLocalUser(userCookie)
+    if (cookies.get("user")) {
+      const userCookie = cookies.get("user");
+      setLocalUser(userCookie);
     }
-  }, [])
+  }, []);
 
-  let pathMatch = ''
+  let pathMatch = "";
   if (props.match.path !== undefined) {
-    pathMatch = props.match.path
+    pathMatch = props.match.path;
   }
   if (localUser) {
     return (
       <nav id="app-menu">
         <List>
-          <Item className={pathMatch === '/' ? 'active' : undefined}>
+          <Item className={pathMatch === "/" ? "active" : undefined}>
             <StyledLink exact to="/admin">
               Home
             </StyledLink>
@@ -97,7 +97,7 @@ function AppMenu(props) {
             yes={() => (
               <Item
                 className={
-                  pathMatch.includes('/admin/contacts') ? 'active' : undefined
+                  pathMatch.includes("/admin/contacts") ? "active" : undefined
                 }
               >
                 <StyledLink to="/admin/contacts">Contacts</StyledLink>
@@ -121,7 +121,9 @@ function AppMenu(props) {
             perform="credentials:read"
             yes={() => (
               <Item
-                className={pathMatch === '/admin/credentials' ? 'active' : undefined}
+                className={
+                  pathMatch === "/admin/credentials" ? "active" : undefined
+                }
               >
                 <StyledLink to="/admin/credentials">Credentials</StyledLink>
               </Item>
@@ -131,7 +133,9 @@ function AppMenu(props) {
             user={localUser}
             perform="users:read"
             yes={() => (
-              <Item className={pathMatch === '/admin/users' ? 'active' : undefined}>
+              <Item
+                className={pathMatch === "/admin/users" ? "active" : undefined}
+              >
                 <StyledLink to="/admin/users">Users</StyledLink>
               </Item>
             )}
@@ -140,7 +144,11 @@ function AppMenu(props) {
             user={localUser}
             perform="organizations:read"
             yes={() => (
-              <Item className={pathMatch === '/admin/organizations' ? 'active' : undefined}>
+              <Item
+                className={
+                  pathMatch === "/admin/organizations" ? "active" : undefined
+                }
+              >
                 <StyledLink to="/admin/organizations">Organizations</StyledLink>
               </Item>
             )}
@@ -151,17 +159,19 @@ function AppMenu(props) {
             yes={() => (
               <>
                 <Item
-                  className={pathMatch === '/admin/settings' ? 'active' : undefined}
+                  className={
+                    pathMatch === "/admin/settings" ? "active" : undefined
+                  }
                 >
                   <StyledLink to="/admin/settings">Settings</StyledLink>
                 </Item>
               </>
             )}
-            no={() => ''}
+            no={() => ""}
           />
         </List>
       </nav>
-    )
-  } else return null
+    );
+  } else return null;
 }
-export default AppMenu
+export default AppMenu;

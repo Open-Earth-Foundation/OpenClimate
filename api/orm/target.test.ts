@@ -1,219 +1,223 @@
 // target.test.ts -- tests for ORM Target
 
-import {Actor} from './actor'
-import {DataSource} from './datasource'
-import {Publisher} from './publisher'
-import {Target} from './target'
-import {Initiative} from './initiative'
+import { Actor } from "./actor";
+import { DataSource } from "./datasource";
+import { Publisher } from "./publisher";
+import { Target } from "./target";
+import { Initiative } from "./initiative";
 
-const disconnect = require('./init').disconnect
+const disconnect = require("./init").disconnect;
 
 const publisherProps = {
-    id: "target.test.ts:publisher:1",
-    name: "Fake publisher from target.test.ts",
-    URL: "https://fake.example/publisher"
-}
+  id: "target.test.ts:publisher:1",
+  name: "Fake publisher from target.test.ts",
+  URL: "https://fake.example/publisher",
+};
 
 const datasourceProps = {
-    datasource_id: "target.test.ts:datasource:1",
-    name: "Fake datasource from target.test.ts",
-    publisher: publisherProps.id,
-    published: new Date(2022, 10, 12),
-    URL: "https://fake.example/datasource"
-}
+  datasource_id: "target.test.ts:datasource:1",
+  name: "Fake datasource from target.test.ts",
+  publisher: publisherProps.id,
+  published: new Date(2022, 10, 12),
+  URL: "https://fake.example/datasource",
+};
 
 const countryProps = {
-    actor_id: "target.test.ts:actor:country:1",
-    type: "country",
-    name: "Fake country actor from target.test.ts",
-    datasource_id: datasourceProps.datasource_id
-}
+  actor_id: "target.test.ts:actor:country:1",
+  type: "country",
+  name: "Fake country actor from target.test.ts",
+  datasource_id: datasourceProps.datasource_id,
+};
 
 const regionProps = {
-    actor_id: "target.test.ts:actor:region:1",
-    type: "adm1",
-    name: "Fake region actor from target.test.ts",
-    is_part_of: countryProps.actor_id,
-    datasource_id: datasourceProps.datasource_id
-}
+  actor_id: "target.test.ts:actor:region:1",
+  type: "adm1",
+  name: "Fake region actor from target.test.ts",
+  is_part_of: countryProps.actor_id,
+  datasource_id: datasourceProps.datasource_id,
+};
 
 // Different targets in different years
 
 const countryTarget1Props = {
-    target_id: "target.test.ts:target:1",
-    actor_id: countryProps.actor_id,
-    target_type: "absolute",
-    baseline_year: 2015,
-    baseline_value: 100000000,
-    target_year: 2025,
-    target_value: 50000000,
-    datasource_id: datasourceProps.datasource_id,
-    URL: "https://fake.example/countrytarget1",
-    summary: "#1 target by a country to make some changes"
-}
+  target_id: "target.test.ts:target:1",
+  actor_id: countryProps.actor_id,
+  target_type: "absolute",
+  baseline_year: 2015,
+  baseline_value: 100000000,
+  target_year: 2025,
+  target_value: 50000000,
+  datasource_id: datasourceProps.datasource_id,
+  URL: "https://fake.example/countrytarget1",
+  summary: "#1 target by a country to make some changes",
+};
 
 const countryTarget2Props = {
-    target_id: "target.test.ts:target:2",
-    actor_id: countryProps.actor_id,
-    target_type: "percent",
-    baseline_year: 2020,
-    baseline_value: 100000000,
-    target_year: 2030,
-    target_value: 75,
-    target_units: "percent",
-    datasource_id: datasourceProps.datasource_id,
-    URL: "https://fake.example/countrytarget2",
-    summary: "#1 target by a country to make some changes"
-}
+  target_id: "target.test.ts:target:2",
+  actor_id: countryProps.actor_id,
+  target_type: "percent",
+  baseline_year: 2020,
+  baseline_value: 100000000,
+  target_year: 2030,
+  target_value: 75,
+  target_units: "percent",
+  datasource_id: datasourceProps.datasource_id,
+  URL: "https://fake.example/countrytarget2",
+  summary: "#1 target by a country to make some changes",
+};
 
 // Different actor, different identifiers
 
 const regionTarget1Props = {
-    target_id: "target.test.ts:target:3",
-    actor_id: regionProps.actor_id,
-    target_type: "percent",
-    baseline_year: 2022,
-    baseline_value: 10000000,
-    target_year: 2030,
-    target_value: 75,
-    target_units: "percent",
-    datasource_id: datasourceProps.datasource_id,
-    URL: "https://fake.example/regiontarget3",
-    summary: "#3 target by a region to make some changes"
-}
+  target_id: "target.test.ts:target:3",
+  actor_id: regionProps.actor_id,
+  target_type: "percent",
+  baseline_year: 2022,
+  baseline_value: 10000000,
+  target_year: 2030,
+  target_value: 75,
+  target_units: "percent",
+  datasource_id: datasourceProps.datasource_id,
+  URL: "https://fake.example/regiontarget3",
+  summary: "#3 target by a region to make some changes",
+};
 
 // With an initiative
 
 const region2Props = {
-    actor_id: "target.test.ts:actor:region:2",
-    type: "adm1",
-    name: "Fake region actor from target.test.ts",
-    is_part_of: countryProps.actor_id,
-    datasource_id: datasourceProps.datasource_id
-}
+  actor_id: "target.test.ts:actor:region:2",
+  type: "adm1",
+  name: "Fake region actor from target.test.ts",
+  is_part_of: countryProps.actor_id,
+  datasource_id: datasourceProps.datasource_id,
+};
 
 const initiativeProps = {
-    initiative_id: "target.test.ts:initiative:1",
-    name: "Fake initiative from target.test.ts",
-    description: "This initiative is fake",
-    URL: "https://fake.example/datasource",
-    datasource_id: datasourceProps.datasource_id
-}
+  initiative_id: "target.test.ts:initiative:1",
+  name: "Fake initiative from target.test.ts",
+  description: "This initiative is fake",
+  URL: "https://fake.example/datasource",
+  datasource_id: datasourceProps.datasource_id,
+};
 
 const initiativeTargetProps = {
-    target_id: "target.test.ts:target:4",
-    actor_id: region2Props.actor_id,
-    target_type: "percent",
-    baseline_year: 2022,
-    baseline_value: 10000000,
-    target_year: 2030,
-    target_value: 75,
-    target_units: "percent",
-    datasource_id: datasourceProps.datasource_id,
-    URL: "https://fake.example/regiontarget4",
-    summary: "#4 target by a region to make some changes",
-    initiative_id: initiativeProps.initiative_id
-}
+  target_id: "target.test.ts:target:4",
+  actor_id: region2Props.actor_id,
+  target_type: "percent",
+  baseline_year: 2022,
+  baseline_value: 10000000,
+  target_year: 2030,
+  target_value: 75,
+  target_units: "percent",
+  datasource_id: datasourceProps.datasource_id,
+  URL: "https://fake.example/regiontarget4",
+  summary: "#4 target by a region to make some changes",
+  initiative_id: initiativeProps.initiative_id,
+};
 
 async function cleanup() {
-
-   await Target.destroy({where: {datasource_id: datasourceProps.datasource_id}})
-   await Initiative.destroy({where: {datasource_id: datasourceProps.datasource_id}})
-   await Actor.destroy({where: {datasource_id: datasourceProps.datasource_id}})
-   await DataSource.destroy({where: {datasource_id: datasourceProps.datasource_id}})
-   await Publisher.destroy({where: {id: publisherProps.id}})
+  await Target.destroy({
+    where: { datasource_id: datasourceProps.datasource_id },
+  });
+  await Initiative.destroy({
+    where: { datasource_id: datasourceProps.datasource_id },
+  });
+  await Actor.destroy({
+    where: { datasource_id: datasourceProps.datasource_id },
+  });
+  await DataSource.destroy({
+    where: { datasource_id: datasourceProps.datasource_id },
+  });
+  await Publisher.destroy({ where: { id: publisherProps.id } });
 }
 
 beforeAll(async () => {
+  await cleanup();
 
-    await cleanup()
+  // Create referenced rows
 
-    // Create referenced rows
-
-    await Publisher.create(publisherProps)
-    await DataSource.create(datasourceProps)
-    await Actor.create(countryProps)
-    await Actor.create(regionProps)
-    await Actor.create(region2Props)
-    await Initiative.create(initiativeProps)
-})
+  await Publisher.create(publisherProps);
+  await DataSource.create(datasourceProps);
+  await Actor.create(countryProps);
+  await Actor.create(regionProps);
+  await Actor.create(region2Props);
+  await Initiative.create(initiativeProps);
+});
 
 afterAll(async () => {
+  // Clean up if there were failed tests
 
-    // Clean up if there were failed tests
+  await cleanup();
 
-    await cleanup()
+  // Close database connections
 
-    // Close database connections
-
-    await disconnect()
-})
+  await disconnect();
+});
 
 it("can create and get targets", async () => {
+  let [c1, c2, r1] = await Promise.all([
+    Target.create(countryTarget1Props),
+    Target.create(countryTarget2Props),
+    Target.create(regionTarget1Props),
+  ]);
 
-    let [c1, c2, r1] = await Promise.all([
-        Target.create(countryTarget1Props),
-        Target.create(countryTarget2Props),
-        Target.create(regionTarget1Props)
-    ])
+  // Match on primary key
 
-    // Match on primary key
+  let match = await Target.findByPk(countryTarget1Props.target_id);
 
-    let match = await Target.findByPk(countryTarget1Props.target_id)
+  expect(match.actor_id).toEqual(countryTarget1Props.actor_id);
 
-    expect(match.actor_id).toEqual(countryTarget1Props.actor_id)
+  expect(match.URL).toBeDefined();
+  expect(typeof match.URL).toEqual("string");
 
-    expect(match.URL).toBeDefined()
-    expect(typeof(match.URL)).toEqual("string")
+  expect(match.summary).toBeDefined();
+  expect(typeof match.summary).toEqual("string");
 
-    expect(match.summary).toBeDefined()
-    expect(typeof(match.summary)).toEqual("string")
+  // Match on Actor
 
-    // Match on Actor
+  let matches = await Target.findAll({
+    where: {
+      actor_id: countryProps.actor_id,
+    },
+  });
 
-    let matches = await Target.findAll({where: {
-        actor_id: countryProps.actor_id
-    }})
+  expect(matches.length).toEqual(2);
 
-    expect(matches.length).toEqual(2)
+  // Destroy all targets
 
-    // Destroy all targets
-
-    await Promise.all([
-        c1.destroy(),
-        c2.destroy(),
-        r1.destroy()
-    ])
-})
-
+  await Promise.all([c1.destroy(), c2.destroy(), r1.destroy()]);
+});
 
 it("can create and get a target with associated initiative", async () => {
+  let target = await Target.create(initiativeTargetProps);
 
-    let target = await Target.create(initiativeTargetProps)
+  // Match on primary key
 
-    // Match on primary key
+  let match = await Target.findByPk(initiativeTargetProps.target_id);
 
-    let match = await Target.findByPk(initiativeTargetProps.target_id)
+  expect(match.initiative_id).toBeDefined();
+  expect(typeof match.initiative_id).toEqual("string");
+  expect(match.initiative_id).toEqual(initiativeTargetProps.initiative_id);
 
-    expect(match.initiative_id).toBeDefined()
-    expect(typeof(match.initiative_id)).toEqual("string")
-    expect(match.initiative_id).toEqual(initiativeTargetProps.initiative_id)
+  // Match on initiative ID
 
-    // Match on initiative ID
+  let matches = await Target.findAll({
+    where: {
+      initiative_id: initiativeProps.initiative_id,
+    },
+  });
 
-    let matches = await Target.findAll({where: {
-        initiative_id: initiativeProps.initiative_id
-    }})
+  expect(matches.length).toEqual(1);
 
-    expect(matches.length).toEqual(1)
+  await target.destroy();
 
-    await target.destroy()
+  // Match on initiative ID
 
-    // Match on initiative ID
+  matches = await Target.findAll({
+    where: {
+      initiative_id: initiativeProps.initiative_id,
+    },
+  });
 
-    matches = await Target.findAll({where: {
-        initiative_id: initiativeProps.initiative_id
-    }})
-
-    expect(matches.length).toEqual(0)
-})
+  expect(matches.length).toEqual(0);
+});

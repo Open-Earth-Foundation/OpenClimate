@@ -1,12 +1,23 @@
-import {DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional, Op, Transaction} from 'sequelize';
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+  Op,
+  Transaction,
+} from "sequelize";
 
-const { Contact, readBaseContact } = require('./contacts.ts')
+const { Contact, readBaseContact } = require("./contacts.ts");
 
-const init = require('./init.ts')
-let sequelize = init.connect()
-const logger = require('../logger').child({module: __filename})
+const init = require("./init.ts");
+let sequelize = init.connect();
+const logger = require("../logger").child({ module: __filename });
 
-class Connection extends Model <InferAttributes<Connection>, InferCreationAttributes<Connection>> {
+class Connection extends Model<
+  InferAttributes<Connection>,
+  InferCreationAttributes<Connection>
+> {
   declare connection_id: CreationOptional<number>;
   declare state: string;
   declare my_did: string;
@@ -89,8 +100,8 @@ Connection.init(
     error_msg: {
       type: DataTypes.TEXT,
     },
-    user_id: {type: DataTypes.TEXT, allowNull: true},
-    business_wallet: {type: DataTypes.BOOLEAN},
+    user_id: { type: DataTypes.TEXT, allowNull: true },
+    business_wallet: { type: DataTypes.BOOLEAN },
     created_at: {
       type: DataTypes.DATE,
     },
@@ -100,33 +111,33 @@ Connection.init(
   },
   {
     sequelize, // Pass the connection instance
-    modelName: 'Connection',
-    tableName: 'connections', // Our table names don't follow the sequelize convention and thus must be explicitly declared
+    modelName: "Connection",
+    tableName: "connections", // Our table names don't follow the sequelize convention and thus must be explicitly declared
     timestamps: false,
-  },
-)
+  }
+);
 
 const Contact_Connection = sequelize.define(
-  'connections_to_contacts',
+  "connections_to_contacts",
   {
     contact_id: DataTypes.INTEGER,
     connection_id: DataTypes.TEXT,
   },
   {
     timestamps: false,
-  },
-)
+  }
+);
 
 Contact.belongsToMany(Connection, {
   through: Contact_Connection,
-  foreignKey: 'contact_id',
-  otherKey: 'connection_id',
-})
+  foreignKey: "contact_id",
+  otherKey: "connection_id",
+});
 Connection.belongsToMany(Contact, {
   through: Contact_Connection,
-  foreignKey: 'connection_id',
-  otherKey: 'contact_id',
-})
+  foreignKey: "connection_id",
+  otherKey: "contact_id",
+});
 
 const createConnection = async function (
   connection_id,
@@ -145,10 +156,10 @@ const createConnection = async function (
   their_label,
   routing_state,
   inbound_connection_id,
-  error_msg,
+  error_msg
 ) {
   try {
-    const timestamp = new Date()
+    const timestamp = new Date();
 
     const connection = await Connection.create({
       connection_id: connection_id,
@@ -169,15 +180,15 @@ const createConnection = async function (
       inbound_connection_id: inbound_connection_id,
       error_msg: error_msg,
       created_at: timestamp,
-      updated_at: timestamp
-    })
+      updated_at: timestamp,
+    });
 
-    logger.debug('Connection saved successfully.')
-    return connection
+    logger.debug("Connection saved successfully.");
+    return connection;
   } catch (error) {
-    logger.error('Error saving connection to the database: ', error)
+    logger.error("Error saving connection to the database: ", error);
   }
-}
+};
 
 const createOrUpdateConnection = async function (
   connection_id,
@@ -210,13 +221,13 @@ const createOrUpdateConnection = async function (
           where: {
             connection_id: connection_id,
           },
-        })
+        });
 
-        const timestamp = new Date()
+        const timestamp = new Date();
 
         // (JamesKEbert) TODO: Change upsert for a better mechanism, such as locking potentially.
         if (!connection) {
-          logger.debug('Creating Connection')
+          logger.debug("Creating Connection");
           let connection = await Connection.upsert({
             connection_id: connection_id,
             state: state,
@@ -238,10 +249,10 @@ const createOrUpdateConnection = async function (
             user_id: user_id,
             business_wallet: business_wallet,
             created_at: timestamp,
-            updated_at: timestamp
-          })
+            updated_at: timestamp,
+          });
         } else {
-          logger.debug('Updating Connection')
+          logger.debug("Updating Connection");
           let connection = await Connection.update(
             {
               connection_id: connection_id,
@@ -263,40 +274,40 @@ const createOrUpdateConnection = async function (
               error_msg: error_msg,
               user_id: user_id,
               business_wallet: business_wallet,
-              updated_at: timestamp
+              updated_at: timestamp,
             },
             {
               where: {
                 connection_id: connection_id,
               },
-            },
-          )
+            }
+          );
         }
 
-        return connection
-      },
-    )
+        return connection;
+      }
+    );
 
-    logger.debug('Connection saved successfully.')
-    return connection
+    logger.debug("Connection saved successfully.");
+    return connection;
   } catch (error) {
-    logger.error('Error saving connection to the database: ', error)
-    throw error
+    logger.error("Error saving connection to the database: ", error);
+    throw error;
   }
-}
+};
 
 const linkContactAndConnection = async function (contact_id, connection_id) {
   try {
-    const contact = await readBaseContact(contact_id)
-    const connection = await readConnection(connection_id)
-    await contact.addConnection(connection, {})
+    const contact = await readBaseContact(contact_id);
+    const connection = await readConnection(connection_id);
+    await contact.addConnection(connection, {});
 
-    logger.debug('Successfully linked contact and connection')
+    logger.debug("Successfully linked contact and connection");
   } catch (error) {
-    logger.error('Error linking contact and connection', error)
-    throw error
+    logger.error("Error linking contact and connection", error);
+    throw error;
   }
-}
+};
 
 const readConnection = async function (connection_id) {
   try {
@@ -310,45 +321,45 @@ const readConnection = async function (connection_id) {
           required: false,
         },
       ],
-    })
+    });
 
-    return connection[0]
+    return connection[0];
   } catch (error) {
-    logger.error('Could not find connection in the database: ', error)
-    throw error
+    logger.error("Could not find connection in the database: ", error);
+    throw error;
   }
-}
+};
 
-const readConnectionByUserId = async function(userId) {
+const readConnectionByUserId = async function (userId) {
   try {
     const connection = await Connection.findAll({
       limit: 1,
       where: {
-        user_id: userId.toString()
+        user_id: userId.toString(),
       },
-      order: [ [ 'updated_at', 'DESC' ]]
-    })
-    return connection[0]
+      order: [["updated_at", "DESC"]],
+    });
+    return connection[0];
   } catch (error) {
-    logger.error('Could not find connection in the database: ', error)
-    throw error
+    logger.error("Could not find connection in the database: ", error);
+    throw error;
   }
-}
+};
 
-const readConnectionByTheirDID = async function(did) {
+const readConnectionByTheirDID = async function (did) {
   try {
     const connection = await Connection.findAll({
       limit: 1,
       where: {
-        their_did: did
+        their_did: did,
       },
-    })
-    return connection[0]
+    });
+    return connection[0];
   } catch (error) {
-    logger.error('Could not find connection in the database: ', error)
-    throw error
+    logger.error("Could not find connection in the database: ", error);
+    throw error;
   }
-}
+};
 
 const readConnections = async function () {
   try {
@@ -359,47 +370,50 @@ const readConnections = async function () {
           required: false,
         },
       ],
-    })
+    });
 
-    return connections
+    return connections;
   } catch (error) {
-    logger.error('Could not find connections in the database: ', error)
-    throw error
+    logger.error("Could not find connections in the database: ", error);
+    throw error;
   }
-}
+};
 
 const readInvitations = async function (connection_id) {
   try {
     const invitations = await Connection.findAll({
       where: {
-        state: 'invitation',
+        state: "invitation",
       },
-    })
+    });
 
-    logger.debug('All invitations:', JSON.stringify(invitations, null, 2))
-    return invitations
+    logger.debug("All invitations:", JSON.stringify(invitations, null, 2));
+    return invitations;
   } catch (error) {
-    logger.error('Could not find connection in the database: ', error)
-    throw error
+    logger.error("Could not find connection in the database: ", error);
+    throw error;
   }
-}
+};
 
 const readInvitationByAlias = async function (alias) {
   try {
     const connection = await Connection.findAll({
       where: {
-        state: 'invitation',
+        state: "invitation",
         alias,
       },
-    })
+    });
 
-    logger.debug('Requested Invitation:', JSON.stringify(connection[0], null, 2))
-    return connection[0]
+    logger.debug(
+      "Requested Invitation:",
+      JSON.stringify(connection[0], null, 2)
+    );
+    return connection[0];
   } catch (error) {
-    logger.error('Could not find invitation in the database: ', error)
-    throw error
+    logger.error("Could not find invitation in the database: ", error);
+    throw error;
   }
-}
+};
 
 const updateConnection = async function (
   connection_id,
@@ -422,7 +436,7 @@ const updateConnection = async function (
   user_id
 ) {
   try {
-    const timestamp = new Date()
+    const timestamp = new Date();
 
     const connection = await Connection.update(
       {
@@ -444,21 +458,21 @@ const updateConnection = async function (
         inbound_connection_id: inbound_connection_id,
         error_msg: error_msg,
         user_id: user_id,
-        updated_at: timestamp
+        updated_at: timestamp,
       },
       {
         where: {
           connection_id: connection_id,
         },
-      },
-    )
+      }
+    );
 
-    logger.debug('Connection updated successfully.')
-    return connection
+    logger.debug("Connection updated successfully.");
+    return connection;
   } catch (error) {
-    logger.error('Error updating the Connection: ', error)
+    logger.error("Error updating the Connection: ", error);
   }
-}
+};
 
 const deleteConnection = async function (connection_id) {
   try {
@@ -466,13 +480,13 @@ const deleteConnection = async function (connection_id) {
       where: {
         connection_id: connection_id,
       },
-    })
+    });
 
-    logger.debug('Successfully deleted connection')
+    logger.debug("Successfully deleted connection");
   } catch (error) {
-    logger.error('Error while deleting connection: ', error)
+    logger.error("Error while deleting connection: ", error);
   }
-}
+};
 
 export = {
   Connection,
@@ -486,5 +500,5 @@ export = {
   readInvitations,
   updateConnection,
   deleteConnection,
-  readConnectionByTheirDID
-}
+  readConnectionByTheirDID,
+};

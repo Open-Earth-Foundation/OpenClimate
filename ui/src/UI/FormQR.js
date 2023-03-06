@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from "react";
 
-import styled from 'styled-components'
-import QRCode from 'qrcode.react'
+import styled from "styled-components";
+import QRCode from "qrcode.react";
 
 import {
   StyledPopup,
@@ -10,31 +10,31 @@ import {
   QRModalContent,
   CloseBtn,
   QRHolder,
-} from './CommonStylesForms'
+} from "./CommonStylesForms";
 
 const QR = styled(QRCode)`
   display: block;
   margin: auto;
   padding: 10px;
   width: 300px;
-`
+`;
 
 function FormQR(props) {
-  const { closeContactModal } = props
+  const { closeContactModal } = props;
   const closeModal = useCallback(() => {
-    closeContactModal()
-  }, [closeContactModal])
+    closeContactModal();
+  }, [closeContactModal]);
 
-  const [waitingForConnection, setWaitingForConnection] = useState(false)
+  const [waitingForConnection, setWaitingForConnection] = useState(false);
 
   useEffect(() => {
-    if (props.QRCodeURL !== '' && waitingForConnection === false) {
-      setWaitingForConnection(true)
-    } else if (props.QRCodeURL === '' && waitingForConnection === true) {
-      setWaitingForConnection(false)
-      closeModal()
+    if (props.QRCodeURL !== "" && waitingForConnection === false) {
+      setWaitingForConnection(true);
+    } else if (props.QRCodeURL === "" && waitingForConnection === true) {
+      setWaitingForConnection(false);
+      closeModal();
     }
-  }, [props.QRCodeURL, closeModal, waitingForConnection])
+  }, [props.QRCodeURL, closeModal, waitingForConnection]);
 
   return (
     <StyledPopup
@@ -56,7 +56,7 @@ function FormQR(props) {
         <CloseBtn onClick={closeModal}>&times;</CloseBtn>
       </Modal>
     </StyledPopup>
-  )
+  );
 }
 
-export default FormQR
+export default FormQR;

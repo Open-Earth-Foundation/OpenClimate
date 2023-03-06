@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from "react";
 
 import {
   Actions,
@@ -15,93 +15,93 @@ import {
   ModalLabel,
   StyledPopup,
   SubmitBtnModal,
-} from './CommonStylesForms'
+} from "./CommonStylesForms";
 
-import { useNotification } from './NotificationProvider'
+import { useNotification } from "./NotificationProvider";
 
 function FormUserEdit(props) {
-  const email = props.userEmail
-  const roles = props.roles
-  const users = props.users
-  const loggedInUserState = props.loggedInUserState
-  const error = props.error
+  const email = props.userEmail;
+  const roles = props.roles;
+  const users = props.users;
+  const loggedInUserState = props.loggedInUserState;
+  const error = props.error;
 
   // Get the selected user
   useEffect(() => {
     if (users) {
-      let selectedUser = users.find((x) => x.email === email)
-      if (selectedUser) setListUser({ ...selectedUser })
+      let selectedUser = users.find((x) => x.email === email);
+      if (selectedUser) setListUser({ ...selectedUser });
     }
-  }, [email, users])
+  }, [email, users]);
 
   useEffect(() => {
     if (error && submitBtn.current) {
-      submitBtn.current.removeAttribute('disabled')
+      submitBtn.current.removeAttribute("disabled");
     }
-  }, [error])
+  }, [error]);
 
-  const setNotification = useNotification()
-  const [options, setOptions] = useState([])
-  const [listUser, setListUser] = useState()
+  const setNotification = useNotification();
+  const [options, setOptions] = useState([]);
+  const [listUser, setListUser] = useState();
 
-  let selectedRoles = []
+  let selectedRoles = [];
 
-  const userForm = useRef()
-  const submitBtn = useRef()
+  const userForm = useRef();
+  const submitBtn = useRef();
 
-  let userEmail = ''
+  let userEmail = "";
 
   // Check if user is selected
   if (listUser) {
-    userEmail = listUser.email
+    userEmail = listUser.email;
 
     // Get the user selected roles
     listUser.Roles.forEach((element) =>
       selectedRoles.push(JSON.stringify(element.role_id))
-    )
+    );
   }
 
   // Set the roles on modal initialization
   useEffect(() => {
-    setOptions(selectedRoles)
-  }, [listUser])
+    setOptions(selectedRoles);
+  }, [listUser]);
 
   // Disable button on submit
   const onBtnClick = (e) => {
     if (submitBtn.current) {
-      submitBtn.current.setAttribute('disabled', 'disabled')
+      submitBtn.current.setAttribute("disabled", "disabled");
     }
-  }
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    onBtnClick()
+    e.preventDefault();
+    onBtnClick();
 
-    const form = new FormData(userForm.current)
-    const email = form.get('email')
+    const form = new FormData(userForm.current);
+    const email = form.get("email");
 
-    listUser.email = email
-    listUser.roles = options
+    listUser.email = email;
+    listUser.roles = options;
 
     if (listUser && loggedInUserState.id === listUser.user_id && !email)
-      setNotification('You are not allowed to remove your email.', 'error')
-    else props.sendRequest('USERS', 'UPDATE', listUser)
-  }
+      setNotification("You are not allowed to remove your email.", "error");
+    else props.sendRequest("USERS", "UPDATE", listUser);
+  };
 
   function closeModal() {
-    props.closeUserEditModal()
+    props.closeUserEditModal();
   }
 
   const handleCheckboxChange = (event) => {
-    let newArray = [...options, event.target.value]
+    let newArray = [...options, event.target.value];
     if (options.includes(event.target.value)) {
-      newArray = newArray.filter((s) => s !== event.target.value)
+      newArray = newArray.filter((s) => s !== event.target.value);
     }
-    setOptions(newArray)
-  }
+    setOptions(newArray);
+  };
 
   const rolesOptions = roles.map((role) => {
-    let checked = options.includes(JSON.stringify(role.role_id))
+    let checked = options.includes(JSON.stringify(role.role_id));
     return (
       <div key={role.role_id}>
         <label htmlFor={role.role_id}>{role.role_name}</label>
@@ -116,8 +116,8 @@ function FormUserEdit(props) {
           }
         />
       </div>
-    )
-  })
+    );
+  });
 
   return (
     <StyledPopup
@@ -159,7 +159,7 @@ function FormUserEdit(props) {
         <CloseBtn onClick={closeModal}>&times;</CloseBtn>
       </Modal>
     </StyledPopup>
-  )
+  );
 }
 
-export default FormUserEdit
+export default FormUserEdit;
