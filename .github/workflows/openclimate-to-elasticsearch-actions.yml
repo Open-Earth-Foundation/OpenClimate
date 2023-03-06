@@ -1,6 +1,7 @@
-name: Push OpenClimate-to-ElasticSearch indexer to ECR
+name: Push OpenClimate-to-ElasticSearch indexer develop to ECR latest
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - openclimate-to-elasticsearch/**

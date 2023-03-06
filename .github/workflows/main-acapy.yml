@@ -1,6 +1,7 @@
-name: Push OpenClimate acapy to ECR
+name: Push OpenClimate acapy main to ECR stable
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - aries-acapy-plugin-toolbox/**
