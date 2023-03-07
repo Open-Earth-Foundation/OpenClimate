@@ -217,3 +217,15 @@ if __name__ == "__main__":
         data=dataSourceTagDict,
         mode='w'
     )
+
+    # ------------------------------------------
+    # DataSourceQuality table
+    # ------------------------------------------
+    DataSourceQualityList = [{
+        "datasource_id": datasourceDict['datasource_id'],
+        "score_type": "GHG target",
+        "score": 0.8,
+        "notes": "Long time series. not sure if 2021 values are correct. data for all countries. not country reported data"
+    }]
+
+    simple_write_csv(outputDir, "DataSourceQuality", DataSourceQualityList)
