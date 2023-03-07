@@ -1,14 +1,68 @@
-if __name__ == "__main__":
-    import concurrent.futures
-    import numpy as np
-    import os
-    from pathlib import Path
-    import pandas as pd
-    from utils import df_wide_to_long
-    from utils import country_to_iso2
-    from utils import make_dir
-    from utils import write_to_csv
+import asyncio
+import csv
+from functools import wraps
+import numpy as np
+import os
+from pathlib import Path
+import pandas as pd
+import requests
+from typing import List
+from typing import Dict
+from utils import df_wide_to_long
+from utils import make_dir
 
+def async_func(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, func, *args, **kwargs)
+    return wrapper
+
+
+def simple_write_csv(
+        output_dir: str = None,
+        name: str = None,
+        data: List[Dict] | Dict = None,
+        mode: str = "w",
+        extension: str = "csv") -> None:
+
+    if isinstance(data, dict):
+        data = [data]
+
+    with open(f"{output_dir}/{name}.{extension}", mode=mode) as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
+
+
+@async_func
+def get_iso2_from_name(name: str = None, type_code: str='country') -> str:
+    """get the region code from name
+
+    Args:
+        name (str): actor name to search for (default: None)
+        type_code (str): actor type (default: "country")
+                         ['country', 'adm1', 'adm2', 'city']
+    Returns:
+        str: region code corresponding to name
+
+    Example:
+    >> get_iso2_from_type('Ireland') # returns 'IE'
+    """
+    url = f"https://openclimate.openearth.dev/api/v1/search/actor?name={name}"
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers).json()
+    for data in response.get('data', []):
+        if data.get('type') == type_code:
+            return (name, data.get('actor_id', None))
+    return (name, None)
+
+async def get_iso2_async(code_list):
+    tasks = [asyncio.create_task(get_iso2_from_name(name)) for name in code_list]
+    data = await asyncio.gather(*tasks)
+    return data
+
+if __name__ == "__main__":
     # where to create tables
     outputDir = "../data/processed/UNFCCC_Annex1"
     outputDir = os.path.abspath(outputDir)
@@ -28,10 +82,12 @@ if __name__ == "__main__":
         'URL': 'https://unfccc.int'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Publisher',
+        data=publisherDict,
+        mode='w'
+    )
 
     # ------------------------------------------
     # DataSource table
@@ -44,10 +100,12 @@ if __name__ == "__main__":
         'URL': 'https://di.unfccc.int/time_series'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSource',
+        data=datasourceDict,
+        mode='w'
+    )
 
     # ------------------------------------------
     # EmissionsAgg table
@@ -71,12 +129,8 @@ if __name__ == "__main__":
     df.loc[filt, 'Party'] = 'The United Kingdom of Great Britain and Northern Ireland'
 
     # get iso2 code from name
-    with concurrent.futures.ProcessPoolExecutor(max_workers=8) as executor:
-        results = [executor.submit(country_to_iso2, name, return_input=True)
-                   for name in list(set(df['Party']))]
-        data = [f.result() for f in concurrent.futures.as_completed(results)]
-
-    # return iso2 as dataframe
+    code_list = list(set(df['Party']))
+    data = asyncio.run(get_iso2_async(code_list))
     df_iso = pd.DataFrame(data, columns=['name', 'iso2'])
 
     # merge datasets (wide, each year is a column)
@@ -141,9 +195,7 @@ if __name__ == "__main__":
     # ------------------------------------------
     # Tag table
     # ------------------------------------------
-    if not Path(f"{outputDir}/Tag.csv").is_file():
-        # create Tag file
-        tagDictList = [
+    tagDictList = [
             {
                 'tag_id': '3d_party_validated',
                 'tag_name': 'Third party validated'
@@ -154,26 +206,23 @@ if __name__ == "__main__":
             }
         ]
 
-        for tagDict in tagDictList:
-            write_to_csv(outputDir=outputDir,
-                         tableName='Tag',
-                         dataDict=tagDict,
-                         mode='a')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Tag',
+        data=tagDictList,
+        mode='w'
+    )
 
     # ------------------------------------------
     # DataSourceTag table
     # ------------------------------------------
-    if not Path(f"{outputDir}/DataSourceTag.csv").is_file():
+    datasource_id = f"{datasourceDict['datasource_id']}"
+    tags = ['country_reported_data', '3d_party_validated']
+    dataSourceTagDict = [{'datasource_id': datasource_id, 'tag_id': tag} for tag in tags]
 
-        tags = ['country_reported_data', '3d_party_validated']
-
-        for tag in tags:
-            dataSourceTagDict = {
-                'datasource_id': f"{datasourceDict['datasource_id']}",
-                'tag_id': tag
-            }
-
-            write_to_csv(outputDir=outputDir,
-                         tableName='DataSourceTag',
-                         dataDict=dataSourceTagDict,
-                         mode='a')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSourceTag',
+        data=dataSourceTagDict,
+        mode='w'
+    )
