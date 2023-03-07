@@ -16,23 +16,12 @@ const Dashboard: FunctionComponent<Props> = (props) => {
   return (
     <div className="review__dashboard">
       <div className="review__dashboard-widgets">
-        <Masonry
-          breakpointCols={3}
-          className="my-masonry-grid"
-          columnClassName="my-masonry-grid_column"
-        >
+        <div className="review__dashboard-layout">
           <EmissionsWidget
             key={`emissions-${current.actor_id}`}
             current={current}
             parent={parent}
           />
-
-          <PledgesWidget
-            key={`pledges-${current.actor_id}`}
-            current={current}
-            parent={parent}
-          />
-
           {current.type !== "site" && (
             <ContextualDataWidget
               key={`contextual-${current.actor_id}`}
@@ -40,7 +29,14 @@ const Dashboard: FunctionComponent<Props> = (props) => {
               parent={parent}
             />
           )}
-        </Masonry>
+        </div>
+        <div>
+          <PledgesWidget
+              key={`pledges-${current.actor_id}`}
+              current={current}
+              parent={parent}
+          />
+        </div>       
       </div>
     </div>
   );
