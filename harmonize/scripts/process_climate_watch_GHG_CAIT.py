@@ -1,40 +1,69 @@
+import asyncio
 import csv
-import concurrent.futures
+from functools import wraps
 import os
 from pathlib import Path
 import pandas as pd
-import pycountry
+import requests
 from typing import List
 from typing import Dict
 from utils import df_wide_to_long
 from utils import make_dir
-from utils import write_to_csv
-from utils import country_to_iso2
+
+def async_func(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, func, *args, **kwargs)
+    return wrapper
+
+@async_func
+def get_iso2_from_name(name: str = None, type_code: str='country') -> str:
+    """get the region code from name
+
+    Args:
+        name (str): actor name to search for (default: None)
+        type_code (str): actor type (default: "country")
+                         ['country', 'adm1', 'adm2', 'city']
+    Returns:
+        str: region code corresponding to name
+
+    Example:
+    >> get_iso2_from_type('Ireland') # returns 'IE'
+    """
+    url = f"https://openclimate.openearth.dev/api/v1/search/actor?name={name}"
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers).json()
+    for data in response.get('data', []):
+        if data.get('type') == type_code:
+            return (name, data.get('actor_id', None))
+    return (name, None)
+
+async def get_iso2_async(code_list):
+    tasks = [asyncio.create_task(get_iso2_from_name(name)) for name in code_list]
+    data = await asyncio.gather(*tasks)
+    return data
 
 
-def country_lookup(name):
-    try:
-        return pycountry.countries.lookup(name).alpha_2
-    except LookupError:
-        return float('NaN')
+def simple_write_csv(
+        output_dir: str = None,
+        name: str = None,
+        data: List[Dict] | Dict = None,
+        mode: str = "w",
+        extension: str = "csv") -> None:
 
+    if isinstance(data, dict):
+        data = [data]
 
-def simple_write_csv(output_dir: str = None,
-                     name: str = None,
-                     rows: List[Dict] | Dict = None) -> None:
-
-    if isinstance(rows, dict):
-        rows = [rows]
-
-    with open(f'{output_dir}/{name}.csv', mode='w') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
+    with open(f"{output_dir}/{name}.{extension}", mode=mode) as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=data[0].keys())
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(data)
 
 
 if __name__ == '__main__':
     # output directory
-    outputDir = '../data/processed/climate_watch_historical_GHG/'
+    outputDir = '../data/processed/climate_watch_historical_GHG'
     outputDir = os.path.abspath(outputDir)
     make_dir(path=Path(outputDir).as_posix())
 
@@ -51,10 +80,13 @@ if __name__ == '__main__':
         'URL': 'https://www.wri.org/'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Publisher',
+        data=publisherDict,
+        mode='w'
+    )
+
     # =================================================================
     # DataSource
     # =================================================================
@@ -66,69 +98,28 @@ if __name__ == '__main__':
         'URL': 'https://www.climatewatchdata.org/ghg-emissions'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSource',
+        data=datasourceDict,
+        mode='w'
+    )
 
     # =================================================================
     # EmissionsAgg
     # =================================================================
-    df = pd.read_csv(fl)
-
-    df = df.rename(columns={'Country/Region': 'country'})
-
     replace_dict = {
-        'Trinidad & Tobago': 'Trinidad and Tobago',
-        'China Hong Kong SAR': 'China',
-        'Iran': 'Iran, Islamic Republic of',
-        'Syria': "Syrian Arab Republic",
-        'Brunei': "Brunei Darussalam",
-        'Laos': "Lao People's Democratic Republic",
-        'Russia': 'Russian Federation',
-        'Micronesia': "Federated States of Micronesia",
-        'Macedonia': "North Macedonia",
-        'Democratic Republic of the Congo': "Congo, the Democratic Republic of the",
-        'Cape Verde': "Cabo Verde",
-        'Republic of Congo': "Congo"
+        'country': {
+            'Trinidad & Tobago': 'Trinidad and Tobago',
+            'China Hong Kong SAR': 'China',
+            'Macedonia': "North Macedonia",
+            'Republic of Congo': "Republic of the Congo",
+            'United States': "United States of America",
+        }
     }
 
-    df['country'] = df.country.replace(replace_dict)
-
-    searchfor = ["Source:", "Notes:", "Growth", "Data ",
-                 "European Union", "OECD", "0.05%", "Other "]
-    filt = ~(df['country'].str.contains('|'.join(searchfor)))
-    df = df.loc[filt]
-
-    data = [(name, country_lookup(name)) for name in set(list(df.country))]
-    df_iso = pd.DataFrame(data, columns=['country', 'actor_id'])
-
-    #list(df_iso.loc[df_iso['actor_id'].isnull(), 'country'])
-
-    # merge in the actor_ids (iso2 codes)
-    df_out = pd.merge(df, df_iso, on=['country'])
-
-    #pd.set_option('display.max_rows', None)
-
-    df_out = df_wide_to_long(df_out, value_name='emissions', var_name='year')
-
-    # emissions are "false" for Namibia in 1990
-    filt = df_out['emissions'] != 'false'
-    df_out = df_out.loc[filt]
-
-    df_out['emissions'] = df_out['emissions'].astype(float)
-
-    df_out['total_emissions'] = df_out['emissions'].apply(lambda x: x * 10**6)
-
-    # create datasource_id
-    df_out['datasource_id'] = datasourceDict['datasource_id']
-
-    # create emissions ID
-    df_out['emissions_id'] = df_out.apply(
-        lambda row: f"climate_watch_GHG:{row['actor_id']}:{row['year']}", axis=1)
-
-    # Create EmissionsAgg table
-    emissionsAggColumns = [
+    output_columns = [
         "emissions_id",
         "actor_id",
         "year",
@@ -136,17 +127,44 @@ if __name__ == '__main__':
         "datasource_id"
     ]
 
-    df_emissionsAgg = df_out[emissionsAggColumns]
+    astype_dict = {
+        'emissions_id': str,
+        'actor_id': str,
+        'year': int,
+        'total_emissions': int,
+        'datasource_id': str
+    }
 
-    # ensure columns have correct types
-    df_emissionsAgg = df_emissionsAgg.astype({'emissions_id': str,
-                                              'actor_id': str,
-                                              'year': int,
-                                              'total_emissions': int,
-                                              'datasource_id': str})
+    drop_terms = ["Source:", "Notes:", "Growth", "Data ","European Union", "OECD", "0.05%", "Other "]
 
-    # sort by actor_id and year
-    df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
+    df = (
+        pd.read_csv(fl)
+        .rename(columns={'Country/Region': 'country'})
+        .replace(replace_dict)
+        .loc[lambda x: ~(x['country'].str.contains('|'.join(drop_terms)))]
+    )
+
+    # get iso2 code from name
+    code_list = set(list(df.country))
+    data = asyncio.run(get_iso2_async(code_list))
+    df_iso = pd.DataFrame(data, columns=['country', 'actor_id'])
+
+    # merge actor_ids into dataframe
+    df_out = pd.merge(df, df_iso, on=['country'])
+
+    # process the dataframe
+    # original units are MTCO2e
+    df_emissionsAgg = (
+        df_wide_to_long(df_out, value_name='emissions', var_name='year')
+        .loc[lambda x: x['emissions'] != 'false']  # emissions are "false" for Namibia in 1990
+        .astype({'emissions': float})
+        .assign(total_emissions = lambda x: x['emissions'].apply(lambda x: x * 10**6))
+        .assign(datasource_id = datasourceDict['datasource_id'])
+        .assign(emissions_id = lambda x: x.apply(lambda row: f"climate_watch_GHG:{row['actor_id']}:{row['year']}", axis=1))
+        .loc[:, output_columns]
+        .astype(astype_dict)
+        .sort_values(by=['actor_id', 'year'])
+    )
 
     # convert to csv
     df_emissionsAgg.to_csv(f'{outputDir}/EmissionsAgg.csv', index=False)
