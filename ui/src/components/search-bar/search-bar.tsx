@@ -28,7 +28,7 @@ const SearchBar: FunctionComponent = () => {
   const onActorClick = (actor: any) => {
     setCardExpanded(false);
     setInputString("");
-    history.push(`/actor/${actor.actorId}`);
+    history.push(`/actor/${actor.actorId}/${actor.name}_emissions`);
   };
 
   useEffect(() => {
