@@ -13,6 +13,19 @@ from utils import write_to_csv
 from utils import iso3_to_iso2
 
 
+def float_to_int(df=None, col=None, fill_val=-9999):
+    """convert column from float to int if has NaN values
+    useful for munging data prior to ingesting into a DB
+    """
+    df[col] = (
+        df[col]
+        .fillna(fill_val)
+        .astype(int)
+        .astype(str)
+        .replace(f'{fill_val}', np.nan)
+    )
+    return df
+
 def shorten_url(url):
     s = pyshorteners.Shortener()
     return s.tinyurl.short(url)
@@ -544,7 +557,7 @@ def get_company_net_zero(fl, fl_isin_to_lei):
 
 if __name__ == "__main__":
     # Create directory to store output
-    outputDir = "../data/processed/net_zero_tracker/"
+    outputDir = "../data/processed/net_zero_tracker"
     outputDir = os.path.abspath(outputDir)
     out_dir = Path(outputDir)
 
@@ -835,6 +848,10 @@ if __name__ == "__main__":
 
     # merge dataframes
     df_target = pd.concat(dataframe_list+net_zero_list)
+
+    # convert from float to int, while preserving null values
+    df_target = float_to_int(df_target, col='baseline_year')
+    df_target = float_to_int(df_target, col='target_value')
 
     # fill nan URL with blank string
     df_target['URL'] = df_target['URL'].fillna('')
