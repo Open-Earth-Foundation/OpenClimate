@@ -174,3 +174,15 @@ if __name__ == "__main__":
         data=dataSourceTagDict,
         mode='w'
     )
+
+    # ------------------------------------------
+    # DataSourceQuality table
+    # ------------------------------------------
+    DataSourceQualityDict = {
+        "datasource_id": datasourceDict['datasource_id'],
+        "score_type": "GHG target",
+        "score": 0.9,
+        "notes": "country reported. sum across provinces equal to country data reported to UNFCCC"
+    }
+
+    simple_write_csv(outputDir, "DataSourceQuality", DataSourceQualityDict)
