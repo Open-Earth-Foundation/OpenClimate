@@ -81,7 +81,7 @@ def read_each_file(fl):
 
 if __name__ == "__main__":
     # where to create tables
-    outputDir = "../data/processed/EPA_GHG_inventory_test"
+    outputDir = "../data/processed/EPA_GHG_inventory"
     outputDir = os.path.abspath(outputDir)
     make_dir(path=Path(outputDir).as_posix())
 
@@ -195,3 +195,15 @@ if __name__ == "__main__":
         data=dataSourceTagDict,
         mode='w'
     )
+
+    # ------------------------------------------
+    # DataSourceQuality table
+    # ------------------------------------------
+    DataSourceQualityDict = {
+        "datasource_id": datasourceDict['datasource_id'],
+        "score_type": "GHG target",
+        "score": 0.8,
+        "notes": "country reported. not necessarily state-reported data"
+    }
+
+    simple_write_csv(outputDir, "DataSourceQuality", DataSourceQualityDict)
