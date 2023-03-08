@@ -1,3 +1,6 @@
+# TODO: this script needs major refactoring
+
+import csv
 import concurrent.futures
 from dask import delayed
 import dask
@@ -8,8 +11,29 @@ from pathlib import Path
 import pycountry
 import pyshorteners
 import requests
+from typing import List
+from typing import Dict
 from utils import make_dir
-from utils import write_to_csv
+
+def simple_write_csv(
+        output_dir: str = None,
+        name: str = None,
+        data: List[Dict] | Dict = None,
+        mode: str = "w",
+        extension: str = "csv") -> None:
+
+    if isinstance(data, dict):
+        data = [data]
+
+    with open(f"{output_dir}/{name}.{extension}", mode=mode) as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=data[0].keys())
+
+        # https://9to5answer.com/python-csv-writing-headers-only-once
+        if  csvfile.tell() == 0:
+            writer.writeheader()
+
+        writer.writerows(data)
+
 
 def iso3_to_iso2(iso3: str = None) -> str:
     """convert ISO-3166-1 alpha-2 to ISO-3166-1 alpha-2
@@ -639,10 +663,12 @@ if __name__ == "__main__":
         'URL': 'https://zerotracker.net/'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Publisher',
+        data=publisherDict,
+        mode='w'
+    )
 
     gleifPublisherDict = {
         'id': 'GLEIF',
@@ -650,10 +676,12 @@ if __name__ == "__main__":
         'URL': 'https://www.gleif.org/en'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=gleifPublisherDict,
-                 mode='a')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Publisher',
+        data=gleifPublisherDict,
+        mode='a'
+    )
 
     # ------------------------------------------
     # DataSource table
@@ -666,10 +694,12 @@ if __name__ == "__main__":
         'URL': 'https://zerotracker.net/'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSource',
+        data=datasourceDict,
+        mode='w'
+    )
 
     gleifDataSourceDict = {
         'datasource_id': 'GLEIF_golden_copy',
@@ -678,11 +708,12 @@ if __name__ == "__main__":
         'published': '2022-12-16',
         'URL': 'https://www.gleif.org/en/lei-data/gleif-golden-copy/download-the-golden-copy#/'
     }
-
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=gleifDataSourceDict,
-                 mode='a')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSource',
+        data=gleifDataSourceDict,
+        mode='a'
+    )
 
     # ------------------------------------------
     # Target table
