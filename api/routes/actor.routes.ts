@@ -21,16 +21,6 @@ const wrap = (fn) => (req, res, next) =>
 
 const router = Router();
 
-const calculatePercentAchieved = (emissions, baselineYear, percent, dataSourceId) => {
-  const percentDecimal = percent / 100;
-  if (emissions[dataSourceId]) {
-    const baselineEmissions = emissions[dataSourceId].data.find(emission => emission.year === baselineYear)?.total_emissions;
-    const currentEmissions = emissions[dataSourceId].data[0]?.total_emissions;
-    return (baselineEmissions - currentEmissions) / (baselineEmissions * percentDecimal);
-  };
-  return null;
-};
-
 // Get actor details
 
 router.get(
@@ -149,23 +139,33 @@ router.get(
         : null;
     };
 
-    const getSourceId = (emissionSources) => {
-      let sourceId;
-
+    const getBestSource = () => {
       // TODO: change this to pull dataSourceIds from dataSourceQuality table
       const sourcesHierarchy = [
         "UNFCCC:GHG_ANNEX1:2019-11-08",
         "UNFCCC:GHG_profiles_nonAnnexOne:2022-09-27",
         "UNFCCC:GHG_profiles_nonAnnexOne:2022-09-27",
-        "ECCC:GHG_inventory:2022-04-13"
-      ]
+        "ECCC:GHG_inventory:2022-04-13",
+        "EPA:state_GHG_inventory:2022-08-31"
+      ];
 
-      for (let source in sourcesHierarchy) {
-          if (emissionSources.find(emissionSource => emissionSource === source)) {
-              sourceId = source;
-              break;
+      for (let source of sourcesHierarchy) {
+          if (emissionMap[source]) {
+              return source;
           }
       }
+
+      return null;
+    };
+
+    const calculatePercentAchieved = (emissions, baselineYear, percent, dataSourceId) => {
+      const percentDecimal = percent / 100;
+      if (emissions[dataSourceId]) {
+        const baselineEmissions = emissions[dataSourceId].data.find(emission => emission.year === baselineYear)?.total_emissions;
+        const currentEmissions = emissions[dataSourceId].data[0]?.total_emissions;
+        return (baselineEmissions - currentEmissions) / (baselineEmissions * percentDecimal);
+      };
+      return null;
     };
 
     res.status(200).json({
@@ -217,7 +217,9 @@ router.get(
             target_value: t.target_value,
             target_unit: t.target_unit,
             datasource_id: t.datasource_id,
-            percent_achieved: t.target_type === "Absolute emission reduction" ? calculatePercentAchieved(emissionMap, t.baseline_year, t.target_value, getSourceId(Object.keys(emissionMap))) : undefined,
+            percent_achieved: t.target_type === "Absolute emission reduction"
+              ? calculatePercentAchieved(emissionMap, t.baseline_year, t.target_value, getBestSource())
+                : undefined,
             initiative: i
               ? {
                   initiative_id: i.initiative_id,
