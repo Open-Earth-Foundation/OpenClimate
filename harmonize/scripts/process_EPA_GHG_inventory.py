@@ -1,3 +1,66 @@
+import asyncio
+import csv
+from functools import wraps
+import os
+import pandas as pd
+from pathlib import Path
+import re
+import requests
+from typing import List
+from typing import Dict
+from utils import df_wide_to_long
+from utils import make_dir
+
+def simple_write_csv(
+        output_dir: str = None,
+        name: str = None,
+        data: List[Dict] | Dict = None,
+        mode: str = "w",
+        extension: str = "csv") -> None:
+
+    if isinstance(data, dict):
+        data = [data]
+
+    with open(f"{output_dir}/{name}.{extension}", mode=mode) as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
+
+def async_func(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, func, *args, **kwargs)
+    return wrapper
+
+@async_func
+def state_to_iso2(name=None, is_part_of=None):
+    """get the region code from name
+    name and is_part_of are case sensitive
+
+    Args:
+        name (str): actor name to search for (default: None)
+        is_part_of (str): ISO2 code where name is part of (default: None)
+
+    Returns:
+        str: region code corresponding to name
+
+    Example:
+    >> state_to_iso2('Minnesot', 'US) # returns 'US-MN'
+    """
+    url = f"https://openclimate.openearth.dev/api/v1/search/actor?name={name}"
+    headers = {'Accept': 'application/vnd.api+json'}
+    response = requests.request("GET", url, headers=headers).json()
+    for data in response.get('data', []):
+        if data.get('is_part_of') == is_part_of:
+            return (name, data.get('actor_id', None))
+    return (name, None)
+
+async def state_to_iso2_async(code_list):
+    tasks = [asyncio.create_task(state_to_iso2(name, 'US')) for name in code_list]
+    data = await asyncio.gather(*tasks)
+    return data
+
 def read_each_file(fl):
     """reads EPA state GHG inventory file
     depends on df_wide_to_long in utils
@@ -17,18 +80,8 @@ def read_each_file(fl):
 
 
 if __name__ == "__main__":
-    import concurrent.futures
-    import os
-    import pandas as pd
-    from pathlib import Path
-    import re
-    from utils import df_wide_to_long
-    from utils import state_to_iso2
-    from utils import make_dir
-    from utils import write_to_csv
-
     # where to create tables
-    outputDir = "../data/processed/EPA_GHG_inventory"
+    outputDir = "../data/processed/EPA_GHG_inventory_test"
     outputDir = os.path.abspath(outputDir)
     make_dir(path=Path(outputDir).as_posix())
 
@@ -46,10 +99,12 @@ if __name__ == "__main__":
         'URL': 'https://www.epa.gov/'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Publisher',
+        data=publisherDict,
+        mode='w'
+    )
 
     # ------------------------------------------
     # DataSource table
@@ -62,70 +117,49 @@ if __name__ == "__main__":
         'URL': 'https://cfpub.epa.gov/ghgdata/inventoryexplorer/'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSource',
+        data=datasourceDict,
+        mode='w'
+    )
 
     # ------------------------------------------
     # EmissionsAgg table
     # ------------------------------------------
     # concatenate all the files
-    df_concat = pd.concat([read_each_file(fl=fl)
-                           for fl in files], ignore_index=True)
+    df_concat = pd.concat([read_each_file(fl=fl) for fl in files], ignore_index=True)
 
     # make "of" lowercase in "District Of Columbia"
     filt = df_concat['state'] == 'District Of Columbia'
     df_concat.loc[filt, 'state'] = 'District of Columbia'
 
-    # get iso2 code from name
-    with concurrent.futures.ProcessPoolExecutor(max_workers=8) as executor:
-        results = [executor.submit(state_to_iso2, name, return_input=True, is_part_of='US')
-                   for name in list(set(df_concat['state']))]
-        data = [f.result() for f in concurrent.futures.as_completed(results)]
+    # get actor_id from state name
+    code_list = list(set(df_concat['state']))
+    data = asyncio.run(state_to_iso2_async(code_list))
+    df_iso = pd.DataFrame(data, columns=['state', 'actor_id'])
 
-    # return iso2 as dataframe
-    df_iso = pd.DataFrame(data, columns=['name', 'actor_id'])
-
-    # merge datasets (wide, each year is a column)
-    df_out = pd.merge(df_concat, df_iso,
-                      left_on=["state"],
-                      right_on=['name'],
-                      how="left")
-
-    # convert to metric tonnes
-    df_out['total_emissions'] = df_out.apply(lambda row:
-                                             row['total_emissions'] * 10**6,
-                                             axis=1)
-
-    # create datasource and emissions id
-    df_out['datasource_id'] = datasourceDict['datasource_id']
-    df_out['emissions_id'] = df_out.apply(lambda row:
-                                          f"EPA_state_GHG_inventory:{row['actor_id']}:{row['year']}",
-                                          axis=1)
-
-    # Create EmissionsAgg table
-    emissionsAggColumns = [
-        "emissions_id",
-        "actor_id",
-        "year",
-        "total_emissions",
-        "datasource_id"
-    ]
-
-    df_emissionsAgg = df_out[emissionsAggColumns]
-
-    # ensure data has correct types
-    df_emissionsAgg = df_emissionsAgg.astype({
+    astype_dict = {
         'emissions_id': str,
         'actor_id': str,
         'year': int,
         'total_emissions': int,
         'datasource_id': str
-    })
+    }
 
-    # sort by actor_id and year
-    df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
+    output_columns = tuple(astype_dict.keys())
+    emissions_id_function = lambda row:f"EPA_state_GHG_inventory:{row['actor_id']}:{row['year']}"
+    total_emissions_function = lambda row: row['total_emissions'] * 10**6
+
+    df_emissionsAgg = (
+        pd.merge(df_concat, df_iso, on='state', how='left')
+        .assign(total_emissions=lambda x: x.apply(total_emissions_function, axis=1))
+        .assign(datasource_id = datasourceDict['datasource_id'])
+        .assign(emissions_id = lambda x: x.apply(emissions_id_function, axis=1))
+        .loc[:, output_columns]
+        .astype(astype_dict)
+        .sort_values(by=['actor_id', 'year'])
+    )
 
     # save to csv
     df_emissionsAgg.drop_duplicates().to_csv(
@@ -134,35 +168,30 @@ if __name__ == "__main__":
     # ------------------------------------------
     # Tag table
     # ------------------------------------------
-    if not Path(f"{outputDir}/Tag.csv").is_file():
-        # create Tag file
-        tagDictList = [
+    tagDictList = [
             {
                 'tag_id': 'country_reported_data',
                 'tag_name': 'Country-reported data'
             }
         ]
 
-        for tagDict in tagDictList:
-            write_to_csv(outputDir=outputDir,
-                         tableName='Tag',
-                         dataDict=tagDict,
-                         mode='a')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Tag',
+        data=tagDictList,
+        mode='w'
+    )
 
     # ------------------------------------------
     # DataSourceTag table
     # ------------------------------------------
-    if not Path(f"{outputDir}/DataSourceTag.csv").is_file():
+    datasource_id = f"{datasourceDict['datasource_id']}"
+    tags = ['country_reported_data']
+    dataSourceTagDict = [{'datasource_id': datasource_id, 'tag_id': tag} for tag in tags]
 
-        tags = ['country_reported_data']
-
-        for tag in tags:
-            dataSourceTagDict = {
-                'datasource_id': f"{datasourceDict['datasource_id']}",
-                'tag_id': tag
-            }
-
-            write_to_csv(outputDir=outputDir,
-                         tableName='DataSourceTag',
-                         dataDict=dataSourceTagDict,
-                         mode='a')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSourceTag',
+        data=dataSourceTagDict,
+        mode='w'
+    )
