@@ -66,6 +66,14 @@ const countryTarget2Props = {
   summary: "#1 target by a country to make some changes",
 };
 
+const countryTarget3Props = {
+  target_id: "target.test.ts:country:1:target:3",
+  actor_id: countryProps.actor_id,
+  target_type: "Net zero",
+  target_year: 2050,
+  datasource_id: datasourceProps.datasource_id
+};
+
 // Different actor, different identifiers
 
 const regionTarget1Props = {
@@ -155,9 +163,10 @@ afterAll(async () => {
 });
 
 it("can create and get targets", async () => {
-  let [c1, c2, r1] = await Promise.all([
+  let [c1, c2, c3, r1] = await Promise.all([
     Target.create(countryTarget1Props),
     Target.create(countryTarget2Props),
+    Target.create(countryTarget3Props),
     Target.create(regionTarget1Props),
   ]);
 
@@ -173,6 +182,14 @@ it("can create and get targets", async () => {
   expect(match.summary).toBeDefined();
   expect(typeof match.summary).toEqual("string");
 
+  expect(match.isNetZero()).toBeFalsy()
+
+  // Match netzero by pk
+
+  let nz = await Target.findByPk(countryTarget3Props.target_id);
+
+  expect(nz.isNetZero()).toBeTruthy()
+
   // Match on Actor
 
   let matches = await Target.findAll({
@@ -181,11 +198,11 @@ it("can create and get targets", async () => {
     },
   });
 
-  expect(matches.length).toEqual(2);
+  expect(matches.length).toEqual(3);
 
   // Destroy all targets
 
-  await Promise.all([c1.destroy(), c2.destroy(), r1.destroy()]);
+  await Promise.all([c1.destroy(), c2.destroy(), c3.destroy(), r1.destroy()]);
 });
 
 it("can create and get a target with associated initiative", async () => {

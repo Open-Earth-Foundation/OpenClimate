@@ -189,6 +189,7 @@ router.get(
             target_year: t.target_year,
             target_value: t.target_value,
             target_unit: t.target_unit,
+            is_net_zero: t.isNetZero(),
             datasource_id: t.datasource_id,
             datasource: {
               datasource_id: ds.datasource_id,

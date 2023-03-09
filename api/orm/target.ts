@@ -37,6 +37,9 @@ export class Target extends Model<
   declare initiative_id: string;
   declare created: CreationOptional<Date>;
   declare last_updated: CreationOptional<Date>;
+  public isNetZero() : boolean {
+    return this.target_type === 'Net zero'
+  }
 }
 
 Target.init(
