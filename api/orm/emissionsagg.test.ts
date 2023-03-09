@@ -3,8 +3,8 @@
 import { Actor } from "./actor";
 import { DataSource } from "./datasource";
 import { Publisher } from "./publisher";
-import { Methodology } from "./methodology";
 import { EmissionsAgg } from "./emissionsagg";
+import { DataSourceQuality } from "./datasourcequality";
 const disconnect = require("./init").disconnect;
 
 const geoPublisherProps = {
@@ -50,12 +50,6 @@ const emissionsDataSource1Props = {
   URL: "https://emissions1.example/datasource",
 };
 
-const methodologyProps = {
-  methodology_id: "emissionsagg.test.ts:methodology:1",
-  name: "Fake methodology from emissionsagg.test.ts",
-  methodology_link: "https://fake.example/methodology",
-};
-
 const emissionsPublisher2Props = {
   id: "emissionsagg.test.ts:publisher:emissions:2",
   name: "Fake emissions publisher from emissionsagg.test.ts",
@@ -78,7 +72,6 @@ const countryDataSource1Year1Props = {
   year: 2019,
   total_emissions: 100000,
   datasource_id: emissionsDataSource1Props.datasource_id,
-  methodology_id: methodologyProps.methodology_id,
 };
 
 const countryDataSource1Year2Props = {
@@ -87,7 +80,6 @@ const countryDataSource1Year2Props = {
   year: 2020,
   total_emissions: 110000,
   datasource_id: emissionsDataSource1Props.datasource_id,
-  methodology_id: methodologyProps.methodology_id,
 };
 
 // Different actor, same year and datasource
@@ -98,7 +90,6 @@ const regionDataSource1Year1Props = {
   year: 2019,
   total_emissions: 10000,
   datasource_id: emissionsDataSource1Props.datasource_id,
-  methodology_id: methodologyProps.methodology_id,
 };
 
 // Same actor, year, different datasource
@@ -109,7 +100,59 @@ const regionDataSource2Year1Props = {
   year: 2019,
   total_emissions: 11000,
   datasource_id: emissionsDataSource2Props.datasource_id,
-  methodology_id: methodologyProps.methodology_id,
+};
+
+// Get best emissions for use
+
+const country2Props = {
+  actor_id: "emissionsagg.test.ts:actor:country:2",
+  type: "country",
+  name: "Fake country actor from emissionsagg.test.ts",
+  datasource_id: geoDataSourceProps.datasource_id,
+};
+
+const country2DataSource1Emissions2019 = {
+  emissions_id: "emissionsagg.test.ts:country:2:emissions:1",
+  actor_id: country2Props.actor_id,
+  year: 2019,
+  total_emissions: 100000,
+  datasource_id: emissionsDataSource1Props.datasource_id
+};
+
+const country2DataSource1Emissions2022 = {
+  emissions_id: "emissionsagg.test.ts:country:2:emissions:2",
+  actor_id: country2Props.actor_id,
+  year: 2022,
+  total_emissions: 90000,
+  datasource_id: emissionsDataSource1Props.datasource_id
+};
+
+const country2DataSource2Emissions2019 = {
+  emissions_id: "emissionsagg.test.ts:country:2:emissions:3",
+  actor_id: country2Props.actor_id,
+  year: 2019,
+  total_emissions: 100001,
+  datasource_id: emissionsDataSource2Props.datasource_id
+};
+
+const country2DataSource2Emissions2022 = {
+  emissions_id: "emissionsagg.test.ts:country:2:emissions:4",
+  actor_id: country2Props.actor_id,
+  year: 2022,
+  total_emissions: 90001,
+  datasource_id: emissionsDataSource2Props.datasource_id
+};
+
+const emissionsDataSource1QualityProps = {
+  datasource_id: emissionsDataSource1Props.datasource_id,
+  score_type: 'GHG target completion',
+  score: 0.7
+};
+
+const emissionsDataSource2QualityProps = {
+  datasource_id: emissionsDataSource2Props.datasource_id,
+  score_type: 'GHG target completion',
+  score: 0.3
 };
 
 async function cleanup() {
@@ -124,23 +167,20 @@ async function cleanup() {
     where: { datasource_id: geoDataSourceProps.datasource_id },
   });
 
-  await DataSource.destroy({
-    where: { datasource_id: geoDataSourceProps.datasource_id },
-  });
-  await DataSource.destroy({
-    where: { datasource_id: emissionsDataSource1Props.datasource_id },
-  });
-  await DataSource.destroy({
-    where: { datasource_id: emissionsDataSource2Props.datasource_id },
-  });
+  await Promise.all([
+    DataSourceQuality.destroy({where: {datasource_id: emissionsDataSource1Props.datasource_id }}),
+    DataSourceQuality.destroy({where: {datasource_id: emissionsDataSource2Props.datasource_id }})
+  ])
 
-  await Publisher.destroy({ where: { id: geoPublisherProps.id } });
-  await Publisher.destroy({ where: { id: emissionsPublisher1Props.id } });
-  await Publisher.destroy({ where: { id: emissionsPublisher2Props.id } });
+  await Promise.all([geoDataSourceProps, emissionsDataSource1Props, emissionsDataSource2Props].map((ds) =>
+    DataSource.destroy({
+      where: { datasource_id: ds.datasource_id },
+    })
+  ))
 
-  await Methodology.destroy({
-    where: { methodology_id: methodologyProps.methodology_id },
-  });
+  await Promise.all([geoPublisherProps, emissionsPublisher1Props, emissionsPublisher2Props].map(ps =>
+    Publisher.destroy({ where: { id: ps.id } })
+  ))
 }
 
 beforeAll(async () => {
@@ -150,8 +190,6 @@ beforeAll(async () => {
 
   // Create referenced rows
 
-  await Methodology.create(methodologyProps);
-
   await Publisher.create(geoPublisherProps);
   await Publisher.create(emissionsPublisher1Props);
   await Publisher.create(emissionsPublisher2Props);
@@ -160,7 +198,12 @@ beforeAll(async () => {
   await DataSource.create(emissionsDataSource1Props);
   await DataSource.create(emissionsDataSource2Props);
 
+  await Promise.all([emissionsDataSource1QualityProps, emissionsDataSource2QualityProps].map(props =>
+    DataSourceQuality.create(props)
+  ))
+
   await Actor.create(countryProps);
+  await Actor.create(country2Props);
   await Actor.create(regionProps);
 });
 
@@ -233,3 +276,20 @@ it("can create and get EmissionsAgg", async () => {
     }),
   ]);
 });
+
+
+it("can get latest high-quality EmissionsAgg", async () => {
+  let ea = await Promise.all([
+    EmissionsAgg.create(country2DataSource1Emissions2019),
+    EmissionsAgg.create(country2DataSource1Emissions2022),
+    EmissionsAgg.create(country2DataSource2Emissions2019),
+    EmissionsAgg.create(country2DataSource2Emissions2022),
+  ])
+
+  let bestLatest = await EmissionsAgg.forPurposeLatest('GHG target completion', country2Props.actor_id)
+
+  expect(bestLatest).toBeDefined()
+  expect(Number(bestLatest.total_emissions)).toEqual(country2DataSource1Emissions2022.total_emissions)
+
+  await Promise.all(ea.map(item => item.destroy()))
+})

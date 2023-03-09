@@ -6,8 +6,10 @@ import {
   InferAttributes,
   InferCreationAttributes,
   CreationOptional,
+  Op,
 } from "sequelize";
 import { DataSource } from "./datasource";
+import { DataSourceQuality } from "./datasourcequality";
 import { Methodology } from "./methodology";
 import { Actor } from "./actor";
 
@@ -26,6 +28,30 @@ export class EmissionsAgg extends Model<
   declare datasource_id: string; /* Source for the data */
   declare created: CreationOptional<Date>;
   declare last_updated: CreationOptional<Date>;
+  static async forPurposeLatest(scoreType, actorID): Promise<EmissionsAgg> {
+    let allEmissions = await EmissionsAgg.findAll({
+      where: {actor_id: actorID},
+    })
+    if (allEmissions.length === 0) {
+      return null
+    }
+    const unique = (v, i, a) => a.indexOf(v) == i;
+    let dataSourceIDs = allEmissions.map(ea => ea.datasource_id).filter(unique)
+    let allDSQ = await DataSourceQuality.findAll({
+      where: {datasource_id: dataSourceIDs, score_type: scoreType}
+    })
+    if (allDSQ.length === 0) {
+      return null
+    }
+    let dsq = (ea) => allDSQ.find(dsq => dsq.datasource_id == ea.datasource_id)
+    let score = (ea) => { let d = dsq(ea); return (d) ? d.score : 0.0}
+    // Get the best emissions for the latest year
+    let maxYear = Math.max(...allEmissions.map(ea => ea.year))
+    let latest = allEmissions.filter(ea => ea.year === maxYear)
+    let sorted = latest.sort((a, b) => (score(a) < score(b)) ? 1 : ((score(a) > score(b)) ? -1 : 0))
+    let best = sorted[0]
+    return best
+  }
 }
 
 EmissionsAgg.init(
