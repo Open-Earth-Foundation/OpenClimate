@@ -1,6 +1,25 @@
 .pledges-widget{
+    ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #ffff; 
+      }
+       
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888; 
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
+
     height: 435px;
-    width: 440px;
+    width: calc(91.9vw);
     border: 1px solid #E6E7E8;
     display: relative;
     border-radius: 4px;
@@ -22,6 +41,60 @@
 
     &__metadata-inner{
         display: flex;
+    }
+    
+    &__metadata-right{
+        display: flex;
+        align-items: center;
+    }
+
+    &__track-status{
+        display: flex;
+        align-items: center;
+        margin-left: 46px;
+        margin-right: 20px;
+    }
+
+    &__target-info{
+        color: #2351DC;
+    }
+
+    &__netzero-text p{
+        padding: 0;
+        margin: 0;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        color: #4BD300;
+    }
+
+    &__netzero-text span{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;        
+        letter-spacing: 0.4px;
+        color: #41435F;
+    }
+
+
+
+    &__track-status{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        color: #7388E8;
     }
 
     &__title{
@@ -47,9 +120,40 @@
         padding-top: 24px;
     }
 
+    &__target-percent{
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        color: #00001F;
+    }
+
     &__pledge-items{
         height: 350px;
         overflow: scroll;
+    }
+
+    &__commitment p{
+        margin: 0;
+        padding: 0;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        text-decoration-line: underline;
+        color: #2351DC;
+        cursor: pointer;
+    }
+
+    &__commitment span {
+        font-weight: 600;
+        font-size: 9px;
+        line-height: 14px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #818385;
     }
 
     &__pledge-entry{

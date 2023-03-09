@@ -1,8 +1,8 @@
 @import './mixins.scss';
 
 .contextual-widget {
-    height: 250px;
-    width: 578px;
+    height: 300px;
+    width: calc(1/2*90vw);
     border: 1px solid #E6E7E8;
     display: relative;
     border-radius: 4px;

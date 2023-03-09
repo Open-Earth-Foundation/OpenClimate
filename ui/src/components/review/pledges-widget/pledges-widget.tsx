@@ -6,13 +6,49 @@ import {
   AspectRatio,
   InfoOutlined,
   MonetizationOnOutlined,
+  MoreVert,
 } from "@mui/icons-material";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 import PledgeItem from "./pledge-item";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@mui/material/Tooltip";
+import { IconButton } from "@material-ui/core";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#ffffff",
+    color: "#00001F",
+    fontFamily: 'Poppins',
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 12,
+    color: "#272727"
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  
+  '&:nth-of-type(odd)': {
+    backgroundColor: "#FBFBFF",
+    border:0
+  },
+  // hide last border
+  '& td, th': {
+    border: 0,
+  },
+ 
+}));
+
 
 interface Props {
   current: any;
@@ -55,7 +91,6 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
   const [lastMonth, lastYear] = lastUpdated
     ? [new Date(lastUpdated).getMonth(), new Date(lastUpdated).getFullYear()]
     : [null, null];
-
   return (
     <div
       className="pledges-widget"
@@ -67,36 +102,76 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
             <div>
               <div className="pledges-widget__metadata-inner">
                 <span className="pledges-widget__title">Pledges</span>
-                <span>
-                  <Tooltip
-                    classes={{
-                      tooltip: classes.customTooltip,
-                      arrow: classes.customArrow,
-                    }}
-                    title={
-                      <div className="tooltip">
-                        Commitments that the selected actor made
-                      </div>
-                    }
-                    arrow
-                    placement="right"
-                  >
-                    <InfoOutlined className="pledges-widget__icon info-icon" />
-                  </Tooltip>
-                </span>
               </div>
-              {lastUpdated && (
+              {!lastUpdated && (
                 <span className="pledges-widget__last-updated">
                   Last updated {lastMonth != null && monthNames[lastMonth]}{" "}
                   {lastYear}
                 </span>
               )}
             </div>
+            <div className="pledges-widget__metadata-right">
+              <div className="pledges-widget__netzero-text">
+                <p>2016</p>
+                <span>Net zero target</span>
+              </div>
+              <div className="pledges-widget__track-status">
+                <span>ON TRACK</span>
+              </div>
+              <div>
+                <IconButton className="download_data-button">
+                  <MoreVert className="download_data-icon" />
+                </IconButton>
+              </div>
+            </div>
           </div>
           <div className="pledges-widget__pledge-items">
-            {targets?.map((pledge: any, index: number) => (
+            {/* {targets?.map((pledge: any, index: number) => (
               <PledgeItem pledge={pledge} key={`pledge-item-${index}`} />
-            ))}
+            ))} */}
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Target commitment</StyledTableCell>
+                    <StyledTableCell align="left">Type of commitment</StyledTableCell>
+                    <StyledTableCell align="left">% achieved</StyledTableCell>
+                    <StyledTableCell align="left"></StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {targets.map((target:any) => (
+                    <StyledTableRow key={target.target_id}>
+                      <StyledTableCell component="th" scope="row">
+                        <div>
+                          <span className="pledges-widget__target-percent">
+                            {target.target_value} % &nbsp;
+                          </span>
+                          <span className="pledges-widget__target-text">
+                            by {target.target_year} relative to {target.baseline_year}
+                          </span>
+                        </div>
+                      </StyledTableCell>
+                      <StyledTableCell align="left">
+                        <div className="pledges-widget__commitment">
+                          <p>
+                            {target.target_type}
+                          </p>
+                          <span>
+                            GHG EMISSIONS
+                          </span>
+                        </div>
+                      </StyledTableCell>
+                      <StyledTableCell align="left">ProgressBar</StyledTableCell>
+                      <StyledTableCell align="right">
+                        <InfoOutlined className="pledges-widget__target-info"/>
+                      </StyledTableCell> 
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+
           </div>
         </div>
       ) : (
