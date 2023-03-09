@@ -65,6 +65,7 @@ router.get(
       .map((ea) => ea.datasource_id)
       .concat(population.map((p) => p.datasource_id))
       .concat(gdp.map((gdp) => gdp.datasource_id))
+      .concat(targets.map((target) => target.datasource_id))
       .concat(territory ? [territory.datasource_id] : [])
       .filter(unique);
 
@@ -176,6 +177,7 @@ router.get(
           };
         }),
         targets: targets.map((t) => {
+          const ds = dataSources.find((ds) => ds.datasource_id == t.datasource_id);
           const i = t.initiative_id
             ? initiatives.find((i) => i.initiative_id == t.initiative_id)
             : null;
@@ -188,6 +190,15 @@ router.get(
             target_value: t.target_value,
             target_unit: t.target_unit,
             datasource_id: t.datasource_id,
+            datasource: {
+              datasource_id: ds.datasource_id,
+              name: ds.name,
+              publisher: ds.publisher,
+              published: ds.published,
+              URL: ds.URL,
+              created: ds.created,
+              last_updated: ds?.last_updated
+            },
             initiative: i
               ? {
                   initiative_id: i.initiative_id,
@@ -474,7 +485,6 @@ router.get(
   "/api/v1/download/:actor_id-emissions.csv",
   wrap(async (req: any, res: any) => {
     const actor_id: string = req.params.actor_id;
-    console.log(actor_id);
 
     const actor = await Actor.findByPk(actor_id);
 

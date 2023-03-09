@@ -749,6 +749,36 @@ it("can return target_unit", async () =>
       expect(typeof target.target_unit).toEqual("string");
     }));
 
+it("returns target.datasource", async () =>
+  request(app)
+    .get(`/api/v1/actor/${country1Props.actor_id}`)
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .expect((res: any) => {
+      expect(res.body.data).toBeDefined();
+      const data = res.body.data;
+      expect(data.targets).toBeDefined();
+      expect(data.targets.length).toBeGreaterThan(0);
+      const target = data.targets[0];
+      expect(target.datasource).toBeDefined();
+      expect(typeof target.datasource).toEqual("object");
+      const datasource = target.datasource
+      expect(datasource.datasource_id).toBeDefined();
+      expect(typeof datasource.datasource_id).toEqual("string");
+      expect(datasource.name).toBeDefined();
+      expect(typeof datasource.name).toEqual("string");
+      expect(datasource.publisher).toBeDefined();
+      expect(typeof datasource.publisher).toEqual("string");
+      expect(datasource.published).toBeDefined();
+      expect(typeof datasource.published).toEqual("string");
+      expect(datasource.URL).toBeDefined();
+      expect(typeof datasource.URL).toEqual("string");
+      expect(datasource.created).toBeDefined();
+      expect(typeof datasource.created).toEqual("string");
+      expect(datasource.last_updated).toBeDefined();
+      expect(typeof datasource.last_updated).toEqual("string");
+    }));
+
 it("returns the actor icon", async () =>
   request(app)
     .get(`/api/v1/actor/${country1Props.actor_id}`)
@@ -1007,8 +1037,6 @@ it("can download actor emissions in json", async () =>
     .expect((res: any) => {
       const emissions = res.body;
 
-      console.log(res.body);
-
       const emissions1 = emissions[datasource1Props.datasource_id];
 
       expect(emissions1.tags).toBeDefined();
@@ -1050,19 +1078,14 @@ it("can download actor emissions in json", async () =>
 it("gets 404 when actor id is nonexistent for downloading emissions in json", async () =>
   request(app).get(`/api/v1/download/${ACTOR_DNE}-emissions.json`).expect(404));
 
-it("responds with a CSV file", (done) => {
+it("responds with a CSV file", async () =>
   request(app)
     .get(`/api/v1/download/${country1Props.actor_id}-emissions.csv`)
     .expect("Content-Type", "text/csv; charset=UTF-8")
     .expect(200)
     .expect((res) => {
       expect(res.text).toBeDefined();
-    })
-    .end((err, res) => {
-      if (err) return done(err);
-      done();
-    });
-});
+    }))
 
 it("gets 404 when actor id is nonexistent for downloading emissions in json", async () =>
   request(app).get(`/api/v1/download/${ACTOR_DNE}-emissions.csv`).expect(404));

@@ -142,6 +142,15 @@ Standard output. `data` is an object representing the actor, with the following 
   - `target_value`: value of the target.
   - `baseline_value`: value of the metric in the baseline year, for comparison.
   - `datasource_id`: data source for the target.
+  - `datasource`: an object representing the data source for this target, with the following properties:
+    - `datasource_id`: ID code for the datasource; should be identical to the key.
+    - `name`: name for the data source.
+    - `publisher`: Publisher code for the data source.
+    - `published`: Date this data source was published.
+    - `URL`: URL to retrieve the data source or learn more about it.
+    - `created`: date this datasource was imported to the database
+    - `last_updated`: date this datasource was last updated
+    not computers.
   - `initiative`: an object representing the initiative this is part of, if any, with the following properties:
     - `initiative_id`: unique ID for this initiative
     - `name`: English name of the initiative
