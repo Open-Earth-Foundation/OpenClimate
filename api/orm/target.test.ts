@@ -5,6 +5,8 @@ import { DataSource } from "./datasource";
 import { Publisher } from "./publisher";
 import { Target } from "./target";
 import { Initiative } from "./initiative";
+import { DataSourceQuality } from "./datasourcequality";
+import { EmissionsAgg } from './emissionsagg';
 
 const disconnect = require("./init").disconnect;
 
@@ -60,7 +62,7 @@ const countryTarget2Props = {
   baseline_value: 100000000,
   target_year: 2030,
   target_value: 75,
-  target_units: "percent",
+  target_unit: "percent",
   datasource_id: datasourceProps.datasource_id,
   URL: "https://fake.example/countrytarget2",
   summary: "#1 target by a country to make some changes",
@@ -84,7 +86,7 @@ const regionTarget1Props = {
   baseline_value: 10000000,
   target_year: 2030,
   target_value: 75,
-  target_units: "percent",
+  target_unit: "percent",
   datasource_id: datasourceProps.datasource_id,
   URL: "https://fake.example/regiontarget3",
   summary: "#3 target by a region to make some changes",
@@ -116,12 +118,60 @@ const initiativeTargetProps = {
   baseline_value: 10000000,
   target_year: 2030,
   target_value: 75,
-  target_units: "percent",
+  target_unit: "percent",
   datasource_id: datasourceProps.datasource_id,
   URL: "https://fake.example/regiontarget4",
   summary: "#4 target by a region to make some changes",
   initiative_id: initiativeProps.initiative_id,
 };
+
+// Getting target completion percentage
+
+const country4Props = {
+  actor_id: "target.test.ts:actor:country:4",
+  type: "country",
+  name: "Fake country actor from target.test.ts",
+  is_part_of: 'EARTH',
+  datasource_id: datasourceProps.datasource_id,
+};
+
+const country4Target1Props = {
+  target_id: "target.test.ts:country:4:target:1",
+  actor_id: country4Props.actor_id,
+  target_type: 'Absolute emission reduction',
+  baseline_year: 2005,
+  baseline_value: 10000000,
+  target_year: 2035,
+  target_value: 75,
+  target_unit: "percent",
+  datasource_id: datasourceProps.datasource_id
+};
+
+const country4Target2Props = {
+  target_id: "target.test.ts:country:4:target:2",
+  actor_id: country4Props.actor_id,
+  target_type: 'Carbon intensity reduction',
+  baseline_year: 2005,
+  baseline_value: 420,
+  target_year: 2035,
+  target_value: 69,
+  target_unit: "percent",
+  datasource_id: datasourceProps.datasource_id
+};
+
+const country4EmissionsProps = {
+  emissions_id: "target.test.ts:country:4:emissions:1",
+  actor_id: country4Props.actor_id,
+  year: 2021,
+  total_emissions: 6000000,
+  datasource_id: datasourceProps.datasource_id
+};
+
+const dataSourceQualityProps = {
+  datasource_id: datasourceProps.datasource_id,
+  score_type: 'GHG target completion',
+  score: 0.9
+}
 
 async function cleanup() {
   await Target.destroy({
@@ -130,7 +180,13 @@ async function cleanup() {
   await Initiative.destroy({
     where: { datasource_id: datasourceProps.datasource_id },
   });
+  await EmissionsAgg.destroy({
+    where: { datasource_id: datasourceProps.datasource_id },
+  });
   await Actor.destroy({
+    where: { datasource_id: datasourceProps.datasource_id },
+  });
+  await DataSourceQuality.destroy({
     where: { datasource_id: datasourceProps.datasource_id },
   });
   await DataSource.destroy({
@@ -146,7 +202,9 @@ beforeAll(async () => {
 
   await Publisher.create(publisherProps);
   await DataSource.create(datasourceProps);
+  await DataSourceQuality.create(dataSourceQualityProps);
   await Actor.create(countryProps);
+  await Actor.create(country4Props);
   await Actor.create(regionProps);
   await Actor.create(region2Props);
   await Initiative.create(initiativeProps);
@@ -238,3 +296,23 @@ it("can create and get a target with associated initiative", async () => {
 
   expect(matches.length).toEqual(0);
 });
+
+it("can get completion percentage on relevant targets", async () => {
+
+  let [t1, t2, ea] = await Promise.all([
+    Target.create(country4Target1Props),
+    Target.create(country4Target2Props),
+    EmissionsAgg.create(country4EmissionsProps)
+  ])
+
+  let complete1 = await t1.getPercentComplete()
+  expect(typeof complete1).toEqual('number')
+  expect(complete1).toBeCloseTo(53.333)
+
+  let complete2 = await t2.getPercentComplete()
+  expect(complete2).toBeNull()
+
+  await Promise.all([
+    t1.destroy(), t2.destroy(), ea.destroy()
+  ])
+})

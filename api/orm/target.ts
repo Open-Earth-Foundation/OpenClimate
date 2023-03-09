@@ -12,6 +12,7 @@ import {
 import { DataSource } from "./datasource";
 import { Actor } from "./actor";
 import { Initiative } from "./initiative";
+import { EmissionsAgg } from './emissionsagg';
 
 const init = require("./init.ts");
 export const sequelize = init.connect();
@@ -39,6 +40,23 @@ export class Target extends Model<
   declare last_updated: CreationOptional<Date>;
   public isNetZero() : boolean {
     return this.target_type === 'Net zero'
+  };
+  public async getPercentComplete(): Promise<any> {
+    const scoreType = 'GHG target completion'
+
+    if (this.target_type !== 'Absolute emission reduction' || this.target_unit !== 'percent') {
+      return null
+    }
+
+    let latest = await EmissionsAgg.forPurposeLatest('GHG target completion', this.actor_id)
+
+    if (!latest) {
+      return null
+    }
+
+    let totalReduction = this.baseline_value * (this.target_value/100.00)
+    let currentReduction = this.baseline_value - Number(latest.total_emissions)
+    return (currentReduction/totalReduction) * 100.0
   }
 }
 
