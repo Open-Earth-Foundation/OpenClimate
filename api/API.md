@@ -142,6 +142,7 @@ Standard output. `data` is an object representing the actor, with the following 
   - `target_value`: value of the target.
   - `baseline_value`: value of the metric in the baseline year, for comparison.
   - `is_net_zero`: true if this is a "net zero" target; otherwise false.
+  - `percent_achieved`: percent the target is achieved, if it's a percent absolute emissions reduction, otherwise null.
   - `datasource_id`: data source for the target.
   - `datasource`: an object representing the data source for this target, with the following properties:
     - `datasource_id`: ID code for the datasource; should be identical to the key.

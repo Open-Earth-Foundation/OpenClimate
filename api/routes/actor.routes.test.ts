@@ -14,6 +14,7 @@ import { DataSourceTag } from "../orm/datasourcetag";
 import { EmissionsAggTag } from "../orm/emissionsaggtag";
 import { ActorDataCoverage } from "../orm/actordatacoverage";
 import { Initiative } from "../orm/initiative";
+import { DataSourceQuality } from '../orm/datasourcequality';
 
 import { app } from "../app";
 import request from "supertest";
@@ -104,7 +105,7 @@ const initiativeProps = {
 const countryTarget1Props = {
   target_id: "actor.routes.test.ts:target:1",
   actor_id: country1Props.actor_id,
-  target_type: "absolute",
+  target_type: "Absolute emission reduction",
   baseline_year: 2015,
   baseline_value: 100000000,
   target_year: 2025,
@@ -117,7 +118,7 @@ const countryTarget1Props = {
 const countryTarget2Props = {
   target_id: "actor.routes.test.ts:target:2",
   actor_id: country1Props.actor_id,
-  target_type: "percent",
+  target_type: "Absolute emission reduction",
   baseline_year: 2020,
   baseline_value: 100000000,
   target_year: 2030,
@@ -190,6 +191,12 @@ const city3Props = {
   datasource_id: datasource1Props.datasource_id,
 };
 
+const datasource1QualityProps = {
+  datasource_id: datasource1Props.datasource_id,
+  score_type: 'GHG target completion',
+  score: 0.9
+}
+
 async function cleanup() {
   // Clean up if there were failed tests
   for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) {
@@ -237,6 +244,9 @@ async function cleanup() {
   await Actor.destroy({
     where: { datasource_id: datasource1Props.datasource_id },
   });
+  await DataSourceQuality.destroy({
+    where: { datasource_id: datasource1Props.datasource_id },
+  });
   await DataSource.destroy({
     where: { datasource_id: datasource2Props.datasource_id },
   });
@@ -265,6 +275,8 @@ beforeAll(async () => {
   await Publisher.create(publisher2Props);
   await DataSource.create(datasource1Props);
   await DataSource.create(datasource2Props);
+  await DataSourceQuality.create(datasource1QualityProps);
+
   await Actor.create(country1Props);
   await Actor.create(country2Props);
   await Actor.create(cityProps);
@@ -785,6 +797,30 @@ it("returns target.is_net_zero", async () =>
       expect(target1.is_net_zero).toBeDefined()
       expect(target3.is_net_zero).toBeTruthy()
     }));
+
+it("returns target.percent_achieved", async () =>
+request(app)
+  .get(`/api/v1/actor/${country1Props.actor_id}`)
+  .expect(200)
+  .expect("Content-Type", /json/)
+  .expect((res: any) => {
+    expect(res.body.data).toBeDefined();
+    const data = res.body.data;
+    expect(data.targets).toBeDefined();
+    expect(data.targets.length).toEqual(3);
+    const target1 = data.targets.find(t => t.target_id == countryTarget1Props.target_id);
+    expect(target1).toBeDefined()
+    expect(target1.percent_achieved).toBeDefined()
+    expect(target1.percent_achieved).toBeNull()
+    const target2 = data.targets.find(t => t.target_id == countryTarget2Props.target_id);
+    expect(target2).toBeDefined()
+    expect(target2.percent_achieved).toBeDefined()
+    expect(typeof target2.percent_achieved).toEqual('number')
+    const target3 = data.targets.find(t => t.target_id == countryTarget3Props.target_id);
+    expect(target3).toBeDefined()
+    expect(target1.percent_achieved).toBeDefined()
+    expect(target3.percent_achieved).toBeNull()
+  }));
 
 it("returns target.datasource", async () =>
 request(app)
