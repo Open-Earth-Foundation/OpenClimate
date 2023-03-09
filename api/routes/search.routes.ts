@@ -85,10 +85,55 @@ router.get(
               query: {
                 bool: {
                   should: [
-                    { match: { name: { query: q, boost: 1.0 } } },
+                    { match_phrase: { name: { query: q, boost: 1.0 } } },
+                    { match: { type: { query: 'country', boost: 1.1 } } },
+                    { match: { type: { query: 'adm1', boost: 1.05 } } },
+                    { match: { type: { query: 'adm2', boost: 1.05 } } },
+                    { match: { type: { query: 'company', boost: 1.1 } } },
+                    {
+                      range: {
+                        population: {
+                          gte: 0,
+                          lte: 1e4,
+                          boost: 1.01
+                        }
+                      }
+                    },
+                    {
+                      range: {
+                        population: {
+                          gt: 1e4,
+                          lte: 1e7,
+                          boost: 1.02
+                        }
+                      }
+                    },
+                    {
+                      range: {
+                        population: {
+                          gt: 1e7,
+                          lte: 1e8,
+                          boost: 1.03
+                        }
+                      }
+                    },
+                    {
+                      range: {
+                        population: {
+                          gt: 1e8,
+                          lte: 1e10,
+                          boost: 1.04
+                        }
+                      }
+                    }
                   ]
-                }
+                },
               },
+              boost_mode: "multiply",
+              // update min_score this if you change boosts.
+              // _score for all records is 7.1041927 if you query random characters
+              // set  min_score to something slighter larger than this to filter garbage
+              min_score: 7.2
             },
           },
         };
