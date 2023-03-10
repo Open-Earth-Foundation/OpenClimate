@@ -14,6 +14,8 @@ import { Actor } from "./actor";
 import { Initiative } from "./initiative";
 import { EmissionsAgg } from './emissionsagg';
 
+const logger = require("../logger").child({ module: __filename });
+
 const init = require("./init.ts");
 export const sequelize = init.connect();
 
@@ -44,7 +46,15 @@ export class Target extends Model<
   public async getPercentComplete(): Promise<any> {
     const scoreType = 'GHG target completion'
 
+    logger.debug({target_id: this.target_id, message: "checking percent complete"})
+
     if (this.target_type !== 'Absolute emission reduction' || this.target_unit !== 'percent') {
+      logger.debug({
+        target_id: this.target_id,
+        target_type: this.target_type,
+        target_unit: this.target_unit,
+        message: "not appropriate for percent complete calculation"
+      })
       return null
     }
 
@@ -55,21 +65,44 @@ export class Target extends Model<
     if (!this.baseline_value) {
       const baseline = await EmissionsAgg.forPurpose(scoreType, this.actor_id, this.baseline_year);
       if (!baseline) {
+        logger.debug({
+          target_id: this.target_id,
+          baseline_year: this.baseline_year,
+          actor_id: this.actor_id,
+          message: "No appropriate emissions data for baseline year"
+        })
         return null
       }
       baselineValue = Number(baseline.total_emissions)
     }
 
-    let latest = await EmissionsAgg.forPurposeLatest('GHG target completion', this.actor_id)
+    let latest = await EmissionsAgg.forPurposeLatest(scoreType, this.actor_id)
 
     if (!latest) {
+      logger.debug({
+        target_id: this.target_id,
+        actor_id: this.actor_id,
+        message: "No recent emissions data"
+      })
       return null
     }
 
+    let latestValue = Number(latest.total_emissions)
     let totalReduction = baselineValue * (this.target_value/100.00)
-    let currentReduction = baselineValue - Number(latest.total_emissions)
+    let currentReduction = baselineValue - latestValue
+    let percentAchieved = (currentReduction/totalReduction) * 100.0
 
-    return (currentReduction/totalReduction) * 100.0
+    logger.debug({
+      baselineValue: baselineValue,
+      target_value: this.target_value,
+      latestEmissions: latestValue,
+      totalReduction: totalReduction,
+      currentReduction: currentReduction,
+      percentAchieved: percentAchieved,
+      message: 'Calculated percent achieved'
+    })
+
+    return percentAchieved
   }
 }
 
