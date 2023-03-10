@@ -44,7 +44,7 @@ export class Target extends Model<
     return this.target_type === 'Net zero'
   };
   public async getPercentComplete(): Promise<any> {
-    const scoreType = 'GHG target completion'
+    const scoreType = 'GHG target'
 
     logger.debug({target_id: this.target_id, message: "checking percent complete"})
 

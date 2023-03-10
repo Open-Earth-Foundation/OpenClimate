@@ -438,7 +438,7 @@ The rows are unique by `datasource_id` and `score_type`.
 
 - `datasource_id`: The datasource that is being scored.
 - `score_type`: A short string defining the type of score under discussion. Known types include:
-    - `GHG target completion`: data sources with emissions
+    - `GHG target`: data sources with emissions
       data that can be used to estimate target completion.
 - `score`: A quality score for this data source for this
 type of use. Values range from 0.0 to 1.0, inclusive.

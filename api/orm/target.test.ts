@@ -188,7 +188,7 @@ const country4Emissions2Props = {
 
 const dataSourceQualityProps = {
   datasource_id: datasourceProps.datasource_id,
-  score_type: 'GHG target completion',
+  score_type: 'GHG target',
   score: 0.9
 }
 

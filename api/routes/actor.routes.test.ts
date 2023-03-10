@@ -193,7 +193,7 @@ const city3Props = {
 
 const datasource1QualityProps = {
   datasource_id: datasource1Props.datasource_id,
-  score_type: 'GHG target completion',
+  score_type: 'GHG target',
   score: 0.9
 }
 

@@ -145,13 +145,13 @@ const country2DataSource2Emissions2022 = {
 
 const emissionsDataSource1QualityProps = {
   datasource_id: emissionsDataSource1Props.datasource_id,
-  score_type: 'GHG target completion',
+  score_type: 'GHG target',
   score: 0.7
 };
 
 const emissionsDataSource2QualityProps = {
   datasource_id: emissionsDataSource2Props.datasource_id,
-  score_type: 'GHG target completion',
+  score_type: 'GHG target',
   score: 0.3
 };
 
@@ -287,12 +287,12 @@ it("can get latest high-quality EmissionsAgg", async () => {
   ])
 
 
-  let best2019 = await EmissionsAgg.forPurpose('GHG target completion', country2Props.actor_id, 2019)
+  let best2019 = await EmissionsAgg.forPurpose('GHG target', country2Props.actor_id, 2019)
 
   expect(best2019).toBeDefined()
   expect(Number(best2019.total_emissions)).toEqual(country2DataSource1Emissions2019.total_emissions)
 
-  let bestLatest = await EmissionsAgg.forPurposeLatest('GHG target completion', country2Props.actor_id)
+  let bestLatest = await EmissionsAgg.forPurposeLatest('GHG target', country2Props.actor_id)
 
   expect(bestLatest).toBeDefined()
   expect(Number(bestLatest.total_emissions)).toEqual(country2DataSource1Emissions2022.total_emissions)

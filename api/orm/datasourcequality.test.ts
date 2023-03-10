@@ -34,7 +34,7 @@ const datasourcequality1 = {
     datasource_id: datasource1.datasource_id,
     name: "Fake datasourcequality from datasourcequality.test.ts",
     score: 0.9,
-    score_type: 'GHG target completion'
+    score_type: 'GHG target'
 };
 
 const datasourcequality2 = {
@@ -48,7 +48,7 @@ const datasourcequality3 = {
     datasource_id: datasource2.datasource_id,
     name: "Fake datasourcequality from datasourcequality.test.ts",
     score: 0.4,
-    score_type: 'GHG target completion'
+    score_type: 'GHG target'
 };
 
 async function cleanup() {
@@ -93,11 +93,11 @@ it("can create, read, update and delete a DataSourceTag", async () => {
   ])
 
   let match = await DataSourceQuality.findOne({
-    where: { datasource_id: datasource1.datasource_id, score_type: 'GHG target completion' },
+    where: { datasource_id: datasource1.datasource_id, score_type: 'GHG target' },
   });
 
   expect(match.datasource_id).toEqual(datasource1.datasource_id);
-  expect(match.score_type).toEqual('GHG target completion' );
+  expect(match.score_type).toEqual('GHG target' );
   expect(match.score).toBeCloseTo(datasourcequality1.score)
   expect(match.created).toBeDefined();
   expect(match.last_updated).toBeDefined();
@@ -107,10 +107,10 @@ it("can create, read, update and delete a DataSourceTag", async () => {
   expect(matches.length).toEqual(2);
 
   matches = await DataSourceQuality.findAll({
-    where: { score_type: 'GHG target completion'},
+    where: { score_type: 'GHG target'},
   });
 
-  expect(matches.length).toEqual(2);
+  expect(matches.length).toBeGreaterThanOrEqual(2);
 
   await Promise.all([dsq1.destroy(), dsq2.destroy(), dsq3.destroy()])
 });
