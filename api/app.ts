@@ -39,7 +39,7 @@ require("./passport-config")(passport);
 
 const {name, version} = require('./package.json');
 
-const esStatus = (process.env.ELASTICSEARCH_ENABLED === 'yes') ? 'ElasticSearchEnabled' : 'ElasticSearchDisabled'
+const esStatus = (process.env.ELASTIC_SEARCH_ENABLED === 'yes') ? 'ElasticSearchEnabled' : 'ElasticSearchDisabled'
 const product = `${name}/${version} (${esStatus})`
 
 // We use one Winston instance for the entire app
