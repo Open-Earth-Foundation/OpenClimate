@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /account/
+
+User-agent: *
+Disallow: /admin/
+
+User-agent: *
+Disallow: /nested-accounts/
+
+User-agent: *
+Allow: /
