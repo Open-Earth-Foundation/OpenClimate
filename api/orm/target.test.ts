@@ -159,8 +159,27 @@ const country4Target2Props = {
   datasource_id: datasourceProps.datasource_id
 };
 
-const country4EmissionsProps = {
+const country4Target3Props = {
+  target_id: "target.test.ts:country:4:target:3",
+  actor_id: country4Props.actor_id,
+  target_type: 'Absolute emission reduction',
+  baseline_year: 2005,
+  target_year: 2035,
+  target_value: 75,
+  target_unit: "percent",
+  datasource_id: datasourceProps.datasource_id
+};
+
+const country4Emissions1Props = {
   emissions_id: "target.test.ts:country:4:emissions:1",
+  actor_id: country4Props.actor_id,
+  year: 2005,
+  total_emissions: 10000000,
+  datasource_id: datasourceProps.datasource_id
+};
+
+const country4Emissions2Props = {
+  emissions_id: "target.test.ts:country:4:emissions:2",
   actor_id: country4Props.actor_id,
   year: 2021,
   total_emissions: 6000000,
@@ -299,10 +318,12 @@ it("can create and get a target with associated initiative", async () => {
 
 it("can get completion percentage on relevant targets", async () => {
 
-  let [t1, t2, ea] = await Promise.all([
+  let [t1, t2, t3, ea1, ea2] = await Promise.all([
     Target.create(country4Target1Props),
     Target.create(country4Target2Props),
-    EmissionsAgg.create(country4EmissionsProps)
+    Target.create(country4Target3Props),
+    EmissionsAgg.create(country4Emissions1Props),
+    EmissionsAgg.create(country4Emissions2Props)
   ])
 
   let complete1 = await t1.getPercentComplete()
@@ -312,7 +333,11 @@ it("can get completion percentage on relevant targets", async () => {
   let complete2 = await t2.getPercentComplete()
   expect(complete2).toBeNull()
 
+  let complete3 = await t3.getPercentComplete()
+  expect(typeof complete3).toEqual('number')
+  expect(complete3).toBeCloseTo(53.333)
+
   await Promise.all([
-    t1.destroy(), t2.destroy(), ea.destroy()
+    t1.destroy(), t2.destroy(), t3.destroy(), ea1.destroy(), ea2.destroy()
   ])
 })

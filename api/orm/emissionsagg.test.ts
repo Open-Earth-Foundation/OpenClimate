@@ -286,6 +286,12 @@ it("can get latest high-quality EmissionsAgg", async () => {
     EmissionsAgg.create(country2DataSource2Emissions2022),
   ])
 
+
+  let best2019 = await EmissionsAgg.forPurpose('GHG target completion', country2Props.actor_id, 2019)
+
+  expect(best2019).toBeDefined()
+  expect(Number(best2019.total_emissions)).toEqual(country2DataSource1Emissions2019.total_emissions)
+
   let bestLatest = await EmissionsAgg.forPurposeLatest('GHG target completion', country2Props.actor_id)
 
   expect(bestLatest).toBeDefined()

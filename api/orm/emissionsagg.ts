@@ -12,6 +12,7 @@ import { DataSource } from "./datasource";
 import { DataSourceQuality } from "./datasourcequality";
 import { Methodology } from "./methodology";
 import { Actor } from "./actor";
+import { integer } from "@elastic/elasticsearch/lib/api/types";
 
 const init = require("./init.ts");
 export const sequelize = init.connect();
@@ -49,6 +50,28 @@ export class EmissionsAgg extends Model<
     let maxYear = Math.max(...allEmissions.map(ea => ea.year))
     let latest = allEmissions.filter(ea => ea.year === maxYear)
     let sorted = latest.sort((a, b) => (score(a) < score(b)) ? 1 : ((score(a) > score(b)) ? -1 : 0))
+    let best = sorted[0]
+    return best
+  };
+  static async forPurpose(scoreType: string, actorID: string, year: integer): Promise<EmissionsAgg> {
+    let allEmissions = await EmissionsAgg.findAll({
+      where: {actor_id: actorID, year: year},
+    })
+    if (allEmissions.length === 0) {
+      return null
+    }
+    const unique = (v, i, a) => a.indexOf(v) == i;
+    let dataSourceIDs = allEmissions.map(ea => ea.datasource_id).filter(unique)
+    let allDSQ = await DataSourceQuality.findAll({
+      where: {datasource_id: dataSourceIDs, score_type: scoreType}
+    })
+    if (allDSQ.length === 0) {
+      return null
+    }
+    // Get the highest-score value
+    let dsq = (ea) => allDSQ.find(dsq => dsq.datasource_id == ea.datasource_id)
+    let score = (ea) => { let d = dsq(ea); return (d) ? d.score : 0.0}
+    let sorted = allEmissions.sort((a, b) => (score(a) < score(b)) ? 1 : ((score(a) > score(b)) ? -1 : 0))
     let best = sorted[0]
     return best
   }

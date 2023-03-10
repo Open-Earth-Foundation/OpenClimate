@@ -48,14 +48,27 @@ export class Target extends Model<
       return null
     }
 
+    // We use either the declared baseline or the best value for that year
+
+    let baselineValue = this.baseline_value;
+
+    if (!this.baseline_value) {
+      const baseline = await EmissionsAgg.forPurpose(scoreType, this.actor_id, this.baseline_year);
+      if (!baseline) {
+        return null
+      }
+      baselineValue = Number(baseline.total_emissions)
+    }
+
     let latest = await EmissionsAgg.forPurposeLatest('GHG target completion', this.actor_id)
 
     if (!latest) {
       return null
     }
 
-    let totalReduction = this.baseline_value * (this.target_value/100.00)
-    let currentReduction = this.baseline_value - Number(latest.total_emissions)
+    let totalReduction = baselineValue * (this.target_value/100.00)
+    let currentReduction = baselineValue - Number(latest.total_emissions)
+
     return (currentReduction/totalReduction) * 100.0
   }
 }
