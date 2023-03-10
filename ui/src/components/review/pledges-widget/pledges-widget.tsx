@@ -23,6 +23,7 @@ import PledgeItem from "./pledge-item";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@mui/material/Tooltip";
 import { IconButton } from "@material-ui/core";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -142,7 +143,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                 <TableBody>
                   {targets.map((target:any) => (
                     <StyledTableRow key={target.target_id}>
-                      <StyledTableCell component="th" scope="row">
+                      <StyledTableCell component="th" scope="row" width="20%">
                         <div>
                           <span className="pledges-widget__target-percent">
                             {target.target_value} % &nbsp;
@@ -152,7 +153,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                           </span>
                         </div>
                       </StyledTableCell>
-                      <StyledTableCell align="left">
+                      <StyledTableCell align="left" width="25%">
                         <div className="pledges-widget__commitment">
                           <p>
                             {target.target_type}
@@ -162,8 +163,28 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                           </span>
                         </div>
                       </StyledTableCell>
-                      <StyledTableCell align="left">ProgressBar</StyledTableCell>
-                      <StyledTableCell align="right">
+                      <StyledTableCell align="left" width="50%">
+                        <div className="pledges-widget__progress-container">
+                          <div className="pledges-widget__progress-percent">{ target.percent_achieved && target.percent_achieved > 0 ? `${ target.percent_achieved > 1 ? 100 : Math.round(target.percent_achieved * 100)}%` : 'N/A'}</div>
+                          <div className="pledges-widget__progress-progressbar">
+                            {
+                              target.percent_achieved && target.percent_achieved > 0 ? 
+                                <ProgressBar 
+                                  completed={target.percent_achieved > 1 ? 100 : Math.round(target.percent_achieved * 100)}
+                                  isLabelVisible={false}
+                                  height="10px"
+                                  width="464px"
+                                  borderRadius="0"
+                                  bgColor="#4BD300"
+                                  baseBgColor="#E6E7FF"
+                                  animateOnRender={true} />
+                                  :
+                                  "N/A"
+                            }
+                          </div>
+                        </div>
+                      </StyledTableCell>
+                      <StyledTableCell align="right" width="5%">
                         <InfoOutlined className="pledges-widget__target-info"/>
                       </StyledTableCell> 
                     </StyledTableRow>
