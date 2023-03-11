@@ -87,8 +87,9 @@ router.get(
                   should: [
                     { match_phrase: { name: { query: q, boost: 1.0 } } },
                     { match: { type: { query: 'country', boost: 1.1 } } },
-                    { match: { type: { query: 'adm1', boost: 1.05 } } },
-                    { match: { type: { query: 'adm2', boost: 1.05 } } },
+                    { match: { type: { query: 'adm1', boost: 1.07 } } },
+                    { match: { type: { query: 'adm2', boost: 1.07 } } },
+                    { match: { type: { query: 'city', boost: 1.02 } } },
                     { match: { type: { query: 'company', boost: 1.1 } } },
                     {
                       range: {
