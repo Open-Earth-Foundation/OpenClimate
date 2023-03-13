@@ -1,0 +1,2 @@
+datasource_id,score_type,score,notes
+ECCC:GHG_inventory:2022-04-13,GHG target,0.9,country reported. sum across provinces equal to country data reported to UNFCCC

@@ -259,6 +259,24 @@
         color: #818385;
     }
 
+    &__progress-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__progress-percent {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        padding-right: 14px;
+    }
+
+    &__progress-progressbar {
+        font-size: 14px;
+        line-height: 21px;
+    }
+
     &__pledge-entry{
         padding-left: 20px;
         padding-right: 20px;

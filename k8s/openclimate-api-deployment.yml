@@ -46,6 +46,8 @@ spec:
           value: development
         - name: ELASTIC_SEARCH_ENABLED
           value: "yes"
+        - name: OPENCLIMATE_LOG_LEVEL
+          value: 'debug'
         resources:
           limits:
             memory: "1024Mi"

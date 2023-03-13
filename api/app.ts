@@ -37,9 +37,22 @@ const Images = require("./agentLogic/images");
 
 require("./passport-config")(passport);
 
+const {name, version} = require('./package.json');
+
+const esStatus = (process.env.ELASTIC_SEARCH_ENABLED === 'yes') ? 'ElasticSearchEnabled' : 'ElasticSearchDisabled'
+const product = `${name}/${version} (${esStatus})`
+
 // We use one Winston instance for the entire app
 
 const logger = require("./logger").child({ module: __filename });
+
+// recommended wrapper for Express async handlers
+// see https://expressjs.com/en/advanced/best-practice-performance.html#use-promises
+
+const wrap =
+  (fn) =>
+  (...args) =>
+    fn(...args).catch(args[2]);
 
 export const app = express();
 
@@ -72,6 +85,12 @@ app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // enable pre-flight
 
 app.use(express.json());
+
+app.use(wrap(async (_, res, next) => {
+  res.set('Server', product)
+  next()
+}))
+
 app.use(schemaRoutes);
 app.use(pledgeRoutes);
 app.use(transferRoutes);
@@ -91,13 +110,6 @@ app.use(trustedRegistryRoutes);
 app.use(actorRoutes);
 app.use(searchRoutes);
 
-// recommended wrapper for Express async handlers
-// see https://expressjs.com/en/advanced/best-practice-performance.html#use-promises
-
-const wrap =
-  (fn) =>
-  (...args) =>
-    fn(...args).catch(args[2]);
 
 // Send all cloud agent webhooks posting to the agent webhook router
 app.use("/api/controller-webhook", agentWebhookRouter);

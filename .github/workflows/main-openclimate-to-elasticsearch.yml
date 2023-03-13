@@ -1,11 +1,11 @@
-name: Push OpenClimate-to-ElasticSearch indexer develop to ECR latest
+name: Push OpenClimate-to-ElasticSearch indexer main to ECR stable
 
 on:
   workflow_dispatch:
   push:
     paths:
       - openclimate-to-elasticsearch/**
-    branches: [ "develop" ]
+    branches: [ "main" ]
 
 jobs:
   pushToECR:
@@ -22,11 +22,11 @@ jobs:
 
     - name: Pushing OC2ES to ECR
       env:
-        VERSION: ${{ github.sha }}
+        SHA: ${{ github.sha }}
         IMAGE: public.ecr.aws/openearthfoundation/openclimate-to-elasticsearch
 
       run: |
-        docker build -t $IMAGE:$VERSION openclimate-to-elasticsearch
-        docker tag $IMAGE:$VERSION $IMAGE:latest
-        docker push $IMAGE:$VERSION
-        docker push $IMAGE:latest
+        docker build -t $IMAGE:$SHA openclimate-to-elasticsearch
+        docker tag $IMAGE:$SHA $IMAGE:stable
+        docker push $IMAGE:$SHA
+        docker push $IMAGE:stable

@@ -1,6 +1,7 @@
-name: Run OpenClimate importer
+name: Run OpenClimate develop importer
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - harmonize/data/processed/**

@@ -1,5 +1,6 @@
 // actor.routes.test.ts -- tests for ORM Actor
 
+import { unlink } from 'node:fs/promises'
 import { Actor } from "../orm/actor";
 import { DataSource } from "../orm/datasource";
 import { Publisher } from "../orm/publisher";
@@ -13,6 +14,7 @@ import { DataSourceTag } from "../orm/datasourcetag";
 import { EmissionsAggTag } from "../orm/emissionsaggtag";
 import { ActorDataCoverage } from "../orm/actordatacoverage";
 import { Initiative } from "../orm/initiative";
+import { DataSourceQuality } from '../orm/datasourcequality';
 
 import { app } from "../app";
 import request from "supertest";
@@ -103,7 +105,7 @@ const initiativeProps = {
 const countryTarget1Props = {
   target_id: "actor.routes.test.ts:target:1",
   actor_id: country1Props.actor_id,
-  target_type: "absolute",
+  target_type: "Absolute emission reduction",
   baseline_year: 2015,
   baseline_value: 100000000,
   target_year: 2025,
@@ -116,12 +118,20 @@ const countryTarget1Props = {
 const countryTarget2Props = {
   target_id: "actor.routes.test.ts:target:2",
   actor_id: country1Props.actor_id,
-  target_type: "percent",
+  target_type: "Absolute emission reduction",
   baseline_year: 2020,
   baseline_value: 100000000,
   target_year: 2030,
   target_value: 75,
   target_unit: "percent",
+  datasource_id: datasource1Props.datasource_id,
+};
+
+const countryTarget3Props = {
+  target_id: "actor.routes.test.ts:country:1:target:3",
+  actor_id: country1Props.actor_id,
+  target_type: "Net zero",
+  target_year: 2050,
   datasource_id: datasource1Props.datasource_id,
 };
 
@@ -181,6 +191,12 @@ const city3Props = {
   datasource_id: datasource1Props.datasource_id,
 };
 
+const datasource1QualityProps = {
+  datasource_id: datasource1Props.datasource_id,
+  score_type: 'GHG target',
+  score: 0.9
+}
+
 async function cleanup() {
   // Clean up if there were failed tests
   for (let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) {
@@ -228,6 +244,9 @@ async function cleanup() {
   await Actor.destroy({
     where: { datasource_id: datasource1Props.datasource_id },
   });
+  await DataSourceQuality.destroy({
+    where: { datasource_id: datasource1Props.datasource_id },
+  });
   await DataSource.destroy({
     where: { datasource_id: datasource2Props.datasource_id },
   });
@@ -236,6 +255,13 @@ async function cleanup() {
   });
   await Publisher.destroy({ where: { id: publisher2Props.id } });
   await Publisher.destroy({ where: { id: publisher1Props.id } });
+
+  const fname = `${country1Props.actor_id}-emissions.csv`
+  try {
+    await unlink(fname)
+  } catch (err) {
+    // Ignore unlink error
+  }
 }
 
 beforeAll(async () => {
@@ -249,6 +275,8 @@ beforeAll(async () => {
   await Publisher.create(publisher2Props);
   await DataSource.create(datasource1Props);
   await DataSource.create(datasource2Props);
+  await DataSourceQuality.create(datasource1QualityProps);
+
   await Actor.create(country1Props);
   await Actor.create(country2Props);
   await Actor.create(cityProps);
@@ -266,6 +294,7 @@ beforeAll(async () => {
 
   await Initiative.create(initiativeProps);
   await Target.create(countryTarget2Props);
+  await Target.create(countryTarget3Props);
   await Target.create(countryTarget1Props);
 
   await Target.create(country2Target1Props);
@@ -575,7 +604,7 @@ it("can get actor details", async () =>
       expect(data.population[0].year).toBeDefined();
 
       expect(data.gdp.length).toEqual(20);
-      expect(data.targets.length).toEqual(2);
+      expect(data.targets.length).toEqual(3);
 
       expect(data.emissions).toBeDefined();
       expect(data.emissions[datasource1Props.datasource_id]).toBeDefined();
@@ -749,6 +778,80 @@ it("can return target_unit", async () =>
       expect(typeof target.target_unit).toEqual("string");
     }));
 
+it("returns target.is_net_zero", async () =>
+  request(app)
+    .get(`/api/v1/actor/${country1Props.actor_id}`)
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .expect((res: any) => {
+      expect(res.body.data).toBeDefined();
+      const data = res.body.data;
+      expect(data.targets).toBeDefined();
+      expect(data.targets.length).toEqual(3);
+      const target1 = data.targets.find(t => t.target_id == countryTarget1Props.target_id);
+      expect(target1).toBeDefined()
+      expect(target1.is_net_zero).toBeDefined()
+      expect(target1.is_net_zero).toBeFalsy()
+      const target3 = data.targets.find(t => t.target_id == countryTarget3Props.target_id);
+      expect(target3).toBeDefined()
+      expect(target1.is_net_zero).toBeDefined()
+      expect(target3.is_net_zero).toBeTruthy()
+    }));
+
+it("returns target.percent_achieved", async () =>
+request(app)
+  .get(`/api/v1/actor/${country1Props.actor_id}`)
+  .expect(200)
+  .expect("Content-Type", /json/)
+  .expect((res: any) => {
+    expect(res.body.data).toBeDefined();
+    const data = res.body.data;
+    expect(data.targets).toBeDefined();
+    expect(data.targets.length).toEqual(3);
+    const target1 = data.targets.find(t => t.target_id == countryTarget1Props.target_id);
+    expect(target1).toBeDefined()
+    expect(target1.percent_achieved).toBeDefined()
+    expect(target1.percent_achieved).toBeNull()
+    const target2 = data.targets.find(t => t.target_id == countryTarget2Props.target_id);
+    expect(target2).toBeDefined()
+    expect(target2.percent_achieved).toBeDefined()
+    expect(typeof target2.percent_achieved).toEqual('number')
+    const target3 = data.targets.find(t => t.target_id == countryTarget3Props.target_id);
+    expect(target3).toBeDefined()
+    expect(target1.percent_achieved).toBeDefined()
+    expect(target3.percent_achieved).toBeNull()
+  }));
+
+it("returns target.datasource", async () =>
+request(app)
+  .get(`/api/v1/actor/${country1Props.actor_id}`)
+  .expect(200)
+  .expect("Content-Type", /json/)
+  .expect((res: any) => {
+    expect(res.body.data).toBeDefined();
+    const data = res.body.data;
+    expect(data.targets).toBeDefined();
+    expect(data.targets.length).toBeGreaterThan(0);
+    const target = data.targets[0];
+    expect(target.datasource).toBeDefined();
+    expect(typeof target.datasource).toEqual("object");
+    const datasource = target.datasource
+    expect(datasource.datasource_id).toBeDefined();
+    expect(typeof datasource.datasource_id).toEqual("string");
+    expect(datasource.name).toBeDefined();
+    expect(typeof datasource.name).toEqual("string");
+    expect(datasource.publisher).toBeDefined();
+    expect(typeof datasource.publisher).toEqual("string");
+    expect(datasource.published).toBeDefined();
+    expect(typeof datasource.published).toEqual("string");
+    expect(datasource.URL).toBeDefined();
+    expect(typeof datasource.URL).toEqual("string");
+    expect(datasource.created).toBeDefined();
+    expect(typeof datasource.created).toEqual("string");
+    expect(datasource.last_updated).toBeDefined();
+    expect(typeof datasource.last_updated).toEqual("string");
+  }));
+
 it("returns the actor icon", async () =>
   request(app)
     .get(`/api/v1/actor/${country1Props.actor_id}`)
@@ -842,7 +945,7 @@ it("returns targets in target_year order", async () =>
       expect(res.body.data).toBeDefined();
       const data = res.body.data;
       expect(data.targets).toBeDefined();
-      expect(data.targets.length).toEqual(2);
+      expect(data.targets.length).toEqual(3);
       const years = data.targets.map((t: any) => t.target_year);
       expect(years).toEqual(years.slice().sort());
     }));
@@ -1007,8 +1110,6 @@ it("can download actor emissions in json", async () =>
     .expect((res: any) => {
       const emissions = res.body;
 
-      console.log(res.body);
-
       const emissions1 = emissions[datasource1Props.datasource_id];
 
       expect(emissions1.tags).toBeDefined();
@@ -1050,19 +1151,15 @@ it("can download actor emissions in json", async () =>
 it("gets 404 when actor id is nonexistent for downloading emissions in json", async () =>
   request(app).get(`/api/v1/download/${ACTOR_DNE}-emissions.json`).expect(404));
 
-it("responds with a CSV file", (done) => {
+it("responds with a CSV file", async () =>
   request(app)
     .get(`/api/v1/download/${country1Props.actor_id}-emissions.csv`)
-    .expect("Content-Type", "text/csv; charset=UTF-8")
     .expect(200)
+    .expect("Content-Type", "text/csv; charset=UTF-8")
+    .expect("Content-Disposition", /attachment/)
     .expect((res) => {
       expect(res.text).toBeDefined();
-    })
-    .end((err, res) => {
-      if (err) return done(err);
-      done();
-    });
-});
+    }))
 
 it("gets 404 when actor id is nonexistent for downloading emissions in json", async () =>
   request(app).get(`/api/v1/download/${ACTOR_DNE}-emissions.csv`).expect(404));

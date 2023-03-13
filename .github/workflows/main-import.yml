@@ -1,13 +1,13 @@
-name: Push Logstash with PostgreSQL to ECR
+name: Push OpenClimate importer main to ECR stable
 
 on:
+  workflow_dispatch:
   push:
     paths:
-      - logstash-postgresql/**
-    branches: [ "develop" ]
+      - import/**
+    branches: [ "main" ]
 
 jobs:
-
   pushToECR:
     runs-on: ubuntu-latest
     steps:
@@ -20,12 +20,13 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/openearthfoundation
 
-    - name: Pushing Logstash with PostgreSQL to ECR
+    - name: Pushing OC-importer to ECR
       env:
-        VERSION: ${{ github.sha }}
-        IMAGE: public.ecr.aws/openearthfoundation/logstash-postgresql
+        SHA: ${{ github.sha }}
+        IMAGE: public.ecr.aws/openearthfoundation/openclimate-import
+
       run: |
-        docker build -t $IMAGE:$VERSION logstash-postgresql
-        docker tag $IMAGE:$VERSION $IMAGE:latest
-        docker push $IMAGE:$VERSION
-        docker push $IMAGE:latest
+        docker build -t $IMAGE:$SHA import
+        docker tag $IMAGE:$SHA $IMAGE:stable
+        docker push $IMAGE:$SHA
+        docker push $IMAGE:stable

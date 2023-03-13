@@ -1,13 +1,11 @@
-name: Push OpenClimate acapy dev to ECR latest
+name: Push OpenClimate acapy main to ECR stable
 
 on:
   workflow_dispatch:
-
   push:
     paths:
       - aries-acapy-plugin-toolbox/**
-      - k8s/openclimate-acapy-**
-    branches: ["develop"]
+    branches: ["main"]
 
 jobs:
   pushToECR:
@@ -23,11 +21,11 @@ jobs:
 
       - name: Pushing OC-acapy to ECR
         env:
-          VERSION: ${{ github.sha }}
+          SHA: ${{ github.sha }}
           IMAGE: public.ecr.aws/openearthfoundation/openclimate-acapy
 
         run: |
-          docker build -t $IMAGE:$VERSION --file aries-acapy-plugin-toolbox/Dockerfile.local aries-acapy-plugin-toolbox
-          docker tag $IMAGE:$VERSION $IMAGE:latest
-          docker push $IMAGE:$VERSION
-          docker push $IMAGE:latest
+          docker build -t $IMAGE:$SHA --file aries-acapy-plugin-toolbox/Dockerfile.local aries-acapy-plugin-toolbox
+          docker tag $IMAGE:$SHA $IMAGE:stable
+          docker push $IMAGE:$SHA
+          docker push $IMAGE:stable
