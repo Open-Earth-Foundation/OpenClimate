@@ -41,6 +41,21 @@ def get_actor_populations(dbname=None, user=None, password=None, host=None):
             records = curs.fetchall()
             return dict(records)
 
+def get_actor_identifiers(dbname=None, user=None, password=None, host=None):
+    with psycopg2.connect(dbname=dbname, user=user, password=password, host=host) as conn:
+        with conn.cursor() as curs:
+            table_name = "ActorIdentifier"
+
+            qry = f'''
+            SELECT actor_id, string_agg(identifier, ',') AS identifiers
+            FROM "{table_name}"
+            GROUP BY actor_id
+            '''
+
+            curs.execute(qry)
+            records = curs.fetchall()
+            return dict(records)
+
 def main(args):
 
     db_params = dict(
@@ -53,6 +68,7 @@ def main(args):
     logging.info(f'get dictionary of actor type and population')
     actor_types = get_actor_types(**db_params)
     actor_populations = get_actor_populations(**db_params)
+    actor_identifiers = get_actor_identifiers(**db_params)
 
     logging.info(f'Connecting to ElasticSearch node {args.esnode} as user {args.esuser}')
 
@@ -87,13 +103,14 @@ def main(args):
 
                 actor_type = actor_types.get(actor_id, None)
                 actor_population = actor_populations.get(actor_id, None)
+                actor_identifier = actor_identifiers.get(actor_id, None)
 
                 logging.info(f'Indexing actor {actor_id} name {name} in language {language}')
 
                 id = actor_id + ":" + language + ":" + name
 
-                doc ={"actor_id": actor_id, "name": name, "language": language, "preferred": preferred, 
-                      "type": actor_type, "population": actor_population}
+                doc ={"actor_id": actor_id, "name": name, "language": language, "preferred": preferred,
+                      "type": actor_type, "population": actor_population, "identifier":  actor_identifier}
                 meta = {"created": created, "last_updated": last_updated, "datasource_id": datasource_id}
 
                 # TODO: need to figure out how to insert metadata
