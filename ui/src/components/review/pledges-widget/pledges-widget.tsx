@@ -1,11 +1,9 @@
-import React, { useState, FunctionComponent } from "react";
+import React, { useState, FunctionComponent, useEffect } from "react";
 import "./pledges-widget.scss";
-import { MdInfoOutline, MdArrowDownward } from "react-icons/md";
+import Popover from '@mui/material/Popover';
 import {
-  Boy,
-  AspectRatio,
   InfoOutlined,
-  MonetizationOnOutlined,
+  LinkOutlined,
   MoreVert,
 } from "@mui/icons-material";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
@@ -23,6 +21,7 @@ import PledgeItem from "./pledge-item";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@mui/material/Tooltip";
 import { IconButton } from "@material-ui/core";
+import { Button } from "@mui/material";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -36,6 +35,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: "#272727"
   },
 }));
+
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   
@@ -73,7 +73,7 @@ const monthNames = [
 
 const PledgesWidget: FunctionComponent<Props> = (props) => {
   const { current, parent } = props;
-
+  
   const useStyles = makeStyles(() => ({
     customTooltip: {
       backgroundColor: "rgba(44, 44, 44, 1)",
@@ -82,6 +82,12 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
     customArrow: {
       color: "rgba(44, 44, 44, 1)",
     },
+
+    popover: {
+      "&.MuiPopover-root > &.MuiPopover-paper": {
+          backgroundColor: "red"
+      }
+    }
   }));
 
   const classes = useStyles();
@@ -92,6 +98,21 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
   const [lastMonth, lastYear] = lastUpdated
     ? [new Date(lastUpdated).getMonth(), new Date(lastUpdated).getFullYear()]
     : [null, null];
+
+  // Popover
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const [openedPopoverId, setID] = useState<string | null>("")
+
+  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>, id: any) => {
+    setAnchorEl(event.currentTarget);
+    setID(id)
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+    setID(null)
+  };
+
   return (
     <div
       className="pledges-widget"
@@ -104,7 +125,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
               <div className="pledges-widget__metadata-inner">
                 <span className="pledges-widget__title">Pledges</span>
               </div>
-              {!lastUpdated && (
+              {lastUpdated && (
                 <span className="pledges-widget__last-updated">
                   Last updated {lastMonth != null && monthNames[lastMonth]}{" "}
                   {lastYear}
@@ -127,11 +148,8 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
             </div>
           </div>
           <div className="pledges-widget__pledge-items">
-            {/* {targets?.map((pledge: any, index: number) => (
-              <PledgeItem pledge={pledge} key={`pledge-item-${index}`} />
-            ))} */}
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
+              <Table sx={{ minWidth: 700}} aria-label="customized table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>Target commitment</StyledTableCell>
@@ -184,9 +202,85 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                           </div>
                         </div>
                       </StyledTableCell>
-                      <StyledTableCell align="right" width="5%">
-                        <InfoOutlined className="pledges-widget__target-info"/>
-                      </StyledTableCell> 
+                      <StyledTableCell align="right">
+                          <InfoOutlined 
+                            className="pledges-widget__target-info"
+                            aria-owns={openedPopoverId ? 'mouse-over-popover' : undefined}
+                            aria-haspopup="true"
+                            onMouseEnter={(e:any) => handlePopoverOpen(e, target.target_id)}
+                            onMouseLeave={handlePopoverClose}
+                          />
+                          <Popover
+                            id="mouse-over-popover"
+                            sx={{
+                              pointerEvents: 'none',
+                            }}
+                            open={openedPopoverId === target.target_id}
+                            anchorEl={anchorEl}
+                            classes={{
+                              root: "pledges-widget__popover-root",
+                              paper: "pledges-widget__popover",
+                            }}
+                            anchorOrigin={{
+                              vertical: 'center',
+                              horizontal: 'left',
+                            }}
+
+                            transformOrigin={{
+                              vertical: 'center',
+                              horizontal: 'left',
+                            }}
+                            onClose={handlePopoverClose}
+                            disableRestoreFocus
+                          >
+                            <div className="pledges-widget__popover">
+                              <div className="pledges-widget__popover-header">
+                                  <InfoOutlined className="pledges-widget__target-info"/>
+                                  <span>{target.target_type}</span>
+                              </div>
+                              <div className="pledges-widget__popover-body">
+                                <div>
+                                  <span className="pledges-widget__popover-src-head">
+                                    Sources(s)
+                                  </span>
+                                  <div className="pledges-widget__links-wr">
+                                    <LinkOutlined className="pledges-widget__links-icon"/>
+                                    <span className="pledges-widget__popover-srctxt">
+                                      {target.datasource.name}
+                                    </span>
+                                  </div>
+                                  
+                                  <div className="pledges-widget__popover-achieved-description">
+                                    <p className="pledges-widget__popover-src-head">
+                                      How do we calculate the % achieved?
+                                    </p>
+                                    <span>
+                                        The percentage achieved is the progress towards the target (how much this actor has reduced emissions in comparison to the target they committed to).
+                                        We consider the baseline year, the target year, and the emissions from both.
+                                    </span>
+                                  </div>
+                                  <div className="pledges-widget__popover-values">
+                                    <div className="pledges-widget__popover-values-content">
+                                      <div className="pledges-widget__popover-bl-value">BASELINE VALUE</div>
+                                      <div className="pledges-widget__popover-tns-value">50 Mt CO2e</div>
+                                      <div className="pledges-widget__popover-tgt-value">in {target.baseline_year}</div>
+                                    </div>
+                                    <div className="pledges-widget__popover-values-content">
+                                      <div className="pledges-widget__popover-bl-value">CURRENT EMISSIONS VALUE</div>
+                                      <div className="pledges-widget__popover-tns-value">150 Mt CO2e</div>
+                                      <div className="pledges-widget__popover-tgt-value">Climate Trace</div>
+                                    </div>
+                                    <div className="pledges-widget__popover-values-content">
+                                      <div className="pledges-widget__popover-bl-value">TARGET VALUE</div>
+                                      <div className="pledges-widget__popover-tns-value">100 Mt CO2e</div>
+                                      <div className="pledges-widget__popover-tgt-value">in {target.target_year}</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </Popover>
+                      </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
