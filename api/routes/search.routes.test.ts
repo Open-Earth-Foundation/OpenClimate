@@ -734,19 +734,23 @@ it("has correct ordering", async () => {
       const r1idx = results.findIndex(a => a.actor_id === region5Props.actor_id)
       const r2idx = results.findIndex(a => a.actor_id === region6Props.actor_id)
       const u1idx = results.findIndex(a => a.actor_id === city3Props.actor_id)
-      const u2idx = results.findIndex(a => a.actor_id === city3Props.actor_id)
+      const u2idx = results.findIndex(a => a.actor_id === city4Props.actor_id)
+
       // country before others
       expect(cidx).toBeLessThan(r1idx)
       expect(cidx).toBeLessThan(r2idx)
       expect(cidx).toBeLessThan(u1idx)
       expect(cidx).toBeLessThan(u2idx)
 
-      expect(r1idx).toBeLessThan(r2idx)
+      // regions before cities
+
       expect(r1idx).toBeLessThan(u1idx)
       expect(r1idx).toBeLessThan(u2idx)
 
       expect(r2idx).toBeLessThan(u1idx)
       expect(r2idx).toBeLessThan(u2idx)
+
+      // high-population cities before low-population ones
 
       expect(u1idx).toBeLessThan(u2idx)
     });
