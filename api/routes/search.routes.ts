@@ -86,6 +86,7 @@ router.get(
                 bool: {
                   should: [
                     { match_phrase: { name: { query: q, boost: 1.0 } } },
+                    { match_phrase: { identifier: { query: q, boost: 1.0 } } },
                     { match: { type: { query: 'country', boost: 1.1 } } },
                     { match: { type: { query: 'adm1', boost: 1.07 } } },
                     { match: { type: { query: 'adm2', boost: 1.04 } } },
