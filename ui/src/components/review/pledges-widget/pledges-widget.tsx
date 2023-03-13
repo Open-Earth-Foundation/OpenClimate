@@ -92,6 +92,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
 
   const classes = useStyles();
   const targets = current && current.targets ? current.targets : [];
+  const netZeroTargetYear = targets.filter(target => target.target_type === "Net zero")?.[0]?.target_year;
   const lu = targets.map((t: any) => t.last_updated);
   lu.sort();
   const lastUpdated = lu.length > 0 ? lu[lu.length - 1] : null;
@@ -134,7 +135,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
             </div>
             <div className="pledges-widget__metadata-right">
               <div className="pledges-widget__netzero-text">
-                <p>2016</p>
+                <p>{netZeroTargetYear ? netZeroTargetYear : `N/A`}</p>
                 <span>Net zero target</span>
               </div>
               <div className="pledges-widget__track-status">
@@ -164,10 +165,10 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                       <StyledTableCell component="th" scope="row" width="20%">
                         <div>
                           <span className="pledges-widget__target-percent">
-                            {target.target_value} % &nbsp;
+                            { target.target_type !== "Net zero" ? target.target_value : 0} % &nbsp;
                           </span>
                           <span className="pledges-widget__target-text">
-                            by {target.target_year} relative to {target.baseline_year}
+                            by {target.target_year} { `${target.baseline_year && `relative to ${target.baseline_year}`}`}
                           </span>
                         </div>
                       </StyledTableCell>
@@ -183,12 +184,12 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                       </StyledTableCell>
                       <StyledTableCell align="left" width="50%">
                         <div className="pledges-widget__progress-container">
-                          <div className="pledges-widget__progress-percent">{ target.percent_achieved && target.percent_achieved > 0 ? `${ target.percent_achieved > 1 ? 100 : Math.round(target.percent_achieved * 100)}%` : 'N/A'}</div>
+                          <div className="pledges-widget__progress-percent">{ target.percent_achieved && target.percent_achieved > 0 ? `${ target.percent_achieved > 100 ? 100 : Math.round(target.percent_achieved)}%` : 'N/A'}</div>
                           <div className="pledges-widget__progress-progressbar">
                             {
                               target.percent_achieved && target.percent_achieved > 0 ? 
                                 <ProgressBar 
-                                  completed={target.percent_achieved > 1 ? 100 : Math.round(target.percent_achieved * 100)}
+                                  completed={target.percent_achieved > 100 ? 100 : Math.round(target.percent_achieved)}
                                   isLabelVisible={false}
                                   height="10px"
                                   width="464px"
