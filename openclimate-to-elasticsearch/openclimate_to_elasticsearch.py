@@ -104,13 +104,14 @@ def main(args):
                 actor_type = actor_types.get(actor_id, None)
                 actor_population = actor_populations.get(actor_id, None)
                 actor_identifier = actor_identifiers.get(actor_id, None)
+                identifier_list = actor_identifier.split(',') if isinstance(actor_identifier, str) else None
 
                 logging.info(f'Indexing actor {actor_id} name {name} in language {language}')
 
                 id = actor_id + ":" + language + ":" + name
 
                 doc ={"actor_id": actor_id, "name": name, "language": language, "preferred": preferred,
-                      "type": actor_type, "population": actor_population, "identifier":  actor_identifier}
+                      "type": actor_type, "population": actor_population, "identifier":  identifier_list}
                 meta = {"created": created, "last_updated": last_updated, "datasource_id": datasource_id}
 
                 # TODO: need to figure out how to insert metadata
