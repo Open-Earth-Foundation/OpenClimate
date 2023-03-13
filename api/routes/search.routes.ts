@@ -88,7 +88,7 @@ router.get(
                     { match_phrase: { name: { query: q, boost: 1.0 } } },
                     { match: { type: { query: 'country', boost: 1.1 } } },
                     { match: { type: { query: 'adm1', boost: 1.07 } } },
-                    { match: { type: { query: 'adm2', boost: 1.07 } } },
+                    { match: { type: { query: 'adm2', boost: 1.04 } } },
                     { match: { type: { query: 'city', boost: 1.02 } } },
                     { match: { type: { query: 'company', boost: 1.1 } } },
                     {
@@ -145,6 +145,11 @@ router.get(
         });
 
         actor_ids = ActorIDS.hits.hits.map((res: any) => res._source.actor_id);
+
+        const unique = (v, i, a) => a.indexOf(v) == i;
+
+        actor_ids = actor_ids.filter(unique)
+
       } else {
         const [byNameQ, byIdQ] = await Promise.all([
           ActorName.findAll({ where: { name: { [Op.like]: `%${q}%` } } }),
@@ -176,7 +181,8 @@ router.get(
 
       res.status(200).json({
         success: true,
-        data: actors.map((actor) => {
+        data: actor_ids.map((id) => {
+          let actor = actors.find(a => a.actor_id === id)
           let pc = coverage.find((c) => c.actor_id === actor.actor_id);
           let path = paths.find(
             (p) => p && p.length > 0 && p[0].actor_id == actor.actor_id

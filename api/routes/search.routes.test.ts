@@ -168,7 +168,7 @@ const region6Props = {
 
 const region7Props = {
   actor_id: `search.routes.test.ts:actor:adm2:${uniqueName2}`,
-  type: "adm2",
+  type: "adm1",
   name: uniqueName2,
   is_part_of: country4Props.actor_id,
   datasource_id: datasourceProps.datasource_id,
@@ -729,5 +729,25 @@ it("has correct ordering", async () => {
       expect(res.body.success).toBeTruthy();
       expect(res.body.data).toBeDefined();
       expect(res.body.data.length).toBeGreaterThan(0);
+      const results = res.body.data;
+      const cidx = results.findIndex(a => a.actor_id === country4Props.actor_id)
+      const r1idx = results.findIndex(a => a.actor_id === region5Props.actor_id)
+      const r2idx = results.findIndex(a => a.actor_id === region6Props.actor_id)
+      const u1idx = results.findIndex(a => a.actor_id === city3Props.actor_id)
+      const u2idx = results.findIndex(a => a.actor_id === city3Props.actor_id)
+      // country before others
+      expect(cidx).toBeLessThan(r1idx)
+      expect(cidx).toBeLessThan(r2idx)
+      expect(cidx).toBeLessThan(u1idx)
+      expect(cidx).toBeLessThan(u2idx)
+
+      expect(r1idx).toBeLessThan(r2idx)
+      expect(r1idx).toBeLessThan(u1idx)
+      expect(r1idx).toBeLessThan(u2idx)
+
+      expect(r2idx).toBeLessThan(u1idx)
+      expect(r2idx).toBeLessThan(u2idx)
+
+      expect(u1idx).toBeLessThan(u2idx)
     });
 });
