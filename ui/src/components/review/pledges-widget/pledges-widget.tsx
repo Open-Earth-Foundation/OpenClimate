@@ -113,8 +113,6 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
     setID(null)
   };
 
-  console.log(targets)
-
   return (
     <div
       className="pledges-widget"
