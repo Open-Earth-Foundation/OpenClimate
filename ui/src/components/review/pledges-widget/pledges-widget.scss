@@ -1,24 +1,24 @@
 .pledges-widget{
     ::-webkit-scrollbar {
         width: 10px;
-      }
-      
-      /* Track */
-      ::-webkit-scrollbar-track {
-        background: #ffff; 
-      }
-       
-      /* Handle */
-      ::-webkit-scrollbar-thumb {
-        background: #888; 
-      }
-      
-      /* Handle on hover */
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555; 
-      }
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #ffff; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #888; 
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+    }
 
-    height: 435px;
+    height: 350px;
     width: calc(91.9vw);
     border: 1px solid #E6E7E8;
     display: relative;
@@ -128,8 +128,111 @@
     }
 
     &__pledge-items{
-        height: 350px;
+        height: 250px;
         overflow: scroll;
+    }
+
+    &__popover-root{
+        background-color: none !important;
+        left: -180px !important;
+    }
+
+    &__popover{
+        width: 460px;
+        height: 585px;
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+        background-color: #ffffff;
+    }
+
+    &__popover-body{
+        padding: 30px;
+        padding-left: 51px;
+    }
+
+    &__popover-src-head{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+        color: #00001F;
+    }
+
+    &__popover-achieved-description{
+        padding-top: 18px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.25px;
+        color: #232640;
+    }
+
+    &__links-wr{
+        display: flex;
+        align-items: center;
+    }
+
+    &__links-icon{
+        margin-right: 10px;
+        color: #2351DC;
+    }
+
+    &__popover-srctxt{
+        color: #2351DC;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        text-decoration-line: underline;
+    }
+
+    &__popover-header{
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        height: 77px;
+        border-bottom: 1px solid #D7D8FA;
+        padding-left: 20.5px;
+    }
+
+    &__popover-header span {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.1px;
+        color: #232640;
+        margin-left: 5px;
+    }
+
+    &__popover-values{
+        display: grid;
+        grid-template-columns: auto auto;
+        padding-top: 20px;
+    }
+
+    &__popover-bl-value{
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.1px;
+        color: #535572;
+    }
+
+    &__popover-tns-value{
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 32px;
+        display: flex;
+        align-items: center;
+        color: #232640;
+    }
+
+    &__popover-tgt-value{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.25px;
+        color: #232640;
     }
 
     &__commitment p{
@@ -219,6 +322,11 @@
         line-height: 15px;
         color: #272727;
     }
+
+    &__popover-values-content{
+        margin-bottom: 20px;
+    }
+
     .target-text{
         padding-top: 6px;
     }
