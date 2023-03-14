@@ -38,7 +38,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  
+
   '&:nth-of-type(odd)': {
     backgroundColor: "#FBFBFF",
     border:0
@@ -47,7 +47,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '& td, th': {
     border: 0,
   },
- 
+
 }));
 
 
@@ -73,7 +73,7 @@ const monthNames = [
 
 const PledgesWidget: FunctionComponent<Props> = (props) => {
   const { current, parent } = props;
-  
+
   const useStyles = makeStyles(() => ({
     customTooltip: {
       backgroundColor: "rgba(44, 44, 44, 1)",
@@ -122,7 +122,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
       {targets?.length ? (
         <div className="pledges-widget__wrapper">
           <div className="pledges-widget__metadata">
-            <div>
+            <>
               <div className="pledges-widget__metadata-inner">
                 <span className="pledges-widget__title">Pledges</span>
               </div>
@@ -132,18 +132,13 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                   {lastYear}
                 </span>
               )}
-            </div>
-            <div className="pledges-widget__metadata-right">
+            </>
+            <>
               <div className="pledges-widget__netzero-text">
                 <p>{netZeroTargetYear ? netZeroTargetYear : `N/A`}</p>
                 <span>Net zero target</span>
               </div>
-              <div>
-                <IconButton className="download_data-button">
-                  <MoreVert className="download_data-icon" />
-                </IconButton>
-              </div>
-            </div>
+            </>
           </div>
           <div className="pledges-widget__pledge-items">
             <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
@@ -162,10 +157,10 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                       <StyledTableCell component="th" scope="row" width="20%">
                         <div>
                           <span className="pledges-widget__target-percent">
-                            { target.target_type !== "Net zero" ? target.target_value : 0} % &nbsp;
+                            { target.target_value ? `${target.target_value}%` : `N/A`} &nbsp;
                           </span>
                           <span className="pledges-widget__target-text">
-                            by {target.target_year} { `${target.baseline_year && `relative to ${target.baseline_year}`}`}
+                            by {target.target_year} { `${target.baseline_year ? `relative to ${target.baseline_year}` : 0}`}
                           </span>
                         </div>
                       </StyledTableCell>
@@ -184,8 +179,8 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                           <div className="pledges-widget__progress-percent">{ target.percent_achieved && target.percent_achieved > 0 ? `${ target.percent_achieved > 100 ? 100 : Math.round(target.percent_achieved)}%` : 'N/A'}</div>
                           <div className="pledges-widget__progress-progressbar">
                             {
-                              target.percent_achieved && target.percent_achieved > 0 ? 
-                                <ProgressBar 
+                              target.percent_achieved && target.percent_achieved > 0 ?
+                                <ProgressBar
                                   completed={target.percent_achieved > 100 ? 100 : Math.round(target.percent_achieved)}
                                   isLabelVisible={false}
                                   height="10px"
@@ -201,7 +196,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                         </div>
                       </StyledTableCell>
                       <StyledTableCell align="right">
-                          <InfoOutlined 
+                          <InfoOutlined
                             className="pledges-widget__target-info"
                             aria-owns={openedPopoverId ? 'mouse-over-popover' : undefined}
                             aria-haspopup="true"
@@ -247,7 +242,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                       {target.datasource.name}
                                     </span>
                                   </div>
-                                  
+
                                   <div className="pledges-widget__popover-achieved-description">
                                     <p className="pledges-widget__popover-src-head">
                                       How do we calculate the % achieved?
