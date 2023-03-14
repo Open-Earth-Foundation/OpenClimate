@@ -122,7 +122,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
       {targets?.length ? (
         <div className="pledges-widget__wrapper">
           <div className="pledges-widget__metadata">
-            <div>
+            <>
               <div className="pledges-widget__metadata-inner">
                 <span className="pledges-widget__title">Pledges</span>
               </div>
@@ -132,21 +132,13 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                   {lastYear}
                 </span>
               )}
-            </div>
-            <div className="pledges-widget__metadata-right">
+            </>
+            <>
               <div className="pledges-widget__netzero-text">
                 <p>{netZeroTargetYear ? netZeroTargetYear : `N/A`}</p>
                 <span>Net zero target</span>
               </div>
-              <div className="pledges-widget__track-status">
-                <span>ON TRACK</span>
-              </div>
-              <div>
-                <IconButton className="download_data-button">
-                  <MoreVert className="download_data-icon" />
-                </IconButton>
-              </div>
-            </div>
+            </>
           </div>
           <div className="pledges-widget__pledge-items">
             <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
@@ -165,10 +157,10 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                       <StyledTableCell component="th" scope="row" width="20%">
                         <div>
                           <span className="pledges-widget__target-percent">
-                            { target.target_type !== "Net zero" ? target.target_value : 0} % &nbsp;
+                            { target.target_value ? `${target.target_value}%` : `N/A`} &nbsp;
                           </span>
                           <span className="pledges-widget__target-text">
-                            by {target.target_year} { `${target.baseline_year && `relative to ${target.baseline_year}`}`}
+                            by {target.target_year} { `${target.baseline_year ? `relative to ${target.baseline_year}` : 0}`}
                           </span>
                         </div>
                       </StyledTableCell>
