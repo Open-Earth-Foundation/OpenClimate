@@ -116,7 +116,7 @@ const country2DataSource1Emissions2019 = {
   actor_id: country2Props.actor_id,
   year: 2019,
   total_emissions: 100000,
-  datasource_id: emissionsDataSource1Props.datasource_id
+  datasource_id: emissionsDataSource1Props.datasource_id,
 };
 
 const country2DataSource1Emissions2022 = {
@@ -124,7 +124,7 @@ const country2DataSource1Emissions2022 = {
   actor_id: country2Props.actor_id,
   year: 2022,
   total_emissions: 90000,
-  datasource_id: emissionsDataSource1Props.datasource_id
+  datasource_id: emissionsDataSource1Props.datasource_id,
 };
 
 const country2DataSource2Emissions2019 = {
@@ -132,7 +132,7 @@ const country2DataSource2Emissions2019 = {
   actor_id: country2Props.actor_id,
   year: 2019,
   total_emissions: 100001,
-  datasource_id: emissionsDataSource2Props.datasource_id
+  datasource_id: emissionsDataSource2Props.datasource_id,
 };
 
 const country2DataSource2Emissions2022 = {
@@ -140,19 +140,19 @@ const country2DataSource2Emissions2022 = {
   actor_id: country2Props.actor_id,
   year: 2022,
   total_emissions: 90001,
-  datasource_id: emissionsDataSource2Props.datasource_id
+  datasource_id: emissionsDataSource2Props.datasource_id,
 };
 
 const emissionsDataSource1QualityProps = {
   datasource_id: emissionsDataSource1Props.datasource_id,
-  score_type: 'GHG target',
-  score: 0.7
+  score_type: "GHG target",
+  score: 0.7,
 };
 
 const emissionsDataSource2QualityProps = {
   datasource_id: emissionsDataSource2Props.datasource_id,
-  score_type: 'GHG target',
-  score: 0.3
+  score_type: "GHG target",
+  score: 0.3,
 };
 
 async function cleanup() {
@@ -168,19 +168,31 @@ async function cleanup() {
   });
 
   await Promise.all([
-    DataSourceQuality.destroy({where: {datasource_id: emissionsDataSource1Props.datasource_id }}),
-    DataSourceQuality.destroy({where: {datasource_id: emissionsDataSource2Props.datasource_id }})
-  ])
+    DataSourceQuality.destroy({
+      where: { datasource_id: emissionsDataSource1Props.datasource_id },
+    }),
+    DataSourceQuality.destroy({
+      where: { datasource_id: emissionsDataSource2Props.datasource_id },
+    }),
+  ]);
 
-  await Promise.all([geoDataSourceProps, emissionsDataSource1Props, emissionsDataSource2Props].map((ds) =>
-    DataSource.destroy({
-      where: { datasource_id: ds.datasource_id },
-    })
-  ))
+  await Promise.all(
+    [
+      geoDataSourceProps,
+      emissionsDataSource1Props,
+      emissionsDataSource2Props,
+    ].map((ds) =>
+      DataSource.destroy({
+        where: { datasource_id: ds.datasource_id },
+      })
+    )
+  );
 
-  await Promise.all([geoPublisherProps, emissionsPublisher1Props, emissionsPublisher2Props].map(ps =>
-    Publisher.destroy({ where: { id: ps.id } })
-  ))
+  await Promise.all(
+    [geoPublisherProps, emissionsPublisher1Props, emissionsPublisher2Props].map(
+      (ps) => Publisher.destroy({ where: { id: ps.id } })
+    )
+  );
 }
 
 beforeAll(async () => {
@@ -198,9 +210,11 @@ beforeAll(async () => {
   await DataSource.create(emissionsDataSource1Props);
   await DataSource.create(emissionsDataSource2Props);
 
-  await Promise.all([emissionsDataSource1QualityProps, emissionsDataSource2QualityProps].map(props =>
-    DataSourceQuality.create(props)
-  ))
+  await Promise.all(
+    [emissionsDataSource1QualityProps, emissionsDataSource2QualityProps].map(
+      (props) => DataSourceQuality.create(props)
+    )
+  );
 
   await Actor.create(countryProps);
   await Actor.create(country2Props);
@@ -277,25 +291,34 @@ it("can create and get EmissionsAgg", async () => {
   ]);
 });
 
-
 it("can get latest high-quality EmissionsAgg", async () => {
   let ea = await Promise.all([
     EmissionsAgg.create(country2DataSource1Emissions2019),
     EmissionsAgg.create(country2DataSource1Emissions2022),
     EmissionsAgg.create(country2DataSource2Emissions2019),
     EmissionsAgg.create(country2DataSource2Emissions2022),
-  ])
+  ]);
 
+  let best2019 = await EmissionsAgg.forPurpose(
+    "GHG target",
+    country2Props.actor_id,
+    2019
+  );
 
-  let best2019 = await EmissionsAgg.forPurpose('GHG target', country2Props.actor_id, 2019)
+  expect(best2019).toBeDefined();
+  expect(Number(best2019.total_emissions)).toEqual(
+    country2DataSource1Emissions2019.total_emissions
+  );
 
-  expect(best2019).toBeDefined()
-  expect(Number(best2019.total_emissions)).toEqual(country2DataSource1Emissions2019.total_emissions)
+  let bestLatest = await EmissionsAgg.forPurposeLatest(
+    "GHG target",
+    country2Props.actor_id
+  );
 
-  let bestLatest = await EmissionsAgg.forPurposeLatest('GHG target', country2Props.actor_id)
+  expect(bestLatest).toBeDefined();
+  expect(Number(bestLatest.total_emissions)).toEqual(
+    country2DataSource1Emissions2022.total_emissions
+  );
 
-  expect(bestLatest).toBeDefined()
-  expect(Number(bestLatest.total_emissions)).toEqual(country2DataSource1Emissions2022.total_emissions)
-
-  await Promise.all(ea.map(item => item.destroy()))
-})
+  await Promise.all(ea.map((item) => item.destroy()));
+});

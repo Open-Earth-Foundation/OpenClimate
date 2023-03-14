@@ -139,7 +139,10 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
                       : option.name}
                   </div>
                   <div className="dropdown-select-missing-container">
-                    { renderDataMissingDropdown(hoveredOptionIndex === index, option?.data === true) }
+                    {renderDataMissingDropdown(
+                      hoveredOptionIndex === index,
+                      option?.data === true
+                    )}
                   </div>
                 </div>
               ))}

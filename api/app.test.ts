@@ -6,4 +6,4 @@ it("sets the Server header", async () =>
     .get(`/api/second-controller`)
     .expect(200)
     .expect("Server", /openclimate-hub-controller/)
-    .expect("Server", /ElasticSearch/))
+    .expect("Server", /ElasticSearch/));

@@ -14,7 +14,7 @@ let connect = function () {
       {
         host: process.env.POSGRES_ADDRESS,
         dialect: "postgres",
-        logging: (value) => logger.log('silly', value),
+        logging: (value) => logger.log("silly", value),
         omitNull: true,
       }
     );

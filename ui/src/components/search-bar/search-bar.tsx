@@ -7,7 +7,6 @@ import { useHistory, useLocation } from "react-router-dom";
 import { renderHighlightedName } from "../util/strings";
 import { renderDataMissingDropdown } from "../util/showDataMissingDropdown";
 
-
 let controller: AbortController | null = null;
 
 const SearchBar: FunctionComponent = () => {
@@ -58,7 +57,9 @@ const SearchBar: FunctionComponent = () => {
       .then((json) => {
         let actorData = json.data;
         let actors = actorData.map((actor: any) => {
-          const reversePathWithoutEarth = [...actor.root_path_geo].reverse().slice(1)
+          const reversePathWithoutEarth = [...actor.root_path_geo]
+            .reverse()
+            .slice(1);
           return {
             name: actor.name,
             actorId: actor.actor_id,
@@ -125,7 +126,7 @@ const SearchBar: FunctionComponent = () => {
   }, [searchedActors]);
 
   const nonPathActor = (type: string): boolean => {
-    switch(type) {
+    switch (type) {
       case "site":
       case "organization":
       case "country":
@@ -133,7 +134,7 @@ const SearchBar: FunctionComponent = () => {
       default:
         return false;
     }
-  }
+  };
 
   return (
     <div className="search-bar">
@@ -143,7 +144,9 @@ const SearchBar: FunctionComponent = () => {
             <div className="dropdown">
               <Search />
               <input
-                className={inputString ? "dropdown-text" : "dropdown-text-placeholder"}
+                className={
+                  inputString ? "dropdown-text" : "dropdown-text-placeholder"
+                }
                 value={inputString}
                 ref={inputComponentRef}
                 onClick={() => searchedActors?.length && setCardExpanded(true)}
@@ -167,13 +170,17 @@ const SearchBar: FunctionComponent = () => {
                 <div>
                   {renderHighlightedName(option.name, inputString)}
                   <div className="dropdown-select-subtitle">
-                    {
-                      option?.parentPath?.length > 0 && !nonPathActor(option.type) ? renderParentPath(option.parentPath) : renderActorType(option.type)
-                    }
+                    {option?.parentPath?.length > 0 &&
+                    !nonPathActor(option.type)
+                      ? renderParentPath(option.parentPath)
+                      : renderActorType(option.type)}
                   </div>
                 </div>
                 <div className="dropdown-select-missing-container">
-                  {renderDataMissingDropdown(hoverActorIndex === index, option?.data === true)}
+                  {renderDataMissingDropdown(
+                    hoverActorIndex === index,
+                    option?.data === true
+                  )}
                 </div>
               </div>
             ))}

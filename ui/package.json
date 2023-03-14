@@ -85,6 +85,6 @@
     "not op_mini all"
   ],
   "engines": {
-    "node": "^16.15.1"
+    "node": "^18.5.0"
   }
 }

@@ -6,7 +6,7 @@ import { Publisher } from "./publisher";
 import { Target } from "./target";
 import { Initiative } from "./initiative";
 import { DataSourceQuality } from "./datasourcequality";
-import { EmissionsAgg } from './emissionsagg';
+import { EmissionsAgg } from "./emissionsagg";
 
 const disconnect = require("./init").disconnect;
 
@@ -73,7 +73,7 @@ const countryTarget3Props = {
   actor_id: countryProps.actor_id,
   target_type: "Net zero",
   target_year: 2050,
-  datasource_id: datasourceProps.datasource_id
+  datasource_id: datasourceProps.datasource_id,
 };
 
 // Different actor, different identifiers
@@ -131,43 +131,43 @@ const country4Props = {
   actor_id: "target.test.ts:actor:country:4",
   type: "country",
   name: "Fake country actor from target.test.ts",
-  is_part_of: 'EARTH',
+  is_part_of: "EARTH",
   datasource_id: datasourceProps.datasource_id,
 };
 
 const country4Target1Props = {
   target_id: "target.test.ts:country:4:target:1",
   actor_id: country4Props.actor_id,
-  target_type: 'Absolute emission reduction',
+  target_type: "Absolute emission reduction",
   baseline_year: 2005,
   baseline_value: 10000000,
   target_year: 2035,
   target_value: 75,
   target_unit: "percent",
-  datasource_id: datasourceProps.datasource_id
+  datasource_id: datasourceProps.datasource_id,
 };
 
 const country4Target2Props = {
   target_id: "target.test.ts:country:4:target:2",
   actor_id: country4Props.actor_id,
-  target_type: 'Carbon intensity reduction',
+  target_type: "Carbon intensity reduction",
   baseline_year: 2005,
   baseline_value: 420,
   target_year: 2035,
   target_value: 69,
   target_unit: "percent",
-  datasource_id: datasourceProps.datasource_id
+  datasource_id: datasourceProps.datasource_id,
 };
 
 const country4Target3Props = {
   target_id: "target.test.ts:country:4:target:3",
   actor_id: country4Props.actor_id,
-  target_type: 'Absolute emission reduction',
+  target_type: "Absolute emission reduction",
   baseline_year: 2005,
   target_year: 2035,
   target_value: 75,
   target_unit: "percent",
-  datasource_id: datasourceProps.datasource_id
+  datasource_id: datasourceProps.datasource_id,
 };
 
 const country4Emissions1Props = {
@@ -175,7 +175,7 @@ const country4Emissions1Props = {
   actor_id: country4Props.actor_id,
   year: 2005,
   total_emissions: 10000000,
-  datasource_id: datasourceProps.datasource_id
+  datasource_id: datasourceProps.datasource_id,
 };
 
 const country4Emissions2Props = {
@@ -183,14 +183,14 @@ const country4Emissions2Props = {
   actor_id: country4Props.actor_id,
   year: 2021,
   total_emissions: 6000000,
-  datasource_id: datasourceProps.datasource_id
+  datasource_id: datasourceProps.datasource_id,
 };
 
 const dataSourceQualityProps = {
   datasource_id: datasourceProps.datasource_id,
-  score_type: 'GHG target',
-  score: 0.9
-}
+  score_type: "GHG target",
+  score: 0.9,
+};
 
 async function cleanup() {
   await Target.destroy({
@@ -259,13 +259,13 @@ it("can create and get targets", async () => {
   expect(match.summary).toBeDefined();
   expect(typeof match.summary).toEqual("string");
 
-  expect(match.isNetZero()).toBeFalsy()
+  expect(match.isNetZero()).toBeFalsy();
 
   // Match netzero by pk
 
   let nz = await Target.findByPk(countryTarget3Props.target_id);
 
-  expect(nz.isNetZero()).toBeTruthy()
+  expect(nz.isNetZero()).toBeTruthy();
 
   // Match on Actor
 
@@ -317,27 +317,30 @@ it("can create and get a target with associated initiative", async () => {
 });
 
 it("can get completion percentage on relevant targets", async () => {
-
   let [t1, t2, t3, ea1, ea2] = await Promise.all([
     Target.create(country4Target1Props),
     Target.create(country4Target2Props),
     Target.create(country4Target3Props),
     EmissionsAgg.create(country4Emissions1Props),
-    EmissionsAgg.create(country4Emissions2Props)
-  ])
+    EmissionsAgg.create(country4Emissions2Props),
+  ]);
 
-  let complete1 = await t1.getPercentComplete()
-  expect(typeof complete1).toEqual('number')
-  expect(complete1).toBeCloseTo(53.333)
+  let complete1 = await t1.getPercentComplete();
+  expect(typeof complete1).toEqual("number");
+  expect(complete1).toBeCloseTo(53.333);
 
-  let complete2 = await t2.getPercentComplete()
-  expect(complete2).toBeNull()
+  let complete2 = await t2.getPercentComplete();
+  expect(complete2).toBeNull();
 
-  let complete3 = await t3.getPercentComplete()
-  expect(typeof complete3).toEqual('number')
-  expect(complete3).toBeCloseTo(53.333)
+  let complete3 = await t3.getPercentComplete();
+  expect(typeof complete3).toEqual("number");
+  expect(complete3).toBeCloseTo(53.333);
 
   await Promise.all([
-    t1.destroy(), t2.destroy(), t3.destroy(), ea1.destroy(), ea2.destroy()
-  ])
-})
+    t1.destroy(),
+    t2.destroy(),
+    t3.destroy(),
+    ea1.destroy(),
+    ea2.destroy(),
+  ]);
+});
