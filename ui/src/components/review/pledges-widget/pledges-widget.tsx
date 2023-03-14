@@ -132,9 +132,6 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                 <p>{netZeroTargetYear ? netZeroTargetYear : `N/A`}</p>
                 <span>Net zero target</span>
               </div>
-              <div className="pledges-widget__track-status">
-                <span>ON TRACK</span>
-              </div>
               <div>
                 <IconButton className="download_data-button">
                   <MoreVert className="download_data-icon" />
