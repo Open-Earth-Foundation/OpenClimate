@@ -79,6 +79,44 @@ def main(args):
 
     logging.info(f'Connecting to PostgreSQL server {args.host} database {args.dbname} as user {args.user}')
 
+    # Delete index if exists
+    if es.indices.exists(index=args.esindex):
+        es.indices.delete(index=args.esindex)
+
+    settings = {
+        'analysis': {
+            'analyzer': {
+                'asciifolding_lowercase': {
+                    'tokenizer': 'standard',
+                    'filter': ['lowercase', 'asciifolding']
+                }
+            }
+        }
+    }
+
+    # Create new index with settings
+    es.indices.create(index=args.esindex, settings=settings)
+
+    properties = {
+        'name': {
+            'type': 'text',
+            'analyzer': 'asciifolding_lowercase'
+        },
+        'identifier': {
+            'type': 'text',
+            'fields': {
+                'text': {
+                    'type': 'text',
+                    'analyzer': 'asciifolding_lowercase'
+                }
+            },
+            'analyzer': 'asciifolding_lowercase'
+        }
+    }
+
+    # Define field mappings
+    es.indices.put_mapping(index=args.esindex, properties=properties)
+
     with psycopg2.connect(dbname=args.dbname, user=args.user, password=args.password, host=args.host) as conn:
 
         with conn.cursor() as curs:
