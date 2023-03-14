@@ -31,30 +31,35 @@ const datasource2 = {
 };
 
 const datasourcequality1 = {
-    datasource_id: datasource1.datasource_id,
-    name: "Fake datasourcequality from datasourcequality.test.ts",
-    score: 0.9,
-    score_type: 'GHG target'
+  datasource_id: datasource1.datasource_id,
+  name: "Fake datasourcequality from datasourcequality.test.ts",
+  score: 0.9,
+  score_type: "GHG target",
 };
 
 const datasourcequality2 = {
-    datasource_id: datasource1.datasource_id,
-    name: "Fake datasourcequality from datasourcequality.test.ts",
-    score: 0.9,
-    score_type: 'unknown datasource quality type'
+  datasource_id: datasource1.datasource_id,
+  name: "Fake datasourcequality from datasourcequality.test.ts",
+  score: 0.9,
+  score_type: "unknown datasource quality type",
 };
 
 const datasourcequality3 = {
-    datasource_id: datasource2.datasource_id,
-    name: "Fake datasourcequality from datasourcequality.test.ts",
-    score: 0.4,
-    score_type: 'GHG target'
+  datasource_id: datasource2.datasource_id,
+  name: "Fake datasourcequality from datasourcequality.test.ts",
+  score: 0.4,
+  score_type: "GHG target",
 };
 
 async function cleanup() {
   await Promise.all([
-    DataSourceQuality.destroy({ where: { datasource_id: datasource1.datasource_id } }),
-    DataSourceQuality.destroy({ where: { datasource_id: datasource2.datasource_id } }),,
+    DataSourceQuality.destroy({
+      where: { datasource_id: datasource1.datasource_id },
+    }),
+    DataSourceQuality.destroy({
+      where: { datasource_id: datasource2.datasource_id },
+    }),
+    ,
   ]);
 
   await Promise.all([
@@ -89,28 +94,33 @@ it("can create, read, update and delete a DataSourceTag", async () => {
   const [dsq1, dsq2, dsq3] = await Promise.all([
     DataSourceQuality.create(datasourcequality1),
     DataSourceQuality.create(datasourcequality2),
-    DataSourceQuality.create(datasourcequality3)
-  ])
+    DataSourceQuality.create(datasourcequality3),
+  ]);
 
   let match = await DataSourceQuality.findOne({
-    where: { datasource_id: datasource1.datasource_id, score_type: 'GHG target' },
+    where: {
+      datasource_id: datasource1.datasource_id,
+      score_type: "GHG target",
+    },
   });
 
   expect(match.datasource_id).toEqual(datasource1.datasource_id);
-  expect(match.score_type).toEqual('GHG target' );
-  expect(match.score).toBeCloseTo(datasourcequality1.score)
+  expect(match.score_type).toEqual("GHG target");
+  expect(match.score).toBeCloseTo(datasourcequality1.score);
   expect(match.created).toBeDefined();
   expect(match.last_updated).toBeDefined();
 
-  let matches = await DataSourceQuality.findAll({ where: { datasource_id: datasource1.datasource_id } });
+  let matches = await DataSourceQuality.findAll({
+    where: { datasource_id: datasource1.datasource_id },
+  });
 
   expect(matches.length).toEqual(2);
 
   matches = await DataSourceQuality.findAll({
-    where: { score_type: 'GHG target'},
+    where: { score_type: "GHG target" },
   });
 
   expect(matches.length).toBeGreaterThanOrEqual(2);
 
-  await Promise.all([dsq1.destroy(), dsq2.destroy(), dsq3.destroy()])
+  await Promise.all([dsq1.destroy(), dsq2.destroy(), dsq3.destroy()]);
 });

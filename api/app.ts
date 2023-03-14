@@ -37,10 +37,13 @@ const Images = require("./agentLogic/images");
 
 require("./passport-config")(passport);
 
-const {name, version} = require('./package.json');
+const { name, version } = require("./package.json");
 
-const esStatus = (process.env.ELASTIC_SEARCH_ENABLED === 'yes') ? 'ElasticSearchEnabled' : 'ElasticSearchDisabled'
-const product = `${name}/${version} (${esStatus})`
+const esStatus =
+  process.env.ELASTIC_SEARCH_ENABLED === "yes"
+    ? "ElasticSearchEnabled"
+    : "ElasticSearchDisabled";
+const product = `${name}/${version} (${esStatus})`;
 
 // We use one Winston instance for the entire app
 
@@ -86,10 +89,12 @@ app.options("*", cors(corsOptions)); // enable pre-flight
 
 app.use(express.json());
 
-app.use(wrap(async (_, res, next) => {
-  res.set('Server', product)
-  next()
-}))
+app.use(
+  wrap(async (_, res, next) => {
+    res.set("Server", product);
+    next();
+  })
+);
 
 app.use(schemaRoutes);
 app.use(pledgeRoutes);
@@ -109,7 +114,6 @@ app.use(proofsRoutes);
 app.use(trustedRegistryRoutes);
 app.use(actorRoutes);
 app.use(searchRoutes);
-
 
 // Send all cloud agent webhooks posting to the agent webhook router
 app.use("/api/controller-webhook", agentWebhookRouter);

@@ -5,14 +5,14 @@ import { DataSource } from "../orm/datasource";
 import { Publisher } from "../orm/publisher";
 import { ActorIdentifier } from "../orm/actoridentifier";
 import { ActorName } from "../orm/actorname";
-import { Population } from '../orm/population';
+import { Population } from "../orm/population";
 
 import { app } from "../app";
 import request from "supertest";
 import { getClient } from "../elasticsearch/elasticsearch";
 
-const indexName = process.env.ELASTIC_SEARCH_INDEX_NAME || "actors"
-const esEnabled = process.env.ELASTIC_SEARCH_ENABLED || "no"
+const indexName = process.env.ELASTIC_SEARCH_INDEX_NAME || "actors";
+const esEnabled = process.env.ELASTIC_SEARCH_ENABLED || "no";
 
 const disconnect = require("../orm/init").disconnect;
 
@@ -139,24 +139,24 @@ const city2Props = {
 // names for fictional orc villages. Update these if Earth is ever
 // invaded by orcs.
 
-const uniqueName = "Zrordurgru"
-const uniqueName2 = "Khurbragaz"
+const uniqueName = "Zrordurgru";
+const uniqueName2 = "Khurbragaz";
 
 const country4Props = {
-    actor_id: `search.routes.test.ts:actor:country:${uniqueName}`,
-    type: "country",
-    name: uniqueName,
-    is_part_of: planetProps.actor_id,
-    datasource_id: datasourceProps.datasource_id,
-}
+  actor_id: `search.routes.test.ts:actor:country:${uniqueName}`,
+  type: "country",
+  name: uniqueName,
+  is_part_of: planetProps.actor_id,
+  datasource_id: datasourceProps.datasource_id,
+};
 
 const region5Props = {
-    actor_id: `search.routes.test.ts:actor:adm1:${uniqueName}`,
-    type: "adm1",
-    name: uniqueName,
-    is_part_of: country4Props.actor_id,
-    datasource_id: datasourceProps.datasource_id,
-}
+  actor_id: `search.routes.test.ts:actor:adm1:${uniqueName}`,
+  type: "adm1",
+  name: uniqueName,
+  is_part_of: country4Props.actor_id,
+  datasource_id: datasourceProps.datasource_id,
+};
 
 const region6Props = {
   actor_id: `search.routes.test.ts:actor:adm2:${uniqueName}`,
@@ -164,7 +164,7 @@ const region6Props = {
   name: uniqueName,
   is_part_of: region5Props.actor_id,
   datasource_id: datasourceProps.datasource_id,
-}
+};
 
 const region7Props = {
   actor_id: `search.routes.test.ts:actor:adm2:${uniqueName2}`,
@@ -172,7 +172,7 @@ const region7Props = {
   name: uniqueName2,
   is_part_of: country4Props.actor_id,
   datasource_id: datasourceProps.datasource_id,
-}
+};
 
 const city3Props = {
   actor_id: `search.routes.test.ts:actor:city:${uniqueName}:1`,
@@ -180,7 +180,7 @@ const city3Props = {
   name: uniqueName,
   is_part_of: region6Props.actor_id,
   datasource_id: datasourceProps.datasource_id,
-}
+};
 
 const city4Props = {
   actor_id: `search.routes.test.ts:actor:city:${uniqueName}:2`,
@@ -188,21 +188,21 @@ const city4Props = {
   name: uniqueName,
   is_part_of: region7Props.actor_id,
   datasource_id: datasourceProps.datasource_id,
-}
+};
 
 const city3PopulationProps = {
   actor_id: city3Props.actor_id,
   year: 2022,
   population: 1000000,
-  datasource_id: datasourceProps.datasource_id
-}
+  datasource_id: datasourceProps.datasource_id,
+};
 
 const city4PopulationProps = {
   actor_id: city4Props.actor_id,
   year: 2022,
   population: 1000,
-  datasource_id: datasourceProps.datasource_id
-}
+  datasource_id: datasourceProps.datasource_id,
+};
 
 const actorProps = [
   planetProps,
@@ -219,22 +219,22 @@ const actorProps = [
   region6Props,
   region7Props,
   city3Props,
-  city4Props
-]
+  city4Props,
+];
 
-const populationProps = [
-  city3PopulationProps,
-  city4PopulationProps
-]
+const populationProps = [city3PopulationProps, city4PopulationProps];
 
 async function cleanup() {
   await Promise.all([
     Population.destroy({
-        where: { datasource_id: datasourceProps.datasource_id }}),
+      where: { datasource_id: datasourceProps.datasource_id },
+    }),
     ActorName.destroy({
-      where: { datasource_id: datasourceProps.datasource_id }}),
+      where: { datasource_id: datasourceProps.datasource_id },
+    }),
     ActorIdentifier.destroy({
-      where: { datasource_id: datasourceProps.datasource_id }})
+      where: { datasource_id: datasourceProps.datasource_id },
+    }),
   ]);
 
   await Actor.destroy({
@@ -247,28 +247,30 @@ async function cleanup() {
 
   // clean up elastic search indices
   if (esEnabled === "yes") {
-
     const client = getClient();
 
     if (client) {
-      await Promise.all([name1_1, name1_2, name2_1, name2_2].map((props) =>
-        client.deleteByQuery({
-          index: indexName,
-          query: {match: {actor_id: props.actor_id}},
-          conflicts: "proceed",
-          refresh: true
-        })));
+      await Promise.all(
+        [name1_1, name1_2, name2_1, name2_2].map((props) =>
+          client.deleteByQuery({
+            index: indexName,
+            query: { match: { actor_id: props.actor_id } },
+            conflicts: "proceed",
+            refresh: true,
+          })
+        )
+      );
 
       for (let props of actorProps) {
         await client.deleteByQuery({
           index: indexName,
-          query: {match: {actor_id: props.actor_id}},
+          query: { match: { actor_id: props.actor_id } },
           conflicts: "proceed",
-          refresh: true
-        })
+          refresh: true,
+        });
       }
 
-      await client.indices.refresh({index: indexName})
+      await client.indices.refresh({ index: indexName });
     }
   }
 
@@ -282,7 +284,7 @@ beforeAll(async () => {
   await DataSource.create(datasourceProps);
 
   for (let props of actorProps) {
-    await Actor.create(props)
+    await Actor.create(props);
   }
 
   const defaultName = (props) => {
@@ -311,11 +313,11 @@ beforeAll(async () => {
   ]);
 
   for (let props of actorProps) {
-    await ActorName.create(defaultName(props))
-    await ActorIdentifier.create(defaultIdentifier(props))
+    await ActorName.create(defaultName(props));
+    await ActorIdentifier.create(defaultIdentifier(props));
   }
 
-  await Promise.all((populationProps.map((props) => Population.create(props))))
+  await Promise.all(populationProps.map((props) => Population.create(props)));
 
   // index to elastic search
   if (esEnabled === "yes") {
@@ -346,14 +348,16 @@ beforeAll(async () => {
           language: "en",
           preferred: true,
           type: props.type,
-          population: null
-        }
-        const pop = populationProps.find((pop) => pop.actor_id === props.actor_id)
+          population: null,
+        };
+        const pop = populationProps.find(
+          (pop) => pop.actor_id === props.actor_id
+        );
         if (pop) {
-          idx.population = pop.population
+          idx.population = pop.population;
         }
-        return idx
-      }
+        return idx;
+      };
 
       const actorIdentifierIndex = (props) => {
         const idx = {
@@ -362,28 +366,29 @@ beforeAll(async () => {
           language: "und",
           preferred: true,
           type: props.type,
-          population: null
-        }
-        const pop = populationProps.find((pop) => pop.actor_id === props.actor_id)
+          population: null,
+        };
+        const pop = populationProps.find(
+          (pop) => pop.actor_id === props.actor_id
+        );
         if (pop) {
-          idx.population = pop.population
+          idx.population = pop.population;
         }
-        return idx
-      }
+        return idx;
+      };
 
       for (let props of actorProps) {
+        let idx = actorNameIndex(props);
+        let id = idx.actor_id + ":name:" + idx.language + ":" + idx.name;
+        await client.index({ index: indexName, id: id, body: idx });
 
-        let idx = actorNameIndex(props)
-        let id = idx.actor_id + ":name:" + idx.language + ":" + idx.name
-        await client.index({index: indexName, id: id, body: idx })
-
-        let ai = defaultIdentifier(props)
-        idx = actorIdentifierIndex(props)
-        id = idx.actor_id + ":identifier:" + ai.namespace + ":" + idx.name
-        await client.index({index: indexName, id: id, body: idx })
+        let ai = defaultIdentifier(props);
+        idx = actorIdentifierIndex(props);
+        id = idx.actor_id + ":identifier:" + ai.namespace + ":" + idx.name;
+        await client.index({ index: indexName, id: id, body: idx });
       }
 
-      await client.indices.refresh({index: indexName})
+      await client.indices.refresh({ index: indexName });
     }
   }
 
@@ -730,28 +735,38 @@ it("has correct ordering", async () => {
       expect(res.body.data).toBeDefined();
       expect(res.body.data.length).toBeGreaterThan(0);
       const results = res.body.data;
-      const cidx = results.findIndex(a => a.actor_id === country4Props.actor_id)
-      const r1idx = results.findIndex(a => a.actor_id === region5Props.actor_id)
-      const r2idx = results.findIndex(a => a.actor_id === region6Props.actor_id)
-      const u1idx = results.findIndex(a => a.actor_id === city3Props.actor_id)
-      const u2idx = results.findIndex(a => a.actor_id === city4Props.actor_id)
+      const cidx = results.findIndex(
+        (a) => a.actor_id === country4Props.actor_id
+      );
+      const r1idx = results.findIndex(
+        (a) => a.actor_id === region5Props.actor_id
+      );
+      const r2idx = results.findIndex(
+        (a) => a.actor_id === region6Props.actor_id
+      );
+      const u1idx = results.findIndex(
+        (a) => a.actor_id === city3Props.actor_id
+      );
+      const u2idx = results.findIndex(
+        (a) => a.actor_id === city4Props.actor_id
+      );
 
       // country before others
-      expect(cidx).toBeLessThan(r1idx)
-      expect(cidx).toBeLessThan(r2idx)
-      expect(cidx).toBeLessThan(u1idx)
-      expect(cidx).toBeLessThan(u2idx)
+      expect(cidx).toBeLessThan(r1idx);
+      expect(cidx).toBeLessThan(r2idx);
+      expect(cidx).toBeLessThan(u1idx);
+      expect(cidx).toBeLessThan(u2idx);
 
       // regions before cities
 
-      expect(r1idx).toBeLessThan(u1idx)
-      expect(r1idx).toBeLessThan(u2idx)
+      expect(r1idx).toBeLessThan(u1idx);
+      expect(r1idx).toBeLessThan(u2idx);
 
-      expect(r2idx).toBeLessThan(u1idx)
-      expect(r2idx).toBeLessThan(u2idx)
+      expect(r2idx).toBeLessThan(u1idx);
+      expect(r2idx).toBeLessThan(u2idx);
 
       // high-population cities before low-population ones
 
-      expect(u1idx).toBeLessThan(u2idx)
+      expect(u1idx).toBeLessThan(u2idx);
     });
 });

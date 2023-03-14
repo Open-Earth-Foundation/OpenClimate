@@ -140,9 +140,11 @@ router.get(
         : null;
     };
 
-    let achieved = await Promise.all(targets.map(async (t) => {
-      return [t.target_id, await t.getPercentComplete()]
-    }))
+    let achieved = await Promise.all(
+      targets.map(async (t) => {
+        return [t.target_id, await t.getPercentComplete()];
+      })
+    );
 
     res.status(200).json({
       success: true,
@@ -181,8 +183,10 @@ router.get(
           };
         }),
         targets: targets.map((t) => {
-          const ds = dataSources.find((ds) => ds.datasource_id == t.datasource_id);
-          const ach = achieved.find((a) => a[0] === t.target_id)
+          const ds = dataSources.find(
+            (ds) => ds.datasource_id == t.datasource_id
+          );
+          const ach = achieved.find((a) => a[0] === t.target_id);
           const i = t.initiative_id
             ? initiatives.find((i) => i.initiative_id == t.initiative_id)
             : null;
@@ -195,7 +199,7 @@ router.get(
             target_value: t.target_value,
             target_unit: t.target_unit,
             is_net_zero: t.isNetZero(),
-            percent_achieved: (ach) ? ach[1] : null,
+            percent_achieved: ach ? ach[1] : null,
             datasource_id: t.datasource_id,
             datasource: {
               datasource_id: ds.datasource_id,
@@ -204,7 +208,7 @@ router.get(
               published: ds.published,
               URL: ds.URL,
               created: ds.created,
-              last_updated: ds?.last_updated
+              last_updated: ds?.last_updated,
             },
             initiative: i
               ? {
