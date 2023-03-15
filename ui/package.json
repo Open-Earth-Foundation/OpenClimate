@@ -65,7 +65,7 @@
     "style-watch": "onchange src/**/*.js src/**/*.ts  src/**/*.tsx -- prettier --write {{changed}}",
     "style-check": "prettier --check 'src/**/*.js' 'src/**/*.ts' 'src/**/*.tsx'",
     "style-format": "prettier --write 'src/**/*.js' 'src/**/*.ts'  'src/**/*.tsx'",
-    "build": "react-scripts build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
