@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: openclimate-api
-        image: public.ecr.aws/openearthfoundation/openclimate-api:latest
+        image: public.ecr.aws/openearthfoundation/openclimate-api:1
         # Set to Never for local
         imagePullPolicy: Always
         ports:

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: openclimate-ui
-          image: public.ecr.aws/openearthfoundation/openclimate-ui
+          image: public.ecr.aws/openearthfoundation/openclimate-ui:1
           ports:
             - containerPort: 80
           env:
