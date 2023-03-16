@@ -1,4 +1,4 @@
-name: Push OpenClimate acapy main to ECR stable
+name: Push acapy main to ECR stable
 
 on:
   workflow_dispatch:

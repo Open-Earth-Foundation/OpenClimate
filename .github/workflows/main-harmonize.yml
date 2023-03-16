@@ -1,4 +1,4 @@
-name: Run OpenClimate develop importer
+name: Run main importer
 
 on:
   workflow_dispatch:

@@ -1,4 +1,4 @@
-name: Push OpenClimate importer develop to ECR latest
+name: Push importer develop to ECR latest
 
 on:
   workflow_dispatch:

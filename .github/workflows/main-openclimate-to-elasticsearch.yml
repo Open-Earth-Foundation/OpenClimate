@@ -1,4 +1,4 @@
-name: Push OpenClimate-to-ElasticSearch indexer main to ECR stable
+name: Push indexer main to ECR stable
 
 on:
   workflow_dispatch:
