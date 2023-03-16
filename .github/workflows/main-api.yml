@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - api/**
+      - k8s/prod/openclimate-api-deployment.yaml.m4
     branches: [ "main" ]
 
 jobs:
@@ -47,13 +48,12 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_EKS_PROD_USER }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_EKS_PROD_USER }}
-      EKS_PROD_NAME: ${{ secrets.EKS_PROD_NAME }}
     steps:
 
     - uses: actions/checkout@v2.3.4
 
     - name: Creating kubeconfig file
-      run: aws eks update-kubeconfig --name $EKS_PROD_NAME --region us-east-1
+      run: aws eks update-kubeconfig --name ${{ secrets.EKS_PROD_NAME }} --region us-east-1
 
     - name: Testing connection to EKS
       run: kubectl get pods -n default
