@@ -10,3 +10,4 @@ nginx/*ssl*
 **/.env
 .DS_Store
 k8s/prod/openclimate-api-deployment.yml
+k8s/prod/openclimate-elasticsearch-deployment.yml
