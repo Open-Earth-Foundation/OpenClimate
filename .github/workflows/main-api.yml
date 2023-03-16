@@ -40,3 +40,32 @@ jobs:
         docker push $IMAGE:$MAJOR
         docker push $IMAGE:$MINOR
         docker push $IMAGE:stable
+
+  deployToEKS:
+    needs: pushToECR
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_EKS_PROD_USER }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_EKS_PROD_USER }}
+      EKS_PROD_NAME: ${{ secrets.EKS_PROD_NAME }}
+    steps:
+
+    - uses: actions/checkout@v2.3.4
+
+    - name: Creating kubeconfig file
+      run: aws eks update-kubeconfig --name $EKS_PROD_NAME --region us-east-1
+
+    - name: Testing connection to EKS
+      run: kubectl get pods -n default
+
+    - name: Deploying service
+      run: |
+        m4 -DENV_JWT_SECRET=${{secrets.PROD_API_JWT_SECRET}} \
+          -DENV_SESSION_SECRET=${{secrets.PROD_API_SESSION_SECRET}} \
+          -DENV_POSTGRESQL_HOST=${{secrets.PROD_POSTGRESQL_ADDRESS}} \
+          -DENV_POSTGRESQL_DB=${{secrets.PROD_POSTGRESQL_DB}} \
+          -DENV_POSTGRESQL_USER=${{secrets.PROD_POSTGRESQL_USER}} \
+          -DENV_POSTGRESQL_PASSWORD=${{secrets.PROD_POSTGRESQL_PASSWORD}} \
+          k8s/prod/openclimate-api-deployment.yaml.m4 > k8s/prod/openclimate-api-deployment.yaml
+        kubectl apply -f k8s/openclimate-api-deployment.yml -n default
+        kubectl rollout restart deployment openclimate-api-deployment -n default
