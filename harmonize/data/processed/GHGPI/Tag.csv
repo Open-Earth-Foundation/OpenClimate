@@ -1,0 +1,7 @@
+tag_id,tag_name
+exclude_AFOLU,"Excludes Agriculture, Forestry and Other Land Use"
+include_energy,Inclues Energy
+include_IPPU,Includes Industrial Processes and Product Use
+include_waste,Includes Waste
+GWP_AR6,global warming potential: AR6
+GHGs_included_CO2_CH4_N2O,"GHGs included: CO2, CH4, and N2O"

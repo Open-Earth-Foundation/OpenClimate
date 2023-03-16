@@ -1,0 +1,7 @@
+datasource_id,tag_id
+GHGPI:economy_wide:2019-01-01,exclude_AFOLU
+GHGPI:economy_wide:2019-01-01,include_energy
+GHGPI:economy_wide:2019-01-01,include_IPPU
+GHGPI:economy_wide:2019-01-01,include_waste
+GHGPI:economy_wide:2019-01-01,GWP_AR6
+GHGPI:economy_wide:2019-01-01,GHGs_included_CO2_CH4_N2O
