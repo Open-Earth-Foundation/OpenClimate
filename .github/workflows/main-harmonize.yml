@@ -18,7 +18,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_EKS_PROD_USER }}
       steps:
 
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
 
       - name: Creating kubeconfig file
         run: aws eks update-kubeconfig --name ${{secrets.EKS_PROD_NAME}} --region us-east-1
