@@ -9,4 +9,4 @@ nginx/*ssl*
 .env.production.local
 **/.env
 .DS_Store
-k8s/prod/openclimate-api-deployment.yaml
+k8s/prod/openclimate-api-deployment.yml
