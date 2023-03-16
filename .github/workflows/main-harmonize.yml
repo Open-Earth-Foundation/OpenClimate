@@ -1,36 +1,14 @@
-name: Push importer main to ECR stable
+name: Run main importer
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - import/**
+      - harmonize/data/processed/**
       - k8s/prod/openclimate-import-zip-job.yml.m4
     branches: [ "main" ]
 
 jobs:
-  pushToECR:
-    runs-on: ubuntu-latest
-    steps:
-
-    - uses: actions/checkout@v3
-
-    - name: Logging in to ECR
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/openearthfoundation
-
-    - name: Pushing OC-importer to ECR
-      env:
-        SHA: ${{ github.sha }}
-        IMAGE: public.ecr.aws/openearthfoundation/openclimate-import
-
-      run: |
-        docker build -t $IMAGE:$SHA import
-        docker tag $IMAGE:$SHA $IMAGE:stable
-        docker push $IMAGE:$SHA
-        docker push $IMAGE:stable
 
   runImportJobOnEKS:
       needs: pushToECR

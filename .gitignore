@@ -9,3 +9,7 @@ nginx/*ssl*
 .env.production.local
 **/.env
 .DS_Store
+k8s/prod/openclimate-api-deployment.yml
+k8s/prod/openclimate-elasticsearch-deployment.yml
+k8s/prod/openclimate-import-zip-job.yml
+k8s/prod/openclimate-to-elasticsearch-job.yml

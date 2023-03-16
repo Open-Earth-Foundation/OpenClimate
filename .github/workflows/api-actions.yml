@@ -1,4 +1,4 @@
-name: Push OpenClimate API develop to ECR latest
+name: Push API develop to ECR latest
 
 on:
   workflow_dispatch:

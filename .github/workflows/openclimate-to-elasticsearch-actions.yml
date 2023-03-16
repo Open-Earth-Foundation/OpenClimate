@@ -1,4 +1,4 @@
-name: Push OpenClimate-to-ElasticSearch indexer develop to ECR latest
+name: Push indexer develop to ECR latest
 
 on:
   workflow_dispatch:

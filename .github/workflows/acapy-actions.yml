@@ -1,4 +1,4 @@
-name: Push OpenClimate acapy dev to ECR latest
+name: Push acapy dev to ECR latest
 
 on:
   workflow_dispatch:

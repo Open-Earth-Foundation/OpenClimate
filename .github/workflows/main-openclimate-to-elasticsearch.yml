@@ -1,10 +1,11 @@
-name: Push OpenClimate-to-ElasticSearch indexer main to ECR stable
+name: Push indexer main to ECR stable
 
 on:
   workflow_dispatch:
   push:
     paths:
       - openclimate-to-elasticsearch/**
+      - k8s/prod/openclimate-to-elasticsearch-job.yml.m4
     branches: [ "main" ]
 
 jobs:
@@ -30,3 +31,30 @@ jobs:
         docker tag $IMAGE:$SHA $IMAGE:stable
         docker push $IMAGE:$SHA
         docker push $IMAGE:stable
+
+  runIndexJobOnEKS:
+      needs: pushToECR
+      runs-on: ubuntu-latest
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_EKS_PROD_USER }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_EKS_PROD_USER }}
+      steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Creating kubeconfig file
+        run: aws eks update-kubeconfig --name ${{secrets.EKS_PROD_NAME}} --region us-east-1
+
+      - name: Testing connection to EKS
+        run: kubectl get pods -n default
+
+      - name: Creating index job on EKS
+        run: |
+          m4 \
+            -DENV_POSTGRESQL_HOST=${{secrets.PROD_POSTGRESQL_ADDRESS}} \
+            -DENV_POSTGRESQL_DB=${{secrets.PROD_POSTGRESQL_DB}} \
+            -DENV_POSTGRESQL_USER=${{secrets.PROD_POSTGRESQL_USER}} \
+            -DENV_POSTGRESQL_PASSWORD=${{secrets.PROD_POSTGRESQL_PASSWORD}} \
+            -DENV_ELASTIC_PASSWORD="${{secrets.PROD_ELASTIC_PASSWORD}}" \
+            k8s/prod/openclimate-to-elasticsearch-job.yml.m4 > k8s/prod/openclimate-to-elasticsearch-job.yml
+          kubectl create -f k8s/prod/openclimate-to-elasticsearch-job.yml -n default
