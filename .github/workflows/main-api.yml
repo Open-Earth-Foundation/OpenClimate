@@ -67,5 +67,5 @@ jobs:
           -DENV_POSTGRESQL_USER=${{secrets.PROD_POSTGRESQL_USER}} \
           -DENV_POSTGRESQL_PASSWORD=${{secrets.PROD_POSTGRESQL_PASSWORD}} \
           k8s/prod/openclimate-api-deployment.yaml.m4 > k8s/prod/openclimate-api-deployment.yaml
-        kubectl apply -f k8s/openclimate-api-deployment.yml -n default
+        kubectl apply -f k8s/prod/openclimate-api-deployment.yml -n default
         kubectl rollout restart deployment openclimate-api-deployment -n default
