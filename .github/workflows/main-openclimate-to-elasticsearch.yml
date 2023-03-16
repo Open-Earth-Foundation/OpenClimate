@@ -55,6 +55,6 @@ jobs:
             -DENV_POSTGRESQL_DB=${{secrets.PROD_POSTGRESQL_DB}} \
             -DENV_POSTGRESQL_USER=${{secrets.PROD_POSTGRESQL_USER}} \
             -DENV_POSTGRESQL_PASSWORD=${{secrets.PROD_POSTGRESQL_PASSWORD}} \
-            -DENV_ELASTIC_PASSWORD=${{secrets.PROD_ELASTIC_PASSWORD}} \
+            -DENV_ELASTIC_PASSWORD="${{secrets.PROD_ELASTIC_PASSWORD}}" \
             k8s/prod/openclimate-to-elasticsearch-job.yml.m4 > k8s/prod/openclimate-to-elasticsearch-job.yml
           kubectl create -f k8s/prod/openclimate-to-elasticsearch-job.yml -n default

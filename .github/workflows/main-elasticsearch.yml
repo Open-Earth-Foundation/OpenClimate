@@ -27,7 +27,7 @@ jobs:
 
     - name: Deploying service
       run: |
-        m4 -DENV_ELASTIC_PASSWORD=${{secrets.PROD_ELASTIC_PASSWORD}} \
+        m4 -DENV_ELASTIC_PASSWORD="${{secrets.PROD_ELASTIC_PASSWORD}}" \
           k8s/prod/openclimate-elasticsearch-deployment.yml.m4 > k8s/prod/openclimate-elasticsearch-deployment.yml
         kubectl apply -f k8s/prod/openclimate-elasticsearch-deployment.yml -n default
         kubectl rollout restart deployment openclimate-elasticsearch-deployment -n default
