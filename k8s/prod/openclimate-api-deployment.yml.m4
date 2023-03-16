@@ -46,6 +46,8 @@ spec:
           value: ENV_POSTGRESQL_PASSWORD
         - name: ELASTIC_SEARCH_ENABLED
           value: "yes"
+        - name: ELASTIC_SEARCH_PASSWORD
+          value: ENV_ELASTIC_PASSWORD
         resources:
           limits:
             memory: "1024Mi"
