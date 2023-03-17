@@ -7,6 +7,7 @@ kind: Job
 metadata:
   generateName: openclimate-import-zip-
 spec:
+  ttlSecondsAfterFinished: 86400
   template:
     spec:
       containers:
