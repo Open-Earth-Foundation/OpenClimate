@@ -1,6 +1,8 @@
 #!/bin/sh
 
-cat << EOF > public/config.json
+export OUTPUT_DIR=$1
+
+cat << EOF > ${OUTPUT_DIR}/config.json
 {
     "reactAppController": "${REACT_APP_CONTROLLER}",
     "matomoServer": "${MATOMO_SERVER}",
@@ -8,9 +10,9 @@ cat << EOF > public/config.json
 }
 EOF
 
-if [[ $SITE_VISIBILITY == "public" ]]
+if [[ "${SITE_VISIBILITY}" == "public" ]]
 then
-cat << EOF > public/robots.txt
+cat << EOF > ${OUTPUT_DIR}/robots.txt
 Sitemap: ${WEB_ROOT}/sitemap-index.xml
 User-agent: *
 Disallow: /account/
@@ -25,7 +27,7 @@ User-agent: *
 Allow: /
 EOF
 else
-cat << EOF > public/robots.txt
+cat << EOF > ${OUTPUT_DIR}/robots.txt
 Sitemap: ${WEB_ROOT}/sitemap-index.xml
 User-agent: *
 Disallow: /
