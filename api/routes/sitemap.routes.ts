@@ -15,8 +15,7 @@ const router = Router();
 export default router;
 
 function makeUrl(relative) {
-    const root = process.env.WEB_ROOT;
-    return `${root}${relative}`;
+    return (new URL(relative, process.env.WEB_ROOT)).toString()
 }
 
 router.get(
