@@ -535,7 +535,7 @@ app.get(
 );
 
 app.use(
-  "/",
+  "^/$",
   wrap(async (req, res) => {
     const name = "openclimate-hub-controller";
     const version = name in process.versions ? process.versions[name] : null;
