@@ -12,6 +12,7 @@ import LevelCards from "./level-cards";
 import CollaborateFAB from "./CollaborateFab";
 import CollaborationCardHint from "./CollaborateCardHint";
 import ActorFlag from "./actor-flag/actor-flag";
+import {Helmet} from "react-helmet";
 
 type ReviewPageParams = {
   actorID: string;
@@ -21,6 +22,8 @@ const ReviewPage: FunctionComponent = () => {
   const history = useHistory();
   const params = useParams<ReviewPageParams>();
   const actorID = "actorID" in params ? params["actorID"] : "EARTH";
+
+  const [prevTitle, setPrevtitle] = useState<string>(document.title);
 
   const [actors, setActors] = useState<any>([]);
 
@@ -85,7 +88,7 @@ const ReviewPage: FunctionComponent = () => {
   ) => {
     const actor_id = option.value;
     insertActor(actor_id, []);
-    history.push(actor_id === "EARTH" ? "/" : `/actor/${option.value}`);
+    history.push(actor_id === "EARTH" ? "/" : `/actor/${option.value}/${option.name}_emissions`);
   };
 
   const deselectFilterHandler = (filterType: FilterTypes) => {
@@ -103,7 +106,8 @@ const ReviewPage: FunctionComponent = () => {
         break;
     }
     const actor_id = newActorsList[newActorsList.length - 1].actor_id;
-    history.push(actor_id === "EARTH" ? "/" : `/actor/${actor_id}`);
+    const actor_name = newActorsList[newActorsList.length - 1].name
+    history.push(actor_id === "EARTH" ? "/" : `/actor/${actor_id}/${actor_name}_emissions`);
     setActors(newActorsList);
   };
 
@@ -111,6 +115,9 @@ const ReviewPage: FunctionComponent = () => {
 
   return (
     <div className="review">
+      <Helmet>
+        <title>{`OpenClimate | ${current && current.name !== "Earth" ? current.name + " historic emissions and climate data tracker" : "Country, city & company GHG emissions data tracker"}`}</title>
+      </Helmet>
       <div
         className="review__wrapper"
         style={{ backgroundImage: notJustEarth() ? `url(${Bg})` : "" }}
@@ -153,11 +160,11 @@ const ReviewPage: FunctionComponent = () => {
                     </p>
                   </div>
                   <div className="review-info__content">
-                    Visualize, report, and participate with relevant data to a{" "}
+                    Explore, download & contribute historic GHG emissions{" "}
                     <span>
-                      nested, aggregated, and interoperable open source
+                      and climate progress data to an aggregated
                     </span>{" "}
-                    portal for climate accounting.
+                    open source portal for climate accounting.
                   </div>
                 </div>
               </>

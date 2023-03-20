@@ -10,6 +10,7 @@ tables = [
     "Methodology",
     "DataSource",
     "DataSourceTag",
+    "DataSourceQuality",
     "Actor",
     "ActorIdentifier",
     "ActorName",
@@ -47,7 +48,8 @@ pkeys = {
     "EmissionsAggTag": ["emissions_id", "tag_id"],
     "Target": ["target_id"],
     "TargetTag": ["target_id", "tag_id"],
-    "Initiative": ["initiative_id"]
+    "Initiative": ["initiative_id"],
+    "DataSourceQuality": ["datasource_id", "score_type"],
 }
 
 # Some tables are tags of other tables. They get treated

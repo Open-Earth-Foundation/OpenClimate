@@ -1,3 +1,31 @@
+import csv
+import os
+import pathlib
+from pathlib import Path
+import pandas as pd
+import re
+from typing import List
+from typing import Dict
+from utils import df_wide_to_long
+from utils import make_dir
+from utils import df_columns_as_str
+from utils import df_drop_unnamed_columns
+
+def simple_write_csv(
+        output_dir: str = None,
+        name: str = None,
+        data: List[Dict] | Dict = None,
+        mode: str = "w",
+        extension: str = "csv") -> None:
+
+    if isinstance(data, dict):
+        data = [data]
+
+    with open(f"{output_dir}/{name}.{extension}", mode=mode) as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
+
 def read_eccc_ghg_inventory_fl(fl=None, province=None):
 
     assert isinstance(fl, pathlib.PurePath), (
@@ -42,17 +70,6 @@ def read_eccc_ghg_inventory_fl(fl=None, province=None):
 
 
 if __name__ == "__main__":
-    import os
-    import pathlib
-    from pathlib import Path
-    import pandas as pd
-    import re
-    from utils import df_wide_to_long
-    from utils import make_dir
-    from utils import write_to_csv
-    from utils import df_columns_as_str
-    from utils import df_drop_unnamed_columns
-
     # where to create tables
     outputDir = "../data/processed/ECCC_GHG_inventory"
     outputDir = os.path.abspath(outputDir)
@@ -71,10 +88,12 @@ if __name__ == "__main__":
         'URL': 'https://www.canada.ca/en/environment-climate-change.html'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Publisher',
+        data=publisherDict,
+        mode='w'
+    )
 
     # ------------------------------------------
     # DataSource table
@@ -87,54 +106,40 @@ if __name__ == "__main__":
         'URL': 'https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/?lang=en'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSource',
+        data=datasourceDict,
+        mode='w'
+    )
 
     # ------------------------------------------
     # EmissionsAgg table
     # ------------------------------------------
-    # merge all province data into one common dataset
-    path = Path(dataDir)
-    files = sorted((path.glob('EN_GHG_IPCC_*.xlsx')))
-    df_out = pd.concat([read_eccc_ghg_inventory_fl(fl=fl)
-                        for fl in files], ignore_index=True)
-
-    # convert emissions to tonnes
-    if set(df_out['units']) == {'kt CO2  eq'}:
-        df_out['emissions'] = df_out['emissions'] * 10**3
-        df_out = df_out.rename(columns={'emissions': 'total_emissions'})
-
-    # create datasource and emissions id
-    df_out['datasource_id'] = datasourceDict['datasource_id']
-    df_out['emissions_id'] = df_out.apply(lambda row:
-                                          f"ECCC_GHG_inventory:{row['actor_id']}:{row['year']}",
-                                          axis=1)
-
-    # Create EmissionsAgg table
-    emissionsAggColumns = [
-        "emissions_id",
-        "actor_id",
-        "year",
-        "total_emissions",
-        "datasource_id"
-    ]
-
-    df_emissionsAgg = df_out[emissionsAggColumns]
-
-    # ensure data has correct types
-    df_emissionsAgg = df_emissionsAgg.astype({
+    astype_dict = {
         'emissions_id': str,
         'actor_id': str,
         'year': int,
         'total_emissions': int,
         'datasource_id': str
-    })
+    }
 
-    # sort by actor_id and year
-    df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
+    output_columns = tuple(astype_dict.keys())
+    emissions_id_function = lambda row:f"ECCC_GHG_inventory:{row['actor_id']}:{row['year']}"
+    total_emissions_function = lambda row: row['emissions'] * 10**3
 
+    # merge all province data into one common dataset
+    path = Path(dataDir)
+    files = sorted((path.glob('EN_GHG_IPCC_*.xlsx')))
+    df_emissionsAgg = (
+        pd.concat([read_eccc_ghg_inventory_fl(fl=fl) for fl in files], ignore_index=True)
+        .assign(total_emissions=lambda x: x.apply(total_emissions_function, axis=1))
+        .assign(datasource_id = datasourceDict['datasource_id'])
+        .assign(emissions_id = lambda x: x.apply(emissions_id_function, axis=1))
+        .loc[:, output_columns]
+        .astype(astype_dict)
+        .sort_values(by=['actor_id', 'year'])
+)
     # save to csv
     df_emissionsAgg.drop_duplicates().to_csv(
         f'{outputDir}/EmissionsAgg.csv', index=False)
@@ -142,35 +147,42 @@ if __name__ == "__main__":
     # ------------------------------------------
     # Tag table
     # ------------------------------------------
-    if not Path(f"{outputDir}/Tag.csv").is_file():
-        # create Tag file
-        tagDictList = [
+    tagDictList = [
             {
                 'tag_id': 'country_reported_data',
                 'tag_name': 'Country-reported data'
             }
         ]
 
-        for tagDict in tagDictList:
-            write_to_csv(outputDir=outputDir,
-                         tableName='Tag',
-                         dataDict=tagDict,
-                         mode='a')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Tag',
+        data=tagDictList,
+        mode='w'
+    )
 
     # ------------------------------------------
     # DataSourceTag table
     # ------------------------------------------
-    if not Path(f"{outputDir}/DataSourceTag.csv").is_file():
+    datasource_id = f"{datasourceDict['datasource_id']}"
+    tags = ['country_reported_data']
+    dataSourceTagDict = [{'datasource_id': datasource_id, 'tag_id': tag} for tag in tags]
 
-        tags = ['country_reported_data']
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSourceTag',
+        data=dataSourceTagDict,
+        mode='w'
+    )
 
-        for tag in tags:
-            dataSourceTagDict = {
-                'datasource_id': f"{datasourceDict['datasource_id']}",
-                'tag_id': tag
-            }
+    # ------------------------------------------
+    # DataSourceQuality table
+    # ------------------------------------------
+    DataSourceQualityDict = {
+        "datasource_id": datasourceDict['datasource_id'],
+        "score_type": "GHG target",
+        "score": 0.9,
+        "notes": "country reported. sum across provinces equal to country data reported to UNFCCC"
+    }
 
-            write_to_csv(outputDir=outputDir,
-                         tableName='DataSourceTag',
-                         dataDict=dataSourceTagDict,
-                         mode='a')
+    simple_write_csv(outputDir, "DataSourceQuality", DataSourceQualityDict)

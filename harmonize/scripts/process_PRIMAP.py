@@ -1,13 +1,33 @@
-if __name__ == "__main__":
-    import concurrent.futures
-    import os
-    from pathlib import Path
-    import pandas as pd
-    from utils import df_wide_to_long
-    from utils import iso3_to_iso2
-    from utils import make_dir
-    from utils import write_to_csv
+import concurrent.futures
+import csv
+import os
+from pathlib import Path
+import pandas as pd
+from typing import List
+from typing import Dict
+from utils import df_wide_to_long
+from utils import iso3_to_iso2
+from utils import make_dir
+from utils import write_to_csv
 
+
+def simple_write_csv(
+        output_dir: str = None,
+        name: str = None,
+        data: List[Dict] | Dict = None,
+        mode: str = "w",
+        extension: str = "csv") -> None:
+
+    if isinstance(data, dict):
+        data = [data]
+
+    with open(f"{output_dir}/{name}.{extension}", mode=mode) as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
+
+
+if __name__ == "__main__":
     # where to create tables
     outputDir = "../data/processed/PIK_PRIMAPv2.4"
     outputDir = os.path.abspath(outputDir)
@@ -26,10 +46,12 @@ if __name__ == "__main__":
         'URL': 'https://www.pik-potsdam.de/paris-reality-check/primap-hist/'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Publisher',
+        data=publisherDict,
+        mode='w'
+    )
 
     # ------------------------------------------
     # DataSource table
@@ -42,10 +64,12 @@ if __name__ == "__main__":
         'URL': 'https://zenodo.org/record/7179775'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSource',
+        data=datasourceDict,
+        mode='w'
+    )
 
     # ------------------------------------------
     # EmissionsAgg table
@@ -158,9 +182,7 @@ if __name__ == "__main__":
     # ------------------------------------------
     # Tag table
     # ------------------------------------------
-    if not Path(f"{outputDir}/Tag.csv").is_file():
-        # create Tag file
-        tagDictList = [
+    tagDictList = [
             {
                 'tag_id': 'combined_datasets',
                 'tag_name': 'Combined datasets'
@@ -175,26 +197,35 @@ if __name__ == "__main__":
             }
         ]
 
-        for tagDict in tagDictList:
-            write_to_csv(outputDir=outputDir,
-                         tableName='Tag',
-                         dataDict=tagDict,
-                         mode='a')
+    simple_write_csv(
+        output_dir=outputDir,
+        name='Tag',
+        data=tagDictList,
+        mode='w'
+    )
 
     # ------------------------------------------
     # DataSourceTag table
     # ------------------------------------------
-    if not Path(f"{outputDir}/DataSourceTag.csv").is_file():
+    datasource_id = f"{datasourceDict['datasource_id']}"
+    tags = ['combined_datasets', 'country_or_3rd_party', 'peer_reviewed']
+    dataSourceTagDict = [{'datasource_id': datasource_id, 'tag_id': tag} for tag in tags]
 
-        tags = ['combined_datasets', 'country_or_3rd_party', 'peer_reviewed']
+    simple_write_csv(
+        output_dir=outputDir,
+        name='DataSourceTag',
+        data=dataSourceTagDict,
+        mode='w'
+    )
 
-        for tag in tags:
-            dataSourceTagDict = {
-                'datasource_id': f"{datasourceDict['datasource_id']}",
-                'tag_id': tag
-            }
+    # ------------------------------------------
+    # DataSourceQuality table
+    # ------------------------------------------
+    DataSourceQualityList = [{
+        "datasource_id": datasourceDict['datasource_id'],
+        "score_type": "GHG target",
+        "score": 0.8,
+        "notes": "Long time series. not sure if 2021 values are correct. data for all countries. not country reported data"
+    }]
 
-            write_to_csv(outputDir=outputDir,
-                         tableName='DataSourceTag',
-                         dataDict=dataSourceTagDict,
-                         mode='a')
+    simple_write_csv(outputDir, "DataSourceQuality", DataSourceQualityList)

@@ -5,3 +5,13 @@
         flex-wrap: wrap;
     }
 }
+
+.review__dashboard-layout {
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 39px;
+    height: auto;
+    width: 100%;
+    margin-bottom: 39px;
+
+}

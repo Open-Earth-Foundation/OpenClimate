@@ -1,0 +1,4 @@
+datasource_id,name,publisher,published,URL
+SBTi:companies_taking_action:2021-07-31,SBTi: Companies Taking Action,SBTi,2023-01-01,https://sciencebasedtargets.org/companies-taking-action
+SBTi:target_progress:2021-07-31,SBTi: Target Progress Data,SBTi,2021-07-31,https://sciencebasedtargets.org/reports/sbti-progress-report-2021/progress-data-dashboard#datadashboard
+GLEIF_golden_copy,information on Legal Entity Identifiers (LEIs) and related reference data in a ready-to-use format,GLEIF,2022-12-16,https://www.gleif.org/en/lei-data/gleif-golden-copy/download-the-golden-copy#/
