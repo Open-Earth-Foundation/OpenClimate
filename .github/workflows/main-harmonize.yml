@@ -11,7 +11,6 @@ on:
 jobs:
 
   runImportJobOnEKS:
-      needs: pushToECR
       runs-on: ubuntu-latest
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_EKS_PROD_USER }}
