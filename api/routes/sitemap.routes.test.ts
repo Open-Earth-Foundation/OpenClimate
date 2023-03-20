@@ -207,6 +207,8 @@ it("can get a sitemap for a country", async () => {
       expect(res.text).toMatch('<urlset');
       expect(res.text).toMatch('<url>');
       expect(res.text).toMatch(country1Props.actor_id);
+      expect(res.text).toMatch(encodeURIComponent(country1Props.name));
+      expect(res.text).toMatch('emissions');
     });
 });
 

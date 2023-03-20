@@ -18,6 +18,10 @@ function makeUrl(relative) {
     return (new URL(relative, process.env.WEB_ROOT)).toString()
 }
 
+function makeActorUrl(actor) {
+  return makeUrl(`/actor/${actor.actor_id}/${actor.name}_emissions`)
+}
+
 router.get(
   "/sitemap-index.xml",
   wrap(async (req: any, res: any) => {
@@ -55,10 +59,10 @@ router.get(
       }
       const items = Array<any>()
       items.push({_attr: {xmlns: ns}})
-      items.push({url: [{loc: makeUrl(`/actor/${country.actor_id}`)}]})
+      items.push({url: [{loc: makeActorUrl(country)}]})
       const adm1s = await Actor.findAll({where: {is_part_of: country.actor_id, type: 'adm1'}})
       for (let adm1 of adm1s) {
-        items.push({url: [{loc: makeUrl(`/actor/${adm1.actor_id}`)}]})
+        items.push({url: [{loc: makeActorUrl(adm1)}]})
       }
       const adm2s = await Actor.findAll({
         where: {
@@ -67,7 +71,7 @@ router.get(
         }
       })
       for (let adm2 of adm2s) {
-        items.push({url: [{loc: makeUrl(`/actor/${adm2.actor_id}`)}]})
+        items.push({url: [{loc: makeActorUrl(adm2)}]})
       }
       const parents = [country.actor_id].concat(
         adm1s.map(a => a.actor_id),
@@ -80,7 +84,7 @@ router.get(
         }
       })
       for (let city of cities) {
-        items.push({url: [{loc: makeUrl(`/actor/${city.actor_id}`)}]})
+        items.push({url: [{loc: makeActorUrl(city)}]})
       }
       const results = {urlset: items}
       req.logger.debug(`formatted ${items.length} items`)
