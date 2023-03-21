@@ -190,16 +190,16 @@ it("can get a sitemap index", async () => {
 });
 
 it("returns 404 for a non-existent country sitemap", async () => {
-  return request(app).get(`/sitemap-${DNE}.xml`).expect(404);
+  return request(app).get(`/sitemap-country-${DNE}.xml`).expect(404);
 });
 
 it("returns 400 for a non-country actor sitemap", async () => {
-    return request(app).get(`/sitemap-${region1Props.actor_id}.xml`).expect(400);
+    return request(app).get(`/sitemap-country-${region1Props.actor_id}.xml`).expect(400);
   });
 
 it("can get a sitemap for a country", async () => {
   return request(app)
-    .get(`/sitemap-${country1Props.actor_id}.xml`)
+    .get(`/sitemap-country-${country1Props.actor_id}.xml`)
     .expect(200)
     .expect("Content-Type", /text\/xml/)
     .expect((res: any) => {
@@ -214,7 +214,7 @@ it("can get a sitemap for a country", async () => {
 
 it("can get adm1 regions for a country in its sitemap", async () => {
   return request(app)
-    .get(`/sitemap-${country1Props.actor_id}.xml`)
+    .get(`/sitemap-country-${country1Props.actor_id}.xml`)
     .expect(200)
     .expect("Content-Type", /text\/xml/)
     .expect((res: any) => {
@@ -226,7 +226,7 @@ it("can get adm1 regions for a country in its sitemap", async () => {
 
 it("can get adm2 regions for a country in its sitemap", async () => {
   return request(app)
-    .get(`/sitemap-${country1Props.actor_id}.xml`)
+    .get(`/sitemap-country-${country1Props.actor_id}.xml`)
     .expect(200)
     .expect("Content-Type", /text\/xml/)
     .expect((res: any) => {
@@ -237,7 +237,7 @@ it("can get adm2 regions for a country in its sitemap", async () => {
 
 it("can get cities in an adm1 region in country sitemap", async () => {
   return request(app)
-    .get(`/sitemap-${country1Props.actor_id}.xml`)
+    .get(`/sitemap-country-${country1Props.actor_id}.xml`)
     .expect(200)
     .expect("Content-Type", /text\/xml/)
     .expect((res: any) => {
@@ -248,7 +248,7 @@ it("can get cities in an adm1 region in country sitemap", async () => {
 
 it("can get cities in an adm2 region in country sitemap", async () => {
   return request(app)
-    .get(`/sitemap-${country1Props.actor_id}.xml`)
+    .get(`/sitemap-country-${country1Props.actor_id}.xml`)
     .expect(200)
     .expect("Content-Type", /text\/xml/)
     .expect((res: any) => {
@@ -259,7 +259,7 @@ it("can get cities in an adm2 region in country sitemap", async () => {
 
 it("can get cities in no region in country sitemap", async () => {
   return request(app)
-    .get(`/sitemap-${country1Props.actor_id}.xml`)
+    .get(`/sitemap-country-${country1Props.actor_id}.xml`)
     .expect(200)
     .expect("Content-Type", /text\/xml/)
     .expect((res: any) => {
@@ -270,7 +270,7 @@ it("can get cities in no region in country sitemap", async () => {
 
 it("country sitemap does not contain regions from other countries", async () => {
   return request(app)
-    .get(`/sitemap-${country1Props.actor_id}.xml`)
+    .get(`/sitemap-country-${country1Props.actor_id}.xml`)
     .expect(200)
     .expect("Content-Type", /text\/xml/)
     .expect((res: any) => {
@@ -283,7 +283,7 @@ it("country sitemap does not contain regions from other countries", async () => 
 
 it("country sitemap does not contain cities from other countries", async () => {
   return request(app)
-    .get(`/sitemap-${country1Props.actor_id}.xml`)
+    .get(`/sitemap-country-${country1Props.actor_id}.xml`)
     .expect(200)
     .expect("Content-Type", /text\/xml/)
     .expect((res: any) => {

@@ -45,7 +45,7 @@ router.get(
 );
 
 router.get(
-    "/sitemap-:actorId.xml",
+    "/sitemap-country-:actorId.xml",
     wrap(async (req: any, res: any) => {
       req.logger.debug('sitemap requested')
       const actorId = req.params.actorId;
