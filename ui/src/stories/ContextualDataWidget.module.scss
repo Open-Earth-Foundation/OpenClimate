@@ -107,3 +107,53 @@
     color: #7A7B9A;
     
 }
+
+.emptyState {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.emptyState p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.4px;
+    color: #7A7B9A;
+    margin-top: 28px;
+}
+
+.emptyState .btn {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 16px;
+}
+
+
+.emptyState .btn span {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    color: #2351DC;
+}
+
+.emptyStateIcon {
+    color: #2351DC;
+    margin-right: 11px;
+}
+
+
+
