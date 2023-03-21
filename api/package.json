@@ -34,7 +34,7 @@
     "typescript": "^4.9.5",
     "uuid": "^9.0.0",
     "winston": "^3.8.2",
-    "ws": "^8.8.1",
+    "ws": "^8.13.0",
     "xml": "^1.0.1"
   },
   "devDependencies": {
