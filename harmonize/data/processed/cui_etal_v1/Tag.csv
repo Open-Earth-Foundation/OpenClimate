@@ -1,0 +1,4 @@
+tag_id,tag_name
+co2_only,CO2 only
+power_industry_and_ground_transport,"Sectors: power, industry and ground transport"
+province_fraction_of_national,Province emissions estimated as a fraction of national emissions
