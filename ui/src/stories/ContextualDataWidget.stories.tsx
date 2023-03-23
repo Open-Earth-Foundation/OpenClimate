@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { ContextualDataWidget } from './ContextualData.widget';
 
 export default {
