@@ -84,7 +84,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "chromatic": "npx chromatic --project-token=5fe7b4fea51a"
   },
   "husky": {
     "hooks": {
@@ -114,5 +115,7 @@
   ],
   "engines": {
     "node": "^18.5.0"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "open-climate-ui@1.7.0-dev"
 }
