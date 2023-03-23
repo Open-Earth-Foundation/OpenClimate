@@ -143,6 +143,32 @@ Standard output. `data` is an object representing the actor, with the following 
   - `baseline_value`: value of the metric in the baseline year, for comparison.
   - `is_net_zero`: true if this is a "net zero" target; otherwise false.
   - `percent_achieved`: percent the target is achieved, if it's a percent absolute emissions reduction, otherwise null.
+  - `percent_achieved_reason`: an object with the following properties:
+    - `baseline`: if the `baseline_value` of the
+      target is set, null. Otherwise, this will be an object with the following properties:
+      - `year`: the year of emissions baseline; same as `baseline_year`.
+      - `value`: the emissions value in tonnes of CO2E.
+      - `datasource`: an object representing the data source for this target, with the following properties:
+        - `datasource_id`: ID code for the datasource; should be identical to the key.
+        - `name`: name for the data source.
+        - `publisher`: Publisher code for the data source.
+        - `published`: Date this data source was published.
+        - `URL`: URL to retrieve the data source or learn more about it.
+        - `created`: date this datasource was imported to the database
+        - `last_updated`: date this datasource was last updated
+        not computers.
+    - `current`: the emissions record used to measure progress, including the following info:
+      - `year`: the year of current emissions.
+      - `value`: the emissions value in tonnes of CO2E.
+      - `datasource`: an object representing the data source for this target, with the following properties:
+        - `datasource_id`: ID code for the datasource; should be identical to the key.
+        - `name`: name for the data source.
+        - `publisher`: Publisher code for the data source.
+        - `published`: Date this data source was published.
+        - `URL`: URL to retrieve the data source or learn more about it.
+        - `created`: date this datasource was imported to the database
+        - `last_updated`: date this datasource was last updated
+        not computers.
   - `datasource_id`: data source for the target.
   - `datasource`: an object representing the data source for this target, with the following properties:
     - `datasource_id`: ID code for the datasource; should be identical to the key.
