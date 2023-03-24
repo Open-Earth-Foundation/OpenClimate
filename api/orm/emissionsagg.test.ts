@@ -310,6 +310,23 @@ it("can get latest high-quality EmissionsAgg", async () => {
     country2DataSource1Emissions2019.total_emissions
   );
 
+  // with emissions and dsq passed in
+
+  let dsq = await DataSourceQuality.findAll({where: {score_type: "GHG target"}})
+
+  let best2019with = await EmissionsAgg.forPurpose(
+    "GHG target",
+    country2Props.actor_id,
+    2019,
+    ea.filter(e => e.year == 2019),
+    dsq
+  );
+
+  expect(best2019with).toBeDefined();
+  expect(Number(best2019with.total_emissions)).toEqual(
+    country2DataSource1Emissions2019.total_emissions
+  );
+
   let bestLatest = await EmissionsAgg.forPurposeLatest(
     "GHG target",
     country2Props.actor_id
@@ -317,6 +334,20 @@ it("can get latest high-quality EmissionsAgg", async () => {
 
   expect(bestLatest).toBeDefined();
   expect(Number(bestLatest.total_emissions)).toEqual(
+    country2DataSource1Emissions2022.total_emissions
+  );
+
+  // With emissions passed in
+
+  let bestLatestWith = await EmissionsAgg.forPurposeLatest(
+    "GHG target",
+    country2Props.actor_id,
+    ea,
+    dsq
+  );
+
+  expect(bestLatestWith).toBeDefined();
+  expect(Number(bestLatestWith.total_emissions)).toEqual(
     country2DataSource1Emissions2022.total_emissions
   );
 
