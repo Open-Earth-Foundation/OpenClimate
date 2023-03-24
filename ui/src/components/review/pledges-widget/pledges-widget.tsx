@@ -1,7 +1,7 @@
 import React, { useState, FunctionComponent, useEffect } from "react";
 import "./pledges-widget.scss";
 import Popover from "@mui/material/Popover";
-import { InfoOutlined, LinkOutlined, MoreVert } from "@mui/icons-material";
+import { InfoOutlined, LinkOutlined, MoreVert, TransgenderTwoTone } from "@mui/icons-material";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -16,6 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@mui/material/Tooltip";
 
 import ProgressBar from "@ramonak/react-progress-bar";
+import {readableEmissions} from "../../util/units";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -104,6 +105,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
     setAnchorEl(null);
     setID(null);
   };
+  console.log(targets)
 
   return (
     <div
@@ -150,7 +152,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                       <StyledTableCell component="th" scope="row" width="20%">
                         <div>
                           <span className="pledges-widget__target-percent">
-                            { target.target_value ? `${target.target_value}%` : `N/A`} &nbsp;
+                            { target.target_value ? `${target.target_unit=== "percent" ? target.target_value : readableEmissions(target.target_value)}${target.target_unit === "percent"? "%":""}` : `N/A`} &nbsp;
                           </span>
                           <span className="pledges-widget__target-text">
                             by {target.target_year} { `${target.baseline_year ? `relative to ${target.baseline_year}` : 0}`}
