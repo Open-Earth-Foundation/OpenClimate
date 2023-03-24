@@ -13,6 +13,7 @@ import { ActorDataCoverage } from "../orm/actordatacoverage";
 import { Initiative } from "../orm/initiative";
 
 import { isHTTPError, NotFound } from "http-errors";
+import { DataSourceQuality } from "../orm/datasourcequality";
 
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 
@@ -76,7 +77,7 @@ router.get(
       .map((t) => t.initiative_id)
       .filter(unique);
 
-    const [dataSources, dataSourceTags, emissionsAggTags, initiatives] =
+    const [dataSources, dataSourceTags, emissionsAggTags, initiatives, dsq] =
       await Promise.all([
         DataSource.findAll({ where: { datasource_id: dataSourceIDs } }),
         DataSourceTag.findAll({ where: { datasource_id: dataSourceIDs } }),
@@ -84,6 +85,7 @@ router.get(
           where: { emissions_id: emissions.map((e) => e.emissions_id) },
         }),
         Initiative.findAll({ where: { initiative_id: initiative_ids } }),
+        DataSourceQuality.findAll({where: {datasource_id: dataSourceIDs, score_type: "GHG target"}})
       ]);
 
     // Extract unique tag_ids
@@ -142,7 +144,8 @@ router.get(
 
     let achieved = await Promise.all(
       targets.map(async (t) => {
-        return [t.target_id, await t.getPercentComplete()];
+        let [ach,,] = await t.getPercentComplete(emissions, dsq);
+        return [t.target_id, ach];
       })
     );
 
