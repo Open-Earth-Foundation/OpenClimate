@@ -144,8 +144,8 @@ router.get(
 
     let achieved = await Promise.all(
       targets.map(async (t) => {
-        let [ach,,] = await t.getPercentComplete(emissions, dsq);
-        return [t.target_id, ach];
+        let [pct, baseline, current] = await t.getPercentComplete(emissions, dsq);
+        return [t.target_id, pct, baseline, current];
       })
     );
 
@@ -202,7 +202,23 @@ router.get(
             target_value: t.target_value,
             target_unit: t.target_unit,
             is_net_zero: t.isNetZero(),
-            percent_achieved: ach ? ach[1] : null,
+            percent_achieved: (!ach[1] && typeof ach[1] !== "number") ? null : ach[1],
+            percent_achieved_reason: (!ach[1] && typeof ach[1] !== "number") ? null : {
+              baseline: (!ach[2]) ? {
+                year: t.baseline_year,
+                value: Number(t.baseline_value),
+                datasource: datasource(t.datasource_id)
+              } : {
+                year: ach[2].year,
+                value: Number(ach[2].total_emissions),
+                datasource: datasource(ach[2].datasource_id)
+              },
+              current: (!ach[3]) ? null : {
+                year: ach[3].year,
+                value: Number(ach[3].total_emissions),
+                datasource: datasource(ach[3].datasource_id)
+              }
+            },
             datasource_id: t.datasource_id,
             datasource: {
               datasource_id: ds.datasource_id,

@@ -135,6 +135,17 @@ const countryTarget3Props = {
   datasource_id: datasource1Props.datasource_id,
 };
 
+const countryTarget4Props = {
+  target_id: "actor.routes.test.ts:target:4",
+  actor_id: country1Props.actor_id,
+  target_type: "Absolute emission reduction",
+  baseline_year: 2020,
+  target_year: 2030,
+  target_value: 75,
+  target_unit: "percent",
+  datasource_id: datasource1Props.datasource_id,
+};
+
 // Different actor, different identifiers
 
 const country2Target1Props = {
@@ -296,6 +307,7 @@ beforeAll(async () => {
   await Target.create(countryTarget2Props);
   await Target.create(countryTarget3Props);
   await Target.create(countryTarget1Props);
+  await Target.create(countryTarget4Props);
 
   await Target.create(country2Target1Props);
 
@@ -604,7 +616,7 @@ it("can get actor details", async () =>
       expect(data.population[0].year).toBeDefined();
 
       expect(data.gdp.length).toEqual(20);
-      expect(data.targets.length).toEqual(3);
+      expect(data.targets.length).toEqual(4);
 
       expect(data.emissions).toBeDefined();
       expect(data.emissions[datasource1Props.datasource_id]).toBeDefined();
@@ -787,7 +799,6 @@ it("returns target.is_net_zero", async () =>
       expect(res.body.data).toBeDefined();
       const data = res.body.data;
       expect(data.targets).toBeDefined();
-      expect(data.targets.length).toEqual(3);
       const target1 = data.targets.find(
         (t) => t.target_id == countryTarget1Props.target_id
       );
@@ -802,7 +813,25 @@ it("returns target.is_net_zero", async () =>
       expect(target3.is_net_zero).toBeTruthy();
     }));
 
-it("returns target.percent_achieved", async () =>
+it("returns null target.percent_achieved_reason for null percent_achieved", async () =>
+  request(app)
+    .get(`/api/v1/actor/${country1Props.actor_id}`)
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .expect((res: any) => {
+
+      expect(res.body.data).toBeDefined();
+      const data = res.body.data;
+      expect(data.targets).toBeDefined();
+      const target1 = data.targets.find(
+        (t) => t.target_id == countryTarget1Props.target_id
+      );
+      expect(target1).toBeDefined();
+      expect(target1.percent_achieved_reason).toBeDefined();
+      expect(target1.percent_achieved_reason).toBeNull();
+    }));
+
+it("returns target.percent_achieved_reason for non-null percent_achieved", async () =>
   request(app)
     .get(`/api/v1/actor/${country1Props.actor_id}`)
     .expect(200)
@@ -811,26 +840,65 @@ it("returns target.percent_achieved", async () =>
       expect(res.body.data).toBeDefined();
       const data = res.body.data;
       expect(data.targets).toBeDefined();
-      expect(data.targets.length).toEqual(3);
-      const target1 = data.targets.find(
-        (t) => t.target_id == countryTarget1Props.target_id
-      );
-      expect(target1).toBeDefined();
-      expect(target1.percent_achieved).toBeDefined();
-      expect(target1.percent_achieved).toBeNull();
       const target2 = data.targets.find(
         (t) => t.target_id == countryTarget2Props.target_id
       );
       expect(target2).toBeDefined();
-      expect(target2.percent_achieved).toBeDefined();
-      expect(typeof target2.percent_achieved).toEqual("number");
-      const target3 = data.targets.find(
-        (t) => t.target_id == countryTarget3Props.target_id
-      );
-      expect(target3).toBeDefined();
-      expect(target1.percent_achieved).toBeDefined();
-      expect(target3.percent_achieved).toBeNull();
+      expect(target2.percent_achieved_reason).toBeDefined();
+      expect(typeof target2.percent_achieved_reason).toEqual("object");
+      const reason2 = target2.percent_achieved_reason;
+      expect(reason2.baseline).toBeDefined()
+      expect(typeof reason2.baseline).toEqual("object");
+      expect(reason2.baseline.year).toBeDefined();
+      expect(typeof reason2.baseline.year).toEqual("number");
+      expect(reason2.baseline.value).toBeDefined();
+      expect(typeof reason2.baseline.value).toEqual("number");
+      expect(reason2.baseline.datasource).toBeDefined();
+      expect(typeof reason2.baseline.datasource).toEqual("object");
+      expect(reason2.current).toBeDefined()
+      expect(typeof reason2.current).toEqual("object");
+      expect(reason2.current.year).toBeDefined();
+      expect(typeof reason2.current.year).toEqual("number");
+      expect(reason2.current.value).toBeDefined();
+      expect(typeof reason2.current.value).toEqual("number");
+      expect(reason2.current.datasource).toBeDefined();
+      expect(typeof reason2.current.datasource).toEqual("object");
+      const ds = reason2.current.datasource;
+      expect(ds.datasource_id).toBeDefined()
+      expect(ds.name).toBeDefined()
+      expect(ds.published).toBeDefined()
+      expect(ds.URL).toBeDefined()
     }));
+
+    it("returns target.percent_achieved", async () =>
+    request(app)
+      .get(`/api/v1/actor/${country1Props.actor_id}`)
+      .expect(200)
+      .expect("Content-Type", /json/)
+      .expect((res: any) => {
+        expect(res.body.data).toBeDefined();
+        const data = res.body.data;
+        expect(data.targets).toBeDefined();
+        expect(data.targets.length).toEqual(4);
+        const target1 = data.targets.find(
+          (t) => t.target_id == countryTarget1Props.target_id
+        );
+        expect(target1).toBeDefined();
+        expect(target1.percent_achieved).toBeDefined();
+        expect(target1.percent_achieved).toBeNull();
+        const target2 = data.targets.find(
+          (t) => t.target_id == countryTarget2Props.target_id
+        );
+        expect(target2).toBeDefined();
+        expect(target2.percent_achieved).toBeDefined();
+        expect(typeof target2.percent_achieved).toEqual("number");
+        const target3 = data.targets.find(
+          (t) => t.target_id == countryTarget3Props.target_id
+        );
+        expect(target3).toBeDefined();
+        expect(target1.percent_achieved).toBeDefined();
+        expect(target3.percent_achieved).toBeNull();
+      }));
 
 it("returns target.datasource", async () =>
   request(app)
@@ -955,7 +1023,6 @@ it("returns targets in target_year order", async () =>
       expect(res.body.data).toBeDefined();
       const data = res.body.data;
       expect(data.targets).toBeDefined();
-      expect(data.targets.length).toEqual(3);
       const years = data.targets.map((t: any) => t.target_year);
       expect(years).toEqual(years.slice().sort());
     }));
