@@ -43,7 +43,7 @@ export class Target extends Model<
   public isNetZero(): boolean {
     return this.target_type === "Net zero";
   }
-  public async getPercentComplete(): Promise<any> {
+  public async getPercentComplete(emissions=null, dsqs=null): Promise<any> {
     const scoreType = "GHG target";
 
     logger.debug({
@@ -66,13 +66,17 @@ export class Target extends Model<
 
     // We use either the declared baseline or the best value for that year
 
-    let baselineValue = this.baseline_value;
+    let baselineValue = null;
 
-    if (!this.baseline_value) {
+    if (this.baseline_value) {
+      baselineValue = this.baseline_value;
+    } else {
       const baseline = await EmissionsAgg.forPurpose(
         scoreType,
         this.actor_id,
-        this.baseline_year
+        this.baseline_year,
+        emissions,
+        dsqs
       );
       if (!baseline) {
         logger.debug({
@@ -86,7 +90,7 @@ export class Target extends Model<
       baselineValue = Number(baseline.total_emissions);
     }
 
-    let latest = await EmissionsAgg.forPurposeLatest(scoreType, this.actor_id);
+    let latest = await EmissionsAgg.forPurposeLatest(scoreType, this.actor_id, emissions, dsqs);
 
     if (!latest) {
       logger.debug({

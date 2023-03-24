@@ -336,6 +336,14 @@ it("can get completion percentage on relevant targets", async () => {
   expect(typeof complete3).toEqual("number");
   expect(complete3).toBeCloseTo(53.333);
 
+  let dsqs = await DataSourceQuality.findAll({where: {score_type: "GHG target"}})
+
+  // Passing in the data directly
+
+  let complete4 = await t1.getPercentComplete([ea1, ea2], dsqs)
+  expect(typeof complete4).toEqual("number");
+  expect(complete4).toBeCloseTo(53.333);
+
   await Promise.all([
     t1.destroy(),
     t2.destroy(),
