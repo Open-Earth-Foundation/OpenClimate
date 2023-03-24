@@ -105,7 +105,6 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
     setAnchorEl(null);
     setID(null);
   };
-  console.log(targets)
 
   return (
     <div
