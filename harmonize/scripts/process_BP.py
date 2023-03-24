@@ -116,6 +116,9 @@ if __name__ == '__main__':
     # merge in the actor_ids (iso2 codes)
     df_out = pd.merge(df, df_iso, on=['country'])
 
+    # sum across actors, needed because we are including Hong Kong as part of China
+    df_out = df_out.groupby(by=['actor_id', 'year']).sum(numeric_only=True).reset_index()
+
     # create datasource_id
     df_out['datasource_id'] = datasourceDict['datasource_id']
 
