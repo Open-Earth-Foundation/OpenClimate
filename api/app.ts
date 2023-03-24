@@ -7,6 +7,7 @@ const session = require("express-session");
 import { Utils } from "./util";
 const expressWinston = require("express-winston");
 import { BadRequest, InternalServerError, NotFound } from "http-errors";
+const compression = require('compression');
 
 // Envision imports
 import schemaRoutes from "./routes/schema.routes";
@@ -59,6 +60,9 @@ const wrap =
     fn(...args).catch(args[2]);
 
 export const app = express();
+
+// Compress all responses
+app.use(compression());
 
 app.use((req, res, next) => {
   req.logger = logger;
