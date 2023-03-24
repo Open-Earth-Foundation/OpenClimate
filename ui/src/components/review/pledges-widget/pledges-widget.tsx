@@ -1,7 +1,7 @@
 import React, { useState, FunctionComponent, useEffect } from "react";
 import "./pledges-widget.scss";
 import Popover from "@mui/material/Popover";
-import { InfoOutlined, LinkOutlined, MoreVert, TransgenderTwoTone } from "@mui/icons-material";
+import { InfoOutlined, LinkOutlined, MoreVert } from "@mui/icons-material";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
