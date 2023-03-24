@@ -325,22 +325,30 @@ it("can get completion percentage on relevant targets", async () => {
     EmissionsAgg.create(country4Emissions2Props),
   ]);
 
-  let complete1 = await t1.getPercentComplete();
+  let [complete1, baseline1, current1] = await t1.getPercentComplete();
   expect(typeof complete1).toEqual("number");
   expect(complete1).toBeCloseTo(53.333);
+  expect(baseline1).toBeNull();
+  expect(typeof current1).toEqual("object");
+  expect(current1.year).toEqual(2021);
 
-  let complete2 = await t2.getPercentComplete();
+  let [complete2, baseline2, current2] = await t2.getPercentComplete();
   expect(complete2).toBeNull();
+  expect(baseline2).toBeNull();
+  expect(current2).toBeNull();
 
-  let complete3 = await t3.getPercentComplete();
+  let [complete3, baseline3, current3] = await t3.getPercentComplete();
   expect(typeof complete3).toEqual("number");
   expect(complete3).toBeCloseTo(53.333);
-
+  expect(typeof baseline3).toEqual("object");
+  expect(baseline3.year).toEqual(t3.baseline_year);
+  expect(typeof current3).toEqual("object");
+  expect(current1.year).toEqual(2021);
   let dsqs = await DataSourceQuality.findAll({where: {score_type: "GHG target"}})
 
   // Passing in the data directly
 
-  let complete4 = await t1.getPercentComplete([ea1, ea2], dsqs)
+  let [complete4, , ] = await t1.getPercentComplete([ea1, ea2], dsqs)
   expect(typeof complete4).toEqual("number");
   expect(complete4).toBeCloseTo(53.333);
 

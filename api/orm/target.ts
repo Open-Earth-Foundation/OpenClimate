@@ -61,17 +61,18 @@ export class Target extends Model<
         target_unit: this.target_unit,
         message: "not appropriate for percent complete calculation",
       });
-      return null;
+      return [null,null,null];
     }
 
     // We use either the declared baseline or the best value for that year
 
     let baselineValue = null;
+    let baseline = null;
 
     if (this.baseline_value) {
       baselineValue = this.baseline_value;
     } else {
-      const baseline = await EmissionsAgg.forPurpose(
+      baseline = await EmissionsAgg.forPurpose(
         scoreType,
         this.actor_id,
         this.baseline_year,
@@ -85,7 +86,7 @@ export class Target extends Model<
           actor_id: this.actor_id,
           message: "No appropriate emissions data for baseline year",
         });
-        return null;
+        return [null,null,null];
       }
       baselineValue = Number(baseline.total_emissions);
     }
@@ -98,7 +99,7 @@ export class Target extends Model<
         actor_id: this.actor_id,
         message: "No recent emissions data",
       });
-      return null;
+      return [null,null,null];
     }
 
     let latestValue = Number(latest.total_emissions);
@@ -116,7 +117,7 @@ export class Target extends Model<
       message: "Calculated percent achieved",
     });
 
-    return percentAchieved;
+    return [percentAchieved, baseline, latest];
   }
 }
 
