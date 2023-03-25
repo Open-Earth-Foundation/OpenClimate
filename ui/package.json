@@ -1,6 +1,6 @@
 {
   "name": "open-climate-ui",
-  "version": "1.7.0-dev",
+  "version": "1.8.0-dev",
   "private": true,
   "dependencies": {
     "-": "0.0.1",
@@ -116,6 +116,5 @@
   "engines": {
     "node": "^18.5.0"
   },
-  "readme": "ERROR: No README data found!",
-  "_id": "open-climate-ui@1.7.0-dev"
+  "readme": "ERROR: No README data found!"
 }
