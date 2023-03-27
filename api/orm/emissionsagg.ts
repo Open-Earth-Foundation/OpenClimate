@@ -56,9 +56,10 @@ export class EmissionsAgg extends Model<
       let d = dsq(ea);
       return d ? d.score : 0.0;
     };
+    let eligible = allEmissions.filter(ea => score(ea) > 0.0)
     // Get the best emissions for the latest year
-    let maxYear = Math.max(...allEmissions.map((ea) => ea.year));
-    let latest = allEmissions.filter((ea) => ea.year === maxYear);
+    let maxYear = Math.max(...eligible.map((ea) => ea.year));
+    let latest = eligible.filter((ea) => ea.year === maxYear);
     let sorted = latest.sort((a, b) =>
       score(a) < score(b) ? 1 : score(a) > score(b) ? -1 : 0
     );
@@ -93,7 +94,7 @@ export class EmissionsAgg extends Model<
 
     if (allDSQs) {
       dsqs = allDSQs.filter(d =>
-        dataSourceIDs.findIndex(d.datasource_id) !== -1 &&
+        dataSourceIDs.findIndex(dsid => dsid === d.datasource_id) !== -1 &&
         d.score_type === scoreType )
     } else {
       dsqs = await DataSourceQuality.findAll({
