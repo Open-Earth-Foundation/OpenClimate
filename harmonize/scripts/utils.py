@@ -555,7 +555,7 @@ def df_columns(df):
     return list(df.columns)
 
 
-def unlocode_name_dict():
+def unlocode_name_dict(input_dir):
     # creates dictionary of LOCODE w/ and w/out diacritics {name_with_out_diacritic : name}
     # can be pulled out and named something like name_dictionary():
     LOCODE_COLUMNS = [
@@ -575,8 +575,8 @@ def unlocode_name_dict():
 
     # TODO change this to use pathlib.Path
 
-    INPUT_DIR = '/Users/luke/Documents/work/projects/OpenClimate-UNLOCODE/loc221csv'
-    all_files = glob.glob(os.path.join(INPUT_DIR, "*CodeListPart*.csv"))
+    #INPUT_DIR = '/Users/luke/Documents/work/projects/OpenClimate-UNLOCODE/loc221csv'
+    all_files = glob.glob(os.path.join(input_dir, "*CodeListPart*.csv"))
 
     df_raw = pd.concat((pd.read_csv(f, names=LOCODE_COLUMNS)
                        for f in all_files), ignore_index=True)
@@ -634,7 +634,8 @@ def df_drop_unnamed_columns(df=None):
 
 
 def harmonize_eucom_emissions(fl=None,
-                              datasourceDict=None):
+                              datasourceDict=None,
+                              input_dir=None):
 
     # ensure input types are correct
     assert isinstance(fl, str), f"fl must be a string"
@@ -650,7 +651,7 @@ def harmonize_eucom_emissions(fl=None,
     df = df.loc[filt]
 
     # dictionary with {NameWoDiacritics: nameWithDiactrics}
-    locodeDict = unlocode_name_dict()
+    locodeDict = unlocode_name_dict(input_dir)
 
     # name.astype(str).map(name_dict)
     df['name_with_diacritic'] = [locodeDict[name]
@@ -901,7 +902,8 @@ def match_locode_to_climactor():
 
 
 def harmonize_eucom_pledges(fl=None,
-                            datasourceDict=None):
+                            datasourceDict=None,
+                            input_dir = None):
 
     # ensure input types are correct
     assert isinstance(fl, str), f"fl must be a string"
@@ -917,7 +919,7 @@ def harmonize_eucom_pledges(fl=None,
     df = df.loc[filt]
 
     # dictionary with {NameWoDiacritics: nameWithDiactrics}
-    locodeDict = unlocode_name_dict()
+    locodeDict = unlocode_name_dict(input_dir)
 
     # name.astype(str).map(name_dict)
     df['name_with_diacritic'] = [locodeDict[name]

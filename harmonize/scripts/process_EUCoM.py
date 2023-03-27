@@ -1,11 +1,26 @@
-if __name__ == "__main__":
-    import os
-    from pathlib import Path
-    from utils import harmonize_eucom_emissions
-    from utils import harmonize_eucom_pledges
-    from utils import make_dir
-    from utils import write_to_csv
+import csv
+import os
+from pathlib import Path
+from typing import List
+from typing import Dict
+from utils import harmonize_eucom_emissions
+from utils import harmonize_eucom_pledges
+from utils import make_dir
 
+def simple_write_csv(
+    output_dir: str = None, name: str = None, rows: List[Dict] | Dict = None
+) -> None:
+
+    if isinstance(rows, dict):
+        rows = [rows]
+
+    with open(f"{output_dir}/{name}.csv", mode="w") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+if __name__ == "__main__":
     # where to create tables
     outputDir = "../data/processed/DDL-EUCoM-compilation"
     outputDir = os.path.abspath(outputDir)
@@ -14,6 +29,10 @@ if __name__ == "__main__":
     # dataset
     fl = '../data/raw/DDL-EUCoM-compilation/EUCovenantofMayors2022_clean_NCI_7Jun22.csv'
     fl = os.path.abspath(fl)
+
+    # locode directory
+    input_dir = "../data/raw/unlocode/loc221csv"
+    input_dir = os.path.abspath(input_dir)
 
     # ------------------------------------------
     # Publisher table
@@ -24,10 +43,7 @@ if __name__ == "__main__":
         "URL": "https://datadrivenlab.org/"
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(outputDir, "Publisher", publisherDict)
 
     # ------------------------------------------
     # DataSource table
@@ -40,16 +56,14 @@ if __name__ == "__main__":
         "URL": 'https://datadrivenlab.org/'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=dataSourceDict,
-                 mode='w')
+    simple_write_csv(outputDir, "DataSource", dataSourceDict)
 
     # ------------------------------------------
     # EmissionsAgg table
     # ------------------------------------------
     df_emissionsAgg = harmonize_eucom_emissions(fl=fl,
-                                                datasourceDict=dataSourceDict)
+                                                datasourceDict=dataSourceDict,
+                                                input_dir = input_dir)
 
     # save to csv
     df_emissionsAgg.drop_duplicates().to_csv(
@@ -59,44 +73,28 @@ if __name__ == "__main__":
     # Target
     # ------------------------------------------
     df_target = harmonize_eucom_pledges(fl=fl,
-                                        datasourceDict=dataSourceDict)
+                                        datasourceDict=dataSourceDict,
+                                        input_dir = input_dir)
 
     # convert to csv
     df_target.drop_duplicates().to_csv(
         f'{outputDir}/Target.csv', index=False)
 
     # ------------------------------------------
-    # Tag table
-    # ------------------------------------------
-    if not Path(f"{outputDir}/Tag.csv").is_file():
-        # create Tag file
-        tagDictList = [
-            {
-                'tag_id': 'city_reported_data',
-                'tag_name': 'City-reported data'
-            }
-        ]
-
-        for tagDict in tagDictList:
-            write_to_csv(outputDir=outputDir,
-                         tableName='Tag',
-                         dataDict=tagDict,
-                         mode='a')
-
-    # ------------------------------------------
     # DataSourceTag table
     # ------------------------------------------
-    if not Path(f"{outputDir}/DataSourceTag.csv").is_file():
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        "city_reported_data": "City-reported data",
+    }
 
-        tags = ['city_reported_data']
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
 
-        for tag in tags:
-            dataSourceTagDict = {
-                'datasource_id': f"{dataSourceDict['datasource_id']}",
-                'tag_id': tag
-            }
+    simple_write_csv(outputDir, "Tag", tagDictList)
 
-            write_to_csv(outputDir=outputDir,
-                         tableName='DataSourceTag',
-                         dataDict=dataSourceTagDict,
-                         mode='a')
+    dataSourceTagDictList = [
+        {"datasource_id": dataSourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
+    ]
+
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)
