@@ -791,7 +791,7 @@ net_zero_tracker:CA:2050,CA,Net zero,,2050,,,https://www.canada.ca/en/services/e
 net_zero_tracker:CF:2050,CF,Net zero,,2050,,,https://cop25.mma.gob.cl/wp-content/uploads/2020/02/Annex-Alliance-ENGLISH.pdf,net_zero_tracker
 net_zero_tracker:CH:2050,CH,Net zero,,2050,,,https://www.admin.ch/gov/en/start/documentation/media-releases.msg-id-82140.html,net_zero_tracker
 net_zero_tracker:CL:2050,CL,Climate neutral,,2050,,,https://www.bcn.cl/leychile/navegar?idNorma=1177286,net_zero_tracker
-net_zero_tracker:CN:2060,CN,GHG neural,,2060,,,https://unfccc.int/sites/default/files/NDC/2022-11/Progress%20of%20China%20NDC%202022.pdf,net_zero_tracker
+net_zero_tracker:CN:2060,CN,GHG neutral,,2060,,,https://unfccc.int/sites/default/files/NDC/2022-11/Progress%20of%20China%20NDC%202022.pdf,net_zero_tracker
 net_zero_tracker:CO:2050,CO,Climate neutral,,2050,,,https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Colombia%20First/NDC%20actualizada%20de%20Colombia.pdf,net_zero_tracker
 net_zero_tracker:CR:2050,CR,Net zero,,2050,,,https://cambioclimatico.go.cr/wp-content/uploads/2020/01/NationalDecarbonizationPlan.pdf,net_zero_tracker
 net_zero_tracker:CV:2050,CV,Net zero,,2050,,,https://www4.unfccc.int/sites/ndcstaging/PublishedDocuments/Cabo%20Verde%20First/Cabo%20Verde_NDC%20Update%202021.pdf,net_zero_tracker
@@ -918,10 +918,10 @@ net_zero_tracker:DE-BE:2045,DE-BE,Climate neutral,,2045,,,https://gesetze.berlin
 net_zero_tracker:DE-BW:2040,DE-BW,Climate neutral,,2040,,,https://um.baden-wuerttemberg.de/fileadmin/redaktion/m-um/intern/Dateien/Dokumente/4_Klima/Klimaschutz/Klimaschutzgesetz/Klimaschutzgesetz-Baden-Wuerttemberg-englische-Fassung-Januar-2021.pdf,net_zero_tracker
 net_zero_tracker:DE-BY:2050,DE-BY,Climate neutral,,2050,,,https://www.gesetze-bayern.de/Content/Document/BayKlimaG,net_zero_tracker
 net_zero_tracker:DE-HE:2030,DE-HE,Climate neutral,,2030,,,https://co2.hessen-nachhaltig.de/ueber-uns.html,net_zero_tracker
-net_zero_tracker:DE-NW:2045,DE-NW,GHG neural,,2045,,,https://www.klimaschutz.nrw.de/instrumente/klimaschutzgesetz,net_zero_tracker
+net_zero_tracker:DE-NW:2045,DE-NW,GHG neutral,,2045,,,https://www.klimaschutz.nrw.de/instrumente/klimaschutzgesetz,net_zero_tracker
 net_zero_tracker:DE-RP:2050,DE-RP,Climate neutral,,2050,,,https://www.theclimategroup.org/sites/default/files/2020-10/Rhineland-Palatinate-Appendix-English.pdf,net_zero_tracker
 net_zero_tracker:ES-CN:2040,ES-CN,Net zero,,2040,,,https://www3.gobiernodecanarias.org/ceic/energia/oecan/files/20220214_Estrategia_Sostenible_Canarias_docCompleto_01.pdf,net_zero_tracker
-net_zero_tracker:ES-CT:2050,ES-CT,GHG neural,,2050,,,https://canviclimatic.gencat.cat/ca/ambits/Llei_canvi_climatic/,net_zero_tracker
+net_zero_tracker:ES-CT:2050,ES-CT,GHG neutral,,2050,,,https://canviclimatic.gencat.cat/ca/ambits/Llei_canvi_climatic/,net_zero_tracker
 net_zero_tracker:FR-IDF:2050,FR-IDF,Net zero,,2050,,,https://www.iledefrance.fr/sites/default/files/2021-03/green_social_and_sustainable_bond_framework.pdf,net_zero_tracker
 net_zero_tracker:FR-PAC:2050,FR-PAC,Climate neutral,,2050,,,http://www.grec-sud.fr/wp-content/uploads/2019/11/cahier_sante_GREC-SUD_11122019.pdf,net_zero_tracker
 net_zero_tracker:GB-ENG:2050,GB-ENG,Net zero,,2050,,,https://www.gov.uk/government/news/uk-enshrines-new-target-in-law-to-slash-emissions-by-78-by-2035,net_zero_tracker
@@ -985,7 +985,7 @@ net_zero_tracker:US-MA:2050,US-MA,Net zero,,2050,,,https://malegislature.gov/Law
 net_zero_tracker:US-MD:2045,US-MD,Net zero,,2045,,,https://mgaleg.maryland.gov/2022RS/fnotes/bil_0008/sb0528.pdf,net_zero_tracker
 net_zero_tracker:US-ME:2045,US-ME,Climate neutral,,2045,,,https://www.maine.gov/governor/mills/sites/maine.gov.governor.mills/files/inline-files/Executive%20Order%209-23-2019_0.pdf,net_zero_tracker
 net_zero_tracker:US-MI:2050,US-MI,Climate neutral,,2050,,,https://www.michigan.gov/documents/egle/Draft-MI-Healthy-Climate-Plan_745872_7.pdf,net_zero_tracker
-net_zero_tracker:US-MT:2050,US-MT,GHG neural,,2050,,,http://formergovernors.mt.gov/bullock/docs/2019EOs/EO-08-2019_Creating%20Climate%20Solutions%20Council.pdf,net_zero_tracker
+net_zero_tracker:US-MT:2050,US-MT,GHG neutral,,2050,,,http://formergovernors.mt.gov/bullock/docs/2019EOs/EO-08-2019_Creating%20Climate%20Solutions%20Council.pdf,net_zero_tracker
 net_zero_tracker:US-ND:2030,US-ND,Climate neutral,,2030,,,https://www.nd.gov/news/burgum-hosts-energy-secretary-granholm-stresses-all-above-energy-policy-and-carbon,net_zero_tracker
 net_zero_tracker:US-NV:2050,US-NV,Net zero,,2050,,,https://www.leg.state.nv.us/App/NELIS/REL/80th2019/Bill/6431/Text,net_zero_tracker
 net_zero_tracker:US-NY:2050,US-NY,Net zero,,2050,,,https://www.nysenate.gov/legislation/bills/2019/s6599,net_zero_tracker
@@ -1005,7 +1005,7 @@ net_zero_tracker:BE LGG:2050,BE LGG,Climate neutral,,2050,,,https://www.brussels
 net_zero_tracker:BR BHZ:2050,BR BHZ,Net zero,,2050,,,https://unfccc.int/climate-action/race-to-zero/who-s-in-race-to-zero#eq-5,net_zero_tracker
 net_zero_tracker:BR CWB:2050,BR CWB,Net zero,,2050,,,https://www.curitiba.pr.gov.br/noticias/plano-de-acao-climatica-de-curitiba-comeca-a-ser-implementado-em-2021/57425,net_zero_tracker
 net_zero_tracker:BR FOR:2050,BR FOR,Net zero,,2050,,,https://americadosul.iclei.org/wp-content/uploads/sites/78/2021/07/30-plac-fortaleza-final-ingles.pdf,net_zero_tracker
-net_zero_tracker:BR REC:2050,BR REC,GHG neural,,2050,,,https://americadosul.iclei.org/wp-content/uploads/sites/78/2021/07/30-plac-recife-final-ingles.pdf,net_zero_tracker
+net_zero_tracker:BR REC:2050,BR REC,GHG neutral,,2050,,,https://americadosul.iclei.org/wp-content/uploads/sites/78/2021/07/30-plac-recife-final-ingles.pdf,net_zero_tracker
 net_zero_tracker:BR RIO:2050,BR RIO,Climate neutral,,2050,,,https://www.citiesoftomorrow.eu/sites/default/files/documents/Executive_Summary_finalok.pdf,net_zero_tracker
 net_zero_tracker:BR SAO:2050,BR SAO,Net zero,,2050,,,https://smastr16.blob.core.windows.net/home/2021/10/cop26_english.pdf,net_zero_tracker
 net_zero_tracker:BR SSA:2049,BR SSA,Climate neutral,,2049,,,https://cdn.locomotive.works/sites/5ab410c8a2f42204838f797e/content_entry5c8ab5851647e100801756a3/60abe3e2795a8b00a674dd75/files/PMAMC_Ebook_ingles.pdf?1621877739,net_zero_tracker
@@ -1044,7 +1044,7 @@ net_zero_tracker:FR GNB:2050,FR GNB,Climate neutral,,2050,,,https://www.grenoble
 net_zero_tracker:FR NTE:2050,FR NTE,Net zero,,2050,,,https://metropole.nantes.fr/territoire-institutions/projet/ambitions-territoire/33-engagements-pour-la-transitio,net_zero_tracker
 net_zero_tracker:FR PAR:2050,FR PAR,Net zero,,2050,,,"https://www.c40knowledgehub.org/s/article/Paris-Climate-Action-Plan-Towards-a-carbon-neutral-city-and-100-renewable-energy?language=en_US#:~:text=By%202030%2C%20an%20operational%20action,100%25%20reliant%20on%20renewable%20energy.",net_zero_tracker
 net_zero_tracker:GB BOH:2050,GB BOH,Climate neutral,,2050,,,https://democracy.bcpcouncil.gov.uk/documents/s21606/Climate%20Action%20Annual%20Report%202019%2020%2016122020%20Cabinet.pdf,net_zero_tracker
-net_zero_tracker:GB BRS:2030,GB BRS,GHG neural,,2030,,,https://www.bristolonecity.com/wp-content/uploads/2020/02/one-city-climate-strategy.pdf,net_zero_tracker
+net_zero_tracker:GB BRS:2030,GB BRS,GHG neutral,,2030,,,https://www.bristolonecity.com/wp-content/uploads/2020/02/one-city-climate-strategy.pdf,net_zero_tracker
 net_zero_tracker:GB EDI:2030,GB EDI,Net zero,,2030,,,https://www.edinburgh.gov.uk/downloads/download/15068/2030-climate-strategy,net_zero_tracker
 net_zero_tracker:GB GLW:2030,GB GLW,Net zero,,2030,,,https://www.glasgow.gov.uk/CHttpHandler.ashx?id=50623&p=0,net_zero_tracker
 net_zero_tracker:GB LIV:2030,GB LIV,Net zero,,2030,,,https://liverpool.gov.uk/media/1361340/liverpool_action_plan_full_final_digi.pdf,net_zero_tracker
@@ -1201,7 +1201,7 @@ net_zero_tracker:5299005F1HCVF4M4QN79:2050,5299005F1HCVF4M4QN79,Net zero,,2050,,
 net_zero_tracker:5299006EQ03K3SSUYS12:2030,5299006EQ03K3SSUYS12,Net zero,,2030,,,https://www.merlinproperties.com/wp-content/uploads/2022/05/Pathway-to-Net-Zero-02_22-1.pdf,net_zero_tracker
 net_zero_tracker:5299006UDSEJCTTEJS30:2050,5299006UDSEJCTTEJS30,Net zero,,2050,,,https://www.verbund.com/-/media/verbund/ueber-verbund/verantwortung/umwelt/klimaschutz/verbund-climate-report-en.ashx?ori=1&la=en,net_zero_tracker
 net_zero_tracker:5299006ZIILJ6VJVSJ32:2050,5299006ZIILJ6VJVSJ32,Net zero,,2050,,,https://www.talanx.com/media/Files/talanx-gruppe/nachhaltigkeitsberichte/2021_talanx_sustainability_report_.pdf,net_zero_tracker
-net_zero_tracker:5299006ZTN6MO1N5BR16:2050,5299006ZTN6MO1N5BR16,GHG neural,,2050,,,https://mmc.disclosure.site/en/themes/92,net_zero_tracker
+net_zero_tracker:5299006ZTN6MO1N5BR16:2050,5299006ZTN6MO1N5BR16,GHG neutral,,2050,,,https://mmc.disclosure.site/en/themes/92,net_zero_tracker
 net_zero_tracker:5299008QCD0YDT5OF506:2026,5299008QCD0YDT5OF506,Climate neutral,,2026,,,https://corp.shiseido.com/en/sustainability/pdf/2020.pdf,net_zero_tracker
 net_zero_tracker:52990097YFPX9J0H5D87:2050,52990097YFPX9J0H5D87,Net zero,,2050,,,https://www.pernod-ricard.com/sites/default/files/2021-09/PERNOD%20RICARD%20ANNUAL%20REPORT%20FY21.pdf,net_zero_tracker
 net_zero_tracker:5299009QN2NZ191KLS29:2021,5299009QN2NZ191KLS29,Climate neutral,,2021,,,https://www.tokiomarinehd.com/en/release_topics/release/k82ffv000000b55w-att/210826_E.pdf,net_zero_tracker

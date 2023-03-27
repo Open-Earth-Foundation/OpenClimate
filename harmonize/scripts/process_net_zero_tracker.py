@@ -186,7 +186,7 @@ def get_country_net_zero(fl):
             'Zero carbon': 'Net zero',
             'Climate neutral': 'Climate neutral',
             'Carbon neutral(ity)': 'Climate neutral',
-            'GHG neutral(ity)': 'GHG neural'
+            'GHG neutral(ity)': 'GHG neutral'
         }
     }
 
@@ -248,7 +248,7 @@ def get_region_net_zero(fl, fl_missing_iso2):
             'Zero carbon': 'Net zero',
             'Climate neutral': 'Climate neutral',
             'Carbon neutral(ity)': 'Climate neutral',
-            'GHG neutral(ity)': 'GHG neural'
+            'GHG neutral(ity)': 'GHG neutral'
         }
     }
 
@@ -336,7 +336,7 @@ def get_region_net_zero(fl, fl_missing_iso2):
             'Zero carbon': 'Net zero',
             'Climate neutral': 'Climate neutral',
             'Carbon neutral(ity)': 'Climate neutral',
-            'GHG neutral(ity)': 'GHG neural'
+            'GHG neutral(ity)': 'GHG neutral'
         }
     }
     out_columns = ['target_id', 'actor_id', 'target_type', 'target_year', 'URL', 'datasource_id']
@@ -397,7 +397,7 @@ def get_city_net_zero(fl, fl_locode, fl_missing_locode):
             'Zero carbon': 'Net zero',
             'Climate neutral': 'Climate neutral',
             'Carbon neutral(ity)': 'Climate neutral',
-            'GHG neutral(ity)': 'GHG neural'
+            'GHG neutral(ity)': 'GHG neutral'
         }
     }
 
@@ -463,7 +463,7 @@ def get_city_net_zero(fl, fl_locode, fl_missing_locode):
             'Zero carbon': 'Net zero',
             'Climate neutral': 'Climate neutral',
             'Carbon neutral(ity)': 'Climate neutral',
-            'GHG neutral(ity)': 'GHG neural'
+            'GHG neutral(ity)': 'GHG neutral'
         }
     }
 
@@ -526,7 +526,7 @@ def get_company_net_zero(fl, fl_isin_to_lei):
             'Zero carbon': 'Net zero',
             'Climate neutral': 'Climate neutral',
             'Carbon neutral(ity)': 'Climate neutral',
-            'GHG neutral(ity)': 'GHG neural'
+            'GHG neutral(ity)': 'GHG neutral'
         }
     }
 
@@ -573,7 +573,7 @@ def get_company_net_zero(fl, fl_isin_to_lei):
             'Zero carbon': 'Net zero',
             'Climate neutral': 'Climate neutral',
             'Carbon neutral(ity)': 'Climate neutral',
-            'GHG neutral(ity)': 'GHG neural'
+            'GHG neutral(ity)': 'GHG neutral'
         }
     }
 
