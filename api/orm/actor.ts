@@ -56,6 +56,9 @@ export class Actor extends Model<
 
     return actor_ids.map((actor_id) => {
       let actor = actors.find((a) => a.actor_id == actor_id);
+      if (!actor) {
+        return []
+      }
       let l: Actor[] = [actor];
       while (actor.is_part_of) {
         actor = actors.find((a) => a.actor_id == actor.is_part_of);
