@@ -269,10 +269,10 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                       BASELINE VALUE
                                     </div>
                                     <div className="pledges-widget__popover-tns-value">
-                                      50 Mt CO2e
+                                      {target.percent_achieved_reason ? readableEmissions(target.percent_achieved_reason.baseline.value) + " CO2e" : "N/A"} 
                                     </div>
                                     <div className="pledges-widget__popover-tgt-value">
-                                      in {target.baseline_year}
+                                       {target.percent_achieved_reason ? "in " + target.baseline_year : ""}
                                     </div>
                                   </div>
                                   <div className="pledges-widget__popover-values-content">
@@ -280,10 +280,10 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                       CURRENT EMISSIONS VALUE
                                     </div>
                                     <div className="pledges-widget__popover-tns-value">
-                                      150 Mt CO2e
+                                    {target.percent_achieved_reason ? readableEmissions(target.percent_achieved_reason.current.value) + " CO2e" : "N/A"}
                                     </div>
                                     <div className="pledges-widget__popover-tgt-value">
-                                      Climate Trace
+                                      {target.percent_achieved_reason ? target.percent_achieved_reason.current.datasource.name : ""}
                                     </div>
                                   </div>
                                   <div className="pledges-widget__popover-values-content">
@@ -291,7 +291,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                       TARGET VALUE
                                     </div>
                                     <div className="pledges-widget__popover-tns-value">
-                                      100 Mt CO2e
+                                      { target.target_value ? `${target.target_unit=== "percent" ? target.target_value : readableEmissions(target.target_value)}${target.target_unit === "percent"? "%":""}` : `N/A`}
                                     </div>
                                     <div className="pledges-widget__popover-tgt-value">
                                       in {target.target_year}
