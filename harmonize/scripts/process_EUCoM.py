@@ -76,6 +76,13 @@ if __name__ == "__main__":
                                         datasourceDict=dataSourceDict,
                                         input_dir = input_dir)
 
+    # replace emissions
+    replace_dict = {'target_type': {
+        'Absolute emissions reduction':'Absolute emission reduction'
+        }
+    }
+    df_target = df_target.replace(replace_dict)
+
     # convert to csv
     df_target.drop_duplicates().to_csv(
         f'{outputDir}/Target.csv', index=False)
