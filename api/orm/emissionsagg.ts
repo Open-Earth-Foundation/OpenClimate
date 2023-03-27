@@ -70,36 +70,47 @@ export class EmissionsAgg extends Model<
     actorID: string,
     year: integer,
     allEmissions=null,
-    allDSQ=null
+    allDSQs=null
   ): Promise<EmissionsAgg> {
-    if (!allEmissions) {
-       allEmissions = await EmissionsAgg.findAll({
+    let emissions = null;
+    if (allEmissions) {
+      // Make sure to filter down by year and actor, JIC
+      emissions = allEmissions.filter(e => e.year === year && e.actor_id == actorID)
+    } else {
+      emissions = await EmissionsAgg.findAll({
         where: { actor_id: actorID, year: year },
        });
     }
-    if (allEmissions.length === 0) {
+    if (emissions.length === 0) {
       return null;
     }
-    if (!allDSQ) {
-      const unique = (v, i, a) => a.indexOf(v) == i;
-      let dataSourceIDs = allEmissions
-        .map((ea) => ea.datasource_id)
-        .filter(unique);
-      allDSQ = await DataSourceQuality.findAll({
+    const unique = (v, i, a) => a.indexOf(v) == i;
+    let dataSourceIDs = emissions
+      .map((ea) => ea.datasource_id)
+      .filter(unique);
+
+    let dsqs = null;
+
+    if (allDSQs) {
+      dsqs = allDSQs.filter(d =>
+        dataSourceIDs.findIndex(d.datasource_id) !== -1 &&
+        d.score_type === scoreType )
+    } else {
+      dsqs = await DataSourceQuality.findAll({
         where: { datasource_id: dataSourceIDs, score_type: scoreType },
       });
     }
-    if (allDSQ.length === 0) {
+    if (dsqs.length === 0) {
       return null;
     }
     // Get the highest-score value
     let dsq = (ea) =>
-      allDSQ.find((dsq) => dsq.datasource_id == ea.datasource_id);
+      dsqs.find((dsq) => dsq.datasource_id == ea.datasource_id);
     let score = (ea) => {
       let d = dsq(ea);
       return d ? d.score : 0.0;
     };
-    let sorted = allEmissions.sort((a, b) =>
+    let sorted = emissions.sort((a, b) =>
       score(a) < score(b) ? 1 : score(a) > score(b) ? -1 : 0
     );
     let best = sorted[0];
