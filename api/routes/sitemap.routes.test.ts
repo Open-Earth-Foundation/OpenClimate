@@ -186,6 +186,7 @@ it("can get a sitemap index", async () => {
       expect(res.text.length).toBeGreaterThan(0);
       expect(res.text).toMatch('<sitemapindex')
       expect(res.text).toMatch('<sitemap>')
+      expect(res.text).toMatch(`/sitemap-country-${country1Props.actor_id}.xml`)
     });
 });
 
