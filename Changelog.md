@@ -1,5 +1,9 @@
 # 1.7.2 (2023-03-28)
 ## Fixes
+- More pledges popup merge issues
+
+# 1.7.2 (2023-03-28)
+## Fixes
 - Correct country sitemap URL in sitemap index
 
 # 1.7.1 (2023-03-28)
