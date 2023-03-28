@@ -205,3 +205,27 @@ if __name__ == '__main__':
     # convert to csv
     df_emissionsBySector.to_csv(
         f'{outputDir}/EmissionsBySector.csv', index=False)
+
+    # =================================================================
+    # Tags and DataSourceTags
+    # =================================================================
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        "GHGs_included_CO2_CH4_N2O": "GHGs included: CO2, CH4, and N2O",
+        "GWP_100_AR6": "Uses GWP100 from IPCC AR6",
+        "Sectors_included_in_climateTrace": "Sectors: agriculture, buildings, fluorinated-gases, fossil-fuel-operations, manufacturing, mineral-extraction, power, transportation, and waste",
+        "estimates_from_satellite_remote_sensing_and_AI": "Estimates derived using satellite retrievals, remote-sensing, and artificial intelligence",
+        "EDGAR_data": "Includes some data from the EDGAR database",
+        "FAOSTAT_data": "Includes some data from FAOSTAT"
+    }
+
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
+
+    simple_write_csv(outputDir, "Tag", tagDictList)
+
+    dataSourceTagDictList = [
+        {"datasource_id": datasourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
+    ]
+
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)
