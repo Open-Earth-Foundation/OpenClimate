@@ -32,11 +32,11 @@ const Dashboard: FunctionComponent<Props> = (props) => {
         </div>
         <div>
           <PledgesWidget
-              key={`pledges-${current.actor_id}`}
-              current={current}
-              parent={parent}
+            key={`pledges-${current.actor_id}`}
+            current={current}
+            parent={parent}
           />
-        </div>       
+        </div>
       </div>
     </div>
   );

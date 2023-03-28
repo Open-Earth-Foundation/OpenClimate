@@ -4,6 +4,7 @@ import { Actor } from "./actor";
 import { DataSource } from "./datasource";
 import { Publisher } from "./publisher";
 const disconnect = require("./init").disconnect;
+const DNE = "actor.test.ts:actor:does-not-exist"
 
 const publisherProps = {
   id: "actor.test.ts:publisher:1",
@@ -152,7 +153,16 @@ it("can CRUD related actors", async () => {
 });
 
 it("can get paths", async () => {
+
   // Set up the paths
+
+  // Make sure it returns and empty path for actors that don't exist
+
+  let empty = await Actor.path(DNE)
+
+  expect(empty).toBeDefined()
+  expect(empty.length).toBeDefined()
+  expect(empty.length).toEqual(0)
 
   // evanp: I'd put this in the beforeAll() but since this suite also
   // includes CRUD I figure it should go here.

@@ -12,7 +12,7 @@ import LevelCards from "./level-cards";
 import CollaborateFAB from "./CollaborateFab";
 import CollaborationCardHint from "./CollaborateCardHint";
 import ActorFlag from "./actor-flag/actor-flag";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 type ReviewPageParams = {
   actorID: string;
@@ -88,7 +88,11 @@ const ReviewPage: FunctionComponent = () => {
   ) => {
     const actor_id = option.value;
     insertActor(actor_id, []);
-    history.push(actor_id === "EARTH" ? "/" : `/actor/${option.value}/${option.name}_emissions`);
+    history.push(
+      actor_id === "EARTH"
+        ? "/"
+        : `/actor/${option.value}/${option.name}_emissions`
+    );
   };
 
   const deselectFilterHandler = (filterType: FilterTypes) => {
@@ -106,8 +110,10 @@ const ReviewPage: FunctionComponent = () => {
         break;
     }
     const actor_id = newActorsList[newActorsList.length - 1].actor_id;
-    const actor_name = newActorsList[newActorsList.length - 1].name
-    history.push(actor_id === "EARTH" ? "/" : `/actor/${actor_id}/${actor_name}_emissions`);
+    const actor_name = newActorsList[newActorsList.length - 1].name;
+    history.push(
+      actor_id === "EARTH" ? "/" : `/actor/${actor_id}/${actor_name}_emissions`
+    );
     setActors(newActorsList);
   };
 
@@ -116,7 +122,11 @@ const ReviewPage: FunctionComponent = () => {
   return (
     <div className="review">
       <Helmet>
-        <title>{`OpenClimate | ${current && current.name !== "Earth" ? current.name + " historic emissions and climate data tracker" : "Country, city & company GHG emissions data tracker"}`}</title>
+        <title>{`OpenClimate | ${
+          current && current.name !== "Earth"
+            ? current.name + " historic emissions and climate data tracker"
+            : "Country, city & company GHG emissions data tracker"
+        }`}</title>
       </Helmet>
       <div
         className="review__wrapper"
@@ -161,10 +171,8 @@ const ReviewPage: FunctionComponent = () => {
                   </div>
                   <div className="review-info__content">
                     Explore, download & contribute historic GHG emissions{" "}
-                    <span>
-                      and climate progress data to an aggregated
-                    </span>{" "}
-                    open source portal for climate accounting.
+                    <span>and climate progress data to an aggregated</span> open
+                    source portal for climate accounting.
                   </div>
                 </div>
               </>

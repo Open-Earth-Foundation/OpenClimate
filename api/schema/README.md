@@ -85,6 +85,8 @@ actors. When we need to include information that's specific for particular
 kinds of actors, we use the [Tag](#tag) subsystem to tag rows in tables with
 extra information.
 - `Multiple sources of truth`. For emissions data, we track multiple records of the same information, to provide comparison of methodologies and reporting style. For example, there are records for emissions in the United States from both PRIMAP and the UNFCCC, with about 0.3% difference. For non-emissions contextual data, like population, area, or GDP, multiple sources of truth aren't an important part of this data set, so we only track the best source we can get. For targets, we try to include one version of a target, even if it's mentioned in different data sources.
+- `Compound primary keys`. For many tables, there are compound primary keys; that is, keys with multiple columns that are unique across the table. When the table is referenced as a foreign key in many places, however, we use a single constructed identifier, which makes references simpler.
+- `Constructed identifier`. Identifiers are often constructed by the data importer to be unique. A common pattern is to use a colon ':' to separate parts of an identifier that are unique. For example, `datasource_id` values are often composed of the publisher ID and a unique ID for the publication.
 
 # Table details
 
@@ -202,23 +204,27 @@ For governments, we keep information about the territory governed as well as sim
 
 ### Territory
 
-"actor_id" varchar(255), /* Actor this territory represents */
-  "area" bigint, /* Area in km^2 */
-  "lat" int, /* Latitude of centroid or major landmark times 10000; 407494 => latitude 40.7494 */
-  "lng" int, /* Longitude of centroid or major landmark times 10000; -739674 => longitude -73.9674 */
-  "admin_bound" text, /* Geojson of boundary */
-  "created" timestamp,
-  "last_updated" timestamp,
-  "datasource_id" varchar(255),
+This represents an area governed by the actor.
+
+- `actor_id`: Actor this territory represents.
+- `area`: Area in km^2.
+- `lat`: Latitude of centroid or major landmark times 10000; 407494 => latitude 40.7494
+- `lng`: Longitude of centroid or major landmark times 10000; -739674 => longitude -73.9674
+- `admin_bound`: geoJSON of the territory boundary.
+- `datasource_id`: ID of the [DataSource](#datasource) this territory information came from. Note that the area, centroid, and geoJSON may come from different datasources, and this will typically be the most recent one.
+- `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
+- `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
 
 ### Population
 
-"actor_id" varchar(255), /* Actor ID of territory */
-  "population" bigint, /* Population in units; 1000 => 1000 people */
-  "year" int, /* Year of measurement, YYYY */
-  "created" timestamp,
-  "last_updated" timestamp,
-  "datasource_id" varchar(255),
+Population history or projections of the territory of the Actor. Each row represents a year of population. The rows are unique by `actor_id` and `year`. We don't keep multiple estimates of population for the same Actor and year.
+
+- `actor_id`: Actor ID of territory.
+- `population`: Population in units; 1000 => 1000 people
+- `year`: Year of measurement, YYYY
+- `datasource_id`: ID of the [DataSource](#datasource) this territory information came from. Note that the area, centroid, and geoJSON may come from different datasources, and this will typically be the most recent one.
+- `created`: When this row was added to the table. Not necessarily publication date; see the DataSource for that metadata.
+- `last_updated`: When this row was changed. Often the same as `created`. Not necessarily publication date; see the DataSource for that metadata.
 
 ### GDP
 
@@ -367,36 +373,61 @@ such as "paris", but it's opaque and may come from another vocabulary.
 
 ## Metadata
 
-(TBD)
+To track data provenance, we use a number of tables related to data sets and publishers.
 
 ### DataSource
 
-(TBD)
+A DataSource is a single version of a dataset or document used to derive data for this database. Multiple versions of the same publication have different DataSource rows.
 
-### Publisher
+To the extent that datasources may come from aggregated or edited secondary sources, we tend to name the secondary source instead of the primary source. This makes tracking down errors and updates easier, to the detriment of giving links and credit to the primary source.
 
-(TBD)
-
-### Tag
-
-(TBD)
+- `datasource_id`: A unique identifier for this data source. A common pattern is `<publisher id>:<series identifier>:<publication date>` or `<publisher id>:<series identifier>:<version number>`, but the identifier is opaque and varies by data importer.
+- `name`: Title of the data source, human readable.
+- `publisher`: Identifier for the [Publisher](#publisher) of the data source.
+- `published`: Date of publication of the upstream document or dataset. This can be long before the data was imported to OpenClimate.
+- `URL`: URL of the upstream data source. This is preferably the document that describes or links to the data set, not the artifact itself.
+- `created`: When this row was added to the table. Usually greater than or equal to `published`.
+- `last_updated`: When this row was changed. Usually greater than or equal to `created`.
 
 ### DataSourceTag
 
+A Tag is a property of a data set, such as the methodology used for collecting or calculating the data, or the data license, or other ways of identifying data sets.
+
+This table provides a many-to-many relationship between DataSource and Tag.
+
+- `datasource_id`: ID of the tagged [DataSource](#datasource).
+- `tag_id`: What the tag is. Must exist in [Tag](#tag) table.
+- `created`: When this row was added to the table.
+- `last_updated`: When this row was changed.
+
+### Publisher
+
+A data or document publisher. This table lets us collect [DataSource](#datasource) rows produced by the same organization into a related set.
+
+- `id`: unique identifier of the publisher. Often an acronym, like 'OEF'.
+- `name`: Name of the publisher.
+- `URL`: URL for more information about the publisher; usually the home page of a Web site.
+- `created`: When this row was added to the table.
+- `last_updated`: When this row was changed.
+
+### Tag
+
+A [tag](https://en.wikipedia.org/wiki/Tag_(metadata)) for a row,
+so we can have some extra data about it that isn't captured in the columns.
+
+Tag rows are joined to rows in other tables by a many-to-many junction table.
+See [DataSourceTag](#datasourcetag) or [EmissionsAggTag](#emissionsaggtag) for examples.
+
+See https://en.wikipedia.org/wiki/Tag_(metadata) for how tags
+can be used.
+
+- `tag_id`: Unique ID for the tag. IDs should be human-readable,
+lowercase ASCII, as short as possible, and avoid spaces or punctuation except
+underscores. For example, to tag a geographic data source, use 'geo' as the tag. For machine learning, add 'machine_learning' or 'ml'.
+- `tag_name`: A longer, human-readable description of the tag.
+- `created`: When this row was added to the table.
+- `last_updated`: When this row was changed.
+
 (TBD)
 
-## Emissions
-
-(TBD)
-
-## Targets
-
-(TBD)
-
-# Contributions
-
-(TBD)
-
-# Contact
-
-(TBD)
+Comments, questions and suggestions for this schema are tracked in the [Open-Earth-Foundation/OpenClimate-Schema repo issues](https://github.com/Open-Earth-Foundation/OpenClimate-Schema/issues).

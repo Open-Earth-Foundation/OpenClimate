@@ -1,55 +1,43 @@
 import React, { useState, FunctionComponent, useEffect } from "react";
 import "./pledges-widget.scss";
-import Popover from '@mui/material/Popover';
-import {
-  InfoOutlined,
-  LinkOutlined,
-  MoreVert,
-} from "@mui/icons-material";
+import Popover from "@mui/material/Popover";
+import { InfoOutlined, LinkOutlined, MoreVert } from "@mui/icons-material";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-
-import PledgeItem from "./pledge-item";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@mui/material/Tooltip";
-import { IconButton } from "@material-ui/core";
-import { Button } from "@mui/material";
+
 import ProgressBar from "@ramonak/react-progress-bar";
+import {readableEmissions} from "../../util/units";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#ffffff",
     color: "#00001F",
-    fontFamily: 'Poppins',
+    fontFamily: "Poppins",
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 12,
-    color: "#272727"
+    color: "#272727",
   },
 }));
-
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
   '&:nth-of-type(odd)': {
     backgroundColor: "#FBFBFF",
-    border:0
-  },
-  // hide last border
-  '& td, th': {
     border: 0,
   },
 
 }));
-
 
 interface Props {
   current: any;
@@ -85,14 +73,16 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
 
     popover: {
       "&.MuiPopover-root > &.MuiPopover-paper": {
-          backgroundColor: "red"
-      }
-    }
+        backgroundColor: "red",
+      },
+    },
   }));
 
   const classes = useStyles();
   const targets = current && current.targets ? current.targets : [];
-  const netZeroTargetYear = targets.filter(target => target.target_type === "Net zero")?.[0]?.target_year;
+  const netZeroTargetYear = targets.filter(
+    (target) => target.target_type === "Net zero"
+  )?.[0]?.target_year;
   const lu = targets.map((t: any) => t.last_updated);
   lu.sort();
   const lastUpdated = lu.length > 0 ? lu[lu.length - 1] : null;
@@ -102,16 +92,16 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
 
   // Popover
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
-  const [openedPopoverId, setID] = useState<string | null>("")
+  const [openedPopoverId, setID] = useState<string | null>("");
 
   const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>, id: any) => {
     setAnchorEl(event.currentTarget);
-    setID(id)
+    setID(id);
   };
 
   const handlePopoverClose = () => {
     setAnchorEl(null);
-    setID(null)
+    setID(null);
   };
 
   return (
@@ -142,17 +132,19 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
           </div>
           <div className="pledges-widget__pledge-items">
             <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
-              <Table sx={{ minWidth: 700}} aria-label="customized table">
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell>Target commitment</StyledTableCell>
-                    <StyledTableCell align="left">Type of commitment</StyledTableCell>
+                    <StyledTableCell align="left">
+                      Type of commitment
+                    </StyledTableCell>
                     <StyledTableCell align="left">% achieved</StyledTableCell>
                     <StyledTableCell align="left"></StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {targets.map((target:any) => (
+                  {targets.map((target: any) => (
                     <StyledTableRow key={target.target_id}>
                       <StyledTableCell component="th" scope="row" width="20%">
                         <div>
@@ -166,17 +158,22 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                       </StyledTableCell>
                       <StyledTableCell align="left" width="25%">
                         <div className="pledges-widget__commitment">
-                          <p>
-                            {target.target_type}
-                          </p>
-                          <span>
-                            GHG EMISSIONS
-                          </span>
+                          <p>{target.target_type}</p>
+                          <span>GHG EMISSIONS</span>
                         </div>
                       </StyledTableCell>
                       <StyledTableCell align="left" width="50%">
                         <div className="pledges-widget__progress-container">
-                          <div className="pledges-widget__progress-percent">{ target.percent_achieved && target.percent_achieved > 0 ? `${ target.percent_achieved > 100 ? 100 : Math.round(target.percent_achieved)}%` : 'N/A'}</div>
+                          <div className="pledges-widget__progress-percent">
+                            {target.percent_achieved &&
+                            target.percent_achieved > 0
+                              ? `${
+                                  target.percent_achieved > 100
+                                    ? 100
+                                    : Math.round(target.percent_achieved)
+                                }%`
+                              : "N/A"}
+                          </div>
                           <div className="pledges-widget__progress-progressbar">
                             {
                               target.percent_achieved && target.percent_achieved > 0 ?
@@ -258,28 +255,46 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                       <div className="pledges-widget__popover-tns-value">50 Mt CO2e</div>
                                       <div className="pledges-widget__popover-tgt-value">in {target.baseline_year}</div>
                                     </div>
-                                    <div className="pledges-widget__popover-values-content">
-                                      <div className="pledges-widget__popover-bl-value">CURRENT EMISSIONS VALUE</div>
-                                      <div className="pledges-widget__popover-tns-value">150 Mt CO2e</div>
-                                      <div className="pledges-widget__popover-tgt-value">Climate Trace</div>
+                                    <div className="pledges-widget__popover-tns-value">
+                                      {target.percent_achieved_reason ? readableEmissions(target.percent_achieved_reason.baseline.value) + " CO2e" : "N/A"} 
                                     </div>
-                                    <div className="pledges-widget__popover-values-content">
-                                      <div className="pledges-widget__popover-bl-value">TARGET VALUE</div>
-                                      <div className="pledges-widget__popover-tns-value">100 Mt CO2e</div>
-                                      <div className="pledges-widget__popover-tgt-value">in {target.target_year}</div>
+                                    <div className="pledges-widget__popover-tgt-value">
+                                       {target.percent_achieved_reason ? "in " + target.baseline_year : ""}
+                                    </div>
+                                  </div>
+                                  <div className="pledges-widget__popover-values-content">
+                                    <div className="pledges-widget__popover-bl-value">
+                                      CURRENT EMISSIONS VALUE
+                                    </div>
+                                    <div className="pledges-widget__popover-tns-value">
+                                    {target.percent_achieved_reason ? readableEmissions(target.percent_achieved_reason.current.value) + " CO2e" : "N/A"}
+                                    </div>
+                                    <div className="pledges-widget__popover-tgt-value">
+                                      {target.percent_achieved_reason ? target.percent_achieved_reason.current.datasource.name : ""}
+                                    </div>
+                                  </div>
+                                  <div className="pledges-widget__popover-values-content">
+                                    <div className="pledges-widget__popover-bl-value">
+                                      TARGET VALUE
+                                    </div>
+                                    <div className="pledges-widget__popover-tns-value">
+                                      { target.target_value ? `${target.target_unit=== "percent" ? target.target_value : readableEmissions(target.target_value)}${target.target_unit === "percent"? "%":""}` : `N/A`}
+                                    </div>
+                                    <div className="pledges-widget__popover-tgt-value">
+                                      in {target.target_year}
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </Popover>
+                          </div>
+                        </Popover>
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer>
-
           </div>
         </div>
       ) : (

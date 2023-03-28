@@ -12,7 +12,7 @@ import {
 import { DataSource } from "./datasource";
 import { Actor } from "./actor";
 import { Initiative } from "./initiative";
-import { EmissionsAgg } from './emissionsagg';
+import { EmissionsAgg } from "./emissionsagg";
 
 const logger = require("../logger").child({ module: __filename });
 
@@ -40,57 +40,72 @@ export class Target extends Model<
   declare initiative_id: string;
   declare created: CreationOptional<Date>;
   declare last_updated: CreationOptional<Date>;
-  public isNetZero() : boolean {
-    return this.target_type === 'Net zero'
-  };
-  public async getPercentComplete(): Promise<any> {
-    const scoreType = 'GHG target'
+  public isNetZero(): boolean {
+    return this.target_type === "Net zero";
+  }
+  public async getPercentComplete(emissions=null, dsqs=null): Promise<any> {
+    const scoreType = "GHG target";
 
-    logger.debug({target_id: this.target_id, message: "checking percent complete"})
+    logger.debug({
+      target_id: this.target_id,
+      message: "checking percent complete",
+    });
 
-    if (this.target_type !== 'Absolute emission reduction' || this.target_unit !== 'percent') {
+    if (
+      this.target_type !== "Absolute emission reduction" ||
+      this.target_unit !== "percent"
+    ) {
       logger.debug({
         target_id: this.target_id,
         target_type: this.target_type,
         target_unit: this.target_unit,
-        message: "not appropriate for percent complete calculation"
-      })
-      return null
+        message: "not appropriate for percent complete calculation",
+      });
+      return [null,null,null];
     }
 
     // We use either the declared baseline or the best value for that year
 
-    let baselineValue = this.baseline_value;
+    let baselineValue = null;
+    let baseline = null;
 
-    if (!this.baseline_value) {
-      const baseline = await EmissionsAgg.forPurpose(scoreType, this.actor_id, this.baseline_year);
+    if (this.baseline_value) {
+      baselineValue = this.baseline_value;
+    } else {
+      baseline = await EmissionsAgg.forPurpose(
+        scoreType,
+        this.actor_id,
+        this.baseline_year,
+        emissions,
+        dsqs
+      );
       if (!baseline) {
         logger.debug({
           target_id: this.target_id,
           baseline_year: this.baseline_year,
           actor_id: this.actor_id,
-          message: "No appropriate emissions data for baseline year"
-        })
-        return null
+          message: "No appropriate emissions data for baseline year",
+        });
+        return [null,null,null];
       }
-      baselineValue = Number(baseline.total_emissions)
+      baselineValue = Number(baseline.total_emissions);
     }
 
-    let latest = await EmissionsAgg.forPurposeLatest(scoreType, this.actor_id)
+    let latest = await EmissionsAgg.forPurposeLatest(scoreType, this.actor_id, emissions, dsqs);
 
     if (!latest) {
       logger.debug({
         target_id: this.target_id,
         actor_id: this.actor_id,
-        message: "No recent emissions data"
-      })
-      return null
+        message: "No recent emissions data",
+      });
+      return [null,null,null];
     }
 
-    let latestValue = Number(latest.total_emissions)
-    let totalReduction = baselineValue * (this.target_value/100.00)
-    let currentReduction = baselineValue - latestValue
-    let percentAchieved = (currentReduction/totalReduction) * 100.0
+    let latestValue = Number(latest.total_emissions);
+    let totalReduction = baselineValue * (this.target_value / 100.0);
+    let currentReduction = baselineValue - latestValue;
+    let percentAchieved = (currentReduction / totalReduction) * 100.0;
 
     logger.debug({
       baselineValue: baselineValue,
@@ -99,10 +114,10 @@ export class Target extends Model<
       totalReduction: totalReduction,
       currentReduction: currentReduction,
       percentAchieved: percentAchieved,
-      message: 'Calculated percent achieved'
-    })
+      message: "Calculated percent achieved",
+    });
 
-    return percentAchieved
+    return [percentAchieved, baseline, latest];
   }
 }
 

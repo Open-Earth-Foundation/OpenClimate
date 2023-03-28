@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: openclimate-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
   tls:
@@ -12,6 +14,13 @@ spec:
     - http:
         paths:
           - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: openclimate-api-service
+                port:
+                  number: 3100
+          - path: /sitemap-.*.xml
             pathType: Prefix
             backend:
               service:

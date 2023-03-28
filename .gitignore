@@ -13,3 +13,6 @@ k8s/prod/openclimate-api-deployment.yml
 k8s/prod/openclimate-elasticsearch-deployment.yml
 k8s/prod/openclimate-import-zip-job.yml
 k8s/prod/openclimate-to-elasticsearch-job.yml
+ui/public/config.json
+ui/public/robots.txt
+ui/build-storybook.log

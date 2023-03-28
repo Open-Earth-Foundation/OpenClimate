@@ -3,6 +3,7 @@ kind: Job
 metadata:
   generateName: openclimate-migrations-
 spec:
+  ttlSecondsAfterFinished: 86400
   template:
     spec:
       restartPolicy: OnFailure

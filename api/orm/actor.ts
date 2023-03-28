@@ -28,27 +28,8 @@ export class Actor extends Model<
   declare created: CreationOptional<Date>;
   declare last_updated: CreationOptional<Date>;
   static async path(actor_id: string): Promise<Actor[]> {
-    const qry = `
-    WITH RECURSIVE actor_path(actor_id, type, name, icon, hq, is_part_of, is_owned_by,
-       datasource_id, created, last_updated)
-    AS (SELECT actor_id, type, name, icon, hq, is_part_of, is_owned_by, datasource_id,
-          created, last_updated
-        FROM "Actor"
-        WHERE actor_id = :actor_id
-        UNION ALL
-        SELECT a.actor_id, a.type, a.name, a.icon, a.hq, a.is_part_of, a.is_owned_by,
-          a.datasource_id, a.created, a.last_updated
-        FROM "Actor" a, actor_path ap
-        WHERE a.actor_id = ap.is_part_of)
-    SELECT actor_id, type, name, icon, hq, is_part_of, is_owned_by,
-      datasource_id, created, last_updated
-    FROM actor_path
-    `;
-    return sequelize.query(qry, {
-      type: QueryTypes.SELECT,
-      model: Actor,
-      replacements: { actor_id: actor_id },
-    });
+    const paths = await Actor.paths([actor_id]);
+    return paths[0];
   }
   static async paths(actor_ids: string[]): Promise<Actor[][]> {
     const qry = `
@@ -75,6 +56,9 @@ export class Actor extends Model<
 
     return actor_ids.map((actor_id) => {
       let actor = actors.find((a) => a.actor_id == actor_id);
+      if (!actor) {
+        return []
+      }
       let l: Actor[] = [actor];
       while (actor.is_part_of) {
         actor = actors.find((a) => a.actor_id == actor.is_part_of);

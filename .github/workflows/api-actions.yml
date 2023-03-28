@@ -6,7 +6,7 @@ on:
   push:
     paths:
       - api/**
-      - k8s/openclimate-api-**
+      - k8s/openclimate-api-deployment.yml
     branches: [ "develop" ]
 
 jobs:
@@ -53,5 +53,7 @@ jobs:
     - name: Deploying service
       run: |
         kubectl apply -f k8s/openclimate-api-deployment.yml -n default
+        kubectl set env deployment/openclimate-ui-deployment WEB_ROOT=https://openclimate.openearth.dev
+        kubectl set env deployment/openclimate-ui-deployment MATOMO_SITE_ID=1
+        kubectl set env deployment/openclimate-ui-deployment MATOMO_SERVER=https://matomo.openearth.foundation/
         kubectl rollout restart deployment openclimate-api-deployment -n default
-        kubectl apply -f k8s/openclimate-api-service.yml -n default

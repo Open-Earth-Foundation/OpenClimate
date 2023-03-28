@@ -3,6 +3,7 @@ kind: Job
 metadata:
   generateName: openclimate-to-elasticsearch-
 spec:
+  ttlSecondsAfterFinished: 86400
   template:
     spec:
       containers:

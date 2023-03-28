@@ -13,6 +13,7 @@ import { ActorDataCoverage } from "../orm/actordatacoverage";
 import { Initiative } from "../orm/initiative";
 
 import { isHTTPError, NotFound } from "http-errors";
+import { DataSourceQuality } from "../orm/datasourcequality";
 
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 
@@ -76,7 +77,7 @@ router.get(
       .map((t) => t.initiative_id)
       .filter(unique);
 
-    const [dataSources, dataSourceTags, emissionsAggTags, initiatives] =
+    const [dataSources, dataSourceTags, emissionsAggTags, initiatives, dsq] =
       await Promise.all([
         DataSource.findAll({ where: { datasource_id: dataSourceIDs } }),
         DataSourceTag.findAll({ where: { datasource_id: dataSourceIDs } }),
@@ -84,6 +85,7 @@ router.get(
           where: { emissions_id: emissions.map((e) => e.emissions_id) },
         }),
         Initiative.findAll({ where: { initiative_id: initiative_ids } }),
+        DataSourceQuality.findAll({where: {datasource_id: dataSourceIDs, score_type: "GHG target"}})
       ]);
 
     // Extract unique tag_ids
@@ -140,9 +142,12 @@ router.get(
         : null;
     };
 
-    let achieved = await Promise.all(targets.map(async (t) => {
-      return [t.target_id, await t.getPercentComplete()]
-    }))
+    let achieved = await Promise.all(
+      targets.map(async (t) => {
+        let [pct, baseline, current] = await t.getPercentComplete(emissions, dsq);
+        return [t.target_id, pct, baseline, current];
+      })
+    );
 
     res.status(200).json({
       success: true,
@@ -181,8 +186,10 @@ router.get(
           };
         }),
         targets: targets.map((t) => {
-          const ds = dataSources.find((ds) => ds.datasource_id == t.datasource_id);
-          const ach = achieved.find((a) => a[0] === t.target_id)
+          const ds = dataSources.find(
+            (ds) => ds.datasource_id == t.datasource_id
+          );
+          const ach = achieved.find((a) => a[0] === t.target_id);
           const i = t.initiative_id
             ? initiatives.find((i) => i.initiative_id == t.initiative_id)
             : null;
@@ -195,7 +202,23 @@ router.get(
             target_value: t.target_value,
             target_unit: t.target_unit,
             is_net_zero: t.isNetZero(),
-            percent_achieved: (ach) ? ach[1] : null,
+            percent_achieved: (!ach[1] && typeof ach[1] !== "number") ? null : ach[1],
+            percent_achieved_reason: (!ach[1] && typeof ach[1] !== "number") ? null : {
+              baseline: (!ach[2]) ? {
+                year: t.baseline_year,
+                value: Number(t.baseline_value),
+                datasource: datasource(t.datasource_id)
+              } : {
+                year: ach[2].year,
+                value: Number(ach[2].total_emissions),
+                datasource: datasource(ach[2].datasource_id)
+              },
+              current: (!ach[3]) ? null : {
+                year: ach[3].year,
+                value: Number(ach[3].total_emissions),
+                datasource: datasource(ach[3].datasource_id)
+              }
+            },
             datasource_id: t.datasource_id,
             datasource: {
               datasource_id: ds.datasource_id,
@@ -204,7 +227,7 @@ router.get(
               published: ds.published,
               URL: ds.URL,
               created: ds.created,
-              last_updated: ds?.last_updated
+              last_updated: ds?.last_updated,
             },
             initiative: i
               ? {

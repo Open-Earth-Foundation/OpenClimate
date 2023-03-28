@@ -1,0 +1,4 @@
+datasource_id,tag_id
+cui_etal_2021:CO2_china_provinces:v1,co2_only
+cui_etal_2021:CO2_china_provinces:v1,power_industry_and_ground_transport
+cui_etal_2021:CO2_china_provinces:v1,province_fraction_of_national

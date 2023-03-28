@@ -18,6 +18,10 @@ spec:
           ports:
             - containerPort: 80
           env:
+            - name: SITE_VISIBILITY
+              value: private
+            - name: WEB_ROOT
+              value: https://localhost
             - name: NODE_ENV
               value: development
             - name: BROWSER

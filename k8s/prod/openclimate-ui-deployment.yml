@@ -18,6 +18,10 @@ spec:
           ports:
             - containerPort: 80
           env:
+            - name: SITE_VISIBILITY
+              value: public
+            - name: WEB_ROOT
+              value: https://openclimate.network
             - name: NODE_ENV
               value: production
             - name: BROWSER

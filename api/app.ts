@@ -7,6 +7,7 @@ const session = require("express-session");
 import { Utils } from "./util";
 const expressWinston = require("express-winston");
 import { BadRequest, InternalServerError, NotFound } from "http-errors";
+const compression = require('compression');
 
 // Envision imports
 import schemaRoutes from "./routes/schema.routes";
@@ -28,6 +29,7 @@ import cityRoutes from "./routes/cities.routes";
 import providerRoutes from "./routes/providers.routes";
 import actorRoutes from "./routes/actor.routes";
 import searchRoutes from "./routes/search.routes";
+import sitemapRoutes from "./routes/sitemap.routes";
 
 const Connections = require("./orm/connections.ts");
 const Users = require("./agentLogic/users");
@@ -37,10 +39,13 @@ const Images = require("./agentLogic/images");
 
 require("./passport-config")(passport);
 
-const {name, version} = require('./package.json');
+const { name, version } = require("./package.json");
 
-const esStatus = (process.env.ELASTIC_SEARCH_ENABLED === 'yes') ? 'ElasticSearchEnabled' : 'ElasticSearchDisabled'
-const product = `${name}/${version} (${esStatus})`
+const esStatus =
+  process.env.ELASTIC_SEARCH_ENABLED === "yes"
+    ? "ElasticSearchEnabled"
+    : "ElasticSearchDisabled";
+const product = `${name}/${version} (${esStatus})`;
 
 // We use one Winston instance for the entire app
 
@@ -55,6 +60,9 @@ const wrap =
     fn(...args).catch(args[2]);
 
 export const app = express();
+
+// Compress all responses
+app.use(compression());
 
 app.use((req, res, next) => {
   req.logger = logger;
@@ -86,10 +94,12 @@ app.options("*", cors(corsOptions)); // enable pre-flight
 
 app.use(express.json());
 
-app.use(wrap(async (_, res, next) => {
-  res.set('Server', product)
-  next()
-}))
+app.use(
+  wrap(async (_, res, next) => {
+    res.set("Server", product);
+    next();
+  })
+);
 
 app.use(schemaRoutes);
 app.use(pledgeRoutes);
@@ -109,7 +119,7 @@ app.use(proofsRoutes);
 app.use(trustedRegistryRoutes);
 app.use(actorRoutes);
 app.use(searchRoutes);
-
+app.use(sitemapRoutes);
 
 // Send all cloud agent webhooks posting to the agent webhook router
 app.use("/api/controller-webhook", agentWebhookRouter);
@@ -529,7 +539,7 @@ app.get(
 );
 
 app.use(
-  "/",
+  "^/$",
   wrap(async (req, res) => {
     const name = "openclimate-hub-controller";
     const version = name in process.versions ? process.versions[name] : null;

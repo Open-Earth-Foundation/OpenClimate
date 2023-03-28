@@ -3,6 +3,7 @@ kind: Job
 metadata:
   generateName: openclimate-import-
 spec:
+  ttlSecondsAfterFinished: 86400
   template:
     spec:
       volumes:
