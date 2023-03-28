@@ -33,7 +33,7 @@ router.get(
     const items = Array<any>()
     items.push({_attr: {xmlns: ns}})
     for (let country of countries) {
-        items.push({sitemap: [{loc: makeUrl(`/sitemap-${country.actor_id}.xml`)}]})
+        items.push({sitemap: [{loc: makeUrl(`/sitemap-country-${country.actor_id}.xml`)}]})
     }
     const results = {sitemapindex: items}
     req.logger.debug(`formatted ${items.length} items`)
