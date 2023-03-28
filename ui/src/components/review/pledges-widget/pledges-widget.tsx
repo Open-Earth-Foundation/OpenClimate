@@ -252,8 +252,6 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                   <div className="pledges-widget__popover-values">
                                     <div className="pledges-widget__popover-values-content">
                                       <div className="pledges-widget__popover-bl-value">BASELINE VALUE</div>
-                                      <div className="pledges-widget__popover-tns-value">50 Mt CO2e</div>
-                                      <div className="pledges-widget__popover-tgt-value">in {target.baseline_year}</div>
                                     </div>
                                     <div className="pledges-widget__popover-tns-value">
                                       {target.percent_achieved_reason ? readableEmissions(target.percent_achieved_reason.baseline.value) + " CO2e" : "N/A"}
