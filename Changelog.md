@@ -1,3 +1,11 @@
+# 1.7.2 (2023-03-28)
+## Fixes
+- Correct country sitemap URL in sitemap index
+
+# 1.7.1 (2023-03-28)
+## Fixes
+- Fixed build error in Pledges widget from merge artefact
+
 # 1.7.0 (2023-03-28)
 ## Features
 - Search by identifier, like ISO code or airport code
