@@ -4,6 +4,7 @@ from openclimate import Client
 import os
 from pathlib import Path
 import pandas as pd
+import time
 from typing import List
 from typing import Dict
 from utils import make_dir
@@ -216,3 +217,26 @@ if __name__ == '__main__':
         f'{outputDir}/EmissionsBySector.csv', index=False)
 
 
+    # =================================================================
+    # Tags and DataSourceTags
+    # =================================================================
+
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        "GHGs_included_fossil_CO2_CH4_N2O_F_gases": "GHGs included: Fossil CO2, CH4, N2O, and F-gases",
+        "GWP_100_AR4": "Uses GWP100 from IPCC AR4",
+        "Sectors_included_in_EDGARv7": "Sectors: power, buildings, transport, industrial combustion, industrial process emissions, agricultural soils, and waste",
+        "excludes_LULUCF_and_biomass_burning":"Large scale biomass burning and LULUCF are excluded",
+        'activity_data_and_other_sources': 'Emissions derived from activity data and other datasets'
+    }
+
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
+
+    simple_write_csv(outputDir, "Tag", tagDictList)
+
+    dataSourceTagDictList = [
+        {"datasource_id": datasourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
+    ]
+
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)
