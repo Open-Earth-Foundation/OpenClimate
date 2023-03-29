@@ -1,13 +1,37 @@
-if __name__ == '__main__':
-    import concurrent.futures
-    import os
-    from pathlib import Path
-    import pandas as pd
-    from utils import make_dir
-    from utils import write_to_csv
-    from utils import iso3_to_iso2
-    from utils import df_wide_to_long
+import concurrent.futures
+import csv
+from openclimate import Client
+import os
+from pathlib import Path
+import pandas as pd
+from typing import List
+from typing import Dict
+from utils import make_dir
+from utils import df_wide_to_long
 
+
+client = Client()
+def iso3_to_iso2(name):
+    try:
+        return (name, list(client.search(identifier=name)['actor_id'])[0])
+    except:
+        return (name, None)
+
+
+def simple_write_csv(
+    output_dir: str = None, name: str = None, rows: List[Dict] | Dict = None
+) -> None:
+
+    if isinstance(rows, dict):
+        rows = [rows]
+
+    with open(f"{output_dir}/{name}.csv", mode="w") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+if __name__ == '__main__':
     # output directory
     outputDir = '../data/processed/EDGARv7.0/'
     outputDir = os.path.abspath(outputDir)
@@ -26,10 +50,8 @@ if __name__ == '__main__':
         'URL': 'https://commission.europa.eu/about-european-commission/departments-and-executive-agencies/joint-research-centre_en'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(outputDir, "Publisher", publisherDict)
+
     # =================================================================
     # DataSource
     # =================================================================
@@ -41,10 +63,7 @@ if __name__ == '__main__':
         'URL': 'https://edgar.jrc.ec.europa.eu/dataset_ghg70'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+    simple_write_csv(outputDir, "DataSource", datasourceDict)
 
     # read data from file
     df = pd.read_excel(fl, header=4)
@@ -71,7 +90,7 @@ if __name__ == '__main__':
 
     # get ISO2 from ISO3
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        results = [executor.submit(iso3_to_iso2, name, return_input=True)
+        results = [executor.submit(iso3_to_iso2, name)
                    for name in list(set(df_long['EDGAR Country Code']))]
         data = [f.result() for f in concurrent.futures.as_completed(results)]
 
@@ -195,3 +214,5 @@ if __name__ == '__main__':
     # convert to csv
     df_emissionsBySector.to_csv(
         f'{outputDir}/EmissionsBySector.csv', index=False)
+
+
