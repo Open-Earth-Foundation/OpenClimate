@@ -1,13 +1,13 @@
 import csv
 import concurrent.futures
+import openclimate
 import os
 from pathlib import Path
+from time import sleep
 import pandas as pd
 from typing import List
 from typing import Dict
 from utils import make_dir
-from utils import write_to_csv
-from utils import country_to_iso2
 
 
 def simple_write_csv(output_dir: str = None,
@@ -21,6 +21,15 @@ def simple_write_csv(output_dir: str = None,
         writer = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
+
+
+def country_to_iso2(name):
+    try:
+        client = openclimate.Client()
+        df = client.parts('EARTH')
+        return (name,  df.loc[df['name'] == name, 'actor_id'].item())
+    except:
+        return (name, None)
 
 
 if __name__ == '__main__':
@@ -42,10 +51,8 @@ if __name__ == '__main__':
         'URL': 'https://www.globalcarbonproject.org/'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(outputDir, "Publisher", publisherDict)
+
     # =================================================================
     # DataSource
     # =================================================================
@@ -57,29 +64,17 @@ if __name__ == '__main__':
         'URL': 'https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2022'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+    simple_write_csv(outputDir, "DataSource", datasourceDict)
 
     # =================================================================
     # EmissionsAgg
     # =================================================================
-    #xl = pd.ExcelFile(fl)
-    #sheets = xl.sheet_names
-
     # regions to drop
-    df_regions = pd.read_excel(fl, sheet_name='Regions', names=[
-                               'region', 'countries'])
+    df_regions = pd.read_excel(fl,
+                            sheet_name='Regions',
+                            names=['region', 'countries'])
     columns_to_drop = list(
         df_regions['region']) + ['KP Annex B', 'Bunkers', 'Statistical Difference', 'World']
-
-    # raw dataset
-    df = pd.read_excel(fl, header=11, sheet_name='Territorial Emissions').rename(
-        columns={'Unnamed: 0': 'year'})
-
-    # Drop the columns
-    df = df.drop(columns=columns_to_drop)
 
     # change these names so can grab actor_id from openClimate API
     change_dictionary = {
@@ -92,31 +87,55 @@ if __name__ == '__main__':
         "Turkey": "Türkiye",
         "Cape Verde": "Cabo Verde",
         "North Korea": "Korea, the Democratic People's Republic of",
-        "South Korea": "The Republic of Korea",
+        "South Korea": "Korea, the Republic of",
         "Swaziland": "Eswatini",
+        'Syria': "Syrian Arab Republic",
+        'United Kingdom': "United Kingdom of Great Britain and Northern Ireland",
+        'Micronesia (Federated States of)': "Micronesia",
+        'USA': "United States of America",
+        'British Virgin Islands': "Virgin Islands",
+        'Democratic Republic of the Congo': "Congo, the Democratic Republic of the",
+        'Sint Maarten (Dutch part)': "Sint Maarten",
+        'Russia': "Russian Federation",
+        'Saint Helena': 'Saint Helena, Ascension and Tristan da Cunha'
     }
 
-    df = df.rename(columns=change_dictionary)
+    # raw dataset
+    df = (
+        pd.read_excel(fl, header=11, sheet_name='Territorial Emissions')
+        .rename(columns={'Unnamed: 0': 'year'})
+        .drop(columns=columns_to_drop)
+        .rename(columns=change_dictionary)
+    )
 
     # country name to iso2
+    country_names = set([col for col in df.columns if col != 'year'])
+
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        results = [executor.submit(country_to_iso2, name, return_input=True)
-                   for name in list(set(df.columns))]
+        results = [executor.submit(country_to_iso2, name) for name in country_names]
         data = [f.result() for f in concurrent.futures.as_completed(results)]
 
-    # put iso code in dataframe
     df_iso = pd.DataFrame(data, columns=['name', 'actor_id'])
 
-    # country columns
-    columns = list(df.columns)
-    columns.remove('year')
+    # add by hand the Virgin Islands is British Virgin Islands
+    df_iso.loc[df_iso['name'] == 'Virgin Islands', 'actor_id'] = 'VG'
 
-    # convert country to separte column
-    df_out = pd.melt(df, id_vars=['year'], value_vars=columns,
-                     var_name='Country', value_name='Emissions')
+    if tmp:=list(df_iso.loc[df_iso['actor_id'].isnull(), 'name']):
+        print(f"!! no actor_id: {tmp}")
+
+    # convert country names to separate column
+    country_columns = list(df.columns).remove('year')
+    df_out = pd.melt(df,
+                    id_vars=['year'],
+                    value_vars=country_columns,
+                    var_name='Country',
+                    value_name='Emissions')
 
     # merge iso codes
     df_out = pd.merge(df_out, df_iso, left_on=['Country'], right_on=['name'])
+
+    # remove rows with null actor_id
+    df_out = df_out.loc[df_out['actor_id'].notnull()]
 
     # create datasource_id
     df_out['datasource_id'] = datasourceDict['datasource_id']
@@ -138,26 +157,20 @@ if __name__ == '__main__':
     # remove null values in total_emissions
     df_out = df_out.loc[df_out['total_emissions'].notnull()]
 
-    # Create EmissionsAgg table
-    emissionsAggColumns = [
-        "emissions_id",
-        "actor_id",
-        "year",
-        "total_emissions",
-        "datasource_id"
-    ]
+    astype_dict = {
+        'emissions_id': str,
+        'actor_id': str,
+        'year': int,
+        'total_emissions': int,
+        'datasource_id': str
+    }
+    emissionsAggColumns = astype_dict.keys()
 
-    df_emissionsAgg = df_out[emissionsAggColumns]
-
-    # ensure columns have correct types
-    df_emissionsAgg = df_emissionsAgg.astype({'emissions_id': str,
-                                              'actor_id': str,
-                                              'year': int,
-                                              'total_emissions': int,
-                                              'datasource_id': str})
-
-    # sort by actor_id and year
-    df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
+    df_emissionsAgg = (
+        df_out[emissionsAggColumns]
+        .astype(astype_dict)
+        .sort_values(by=['actor_id', 'year'])
+    )
 
     # convert to csv
     df_emissionsAgg.to_csv(f'{outputDir}/EmissionsAgg.csv', index=False)
