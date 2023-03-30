@@ -178,10 +178,19 @@ if __name__ == '__main__':
     # =================================================================
     # Tags and DataSourceTags
     # =================================================================
-    tagDictList = [{'tag_id': 'fossil_co2',
-                    'tag_name': 'Fossil CO2'}]
-    simple_write_csv(outputDir, 'Tag', tagDictList)
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        "fossil_co2": "Fossil CO2",
+    }
+
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
+
+    simple_write_csv(outputDir, "Tag", tagDictList)
 
     dataSourceTagDictList = [
-        {'datasource_id': datasourceDict['datasource_id'], 'tag_id': tag['tag_id']} for tag in tagDictList]
-    simple_write_csv(outputDir, 'DataSourceTag', dataSourceTagDictList)
+        {"datasource_id": datasourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
+    ]
+
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)
+
