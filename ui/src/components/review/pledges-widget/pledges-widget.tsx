@@ -96,16 +96,16 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const [openedPopoverId, setID] = useState<string | null>("");
 
-  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>, id: any) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>, id: any) => {
     setAnchorEl(event.currentTarget);
     setID(id);
   };
 
-  const handlePopoverClose = () => {
+  const handleClose  = () => {
     setAnchorEl(null);
     setID(null);
   };
-
+  
   return (
     <div
       className="pledges-widget"
@@ -200,22 +200,16 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                         </div>
                       </StyledTableCell>
                       <StyledTableCell align="right">
-                        <InfoOutlined
-                          className="pledges-widget__target-info"
-                          aria-owns={
-                            openedPopoverId ? "mouse-over-popover" : undefined
-                          }
-                          aria-haspopup="true"
-                          onMouseEnter={(e: any) =>
-                            handlePopoverOpen(e, target.target_id)
-                          }
-                          onMouseLeave={handlePopoverClose}
-                        />
+                        <button
+                            onClick={(e:any)=>handleClick(e, target.target_id)}
+                            aria-describedby="simple-popover"
+                          >
+                          <InfoOutlined
+                            className="pledges-widget__target-info"                            
+                          />
+                        </button>
                         <Popover
-                          id="mouse-over-popover"
-                          sx={{
-                            pointerEvents: "none",
-                          }}
+                          id="simple-popover"
                           open={openedPopoverId === target.target_id}
                           anchorEl={anchorEl}
                           classes={{
@@ -230,8 +224,8 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                             vertical: "center",
                             horizontal: "left",
                           }}
-                          onClose={handlePopoverClose}
-                          disableRestoreFocus
+                          onClose={handleClose}
+                        
                         >
                           <div className="pledges-widget__popover">
                             <div className="pledges-widget__popover-header">
