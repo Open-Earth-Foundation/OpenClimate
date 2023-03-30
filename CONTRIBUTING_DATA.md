@@ -46,6 +46,10 @@ We have included 30 data sets from various agencies and researchers already, wit
 
 In case it's not clear, you can check the [harmonize](https://github.com/Open-Earth-Foundation/OpenClimate/tree/main/harmonize) directory for data sets that have already been imported.
 
+## Sending a link
+
+If you identify data that should be in OpenClimate, and you don't have the skills or time to import it, please send us an email at openclimate-data@openearth.org. We'll queue it up for import.
+
 ## Obtaining the data
 
 It's easiest to input data that's in a file format made for data interchange. If you have an option, choose these file formats in descending order of usefulness:
