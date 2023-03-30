@@ -143,7 +143,8 @@ if __name__ == '__main__':
     # =================================================================
     # dictionary of tag_id : tag_name
     tagDict = {
-        'CO2_and_CH4': 'CO2 and CH4',
+        'GHGs_included_CO2_and_CH4': 'GHGs included: CO2 and CH4',
+        'production_consumption_emissions_energy_processing_and_flaring': 'Production and consumption emissions from energy, process emissions, and flaring',
         'primary_source': 'Primary source: emissions derived from activity data'
     }
 
