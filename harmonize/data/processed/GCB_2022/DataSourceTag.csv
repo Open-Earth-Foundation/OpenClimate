@@ -1,2 +1,6 @@
 datasource_id,tag_id
-GCB2022:national_fossil_emissions:v1.0,fossil_co2
+GCB2022:national_fossil_emissions:v1.0,GHGs_included_fossil_co2
+GCB2022:national_fossil_emissions:v1.0,territorial_emissions
+GCB2022:national_fossil_emissions:v1.0,includes_ff_combustion_oxidation_cement
+GCB2022:national_fossil_emissions:v1.0,exlucded_bunker_fuels
+GCB2022:national_fossil_emissions:v1.0,disaggreation_emissions_GCB2022
