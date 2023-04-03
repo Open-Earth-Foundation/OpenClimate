@@ -1,6 +1,21 @@
+import csv
+import concurrent.futures
+import datetime
+import json
+import numpy as np
+import os
+from pathlib import Path
+import pandas as pd
+import re
+import requests
+from typing import List
+from typing import Dict
+from utils import make_dir
+from utils import lei_from_name
+
 def extract_company(string):
     '''
-    extract majority parent from string like 
+    extract majority parent from string like
     'EXXONMOBIL CORP (48.2%);SHELL OIL CO (51.8%);'
     '''
     import re
@@ -37,6 +52,20 @@ def extract_company(string):
             percent = 100
     return name
 
+def simple_write_csv(
+        output_dir: str = None,
+        name: str = None,
+        data: List[Dict] | Dict = None,
+        mode: str = "w",
+        extension: str = "csv") -> None:
+
+    if isinstance(data, dict):
+        data = [data]
+
+    with open(f"{output_dir}/{name}.{extension}", mode=mode) as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
 
 def get_lei_publishdate():
     url = f"https://api.gleif.org/api/v1/lei-records/"
@@ -55,25 +84,12 @@ def get_lei_publishdate():
 
 
 if __name__ == '__main__':
-    import concurrent.futures
-    import datetime
-    import json
-    import numpy as np
-    import os
-    from pathlib import Path
-    import pandas as pd
-    import re
-    import requests
-    from utils import make_dir
-    from utils import lei_from_name
-    from utils import write_to_csv
-
     # define paths
-    outputDirSite = '../data/processed/EPA_GHGRP/site/'
+    outputDirSite = '../data/processed/EPA_GHGRP/EPA_GHGRP_site/'
     outputDirSite = os.path.abspath(outputDirSite)
     make_dir(path=Path(outputDirSite).as_posix())
 
-    outputDirOrganization = '../data/processed/EPA_GHGRP/organization/'
+    outputDirOrganization = '../data/processed/EPA_GHGRP_organization/'
     outputDirOrganization = os.path.abspath(outputDirOrganization)
     make_dir(path=Path(outputDirOrganization).as_posix())
 
@@ -108,10 +124,12 @@ if __name__ == '__main__':
         "URL": "https://www.gleif.org/en"
     }
 
-    write_to_csv(outputDir=outputDirOrganization,
-                 tableName='Publisher',
-                 dataDict=publisherDictLEI,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDirOrganization,
+        name='Publisher',
+        data=publisherDictLEI,
+        mode='w'
+    )
 
     # -------------------------------------------
     # DataSource table (organization)
@@ -124,10 +142,12 @@ if __name__ == '__main__':
         "URL": "https://www.gleif.org/en/lei-data/gleif-golden-copy/download-the-golden-copy#/",
     }
 
-    write_to_csv(outputDir=outputDirOrganization,
-                 tableName='DataSource',
-                 dataDict=datasourceDictLEI,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDirOrganization,
+        name='DataSource',
+        data=datasourceDictLEI,
+        mode='w'
+    )
 
     # -------------------------------------------
     # Publisher table (site)
@@ -138,10 +158,12 @@ if __name__ == '__main__':
         "URL": "https://www.epa.gov/"
     }
 
-    write_to_csv(outputDir=outputDirSite,
-                 tableName='Publisher',
-                 dataDict=publisherDictEPA,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDirSite,
+        name='Publisher',
+        data=publisherDictEPA,
+        mode='w'
+    )
 
     # -------------------------------------------
     # DataSource table (site)
@@ -154,10 +176,12 @@ if __name__ == '__main__':
         "URL": "https://www.epa.gov/ghgreporting/data-sets"
     }
 
-    write_to_csv(outputDir=outputDirSite,
-                 tableName='DataSource',
-                 dataDict=datasourceDictEPA,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDirSite,
+        name='DataSource',
+        data=datasourceDictEPA,
+        mode='w'
+    )
 
     #############################################
     # some data pre-processing
