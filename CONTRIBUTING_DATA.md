@@ -50,6 +50,10 @@ In case it's not clear, you can check the [harmonize](https://github.com/Open-Ea
 
 If you identify data that should be in OpenClimate, and you don't have the skills or time to import it, please send us an email at openclimate-data@openearth.org. We'll queue it up for import.
 
+## Dropping raw/processed data
+
+You may also upload raw or processed data, as well as Python-based analysis scripts, via [Dropbox](https://www.dropbox.com/request/1NT4NbRay4v1cCjDyQZM). If including multiple files, please either upload the entire directory or zip the files. If processing data, please try to conform the data to the [OpenClimate schema](https://github.com/Open-Earth-Foundation/OpenClimate/tree/develop/api/schema).
+
 ## Obtaining the data
 
 It's easiest to input data that's in a file format made for data interchange. If you have an option, choose these file formats in descending order of usefulness:
