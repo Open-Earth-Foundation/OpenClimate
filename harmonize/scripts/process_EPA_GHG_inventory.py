@@ -165,36 +165,30 @@ if __name__ == "__main__":
     df_emissionsAgg.drop_duplicates().to_csv(
         f'{outputDir}/EmissionsAgg.csv', index=False)
 
-    # ------------------------------------------
-    # Tag table
-    # ------------------------------------------
-    tagDictList = [
-            {
-                'tag_id': 'country_reported_data',
-                'tag_name': 'Country-reported data'
-            }
-        ]
+    # =================================================================
+    # Tags and DataSourceTags
+    # =================================================================
 
-    simple_write_csv(
-        output_dir=outputDir,
-        name='Tag',
-        data=tagDictList,
-        mode='w'
-    )
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        "GHGs_included_CO2_CH4_N2O_F_gases": "GHGs included: CO2, CH4, N2O, and F-gases",
+        "sectors_energy_IPPU_ag_waste_LULUCF": "Sectors: energy, industrial processes, agriculture, waste, and LULUCF",
+        "Includes_LULUCF":"Includes LULUCF",
+        "GWP_100_AR5": "Uses GWP100 from IPCC AR5",
+        'country_reported_data': 'Country-reported data',
+    }
 
-    # ------------------------------------------
-    # DataSourceTag table
-    # ------------------------------------------
-    datasource_id = f"{datasourceDict['datasource_id']}"
-    tags = ['country_reported_data']
-    dataSourceTagDict = [{'datasource_id': datasource_id, 'tag_id': tag} for tag in tags]
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
 
-    simple_write_csv(
-        output_dir=outputDir,
-        name='DataSourceTag',
-        data=dataSourceTagDict,
-        mode='w'
-    )
+    simple_write_csv(outputDir, "Tag", tagDictList)
+
+    dataSourceTagDictList = [
+        {"datasource_id": datasourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
+    ]
+
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)
+
 
     # ------------------------------------------
     # DataSourceQuality table
