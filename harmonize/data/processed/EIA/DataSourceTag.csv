@@ -1,3 +1,7 @@
 datasource_id,tag_id
 EIA:state_energy_co2_emissions:2022,energy_related_co2
 EIA:state_energy_co2_emissions:2022,primary_source
+EIA:state_energy_co2_emissions:2022,based_on_SEDS
+EIA:state_energy_co2_emissions:2022,fuel_types_coal_nat_gas_petro_producs
+EIA:state_energy_co2_emissions:2022,uses_epa_co2_emissions_factors
+EIA:state_energy_co2_emissions:2022,sectors_included_in_eia
