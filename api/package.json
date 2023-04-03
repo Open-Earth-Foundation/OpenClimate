@@ -39,7 +39,7 @@
     "xml": "^1.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.4",
+    "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
