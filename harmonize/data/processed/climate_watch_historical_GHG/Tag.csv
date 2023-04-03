@@ -1,2 +1,7 @@
 tag_id,tag_name
 collated,Collated emissions estimates
+GHGs_included_CO2_CH4_N2O_F_gases,"GHGs included: CO2, CH4, N2O, and F-gases"
+GWP_100_AR4,Uses GWP100 from IPCC AR4
+Sectors_energy_ag_industrial_processes_waste,"Sectors: energy, agriculture, industrial processes, and waste"
+includes_bunker_fuels,Includes emissions from bunker fuels
+excludes_LUCF,Excludes LUCF

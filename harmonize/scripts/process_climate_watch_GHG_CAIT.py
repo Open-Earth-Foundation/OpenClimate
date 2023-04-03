@@ -172,19 +172,27 @@ if __name__ == '__main__':
     # =================================================================
     # Tags and DataSourceTags
     # =================================================================
-    tagDictList = [
-        {'tag_id': 'collated',
-         'tag_name': 'Collated emissions estimates'}
-    ]
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        "collated": "Collated emissions estimates",
+        "GHGs_included_CO2_CH4_N2O_F_gases": "GHGs included: CO2, CH4, N2O, and F-gases",
+        "GWP_100_AR4": "Uses GWP100 from IPCC AR4",
+        "Sectors_energy_ag_industrial_processes_waste": "Sectors: energy, agriculture, industrial processes, and waste",
+        "includes_bunker_fuels": "Includes emissions from bunker fuels",
+        "excludes_LUCF":"Excludes LUCF",
+    }
 
-    simple_write_csv(outputDir, 'Tag', tagDictList)
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
+
+    simple_write_csv(outputDir, "Tag", tagDictList)
 
     dataSourceTagDictList = [
-        {'datasource_id': datasourceDict['datasource_id'],
-         'tag_id': tag['tag_id']} for tag in tagDictList
+        {"datasource_id": datasourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
     ]
 
-    simple_write_csv(outputDir, 'DataSourceTag', dataSourceTagDictList)
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)
+
 
     # ------------------------------------------
     # DataSourceQuality table
