@@ -1,3 +1,7 @@
 datasource_id,tag_id
-UNFCCC:GHG_ANNEX1:2019-11-08,country_reported_data
 UNFCCC:GHG_ANNEX1:2019-11-08,3d_party_validated
+UNFCCC:GHG_ANNEX1:2019-11-08,country_reported_data
+UNFCCC:GHG_ANNEX1:2019-11-08,excludes_LULUCF
+UNFCCC:GHG_ANNEX1:2019-11-08,GHGs_included_CO2_CH4_N2O_F_gases
+UNFCCC:GHG_ANNEX1:2019-11-08,Sectors_energy_IPPU_agriculture_waste_other
+UNFCCC:GHG_ANNEX1:2019-11-08,GWP_100_AR4

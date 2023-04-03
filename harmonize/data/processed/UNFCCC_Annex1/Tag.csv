@@ -1,3 +1,7 @@
 tag_id,tag_name
 3d_party_validated,Third party validated
 country_reported_data,Country-reported data
+excludes_LULUCF,Excludes LULUCF
+GHGs_included_CO2_CH4_N2O_F_gases,"GHGs included: CO2, CH4, N2O, and F-gases"
+Sectors_energy_IPPU_agriculture_waste_other,"Sectors: energy, IPPU, agriculture, waste, and other"
+GWP_100_AR4,Uses GWP100 from IPCC AR4
