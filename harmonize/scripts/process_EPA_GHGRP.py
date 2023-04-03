@@ -85,11 +85,11 @@ def get_lei_publishdate():
 
 if __name__ == '__main__':
     # define paths
-    outputDirSite = '../data/processed/EPA_GHGRP/EPA_GHGRP_site/'
+    outputDirSite = '../data/processed/EPA_GHGRP_site'
     outputDirSite = os.path.abspath(outputDirSite)
     make_dir(path=Path(outputDirSite).as_posix())
 
-    outputDirOrganization = '../data/processed/EPA_GHGRP_organization/'
+    outputDirOrganization = '../data/processed/EPA_GHGRP_organization'
     outputDirOrganization = os.path.abspath(outputDirOrganization)
     make_dir(path=Path(outputDirOrganization).as_posix())
 
@@ -376,7 +376,7 @@ if __name__ == '__main__':
     df_actor['type'] = 'site'
     df_actor['datasource_id'] = datasourceDictEPA['datasource_id']
     df_actor['actor_id'] = df_actor.apply(
-        lambda row: f"{row['is_part_of']}:EPA_{row['GHGRP ID']}", axis=1)
+        lambda row: f"US:EPA:{row['GHGRP ID']}", axis=1)
     df_actor['emissions_id'] = df_actor.apply(
         lambda row: f"{row['actor_id']}:{row['year']}", axis=1)
     df_actor['language'] = 'en'
@@ -397,7 +397,7 @@ if __name__ == '__main__':
         'datasource_id',
     ]
 
-    df_actor = df_actor_tmp[actorColumns].astype({
+    df_actor_out = df_actor_tmp[actorColumns].astype({
         'name': str,
         'actor_id': str,
         'is_owned_by': str,
@@ -406,7 +406,7 @@ if __name__ == '__main__':
         'type': str
     })
 
-    df_actor.drop_duplicates().to_csv(
+    df_actor_out.drop_duplicates().to_csv(
         f'{outputDirSite}/Actor.csv', index=False)
 
     # -------------------------------------------
