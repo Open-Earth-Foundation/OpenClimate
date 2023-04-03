@@ -1,3 +1,33 @@
+import csv
+import concurrent.futures
+import datetime
+import json
+import numpy as np
+import os
+from pathlib import Path
+import pandas as pd
+import requests
+from typing import List
+from typing import Dict
+from utils import make_dir
+from utils import lei_from_name
+from utils import subnational_to_iso2
+
+def simple_write_csv(
+        output_dir: str = None,
+        name: str = None,
+        data: List[Dict] | Dict = None,
+        mode: str = "w",
+        extension: str = "csv") -> None:
+
+    if isinstance(data, dict):
+        data = [data]
+
+    with open(f"{output_dir}/{name}.{extension}", mode=mode) as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=data[0].keys())
+        writer.writeheader()
+        writer.writerows(data)
+
 def read_eccc_ghgrp(fl=None):
     """reads ECCC GHGRP data into a pandas dataframe
 
@@ -20,35 +50,6 @@ def read_eccc_ghgrp(fl=None):
                   for col in list(df.columns)]
     return df
 
-
-def openclimate(name=None, is_part_of=None):
-    """simple openclimate API interface
-
-    Args:
-        name: name you want to search for
-        is_part_of: region it belongs to
-
-    Returns:
-        actor_id: the actor id of the name
-
-    Notes:
-        API documentation: https://github.com/Open-Earth-Foundation/OpenClimate/blob/develop/api/API.md
-    """
-    url = f"https://openclimate.network/api/v1/search/actor?name={name}"
-    payload = {}
-    headers = {'Accept': 'application/vnd.api+json'}
-    response = requests.request("GET", url, headers=headers, data=payload)
-    dataList = dict(response.json())['data']
-    if dataList:
-        for data in dataList:
-            if data['is_part_of'] == is_part_of:
-                actor_id = data['actor_id']
-                return actor_id
-                break
-    else:
-        return np.NaN
-
-
 def get_lei_publishdate():
     url = f"https://api.gleif.org/api/v1/lei-records/"
     payload = {}
@@ -66,25 +67,12 @@ def get_lei_publishdate():
 
 
 if __name__ == '__main__':
-    import concurrent.futures
-    import datetime
-    import json
-    import numpy as np
-    import os
-    from pathlib import Path
-    import pandas as pd
-    import requests
-    from utils import make_dir
-    from utils import lei_from_name
-    from utils import write_to_csv
-    from utils import subnational_to_iso2
-
     # define paths
-    outputDirSite = '../data/processed/ECCC_GHGRP/site/'
+    outputDirSite = '../data/processed/ECCC_GHGRP_site/'
     outputDirSite = os.path.abspath(outputDirSite)
     make_dir(path=Path(outputDirSite).as_posix())
 
-    outputDirOrganization = '../data/processed/ECCC_GHGRP/organization/'
+    outputDirOrganization = '../data/processed/ECCC_GHGRP_organization/'
     outputDirOrganization = os.path.abspath(outputDirOrganization)
     make_dir(path=Path(outputDirOrganization).as_posix())
 
@@ -110,10 +98,12 @@ if __name__ == '__main__':
         "URL": "https://www.gleif.org/en"
     }
 
-    write_to_csv(outputDir=outputDirOrganization,
-                 tableName='Publisher',
-                 dataDict=publisherDictLEI,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDirOrganization,
+        name='Publisher',
+        data=publisherDictLEI,
+        mode='w'
+    )
 
     # -------------------------------------------
     # DataSource table (organization)
@@ -126,10 +116,12 @@ if __name__ == '__main__':
         "URL": "https://www.gleif.org/en/lei-data/gleif-golden-copy/download-the-golden-copy#/",
     }
 
-    write_to_csv(outputDir=outputDirOrganization,
-                 tableName='DataSource',
-                 dataDict=datasourceDictLEI,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDirOrganization,
+        name='DataSource',
+        data=datasourceDictLEI,
+        mode='w'
+    )
 
     # -------------------------------------------
     # Publisher table (site)
@@ -140,10 +132,12 @@ if __name__ == '__main__':
         'URL': 'https://www.canada.ca/en/environment-climate-change.html'
     }
 
-    write_to_csv(outputDir=outputDirSite,
-                 tableName='Publisher',
-                 dataDict=publisherDictECCC,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDirSite,
+        name='Publisher',
+        data=publisherDictECCC,
+        mode='w'
+    )
 
     # -------------------------------------------
     # DataSource table (site)
@@ -156,10 +150,12 @@ if __name__ == '__main__':
         'URL': 'https://indicators-map.canada.ca/App/CESI_ICDE?keys=AirEmissions_GHG&GoCTemplateCulture=en-CA'
     }
 
-    write_to_csv(outputDir=outputDirSite,
-                 tableName='DataSource',
-                 dataDict=datasourceDictECCC,
-                 mode='w')
+    simple_write_csv(
+        output_dir=outputDirSite,
+        name='DataSource',
+        data=datasourceDictECCC,
+        mode='w'
+    )
 
     #############################################
     # some data pre-processing
@@ -348,9 +344,9 @@ if __name__ == '__main__':
     df_site['type'] = 'site'
     df_site['language'] = 'en'
     df_site['preferred'] = 1
-    df_site['namespace'] = 'is_part_of:facility_id'
+    df_site['namespace'] = 'ECCC GHGRP facility code'
     df_site['actor_id'] = df_site.apply(
-        lambda row: f"{row['is_part_of']}:ECCC_{row['GHGRP_ID']}", axis=1)
+        lambda row: f"CA:ECCC:{row['GHGRP_ID']}", axis=1)
     df_site['identifier'] = df_site['actor_id']
 
     # -------------------------------------------
