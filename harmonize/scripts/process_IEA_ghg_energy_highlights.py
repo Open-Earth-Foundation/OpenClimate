@@ -195,6 +195,9 @@ if __name__ == '__main__':
 
     )
 
+    # drop null actor_ids (this drops "Korea", not sure if North, South, or united)
+    df_out = df_out.loc[df_out['actor_id'].notnull()]
+
     # check types and sort
     astype_dict = {
         'emissions_id': str,
