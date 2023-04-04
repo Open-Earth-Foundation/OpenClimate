@@ -115,7 +115,7 @@ router.get(
       let items = []
       const companies = await Actor.findAll({
         where: {
-          type: 'company',
+          type: 'organization',
           actor_id: {
             [Op.endsWith]: checksum
           }

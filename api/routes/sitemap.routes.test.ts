@@ -138,14 +138,14 @@ const city5Props = {
 
 const company1Props = {
   actor_id: 'TESTRORALUCARDPGDG44',
-  type: 'company',
+  type: 'organization',
   name: 'Fake company 1 from sitemap.routes.test.ts',
   datasource_id: datasourceProps.datasource_id
 }
 
 const company2Props = {
   actor_id: 'FAKEJEDSANDERSSMRL13',
-  type: 'company',
+  type: 'organization',
   name: 'Fake company 2 from sitemap.routes.test.ts',
   datasource_id: datasourceProps.datasource_id
 }
