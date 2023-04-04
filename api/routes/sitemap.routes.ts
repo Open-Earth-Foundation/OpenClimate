@@ -35,6 +35,10 @@ router.get(
     for (let country of countries) {
         items.push({sitemap: [{loc: makeUrl(`/sitemap-country-${country.actor_id}.xml`)}]})
     }
+    // Company sitemaps
+    for (let i = 0; i < 100; i++) {
+      items.push({url: [{loc: makeUrl(`/sitemap-company-${String(i).padStart(2, '0')}.xml`)}]})
+    }
     const results = {sitemapindex: items}
     req.logger.debug(`formatted ${items.length} items`)
     res.type('text/xml');
@@ -85,6 +89,51 @@ router.get(
       })
       for (let city of cities) {
         items.push({url: [{loc: makeActorUrl(city)}]})
+      }
+
+      const results = {urlset: items}
+      req.logger.debug(`formatted ${items.length} items`)
+      res.type('text/xml');
+      res.send(xml(results, {declaration: true}))
+      res.end()
+      req.logger.debug('done')
+    }
+  ));
+
+  router.get(
+    "/sitemap-company-:checksum.xml",
+    wrap(async (req: any, res: any) => {
+      req.logger.debug('company sitemap requested')
+      const checksum = req.params.checksum;
+      req.logger.debug(`checksum = ${checksum}`)
+      if (checksum.length !== 2) {
+        throw new NotFound(`Invalid sitemap ${checksum}`)
+      }
+      if (!checksum.match(/^\d\d$/)) {
+        throw new NotFound(`Invalid sitemap ${checksum}`)
+      }
+      let items = []
+      const companies = await Actor.findAll({
+        where: {
+          type: 'company',
+          actor_id: {
+            [Op.endsWith]: checksum
+          }
+        }
+      })
+      for (let company of companies) {
+        items.push({url: [{loc: makeActorUrl(company)}]})
+      }
+      const sites = await Actor.findAll({
+        where: {
+          type: 'site',
+          is_owned_by: {
+            [Op.endsWith]: checksum
+          }
+        }
+      })
+      for (let site of sites) {
+        items.push({url: [{loc: makeActorUrl(site)}]})
       }
       const results = {urlset: items}
       req.logger.debug(`formatted ${items.length} items`)
