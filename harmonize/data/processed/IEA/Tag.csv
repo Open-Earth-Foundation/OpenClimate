@@ -1,0 +1,5 @@
+tag_id,tag_name
+energy_related_ghg,Energy related greenhouse gas emissions
+GHGs_included_CO2_CH4_N2O,"GHGs included: CO2, CH4, and N2O"
+includes_fugitive_emissions,Includes fugitive emissions
+GWP_100_AR4,Uses GWP100 from IPCC AR4

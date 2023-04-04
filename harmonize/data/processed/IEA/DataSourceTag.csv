@@ -1,0 +1,5 @@
+datasource_id,tag_id
+IEA:GHG_energy_highlights:2022,energy_related_ghg
+IEA:GHG_energy_highlights:2022,GHGs_included_CO2_CH4_N2O
+IEA:GHG_energy_highlights:2022,includes_fugitive_emissions
+IEA:GHG_energy_highlights:2022,GWP_100_AR4
