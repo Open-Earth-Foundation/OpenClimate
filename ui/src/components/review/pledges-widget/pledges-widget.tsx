@@ -105,6 +105,19 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
     setAnchorEl(null);
     setID(null);
   };
+
+  const targetCommitmentRender = (targetType: string) => {
+    switch (targetType) {
+      case "Net zero":
+        return "Net Zero";
+      case "GHG neutral":
+        return "GHG Neutral";
+      case "Climate neutral":
+        return "Climate Neutral";
+      default:
+        return "N/A";
+    }
+  }
   
   return (
     <div
@@ -151,10 +164,10 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                       <StyledTableCell component="th" scope="row" width="20%">
                         <div>
                           <span className="pledges-widget__target-percent">
-                            { target.target_value ? `${target.target_unit=== "percent" ? target.target_value : readableEmissions(target.target_value)}${target.target_unit === "percent"? "%":""}` : `N/A`} &nbsp;
+                            { target.target_value ? `${target.target_unit=== "percent" ? target.target_value : readableEmissions(target.target_value)}${target.target_unit === "percent"? "%":""}` : targetCommitmentRender(target.target_type)} &nbsp;
                           </span>
                           <span className="pledges-widget__target-text">
-                            by {target.target_year} { `${target.baseline_year ? `relative to ${target.baseline_year}` : 0}`}
+                            by {target.target_year}{ `${target.baseline_year && target.target_type !== "Peak of carbon emissions" ? `, relative to ${target.target_type === "Relative emission reduction" ? `BAU` : target.baseline_year}` : ``}`}
                           </span>
                         </div>
                       </StyledTableCell>
