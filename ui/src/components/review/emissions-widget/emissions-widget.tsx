@@ -25,14 +25,21 @@ import {
 
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@mui/material/Tooltip";
+import DownloadIcon from '@mui/icons-material/Download';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 interface Props {
   current: any;
   parent: any;
+  isMobile?: boolean;
+  hasFilter?: boolean;
+  hasDownload?: boolean;
+  titleText?: string;
+  subtitleText?: string;
 }
 
 const EmissionsWidget: FunctionComponent<Props> = (props) => {
-  const { current } = props;
+  const { current, isMobile, hasFilter, hasDownload, titleText, subtitleText } = props;
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   // Uncomment when adding Export As
   // const [toggleDownloadAsMenu, setToggleDownloadAsMenu] =
@@ -158,16 +165,16 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
   return (
     <div
-      className="emissions-widget"
+      className={isMobile ? "emissions-widget-mobile" : "emissions-widget"}
       style={{ height: currentEmissions ? "" : "268px" }}
     >
       {currentEmissions ? (
-        <div className="emissions-widget__wrapper">
+        <div className={isMobile ? "emissions-widget-mobile__wrapper" : "emissions-widget__wrapper"}>
           <div className="emissions-widget__metadata">
             <div>
               <div className="emissions-widget__metadata-inner">
-                <span className="emissions-widget__title">Total emissions</span>
-                <span>
+                <span className={isMobile ? "emissions-widget-mobile__title" : "emissions-widget__title"}>{ titleText || 'Total emissions'}</span>
+                { !isMobile && <span>
                   <Tooltip
                     classes={{
                       tooltip: classes.customTooltip,
@@ -185,179 +192,196 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                     <InfoOutlined className="emissions-widget__icon info-icon" />
                   </Tooltip>
                 </span>
+                }
               </div>
               {latestYear != 0 && (
-                <span className="emissions-widget__last-updated">{`Last updated in ${latestYear}`}</span>
+                <span className={isMobile ? "emissions-widget-mobile__last-updated" : "emissions-widget__last-updated"}>{subtitleText || `Last updated in ${latestYear}`}</span>
               )}
             </div>
             <div className="emissions-widget__metadata-right">
-              <div className="emissions-widget__metadata-right-inner">
-                <div className="emissions-widget__source-label">Source</div>
-                <div className="emissions-widget__source-title">
-                  <FormControl
-                    variant="standard"
-                    sx={{
-                      m: 1,
-                      minWidth: 120,
-                      margin: "0px",
-                      minHeight: 30,
-                      fontWeight: "700px",
-                    }}
-                  >
-                    <Select
-                      value={currentSource}
-                      onChange={sourceChangeHandler}
-                      id="demo-simple-select-standard"
-                      sx={{
-                        border: "0px",
-                        fontFamily: "Poppins",
-                        fontSize: "10px",
-                        position: "relative",
-                      }}
-                    >
-                      {sources.map((source: any, index: number) => (
-                        <MenuItem
-                          sx={{
-                            fontFamily: "Poppins",
-                            fontSize: "10px",
-                            position: "relative",
-                            margin: "0px",
-                            fontWeight: "700px",
-                          }}
-                          key={`emissions-datasource-option-${current.actor_id}-${source}`}
-                          value={source}
-                        >
-                          {current.emissions[source].publisher}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </div>
-              </div>
-              <div className="emissions-widget__metadata-right-inner">
-                <div className="emissions-widget__source-label">Year</div>
-                <div className="emissions-widget__source-title">
-                  <FormControl
-                    variant="standard"
-                    sx={{
-                      m: 1,
-                      minWidth: 120,
-                      margin: "0px",
-                      minHeight: 30,
-                      fontWeight: "700px",
-                    }}
-                  >
-                    <Select
-                      value={currentYear}
-                      onChange={yearChangeHandler}
-                      id="demo-simple-select-standard"
-                      sx={{
-                        border: "0px",
-                        fontFamily: "Poppins",
-                        fontSize: "10px",
-                        position: "relative",
-                      }}
-                    >
-                      {years?.map((year: any, index: number) => (
-                        <MenuItem
-                          sx={{
-                            fontFamily: "Poppins",
-                            fontSize: "10px",
-                            position: "relative",
-                            margin: "0px",
-                            fontWeight: "700px",
-                          }}
-                          key={`emissions-year-option-${current.actor_id}-${currentSource}-${year}`}
-                          value={parseInt(year)}
-                        >
-                          {year}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </div>
-              </div>
-              <div className="emissions-widget__metadata-right-inner">
-                <div className="emissions-widget__button-wrapper">
-                  <Tooltip
-                    classes={{
-                      tooltip: classes.customTooltip,
-                      arrow: classes.customArrow,
-                    }}
-                    title={
-                      <div className="tooltip">Download or Export Data</div>
-                    }
-                    sx={{
-                      display: toggleMenu ? "hidden" : "inline",
-                    }}
-                    arrow
-                    placement="right"
-                  >
-                    <IconButton
-                      onClick={setMenuState}
-                      className="download_data-button"
-                    >
-                      <MoreVert className="download_data-icon" />
-                    </IconButton>
-                  </Tooltip>
-                  {toggleMenu && (
-                    <>
-                      <div className="download_data-menu">
-                        <ul className="menu-item">
-                          <a
-                            className="download-link"
-                            href={`/api/v1/download/${actor_id}-emissions.csv`}
-                            download
-                          >
-                            Download as CSV
-                          </a>
-                          <a
-                            className="download-link"
-                            href={`/api/v1/download/${actor_id}-emissions.json`}
-                            download
-                          >
-                            Download as JSON
-                          </a>
-                          {/* Add back when exporting is added
-                          <li onClick={setDownloadMenuState}>
-                            <span>Download as...</span>
-                            <div className="menu-item-arrow">
-                              <ArrowForwardIos className="menu-item-arrow-icon" />
-                            </div>
-                          </li>
-                           
-                           <li onClick={setExportMenuState}>
-                            <span>Export as...</span>
-                            <div className="menu-item-arrow">
-                              <ArrowForwardIos className="menu-item-arrow-icon" />
-                            </div>
-                          </li> */}
-                        </ul>
+              { isMobile && hasFilter &&
+                  <div className="emissions-widget-mobile__filter-icon">
+                    <FilterListIcon/>
+                  </div>
+              }
 
-                        {/* <ul className="menu-item sub-menu">
-                              <li>Download as CSV</li>
-                               <li>Download as PDF</li>
-                              <li>Download as XML</li> 
-                              <li>Download as JSON</li>
-                            </ul>
-                        
-                        
-                            <ul className="menu-item sub-menu exportAs">
-                              <li>.JPG</li>
-                              <li>.PNG</li>
-                            </ul> */}
-                      </div>
-                    </>
-                  )}
+              { isMobile && hasDownload &&
+                  <div className="emissions-widget-mobile__download-icon">
+                    <DownloadIcon/>
+                  </div>
+              }
+
+              { !isMobile &&
+              <>
+                <div className="emissions-widget__metadata-right-inner">
+                  <div className="emissions-widget__source-label">Source</div>
+                  <div className="emissions-widget__source-title">
+                    <FormControl
+                      variant="standard"
+                      sx={{
+                        m: 1,
+                        minWidth: 120,
+                        margin: "0px",
+                        minHeight: 30,
+                        fontWeight: "700px",
+                      }}
+                    >
+                      <Select
+                        value={currentSource}
+                        onChange={sourceChangeHandler}
+                        id="demo-simple-select-standard"
+                        sx={{
+                          border: "0px",
+                          fontFamily: "Poppins",
+                          fontSize: "10px",
+                          position: "relative",
+                        }}
+                      >
+                        {sources.map((source: any, index: number) => (
+                          <MenuItem
+                            sx={{
+                              fontFamily: "Poppins",
+                              fontSize: "10px",
+                              position: "relative",
+                              margin: "0px",
+                              fontWeight: "700px",
+                            }}
+                            key={`emissions-datasource-option-${current.actor_id}-${source}`}
+                            value={source}
+                          >
+                            {current.emissions[source].publisher}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </div>
                 </div>
-              </div>
+                <div className="emissions-widget__metadata-right-inner">
+                  <div className="emissions-widget__source-label">Year</div>
+                  <div className="emissions-widget__source-title">
+                    <FormControl
+                      variant="standard"
+                      sx={{
+                        m: 1,
+                        minWidth: 120,
+                        margin: "0px",
+                        minHeight: 30,
+                        fontWeight: "700px",
+                      }}
+                    >
+                      <Select
+                        value={currentYear}
+                        onChange={yearChangeHandler}
+                        id="demo-simple-select-standard"
+                        sx={{
+                          border: "0px",
+                          fontFamily: "Poppins",
+                          fontSize: "10px",
+                          position: "relative",
+                        }}
+                      >
+                        {years?.map((year: any, index: number) => (
+                          <MenuItem
+                            sx={{
+                              fontFamily: "Poppins",
+                              fontSize: "10px",
+                              position: "relative",
+                              margin: "0px",
+                              fontWeight: "700px",
+                            }}
+                            key={`emissions-year-option-${current.actor_id}-${currentSource}-${year}`}
+                            value={parseInt(year)}
+                          >
+                            {year}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
+                <div className="emissions-widget__metadata-right-inner">
+                  <div className="emissions-widget__button-wrapper">
+                    <Tooltip
+                      classes={{
+                        tooltip: classes.customTooltip,
+                        arrow: classes.customArrow,
+                      }}
+                      title={
+                        <div className="tooltip">Download or Export Data</div>
+                      }
+                      sx={{
+                        display: toggleMenu ? "hidden" : "inline",
+                      }}
+                      arrow
+                      placement="right"
+                    >
+                      <IconButton
+                        onClick={setMenuState}
+                        className="download_data-button"
+                      >
+                        <MoreVert className="download_data-icon" />
+                      </IconButton>
+                    </Tooltip>
+                    {toggleMenu && (
+                      <>
+                        <div className="download_data-menu">
+                          <ul className="menu-item">
+                            <a
+                              className="download-link"
+                              href={`/api/v1/download/${actor_id}-emissions.csv`}
+                              download
+                            >
+                              Download as CSV
+                            </a>
+                            <a
+                              className="download-link"
+                              href={`/api/v1/download/${actor_id}-emissions.json`}
+                              download
+                            >
+                              Download as JSON
+                            </a>
+                            {/* Add back when exporting is added
+                            <li onClick={setDownloadMenuState}>
+                              <span>Download as...</span>
+                              <div className="menu-item-arrow">
+                                <ArrowForwardIos className="menu-item-arrow-icon" />
+                              </div>
+                            </li>
+
+                             <li onClick={setExportMenuState}>
+                              <span>Export as...</span>
+                              <div className="menu-item-arrow">
+                                <ArrowForwardIos className="menu-item-arrow-icon" />
+                              </div>
+                            </li> */}
+                          </ul>
+
+                          {/* <ul className="menu-item sub-menu">
+                                <li>Download as CSV</li>
+                                 <li>Download as PDF</li>
+                                <li>Download as XML</li> 
+                                <li>Download as JSON</li>
+                              </ul>
+                          
+                          
+                              <ul className="menu-item sub-menu exportAs">
+                                <li>.JPG</li>
+                                <li>.PNG</li>
+                              </ul> */}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+                </>
+            }
             </div>
           </div>
-          <div className="emissions-widget__data">
+          <div className={isMobile ? "emissions-widget-mobile__data" : "emissions-widget__data"}>
             <div className="emissions-widget__emissions-data">
               <div className="emissions-widget__col-1">
                 <div>
-                  <span className="emissions-widget__total-emissions">
+                  <span className={isMobile ? "emissions-widget-mobile__total-emissions" : "emissions-widget__total-emissions"}>
                     {(currentEmissions.total_emissions / 1000000.0).toPrecision(
                       5
                     )}{" "}
@@ -368,7 +392,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                     {trend > 0 ? (
                       <MdArrowDropUp className="emissions-widget__emissions-trend-icon-up" />
                     ) : (
-                      <MdArrowDropDown className="emissions-widget__emissions-trend-icon-down" />
+                      <MdArrowDropDown className={isMobile ? "emissions-widget-mobile__emissions-trend-icon-down" : "emissions-widget__emissions-trend-icon-down"} />
                     )}
                     <span
                       className={
@@ -398,12 +422,12 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                 )}
               </div>
               <div>
-                <span className="emissions-widget__emissions-description">
+                <span className={isMobile ? "emissions-widget-mobile__emissions-description" : "emissions-widget__emissions-description"}>
                   Total GHG Emissions <br /> Mt CO2e
                 </span>
               </div>
             </div>
-            {current.type !== "site" && (
+            {current.type !== "site" && !isMobile && (
               <div className="emissions-widget__emissions-data data-per-capita">
                 <div className="icon-wrapper">
                   <MdOutlinePeopleAlt className="people-alt-icon" />
@@ -429,53 +453,104 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                       )}
                     </div>
                     <div className="emissions-widget__emissions-trend">
-                      <Tooltip
-                        classes={{
-                          tooltip: classes.customTooltip,
-                          arrow: classes.customArrow,
-                        }}
-                        title={
-                          <div className="tooltip">
-                            Calculated by Open Climate
-                          </div>
-                        }
-                        arrow
-                        placement="right"
-                      >
-                        <InfoOutlined className="emissions-widget__icon trend-icon" />
-                      </Tooltip>
+                      {
+                        !isMobile &&
+                          <Tooltip
+                            classes={{
+                              tooltip: classes.customTooltip,
+                              arrow: classes.customArrow,
+                            }}
+                            title={
+                              <div className="tooltip">
+                                Calculated by Open Climate
+                              </div>
+                            }
+                            arrow
+                            placement="right"
+                          >
+                            <InfoOutlined className="emissions-widget__icon trend-icon" />
+                          </Tooltip>
+                      }
                     </div>
                   </div>
                   <div>
-                    <div className="emissions-widget__emissions-description pc-text">
+                    {
+                      !isMobile &&
+                      <>
+                      <div className="emissions-widget__emissions-description pc-text">
                       Emissions
-                    </div>
-                    <div className="emissions-widget__emissions-description pc-text">
-                      per capita
-                    </div>
+                      </div>
+                      <div className="emissions-widget__emissions-description pc-text">
+                        per capita
+                      </div>
+                    </>
+                    }
                   </div>
                 </div>
               </div>
             )}
           </div>
-          <div className="emissions-widget__methodologies">
-            <div className="emissions-widget__methodologies-heading">
-              <span>Methodologies</span>
-              <Tooltip
-                classes={{
-                  tooltip: classes.customTooltip,
-                  arrow: classes.customArrow,
-                }}
-                title={
-                  <div className="tooltip">
-                    Type of methodologies utilized by the selected data source
-                  </div>
-                }
-                arrow
-                placement="right"
-              >
-                <InfoOutlined className="emissions-widget__icon methodologies-icon" />
-              </Tooltip>
+          <div className={isMobile ? "emissions-widget-mobile__methodologies" :  "emissions-widget__methodologies"}>
+            { isMobile && 
+              <div className="emissions-widget-mobile__emissions-data data-per-capita">
+                <div className="icon-wrapper">
+                  <MdOutlinePeopleAlt className="people-alt-icon" />
+                </div>
+                <div>
+                  <div className="emissions-widget-mobile__col-1">
+                    <div className="emissions-widget__row">
+                      {perCapita ? (
+                        <div>
+                          <span className="emissions-widget-mobile__total-tonnes-pc">
+                            {perCapita.toPrecision(3)}
+                          </span>
+                          <span className="emissions-widget-mobile__emissions-pc-unit">
+                            T
+                          </span>
+                        </div>
+                      ) : (
+                        <div>
+                          <span className="emissions-widget__total-tonnes-pc no-data">
+                            N/A
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    </div>
+                </div>
+                </div>
+            }
+            {
+              isMobile &&
+              <>
+                <div className="emissions-widget-mobile__emissions-description pc-text">
+                Emissions per capita
+                </div>
+                <div className="emissions-widget-mobile__emissions-description oc-text">
+                  Calculated by <b>OpenClimate</b>
+                </div>
+              </>
+            }
+            <div className={isMobile ? "emissions-widget-mobile__methodologies-heading" :  "emissions-widget__methodologies-heading"}>
+              <span>Methodologies used</span>
+              {
+                !isMobile && 
+                  <Tooltip
+                    classes={{
+                      tooltip: classes.customTooltip,
+                      arrow: classes.customArrow,
+                    }}
+                    title={
+                      <div className="tooltip">
+                        Type of methodologies utilized by the selected data source
+                      </div>
+                    }
+                    arrow
+                    placement="right"
+                  >
+                    <InfoOutlined className="emissions-widget__icon methodologies-icon" />
+                  </Tooltip>
+              }
             </div>
             <div className="emissions-widget__methodologies-tags">
               {tags.slice(0, 3).map((tag: any) => (
@@ -511,11 +586,11 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
           </div>
         </div>
       ) : (
-        <div className="emissions-widget__wrapper">
+        <div className={isMobile ? "emissions-widget-mobile__wrapper" : "emissions-widget__wrapper"}>
           <div className="emissions-widget__metadata">
             <div>
               <div className="emissions-widget__metadata-inner">
-                <span className="emissions-widget__title">Total emissions</span>
+                <span className={isMobile ? "emissions-widget-mobile__title" : "emissions-widget__title"}>Total emissions</span>
                 <span>
                   <Tooltip
                     classes={{
@@ -553,7 +628,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
               </div>
             </div>
           </div>
-          <div className="emissions-widget__data">
+          <div className={isMobile ? "emissions-widget-mobile__data" : "emissions-widget__data"}>
             <div className="emissions-widget__emissions-empty-state">
               <p>
                 There's no data available, if you have any suggested <br /> data

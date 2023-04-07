@@ -83,8 +83,8 @@
     "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "chromatic": "npx chromatic --project-token=5fe7b4fea51a"
   },
   "husky": {

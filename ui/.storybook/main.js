@@ -12,5 +12,6 @@ module.exports = {
     "@storybook/preset-create-react-app",
     "storybook-zeplin/register"
   ],
-  "framework": "@storybook/react"
+  "framework": "@storybook/react",
+  "staticDirs": ['../src/shared/css', '../public']
 }
