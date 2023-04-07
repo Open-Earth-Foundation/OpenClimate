@@ -55,6 +55,10 @@ const ReviewPage: FunctionComponent = () => {
     handleParams(actorID);
   }, [actorID]);
 
+  useEffect(() => {
+    current && current.actor_id !== "EARTH" && history.push(`/actor/${current.actor_id}/${current?.name}_emissions`);
+  }, [actors, current]);
+
   const insertActor = (actorID: any, children: Array<any>) => {
     fetch(`/api/v1/actor/${actorID}`)
       .then((res) => res.json())
@@ -88,11 +92,6 @@ const ReviewPage: FunctionComponent = () => {
   ) => {
     const actor_id = option.value;
     insertActor(actor_id, []);
-    history.push(
-      actor_id === "EARTH"
-        ? "/"
-        : `/actor/${option.value}/${option.name}_emissions`
-    );
   };
 
   const deselectFilterHandler = (filterType: FilterTypes) => {
