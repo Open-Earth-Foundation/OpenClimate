@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.root{
+    display: flex;
+    align-items: center;
+    width: 328px;
+    font-family: 'Poppins';
+    height: 48px;
+    background: #fff;
+    border: 1px solid #D7D8FA;
+    border-radius: 4px;
+    align-items: center;
+}
+
+.dropdownWrapper{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    padding:10px;
+    padding-left: 19px;
+    padding-right: 19px;
+}
+
+.input{
+    height: 100%;
+    width: 100%;
+    margin-left: 11.5px;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    color: #7A7B9A;
+    background: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.icon {
+    font-size:30px;
+    color: #7A7B9A;
+}

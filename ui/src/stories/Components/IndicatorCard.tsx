@@ -1,12 +1,26 @@
 import React, { FC } from "react";
 import { MdArrowForward } from "react-icons/md";
 import styles from "./IndicatorCard.module.scss";
+import { DonutChart } from "react-circle-chart";
 
 interface Props {
-
+    actorName: string
 }
 
-export const IndicatorCard:FC<Props> = () => {
+export const IndicatorCard:FC<Props> = ({actorName = "Earth"}) => {
+    // Donut items
+    const items = [
+        {
+        value: 30,
+        label: "Total",
+        color: "#E6E7FF",
+        },
+        {
+        value: 70,
+        label: "Difference",
+        color: "#F9A200",
+        },
+    ];
     return(
         <div className={styles.root}>
             <div className={styles.container}>
@@ -16,7 +30,7 @@ export const IndicatorCard:FC<Props> = () => {
                     </svg>
                 </div>
                 <div className={styles.actorName}>
-                    Earth
+                    {actorName}
                 </div>
                 <div className={styles.infoItem}>
                     <div className={styles.indicatorArrow}>
@@ -27,6 +41,23 @@ export const IndicatorCard:FC<Props> = () => {
                             49.8 <span>GtCO2e</span>
                         </p>
                         <span className={styles.year}>in 2019</span>
+                    </div>
+                </div>
+                <div className={styles.infoItemA}>
+                    <div className={styles.indicatorDonut}>
+                        <DonutChart
+                            items={items}
+                            size={18}
+                            showTotal={false}
+                            trackWidth={"lg"}
+                            tooltipSx={{ display: "none" }}
+                        />
+                    </div>
+                    <div className={styles.infoItemValues}>
+                        <p>
+                            287.4 <span>GtCO2e</span>
+                        </p>
+                        <span className={styles.year}>left based on 1.5<sup>o</sup> target</span>
                     </div>
                 </div>
             </div>

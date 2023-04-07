@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.root{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Poppins";
+    gap: 16px;
+    width: 360px;
+    height: 64px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.root:hover {
+    background: #2351DC;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+.actorName{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #232640;
+}

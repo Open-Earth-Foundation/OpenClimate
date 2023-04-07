@@ -3,7 +3,7 @@ import React from 'react';
 import { ContextualDataWidget } from './ContextualData.widget';
 
 export default {
-    title: 'ContextualDataWidget',
+    title: 'Components / Widgets / ContextualDataWidget',
     component: ContextualDataWidget,
     parameters: {
         componentSubtitle: "Display a component / widget that shows contextual data"
@@ -12,4 +12,4 @@ export default {
 
 const Template = (args:any) => <ContextualDataWidget {...args}/>
 
-export const Mobile = Template.bind({});
+export const Default = Template.bind({});
