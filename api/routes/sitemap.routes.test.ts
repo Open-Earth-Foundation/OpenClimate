@@ -136,6 +136,28 @@ const city5Props = {
   datasource_id: datasourceProps.datasource_id,
 };
 
+const company1Props = {
+  actor_id: 'TESTRORALUCARDPGDG44',
+  type: 'organization',
+  name: 'Fake company 1 from sitemap.routes.test.ts',
+  datasource_id: datasourceProps.datasource_id
+}
+
+const company2Props = {
+  actor_id: 'FAKEJEDSANDERSSMRL13',
+  type: 'organization',
+  name: 'Fake company 2 from sitemap.routes.test.ts',
+  datasource_id: datasourceProps.datasource_id
+}
+
+const facility1Props = {
+  actor_id: 'US:EPA:0000000',
+  is_owned_by: company1Props.actor_id,
+  type: 'site',
+  name: 'Fake factory 1 from sitemap.routes.test.ts',
+  datasource_id: datasourceProps.datasource_id
+}
+
 const actors = [
   planetProps,
   country1Props,
@@ -151,6 +173,9 @@ const actors = [
   city3Props,
   city4Props,
   city5Props,
+  company1Props,
+  company2Props,
+  facility1Props,
 ];
 
 async function cleanup() {
@@ -187,6 +212,7 @@ it("can get a sitemap index", async () => {
       expect(res.text).toMatch('<sitemapindex')
       expect(res.text).toMatch('<sitemap>')
       expect(res.text).toMatch(`/sitemap-country-${country1Props.actor_id}.xml`)
+      expect(res.text).toMatch(`/sitemap-company-00.xml`)
     });
 });
 
@@ -290,5 +316,29 @@ it("country sitemap does not contain cities from other countries", async () => {
     .expect((res: any) => {
       expect(res.text).not.toMatch(city3Props.actor_id);
       expect(res.text).not.toMatch(city4Props.actor_id);
+    });
+});
+
+it("gets 404 for company sitemap with letters", async () => {
+  return request(app)
+    .get(`/sitemap-company-AA.xml`)
+    .expect(404)
+})
+
+it("gets 404 for company sitemap with too many numbers", async () => {
+  return request(app)
+    .get(`/sitemap-company-1234.xml`)
+    .expect(404)
+})
+
+it("can get companies with the right LEI in company sitemap", async () => {
+  return request(app)
+    .get(`/sitemap-company-${company1Props.actor_id.slice(-2)}.xml`)
+    .expect(200)
+    .expect("Content-Type", /text\/xml/)
+    .expect((res: any) => {
+      // TODO(evanp): do a real parse of the XML
+      expect(res.text).toMatch(company1Props.actor_id);
+      expect(res.text).toMatch(facility1Props.actor_id);
     });
 });
