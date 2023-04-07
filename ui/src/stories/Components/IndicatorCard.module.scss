@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import './mixins.scss';
+
+.root {
+    height: 68px;
+    width: 328px;
+    background: #ffffff;
+    border: 1px solid #E6E7FF;
+    box-shadow: 0px 1px 3px rgba(0, 0, 31, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    transition: .2s;
+}
+
+.container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.actorName {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    margin-right: 61px;
+}
+
+.flag{
+    display: flex;
+    align-items: center;
+    margin-right: 17.5px;
+}
+
+.infoItem{
+    display: flex;
+    height: 44px;
+    min-width: 90px;
+}
+
+.infoItemA{
+    display: none;
+}
+
+.indicatorArrow{
+    margin-right: 5px;
+    position: relative;
+    top: 3px;
+}
+
+.arrowTrendUp{
+    display: flex;
+    font-size: large;
+    color: #F23D33;
+    transform: rotate(-45deg);
+}
+
+.infoItem p{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #232640;
+    margin: 0;
+    padding: 0;
+}
+
+.infoItem p span {
+    color:#7A7B9A;
+    font-size: 12px;
+}
+
+.infoItemValues{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.year {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+    word-wrap: break-word;
+    width: 100px;
+    color: #232640;
+}
+
+@media only screen and (min-width: 600px) {
+    .root {
+        height: 68px;
+        width: 536px !important;
+        background: #ffffff;
+        transition: .2s;
+    }
+
+    .infoItemA{
+        display: flex;
+        height: 44px;
+        min-width: 90px;
+        margin-left: 41px;
+    }
+
+    .infoItemA p{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #232640;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .infoItemA p span {
+        color:#7A7B9A;
+        font-size: 12px;
+    }
+
+    .actorName{
+        margin-right: 131.3px;
+    }
+
+    .indicatorDonut{
+        margin-right: 5px;
+        position: relative;
+        top: -3px;
+    }
+}
+
+
+
+
+
+
+
+
+
