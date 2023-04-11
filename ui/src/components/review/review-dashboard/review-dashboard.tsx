@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import "./review-dashboard.scss";
 import Masonry from "react-masonry-css";
 import PledgesWidget from "../pledges-widget/pledges-widget";
@@ -12,6 +12,17 @@ interface Props {
 
 const Dashboard: FunctionComponent<Props> = (props) => {
   const { current, parent } = props;
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="review__dashboard">
@@ -33,6 +44,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
         <div>
           <PledgesWidget
             key={`pledges-${current.actor_id}`}
+            isMobile={ width < 900 }
             current={current}
             parent={parent}
           />

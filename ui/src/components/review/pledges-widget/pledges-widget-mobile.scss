@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.pledges-widget-mobile{
+    min-height: 350px;
+    width: 536px;
+    border: 1px solid #E6E7E8;
+    display: relative;
+    border-radius: 4px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+    transition: .5s;
+    font-family: 'Poppins', sans-serif;;
+
+    &__wrapper{
+        padding: 16px;
+    }
+
+    &__widget-title {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    &__pledge-container{
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    &__pledge-item{
+        border-top: 1px solid #d7d8fa;
+    }
+
+    &__netzero-text p{
+        margin: 16px 0 0 0;
+        padding: 0;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        color: #24be00;
+    }
+
+    &__netzero-text span{
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;        
+        letter-spacing: 0.4px;
+        color: #7a7b9a;
+        margin-bottom: 16px;
+    }
+
+    &__commitment p{
+        margin: 24px 0 0 0;
+        padding: 0;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        text-decoration-line: underline;
+        color: #2351DC;
+        cursor: pointer;
+    }
+
+    &__commitment span {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.02em;
+        color: #7a7b9a;
+    }
+
+    &__commitment-box {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__commitment-percentage-box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__commitment-percentage-text {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.43;
+        text-align: left;
+        color: #00001f;
+    }
+
+    &__commitment-relative-text {
+        font-family: 'Open Sans', sans-serif;;
+        font-size: 12px;
+        line-height: 1.33;
+        letter-spacing: 0.5px;
+        color: #232640;
+    }
+
+    &__commitment-text {
+        padding-top: 6px;
+        font-size: 11px;
+        color: #232640;
+        font-weight: 500;
+        padding-right: 24px;
+    }
+
+    &__percent-achieved {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    &__progress-container {
+        margin-top: 16px;
+        margin-bottom: 8px;
+    }
+
+    &__percent-achieved-text {
+        font-size: 11px;
+        font-weight: 500;
+        color: #7a7b9a;
+    }
+}

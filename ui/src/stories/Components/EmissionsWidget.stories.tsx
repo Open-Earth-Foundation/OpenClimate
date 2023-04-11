@@ -1,7 +1,7 @@
-import EmissionsWidget from '../components/review/emissions-widget/emissions-widget';
+import EmissionsWidget from '../../components/review/emissions-widget/emissions-widget';
 
 export default {
-    title: 'EmissionsWidget',
+    title: 'Components / Widgets / EmissionsWidget',
     component: EmissionsWidget,
     parameters: {
         componentSubtitle: "Display a component / widget that shows emissions"
