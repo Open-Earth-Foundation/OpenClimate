@@ -1,2 +1,6 @@
 datasource_id,tag_id
+EPA:state_GHG_inventory:2022-08-31,GHGs_included_CO2_CH4_N2O_F_gases
+EPA:state_GHG_inventory:2022-08-31,sectors_energy_IPPU_ag_waste_LULUCF
+EPA:state_GHG_inventory:2022-08-31,Includes_LULUCF
+EPA:state_GHG_inventory:2022-08-31,GWP_100_AR5
 EPA:state_GHG_inventory:2022-08-31,country_reported_data

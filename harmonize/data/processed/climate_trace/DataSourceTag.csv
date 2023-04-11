@@ -1,0 +1,7 @@
+datasource_id,tag_id
+climateTRACE:country_inventory,GHGs_included_CO2_CH4_N2O
+climateTRACE:country_inventory,GWP_100_AR6
+climateTRACE:country_inventory,Sectors_included_in_climateTrace
+climateTRACE:country_inventory,estimates_from_satellite_remote_sensing_and_AI
+climateTRACE:country_inventory,EDGAR_data
+climateTRACE:country_inventory,FAOSTAT_data

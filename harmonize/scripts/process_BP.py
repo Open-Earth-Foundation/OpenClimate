@@ -1,5 +1,4 @@
 import csv
-import concurrent.futures
 import os
 from pathlib import Path
 import pandas as pd
@@ -7,8 +6,6 @@ import pycountry
 from typing import List
 from typing import Dict
 from utils import make_dir
-from utils import write_to_csv
-from utils import country_to_iso2
 from utils import df_wide_to_long
 
 
@@ -51,10 +48,8 @@ if __name__ == '__main__':
         'URL': 'https://www.bp.com/'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(outputDir, "Publisher", publisherDict)
+
     # =================================================================
     # DataSource
     # =================================================================
@@ -66,10 +61,7 @@ if __name__ == '__main__':
         'URL': 'https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy/co2-emissions.html'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+    simple_write_csv(outputDir, "DataSource", datasourceDict)
 
     # =================================================================
     # EmissionsAgg
@@ -77,72 +69,68 @@ if __name__ == '__main__':
     xl = pd.ExcelFile(fl)
     sheets = xl.sheet_names
 
-    df = pd.read_excel(fl, sheet_name='CO2e Emissions', header=2).drop(
-        columns=['2021.1', '2011-21', '2021.2'])
-    df = df.rename(
-        columns={'Million tonnes of carbon dioxide equivalent': 'country'})
-
-    filt = df['country'].notnull()
-    df = df.loc[filt]
-
-    filt = ~(df['country'].str.contains('total', case=False))
-    df = df.loc[filt]
-
-    filt = ~df['country'].isin(
-        ['Central America', 'Eastern Africa', 'Middle Africa', 'Western Africa'])
-    df = df.loc[filt]
-
-    df = df_wide_to_long(df, value_name='emissions', var_name='year')
-    df['total_emissions'] = df['emissions'].apply(lambda x: x * 10**6)
-
     replace_dict = {
         'Trinidad & Tobago': 'Trinidad and Tobago',
         'China Hong Kong SAR': 'China',
         'Iran': 'Iran, Islamic Republic of'
     }
 
-    df['country'] = df.country.replace(replace_dict)
+    drop_columns = ['2021.1', '2011-21', '2021.2']
+    rename_columns = {'Million tonnes of carbon dioxide equivalent': 'country'}
+    country_groups = ['Central America', 'Eastern Africa', 'Middle Africa', 'Western Africa']
+    not_countries = ["Source:", "Notes:", "Growth", "Data ", "European Union", "OECD", "0.05%", "Other "]
 
-    searchfor = ["Source:", "Notes:", "Growth", "Data ",
-                 "European Union", "OECD", "0.05%", "Other "]
-    filt = ~(df['country'].str.contains('|'.join(searchfor)))
-    df = df.loc[filt]
+    df = (
+        pd.read_excel(fl, sheet_name='CO2e Emissions', header=2)
+        .drop(columns = drop_columns)
+        .rename(columns = rename_columns)
+        .loc[lambda x: x['country'].notnull()]
+        .loc[lambda x: ~x['country'].str.contains('total', case=False)]
+        .loc[lambda x: ~x['country'].isin(country_groups)]
+        .loc[lambda x:  ~(x['country'].str.contains('|'.join(not_countries)))]
+        .assign(country = lambda x: x.country.replace(replace_dict))
+    )
 
-    data = [(name, country_lookup(name)) for name in set(list(df.country))]
-    df_iso = pd.DataFrame(data, columns=['country', 'actor_id'])
+    # reshape dataframe
+    df = df_wide_to_long(df, value_name='emissions', var_name='year')
 
-    list(df_iso.loc[df_iso['actor_id'].isnull(), 'country'])
+    # convert from million metric tones to metric tonnes
+    df['total_emissions'] = df['emissions'].apply(lambda x: x * 10**6)
 
-    # merge in the actor_ids (iso2 codes)
+    # get actor_id from country name
+    df_iso = pd.DataFrame(
+        data=[(name, country_lookup(name)) for name in set(list(df.country))],
+        columns=['country', 'actor_id']
+    )
+
+    if not_found:=list(df_iso.loc[df_iso['actor_id'].isnull(), 'country']):
+        print(f"Countries not found: {not_found}")
+
     df_out = pd.merge(df, df_iso, on=['country'])
 
     # sum across actors, needed because we are including Hong Kong as part of China
     df_out = df_out.groupby(by=['actor_id', 'year']).sum(numeric_only=True).reset_index()
 
     # create datasource_id
-    df_out['datasource_id'] = datasourceDict['datasource_id']
-
-    # create emissions ID
+    df_out = df_out.assign(datasource_id = datasourceDict['datasource_id'])
     df_out['emissions_id'] = df_out.apply(
         lambda row: f"BP_review_june2022:{row['actor_id']}:{row['year']}", axis=1)
 
-    # Create EmissionsAgg table
-    emissionsAggColumns = [
-        "emissions_id",
-        "actor_id",
-        "year",
-        "total_emissions",
-        "datasource_id"
-    ]
+    # check types and sort
+    astype_dict = {
+        'emissions_id': str,
+        'actor_id': str,
+        'year': int,
+        'total_emissions': int,
+        'datasource_id': str
+    }
+    emissionsAggColumns = astype_dict.keys()
 
-    df_emissionsAgg = df_out[emissionsAggColumns]
-
-    # ensure columns have correct types
-    df_emissionsAgg = df_emissionsAgg.astype({'emissions_id': str,
-                                              'actor_id': str,
-                                              'year': int,
-                                              'total_emissions': int,
-                                              'datasource_id': str})
+    df_emissionsAgg = (
+        df_out[emissionsAggColumns]
+        .astype(astype_dict)
+        .sort_values(by=['actor_id', 'year'])
+    )
 
     # sort by actor_id and year
     df_emissionsAgg = df_emissionsAgg.sort_values(by=['actor_id', 'year'])
@@ -153,18 +141,20 @@ if __name__ == '__main__':
     # =================================================================
     # Tags and DataSourceTags
     # =================================================================
-    tagDictList = [
-        {'tag_id': 'CO2_and_CH4',
-         'tag_name': 'CO2 and CH4'},
-        {'tag_id': 'primary_source',
-         'tag_name': 'Primary source: emissions derived from activity data'}
-    ]
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        'GHGs_included_CO2_and_CH4': 'GHGs included: CO2 and CH4',
+        'production_consumption_emissions_energy_processing_and_flaring': 'Production and consumption emissions from energy, process emissions, and flaring',
+        'primary_source': 'Primary source: emissions derived from activity data'
+    }
 
-    simple_write_csv(outputDir, 'Tag', tagDictList)
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
+
+    simple_write_csv(outputDir, "Tag", tagDictList)
 
     dataSourceTagDictList = [
-        {'datasource_id': datasourceDict['datasource_id'],
-         'tag_id': tag['tag_id']} for tag in tagDictList
+        {"datasource_id": datasourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
     ]
 
-    simple_write_csv(outputDir, 'DataSourceTag', dataSourceTagDictList)
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)

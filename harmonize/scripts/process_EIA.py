@@ -9,7 +9,6 @@ from typing import Dict
 from utils import df_wide_to_long
 from utils import make_dir
 from utils import write_to_csv
-from utils import country_to_iso2
 from utils import state_to_iso2
 
 
@@ -132,12 +131,24 @@ if __name__ == '__main__':
     # =================================================================
     # Tags and DataSourceTags
     # =================================================================
-    tagDictList = [{'tag_id': 'energy_related_co2',
-                    'tag_name': 'Energy-related CO2'},
-                   {'tag_id': 'primary_source',
-                    'tag_name': 'Primary source: emissions derived from activity data'}]
-    simple_write_csv(outputDir, 'Tag', tagDictList)
+
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        'energy_related_co2': 'Energy-related CO2',
+        'primary_source': 'Primary source: emissions derived from activity data',
+        "based_on_SEDS": 'Based on data in the State Energy Data System (SEDS)',
+        "fuel_types_coal_nat_gas_petro_producs": "Fuel types: coal, natural gas, and petroleum products",
+        "uses_epa_co2_emissions_factors":"Uses U.S. Environmental Protection Agency's CO2 emissions factors",
+        "sectors_included_in_eia":"Includes emissions from direct fuel use across all sectors, including residential, commercial, industrial, and transportation, as well as primary fuels consumed for electricity generation.",
+    }
+
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
+
+    simple_write_csv(outputDir, "Tag", tagDictList)
 
     dataSourceTagDictList = [
-        {'datasource_id': datasourceDict['datasource_id'], 'tag_id': tag['tag_id']} for tag in tagDictList]
-    simple_write_csv(outputDir, 'DataSourceTag', dataSourceTagDictList)
+        {"datasource_id": datasourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
+    ]
+
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)

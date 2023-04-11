@@ -1,3 +1,4 @@
 datasource_id,tag_id
-carbon_monitor:2022_12_14,CO2_only
+carbon_monitor:2022_12_14,ghgs_included_fossil_CO2
 carbon_monitor:2022_12_14,activity_data_and_other_sources
+carbon_monitor:2022_12_14,co2_emissions_fossil_fuel_combustion_and_cement

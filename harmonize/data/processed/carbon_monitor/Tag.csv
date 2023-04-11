@@ -1,3 +1,4 @@
 tag_id,tag_name
-CO2_only,CO2 only
+ghgs_included_fossil_CO2,GHGs included: Fossil CO2
 activity_data_and_other_sources,Emissions derived from activity data and other datasets
+co2_emissions_fossil_fuel_combustion_and_cement,CO2 emissions from fossil fuel combustion and cement production

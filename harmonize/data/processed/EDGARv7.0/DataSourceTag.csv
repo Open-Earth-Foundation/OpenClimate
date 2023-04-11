@@ -1,0 +1,6 @@
+datasource_id,tag_id
+EDGARv7.0:ghg,GHGs_included_fossil_CO2_CH4_N2O_F_gases
+EDGARv7.0:ghg,GWP_100_AR4
+EDGARv7.0:ghg,Sectors_included_in_EDGARv7
+EDGARv7.0:ghg,excludes_LULUCF_and_biomass_burning
+EDGARv7.0:ghg,activity_data_and_other_sources

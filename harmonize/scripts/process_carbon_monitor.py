@@ -196,18 +196,20 @@ if __name__ == '__main__':
     # =================================================================
     # Tags and DataSourceTags
     # =================================================================
-    tagDictList = [
-        {'tag_id': 'CO2_only',
-         'tag_name': 'CO2 only'},
-        {'tag_id': 'activity_data_and_other_sources',
-         'tag_name': 'Emissions derived from activity data and other datasets'}
-    ]
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        "ghgs_included_fossil_CO2": "GHGs included: Fossil CO2",
+        "activity_data_and_other_sources": "Emissions derived from activity data and other datasets",
+        "co2_emissions_fossil_fuel_combustion_and_cement": "CO2 emissions from fossil fuel combustion and cement production",
+    }
 
-    simple_write_csv(outputDir, 'Tag', tagDictList)
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
+
+    simple_write_csv(outputDir, "Tag", tagDictList)
 
     dataSourceTagDictList = [
-        {'datasource_id': datasourceDict['datasource_id'],
-         'tag_id': tag['tag_id']} for tag in tagDictList
+        {"datasource_id": datasourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
     ]
 
-    simple_write_csv(outputDir, 'DataSourceTag', dataSourceTagDictList)
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)

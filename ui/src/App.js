@@ -1280,7 +1280,7 @@ const App: FunctionComponent<Props> = (props) => {
                   <Route path="/actor/EARTH" exact>
                     <Redirect to={"/"} />
                   </Route>
-                  <Route path="/actor/:actorID/:actorName" exact>
+                  <Route path="/actor/:actorID/:actorName?" exact>
                     <Suspense fallback={<div>Loading...</div>}>
                       <ReviewPage />
                     </Suspense>
@@ -1381,7 +1381,7 @@ const App: FunctionComponent<Props> = (props) => {
                   <Route path="/actor/EARTH" exact>
                     <Redirect to={"/"} />
                   </Route>
-                  <Route path="/actor/:actorID/:actorName" exact>
+                  <Route path="/actor/:actorID/:actorName?" exact>
                     <Suspense fallback={<div>Loading...</div>}>
                       <ReviewPage />
                     </Suspense>

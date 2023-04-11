@@ -1,0 +1,93 @@
+actor_id,type,name,is_part_of,datasource_id
+213800DXAY5TCEPA3S29,organization,"Rothsay, A Division Of Darling International Canada Inc.",GB-BDF,GLEIF_golden_copy
+2549007B0SLVLUP0UH16,organization,Pieridae Alberta Production Ltd.,CA-AB,GLEIF_golden_copy
+2549007TZ2BNTBR5E019,organization,Richmond Plywood Corporation Limited,CA-BC,GLEIF_golden_copy
+2549008Y9VL7P2U8OR31,organization,Minerai De Fer Québec Inc.,CA-QC,GLEIF_golden_copy
+2549009EF8SNW0NM1D69,organization,Altasteel Inc.,CA-BC,GLEIF_golden_copy
+254900ALVJUAGHGF3855,organization,Markham District Energy Inc.,CA-ON,GLEIF_golden_copy
+254900HI3APU3ZVVJ925,organization,Regional Municipality Of Durham,CA-ON,GLEIF_golden_copy
+254900IRDIJ02P4ZCI05,organization,Iko Industries Ltd.,CA-AB,GLEIF_golden_copy
+254900OG0ZSAC42XS380,organization,2333281 Ontario Ltd,CA-ON,GLEIF_golden_copy
+254900ONJ1OWBRJROP98,organization,City Of Moose Jaw,CA-SK,GLEIF_golden_copy
+254900Q63DTCVHIU0H11,organization,The Calgary Airport Authority,CA-AB,GLEIF_golden_copy
+254900SRJAXOE45AIQ69,organization,Hacienda North Farms Inc.,CA-ON,GLEIF_golden_copy
+254900WSJMA2P4XUR797,organization,Impala Canada Ltd.,CA-ON,GLEIF_golden_copy
+38BB4H4JFWMQTNI3W911,organization,Murphy Oil Company Ltd,CA-AB,GLEIF_golden_copy
+529900G32H6145TBDT30,organization,Kirkland Lake Gold Inc,CA-ON,GLEIF_golden_copy
+529900S7UO4VPNLSFT33,organization,Certainteed Gypsum Canada Inc,CA-ON,GLEIF_golden_copy
+529900U45A1JKZFABZ35,organization,Transalta Renewables Inc.,CA-AB,GLEIF_golden_copy
+54930002OWIJO351J404,organization,New Star Energy Ltd.,CA-AB,GLEIF_golden_copy
+5493000BBN3EF2L0XW29,organization,Birchcliff Energy Ltd.,CA-AB,GLEIF_golden_copy
+54930017KTY7LFN77D56,organization,General Motors Of Canada Limited,CA-ON,GLEIF_golden_copy
+5493001Y2YY733C7D136,organization,Northern Pulp Nova Scotia Corporation,CA-NS,GLEIF_golden_copy
+5493002J5Z300QBQAP74,organization,Halton Healthcare Services Corporation,CA-ON,GLEIF_golden_copy
+5493002WXPTG5ZC1T326,organization,Meg Energy Corp.,CA-AB,GLEIF_golden_copy
+54930030MPVYJ0MTAS08,organization,Bridgestone  Canada Inc.,CA-QC,GLEIF_golden_copy
+549300423UKB9GA8NE20,organization,Irving Paper Limited,CA-NB,GLEIF_golden_copy
+5493004YGJYYQC3S2C75,organization,Japan Canada Oil Sands Limited,CA-AB,GLEIF_golden_copy
+54930056WZE8OYLZ0321,organization,Cavendish Farms Corporation,CA-NB,GLEIF_golden_copy
+5493005UAF5R2W4DL323,organization,Great Lakes Copper Ltd.,CA-NS,GLEIF_golden_copy
+5493006JAK1RTSGITS06,organization,Sunrite Greenhouses Ltd.,CA-ON,GLEIF_golden_copy
+5493006N1RXVPKY5WX32,organization,University Of Guelph,CA-ON,GLEIF_golden_copy
+5493006RXIB5GVHWJS53,organization,Algoma Steel Inc.,CA-BC,GLEIF_golden_copy
+5493006UUHUKRKECPK41,organization,Gdf Suez Energy Canada Inc.,CA-ON,GLEIF_golden_copy
+54930071Y8KNRMS4OP09,organization,Highland Valley Copper,CA-BC,GLEIF_golden_copy
+54930075OW2NQHOEIK12,organization,Tata Steel Minerals Canada,CA,GLEIF_golden_copy
+54930077N24N414X4Z86,organization,U.S. Steel Canada Inc.,CA-ON,GLEIF_golden_copy
+5493007XE76S35N0VQ46,organization,Strath Resources Ltd.,CA-AB,GLEIF_golden_copy
+5493009981WBHS86CJ89,organization,St. Marys Cement Inc.,CA-ON,GLEIF_golden_copy
+5493009IDGFQJTJXVA51,organization,Aquatera Utilities Inc,CA-AB,GLEIF_golden_copy
+549300APL4UGWN8NM341,organization,Razor Energy Corp.,CA-AB,GLEIF_golden_copy
+549300AYJR0IZW296F03,organization,Southshore Greenhouses Inc.,CA-ON,GLEIF_golden_copy
+549300B808DC4IISJQ58,organization,Tolko Industries Ltd.,CA-BC,GLEIF_golden_copy
+549300BD403C81DXMP60,organization,"Gaz Métro Gnl, S.E.C.",CA-QC,GLEIF_golden_copy
+549300BMTQZ9WD8CE436,organization,Thunder Bay Regional Health Sciences Centre,CA-ON,GLEIF_golden_copy
+549300C86PFIA7TCKD56,organization,Aitken Creek Gas Storage Ulc,CA-AB,GLEIF_golden_copy
+549300CW1BIQY352BD50,organization,Skookumchuck Pulp Inc.,CA-BC,GLEIF_golden_copy
+549300DJBIZ5T0OC3F21,organization,Fca Canada Inc.,CA-ON,GLEIF_golden_copy
+549300ED6C93BGYAS129,organization,"Glencore Canada Corporation, Sudbury Ino",CA-ON,GLEIF_golden_copy
+549300EHYZ1MS2Q8Y379,organization,Nature Fresh Farms,CA-ON,GLEIF_golden_copy
+549300EV3W9Z0M4CIP05,organization,Shell Canada Limited,CA-AB,GLEIF_golden_copy
+549300F4XPHJ7NOSP309,organization,Cenovus Energy Inc.,CA-AB,GLEIF_golden_copy
+549300FQGFLAMSREF779,organization,Dominion Diamond Ekati Ulc,CA-NT,GLEIF_golden_copy
+549300FTKUHZK8OC7N74,organization,Crescent Point Energy Corp.,CA-AB,GLEIF_golden_copy
+549300GIEBY4GVO82P83,organization,Saguaro Resources Ltd,CA-AB,GLEIF_golden_copy
+549300HCJRI171KOSF72,organization,Revolution Vsc Lp,CA-MB,GLEIF_golden_copy
+549300I1AHR8KMMFIS52,organization,"Kronos Canada, Inc.",CA-ON,GLEIF_golden_copy
+549300IT8CIDW8V5KX72,organization,Northland Power Inc.,CA-ON,GLEIF_golden_copy
+549300JKT5KTWQGH8W42,organization,Kruger Inc.,CA-QC,GLEIF_golden_copy
+549300JWU3X8ACCIGH87,organization,Arcelormittal Canada Inc.,CA-ON,GLEIF_golden_copy
+549300K14DXXMNZDCC47,organization,Coastland Wood Industries Ltd.,CA-BC,GLEIF_golden_copy
+549300K9GD47N5IXZQ65,organization,Mount Polley Mining Corporation,CA-BC,GLEIF_golden_copy
+549300KM1GF5JP05UJ64,organization,"Stackpole International Powder Metal, Ltd",CA-BC,GLEIF_golden_copy
+549300L37VJWNG2OCH14,organization,Perpetual Energy Inc.,CA-AB,GLEIF_golden_copy
+549300LB21L42P0HSR70,organization,The University Of Western Ontario,CA-ON,GLEIF_golden_copy
+549300OWG39NVI2E5198,organization,Expert Manufacturing Inc.,CA-ON,GLEIF_golden_copy
+549300P106XO5XQU2A71,organization,Cargill Limited,CA-MB,GLEIF_golden_copy
+549300PGU4F3PE780370,organization,Dépôt Rive-Nord Inc.,CA-QC,GLEIF_golden_copy
+549300Q0VR82VBFVR156,organization,Basf Canada Inc.,CA-ON,GLEIF_golden_copy
+549300QRMPP908M8SI98,organization,Modern Resources Inc.,CA-AB,GLEIF_golden_copy
+549300R0OET5HG74PT78,organization,Weyerhaeuser Company Limited,CA-BC,GLEIF_golden_copy
+549300S36NT8WUBVX990,organization,Iberdrola Canada Energy Services Ltd.,CA-AB,GLEIF_golden_copy
+549300SXF71VP5KW5039,organization,Apache Canada Ltd.,CA-AB,GLEIF_golden_copy
+549300T2F3GRRHU02B49,organization,Parkland Refining (B.C.) Ltd.,CA-BC,GLEIF_golden_copy
+549300T4GFG5I42BNR82,organization,Queen'S University At Kingston,CA-ON,GLEIF_golden_copy
+549300T4GFG5I42BNR82,organization,Queen'S University,CA-ON,GLEIF_golden_copy
+549300UZWTSBHM6BJE80,organization,Canadian Forest Products,CA-BC,GLEIF_golden_copy
+549300VCNLWIB4RRS716,organization,Canfor Pulp Ltd.,CA-BC,GLEIF_golden_copy
+549300VENQLSFKQRK012,organization,Louis Dreyfus Company Canada Ulc,CA-BC,GLEIF_golden_copy
+549300WSGCD3YF8M8T21,organization,Arcelormittal Dofasco G.P.,CA-ON,GLEIF_golden_copy
+549300WZJKUEYL1YXB12,organization,Provident Energy Ltd.,CY-01,GLEIF_golden_copy
+549300XC9E3MQMOFK383,organization,Catalyst Paper Corporation,CA-BC,GLEIF_golden_copy
+549300XC9E3MQMOFK383,organization,Catalyst Paper,CA-BC,GLEIF_golden_copy
+549300XPJZZJ9WTCY720,organization,Baymag Inc.,CA-AB,GLEIF_golden_copy
+549300YNENDZ7HTNC258,organization,Consumers' Co-Operative Refineries Limited,CA-SK,GLEIF_golden_copy
+549300Z9RSLCM1W45F39,organization,City Of Medicine Hat,CA-AB,GLEIF_golden_copy
+549300ZPYG4FCU31IX47,organization,Hendrickson Canada Ulc,CA-ON,GLEIF_golden_copy
+894500F6R3BZZZO7F113,organization,Nyrstar,FR,GLEIF_golden_copy
+9845007B8A8J47BC9207,organization,Potash Corp,CA-BC,GLEIF_golden_copy
+B1EEF6ML54YDWRC6ZK53,organization,Harvest Operations Corp.,CA-AB,GLEIF_golden_copy
+JSP0TNC596XKLBPR0Y26,organization,Fortisbc Energy Inc.,CA-BC,GLEIF_golden_copy
+MJATGU4J97KOUNZJNS73,organization,Valero Energy Inc,CA-QC,GLEIF_golden_copy
+PRAQ4VOSFIK7OQ8Z2512,organization,Vale Canada Limited,CA-ON,GLEIF_golden_copy
+QQTTPMZD0WKQL0H5S472,organization,Inter Pipeline Ltd.,CA-AB,GLEIF_golden_copy

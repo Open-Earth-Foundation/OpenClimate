@@ -179,44 +179,34 @@ if __name__ == "__main__":
     df_emissionsAgg.drop_duplicates().to_csv(
         f'{outputDir}/EmissionsAgg.csv', index=False)
 
-    # ------------------------------------------
-    # Tag table
-    # ------------------------------------------
-    tagDictList = [
-            {
-                'tag_id': 'combined_datasets',
-                'tag_name': 'Combined datasets'
-            },
-            {
-                'tag_id': 'country_or_3rd_party',
-                'tag_name': 'Country-reported data or third party'
-            },
-            {
-                'tag_id': 'peer_reviewed',
-                'tag_name': 'Peer reviewed'
-            }
-        ]
 
-    simple_write_csv(
-        output_dir=outputDir,
-        name='Tag',
-        data=tagDictList,
-        mode='w'
-    )
+    # =================================================================
+    # Tags and DataSourceTags
+    # =================================================================
 
-    # ------------------------------------------
-    # DataSourceTag table
-    # ------------------------------------------
-    datasource_id = f"{datasourceDict['datasource_id']}"
-    tags = ['combined_datasets', 'country_or_3rd_party', 'peer_reviewed']
-    dataSourceTagDict = [{'datasource_id': datasource_id, 'tag_id': tag} for tag in tags]
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        "GHGs_included_CO2_CH4_N2O_F_gases": "GHGs included: CO2, CH4, N2O, and F-gases",
+        "sectors_energy_IPPU_ag_waste_other": "Sectors: energy, IPPU, agriculture, waste, and other",
+        "excludes_LULUCF":"Excludes LULUCF",
+        "GWP_100_SAR_and_AR4": "Uses GWP100 from IPCC SAR and AR4, depending on the gas",
+        "Excludes_international_aviation_shipping":"Excludes emissions from international aviation and shipping",
+        'combined_datasets': 'Combined datasets',
+        'country_or_3rd_party': 'Country-reported data or third party',
+        'peer_reviewed': 'Peer reviewed',
+    }
 
-    simple_write_csv(
-        output_dir=outputDir,
-        name='DataSourceTag',
-        data=dataSourceTagDict,
-        mode='w'
-    )
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
+
+    simple_write_csv(outputDir, "Tag", tagDictList)
+
+    dataSourceTagDictList = [
+        {"datasource_id": datasourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
+    ]
+
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)
+
 
     # ------------------------------------------
     # DataSourceQuality table

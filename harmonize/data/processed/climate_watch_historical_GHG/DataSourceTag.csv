@@ -1,2 +1,7 @@
 datasource_id,tag_id
 WRI:climate_watch_historical_ghg:2022,collated
+WRI:climate_watch_historical_ghg:2022,GHGs_included_CO2_CH4_N2O_F_gases
+WRI:climate_watch_historical_ghg:2022,GWP_100_AR4
+WRI:climate_watch_historical_ghg:2022,Sectors_energy_ag_industrial_processes_waste
+WRI:climate_watch_historical_ghg:2022,includes_bunker_fuels
+WRI:climate_watch_historical_ghg:2022,excludes_LUCF

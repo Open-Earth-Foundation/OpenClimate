@@ -1,2 +1,6 @@
 tag_id,tag_name
-fossil_co2,Fossil CO2
+GHGs_included_fossil_co2,GHGs included: Fossil CO2
+territorial_emissions,Territorial emissions
+includes_ff_combustion_oxidation_cement,Include emissions from fossil fuel combustion and oxidation and cement production
+exlucded_bunker_fuels,Excludes emissions from bunker fuels
+disaggreation_emissions_GCB2022,"The disaggregations of regions (e.g. the former Soviet Union prior to 1992) are based on the shares of emissions in the first year after the countries are disaggregated (e.g., 1992 for the Former Soviet Union)"

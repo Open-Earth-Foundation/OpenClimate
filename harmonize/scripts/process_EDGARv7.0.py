@@ -1,13 +1,38 @@
-if __name__ == '__main__':
-    import concurrent.futures
-    import os
-    from pathlib import Path
-    import pandas as pd
-    from utils import make_dir
-    from utils import write_to_csv
-    from utils import iso3_to_iso2
-    from utils import df_wide_to_long
+import concurrent.futures
+import csv
+from openclimate import Client
+import os
+from pathlib import Path
+import pandas as pd
+import time
+from typing import List
+from typing import Dict
+from utils import make_dir
+from utils import df_wide_to_long
 
+
+client = Client()
+def iso3_to_iso2(name):
+    try:
+        return (name, list(client.search(identifier=name)['actor_id'])[0])
+    except:
+        return (name, None)
+
+
+def simple_write_csv(
+    output_dir: str = None, name: str = None, rows: List[Dict] | Dict = None
+) -> None:
+
+    if isinstance(rows, dict):
+        rows = [rows]
+
+    with open(f"{output_dir}/{name}.csv", mode="w") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+if __name__ == '__main__':
     # output directory
     outputDir = '../data/processed/EDGARv7.0/'
     outputDir = os.path.abspath(outputDir)
@@ -26,10 +51,8 @@ if __name__ == '__main__':
         'URL': 'https://commission.europa.eu/about-european-commission/departments-and-executive-agencies/joint-research-centre_en'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(outputDir, "Publisher", publisherDict)
+
     # =================================================================
     # DataSource
     # =================================================================
@@ -41,10 +64,7 @@ if __name__ == '__main__':
         'URL': 'https://edgar.jrc.ec.europa.eu/dataset_ghg70'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+    simple_write_csv(outputDir, "DataSource", datasourceDict)
 
     # read data from file
     df = pd.read_excel(fl, header=4)
@@ -71,7 +91,7 @@ if __name__ == '__main__':
 
     # get ISO2 from ISO3
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        results = [executor.submit(iso3_to_iso2, name, return_input=True)
+        results = [executor.submit(iso3_to_iso2, name)
                    for name in list(set(df_long['EDGAR Country Code']))]
         data = [f.result() for f in concurrent.futures.as_completed(results)]
 
@@ -195,3 +215,28 @@ if __name__ == '__main__':
     # convert to csv
     df_emissionsBySector.to_csv(
         f'{outputDir}/EmissionsBySector.csv', index=False)
+
+
+    # =================================================================
+    # Tags and DataSourceTags
+    # =================================================================
+
+    # dictionary of tag_id : tag_name
+    tagDict = {
+        "GHGs_included_fossil_CO2_CH4_N2O_F_gases": "GHGs included: Fossil CO2, CH4, N2O, and F-gases",
+        "GWP_100_AR4": "Uses GWP100 from IPCC AR4",
+        "Sectors_included_in_EDGARv7": "Sectors: power, buildings, transport, industrial combustion, industrial process emissions, agricultural soils, and waste",
+        "excludes_LULUCF_and_biomass_burning":"Large scale biomass burning and LULUCF are excluded",
+        'activity_data_and_other_sources': 'Emissions derived from activity data and other datasets'
+    }
+
+    tagDictList = [{"tag_id": key, "tag_name": value} for key, value in tagDict.items()]
+
+    simple_write_csv(outputDir, "Tag", tagDictList)
+
+    dataSourceTagDictList = [
+        {"datasource_id": datasourceDict["datasource_id"], "tag_id": tag["tag_id"]}
+        for tag in tagDictList
+    ]
+
+    simple_write_csv(outputDir, "DataSourceTag", dataSourceTagDictList)

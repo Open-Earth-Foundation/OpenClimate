@@ -1,4 +1,9 @@
 tag_id,tag_name
+GHGs_included_CO2_CH4_N2O_F_gases,"GHGs included: CO2, CH4, N2O, and F-gases"
+sectors_energy_IPPU_ag_waste_other,"Sectors: energy, IPPU, agriculture, waste, and other"
+excludes_LULUCF,Excludes LULUCF
+GWP_100_SAR_and_AR4,"Uses GWP100 from IPCC SAR and AR4, depending on the gas"
+Excludes_international_aviation_shipping,Excludes emissions from international aviation and shipping
 combined_datasets,Combined datasets
 country_or_3rd_party,Country-reported data or third party
 peer_reviewed,Peer reviewed
