@@ -31,7 +31,10 @@ const Dashboard: FunctionComponent<Props> = (props) => {
           <EmissionsWidget
             key={`emissions-${current.actor_id}`}
             current={current}
+            isMobile={width < 900}
             parent={parent}
+            hasFilter={true}
+            hasDownload={true}
           />
           {current.type !== "site" && (
             <ContextualDataWidget
@@ -44,7 +47,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
         <div>
           <PledgesWidget
             key={`pledges-${current.actor_id}`}
-            isMobile={ width < 900 }
+            isMobile={width < 900}
             current={current}
             parent={parent}
           />
