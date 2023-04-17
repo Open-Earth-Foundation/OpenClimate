@@ -1,0 +1,5 @@
+datasource_id,tag_id
+carbon_monitor_cities:v0325,ghgs_included_fossil_CO2
+carbon_monitor_cities:v0325,includes_cement
+carbon_monitor_cities:v0325,sectors_power_residential_industry_ground_transport_aviation
+carbon_monitor_cities:v0325,disaggregates_national_emissions_using_GRACED
