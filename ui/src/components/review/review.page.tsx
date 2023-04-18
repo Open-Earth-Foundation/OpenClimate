@@ -128,8 +128,6 @@ const ReviewPage: FunctionComponent = () => {
     }
   }, [screenSize])
 
-  console.log(dashboardState)
-
   return (
     <div className="review">
       <Helmet>
