@@ -48,7 +48,6 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
   useEffect(() => {
     if (winSize.innerWidth > 1550) {
       setDonutSize(30);
-      console.log(winSize.innerWidth);
     } else {
       setDonutSize(22);
     }
