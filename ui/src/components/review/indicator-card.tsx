@@ -6,6 +6,8 @@ import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
 import { deselectFilter } from "../../store/review/review.actions";
 import { readableEmissions, readablePercentagePopulation } from "../util/units";
 import { showPopulationParent } from "../util/population";
+import Bg from "./img/Flag.png";
+import ActorFlag from "./actor-flag/actor-flag";
 
 interface IProps {
   parent: any;
@@ -138,20 +140,36 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
   }, [cardData, emsData, current, parent]);
 
   return (
-    <div>
-      <span className="review__actor-type">{label || ""}</span>
+    <div className="review__earth-card-wrapper">
+      <div className="review__actor-type">{label || ""}</div>
       <div
         className={
           isActive ? "review__earth-card-active" : "review__earth-card-inactive"
         }
       >
         <div className="review__earth-card-head">
+          <div className="review__earth-flag">
+            {
+              current?.actor_id === "EARTH" ? (
+                <>
+                  <img src={Bg} alt="Earth Icon" className="review__earth-icon"/>
+                </>
+              ) : (
+                <ActorFlag 
+                  currentActorId={current?.actor_id}
+                  currentActorType={current?.type}
+                  parentActorId={parent?.actor_id}
+                  icon={current?.icon}
+                />
+              )
+            }
+          </div>
           <span className="review__earth-card-item-head-text-span">
             {cardData?.name ?? ""}
           </span>
           {onDeSelect && (
             <Close
-              className="review__earth-card-close-icon"
+              className="review__earth-card-close-icon hdn-xsm"
               onClick={onDeSelect}
             />
           )}
@@ -207,7 +225,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
           {parent ? (
             ""
           ) : (
-            <div className="review__earth-card-content donut-card">
+            <div className="review__earth-card-content donut-card hdn-xsm">
               <div className="donut">
                 <DonutChart
                   items={items}
@@ -233,7 +251,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
             </div>
           )}
           <div
-            className="review__earth-card-content"
+            className="review__earth-card-content hdn-xsm"
             style={{ position: "relative", top: parent ? "85px" : "0px" }}
           >
             {parent ? (
@@ -282,7 +300,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
                 </div>
               </>
             ) : (
-              <div className="co2-history">
+              <div className="co2-history ">
                 <MdArrowUpward className="review__earth-card-item-icon" />
                 <div>
                   <span className="review__earth-card-item-large-text">
@@ -296,7 +314,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
             )}
           </div>
           <div
-            className="review__earth-card-content donut-card co2concentration"
+            className="review__earth-card-content donut-card co2concentration hdn-xsm"
             style={{ position: "relative", left: parent ? "-10px" : "0px" }}
           >
             {parent ? (
@@ -379,6 +397,12 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
               </div>
             )}
           </div>
+          {onDeSelect && (
+            <Close
+              className="review__earth-card-close-icon mobile-close-icon"
+              onClick={onDeSelect}
+            />
+          )}
         </div>
       </div>
     </div>

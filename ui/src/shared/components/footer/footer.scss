@@ -1,3 +1,5 @@
+@import './mixins.scss';
+
 .footer {
 
     background: #272727;
@@ -92,4 +94,9 @@
             cursor: pointer;
         }
     }
+
+    @include respond(mobile){
+        display: none;
+    }
+    
 }

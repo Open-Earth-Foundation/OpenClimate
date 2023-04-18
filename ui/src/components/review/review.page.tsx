@@ -22,7 +22,10 @@ const ReviewPage: FunctionComponent = () => {
   const history = useHistory();
   const params = useParams<ReviewPageParams>();
   const actorID = "actorID" in params ? params["actorID"] : "EARTH";
-
+  const [explorActor, setExplore] =  useState<boolean>(false);
+  const [dashboardState, setDashboardState] = useState<boolean>(false);
+  const [screenSize, setScreenSize] =  useState<number>(0)
+ 
   const [prevTitle, setPrevtitle] = useState<string>(document.title);
 
   const [actors, setActors] = useState<any>([]);
@@ -118,6 +121,15 @@ const ReviewPage: FunctionComponent = () => {
 
   const notJustEarth = () => actors.length > 1;
 
+  useEffect(()=> {
+    setScreenSize(window.screen.width)
+    if(screenSize > 480) {
+      setActors(false)
+    }
+  }, [screenSize])
+
+  console.log(dashboardState)
+
   return (
     <div className="review">
       <Helmet>
@@ -179,25 +191,17 @@ const ReviewPage: FunctionComponent = () => {
 
             <div
               className={`${
-                notJustEarth() ? "review__levelcards-wrapper" : ""
+                notJustEarth() ? `${dashboardState ? 'hide-levelcards': ''} review__levelcards-wrapper` : "wrapper_mobile"
               }`}
             >
-              <LevelCards
+                <LevelCards
                 actors={actors}
                 selectFilter={selectFilterHandler}
                 deselectFilter={deselectFilterHandler}
-              />
+                dashboardState={setDashboardState}
+                />
             </div>
-
-            <div className="review__filter-button-wrapper">
-              <a href="/explore">
-                <button className="review__filter-button">
-                  <HiOutlineSearch className="review__icon" />
-                  <span>Explore by actor</span>
-                </button>
-              </a>
-            </div>
-
+      
             <div className="review_selected-entity">
               {current && notJustEarth() ? (
                 <div className="review__selected-entity">
@@ -217,7 +221,7 @@ const ReviewPage: FunctionComponent = () => {
             </div>
           </div>
 
-          <div className="review__content content-wrapper">
+          <div className={` ${dashboardState ? "show-dashboard" : "hide-dashboard"} review__content content-wrapper`}>
             {current && notJustEarth() ? (
               <>
                 <Dashboard
@@ -230,7 +234,7 @@ const ReviewPage: FunctionComponent = () => {
               ""
             )}
           </div>
-
+    
           {/* CTA */}
           <div
             className="review-cta"
