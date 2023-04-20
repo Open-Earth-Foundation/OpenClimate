@@ -58,7 +58,7 @@ if __name__ == "__main__":
     # ------------------------------------------
     datasourceDict = {
         'datasource_id': 'PRIMAP:10.5281/zenodo.7179775:v2.4',
-        'name': 'PRIMAP-hist_v2.4_no_extrap (scenario=HISTCR)',
+        'name': 'PRIMAP-hist CR v2.4',
         'publisher': 'PRIMAP',
         'published': '2022-10-17',
         'URL': 'https://zenodo.org/record/7179775'
