@@ -1,0 +1,6 @@
+tag_id,tag_name
+GHGs_included_fossil_CO2_CH4_N2O_F_gases,"GHGs included: Fossil CO2, CH4, N2O, and F-gases"
+GWP_100_AR4,Uses GWP100 from IPCC AR6
+Sectors_buildings_energy_industry_transport_AFOLU,"Sectors: buildings, energy systems, industry, transport, and AFOLU"
+built_using_EDGARv6,Built using EDGARv6
+excludes_LULUCF,Excludes LULUCF
