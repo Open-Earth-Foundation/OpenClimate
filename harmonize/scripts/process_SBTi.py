@@ -362,7 +362,7 @@ if __name__ == "__main__":
     df_actor_tmp = (
         pd.merge(df_comp, df_part, on='Location')
         .assign(
-            type='organizaton',
+            type='organization',
             namespace='LEI',
             datasource_id='GLEIF_golden_copy',
             language='en',
