@@ -21,6 +21,7 @@ import {
   ArrowRightAlt,
   InfoOutlined,
   MoreVert,
+  OpenInNew
 } from "@mui/icons-material";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -162,6 +163,9 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     setCurrentSource(source);
     setCurrentYear(closest);
   };
+
+  const onCitationClick = () => window.open(current.emissions?.[currentSource]?.URL);
+
 
   return (
     <div
@@ -583,6 +587,13 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                 </div>
               )}
             </div>
+            {
+                current.emissions[currentSource].citation && current.emissions[currentSource].URL &&
+                <div className="citation-container">
+                  <div className="citation-icon" onClick={onCitationClick}><OpenInNew fontSize="inherit"/></div>
+                  <div className="citation-text">{current.emissions[currentSource].citation}</div>
+                </div>
+            }
           </div>
         </div>
       ) : (
