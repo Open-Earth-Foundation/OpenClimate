@@ -92,7 +92,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
   return (
     <div className="contextual-widget">
       {current.gdp && current.population && current.area ? (
-        <div className="contextual-widget__wrapper">
+        <div className="contextual-widget__wrapper ">
           <div className="contextual-widget__header">
             <div className="contextual-widget__title-wrapper">
               <h3 className="contextual-widget__title">Contextual Data</h3>
@@ -123,6 +123,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                       ).toFixed(3)}%`
                     : "N/A"}
                   <Tooltip
+                    className="contextual-widget__tooltip"
                     classes={{
                       tooltip: classes.customTooltip,
                       arrow: classes.customArrow,
@@ -149,6 +150,12 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                     ? "Of Global Population"
                     : `Of ${parent?.name}'s Population`}
                 </div>
+                <div className="dataSource">
+                    Source: {populationSource ? populationSource : "N/A"}
+                </div>
+                <div className="year">
+                  Year:{" "} {latestPopulation ? latestPopulation.year : "N/A"}
+                </div>
               </div>
             </div>
             <div className={"contextual-widget__border"}></div>
@@ -166,6 +173,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                         tooltip: classes.customTooltip,
                         arrow: classes.customArrow,
                       }}
+                      className="contextual-widget__tooltip"
                       title={
                         <div className="tooltip">
                           <div>
@@ -187,6 +195,14 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                   <div className="contextual-widget__normal-right-text">
                     Total population
                   </div>
+                  <div className="dataSource">
+                    Source:{" "}
+                    {populationSource ? populationSource : "N/A"}
+                  </div>
+                  <div className="year">
+                    Year:{" "}
+                    {latestPopulation ? latestPopulation.year : "N/A"}
+                  </div>
                 </div>
               </div>
               <div className="contextual-widget__right-area-section">
@@ -198,6 +214,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                     {area ? area : "N/A"}
                     <div className="contextual-widget__grey-text">Km2</div>
                     <Tooltip
+                      className="contextual-widget__tooltip"
                       classes={{
                         tooltip: classes.customTooltip,
                         arrow: classes.customArrow,
@@ -217,6 +234,8 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                   <div className="contextual-widget__normal-right-text">
                     Total area
                   </div>
+                  <div className="dataSource">Source: {areaSource ? areaSource : "N/A"}</div>
+                  <div className="year">Year: {areaYear ? areaYear : "N/A"}</div>
                 </div>
               </div>
             </div>
@@ -233,6 +252,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                     : "N/A"}
                   <div className="contextual-widget__grey-text">USD</div>
                   <Tooltip
+                    className="contextual-widget__tooltip"
                     classes={{
                       tooltip: classes.customTooltip,
                       arrow: classes.customArrow,
@@ -251,6 +271,8 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                 </div>
 
                 <div className="contextual-widget__normal-right-text">GDP</div>
+                <div className="dataSource">Source: {gdpSource ? gdpSource : "N/A"}</div>
+                <div className="year">Year: {latestGDP ? latestGDP.year : "N/A"}</div>
               </div>
             </div>
           </div>
