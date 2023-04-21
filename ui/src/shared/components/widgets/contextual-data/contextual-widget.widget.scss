@@ -1,13 +1,21 @@
 @import './mixins.scss';
 
 .contextual-widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-family: 'Poppins', sans-serif;;
+    padding: 16px;
+    gap: 16px;
     height: 300px;
     width: calc(1/2*90vw);
-    border: 1px solid #E6E7E8;
-    display: relative;
-    border-radius: 4px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-    background: #ffffff;
+    left: 81px;
+    top: 1812px;
+    background: #FFFFFF;
+    border: 1px solid #E6E7FF;
+    box-shadow: 0px 1px 3px rgba(0, 0, 31, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 
     &__wrapper {
         padding: 24px 24px 0 24px;
@@ -16,7 +24,8 @@
 
     &__header {
         border-bottom: 1px solid var(--grey1-color);
-        padding-bottom: 14px;
+        width: 100%;
+        padding-bottom: 16px;
     }
 
     &__title-wrapper {
@@ -25,18 +34,25 @@
     }
 
     &__title {
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 26px;
+        font-family: inherit;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.1px;
+        color: #00001F;
         margin: 0;
+        padding: 0;
     }
 
     &__updated {
-        font-family: 'Lato';
-        font-weight: 600;
+        font-style: normal;
+        font-weight: 400;
         font-size: 12px;
-        line-height: 14px;
-        letter-spacing: 0.02em;
+        line-height: 16px;
+        letter-spacing: 0.4px;
         color:var(--grey5-color);
     }
 
@@ -195,8 +211,97 @@
         margin-right: 10px;
         font-size: large;
     }
+
+    .dataSource , .year {
+        display: none;
+    }
+
+
     @include respond(tablet){
        margin-top: 135px;
     }
 
+
+    @include respond(mobile){
+        width: 100%;
+        height: 552px;
+        top: 12px !important;
+
+        &__wrapper {
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;   
+            
+        }
+
+        &__left-container{
+            width: 100%;
+            border-bottom: 1px solid #D7D8FA;
+        }
+
+        &__left-header-text {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 32px;
+            color: #00001F;
+        }
+
+        &__tooltip{
+            display: none;
+        }
+
+        .dataSource , .year {
+            display: inline-block;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.4px;
+            color: #7A7B9A;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+        &__left-info-box {
+            display:flex;
+            width: 100%;
+        }
+
+        &__left-container {
+            align-items:flex-start;
+            padding-top: 00px;
+        }
+
+        &__border {
+            display: none;
+        }
+
+        &__mid-section, &__right-area-section, &__right-section {
+            height: 108px;
+            width: 100% !important;
+            margin-bottom: 12px;
+        }
+
+        &__right-section{
+            margin-left: 8px;
+        }
+
+        &__right-header-text{
+            width: 100%;
+        }
+
+        &__mid-text-box{
+            width: 100%;
+        }
+
+        &__left-info-box{
+            width: 100%;
+        }
+    }
 }
