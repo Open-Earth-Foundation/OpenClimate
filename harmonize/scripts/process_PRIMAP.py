@@ -61,7 +61,8 @@ if __name__ == "__main__":
         'name': 'PRIMAP-hist CR v2.4',
         'publisher': 'PRIMAP',
         'published': '2022-10-17',
-        'URL': 'https://zenodo.org/record/7179775'
+        'URL': 'https://doi.org/10.5281/zenodo.7179775',
+        'citation': 'Gütschow, J., & Pflüger, M. (2022). The PRIMAP-hist national historical emissions time series v2.4 (1750-2021). Zenodo. doi:10.5281/zenodo.7179775'
     }
 
     simple_write_csv(
