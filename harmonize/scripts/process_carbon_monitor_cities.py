@@ -98,7 +98,8 @@ if __name__ == "__main__":
         "name": "Near-real-time daily estimates of CO2 emissions from 1500 cities worldwide",
         "publisher": f"{publisherDict['id']}",
         "published": "2022-03-26",
-        "URL": "https://figshare.com/articles/dataset/Near-real-time_daily_estimates_of_CO2_emissions_from_1500_cities_worldwide/19425665/1",
+        "URL": "https://doi.org/10.6084/m9.figshare.19425665.v1",
+        "citation": "Huo, D., et al. (2022). Near-real-time daily estimates of CO2 emissions from 1500 cities worldwide. Figshare. doi:10.6084/m9.figshare.19425665.v1"
     }
 
     simple_write_csv(outputDir, "DataSource", datasourceDict)
