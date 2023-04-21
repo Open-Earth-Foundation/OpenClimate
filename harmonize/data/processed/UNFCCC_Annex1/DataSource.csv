@@ -1,2 +1,2 @@
-datasource_id,name,publisher,published,URL
-UNFCCC:GHG_ANNEX1:2019-11-08,"UNFCCC GHG total without LULUCF, ANNEX I countries",UNFCCC,2019-11-08,https://di.unfccc.int/time_series
+datasource_id,name,publisher,published,URL,citation
+UNFCCC:GHG_ANNEX1:2019-11-08,"UNFCCC GHG total without LULUCF, ANNEX I countries",UNFCCC,2019-11-08,https://di.unfccc.int/time_series,UNFCCC. (2021). Time Series - Annex I [Data set]. UNFCCC. https://di.unfccc.int/time_series
