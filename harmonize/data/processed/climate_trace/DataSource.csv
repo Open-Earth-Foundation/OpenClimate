@@ -1,2 +1,2 @@
-datasource_id,name,publisher,published,URL
-climateTRACE:country_inventory,climate TRACE: country inventory,climate TRACE,2022-12-02,https://climatetrace.org/inventory
+datasource_id,name,publisher,published,URL,citation
+climateTRACE:country_inventory,climate TRACE: country inventory,climate TRACE,2022-12-02,https://climatetrace.org/inventory,Climate TRACE. (2022). Climate TRACE Emissions Inventory [Data set]. Climate TRACE. https://climatetrace.org/inventory
