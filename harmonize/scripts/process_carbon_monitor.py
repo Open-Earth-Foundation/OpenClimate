@@ -7,8 +7,6 @@ import pycountry
 from typing import List
 from typing import Dict
 from utils import make_dir
-from utils import write_to_csv
-
 
 def country_lookup(name):
     try:
@@ -17,14 +15,14 @@ def country_lookup(name):
         return float('NaN')
 
 
-def simple_write_csv(output_dir: str = None,
-                     name: str = None,
-                     rows: List[Dict] | Dict = None) -> None:
+def simple_write_csv(
+    output_dir: str = None, name: str = None, rows: List[Dict] | Dict = None
+) -> None:
 
     if isinstance(rows, dict):
         rows = [rows]
 
-    with open(f'{output_dir}/{name}.csv', mode='w') as csvfile:
+    with open(f"{output_dir}/{name}.csv", mode="w") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
@@ -49,10 +47,8 @@ if __name__ == '__main__':
         'URL': 'https://carbonmonitor.org/'
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='Publisher',
-                 dataDict=publisherDict,
-                 mode='w')
+    simple_write_csv(outputDir, "Publisher", publisherDict)
+
     # =================================================================
     # DataSource
     # =================================================================
@@ -61,13 +57,11 @@ if __name__ == '__main__':
         'name': 'Carbon Monitor country CO2 emissions by sector',
         'publisher': f"{publisherDict['id']}",
         'published': '2022-12-14',
-        'URL': 'https://carbonmonitor.org/'
+        'URL': 'https://carbonmonitor.org/',
+        'citation': "Liu, Z., Ciais, P., Deng, Z. et al. (2020). Carbon Monitor, a near-real-time daily dataset of global CO2 emission from fossil fuel and cement production. Scientific data, 7(1), 392. doi:10.1038/s41597-020-00708-7"
     }
 
-    write_to_csv(outputDir=outputDir,
-                 tableName='DataSource',
-                 dataDict=datasourceDict,
-                 mode='w')
+    simple_write_csv(outputDir, "DataSource", datasourceDict)
 
     # -----------------------------------------------------------------
     # preprocess
