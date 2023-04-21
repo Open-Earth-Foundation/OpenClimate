@@ -113,6 +113,7 @@ Standard output. `data` is an object representing the actor, with the following 
   - `published`: Date this data source was published.
   - `URL`: URL to retrieve the data source or learn more about it. For humans,
     not computers.
+  - `citation`: Bibliographic citation for this dataset in [American Meteorological Society format](https://www.ametsoc.org/index.cfm/ams/publications/author-information/formatting-and-manuscript-components/references/).
   - `tags`: an array of tags for this data source. Each tag is an object with
     the following properties:
     - `tag_id`: short tag.
