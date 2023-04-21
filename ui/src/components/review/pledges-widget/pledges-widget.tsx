@@ -431,18 +431,9 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                         TARGET VALUE
                                       </div>
                                       <div className="pledges-widget__popover-tns-value">
-                                        {target.target_value
-                                          ? `${
-                                              target.target_unit === "percent"
-                                                ? target.target_value
-                                                : readableEmissions(
-                                                    target.target_value
-                                                  )
-                                            }${
-                                              target.target_unit === "percent"
-                                                ? "%"
-                                                : ""
-                                            }`
+                                        {target.percent_achieved_reason
+                                          ? readableEmissions(target.percent_achieved_reason.target.value)
+                                           
                                           : `N/A`}
                                       </div>
                                       <div className="pledges-widget__popover-tgt-value">
