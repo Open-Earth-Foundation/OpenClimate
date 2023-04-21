@@ -25,6 +25,8 @@ const ReviewPage: FunctionComponent = () => {
   const [explorActor, setExplore] =  useState<boolean>(false);
   const [dashboardState, setDashboardState] = useState<boolean>(false);
   const [screenSize, setScreenSize] =  useState<number>(0)
+
+  const [noScroll, toggleNoScroll] = useState<boolean>(false);
  
   const [prevTitle, setPrevtitle] = useState<string>(document.title);
 
@@ -129,7 +131,7 @@ const ReviewPage: FunctionComponent = () => {
   }, [screenSize])
 
   return (
-    <div className="review">
+    <div className="review" style={ noScroll ? {overflow: "hidden"} : {}}>
       <Helmet>
         <title>{`OpenClimate | ${
           current && current.name !== "Earth"
@@ -226,6 +228,7 @@ const ReviewPage: FunctionComponent = () => {
                   key={`dashboard-${current.actor_id}`}
                   current={current}
                   parent={parent}
+                  toggleScroll={() => toggleNoScroll(!noScroll)}
                 />
               </>
             ) : (

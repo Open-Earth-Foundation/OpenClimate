@@ -526,6 +526,9 @@
         margin-right: 0px;
     }
     @include respond(mobile){
+
+        background: url('./img/Earth_Background_Home.png');
+
         .review__heading {
             display: inherit;
         }

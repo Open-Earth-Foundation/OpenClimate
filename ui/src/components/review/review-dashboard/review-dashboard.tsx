@@ -8,10 +8,11 @@ import ContextualDataWidget from "../../../shared/components/widgets/contextual-
 interface Props {
   current: any;
   parent: any;
+  toggleScroll: () => void;
 }
 
 const Dashboard: FunctionComponent<Props> = (props) => {
-  const { current, parent } = props;
+  const { current, parent, toggleScroll } = props;
 
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -35,6 +36,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
             parent={parent}
             hasFilter={true}
             hasDownload={true}
+            toggleScroll={toggleScroll}
           />
           {current.type !== "site" && (
             <ContextualDataWidget
@@ -48,8 +50,8 @@ const Dashboard: FunctionComponent<Props> = (props) => {
           <PledgesWidget
             key={`pledges-${current.actor_id}`}
             isMobile={width < 900}
+            currentWidth={width}
             current={current}
-            parent={parent}
           />
         </div>
       </div>

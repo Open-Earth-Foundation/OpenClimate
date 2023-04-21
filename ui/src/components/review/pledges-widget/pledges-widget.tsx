@@ -44,7 +44,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 interface Props {
   current: any;
-  parent: any;
+  currentWidth: number;
   isMobile?: boolean;
 }
 
@@ -64,7 +64,7 @@ const monthNames = [
 ];
 
 const PledgesWidget: FunctionComponent<Props> = (props) => {
-  const { current, parent, isMobile } = props;
+  const { current, isMobile, currentWidth } = props;
 
   const useStyles = makeStyles(() => ({
     customTooltip: {
@@ -213,7 +213,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                         }
                         isLabelVisible={false}
                         height="7px"
-                        width="504px"
+                        width={`${Math.floor(currentWidth * .90)}px`}
                         borderRadius="20px"
                         bgColor="#4BD300"
                         baseBgColor="#E6E7FF"
@@ -319,7 +319,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                   }
                                   isLabelVisible={false}
                                   height="10px"
-                                  width="464px"
+                                  width="504px"
                                   borderRadius="0"
                                   bgColor="#4BD300"
                                   baseBgColor="#E6E7FF"
