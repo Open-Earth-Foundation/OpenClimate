@@ -61,7 +61,7 @@ export class Target extends Model<
         target_unit: this.target_unit,
         message: "not appropriate for percent complete calculation",
       });
-      return [null,null,null];
+      return [null,null,null,null];
     }
 
     // We use either the declared baseline or the best value for that year
@@ -86,7 +86,7 @@ export class Target extends Model<
           actor_id: this.actor_id,
           message: "No appropriate emissions data for baseline year",
         });
-        return [null,null,null];
+        return [null,null,null,null];
       }
       baselineValue = Number(baseline.total_emissions);
     }
@@ -99,11 +99,12 @@ export class Target extends Model<
         actor_id: this.actor_id,
         message: "No recent emissions data",
       });
-      return [null,null,null];
+      return [null,null,null,null];
     }
 
     let latestValue = Number(latest.total_emissions);
     let totalReduction = baselineValue * (this.target_value / 100.0);
+    let targetValue = baselineValue - totalReduction;
     let currentReduction = baselineValue - latestValue;
     let percentAchieved = (currentReduction / totalReduction) * 100.0;
 
@@ -114,10 +115,11 @@ export class Target extends Model<
       totalReduction: totalReduction,
       currentReduction: currentReduction,
       percentAchieved: percentAchieved,
+      targetValue: targetValue,
       message: "Calculated percent achieved",
     });
 
-    return [percentAchieved, baseline, latest];
+    return [percentAchieved, baseline, latest, targetValue];
   }
 }
 

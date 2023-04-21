@@ -160,6 +160,8 @@ Standard output. `data` is an object representing the actor, with the following 
         - `name`: name for the data source.
         - `published`: Date this data source was published.
         - `URL`: URL to retrieve the data source or learn more about it.
+    - `target`: the target value used for the calculation, including the following info:
+      - `value`: the emissions value in tonnes of CO2E.
   - `datasource_id`: data source for the target.
   - `datasource`: an object representing the data source for this target, with the following properties:
     - `datasource_id`: ID code for the datasource; should be identical to the key.

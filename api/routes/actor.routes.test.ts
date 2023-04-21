@@ -863,6 +863,8 @@ it("returns target.percent_achieved_reason for non-null percent_achieved", async
       expect(typeof reason2.current.value).toEqual("number");
       expect(reason2.current.datasource).toBeDefined();
       expect(typeof reason2.current.datasource).toEqual("object");
+      expect(reason2.target).toBeDefined();
+      expect(typeof reason2.target.value).toEqual("number");
       const ds = reason2.current.datasource;
       expect(ds.datasource_id).toBeDefined()
       expect(ds.name).toBeDefined()
