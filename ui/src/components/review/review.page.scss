@@ -1,6 +1,9 @@
 @import './mixins.scss';
 
 .review__wrapper {
+    .review__explore-title{
+        display: none;
+    }
     .review__filter-button-wrapper{
         display: none;
     }
@@ -76,39 +79,6 @@
         color: #fff;
     }
 
-    @include respond(mobile){
-        .review__heading {
-            display: inherit;
-        }
-        .review__info{
-            display: none;
-        }
-        .review__filters-wrapper{
-            display: none !important;
-        }
-        .review__filter-button-wrapper{
-            display: flex;
-            justify-content: center;
-        }
-        .review__filter-button{
-            display: flex;
-            justify-content:space-evenly;
-            align-items:center;
-            background-color: #007568;
-            font-size: 17px;
-            height: 42px;
-            width: 200px;
-            font-weight: bold;
-            border-radius: 20px;
-            color: white;
-        }
-        .review__icon{
-            font-size: 20px;
-        }
-    }
-
-    
-
     .review__info {
         
         height: 200px;
@@ -136,10 +106,17 @@
     .review-info__content span{
         font-weight: 600;
     }
+    .review__earth-card-wrapper{
+        display: flex;
+        flex-direction: column;
+    }
     .review__earth-main{
         margin-top: 20px;
         display: flex;
         flex-direction: row;
+    }
+    .review__earth-flag{
+        display: none;
     }
     .review__card {
         padding-left: 26px;
@@ -200,6 +177,9 @@
         cursor: pointer;
         font-size: 20px;
         color: var(--neutral-grey);
+    }
+    .mobile-close-icon{
+        display: none;
     }
     .review__earth-icon{
         color: #7A7B9A;
@@ -545,7 +525,280 @@
         margin-left: 0px;
         margin-right: 0px;
     }
+    @include respond(mobile){
+        .review__heading {
+            display: inherit;
+        }
+
+        .review__info{
+            display: none;
+        }
+
+        .review__filters-wrapper{
+            display: none !important;
+        }
+
+        .review__filter-button-wrapper{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            bottom: 0px;
+            background: #FFFFFF;
+            margin-top: 80px;
+            height: 120px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .review__filter-button{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0px 24px;
+            gap: 8px;
+            width: 100%;
+            height: 48px;
+            background: #008600;
+            border-radius: 50px;
+            border: none;
+            font-family: 'Poppins';
+            color: #fff;
+        }
+        .review__icon{
+            font-size: 24px;
+        }
+
+        .review__filter-button span {
+            font-size: 14px;
+            line-height: 16px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 1.25px;
+            text-transform: uppercase;
+        }
+
+        .review__earth-main{
+            margin-top: 20px !important;
+            display: flex  !important;
+            flex-direction: column !important;
+        }
+
+        .review__levelcards-wrapper{
+            background-color: #fff !important;
+            position: absolute;
+            height: 100% !important;
+            width: calc(100% + 20px) !important;
+            left: -10px !important;
+            padding-left:0px !important;
+            padding: 5px !important;
+            padding-top: 30px !important;
+            top: 0px !important;
+            z-index: 9999 !important;
+            margin-left: 0px;
+            margin-right: 0px;
+            display: flex !important;
+            justify-content: center;
+        }
+
+        // Wrapper
+        .wrapper_mobile{
+            background-color: #fff !important;
+            position: absolute;
+            height: 100% !important;
+            width: calc(100% + 20px) !important;
+            left: -10px !important;
+            padding-left:0px !important;
+            padding: 5px !important;
+            padding-top: 30px !important;
+            top: -10px !important;
+            z-index: 9999 !important;
+            margin-left: 0px;
+            margin-right: 0px;
+            display: flex !important;
+            justify-content: center;
+        }
+
+        .review__card {
+            padding-left: 0px !important;
+            padding-bottom: 20px !important;
+            padding-top: 20px !important;
+        }
+
+        // earth / indicator card
+        .review__earth-card-active{
+            display: flex;
+            align-items: center;
+            height: 68px !important;
+            width: 380px !important;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            padding: 8px;
+            margin-bottom: 10px !important;
+            margin-top: 10px !important;
+            box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 31, 0.1) !important;
+        }
+
+        .mobile-close-icon{
+            display: inline-block;
+        }
+
+        .show-dashboard {
+            display: block;
+        }
+
+        .hide-levelcards{
+            display: none !important;
+        }
+
+        .hide-dashboard {
+            display: none;
+        }
+        
+        .review__earth-flag{
+            display: block !important;
+        }
+
+        .review__earth-card-item-large-text{
+            font-weight: 600;
+            font-size: 24px;
+           
+        }
+
+        .review__earth-card-content {
+            white-space: nowrap;
+            width: 100px !important;
+            background: #00001F !important;
+            margin-right: 20px;
+        }
+
+        .review__emissions-year {
+            position: relative;
+            left: 25px;
+            font-size: 12px;
+            color: #232640;
+        }
+
+        .review__earth-card-head{
+            display: flex !important;
+            justify-content: left !important;
+            align-items: center !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+        }
+
+        .review__earth-card-item-head-text-span {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-left: 12px !important;
+            position: relative;
+            top: -4px;
+        }
     
+        .review__earth-card-inactive {
+            display: flex;
+            align-items: center;
+            height: 68px !important;
+            width: 380px !important;
+            border-radius: 8px;
+            background-color: #FFFFFF;
+            padding: 8px;
+            margin-bottom: 10px !important;
+            margin-top: 10px !important;
+            box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 31, 0.1) !important;
+            border: solid 1px #d7d8fa !important;
+        }
+
+        // page title
+        .review__explore-title{
+            display: flex !important;
+            align-items: center;
+        }
+
+        .review__actor-type{
+            position: relative;
+            top: 12px;
+            padding-bottom: 10px !important;
+        }
+
+        .review__explore-title h1 {
+            font-size: 16px;
+            font-weight: 600;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: 0.1px;
+            margin-left: 20px;
+        }
+
+        .review__explore-arrow-back{
+            color: #7a7b9a;
+            font-size:x-large;
+        }
+
+
+        // review card selected
+        .review__card-actor-selected {
+            padding-top: 20px !important;
+        }
+
+        // arrow
+        .review__arrow-forward {
+            color: #c5cbf5 !important;
+            padding: 10px !important;
+            display: flex;
+            justify-content: center;
+            transform: rotate(90deg);
+            height: 0px;
+            margin-top: 10px !important;
+        }
+
+        .review-fab{
+            display: none !important;
+        }
+
+        .hdn-xsm{
+            display: none !important;
+        }
+
+        .review__earth-card-content{
+            height: 0px !important;
+            width: 165px;
+        }
+
+        .review__earth-card-body {
+            width: 100%;
+            height: 68px !important;
+            padding-left: 8px;
+            padding-right: 8px;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-gap: 12px;
+            padding-top: 10px;
+        }
+
+        .review__earth-card-content{
+            height: 70px;
+            width: 165px;
+        }
+
+        .review__earth-card-close-icon{
+            position: relative;
+            top: 10px;
+            font-size: x-large !important;
+        }
+
+        .review__earth-card-item-head-text-span {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 100px !important;
+        }
+
+        .review__earth-icon{
+            height: 35px;
+        }
+    }
     @include respond(mediumScreen){
         .review__earth-card-active{
             height: 198px;

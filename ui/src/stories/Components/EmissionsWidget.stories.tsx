@@ -22,6 +22,7 @@ const actorData = {
         "name": "PRIMAP-hist_v2.4_no_extrap (scenario=HISTCR)",
         "publisher": "PRIMAP",
         "published": "2022-10-17T00:00:00.000Z",
+        "citation": "Günther, A.; Pflüger, M. (2021): The PRIMAP-hist national historical emissions time series (1750-2019). v2.3.1. zenodo.",
         "URL": "https://zenodo.org/record/7179775",
         "tags": [
           {

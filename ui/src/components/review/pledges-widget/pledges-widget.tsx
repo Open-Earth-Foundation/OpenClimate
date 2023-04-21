@@ -85,7 +85,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
   const classes = useStyles();
   const targets = current && current.targets ? current.targets : [];
   const netZeroTargetYear = targets.filter(
-    (target) => target.target_type === "Net zero"
+    (target) => target.target_type === "Net zero" || target.target_type === "GHG neutral" || target.target_type === "Climate neutral"
   )?.[0]?.target_year;
   const lu = targets.map((t: any) => t.last_updated);
   lu.sort();

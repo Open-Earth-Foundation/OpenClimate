@@ -12,6 +12,7 @@ import {
 import { FilterTypes } from "../../../api/models/review/dashboard/filterTypes";
 import { renderHighlightedName } from "../../util/strings";
 import { renderDataMissingDropdown } from "../../util/showDataMissingDropdown";
+import { MdArrowBack, MdSearch } from "react-icons/md";
 
 interface IProps {
   label: string;
@@ -56,12 +57,21 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
     setInputString("");
   };
 
+  const exitPopup = () => {
+    setCardExpanded(false);
+  }
+
   useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
+    if(window.screen.width <= 480){
+      document.removeEventListener("click", handleClickOutside, true);
+    }else {
+      document.addEventListener("click", handleClickOutside, true);
+    }
+    
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  }, [window.screen.width]);
 
   return (
     <div className="level-card">
@@ -119,36 +129,97 @@ const LevelCard: FunctionComponent<IProps> = (props) => {
             </div>
           </div>
         </Card>
-        <Collapse in={cardExpanded} timeout="auto" unmountOnExit>
-          <div className="dropdown-container" id={"dropdown"}>
-            {options
-              .filter((option) =>
-                option.name.toLowerCase().includes(inputString.toLowerCase())
-              )
-              .map((option, index) => (
-                <div
-                  className="dropdown-select"
-                  key={`dropdown-item-${index}`}
-                  onClick={() => onOptionClick(option)}
-                  onMouseEnter={() => setHoveredOptionIndex(index)}
-                  onMouseLeave={() => setHoveredOptionIndex(-1)}
-                >
-                  <div className="dropdown-select-text">
-                    {inputString
-                      ? renderHighlightedName(option.name, inputString)
-                      : option.name}
+        <div className="menu-dropdown">
+          <Collapse in={cardExpanded} timeout="auto" unmountOnExit>
+            <div className="dropdown-container" id={"dropdown"}>
+              {options
+                .filter((option) =>
+                  option.name.toLowerCase().includes(inputString.toLowerCase())
+                )
+                .map((option, index) => (
+                  <div
+                    className="dropdown-select"
+                    key={`dropdown-item-${index}`}
+                    onClick={() => onOptionClick(option)}
+                    onMouseEnter={() => setHoveredOptionIndex(index)}
+                    onMouseLeave={() => setHoveredOptionIndex(-1)}
+                  >
+                    <div className="dropdown-select-text">
+                      {inputString
+                        ? renderHighlightedName(option.name, inputString)
+                        : option.name}
+                    </div>
+                    <div className="dropdown-select-missing-container">
+                      {renderDataMissingDropdown(
+                        hoveredOptionIndex === index,
+                        option?.data === true
+                      )}
+                    </div>
                   </div>
-                  <div className="dropdown-select-missing-container">
-                    {renderDataMissingDropdown(
-                      hoveredOptionIndex === index,
-                      option?.data === true
-                    )}
-                  </div>
-                </div>
-              ))}
-          </div>
-        </Collapse>
+                ))}
+            </div>
+          </Collapse>
+        </div>
+      
       </Card>
+      {
+        cardExpanded && (
+          <div  className="menu-form-popup">
+            <div className="menu-form-head">
+              <button onClick={exitPopup}>
+                <MdArrowBack className="menu-form-icon"/>
+              </button>
+            </div>
+            <div className="container">
+                <div className="inputBox">
+                    <p className="actorType">{label}</p>
+                    <div className="searchInput">
+                        <div className="dropdownWrapper">
+                            <MdSearch className="icon"/>
+                            <input  
+                              className="input" ref={inputComponentRef}
+                              placeholder={placeholder || "Add level"}
+                              type="text"
+                              onChange={(event) => setInputString(event.target.value)}/>
+                        </div>
+                    </div>
+                </div>
+                <div className="searchResultsContent">
+                    <div className="recentRes">
+                      {options.length ? options
+                        .filter((option) =>
+                          option.name.toLowerCase().includes(inputString.toLowerCase())
+                        )
+                        .map((option, index) => (
+                          <div
+                            className="dropdown-select"
+                            key={`dropdown-item-${index}`}
+                            onClick={() => onOptionClick(option)}
+                            onMouseEnter={() => setHoveredOptionIndex(index)}
+                            onMouseLeave={() => setHoveredOptionIndex(-1)}
+                          >
+                            <div className="dropdown-select-text">
+                              {inputString
+                                ? renderHighlightedName(option.name, inputString)
+                                : option.name} <br/>
+                                
+                            </div>
+                            <div className="dropdown-select-missing-container">
+                              {renderDataMissingDropdown(
+                                hoveredOptionIndex === index,
+                                option?.data === true
+                              )}
+                            </div>
+                          </div>
+                        )) : (
+                          <p>RECENT RESULTS</p>
+                        )}
+                    </div>
+                </div>
+            </div>
+          </div>
+        )
+      }
       {onButtonSwap && isCity !== undefined && (
         <button
           className={

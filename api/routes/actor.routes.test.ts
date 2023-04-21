@@ -34,6 +34,7 @@ const datasource1Props = {
   name: "Fake datasource from actor.routes.test.ts",
   publisher: publisher1Props.id,
   published: new Date(2022, 10, 12),
+  citation: 'Fake citation',
   URL: "https://fake.example/datasource",
 };
 
@@ -1242,3 +1243,23 @@ it("responds with a CSV file", async () =>
 
 it("gets 404 when actor id is nonexistent for downloading emissions in json", async () =>
   request(app).get(`/api/v1/download/${ACTOR_DNE}-emissions.csv`).expect(404));
+
+it("returns data source citation", async () =>
+  request(app)
+    .get(`/api/v1/actor/${country1Props.actor_id}`)
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .expect((res) => {
+      expect(res.body.data).toBeDefined();
+
+      const data = res.body.data;
+
+      expect(data.emissions).toBeDefined();
+
+      expect(data.emissions[country1Props.datasource_id]).toBeDefined();
+
+      expect(data.emissions[country1Props.datasource_id].citation).toBeDefined();
+      expect(data.emissions[country1Props.datasource_id].citation).toEqual(datasource1Props.citation);
+    }));
+
+

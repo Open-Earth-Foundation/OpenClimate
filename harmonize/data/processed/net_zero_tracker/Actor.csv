@@ -1,1018 +1,1018 @@
 actor_id,type,name,is_part_of,datasource_id
-5493000LKVGOO9PELI61,organizaton,ABB,CH,GLEIF_golden_copy
-529900EHPFPYHV6IQO98,organizaton,Lafargeholcim,CH,GLEIF_golden_copy
-KY37LUS27QQX7BB93L28,organizaton,Nestlé,CH,GLEIF_golden_copy
-213800SVRMQA1TD91D41,organizaton,Givaudan,CH,GLEIF_golden_copy
-529900Q0YED3805QXQ66,organizaton,Kuehne & Nagel International,CH,GLEIF_golden_copy
-5493005SL9HHOXS3B739,organizaton,Swisscom,CH,GLEIF_golden_copy
-5493007HIVTX6SY6XD66,organizaton,Novartis,CH,GLEIF_golden_copy
-549300U41AUUVOAAOB37,organizaton,Roche Holding,CH,GLEIF_golden_copy
-529900QVNRBND50TXP03,organizaton,Zurich Insurance,CH,GLEIF_golden_copy
-E0JAN6VLUDI1HITHT809,organizaton,Chubb,CH,GLEIF_golden_copy
-529900PS9YW3YY29F326,organizaton,Swiss RE,CH,GLEIF_golden_copy
-NI14Y5UMU60O7JE9P611,organizaton,Adecco,CH,GLEIF_golden_copy
-2138007JNS19JHNA2336,organizaton,SGS,CH,GLEIF_golden_copy
-213800Y5RWKLDPUTT265,organizaton,Barry Callebaut,CH,GLEIF_golden_copy
-HV5W8PGLJ127N2SFSM23,organizaton,Basler Kantonalbank,CH,GLEIF_golden_copy
-5493000KUC3Z24U77V93,organizaton,Swiss Life Holding,CH,GLEIF_golden_copy
-894500ZRIX9K13RHXR17,organizaton,TE Connectivity,CH,GLEIF_golden_copy
-529900G5XKBZN48T6283,organizaton,Bâloise Group,CH,GLEIF_golden_copy
-5299007DRLI319H7Q933,organizaton,Schindler Holding AG,CH,GLEIF_golden_copy
-549300LDT5AP8S0NBM78,organizaton,Alcon,CH,GLEIF_golden_copy
-529900K900DW6SUBM174,organizaton,Partners Group Holding,CH,GLEIF_golden_copy
-2549001E0HIPIJQ0W046,organizaton,Garmin,CH,GLEIF_golden_copy
-52990093Z5OHD6T7BS47,organizaton,Geberit,CH,GLEIF_golden_copy
-549300EFP3TNG7JGVE49,organizaton,Coca-Cola HBC AG,CH,GLEIF_golden_copy
-529900G1XFTGSE0DIX60,organizaton,EMS-Chemie Holding,CH,GLEIF_golden_copy
-5299004A0QNX7FBNHS61,organizaton,Sonova Holding,CH,GLEIF_golden_copy
-506700XI9H64OPR34158,organizaton,Swiss Prime Site,CH,GLEIF_golden_copy
-506700PR1R98BSF81139,organizaton,EFG International,CH,GLEIF_golden_copy
-8SVCSVKSGDWMW2QHOH83,organizaton,BAE Systems,GB,GLEIF_golden_copy
-2138001AVBSD1HSC6Z10,organizaton,Johnson Matthey,GB,GLEIF_golden_copy
-2138006R85VEOF5YNK29,organizaton,Barratt Developments,GB,GLEIF_golden_copy
-2138001P49OLAEU33T68,organizaton,Phoenix Group Holdings,GB,GLEIF_golden_copy
-549300LSGBXPYHXGDT93,organizaton,WPP,GB,GLEIF_golden_copy
-8R95QZMKZLJX5Q2XR704,organizaton,National Grid,GB,GLEIF_golden_copy
-549300KI75VYLLMSK856,organizaton,SSE,GB,GLEIF_golden_copy
-549300MKFYEKVRWML317,organizaton,Unilever,GB,GLEIF_golden_copy
-PY6ZZQWO2IZFZC3IOL08,organizaton,AstraZeneca,GB,GLEIF_golden_copy
-213800KBMEV7I92FY281,organizaton,Kingfisher,GB,GLEIF_golden_copy
-2138002P5RNKC5W2JZ46,organizaton,Tesco,GB,GLEIF_golden_copy
-549300LTH67W4GWMRF57,organizaton,Coca-Cola European Partners,GB,GLEIF_golden_copy
-213800FKA5MF17RJKT63,organizaton,British American Tobacco,GB,GLEIF_golden_copy
-213800YOEO5OQ72G2R82,organizaton,Rio Tinto,GB,GLEIF_golden_copy
-213800LBQA1Y9L22JB70,organizaton,Barclays,GB,GLEIF_golden_copy
-213800LH1BZH3DI6G760,organizaton,BP,GB,GLEIF_golden_copy
-254900TWUJUQ44TQJY84,organizaton,M&G,GB,GLEIF_golden_copy
-549300WSX3VBUFFJOO66,organizaton,RELX,GB,GLEIF_golden_copy
-2138007Z3U5GWDN3MY22,organizaton,Investec,GB,GLEIF_golden_copy
-213800LOZA69QFDC9N34,organizaton,Mondi,GB,GLEIF_golden_copy
-E26EDV109X6EEPBKVH76,organizaton,Centrica,GB,GLEIF_golden_copy
-549300PPXHEU2JF0AM85,organizaton,Lloyds Banking Group,GB,GLEIF_golden_copy
-U4LOSYZ7YG4W3S5F2G91,organizaton,Standard Chartered,GB,GLEIF_golden_copy
-213800ZVIELEA55JMJ32,organizaton,Diageo Plc,GB,GLEIF_golden_copy
-549300S9XF92D1X8ME43,organizaton,Anglo American,GB,GLEIF_golden_copy
-549300DFVPOB67JL3A42,organizaton,Imperial Brands,GB,GLEIF_golden_copy
-549300E707U7WNPZN687,organizaton,Ferguson,GB,GLEIF_golden_copy
-GBQKSY6W7G0OHCQ8OQ72,organizaton,Associated British Foods,GB,GLEIF_golden_copy
-DS830JTTZQN6GK0I2E41,organizaton,Liberty Global,GB,GLEIF_golden_copy
-213800M993ICXOMBCP87,organizaton,St. James's Place,GB,GLEIF_golden_copy
-549300GSODGFCDQ3DI89,organizaton,Amcor,GB,GLEIF_golden_copy
-213800XC35KGM9NFC641,organizaton,Segro,GB,GLEIF_golden_copy
-213800ZTMDN8S67S1H61,organizaton,Smith & Nephew,GB,GLEIF_golden_copy
-213800Q1Q9DV4L78UM09,organizaton,Bunzl plc,GB,GLEIF_golden_copy
-549300D5I93QWCJTCK36,organizaton,Technipfmc,GB,GLEIF_golden_copy
-213800MY6QVH4FVLD628,organizaton,Antofagasta,GB,GLEIF_golden_copy
-21380089BTRXTD8S3R66,organizaton,Taylor Wimpey,GB,GLEIF_golden_copy
-213800TCZZU84G8Z2M70,organizaton,Royal Mail,GB,GLEIF_golden_copy
-213800RGEH1MPPNM2T57,organizaton,Inchcape,GB,GLEIF_golden_copy
-213800FGVM7Z9EJB2685,organizaton,Admiral Group,GB,GLEIF_golden_copy
-529900X0H1IO3RS1A464,organizaton,Prudential,GB,GLEIF_golden_copy
-969500OQXKE5WDM9M994,organizaton,Eiffage,FR,GLEIF_golden_copy
-969500TPU5T3HA5D1F11,organizaton,Bureau Veritas,FR,GLEIF_golden_copy
-5493006IH2N2WMIBB742,organizaton,Valeo,FR,GLEIF_golden_copy
-969500QZC2Q0TK11NV07,organizaton,Accor,FR,GLEIF_golden_copy
-2138004KW8BV57III342,organizaton,Publicis Groupe,FR,GLEIF_golden_copy
-529900S21EQ1BO4ESM68,organizaton,Total,FR,GLEIF_golden_copy
-529900JI1GG6F7RKVI53,organizaton,L'Oréal,FR,GLEIF_golden_copy
-NFONVGN05Z0FMN5PEC35,organizaton,Saint-Gobain,FR,GLEIF_golden_copy
-969500A1YF1XUYYXS284,organizaton,Schneider Electric,FR,GLEIF_golden_copy
-969500MCOONR8990S771,organizaton,Orange,FR,GLEIF_golden_copy
-96950077L0TN7BAROX36,organizaton,Cap Gemini,FR,GLEIF_golden_copy
-969500KMUQ2B6CBAF162,organizaton,Danone,FR,GLEIF_golden_copy
-549300VGEJKB7SVUZR78,organizaton,Kering,FR,GLEIF_golden_copy
-969500XXRPGD7HCAFA90,organizaton,LEGRAND,FR,GLEIF_golden_copy
-969500LCBOG12HXPYM84,organizaton,Sodexo,FR,GLEIF_golden_copy
-5493001EZOOA66PTBR68,organizaton,Atos,FR,GLEIF_golden_copy
-549300X3UK4GG3FNMO06,organizaton,EDF,FR,GLEIF_golden_copy
-3538001KQ5SAOZSQTT44,organizaton,Engie,FR,GLEIF_golden_copy
-R0MUWSFPU8MPRO8K5P83,organizaton,BNP Paribas,FR,GLEIF_golden_copy
-F5WCUMTUM4RKZ1MAIE39,organizaton,AXA,FR,GLEIF_golden_copy
-549300E9PC51EN656011,organizaton,SANOFI,FR,GLEIF_golden_copy
-213800WFQ334R8UXUG83,organizaton,Vinci,FR,GLEIF_golden_copy
-969500UIC89GT3UL7L24,organizaton,Safran,FR,GLEIF_golden_copy
-969500LENY69X51OOT31,organizaton,Veolia Environnement,FR,GLEIF_golden_copy
-9695003E4MMA10IBTR26,organizaton,Gecina,FR,GLEIF_golden_copy
-969500AQW31GYO8JZD66,organizaton,Air France-KLM,FR,GLEIF_golden_copy
-969500P8M3W2XX376054,organizaton,Covivio,FR,GLEIF_golden_copy
-96950032TUYMW11FB530,organizaton,Alstom,FR,GLEIF_golden_copy
-969500PB4U31KEFHZ621,organizaton,Klepierre,FR,GLEIF_golden_copy
-IOG4E947OATN0KJYSD45,organizaton,LVMH Moët Hennessy Louis Vuitton,FR,GLEIF_golden_copy
-O2RNE8IBXP4R0TD8PU41,organizaton,Société Générale,FR,GLEIF_golden_copy
-969500MMPQVHK671GT54,organizaton,Air Liquide,FR,GLEIF_golden_copy
-PQOH26KWDF7CG10L6792,organizaton,EssilorLuxottica,FR,GLEIF_golden_copy
-KX1WK48MPD4Y2NCUIZ63,organizaton,Natixis,FR,GLEIF_golden_copy
-549300B8P6MUJ1YWTS08,organizaton,Carrefour,FR,GLEIF_golden_copy
-969500MOCLNQFNZN0D63,organizaton,Bouygues,FR,GLEIF_golden_copy
-52990097YFPX9J0H5D87,organizaton,Pernod Ricard,FR,GLEIF_golden_copy
-529900FNDVTQJOVVPZ19,organizaton,Thales,FR,GLEIF_golden_copy
-969500Y4IJGHJE2MTJ13,organizaton,Hermès International,FR,GLEIF_golden_copy
-969500F7JLTX36OUI695,organizaton,Renault,FR,GLEIF_golden_copy
-969500FZ9BTRZS3JNB97,organizaton,Iliad,FR,GLEIF_golden_copy
-9695002YVGSA5Z2O3511,organizaton,Finatis,FR,GLEIF_golden_copy
-CY1NFSCCB5GUXC7WZC70,organizaton,Dassault Aviation,FR,GLEIF_golden_copy
-9695000EHMS84KKP2785,organizaton,ARKEMA,FR,GLEIF_golden_copy
-969500M98ZMIZYJD5O34,organizaton,Wendel SE,FR,GLEIF_golden_copy
-969500N6AVPA51648T62,organizaton,Rexel,FR,GLEIF_golden_copy
-969500WP61NBK098AC47,organizaton,SEB SA,FR,GLEIF_golden_copy
-724500K5PTPSST86UQ23,organizaton,Heineken,NL,GLEIF_golden_copy
-724500SNT1MK246AHP04,organizaton,DSM,NL,GLEIF_golden_copy
-549300QD81EPLH4NUQ92,organizaton,Philips Lighting,NL,GLEIF_golden_copy
-549300NYKK9MWM7GGW15,organizaton,ING Group,NL,GLEIF_golden_copy
-724500Y6DUVHQD6OXN27,organizaton,ASML Holding,NL,GLEIF_golden_copy
-724500OHYNDT9OY6Q215,organizaton,NN Group,NL,GLEIF_golden_copy
-724500XYIJUGXAA5QD70,organizaton,AkzoNobel,NL,GLEIF_golden_copy
-3SOUA6IRML7435B56G12,organizaton,EXOR,NL,GLEIF_golden_copy
-549300772D1G8JPIUR96,organizaton,Aegon,NL,GLEIF_golden_copy
-7245000G0HS48PZWUD53,organizaton,Asr Nederland,NL,GLEIF_golden_copy
-7245009EAAUUQJ0U4T57,organizaton,Randstad N.V.,NL,GLEIF_golden_copy
-213800J17UJJJDGUVF56,organizaton,X5 Retail Group,NL,GLEIF_golden_copy
-724500TEM53I0U077B74,organizaton,Wolters Kluwer,NL,GLEIF_golden_copy
-724500973ODKK3IFQ447,organizaton,Adyen,NL,GLEIF_golden_copy
-5493006456YEZEELRR90,organizaton,Just Eat Takeaway.com,NL,GLEIF_golden_copy
-549300Y7VHGU0I7CE873,organizaton,Netflix,US,GLEIF_golden_copy
-549300I8RX485XMK6836,organizaton,Twitter,US,GLEIF_golden_copy
-549300JZ4OKEHW3DPJ59,organizaton,Visa,US,GLEIF_golden_copy
-549300G6KKUMMXM8NH73,organizaton,Berry Global Group,US,GLEIF_golden_copy
-54930070NSV60J38I987,organizaton,General Motors Company,US,GLEIF_golden_copy
-VGRQXHF3J8VDLUA7XE92,organizaton,IBM,US,GLEIF_golden_copy
-Y6X4K52KMJMZE7I7MY94,organizaton,S&P Global,US,GLEIF_golden_copy
-549300JNC0L6VP8A2Q35,organizaton,Snap,US,GLEIF_golden_copy
-549300JE8XHZZ7OHN517,organizaton,Yum! Brands,US,GLEIF_golden_copy
-41BNNE1AFPNAZELZ6K07,organizaton,Applied Materials,US,GLEIF_golden_copy
-NYLWZIOY8PUNIT4JOE22,organizaton,Crown Holdings,US,GLEIF_golden_copy
-BQ4BKCS1HXDV9HN80Z93,organizaton,Facebook,US,GLEIF_golden_copy
-549300BX44RGX6ANDV88,organizaton,Hewlett Packard Enterprise,US,GLEIF_golden_copy
-549300BX44RGX6ANDV88,organizaton,Hewlett Packard Enterprise Co,US,GLEIF_golden_copy
-HL3H1H2BGXWVG3BSWR90,organizaton,Philip Morris International,US,GLEIF_golden_copy
-GYVOE5EZ4GDAVTU4CQ61,organizaton,Analog Devices,US,GLEIF_golden_copy
-HO1QNWM0IXBZ0QSMMO20,organizaton,Ralph Lauren,US,GLEIF_golden_copy
-549300J0DYC0N31V7G13,organizaton,Workday,US,GLEIF_golden_copy
-20S05OYHG0MQM4VUIC57,organizaton,Ford Motor Company,US,GLEIF_golden_copy
-2TGYMUGI08PO8X8L6150,organizaton,General Mills,US,GLEIF_golden_copy
-OQSJ1DU9TAOC51A47K68,organizaton,Starbucks,US,GLEIF_golden_copy
-549300B2FTG34FILDR98,organizaton,Uber Technologies,US,GLEIF_golden_copy
-YMEGZFW4SBUSS5BQXF88,organizaton,Colgate-Palmolive,US,GLEIF_golden_copy
-T2ZG1WRWZ4BUCMQL9224,organizaton,Gap,US,GLEIF_golden_copy
-549300GCEDD8YCF5WU84,organizaton,Moody's,US,GLEIF_golden_copy
-787RXPR0UX0O0XUXPZ81,organizaton,Nike,US,GLEIF_golden_copy
-2S72QS2UO2OESLG6Y829,organizaton,Verizon,US,GLEIF_golden_copy
-82DYEISM090VG8LTLS26,organizaton,Ecolab,US,GLEIF_golden_copy
-8WDDFXB5T1Z6J0XC1L66,organizaton,Target,US,GLEIF_golden_copy
-W8J5WZB5IY3K0NDQT671,organizaton,Biogen,US,GLEIF_golden_copy
-5E2UPK5SW04M13XY7I38,organizaton,NRG Energy,US,GLEIF_golden_copy
-FJSUNZKFNQ5YPJ5OT455,organizaton,PepsiCo,US,GLEIF_golden_copy
-CWAJJ9DJ5Z7P057HV541,organizaton,VF,US,GLEIF_golden_copy
-ZXTILKJKG63JELOEG630,organizaton,Amazon,US,GLEIF_golden_copy
-3E70L4WYANTIWWIPHC81,organizaton,Dell,US,GLEIF_golden_copy
-549300G0CFPGEF6X2043,organizaton,Johnson & Johnson,US,GLEIF_golden_copy
-INR2EJN1ERAN0W5ZP974,organizaton,Microsoft,US,GLEIF_golden_copy
-549300ITS31QK8VRBQ14,organizaton,News,US,GLEIF_golden_copy
-549300EJG9IEYQL5XT21,organizaton,Tiffany & Co,US,GLEIF_golden_copy
-Y87794H0US1R65VBXU25,organizaton,Walmart,US,GLEIF_golden_copy
-HWUPKR0MPOU8FGXBT394,organizaton,Apple,US,GLEIF_golden_copy
-FRKKVKAIQEF3FCSTPG55,organizaton,Autodesk,US,GLEIF_golden_copy
-VI90HBPH7XSFMB9E4M29,organizaton,Intuit,US,GLEIF_golden_copy
-123WALMHY1GZXG2YDL90,organizaton,PVH,US,GLEIF_golden_copy
-HL5XPTVRV0O8TUN5LL90,organizaton,Best Buy Co,US,GLEIF_golden_copy
-8I5DZWZKVSZI1NUHU748,organizaton,JP Morgan Chase,US,GLEIF_golden_copy
-9DJT3UXIJIZJI4WXO774,organizaton,Bank of America,US,GLEIF_golden_copy
-549300Z40J86GGSTL398,organizaton,AT&T,US,GLEIF_golden_copy
-5493006MHB84DD0ZWV18,organizaton,Alphabet,US,GLEIF_golden_copy
-51M0QTTNCGUN7KFCFZ59,organizaton,Comcast,US,GLEIF_golden_copy
-549300EJG376EN5NQE29,organizaton,CVS Health,US,GLEIF_golden_copy
-784F5XWPLTWKTBV3E584,organizaton,Goldman Sachs,US,GLEIF_golden_copy
-IGJSJL3JD5P30I6NJZ34,organizaton,Morgan Stanley,US,GLEIF_golden_copy
-2572IBTT8CCZW6AU4141,organizaton,Procter & Gamble Company,US,GLEIF_golden_copy
-C4BXATY60WC6XEOZDX54,organizaton,MetLife,US,GLEIF_golden_copy
-R4PP93JZOLY261QX3811,organizaton,American Express,US,GLEIF_golden_copy
-QEKMOTMBBKA8I816DO57,organizaton,Home Depot,US,GLEIF_golden_copy
-CFGNEKW0P8842LEUIA51,organizaton,PNC Financial Services,US,GLEIF_golden_copy
-I1BZKREC126H0VB1BL91,organizaton,Duke Energy,US,GLEIF_golden_copy
-WFLLPEPC7FZXENRZV188,organizaton,Bank of New York Mellon,US,GLEIF_golden_copy
-ZUE8T73ROZOF6FLBAR73,organizaton,Capital One Financial,US,GLEIF_golden_copy
-XWTZDRYZPBUHIQBKDB46,organizaton,EOG Resources,US,GLEIF_golden_copy
-549300FC3G3YU2FBZD92,organizaton,Southern Company,US,GLEIF_golden_copy
-549300LRIF3NWCU26A80,organizaton,BlackRock,US,GLEIF_golden_copy
-549300LMMRSZZCZ8CL11,organizaton,Union Pacific,US,GLEIF_golden_copy
-WPTL2Z3FIYTHSP5V2253,organizaton,ConocoPhillips,US,GLEIF_golden_copy
-5493005X2GO78EFZ3E94,organizaton,PayPal Holdings,US,GLEIF_golden_copy
-Q2CCMS6R0AS67HJMBN42,organizaton,Delta Air Lines,US,GLEIF_golden_copy
-ILUL7B6Z54MRYCF6H308,organizaton,Dominion Resources,US,GLEIF_golden_copy
-1B4S6S7G0TW5EE83BO58,organizaton,American Electric Power Company,US,GLEIF_golden_copy
-549300ZFEEJ2IP5VME73,organizaton,State Street,US,GLEIF_golden_copy
-Y6ZDD9FP4P8JSSJMW954,organizaton,Boston Scientific,US,GLEIF_golden_copy
-549300BUDHS3LRWBE814,organizaton,VMware,US,GLEIF_golden_copy
-LGJNMI9GH8XIDG5RCM61,organizaton,Xcel Energy,US,GLEIF_golden_copy
-549300YX8JIID70NFS41,organizaton,Waste Management,US,GLEIF_golden_copy
-5493004JF0SDFLM8GD76,organizaton,DuPont,US,GLEIF_golden_copy
-ZUNI8PYC725B6H8JU438,organizaton,Cummins,US,GLEIF_golden_copy
-549300VFZ8XJ9NUPU221,organizaton,Estee Lauder Companies,US,GLEIF_golden_copy
-THRNG6BD57P9QWTQLG42,organizaton,Fifth Third Bancorp,US,GLEIF_golden_copy
-MP3J6QPYPGN75NVW2S34,organizaton,Kimberly-Clark,US,GLEIF_golden_copy
-PUSS41EMO3E6XXNV3U28,organizaton,Public Service Enterprise,US,GLEIF_golden_copy
-BUCRF72VH5RBN7X3VL35,organizaton,Entergy,US,GLEIF_golden_copy
-549300IX8SD6XXD71I78,organizaton,DTE Energy,US,GLEIF_golden_copy
-5493003S21INSLK2IP73,organizaton,Dow,US,GLEIF_golden_copy
-RCGZFPDMRW58VJ54VR07,organizaton,salesforce.com,US,GLEIF_golden_copy
-SJ7XXD41SQU3ZNWUJ746,organizaton,Eversource Energy,US,GLEIF_golden_copy
-549300IGLYTZUK3PVP70,organizaton,WEC Energy,US,GLEIF_golden_copy
-549300DJ09SMTO561131,organizaton,Stanley Black & Decker,US,GLEIF_golden_copy
-529900F60CID3NCZM330,organizaton,Carmax,US,GLEIF_golden_copy
-IM7X0T3ECJW4C1T7ON55,organizaton,Occidental Petroleum,US,GLEIF_golden_copy
-549300KP43CPCUJOOG15,organizaton,Vistra Energy,US,GLEIF_golden_copy
-549300T065Z4KJ686G75,organizaton,Voya Financial,US,GLEIF_golden_copy
-XRZQ5S7HYJFPHJ78L959,organizaton,Ameren,US,GLEIF_golden_copy
-549300IA9XFBAGNIBW29,organizaton,CMS Energy,US,GLEIF_golden_copy
-549300XU3XH6F05YEQ93,organizaton,Baker Hughes,US,GLEIF_golden_copy
-K9G90K85RBWD2LAGQX17,organizaton,AvalonBay Communities,US,GLEIF_golden_copy
-8YQ2GSDWYZXO2EDN3511,organizaton,PG&E,US,GLEIF_golden_copy
-549300OF70FSEUQBT254,organizaton,Boston Properties,US,GLEIF_golden_copy
-549300BMOJ05INE4YK86,organizaton,Vornado Realty,US,GLEIF_golden_copy
-3PPKBHUG1HD6BO7RNR87,organizaton,Textron,US,GLEIF_golden_copy
-I9Q57JVPWHHZ3ZGBW498,organizaton,Comerica,US,GLEIF_golden_copy
-54930073LBBH6ZCBE225,organizaton,Molson Coors Brewing Company,US,GLEIF_golden_copy
-549300L8X1Q78ERXFD06,organizaton,Nasdaq,US,GLEIF_golden_copy
-549300JQQA6MQ4OJP259,organizaton,McCormick & Co,US,GLEIF_golden_copy
-6SYKCME112RT8TQUO411,organizaton,Jones Lang LaSalle,US,GLEIF_golden_copy
-POOXSI30AWAQGYJZC921,organizaton,Church & Dwight Co,US,GLEIF_golden_copy
-5493009ML300G373MZ12,organizaton,Alliant Energy,US,GLEIF_golden_copy
-549300CZ8QS1GE53O776,organizaton,Jacobs Engineering,US,GLEIF_golden_copy
-QG7T915N9S0NY5UKNE63,organizaton,Synopsys,US,GLEIF_golden_copy
-5493000BD5GJNUDIUG10,organizaton,Mettler-Toledo International,US,GLEIF_golden_copy
-549300D8GOWWH0SJB189,organizaton,NiSource,US,GLEIF_golden_copy
-TWSEY0NEDUDCKS27AH81,organizaton,Pinnacle West Capital,US,GLEIF_golden_copy
-0EEB8GF0W0NPCIHZX097,organizaton,AECOM Technology,US,GLEIF_golden_copy
-BZLRL03D3GPGMOGFO832,organizaton,International Flavors & Fragrances,US,GLEIF_golden_copy
-5493007B9BM9ZXJINO78,organizaton,Live Nation Entertainment,US,GLEIF_golden_copy
-OC1LZNN2LF5WTJ5RIL89,organizaton,Akamai Technologies,US,GLEIF_golden_copy
-549300MIX43II8JLN536,organizaton,Liberty Broadband,US,GLEIF_golden_copy
-549300NUB6D2R1ITYR45,organizaton,Hasbro,US,GLEIF_golden_copy
-549300VIZRB02KN4IJ45,organizaton,Slack Technologies,US,GLEIF_golden_copy
-5493000C01ZX7D35SD85,organizaton,Berkshire Hathaway,US,GLEIF_golden_copy
-J3WHBG0MTS7O8ZVMDC91,organizaton,Exxon Mobil,US,GLEIF_golden_copy
-PBLD0EJDB5FWOLXP3B76,organizaton,Wells Fargo,US,GLEIF_golden_copy
-6SHGI4ZSSLCXXQSBB395,organizaton,Citigroup,US,GLEIF_golden_copy
-549300GHBMY8T5GXDE41,organizaton,UnitedHealth,US,GLEIF_golden_copy
-KNX4USFCNGPY45LOCE31,organizaton,Intel,US,GLEIF_golden_copy
-765LHXWGK1KXCLTFYQ30,organizaton,Pfizer,US,GLEIF_golden_copy
-549300VIWYMSIGT1U456,organizaton,Cigna,US,GLEIF_golden_copy
-549300LKFJ962MZ46593,organizaton,Cisco Systems,US,GLEIF_golden_copy
-I07WOS4YJ0N7YRFE7309,organizaton,Raytheon Technologies,US,GLEIF_golden_copy
-MZK1AT00SJV4XB7WNL71,organizaton,Merck & Co,US,GLEIF_golden_copy
-1Z4GXXU7ZHVWFCD8TV52,organizaton,Oracle,US,GLEIF_golden_copy
-UWJKFUJFZ02DKWI3RY53,organizaton,Coca-Cola Company,US,GLEIF_golden_copy
-N1GZ7BBF3NP8GI976H15,organizaton,U.S. Bancorp,US,GLEIF_golden_copy
-8MYN82XMYQH89CTMTH67,organizaton,Anthem,US,GLEIF_golden_copy
-5493001Z3ZE83NGK8Y12,organizaton,Prudential,US,GLEIF_golden_copy
-FR5LCKFTG8054YNNRU85,organizaton,AbbVie,US,GLEIF_golden_copy
-WRJR7GS4GTRECRRTVX92,organizaton,Caterpillar,US,GLEIF_golden_copy
-549300RPTUOIXG4LIH86,organizaton,Walgreens Boots Alliance,US,GLEIF_golden_copy
-HLYYNH7UQUORYSJQCN42,organizaton,Bristol-Myers Squibb,US,GLEIF_golden_copy
-29DX7H14B9S6O3FD6V18,organizaton,Costco,US,GLEIF_golden_copy
-D01LMJZU09ULLNCY6Z23,organizaton,UPS,US,GLEIF_golden_copy
-DPRBOZP0K5RM2YE8UU08,organizaton,Lockheed Martin,US,GLEIF_golden_copy
-OBT0W1ED8G0NWVOLOJ77,organizaton,Allstate,US,GLEIF_golden_copy
-0J0XRGZE3PBRFEZ7MV65,organizaton,Charter Communications,US,GLEIF_golden_copy
-ISRPG12PN4EIEOEMW547,organizaton,Honeywell International,US,GLEIF_golden_copy
-ODVCVCQG2BP6VHV36M30,organizaton,American International Group,US,GLEIF_golden_copy
-HQD377W2YR662HK5JX27,organizaton,Abbott Laboratories,US,GLEIF_golden_copy
-62QBXGPJ34PQ72Z12S66,organizaton,Amgen,US,GLEIF_golden_copy
-549300DRQQI75D2JP341,organizaton,Truist Financial,US,GLEIF_golden_copy
-3SOUA6IRML7435B56G12,organizaton,Exelon,US,GLEIF_golden_copy
-WAFCR4OKGSC504WU3E95,organizaton,Lowe's,US,GLEIF_golden_copy
-PWFTNG3EI0Y73OXWDH08,organizaton,Deere & Company,US,GLEIF_golden_copy
-HCHV7422L5HDJZCRFL38,organizaton,Thermo Fisher Scientific,US,GLEIF_golden_copy
-549300WTZWR07K8MNV44,organizaton,Gilead Sciences,US,GLEIF_golden_copy
-5493005JBO5YSIGK1814,organizaton,Phillips 66,US,GLEIF_golden_copy
-549300DV9GIB88LZ5P30,organizaton,Mondelez International,US,GLEIF_golden_copy
-549300WV6GIDOZJTV909,organizaton,Broadcom,US,GLEIF_golden_copy
-LUZQVYP4VS22CLWDAR65,organizaton,3M Co,US,GLEIF_golden_copy
-3BNYRYQHD39K4LCKQF12,organizaton,Marathon Petroleum,US,GLEIF_golden_copy
-529900TACNVLY9DCR586,organizaton,Progressive,US,GLEIF_golden_copy
-UE2136O97NLB5BYP9H04,organizaton,McDonald's,US,GLEIF_golden_copy
-9C1X8XOOTYY2FNYTVH06,organizaton,General Dynamics,US,GLEIF_golden_copy
-549300N0B7DOGLXWPP39,organizaton,Aflac,US,GLEIF_golden_copy
-549300Y650407RU8B149,organizaton,Travelers,US,GLEIF_golden_copy
-FRDRIPF3EKNDJ2CQJL29,organizaton,Eli Lilly & Co.,US,GLEIF_golden_copy
-549300VSGCJ7E698NM85,organizaton,Charles Schwab,US,GLEIF_golden_copy
-529900PH4ZGUH2MNEU89,organizaton,HCA Healthcare,US,GLEIF_golden_copy
-S4BKK9OTCEWQ3YHPFM11,organizaton,Danaher,US,GLEIF_golden_copy
-529900YLDW34GJAO4J06,organizaton,Humana,US,GLEIF_golden_copy
-RIMU48P07456QXSO0R61,organizaton,Northrop Grumman,US,GLEIF_golden_copy
-H1J8DDZKZP6H7RWC0H53,organizaton,QUALCOMM,US,GLEIF_golden_copy
-6CPEOKI6OYJ13Q6O7870,organizaton,Kroger,US,GLEIF_golden_copy
-AR5L2ODV9HN37376R084,organizaton,MasterCard Incorporated,US,GLEIF_golden_copy
-B3DXGBC8GAIYWI2Z0172,organizaton,Micron Technology,US,GLEIF_golden_copy
-549300Z7JJ4TQSQGT333,organizaton,Centene,US,GLEIF_golden_copy
-V167QI9I69W364E2DY52,organizaton,TJX Companies,US,GLEIF_golden_copy
-HGBOLILQXWER4SAL2I23,organizaton,Automatic Data Processing,US,GLEIF_golden_copy
-549300LO13MQ9HYSTR83,organizaton,Archer Daniels Midland,US,GLEIF_golden_copy
-B1V7KEBTPIMZEU4LTD58,organizaton,Fannie Mae,US,GLEIF_golden_copy
-WD6L6041MNRW1JE49D58,organizaton,Tyson Foods,US,GLEIF_golden_copy
-549300JVQR4N1MMP3Q88,organizaton,CSX,US,GLEIF_golden_copy
-PBBKGKLRK5S5C0Y4T545,organizaton,Sempra Energy,US,GLEIF_golden_copy
-549300B5KDM3X3M4QY33,organizaton,Freddie Mac,US,GLEIF_golden_copy
-ICE2EP6D98PQUILVRZ91,organizaton,Becton Dickinson,US,GLEIF_golden_copy
-5493002F0SC4JTBU5137,organizaton,Stryker,US,GLEIF_golden_copy
-549300WR7IX8XE0TBO16,organizaton,Kinder Morgan,US,GLEIF_golden_copy
-FGLT0EWZSUIRRITFOA30,organizaton,Emerson Electric Co.,US,GLEIF_golden_copy
-549300XMP3KDCKJXIU47,organizaton,Marsh & McLennan,US,GLEIF_golden_copy
-6ZLKQF7QB6JAEKQS5388,organizaton,Ameriprise Financial,US,GLEIF_golden_copy
-OPX52SQVOZI8IVSWYU66,organizaton,Dollar General,US,GLEIF_golden_copy
-FXM8FAOHMYDIPD38UZ17,organizaton,Booking Holdings,US,GLEIF_golden_copy
-Z1YLO2USPORE63VVUL20,organizaton,Discover Financial Services,US,GLEIF_golden_copy
-549300RS7EWPM9MA6C78,organizaton,Synchrony Financial,US,GLEIF_golden_copy
-KDTEY8BWE486IKZ3CC07,organizaton,PACCAR,US,GLEIF_golden_copy
-5493000F4ZO33MV32P92,organizaton,IntercontinentalExchange,US,GLEIF_golden_copy
-54930036C8MWP850MI84,organizaton,Norfolk Southern,US,GLEIF_golden_copy
-5RGWIFLMGH3YS7KWI652,organizaton,Sysco,US,GLEIF_golden_copy
-549300VSP3RIX7FGDZ51,organizaton,Newmont Mining,US,GLEIF_golden_copy
-54930033SBW53OO8T749,organizaton,Consolidated Edison,US,GLEIF_golden_copy
-GI7UBEJLXYLGR2C7GV83,organizaton,Fiserv,US,GLEIF_golden_copy
-RVHJWBXLJ1RFUBSY1F30,organizaton,Boeing Co,US,GLEIF_golden_copy
-WDJNR2L6D8RWOEB8T652,organizaton,Texas Instruments,US,GLEIF_golden_copy
-549300UTE50ZMDBG8A20,organizaton,L3Harris Technologies,US,GLEIF_golden_copy
-DYTQ8KRTKO7Y2BVU5K74,organizaton,Keurig Dr Pepper,US,GLEIF_golden_copy
-549300I7ROF15MAEVP56,organizaton,Edison International,US,GLEIF_golden_copy
-CUMYEZJOAF02RYZ1JJ85,organizaton,Principal Financial Group,US,GLEIF_golden_copy
-LCZ7XYGSLJUHFXXNXD88,organizaton,CME,US,GLEIF_golden_copy
-AI8GXW8LG5WK7E9UD086,organizaton,AmerisourceBergen,US,GLEIF_golden_copy
-Z15BMIOX8DDH0X2OBP21,organizaton,Sherwin-Williams,US,GLEIF_golden_copy
-529900G61XVRLX5TJX09,organizaton,Lennar,US,GLEIF_golden_copy
-225YDZ14ZO8E1TXUSU86,organizaton,Marriott International,US,GLEIF_golden_copy
-4DR1VPDQMHD3N3QW8W95,organizaton,Carnival,US,GLEIF_golden_copy
-5KYC8KF17ROCY24M3H09,organizaton,ViacomCBS,US,GLEIF_golden_copy
-UDTZ87G0STFETI6HGH41,organizaton,Southwest Airlines Co.,US,GLEIF_golden_copy
-549300S4KLFTLO7GSQ80,organizaton,NVIDIA,US,GLEIF_golden_copy
-549300XTO5VR8SKV1V74,organizaton,Valero Energy,US,GLEIF_golden_copy
-549300DUOO1KXOHPM605,organizaton,Las Vegas Sands,US,GLEIF_golden_copy
-76NA4I14SZCFAYMNSV04,organizaton,Illinois Tool Works,US,GLEIF_golden_copy
-549300E707U7WNPZN687,organizaton,FedEx,US,GLEIF_golden_copy
-OML71K8X303XQONU6T67,organizaton,eBay,US,GLEIF_golden_copy
-549300JE3W6CWY2NAN77,organizaton,Carrier Global,US,GLEIF_golden_copy
-98450079DA0B78DD6764,organizaton,United Airlines Holdings,US,GLEIF_golden_copy
-549300GLF98S992BC502,organizaton,Northern Trust,US,GLEIF_golden_copy
-5493006IEVQEFQO40L83,organizaton,Cognizant Technology,US,GLEIF_golden_copy
-549300WZWOM80UCFSF54,organizaton,McKesson,US,GLEIF_golden_copy
-549300WYXDDBYRASEG81,organizaton,M&T Bank,US,GLEIF_golden_copy
-R8V1FN4M5ITGZOG7BS19,organizaton,Loews,US,GLEIF_golden_copy
-7QEON6Y1RL5XR3R1W237,organizaton,Air Products & Chemicals,US,GLEIF_golden_copy
-9N3UAJSNOUXFKQLF3V18,organizaton,PPL,US,GLEIF_golden_copy
-EFQMQROEDSNBRIP7LE47,organizaton,Lincoln National,US,GLEIF_golden_copy
-RKPI3RZGV1V1FJTH5T61,organizaton,KeyCorp,US,GLEIF_golden_copy
-529900U350CWHH15G169,organizaton,DISH Network,US,GLEIF_golden_copy
-XSGZFLO9YTNO9VCQV219,organizaton,Altria,US,GLEIF_golden_copy
-5493002CONDB4N2HKI23,organizaton,Parker-Hannifin,US,GLEIF_golden_copy
-5493006ZCRFWKF6B1K26,organizaton,Discovery,US,GLEIF_golden_copy
-54930043XZGB27CTOV49,organizaton,Tesla Motors,US,GLEIF_golden_copy
-ZI85ER3E6RXD4HPHW309,organizaton,TD Ameritrade Holding,US,GLEIF_golden_copy
-J5OIVXX3P24RJRW5CK77,organizaton,Baxter International,US,GLEIF_golden_copy
-D71FAKCBLFS2O0RBPG08,organizaton,Williams,US,GLEIF_golden_copy
-549300PMSTQITB1WHR43,organizaton,Dollar Tree,US,GLEIF_golden_copy
-54930066VBP7DZEGGJ87,organizaton,MGM Resorts,US,GLEIF_golden_copy
-824LMFJDH41EY779Q875,organizaton,International Paper Company,US,GLEIF_golden_copy
-549300BKPEP01R3V6C59,organizaton,PPG Industries,US,GLEIF_golden_copy
-549300DDU6FDRBIELS05,organizaton,Fox,US,GLEIF_golden_copy
-54930012H97VSM0I2R19,organizaton,Crown Castle International,US,GLEIF_golden_copy
-NKNQHM6BLECKVOQP7O46,organizaton,Republic Services,US,GLEIF_golden_copy
-52990016II9MJ2OSWA10,organizaton,CBRE,US,GLEIF_golden_copy
-HKUPACFHSSASQK8HLS17,organizaton,Omnicom,US,GLEIF_golden_copy
-549300ENZFLPGRDFZQ60,organizaton,Ross Stores,US,GLEIF_golden_copy
-LONOZNOJYIBXOHXWDB86,organizaton,Kellogg Company,US,GLEIF_golden_copy
-6WQI0GK1PRFVBA061U48,organizaton,Fidelity National Information,US,GLEIF_golden_copy
-CW05CS5KW59QTC0DG824,organizaton,Regions Financial,US,GLEIF_golden_copy
-549300RCBFWIRX3HYQ56,organizaton,Regeneron Pharmaceuticals,US,GLEIF_golden_copy
-K2NEH8QNVW44JIWK7Z55,organizaton,Royal Caribbean Cruises,US,GLEIF_golden_copy
-549300SVYJS666PQJH88,organizaton,FirstEnergy,US,GLEIF_golden_copy
-549300JBN1OSM8YNAI90,organizaton,Ally Financial,US,GLEIF_golden_copy
-2P2YLDVPES3BXQ1FRB91,organizaton,Zimmer Biomet Holdings,US,GLEIF_golden_copy
-549300I4GMO6D34U1T02,organizaton,Lam Research,US,GLEIF_golden_copy
-CCU46N3GJMF4OK4N7U60,organizaton,Cardinal Health,US,GLEIF_golden_copy
-549300TPQQDBP9GNOF40,organizaton,Activision Blizzard,US,GLEIF_golden_copy
-LORM1GNEU1DKEW527V90,organizaton,Reinsurance  of America,US,GLEIF_golden_copy
-GA3JGKJ41LJKXDN23E90,organizaton,Autozone,US,GLEIF_golden_copy
-YWC0TIKBQM2JV8L4IV08,organizaton,First Republic Bank,US,GLEIF_golden_copy
-549300JEB576INN13W07,organizaton,WestRock,US,GLEIF_golden_copy
-549300GGJCRSI2TIEJ46,organizaton,Nucor,US,GLEIF_golden_copy
-RGUZHJ05YTITL6D76949,organizaton,Raymond James Financial,US,GLEIF_golden_copy
-54930035UDEIH090K650,organizaton,ConAgra Foods,US,GLEIF_golden_copy
-549300K2RLMQL149Q332,organizaton,O'Reilly Automotive,US,GLEIF_golden_copy
-549300WZN9I2QKLS0O94,organizaton,Corteva,US,GLEIF_golden_copy
-549300XTVCVV9I7B5T19,organizaton,Huntington Bank,US,GLEIF_golden_copy
-54930003T4SXCIWVXY35,organizaton,Roper Technologies,US,GLEIF_golden_copy
-549300ZLBKR8VSU25153,organizaton,Otis Worldwide,US,GLEIF_golden_copy
-549300E32YFDO6TZ8R31,organizaton,Unum,US,GLEIF_golden_copy
-MIHC87W9WTYSYZWV1J40,organizaton,Cheniere Energy,US,GLEIF_golden_copy
-FY8JBF7CCL2VE4F1B628,organizaton,Pioneer Natural Resources Co,US,GLEIF_golden_copy
-549300HVGPK36ICB0B89,organizaton,Hilton Worldwide Holdings,US,GLEIF_golden_copy
-M1YXUUZR0EIMU8T0EM75,organizaton,Alexion Pharmaceuticals,US,GLEIF_golden_copy
-0BGI85ALH27ZJP15DY16,organizaton,Ball,US,GLEIF_golden_copy
-549300HD9Q1LOC9KLJ48,organizaton,Zoetis,US,GLEIF_golden_copy
-2T3D6M0JSY48PSZI1Q41,organizaton,ONEOK,US,GLEIF_golden_copy
-549300FIBAKMNHPZ4009,organizaton,Equitable Holdings,US,GLEIF_golden_copy
-MSD54751OJP1FS2ND863,organizaton,Hormel Foods,US,GLEIF_golden_copy
-WHENKOULSSK7WUM60H03,organizaton,Whirlpool,US,GLEIF_golden_copy
-549300D3L3G0R4U4VT04,organizaton,Amphenol TCS,US,GLEIF_golden_copy
-549300D2KJ20JMXE7542,organizaton,SVB Financial,US,GLEIF_golden_copy
-21X2CX66SU2BR6QTAD08,organizaton,Hershey Company,US,GLEIF_golden_copy
-549300O7A67PUEYKDL45,organizaton,Electronic Arts,US,GLEIF_golden_copy
-549300AFOM7IVKIU1G39,organizaton,American Financial,US,GLEIF_golden_copy
-549300D46DQVEU651W04,organizaton,Genuine Parts Co,US,GLEIF_golden_copy
-549300NOMHGVQBX6S778,organizaton,Global Payments,US,GLEIF_golden_copy
-549300MU9YQJYHDQEF63,organizaton,Fortive,US,GLEIF_golden_copy
-549300EVUN2BTLJ3GT74,organizaton,EQUINIX,US,GLEIF_golden_copy
-549300IRDTHJQ1PVET45,organizaton,Freeport-McMoRan Copper,US,GLEIF_golden_copy
-M2XHYMU3TZNEZURC6H66,organizaton,DaVita,US,GLEIF_golden_copy
-254900U6E39J1MQCCY14,organizaton,Medical Properties Trust,US,GLEIF_golden_copy
-549300X2937PB0CJ7I56,organizaton,Corning,US,GLEIF_golden_copy
-549300SIV6FPS9Y7IH33,organizaton,T Rowe Price,US,GLEIF_golden_copy
-DS830JTTZQN6GK0I2E41,organizaton,LKQ,US,GLEIF_golden_copy
-YF6ZV0M6AU4FY94MK914,organizaton,NortonLifeLock,US,GLEIF_golden_copy
-549300W3R20NM4KQPH86,organizaton,IQVIA,US,GLEIF_golden_copy
-549300LYE2HSVYJFJD24,organizaton,E-Trade Financial,US,GLEIF_golden_copy
-6S552MUG6KGJVEBSEC55,organizaton,Motorola Solutions,US,GLEIF_golden_copy
-54930015RAQRRZ5ZGJ91,organizaton,Vertex Pharmaceuticals,US,GLEIF_golden_copy
-54930049QLLMPART6V29,organizaton,Gallagher,US,GLEIF_golden_copy
-549300QQXOOYEF89IC56,organizaton,Western Digital,US,GLEIF_golden_copy
-549300DCJE6AYX159479,organizaton,Alleghany,US,GLEIF_golden_copy
-549300TWZSP6O1IH2V34,organizaton,WW Grainger,US,GLEIF_golden_copy
-5493005GKEG8QCVY7037,organizaton,Constellation Brands,US,GLEIF_golden_copy
-549300HKCZ31D08NEI41,organizaton,Digital Realty,US,GLEIF_golden_copy
-54930052SRG011710797,organizaton,Intuitive Surgical,US,GLEIF_golden_copy
-54930064K3612MGCER95,organizaton,Altice USA,US,GLEIF_golden_copy
-IWUQB36BXD6OWD6X4T14,organizaton,American Airlines,US,GLEIF_golden_copy
-549300NQQCEQ46YHZ591,organizaton,Molina Healthcare,US,GLEIF_golden_copy
-T6IZ0MBEG5ACZDTR7D06,organizaton,Welltower,US,GLEIF_golden_copy
-549300FEKNPCFSA2B506,organizaton,Oshkosh,US,GLEIF_golden_copy
-549300IUTGTP6EJP8124,organizaton,Leidos,US,GLEIF_golden_copy
-529900NZQ81TIOW3CW52,organizaton,Macy's,US,GLEIF_golden_copy
-YA13X31F3V31L8TMPR58,organizaton,Edwards Lifesciences,US,GLEIF_golden_copy
-549300DXHIJQMD5WFW18,organizaton,American Water Works,US,GLEIF_golden_copy
-ENYF8GB5SMQZ25S06U51,organizaton,Halliburton Company,US,GLEIF_golden_copy
-549300H0BF5JCG96TJ81,organizaton,KLA,US,GLEIF_golden_copy
-549300PGTHDQY6PSUI61,organizaton,Evergy,US,GLEIF_golden_copy
-5493000WDH6A0LHDJD55,organizaton,JM Smucker,US,GLEIF_golden_copy
-SQOAGCLKBDWNVYV1OV80,organizaton,W R Berkley,US,GLEIF_golden_copy
-SQ95QG8SR5Q56LSNF682,organizaton,Illumina,US,GLEIF_golden_copy
-R2I72C950HOYXII45366,organizaton,Advanced Micro Devices,US,GLEIF_golden_copy
-5493007PTFULNYZJ1R12,organizaton,Microchip Technology,US,GLEIF_golden_copy
-54930044KVSC06Z79I06,organizaton,Clorox,US,GLEIF_golden_copy
-52990090AP0E7HCB6F33,organizaton,Monster Beverage,US,GLEIF_golden_copy
-549300EMCG286BDNKJ33,organizaton,Genworth Financial,US,GLEIF_golden_copy
-FDPVHDGJ1IQZFK9KH630,organizaton,Eastman Chemical,US,GLEIF_golden_copy
-549300HOF34RGOJ5YL07,organizaton,Jefferies Financial,US,GLEIF_golden_copy
-VH3R4HHBHH12O0EXZJ88,organizaton,Rockwell Automation,US,GLEIF_golden_copy
-549300N5YSE0U3LCP840,organizaton,Align Technology,US,GLEIF_golden_copy
-OZ7UA8IXAIFILY2VZH07,organizaton,LabCorp,US,GLEIF_golden_copy
-5GCSNMQXHEYA1JO8QN11,organizaton,Masco,US,GLEIF_golden_copy
-549300HJTQM36M0E1G39,organizaton,ServiceNow,US,GLEIF_golden_copy
-549300UPNBTXA1SYTQ33,organizaton,Lear,US,GLEIF_golden_copy
-549300SCNO12JLWIK605,organizaton,Markel,US,GLEIF_golden_copy
-549300YGMGQDO0NMJD09,organizaton,Universal Health Services,US,GLEIF_golden_copy
-549300873K3LXF7ARU34,organizaton,Brown-Forman,US,GLEIF_golden_copy
-H3F39CAXWQRVWURFXL38,organizaton,Assurant,US,GLEIF_golden_copy
-549300E3VEW8SMS5XW09,organizaton,OneMain Holdings,US,GLEIF_golden_copy
-2NUNNB7D43COUIRE5295,organizaton,AES,US,GLEIF_golden_copy
-GCT7RXJOGLXPV0NXZY22,organizaton,Cadence Design,US,GLEIF_golden_copy
-549300JF6LPRTRJ0FH50,organizaton,Kohl's,US,GLEIF_golden_copy
-QUIX8Y7A2WP0XRMW7G29,organizaton,Agilent Technologies,US,GLEIF_golden_copy
-529900PP0C7H2HHPSJ32,organizaton,Fastenal Co,US,GLEIF_golden_copy
-529900WNWN5L0OVDHA79,organizaton,C.H. Robinson,US,GLEIF_golden_copy
-549300FMC2ALGA7N9E80,organizaton,Dover,US,GLEIF_golden_copy
-5493008IUOJ5VWTRC333,organizaton,Interpublic,US,GLEIF_golden_copy
-CY1NFSCCB5GUXC7WZC70,organizaton,Darden Restaurants,US,GLEIF_golden_copy
-529900RWXR4JI3JYTV70,organizaton,NVR,US,GLEIF_golden_copy
-549300ZC1GPV35XYDK53,organizaton,Bio-Rad Laboratories,US,GLEIF_golden_copy
-549300DG6RR0NQSFLN74,organizaton,Fleetcor Technologies,US,GLEIF_golden_copy
-5493008C12PZMWP3WY03,organizaton,Kansas City Southern,US,GLEIF_golden_copy
-549300WZDEF9KKE40E98,organizaton,Ametek,US,GLEIF_golden_copy
-LMPL4N8ZOJRMF0KOF759,organizaton,Verisign,US,GLEIF_golden_copy
-529900CIV6HN8M28YM82,organizaton,Ulta Beauty,US,GLEIF_golden_copy
-5493001JFHKQOPP6XA71,organizaton,Globe Life,US,GLEIF_golden_copy
-5493003T8SZSHOGGAW52,organizaton,Brighthouse Financial,US,GLEIF_golden_copy
-5493007JDSMX8Z5Z1902,organizaton,Campbell Soup,US,GLEIF_golden_copy
-549300EI6OKH5K5Q2G38,organizaton,Moderna,US,GLEIF_golden_copy
-RIFQSET379FOGTEFKS80,organizaton,Franklin Resources,US,GLEIF_golden_copy
-984500B055A804AB6E40,organizaton,Expeditors International,US,GLEIF_golden_copy
-6EY4K7ZMF9UX1CU6KC79,organizaton,Xilinx,US,GLEIF_golden_copy
-549300OJ9VZHZRO6I137,organizaton,Tractor Supply Co,US,GLEIF_golden_copy
-ECPGFXU8A2SHKVVGJI15,organizaton,Invesco,US,GLEIF_golden_copy
-549300DOVZ3EDJB7O259,organizaton,DXC Technology,US,GLEIF_golden_copy
-549300HO5WFZUT5N2T22,organizaton,Howmet Aerospace,US,GLEIF_golden_copy
-5493007M0RIN8HY3MM77,organizaton,Bunge,US,GLEIF_golden_copy
-549300WZ3ORQ2BVKBD96,organizaton,Skyworks Solutions,US,GLEIF_golden_copy
-635400H1WKBLOQERUU95,organizaton,Arista Networks,US,GLEIF_golden_copy
-54930067J0ZNOEBRW338,organizaton,Navient,US,GLEIF_golden_copy
-549300JI1115MG3Q6322,organizaton,Mohawk Industries,US,GLEIF_golden_copy
-549300XCD1MPI1C5GK90,organizaton,J.B. Hunt Transport Services,US,GLEIF_golden_copy
-UASVRYNXNK17ULIGK870,organizaton,Hess,US,GLEIF_golden_copy
-2DTL0G3FPRYUT58TI025,organizaton,Annaly Capital Management,US,GLEIF_golden_copy
-549300CUWDAUZSH43859,organizaton,Realty Income,US,GLEIF_golden_copy
-HCTKJGUQOPZ5NBK7NP58,organizaton,Citrix Systems,US,GLEIF_golden_copy
-549300KVYX3JWMYEHU61,organizaton,Copart,US,GLEIF_golden_copy
-549300L4UJ40IEVVI304,organizaton,Cerner,US,GLEIF_golden_copy
-549300CAZYIH39SYQ287,organizaton,Fidelity National Financial,US,GLEIF_golden_copy
-QTX3D84DZDD5JYOCYH15,organizaton,NetApp,US,GLEIF_golden_copy
-SO0H5YEO14Y4PVKQH532,organizaton,Maxim Integrated Products,US,GLEIF_golden_copy
-VLP5AP0XK2GM6GKD1007,organizaton,Signature Bank,US,GLEIF_golden_copy
-549300W7UTQ0M4C7LB15,organizaton,Penske Automotive,US,GLEIF_golden_copy
-549300HTIN2PD78UB763,organizaton,MSCI,US,GLEIF_golden_copy
-549300GLKVIO8YRCYN02,organizaton,Keysight Technologies,US,GLEIF_golden_copy
-ORQTRC074CWLT3DKHT41,organizaton,Ventas,US,GLEIF_golden_copy
-5493004HI6PFLF46NS53,organizaton,SYNNEX,US,GLEIF_golden_copy
-06BTX5UWZD0GQ5N5Y745,organizaton,Westinghouse Air Brake Technologies,US,GLEIF_golden_copy
-0W9AIBT6U6ADJ2I8HK17,organizaton,Tenet Healthcare,US,GLEIF_golden_copy
-BUGSFQZERKRBFWIG5267,organizaton,Starwood Property Trust,US,GLEIF_golden_copy
-549300WYXDDBYRASEG81,organizaton,People's United Financial,US,GLEIF_golden_copy
-549300FHJQTDPPN41627,organizaton,Celanese,US,GLEIF_golden_copy
-254900Q4WEDMZBOZ0002,organizaton,Cincinnati Financial,US,GLEIF_golden_copy
-549300DSFX2IE88NSX47,organizaton,BorgWarner,US,GLEIF_golden_copy
-N6EL63S0K3PB1YFTDI24,organizaton,Host Hotels & Resorts,US,GLEIF_golden_copy
-08IRJODWFYBI7QWRGS31,organizaton,Weyerhaeuser Company,US,GLEIF_golden_copy
-5299009TWK32WE417T96,organizaton,Old Dominion Freight Line,US,GLEIF_golden_copy
-549300XZP8MFZFY8TJ84,organizaton,Packaging of America,US,GLEIF_golden_copy
-549300BIJKT86CPCKK96,organizaton,Match,US,GLEIF_golden_copy
-54930067J0ZNOEBRW338,organizaton,SLM,US,GLEIF_golden_copy
-549300EK847TAWPJWF34,organizaton,Tech Data,US,GLEIF_golden_copy
-549300MR6PG2DWZUIL39,organizaton,Aramark,US,GLEIF_golden_copy
-529900T3QE5253CCXF22,organizaton,ResMed,US,GLEIF_golden_copy
-VGO3WGL8H45T73F4RR92,organizaton,Henry Schein,US,GLEIF_golden_copy
-529900UCNQ5H9FSL0Y70,organizaton,Advance Auto Parts,US,GLEIF_golden_copy
-5299003Z37DVGKKC1W09,organizaton,Burlington Stores,US,GLEIF_golden_copy
-549300Q8LSNHAVWBNI21,organizaton,Vulcan Materials,US,GLEIF_golden_copy
-529900G48RT4KWLC6C27,organizaton,Alaska Air,US,GLEIF_golden_copy
-54930096DB9LCLPN7H13,organizaton,XPO Logistics,US,GLEIF_golden_copy
-5TZLZ6WJTBVJ0QWBG121,organizaton,Huntington Ingalls Industries,US,GLEIF_golden_copy
-549300PW7VPFCYKLIV37,organizaton,Avery Dennison,US,GLEIF_golden_copy
-549300KY09TR3J12JU49,organizaton,SS&C Technologies,US,GLEIF_golden_copy
-5TRACI5HRMELWV32OF39,organizaton,AGNC Investment,US,GLEIF_golden_copy
-5E2UPK5SW04M13XY7I38,organizaton,New Residential Investment,US,GLEIF_golden_copy
-549300I1YSWNIRKBWP67,organizaton,Verisk Analytics,US,GLEIF_golden_copy
-MGCJBT4MKTQBVLNUIS88,organizaton,Alexandria Real Estate Equities,US,GLEIF_golden_copy
-549300YNNLBXT8N8R512,organizaton,Arrow Electronics,US,GLEIF_golden_copy
-549300FA4CTCW903Y781,organizaton,Caesars Entertainment,US,GLEIF_golden_copy
-28ID94QU1140NC23S047,organizaton,Western Union,US,GLEIF_golden_copy
-QVLWEGTD2S8GJMO8D383,organizaton,Atmos Energy,US,GLEIF_golden_copy
-5493003JDENERRDYFN86,organizaton,GCI Liberty,US,GLEIF_golden_copy
-UUL85LWXB4NGSWWXIQ25,organizaton,Teleflex,US,GLEIF_golden_copy
-549300VJV8H15Z5FJ571,organizaton,ANSYS,US,GLEIF_golden_copy
-OGMTXK0LUU1HKV2P0J84,organizaton,IDEXX Laboratories,US,GLEIF_golden_copy
-549300S3IZB5P35KNV16,organizaton,Nordstrom,US,GLEIF_golden_copy
-549300EIUS8UN5JTLE54,organizaton,Synovus Financial,US,GLEIF_golden_copy
-549300DYP6F5ZJL0LB74,organizaton,Hologic,US,GLEIF_golden_copy
-549300LWGYFM1TVO1Z12,organizaton,Newell Rubbermaid,US,GLEIF_golden_copy
-549300E287ZOFT3C5Z56,organizaton,Reliance Steel,US,GLEIF_golden_copy
-549300Z4WN6JVZ3T4680,organizaton,Incyte,US,GLEIF_golden_copy
-549300HGGKEL4FYTTQ83,organizaton,Steel Dynamics,US,GLEIF_golden_copy
-549300UGOZSO64CFPR97,organizaton,US Foods Holding,US,GLEIF_golden_copy
-529900JPV47PIUWMA015,organizaton,Booz Allen Hamilton Holding,US,GLEIF_golden_copy
-ERO1WSFOSR0JJ6CRQ987,organizaton,ManpowerGroup,US,GLEIF_golden_copy
-549300OHIIUWSTIZME52,organizaton,Square,US,GLEIF_golden_copy
-54930027N9ZAVYFDHK53,organizaton,Wayfair,US,GLEIF_golden_copy
-5299005MZ4WZECVATV08,organizaton,Martin Marietta Materials,US,GLEIF_golden_copy
-549300I1RRC5M591MY93,organizaton,American National Insurance,US,GLEIF_golden_copy
-549300TR2H2VEFX0NC60,organizaton,Essex Property Trust,US,GLEIF_golden_copy
-GRI2NT5QHYW751NMR949,organizaton,BOK Financial,US,GLEIF_golden_copy
-5493000CGCQY2OQU7669,organizaton,Jabil Circuit,US,GLEIF_golden_copy
-549300TO56L57RP6P031,organizaton,IAC/InterActiveCorp,US,GLEIF_golden_copy
-D3W7PCXCBRQLL17DZ313,organizaton,World Fuel Services,US,GLEIF_golden_copy
-5493002BI0S2ZQUY3437,organizaton,Goodyear,US,GLEIF_golden_copy
-549300PSXEKU4PHLCR04,organizaton,Qurate Retail Group,US,GLEIF_golden_copy
-549300T9GCHU0ODOM055,organizaton,Zoom Video Communications,US,GLEIF_golden_copy
-QJKMVPIGLH7530PCUE20,organizaton,Cooper Companies,US,GLEIF_golden_copy
-529900HVXOTLY61GL030,organizaton,New York Community Bancorp,US,GLEIF_golden_copy
-CZ72ZHBVKZXQRV3XFE26,organizaton,Ovintiv,US,GLEIF_golden_copy
-XXRTID9RYWOZ0UPIVR53,organizaton,Continental Resources,US,GLEIF_golden_copy
-529900E95812SYWMCE44,organizaton,Avis Budget,US,GLEIF_golden_copy
-5299001HX8ZN8Y8QIT49,organizaton,SBA Communications,US,GLEIF_golden_copy
-5T547R1474YC9HOD8Q74,organizaton,Waters,US,GLEIF_golden_copy
-549300YSK3QDSFR5EU59,organizaton,DexCom,US,GLEIF_golden_copy
-549300YZEXPDB92M2F02,organizaton,Veeva Systems,US,GLEIF_golden_copy
-C3X4YJ278QNZHRJULN75,organizaton,Teradyne,US,GLEIF_golden_copy
-549300GKGW6WPZ282D40,organizaton,United Natural Foods,US,GLEIF_golden_copy
-2549003PBEDCSZMZIY02,organizaton,PBF Energy,US,GLEIF_golden_copy
-CKDHZ2X64EEBQCSP7013,organizaton,FMC,US,GLEIF_golden_copy
-5493004DT6DCDUZNDM53,organizaton,Interactive Brokers,US,GLEIF_golden_copy
-549300U0EXXFAQFAD785,organizaton,Tenneco,US,GLEIF_golden_copy
-549300EUK8GR9IT1YK57,organizaton,Performance Food Group,US,GLEIF_golden_copy
-25490005ZWM1IF9UXU57,organizaton,Domino's Pizza,US,GLEIF_golden_copy
-PO0I32GKZ3HZMMDPZZ08,organizaton,Zebra Technologies,US,GLEIF_golden_copy
-529900W353T1JY1DKT44,organizaton,Rite Aid,US,GLEIF_golden_copy
-549300DF5MV96DRYLQ48,organizaton,Xylem,US,GLEIF_golden_copy
-5493004NW4M4P8TMMK63,organizaton,Air Lease,US,GLEIF_golden_copy
-54930070J9H97ZO93T57,organizaton,JetBlue Airways,US,GLEIF_golden_copy
-5493003VJXZ5JXT9S762,organizaton,Western Alliance Bancorp.,US,GLEIF_golden_copy
-549300KZDJZQ2YIHRC28,organizaton,Broadridge Financial Solutions,US,GLEIF_golden_copy
-549300XGDSGBP6UEI867,organizaton,Splunk,US,GLEIF_golden_copy
-WEQ82666OJYSI5GUAB47,organizaton,Ares Capital,US,GLEIF_golden_copy
-N8O96ZZJQRFYQUJY7K79,organizaton,CIT,US,GLEIF_golden_copy
-SHVRXXEACT60MMH07S24,organizaton,Quanta Services,US,GLEIF_golden_copy
-2YD5STGSJNMUB7H76907,organizaton,Mosaic Company,US,GLEIF_golden_copy
-5493003QENHHS261UR94,organizaton,Targa Resources,US,GLEIF_golden_copy
-11XPYHB76MPM4Y4P2897,organizaton,CNO Financial,US,GLEIF_golden_copy
-XJI53DCPL7QABOWK4Z75,organizaton,Avnet,US,GLEIF_golden_copy
-254900CEKKWIHTEAB172,organizaton,Wynn Resorts,US,GLEIF_golden_copy
-549300N8J06I8MRHU620,organizaton,Okta,US,GLEIF_golden_copy
-TF3RXI1ZB1TQ30H9JV10,organizaton,First Horizon National,US,GLEIF_golden_copy
-DX6GCWD4Q1JO9CRE5I40,organizaton,UGI,US,GLEIF_golden_copy
-549300C8EH0H1614VE84,organizaton,RingCentral,US,GLEIF_golden_copy
-CQ7WZ4NOFWT7FAE6Q943,organizaton,Fluor,US,GLEIF_golden_copy
-529900CI5YANWVE54N57,organizaton,Core-Mark Holding,US,GLEIF_golden_copy
-5299000V56320A7RIQ67,organizaton,Huntsman,US,GLEIF_golden_copy
-549300QXR2YVZV231H43,organizaton,Palo Alto Networks,US,GLEIF_golden_copy
-549300O0QJWDBAS0QX03,organizaton,Fortinet,US,GLEIF_golden_copy
-549300Q7PVDWRZ39JG09,organizaton,DocuSign,US,GLEIF_golden_copy
-549300B6VEZK3N0A1P55,organizaton,First American Financial,US,GLEIF_golden_copy
-549300Y081F8XIKQIO72,organizaton,Murphy Oil,US,GLEIF_golden_copy
-549300Y081F8XIKQIO72,organizaton,Murphy USA,US,GLEIF_golden_copy
-529900V2E9G9AY665O34,organizaton,Cullen/Frost Bankers,US,GLEIF_golden_copy
-HHWAT5TDOYZMM26KKQ73,organizaton,Snap-On,US,GLEIF_golden_copy
-549300U5Y5EL6PHYLF13,organizaton,IDEX,US,GLEIF_golden_copy
-549300VSMO9KYQWDND94,organizaton,Teledyne Technologies,US,GLEIF_golden_copy
-PZ9HF5U52KPF0MH0QN75,organizaton,Healthpeak Properties,US,GLEIF_golden_copy
-549300E5F07FE5GHJX84,organizaton,Stifel Financial,US,GLEIF_golden_copy
-549300ZCZ76HYCS0H445,organizaton,Frontier Communications,US,GLEIF_golden_copy
-549300ZS772LUNUMRB03,organizaton,TransUnion,US,GLEIF_golden_copy
-GOXNEVUM0LL78B1OS344,organizaton,Westlake Chemical,US,GLEIF_golden_copy
-549300E2MI7NSZFQWS19,organizaton,Trimble,US,GLEIF_golden_copy
-549300X383CBNP6MTV94,organizaton,Foot Locker,US,GLEIF_golden_copy
-1FRVQX2CRLGC1XLP5727,organizaton,Marathon Oil,US,GLEIF_golden_copy
-5493002U1CA1XJOVID83,organizaton,Marketaxess Holdings,US,GLEIF_golden_copy
-5493004MCF8JDC86VS77,organizaton,Equifax,US,GLEIF_golden_copy
-2JBBQFJOL123LOUBE657,organizaton,Chimera Investment,US,GLEIF_golden_copy
-NSLL8ITTRR0J5HEMR848,organizaton,Biomarin Pharmaceutical,US,GLEIF_golden_copy
-5493005SMYID1D2OY946,organizaton,Lamb Weston Holdings,US,GLEIF_golden_copy
-549300BO9IWPF3S48F93,organizaton,Coty,US,GLEIF_golden_copy
-529900JB6IS9MSZGVR44,organizaton,Toll Brothers,US,GLEIF_golden_copy
-T27JQIMTYSH41TCD5186,organizaton,Hyatt Hotels,US,GLEIF_golden_copy
-5493004W8TRGD63APX93,organizaton,Twilio,US,GLEIF_golden_copy
-549300PC8KTJ71XKFY89,organizaton,Brown & Brown,US,GLEIF_golden_copy
-549300YKTY8JX1DV2R67,organizaton,NCR,US,GLEIF_golden_copy
-549300KR6ITU0YIR1T71,organizaton,Roku,US,GLEIF_golden_copy
-Q774KI4AW80FHFW33O61,organizaton,Wintrust Financial,US,GLEIF_golden_copy
-JNLUVFYJT1OZSIQ24U47,organizaton,US Steel,US,GLEIF_golden_copy
-PCYSKIGYNYFDTBLVZU83,organizaton,F.N.B.,US,GLEIF_golden_copy
-549300KWWR4P1RYUVG65,organizaton,Sears Holdings,US,GLEIF_golden_copy
-549300FQZKFR5YNSHZ21,organizaton,Mid-America Apartment Communities,US,GLEIF_golden_copy
-254900LSB0HNJUDC6Q18,organizaton,Paycom,US,GLEIF_golden_copy
-BOMSTHHJK882EWYX3334,organizaton,Take-Two Interactive Software,US,GLEIF_golden_copy
-549300ET52S1UBIB9762,organizaton,Valley Natl Bancorp,US,GLEIF_golden_copy
-X2MT1W32SPAZ9WSKLE78,organizaton,Chesapeake Energy,US,GLEIF_golden_copy
-529900S3ZI14OWRJII50,organizaton,Alnylam Pharmaceuticals,US,GLEIF_golden_copy
-FCNMH6O7VWU7LHXMK351,organizaton,Cabot Oil & Gas,US,GLEIF_golden_copy
-549300R22LSX6OHWEN64,organizaton,Diamondback Energy,US,GLEIF_golden_copy
-529900O1DTDLCJ7L0I14,organizaton,Heico,US,GLEIF_golden_copy
-54930042CRNE713E3Q67,organizaton,W.P. Carey,US,GLEIF_golden_copy
-815600354DEDBD0BA991,organizaton,Poste Italiane,IT,GLEIF_golden_copy
-8156008DEC771409C487,organizaton,Atlantia,IT,GLEIF_golden_copy
-LAXUQCHT4FH58LRZDY46,organizaton,Eni SpA,IT,GLEIF_golden_copy
-2W8N8UU78PMDQKZENC08,organizaton,Intesa Sanpaolo,IT,GLEIF_golden_copy
-549300TRUWO2CD2G5692,organizaton,UniCredit,IT,GLEIF_golden_copy
-549300W384M3RI3VXU42,organizaton,Telecom Italia SpA,IT,GLEIF_golden_copy
-8156005CE5E7340CCA86,organizaton,Unipol Gruppo,IT,GLEIF_golden_copy
-8156002278562044AF79,organizaton,Snam,IT,GLEIF_golden_copy
-815600E4E6DCD2D25E30,organizaton,Banco BPM,IT,GLEIF_golden_copy
-353800PJDODZEA4NP730,organizaton,Mediobanca,IT,GLEIF_golden_copy
-8156009E94ED54DE7C31,organizaton,Terna,IT,GLEIF_golden_copy
-7LVZJ6XRIE7VNZ4UBX81,organizaton,Banca Mediolanum,IT,GLEIF_golden_copy
-549300HTIN2PD78UB763,organizaton,Banca MPS,IT,GLEIF_golden_copy
-N747OI7JINV7RUUH6190,organizaton,BPER Banca,IT,GLEIF_golden_copy
-549300L7YCATGO57ZE10,organizaton,FinecoBank,IT,GLEIF_golden_copy
-8156004B244AA70DE787,organizaton,Credito Emiliano,IT,GLEIF_golden_copy
-J48C8PCSJVUBR8KCW529,organizaton,Banca Popolare di Sondrio,IT,GLEIF_golden_copy
-549300PHV8MBDHWB8X12,organizaton,Saipem,IT,GLEIF_golden_copy
-353800W25FCOFE32EM73,organizaton,Asahi  Holdings,JP,GLEIF_golden_copy
-549300T6IPOCDWLKC615,organizaton,Hitachi,JP,GLEIF_golden_copy
-353800UT0TLROREPIC92,organizaton,Ajinomoto,JP,GLEIF_golden_copy
-549300FONLMVK7YYYH41,organizaton,Suntory Beverage & Food,JP,GLEIF_golden_copy
-353800GBVL72LLMTYM96,organizaton,Kirin Holdings,JP,GLEIF_golden_copy
-5299005F1HCVF4M4QN79,organizaton,Nomura Research Institute,JP,GLEIF_golden_copy
-529900R5WX9N2OI2N910,organizaton,Sony,JP,GLEIF_golden_copy
-3538001KQ5SAOZSQTT44,organizaton,JXTG Holdings,JP,GLEIF_golden_copy
-5493006W3QUS5LMH6R84,organizaton,Toyota Motor,JP,GLEIF_golden_copy
-5299009QN2NZ191KLS29,organizaton,Tokio Marine Holdings,JP,GLEIF_golden_copy
-254900GE1G59KGWPHX32,organizaton,Panasonic,JP,GLEIF_golden_copy
-353800Z0ENYBQO0XRJ31,organizaton,Japan Tobacco,JP,GLEIF_golden_copy
-V82KK8NH1P0JS71FJC05,organizaton,Sumitomo,JP,GLEIF_golden_copy
-WOCMU6HCI0OJWNPRZS33,organizaton,JX Holdings,JP,GLEIF_golden_copy
-549300DHPOF90OYYD780,organizaton,Bridgestone,JP,GLEIF_golden_copy
-529900JH1GSC035SSP77,organizaton,Canon,JP,GLEIF_golden_copy
-549300Y7FWSTSHMW5Y57,organizaton,Daikin Industries,JP,GLEIF_golden_copy
-3538000246DHJLRTUZ24,organizaton,Fujitsu,JP,GLEIF_golden_copy
-529900UBKMFM0ST6H474,organizaton,Fujifilm Holdings,JP,GLEIF_golden_copy
-549300N244BVAEE6HH86,organizaton,Subaru,JP,GLEIF_golden_copy
-549300ZLMVP4X0OGR454,organizaton,Takeda Pharmaceutical Co,JP,GLEIF_golden_copy
-353800DRBDH1LUTNAY26,organizaton,Nissan Motor Co,JP,GLEIF_golden_copy
-529900IB708DY2HBBB35,organizaton,Astellas Pharma,JP,GLEIF_golden_copy
-5299009MXFL34SA71416,organizaton,Aeon Co,JP,GLEIF_golden_copy
-529900GMNDOYQSAJAE76,organizaton,Sekisui House,JP,GLEIF_golden_copy
-5493000QYMPFRTEY4K28,organizaton,NEC,JP,GLEIF_golden_copy
-3538005O8WNU39U8NX03,organizaton,TDK,JP,GLEIF_golden_copy
-529900YT4O5S0LCXWD54,organizaton,Obayashi,JP,GLEIF_golden_copy
-5299008QCD0YDT5OF506,organizaton,Shiseido Co,JP,GLEIF_golden_copy
-3538004IOK08PDY6I723,organizaton,Aisin Seiki Co,JP,GLEIF_golden_copy
-529900C0QSXVCC7AR494,organizaton,Isuzu Motors,JP,GLEIF_golden_copy
-3538002MH5L1QZZ93477,organizaton,Japan Airlines,JP,GLEIF_golden_copy
-353800YEPK9PD7QO3449,organizaton,Sharp,JP,GLEIF_golden_copy
-3538005PGNIBTZYXAE45,organizaton,Tokyu,JP,GLEIF_golden_copy
-353800JX1R4582QVK932,organizaton,Terumo,JP,GLEIF_golden_copy
-353800HDEE0ZYEX4QV91,organizaton,Eisai Co,JP,GLEIF_golden_copy
-529900LVC9GIIYUGE243,organizaton,Oji Holdings,JP,GLEIF_golden_copy
-5299002D52YIP6DWMV49,organizaton,Meiji Holdings,JP,GLEIF_golden_copy
-353800QQ4DRI3KXS3038,organizaton,Daito Trust Construction,JP,GLEIF_golden_copy
-549300ZHW0TR2QZ0NY83,organizaton,OMRON,JP,GLEIF_golden_copy
-353800UQ4BZIJTAQEG85,organizaton,Uni-Charm,JP,GLEIF_golden_copy
-529900RYRJUN78A7PL87,organizaton,Nippon Paint,JP,GLEIF_golden_copy
-353800CF81IXL9974H84,organizaton,Sumitomo Metal Mining Co,JP,GLEIF_golden_copy
-5493008FFSI8SQ74AT93,organizaton,Kawasaki Heavy Industries,JP,GLEIF_golden_copy
-529900S7NFNQ4FT6OP83,organizaton,Dai Nippon Printing Co,JP,GLEIF_golden_copy
-529900KQIVT7NWFNMI70,organizaton,Sekisui Chemical Co,JP,GLEIF_golden_copy
-353800EMK32PDKS9XR54,organizaton,Advantest,JP,GLEIF_golden_copy
-353800V2V8PUY9TK3E06,organizaton,Mitsubishi UFJ Financial,JP,GLEIF_golden_copy
-5493003BZYYYCDIO0R13,organizaton,SoftBank,JP,GLEIF_golden_copy
-5299003D9N4JBS256X18,organizaton,Japan Post Holdings Co,JP,GLEIF_golden_copy
-35380028MYWPB6AUO129,organizaton,Sumitomo Mitsui Financial,JP,GLEIF_golden_copy
-549300P7ZYCQJ36CCS16,organizaton,Honda Motor Company,JP,GLEIF_golden_copy
-KVIPTY4PULAPGC1VVD26,organizaton,Mitsubishi,JP,GLEIF_golden_copy
-5299003FU7V4I45FU310,organizaton,KDDI,JP,GLEIF_golden_copy
-J48DJYXDTLHM30UMYI18,organizaton,Itochu,JP,GLEIF_golden_copy
-529900CXROT5S2HMMP26,organizaton,MS&AD Insurance  Holdings,JP,GLEIF_golden_copy
-52990037G8JRM3TWGY86,organizaton,Seven & I Holdings,JP,GLEIF_golden_copy
-353800YAR3OVUITHTG64,organizaton,Central Japan Railway Co,JP,GLEIF_golden_copy
-353800SENYJ2DSM6PS44,organizaton,East Japan Railway Co,JP,GLEIF_golden_copy
-35380016EMHNBOVYE123,organizaton,ORIX,JP,GLEIF_golden_copy
-549300TRXM9Y6561AX39,organizaton,Mitsubishi Electric,JP,GLEIF_golden_copy
-353800PX8Q64N86H5W41,organizaton,Shin-Etsu Chemical Co,JP,GLEIF_golden_copy
-353800CWW4SRGEYEB512,organizaton,SOMPO Holdings,JP,GLEIF_golden_copy
-353800ND4ZKNZDYKMF33,organizaton,Mitsui Fudosan Co,JP,GLEIF_golden_copy
-353800P843RLCDBLNT17,organizaton,Sumitomo Mitsui Trust Holdings,JP,GLEIF_golden_copy
-549300RYPA10CQM3QK38,organizaton,Denso,JP,GLEIF_golden_copy
-5493004LQ0B4T7QPQV17,organizaton,Komatsu,JP,GLEIF_golden_copy
-5299004EMJ3R4RVR5Y75,organizaton,Tokyo Electric Power,JP,GLEIF_golden_copy
-35380000WKGEAHEMW830,organizaton,Toyota Industries,JP,GLEIF_golden_copy
-353800R2LRSMVVC4I806,organizaton,Recruit Holdings,JP,GLEIF_golden_copy
-4P4N3ORD02UGQT1T1W12,organizaton,Marubeni,JP,GLEIF_golden_copy
-353800PFUKP5ONPJNZ86,organizaton,Kansai Electric Power Co,JP,GLEIF_golden_copy
-529900A76GOP0PGNHT63,organizaton,Chubu Electric Power Co,JP,GLEIF_golden_copy
-353800D83H0V3ZV1SV24,organizaton,Suzuki Motor,JP,GLEIF_golden_copy
-353800TJ98PCAZROVE69,organizaton,Mitsubishi Heavy Industries,JP,GLEIF_golden_copy
-353800KOFMRGOXSJ5Z65,organizaton,Mitsubishi Estate Co,JP,GLEIF_golden_copy
-529900QZG6DL8ZRI7140,organizaton,Murata Manufacturing,JP,GLEIF_golden_copy
-549300CEE2ENIUJNXB84,organizaton,Toyota Tsusho,JP,GLEIF_golden_copy
-549300CSY4INHEHQQT13,organizaton,Kubota,JP,GLEIF_golden_copy
-353800FEEXU6I9M0ZF27,organizaton,Nintendo Co,JP,GLEIF_golden_copy
-353800VHYYADPR6MXQ47,organizaton,Inpex,JP,GLEIF_golden_copy
-353800YNKX4RQUGAR072,organizaton,Mitsubishi Chemical Holdings,JP,GLEIF_golden_copy
-353800HM38HFCB8RGL63,organizaton,KAO,JP,GLEIF_golden_copy
-353800XGIU2IHQGC9504,organizaton,Daiichi Sankyo Co,JP,GLEIF_golden_copy
-353800GPI4Z3MGDGN142,organizaton,Asahi Kasei,JP,GLEIF_golden_copy
-52990067JE75XZCYYT81,organizaton,Resona Holdings,JP,GLEIF_golden_copy
-353800QGUXHZ7EBCR121,organizaton,West Japan Railway Co,JP,GLEIF_golden_copy
-5493005SP87FL5TOS202,organizaton,Sumitomo Electric,JP,GLEIF_golden_copy
-353800IF171MZTNL6Y31,organizaton,Nidec,JP,GLEIF_golden_copy
-549300H5LSF8DP3RIJ34,organizaton,Tokyo Electron,JP,GLEIF_golden_copy
-529900M7PQBS7A89DZ11,organizaton,Keyence,JP,GLEIF_golden_copy
-3538008ARJ1MACEWA242,organizaton,T&D Holdings,JP,GLEIF_golden_copy
-549300P0R46FF6DUA630,organizaton,Idemitsu Kosan Co,JP,GLEIF_golden_copy
-549300LBHTST91VKHO68,organizaton,Toshiba,JP,GLEIF_golden_copy
-35380099TCYR5FHT0A11,organizaton,Toray Industries,JP,GLEIF_golden_copy
-529900IMXUCQKUL1H943,organizaton,Rakuten,JP,GLEIF_golden_copy
-353800KTF7EYIIYHY088,organizaton,Tohoku Electric Power Co,JP,GLEIF_golden_copy
-YF6ZV0M6AU4FY94MK914,organizaton,North Pacific Bank,JP,GLEIF_golden_copy
-529900TF7XJKIOWMLQ79,organizaton,Taisei,JP,GLEIF_golden_copy
-353800678EIJLOQSWZ83,organizaton,Tokyo Gas Co,JP,GLEIF_golden_copy
-353800BRAE0QFP3ZLY22,organizaton,Shimizu,JP,GLEIF_golden_copy
-353800K1RXV3E3JAE812,organizaton,Mazda Motor,JP,GLEIF_golden_copy
-353800MV866ELME96Q46,organizaton,Chugoku Electric Power Co,JP,GLEIF_golden_copy
-353800X4VR3BHEUCJB42,organizaton,Hoya,JP,GLEIF_golden_copy
-3538003H9W4KIDODQY20,organizaton,Toppan Printing Co,JP,GLEIF_golden_copy
-35380076QOBOSOUBRT89,organizaton,Mitsubishi UFJ Lease,JP,GLEIF_golden_copy
-549300FEKNPCFSA2B506,organizaton,Osaka Gas Co,JP,GLEIF_golden_copy
-529900NZQ81TIOW3CW52,organizaton,M3,JP,GLEIF_golden_copy
-549300H0BF5JCG96TJ81,organizaton,Kiyo Bank,JP,GLEIF_golden_copy
-353800O40V08DOZ70X62,organizaton,SMC,JP,GLEIF_golden_copy
-35380096ZLHOF84DXR74,organizaton,Tokyo Century,JP,GLEIF_golden_copy
-529900QTSW745LOKW705,organizaton,Fanuc,JP,GLEIF_golden_copy
-5493004SE33MRLPB1W98,organizaton,Sojitz,JP,GLEIF_golden_copy
-549300E3VEW8SMS5XW09,organizaton,Olympus,JP,GLEIF_golden_copy
-5493008IRKIY0G3TE305,organizaton,All Nippon Airways,JP,GLEIF_golden_copy
-353800H2UB5ZEZRZQC02,organizaton,Mitsubishi Motors,JP,GLEIF_golden_copy
-3538009GX5P09USH2J25,organizaton,Nitori Holdings Co,JP,GLEIF_golden_copy
-3538004LR5NXILJDHY88,organizaton,Yamaha Motor Co,JP,GLEIF_golden_copy
-353800024KMNOPQRWZ02,organizaton,Oriental Land Co,JP,GLEIF_golden_copy
-213800WQD8ECPZP9PH98,organizaton,NEXON,JP,GLEIF_golden_copy
-JE4WFFEELMVPFZ0G1E77,organizaton,AGC,JP,GLEIF_golden_copy
-353800Y4GZ7KR5X7L150,organizaton,Cosmo Energy Holdings,JP,GLEIF_golden_copy
-5299005KY91C4C6U9H17,organizaton,Kintetsu,JP,GLEIF_golden_copy
-549300PZYOQ2NW83V760,organizaton,Shinsei Bank,JP,GLEIF_golden_copy
-FGJPAKKCTZVSKZXNBS63,organizaton,Chiba Bank,JP,GLEIF_golden_copy
-7890005U0H950VH19H45,organizaton,Kobe Steel,JP,GLEIF_golden_copy
-35380051BV8PV1I4S949,organizaton,Iida Group Holdings,JP,GLEIF_golden_copy
-549300S3IZB5P35KNV16,organizaton,Nitto Denko,JP,GLEIF_golden_copy
-549300KMHPUAQI8VEH90,organizaton,Electric Power Development Co,JP,GLEIF_golden_copy
-529900L32YT3P9DECR10,organizaton,Shimano,JP,GLEIF_golden_copy
-ERO1WSFOSR0JJ6CRQ987,organizaton,Makita,JP,GLEIF_golden_copy
-5299006ZTN6MO1N5BR16,organizaton,Mitsubishi Materials,JP,GLEIF_golden_copy
-353800P8O843TMAZ6S09,organizaton,Mitsui Chemicals,JP,GLEIF_golden_copy
-353800YPW4XM0ZN5I149,organizaton,Nippon Express Co,JP,GLEIF_golden_copy
-CZ72ZHBVKZXQRV3XFE26,organizaton,Otsuka,JP,GLEIF_golden_copy
-5493006AIPA1V92YPP18,organizaton,Showa Denko,JP,GLEIF_golden_copy
-529900BPSFZS6O3A9R04,organizaton,Kyushu Financial Group,JP,GLEIF_golden_copy
-FE70I3MHDCWOZWK19W48,organizaton,Hachijuni Bank,JP,GLEIF_golden_copy
-353800898JPV95YSY548,organizaton,Yamaguchi Financial,JP,GLEIF_golden_copy
-549300LRPVT8N6FNFC04,organizaton,Bank of Kyoto,JP,GLEIF_golden_copy
-5299000EPC47VJQOFB81,organizaton,Renesas Electronics,JP,GLEIF_golden_copy
-549300U6CT3EHB9XS980,organizaton,77 Bank,JP,GLEIF_golden_copy
-54930054A69VC4I5BP89,organizaton,Gunma Bank,JP,GLEIF_golden_copy
-529900EH7TSG348O4045,organizaton,Haseko,JP,GLEIF_golden_copy
-353800L6LMHYIPSMRQ17,organizaton,SBI Holdings,JP,GLEIF_golden_copy
-549300BYCCERC5EKUX15,organizaton,Hyakugo Bank,JP,GLEIF_golden_copy
-549300RFU3D1M30ZZA20,organizaton,Juroku Bank,JP,GLEIF_golden_copy
-529900YSLFVJF2MDBX02,organizaton,Tosoh,JP,GLEIF_golden_copy
-3538001SOIIV8U3OXH94,organizaton,Hikari Tsushin,JP,GLEIF_golden_copy
-3538002NUIQ8JFEJNS94,organizaton,Shiga Bank,JP,GLEIF_golden_copy
-353800I3C5900CEME762,organizaton,San-In Godo Bank,JP,GLEIF_golden_copy
-8EUP1TJYZFX3T1E5AJ33,organizaton,Hanwa,JP,GLEIF_golden_copy
-X0XUGKC9FD2CYUQNC010,organizaton,Aozora Bank,JP,GLEIF_golden_copy
-549300N8J06I8MRHU620,organizaton,Ogaki Kyoritsu Bank,JP,GLEIF_golden_copy
-35380078ABDFHIKLTV03,organizaton,Toho Bank,JP,GLEIF_golden_copy
-353800923E4YW3IDES52,organizaton,Nanto Bank,JP,GLEIF_golden_copy
-5299001ZO4CKWACMZI55,organizaton,Sysmex,JP,GLEIF_golden_copy
-353800HBJ702X2J5OX58,organizaton,Keiyo Bank,JP,GLEIF_golden_copy
-5493009ZQOZS8JYRQN62,organizaton,Hyakujushi Bank,JP,GLEIF_golden_copy
-549300KZ8RU11X0L9455,organizaton,Hokkoku Bank,JP,GLEIF_golden_copy
-353800IE82QJT7UQJK58,organizaton,Fuyo General Lease,JP,GLEIF_golden_copy
-724500FVZIBSSQ7SHI95,organizaton,JTEKT,JP,GLEIF_golden_copy
-529900TYCL9N3E9PGE47,organizaton,Secom,JP,GLEIF_golden_copy
-549300UCKT2UK88AG251,organizaton,Alfa Laval AB,SE,GLEIF_golden_copy
-549300HGV012CNC8JD22,organizaton,Volvo,SE,GLEIF_golden_copy
-213800FSR9RNDUOTXO25,organizaton,Telia Company AB,SE,GLEIF_golden_copy
-529900O5RR7R39FRDM42,organizaton,H&M; Hennes & Mauritz AB,SE,GLEIF_golden_copy
-549300YECS8HKCIMMB67,organizaton,Assa Abloy,SE,GLEIF_golden_copy
-549300UINV5RINHGMG07,organizaton,Skanska AB,SE,GLEIF_golden_copy
-M312WZV08Y7LYUC71685,organizaton,Swedbank,SE,GLEIF_golden_copy
-549300M3VH1A3ER1TB49,organizaton,Essity Ab,SE,GLEIF_golden_copy
-549300B6HWYEE57O8J84,organizaton,SKF,SE,GLEIF_golden_copy
-549300IULC8F8IGXKI15,organizaton,Lundin Petroleum,SE,GLEIF_golden_copy
-NHBDILHZTYCNBV5UYZ31,organizaton,Svenska Handelsbanken,SE,GLEIF_golden_copy
-213800T8PC8Q4FYJZR07,organizaton,Atlas Copco,SE,GLEIF_golden_copy
-5299008ZUAXN43LVZF54,organizaton,Sandvik AB,SE,GLEIF_golden_copy
-549300DYP6F5ZJL0LB74,organizaton,Holmen,SE,GLEIF_golden_copy
-635400TTYKE8EIWDS617,organizaton,Securitas AB,SE,GLEIF_golden_copy
-549300VZCL1HTH4O4Y49,organizaton,Henkel,DE,GLEIF_golden_copy
-529900R27DL06UVNT076,organizaton,Daimler AG,DE,GLEIF_golden_copy
-W38RGI023J3WT1HWRP32,organizaton,Siemens AG,DE,GLEIF_golden_copy
-549300JSX0Z4CW0V5023,organizaton,adidas AG,DE,GLEIF_golden_copy
-549300J4U55H3WP1XT59,organizaton,Bayer AG,DE,GLEIF_golden_copy
-L47NHHI0Z9X22DV46U41,organizaton,Beiersdorf,DE,GLEIF_golden_copy
-529900D6BF99LW9R2E68,organizaton,SAP,DE,GLEIF_golden_copy
-549300V9QSIG4WX4GJ96,organizaton,Deutsche Telekom AG,DE,GLEIF_golden_copy
-Q9MAIUP40P25UFBFG033,organizaton,E.ON,DE,GLEIF_golden_copy
-529900NNUPAGGOMPXZ31,organizaton,Volkswagen,DE,GLEIF_golden_copy
-529900K9B0N5BT694847,organizaton,Allianz,DE,GLEIF_golden_copy
-529900MUF4C20K50JS49,organizaton,Munich Re,DE,GLEIF_golden_copy
-529900GB7KCA94ACC940,organizaton,RWE AG,DE,GLEIF_golden_copy
-5299006ZIILJ6VJVSJ32,organizaton,Talanx,DE,GLEIF_golden_copy
-7LTWFZYICNSX8D621K86,organizaton,Deutsche Bank,DE,GLEIF_golden_copy
-SJ7XXD41SQU3ZNWUJ746,organizaton,Evonik,DE,GLEIF_golden_copy
-529900G3SW56SHYNPR95,organizaton,Deutsche Börse AG,DE,GLEIF_golden_copy
-529900A7YD9C0LLXM621,organizaton,Continental AG,DE,GLEIF_golden_copy
-52990053Z17ZYM1KFV27,organizaton,Porsche Automobil Holding SE,DE,GLEIF_golden_copy
-LZ2C6E0W5W7LQMX5ZI37,organizaton,HeidelbergCement,DE,GLEIF_golden_copy
-851WYGNLUQLFZBSYGB56,organizaton,Commerzbank,DE,GLEIF_golden_copy
-TSI2PJM6EPETEQ4X1U25,organizaton,Infineon Technologies AG,DE,GLEIF_golden_copy
-549300UDG16DOYUPR330,organizaton,ThyssenKrupp,DE,GLEIF_golden_copy
-529900SL2WSPV293B552,organizaton,TUI,DE,GLEIF_golden_copy
-5299001GRRO0Z25YZT52,organizaton,KNORR-BREMSE,DE,GLEIF_golden_copy
-529900YRFFGH5AXU4S86,organizaton,Zalando,DE,GLEIF_golden_copy
-529900SM0FDLLYATXU36,organizaton,BayWa,DE,GLEIF_golden_copy
-529900C3EX1FZGE48X78,organizaton,Delivery Hero,DE,GLEIF_golden_copy
-YEH5ZCD6E441RHVHD759,organizaton,BMW AG,DE,GLEIF_golden_copy
-529900PM64WH8AF1E917,organizaton,BASF,DE,GLEIF_golden_copy
-XDFJ0CYCOO1FXRFTQS51,organizaton,Fresenius,DE,GLEIF_golden_copy
-529900OAREIS0MOPTW25,organizaton,EMD Group,DE,GLEIF_golden_copy
-5299005A2ZEP6AP7KM81,organizaton,Vonovia,DE,GLEIF_golden_copy
-529900QE24Q67I3FWZ10,organizaton,Deutsche Wohnen,DE,GLEIF_golden_copy
-529900RWXR4JI3JYTV70,organizaton,Nuernberger Beteiligungs,DE,GLEIF_golden_copy
-NNROIXVWJ7CPSR27SV97,organizaton,Brenntag AG,DE,GLEIF_golden_copy
-549300Q7E782X7GC1P43,organizaton,Schaeffler,DE,GLEIF_golden_copy
-5299003H07ZT0Z5ZNN35,organizaton,Wuestenrot & Wuerttembergische,DE,GLEIF_golden_copy
-3912005AWHKLQ1CPLV11,organizaton,Covestro,DE,GLEIF_golden_copy
-5299001X9L42HXEBCZ51,organizaton,Ceconomy,DE,GLEIF_golden_copy
-529900A8LX4KL0YUTH71,organizaton,Wirecard,DE,GLEIF_golden_copy
-529900EQV2DY4FOAMU38,organizaton,Sartorius,DE,GLEIF_golden_copy
-EZKODONU5TYHW4PP1R34,organizaton,Aareal Bank,DE,GLEIF_golden_copy
-QBKYQD0ODE7DC7PDIN91,organizaton,MTU Aero Engines AG,DE,GLEIF_golden_copy
-549300TTCXZOGZM2EY83,organizaton,Inditex,ES,GLEIF_golden_copy
-5493008T4YG3AQUI7P67,organizaton,Cellnex Telecom,ES,GLEIF_golden_copy
-549300EEJH4FEPDBBR25,organizaton,Telefonica,ES,GLEIF_golden_copy
-5QK37QC7NWOJ8D7WVQ45,organizaton,Iberdrola,ES,GLEIF_golden_copy
-54930002KP75TLLLNO21,organizaton,ACCIONA S.A.,ES,GLEIF_golden_copy
-5493006QMFDDMYWIAM13,organizaton,Banco Santander,ES,GLEIF_golden_copy
-TL2N6M87CW970S5SV098,organizaton,Naturgy Energy Group,ES,GLEIF_golden_copy
-7CUNS533WID6K7DGFI87,organizaton,CaixaBank,ES,GLEIF_golden_copy
-BSYCX13Y0NOTV14V9N85,organizaton,Repsol,ES,GLEIF_golden_copy
-9598004A3FTY3TEHHN09,organizaton,Amadeus It,ES,GLEIF_golden_copy
-95980020140005558665,organizaton,Grupo ACS,ES,GLEIF_golden_copy
-95980020140005693107,organizaton,MAPFRE,ES,GLEIF_golden_copy
-SI5RG2M0WQQLZCXKRM20,organizaton,Banco Sabadell,ES,GLEIF_golden_copy
-959800R7QMXKF0NFMT29,organizaton,Aena,ES,GLEIF_golden_copy
-959800HSSNXWRKBK4N60,organizaton,Grifols,ES,GLEIF_golden_copy
-95980020140005757903,organizaton,FERROVIAL,ES,GLEIF_golden_copy
-VWMYAEQSTOPNV0SUGU82,organizaton,Bankinter,ES,GLEIF_golden_copy
-5493009HMD0C90GUV498,organizaton,Red Eléctrica,ES,GLEIF_golden_copy
-5493007SJLLCTM6J6M37,organizaton,Unicaja Banco,ES,GLEIF_golden_copy
-549300BSGXG3QLIQYT84,organizaton,Liberbank,ES,GLEIF_golden_copy
-8ZQH7RR6DBQZIX8PEQ84,organizaton,Abengoa,ES,GLEIF_golden_copy
-95980020140005007414,organizaton,Inmobiliaria Colonial,ES,GLEIF_golden_copy
-5299006EQ03K3SSUYS12,organizaton,Merlin Properties SOCIMI,ES,GLEIF_golden_copy
-20S05OYHG0MQM4VUIC57,organizaton,Formosa Chemicals & Fibre,TW,GLEIF_golden_copy
-254900U6E39J1MQCCY14,organizaton,MediaTek,TW,GLEIF_golden_copy
-549300UPNBTXA1SYTQ33,organizaton,LARGAN Precision,TW,GLEIF_golden_copy
-MSFSBD3QN1GSN7Q6C537,organizaton,Commonwealth Bank of Australia,AU,GLEIF_golden_copy
-F8SB4JFBSYQFRQEH3Z21,organizaton,National Australia Bank (NAB),AU,GLEIF_golden_copy
-5493003L32ZX9557ST85,organizaton,Wesfarmers,AU,GLEIF_golden_copy
-5299000D93LTLU0UJR35,organizaton,AMP,AU,GLEIF_golden_copy
-549300LWGYFM1TVO1Z12,organizaton,Newcrest Mining,AU,GLEIF_golden_copy
-XWTZDRYZPBUHIQBKDB46,organizaton,Equinor,NO,GLEIF_golden_copy
-549300A1ZLTL4KX3DZ92,organizaton,Norsk Hydro,NO,GLEIF_golden_copy
-213800X3Q9LSAKRUWY91,organizaton,KBC,BE,GLEIF_golden_copy
-2138008J191VLSGY5A09,organizaton,UCB,BE,GLEIF_golden_copy
-549300MMVL80RTBP3O28,organizaton,Solvay S.A.,BE,GLEIF_golden_copy
-5493008H3828EMEXB082,organizaton,Anheuser-Busch InBev,BE,GLEIF_golden_copy
-5493005DJBML6LY3RV36,organizaton,Ageas,BE,GLEIF_golden_copy
-529900F3AIQECS8ZSV61,organizaton,Umicore,BE,GLEIF_golden_copy
-5493000GMVR38VUO5D39,organizaton,Sofina,BE,GLEIF_golden_copy
-5493000O0NZ1BCXO8K39,organizaton,Colruyt,BE,GLEIF_golden_copy
-THRNG6BD57P9QWTQLG42,organizaton,First Abu Dhabi Bank,AE,GLEIF_golden_copy
-FGLT0EWZSUIRRITFOA30,organizaton,Emirates NBD,AE,GLEIF_golden_copy
-9ZHRYM6F437SQJ6OUG95,organizaton,Raiffeisen Bank International,AT,GLEIF_golden_copy
-5299006UDSEJCTTEJS30,organizaton,Verbund AG,AT,GLEIF_golden_copy
-549300V62YJ9HTLRI486,organizaton,OMV AG,AT,GLEIF_golden_copy
-549300JCRU23I1THU176,organizaton,Vienna Insurance,AT,GLEIF_golden_copy
-529900S9YO2JHTIIDG38,organizaton,Bawag Group,AT,GLEIF_golden_copy
-529900TYYSRJH2VJSP60,organizaton,Strabag SE,AT,GLEIF_golden_copy
-529900ZAXBMQDIWPNB72,organizaton,voestalpine AG,AT,GLEIF_golden_copy
-529900OOW8ELHOXWZP82,organizaton,Uniqa,AT,GLEIF_golden_copy
-259400VVMM70CQREJT74,organizaton,PKN Orlen,PL,GLEIF_golden_copy
-QLPCKOOKVX32FUELX240,organizaton,Grupa PZU,PL,GLEIF_golden_copy
-5493000LKS7B3UTF7H35,organizaton,Bank Pekao,PL,GLEIF_golden_copy
-37890014418406D9FC23,organizaton,Sanlam,ZA,GLEIF_golden_copy
-5493003HK03UVPUSUP12,organizaton,Firstrand,ZA,GLEIF_golden_copy
-2549003PEZXUT7MDBU41,organizaton,Standard Bank Group,ZA,GLEIF_golden_copy
-21380044BQ8812EEKT59,organizaton,Naspers,ZA,GLEIF_golden_copy
-2138006IPPRD4N6XLT30,organizaton,Absa Group,ZA,GLEIF_golden_copy
-5299000Y52IFDI1I2A21,organizaton,Old Mutual,ZA,GLEIF_golden_copy
-52990090AP0E7HCB6F33,organizaton,Momentum Metropolitan Holdings,ZA,GLEIF_golden_copy
-549300EI6OKH5K5Q2G38,organizaton,MTN,ZA,GLEIF_golden_copy
-378900F4544561A97588,organizaton,Sasol,ZA,GLEIF_golden_copy
-5493002ENHZ6NYET7405,organizaton,Experian,IE,GLEIF_golden_copy
-254900QJ68UH8GKNGI69,organizaton,Ayala,PH,GLEIF_golden_copy
-254900YB8UATFP21AF80,organizaton,SM Investments,PH,GLEIF_golden_copy
-3FGIIBS1PEI1FYQBGN97,organizaton,BDO Unibank,PH,GLEIF_golden_copy
-5493007PTFULNYZJ1R12,organizaton,Metropolitan Bank & Trust,PH,GLEIF_golden_copy
-8945008FXJ2QCVCRJM25,organizaton,JG Summit Holdings,PH,GLEIF_golden_copy
-J3WHBG0MTS7O8ZVMDC91,organizaton,Fairfax Financial Holdings,CA,GLEIF_golden_copy
-549300SQYI82RVWFN715,organizaton,Metro,CA,GLEIF_golden_copy
-3538002347FGLMNPVY63,organizaton,Kirkland Lake Gold,CA,GLEIF_golden_copy
-549300I3IVVWZWDHI788,organizaton,Parkland Fuel,CA,GLEIF_golden_copy
-GI7UBEJLXYLGR2C7GV83,organizaton,Femsa,MX,GLEIF_golden_copy
-549300H316CT32FQXI76,organizaton,Athene Holding,BM,GLEIF_golden_copy
-549300AYR4P8AFKDCE43,organizaton,Arch Capital,BM,GLEIF_golden_copy
-5GCSNMQXHEYA1JO8QN11,organizaton,Marvell Technology Group,BM,GLEIF_golden_copy
-EK6GB9U3U58PDI411C94,organizaton,Renaissancere Holdings,BM,GLEIF_golden_copy
-213800AMAL5QFXVUCN04,organizaton,Enstar Group,BM,GLEIF_golden_copy
-789000FIRX9MDN0KTM91,organizaton,Isbank,TR,GLEIF_golden_copy
-789000TUMN63Z28TJ497,organizaton,Akbank TAS,TR,GLEIF_golden_copy
-789000EV8M3BL7ZPFB03,organizaton,Turkish Airlines,TR,GLEIF_golden_copy
-MSD54751OJP1FS2ND863,organizaton,Hopson Development Holdings,HK,GLEIF_golden_copy
-549300BYNZPLKQVQH430,organizaton,KWG Group Holdings,HK,GLEIF_golden_copy
-549300GLKVIO8YRCYN02,organizaton,Kerry Properties,HK,GLEIF_golden_copy
-5493008CARDZMVQ3LO89,organizaton,Poly Property Group Co.,HK,GLEIF_golden_copy
-529900RG9DJ58J3UIE72,organizaton,OTP Bank Nyrt,HU,GLEIF_golden_copy
-549300NQQCEQ46YHZ591,organizaton,MOL Hungarian Oil & Gas,HU,GLEIF_golden_copy
-549300C2XKS86VQDGV41,organizaton,Luxshare Precision Industry,CN,GLEIF_golden_copy
-549300WNTHGEO5LP2G31,organizaton,New Hope Liuhe,CN,GLEIF_golden_copy
-5493008C12PZMWP3WY03,organizaton,Kaisa  Holdings,CN,GLEIF_golden_copy
-M6AD1Y1KW32H8THQ6F76,organizaton,Pinduoduo,CN,GLEIF_golden_copy
-529900X4EEX1U9LN3U39,organizaton,Lens Technology,CN,GLEIF_golden_copy
-549300M5X5T6C27W3H96,organizaton,Offcn Education Technology,CN,GLEIF_golden_copy
-2YD5STGSJNMUB7H76907,organizaton,Montage Technology,CN,GLEIF_golden_copy
-353800WRC7Y23PWFJG38,organizaton,Dali Foods Group,CN,GLEIF_golden_copy
-353800PIFKBZ6KTU5994,organizaton,Orient Securities,CN,GLEIF_golden_copy
-M2XHYMU3TZNEZURC6H66,organizaton,Dongbu Insurance,KR,GLEIF_golden_copy
-54930067J0ZNOEBRW338,organizaton,Naver,KR,GLEIF_golden_copy
-353800MZ3QX9RLMH7B09,organizaton,Mirae Asset Daewoo Co,KR,GLEIF_golden_copy
-959800L8KD863DP30X04,organizaton,Meritz Securities,KR,GLEIF_golden_copy
-549300YSK3QDSFR5EU59,organizaton,DGB Financial,KR,GLEIF_golden_copy
-529900S5R9YHJHYKKG94,organizaton,CEZ,CZ,GLEIF_golden_copy
-529900SL3K21WAN6X611,organizaton,Bank of Greece,GR,GLEIF_golden_copy
-JEUVK5RWVJEN8W0C9M24,organizaton,Eurobank Ergasias,GR,GLEIF_golden_copy
-5299009N55YRQC69CN08,organizaton,Alpha Bank,GR,GLEIF_golden_copy
-213800BAPPINC7OHL696,organizaton,Ahli United Bank,BH,GLEIF_golden_copy
-353800CCB0CZ75YZ4010,organizaton,Migdal Insurance,IL,GLEIF_golden_copy
-213800NYDTVQM4SDUD67,organizaton,Halyk Bank,KZ,GLEIF_golden_copy
-549300ERAZEQ2KEJ8L86,organizaton,Blom Bank,LB,GLEIF_golden_copy
-029200268F8M5YI5I629,organizaton,Zenith Bank,NG,GLEIF_golden_copy
-529900CDR9E94BCM6294,organizaton,Magazine Luiza,BR,GLEIF_golden_copy
+5493000LKVGOO9PELI61,organization,ABB,CH,GLEIF_golden_copy
+529900EHPFPYHV6IQO98,organization,Lafargeholcim,CH,GLEIF_golden_copy
+KY37LUS27QQX7BB93L28,organization,Nestlé,CH,GLEIF_golden_copy
+213800SVRMQA1TD91D41,organization,Givaudan,CH,GLEIF_golden_copy
+529900Q0YED3805QXQ66,organization,Kuehne & Nagel International,CH,GLEIF_golden_copy
+5493005SL9HHOXS3B739,organization,Swisscom,CH,GLEIF_golden_copy
+5493007HIVTX6SY6XD66,organization,Novartis,CH,GLEIF_golden_copy
+549300U41AUUVOAAOB37,organization,Roche Holding,CH,GLEIF_golden_copy
+529900QVNRBND50TXP03,organization,Zurich Insurance,CH,GLEIF_golden_copy
+E0JAN6VLUDI1HITHT809,organization,Chubb,CH,GLEIF_golden_copy
+529900PS9YW3YY29F326,organization,Swiss RE,CH,GLEIF_golden_copy
+NI14Y5UMU60O7JE9P611,organization,Adecco,CH,GLEIF_golden_copy
+2138007JNS19JHNA2336,organization,SGS,CH,GLEIF_golden_copy
+213800Y5RWKLDPUTT265,organization,Barry Callebaut,CH,GLEIF_golden_copy
+HV5W8PGLJ127N2SFSM23,organization,Basler Kantonalbank,CH,GLEIF_golden_copy
+5493000KUC3Z24U77V93,organization,Swiss Life Holding,CH,GLEIF_golden_copy
+894500ZRIX9K13RHXR17,organization,TE Connectivity,CH,GLEIF_golden_copy
+529900G5XKBZN48T6283,organization,Bâloise Group,CH,GLEIF_golden_copy
+5299007DRLI319H7Q933,organization,Schindler Holding AG,CH,GLEIF_golden_copy
+549300LDT5AP8S0NBM78,organization,Alcon,CH,GLEIF_golden_copy
+529900K900DW6SUBM174,organization,Partners Group Holding,CH,GLEIF_golden_copy
+2549001E0HIPIJQ0W046,organization,Garmin,CH,GLEIF_golden_copy
+52990093Z5OHD6T7BS47,organization,Geberit,CH,GLEIF_golden_copy
+549300EFP3TNG7JGVE49,organization,Coca-Cola HBC AG,CH,GLEIF_golden_copy
+529900G1XFTGSE0DIX60,organization,EMS-Chemie Holding,CH,GLEIF_golden_copy
+5299004A0QNX7FBNHS61,organization,Sonova Holding,CH,GLEIF_golden_copy
+506700XI9H64OPR34158,organization,Swiss Prime Site,CH,GLEIF_golden_copy
+506700PR1R98BSF81139,organization,EFG International,CH,GLEIF_golden_copy
+8SVCSVKSGDWMW2QHOH83,organization,BAE Systems,GB,GLEIF_golden_copy
+2138001AVBSD1HSC6Z10,organization,Johnson Matthey,GB,GLEIF_golden_copy
+2138006R85VEOF5YNK29,organization,Barratt Developments,GB,GLEIF_golden_copy
+2138001P49OLAEU33T68,organization,Phoenix Group Holdings,GB,GLEIF_golden_copy
+549300LSGBXPYHXGDT93,organization,WPP,GB,GLEIF_golden_copy
+8R95QZMKZLJX5Q2XR704,organization,National Grid,GB,GLEIF_golden_copy
+549300KI75VYLLMSK856,organization,SSE,GB,GLEIF_golden_copy
+549300MKFYEKVRWML317,organization,Unilever,GB,GLEIF_golden_copy
+PY6ZZQWO2IZFZC3IOL08,organization,AstraZeneca,GB,GLEIF_golden_copy
+213800KBMEV7I92FY281,organization,Kingfisher,GB,GLEIF_golden_copy
+2138002P5RNKC5W2JZ46,organization,Tesco,GB,GLEIF_golden_copy
+549300LTH67W4GWMRF57,organization,Coca-Cola European Partners,GB,GLEIF_golden_copy
+213800FKA5MF17RJKT63,organization,British American Tobacco,GB,GLEIF_golden_copy
+213800YOEO5OQ72G2R82,organization,Rio Tinto,GB,GLEIF_golden_copy
+213800LBQA1Y9L22JB70,organization,Barclays,GB,GLEIF_golden_copy
+213800LH1BZH3DI6G760,organization,BP,GB,GLEIF_golden_copy
+254900TWUJUQ44TQJY84,organization,M&G,GB,GLEIF_golden_copy
+549300WSX3VBUFFJOO66,organization,RELX,GB,GLEIF_golden_copy
+2138007Z3U5GWDN3MY22,organization,Investec,GB,GLEIF_golden_copy
+213800LOZA69QFDC9N34,organization,Mondi,GB,GLEIF_golden_copy
+E26EDV109X6EEPBKVH76,organization,Centrica,GB,GLEIF_golden_copy
+549300PPXHEU2JF0AM85,organization,Lloyds Banking Group,GB,GLEIF_golden_copy
+U4LOSYZ7YG4W3S5F2G91,organization,Standard Chartered,GB,GLEIF_golden_copy
+213800ZVIELEA55JMJ32,organization,Diageo Plc,GB,GLEIF_golden_copy
+549300S9XF92D1X8ME43,organization,Anglo American,GB,GLEIF_golden_copy
+549300DFVPOB67JL3A42,organization,Imperial Brands,GB,GLEIF_golden_copy
+549300E707U7WNPZN687,organization,Ferguson,GB,GLEIF_golden_copy
+GBQKSY6W7G0OHCQ8OQ72,organization,Associated British Foods,GB,GLEIF_golden_copy
+DS830JTTZQN6GK0I2E41,organization,Liberty Global,GB,GLEIF_golden_copy
+213800M993ICXOMBCP87,organization,St. James's Place,GB,GLEIF_golden_copy
+549300GSODGFCDQ3DI89,organization,Amcor,GB,GLEIF_golden_copy
+213800XC35KGM9NFC641,organization,Segro,GB,GLEIF_golden_copy
+213800ZTMDN8S67S1H61,organization,Smith & Nephew,GB,GLEIF_golden_copy
+213800Q1Q9DV4L78UM09,organization,Bunzl plc,GB,GLEIF_golden_copy
+549300D5I93QWCJTCK36,organization,Technipfmc,GB,GLEIF_golden_copy
+213800MY6QVH4FVLD628,organization,Antofagasta,GB,GLEIF_golden_copy
+21380089BTRXTD8S3R66,organization,Taylor Wimpey,GB,GLEIF_golden_copy
+213800TCZZU84G8Z2M70,organization,Royal Mail,GB,GLEIF_golden_copy
+213800RGEH1MPPNM2T57,organization,Inchcape,GB,GLEIF_golden_copy
+213800FGVM7Z9EJB2685,organization,Admiral Group,GB,GLEIF_golden_copy
+529900X0H1IO3RS1A464,organization,Prudential,GB,GLEIF_golden_copy
+969500OQXKE5WDM9M994,organization,Eiffage,FR,GLEIF_golden_copy
+969500TPU5T3HA5D1F11,organization,Bureau Veritas,FR,GLEIF_golden_copy
+5493006IH2N2WMIBB742,organization,Valeo,FR,GLEIF_golden_copy
+969500QZC2Q0TK11NV07,organization,Accor,FR,GLEIF_golden_copy
+2138004KW8BV57III342,organization,Publicis Groupe,FR,GLEIF_golden_copy
+529900S21EQ1BO4ESM68,organization,Total,FR,GLEIF_golden_copy
+529900JI1GG6F7RKVI53,organization,L'Oréal,FR,GLEIF_golden_copy
+NFONVGN05Z0FMN5PEC35,organization,Saint-Gobain,FR,GLEIF_golden_copy
+969500A1YF1XUYYXS284,organization,Schneider Electric,FR,GLEIF_golden_copy
+969500MCOONR8990S771,organization,Orange,FR,GLEIF_golden_copy
+96950077L0TN7BAROX36,organization,Cap Gemini,FR,GLEIF_golden_copy
+969500KMUQ2B6CBAF162,organization,Danone,FR,GLEIF_golden_copy
+549300VGEJKB7SVUZR78,organization,Kering,FR,GLEIF_golden_copy
+969500XXRPGD7HCAFA90,organization,LEGRAND,FR,GLEIF_golden_copy
+969500LCBOG12HXPYM84,organization,Sodexo,FR,GLEIF_golden_copy
+5493001EZOOA66PTBR68,organization,Atos,FR,GLEIF_golden_copy
+549300X3UK4GG3FNMO06,organization,EDF,FR,GLEIF_golden_copy
+3538001KQ5SAOZSQTT44,organization,Engie,FR,GLEIF_golden_copy
+R0MUWSFPU8MPRO8K5P83,organization,BNP Paribas,FR,GLEIF_golden_copy
+F5WCUMTUM4RKZ1MAIE39,organization,AXA,FR,GLEIF_golden_copy
+549300E9PC51EN656011,organization,SANOFI,FR,GLEIF_golden_copy
+213800WFQ334R8UXUG83,organization,Vinci,FR,GLEIF_golden_copy
+969500UIC89GT3UL7L24,organization,Safran,FR,GLEIF_golden_copy
+969500LENY69X51OOT31,organization,Veolia Environnement,FR,GLEIF_golden_copy
+9695003E4MMA10IBTR26,organization,Gecina,FR,GLEIF_golden_copy
+969500AQW31GYO8JZD66,organization,Air France-KLM,FR,GLEIF_golden_copy
+969500P8M3W2XX376054,organization,Covivio,FR,GLEIF_golden_copy
+96950032TUYMW11FB530,organization,Alstom,FR,GLEIF_golden_copy
+969500PB4U31KEFHZ621,organization,Klepierre,FR,GLEIF_golden_copy
+IOG4E947OATN0KJYSD45,organization,LVMH Moët Hennessy Louis Vuitton,FR,GLEIF_golden_copy
+O2RNE8IBXP4R0TD8PU41,organization,Société Générale,FR,GLEIF_golden_copy
+969500MMPQVHK671GT54,organization,Air Liquide,FR,GLEIF_golden_copy
+PQOH26KWDF7CG10L6792,organization,EssilorLuxottica,FR,GLEIF_golden_copy
+KX1WK48MPD4Y2NCUIZ63,organization,Natixis,FR,GLEIF_golden_copy
+549300B8P6MUJ1YWTS08,organization,Carrefour,FR,GLEIF_golden_copy
+969500MOCLNQFNZN0D63,organization,Bouygues,FR,GLEIF_golden_copy
+52990097YFPX9J0H5D87,organization,Pernod Ricard,FR,GLEIF_golden_copy
+529900FNDVTQJOVVPZ19,organization,Thales,FR,GLEIF_golden_copy
+969500Y4IJGHJE2MTJ13,organization,Hermès International,FR,GLEIF_golden_copy
+969500F7JLTX36OUI695,organization,Renault,FR,GLEIF_golden_copy
+969500FZ9BTRZS3JNB97,organization,Iliad,FR,GLEIF_golden_copy
+9695002YVGSA5Z2O3511,organization,Finatis,FR,GLEIF_golden_copy
+CY1NFSCCB5GUXC7WZC70,organization,Dassault Aviation,FR,GLEIF_golden_copy
+9695000EHMS84KKP2785,organization,ARKEMA,FR,GLEIF_golden_copy
+969500M98ZMIZYJD5O34,organization,Wendel SE,FR,GLEIF_golden_copy
+969500N6AVPA51648T62,organization,Rexel,FR,GLEIF_golden_copy
+969500WP61NBK098AC47,organization,SEB SA,FR,GLEIF_golden_copy
+724500K5PTPSST86UQ23,organization,Heineken,NL,GLEIF_golden_copy
+724500SNT1MK246AHP04,organization,DSM,NL,GLEIF_golden_copy
+549300QD81EPLH4NUQ92,organization,Philips Lighting,NL,GLEIF_golden_copy
+549300NYKK9MWM7GGW15,organization,ING Group,NL,GLEIF_golden_copy
+724500Y6DUVHQD6OXN27,organization,ASML Holding,NL,GLEIF_golden_copy
+724500OHYNDT9OY6Q215,organization,NN Group,NL,GLEIF_golden_copy
+724500XYIJUGXAA5QD70,organization,AkzoNobel,NL,GLEIF_golden_copy
+3SOUA6IRML7435B56G12,organization,EXOR,NL,GLEIF_golden_copy
+549300772D1G8JPIUR96,organization,Aegon,NL,GLEIF_golden_copy
+7245000G0HS48PZWUD53,organization,Asr Nederland,NL,GLEIF_golden_copy
+7245009EAAUUQJ0U4T57,organization,Randstad N.V.,NL,GLEIF_golden_copy
+213800J17UJJJDGUVF56,organization,X5 Retail Group,NL,GLEIF_golden_copy
+724500TEM53I0U077B74,organization,Wolters Kluwer,NL,GLEIF_golden_copy
+724500973ODKK3IFQ447,organization,Adyen,NL,GLEIF_golden_copy
+5493006456YEZEELRR90,organization,Just Eat Takeaway.com,NL,GLEIF_golden_copy
+549300Y7VHGU0I7CE873,organization,Netflix,US,GLEIF_golden_copy
+549300I8RX485XMK6836,organization,Twitter,US,GLEIF_golden_copy
+549300JZ4OKEHW3DPJ59,organization,Visa,US,GLEIF_golden_copy
+549300G6KKUMMXM8NH73,organization,Berry Global Group,US,GLEIF_golden_copy
+54930070NSV60J38I987,organization,General Motors Company,US,GLEIF_golden_copy
+VGRQXHF3J8VDLUA7XE92,organization,IBM,US,GLEIF_golden_copy
+Y6X4K52KMJMZE7I7MY94,organization,S&P Global,US,GLEIF_golden_copy
+549300JNC0L6VP8A2Q35,organization,Snap,US,GLEIF_golden_copy
+549300JE8XHZZ7OHN517,organization,Yum! Brands,US,GLEIF_golden_copy
+41BNNE1AFPNAZELZ6K07,organization,Applied Materials,US,GLEIF_golden_copy
+NYLWZIOY8PUNIT4JOE22,organization,Crown Holdings,US,GLEIF_golden_copy
+BQ4BKCS1HXDV9HN80Z93,organization,Facebook,US,GLEIF_golden_copy
+549300BX44RGX6ANDV88,organization,Hewlett Packard Enterprise,US,GLEIF_golden_copy
+549300BX44RGX6ANDV88,organization,Hewlett Packard Enterprise Co,US,GLEIF_golden_copy
+HL3H1H2BGXWVG3BSWR90,organization,Philip Morris International,US,GLEIF_golden_copy
+GYVOE5EZ4GDAVTU4CQ61,organization,Analog Devices,US,GLEIF_golden_copy
+HO1QNWM0IXBZ0QSMMO20,organization,Ralph Lauren,US,GLEIF_golden_copy
+549300J0DYC0N31V7G13,organization,Workday,US,GLEIF_golden_copy
+20S05OYHG0MQM4VUIC57,organization,Ford Motor Company,US,GLEIF_golden_copy
+2TGYMUGI08PO8X8L6150,organization,General Mills,US,GLEIF_golden_copy
+OQSJ1DU9TAOC51A47K68,organization,Starbucks,US,GLEIF_golden_copy
+549300B2FTG34FILDR98,organization,Uber Technologies,US,GLEIF_golden_copy
+YMEGZFW4SBUSS5BQXF88,organization,Colgate-Palmolive,US,GLEIF_golden_copy
+T2ZG1WRWZ4BUCMQL9224,organization,Gap,US,GLEIF_golden_copy
+549300GCEDD8YCF5WU84,organization,Moody's,US,GLEIF_golden_copy
+787RXPR0UX0O0XUXPZ81,organization,Nike,US,GLEIF_golden_copy
+2S72QS2UO2OESLG6Y829,organization,Verizon,US,GLEIF_golden_copy
+82DYEISM090VG8LTLS26,organization,Ecolab,US,GLEIF_golden_copy
+8WDDFXB5T1Z6J0XC1L66,organization,Target,US,GLEIF_golden_copy
+W8J5WZB5IY3K0NDQT671,organization,Biogen,US,GLEIF_golden_copy
+5E2UPK5SW04M13XY7I38,organization,NRG Energy,US,GLEIF_golden_copy
+FJSUNZKFNQ5YPJ5OT455,organization,PepsiCo,US,GLEIF_golden_copy
+CWAJJ9DJ5Z7P057HV541,organization,VF,US,GLEIF_golden_copy
+ZXTILKJKG63JELOEG630,organization,Amazon,US,GLEIF_golden_copy
+3E70L4WYANTIWWIPHC81,organization,Dell,US,GLEIF_golden_copy
+549300G0CFPGEF6X2043,organization,Johnson & Johnson,US,GLEIF_golden_copy
+INR2EJN1ERAN0W5ZP974,organization,Microsoft,US,GLEIF_golden_copy
+549300ITS31QK8VRBQ14,organization,News,US,GLEIF_golden_copy
+549300EJG9IEYQL5XT21,organization,Tiffany & Co,US,GLEIF_golden_copy
+Y87794H0US1R65VBXU25,organization,Walmart,US,GLEIF_golden_copy
+HWUPKR0MPOU8FGXBT394,organization,Apple,US,GLEIF_golden_copy
+FRKKVKAIQEF3FCSTPG55,organization,Autodesk,US,GLEIF_golden_copy
+VI90HBPH7XSFMB9E4M29,organization,Intuit,US,GLEIF_golden_copy
+123WALMHY1GZXG2YDL90,organization,PVH,US,GLEIF_golden_copy
+HL5XPTVRV0O8TUN5LL90,organization,Best Buy Co,US,GLEIF_golden_copy
+8I5DZWZKVSZI1NUHU748,organization,JP Morgan Chase,US,GLEIF_golden_copy
+9DJT3UXIJIZJI4WXO774,organization,Bank of America,US,GLEIF_golden_copy
+549300Z40J86GGSTL398,organization,AT&T,US,GLEIF_golden_copy
+5493006MHB84DD0ZWV18,organization,Alphabet,US,GLEIF_golden_copy
+51M0QTTNCGUN7KFCFZ59,organization,Comcast,US,GLEIF_golden_copy
+549300EJG376EN5NQE29,organization,CVS Health,US,GLEIF_golden_copy
+784F5XWPLTWKTBV3E584,organization,Goldman Sachs,US,GLEIF_golden_copy
+IGJSJL3JD5P30I6NJZ34,organization,Morgan Stanley,US,GLEIF_golden_copy
+2572IBTT8CCZW6AU4141,organization,Procter & Gamble Company,US,GLEIF_golden_copy
+C4BXATY60WC6XEOZDX54,organization,MetLife,US,GLEIF_golden_copy
+R4PP93JZOLY261QX3811,organization,American Express,US,GLEIF_golden_copy
+QEKMOTMBBKA8I816DO57,organization,Home Depot,US,GLEIF_golden_copy
+CFGNEKW0P8842LEUIA51,organization,PNC Financial Services,US,GLEIF_golden_copy
+I1BZKREC126H0VB1BL91,organization,Duke Energy,US,GLEIF_golden_copy
+WFLLPEPC7FZXENRZV188,organization,Bank of New York Mellon,US,GLEIF_golden_copy
+ZUE8T73ROZOF6FLBAR73,organization,Capital One Financial,US,GLEIF_golden_copy
+XWTZDRYZPBUHIQBKDB46,organization,EOG Resources,US,GLEIF_golden_copy
+549300FC3G3YU2FBZD92,organization,Southern Company,US,GLEIF_golden_copy
+549300LRIF3NWCU26A80,organization,BlackRock,US,GLEIF_golden_copy
+549300LMMRSZZCZ8CL11,organization,Union Pacific,US,GLEIF_golden_copy
+WPTL2Z3FIYTHSP5V2253,organization,ConocoPhillips,US,GLEIF_golden_copy
+5493005X2GO78EFZ3E94,organization,PayPal Holdings,US,GLEIF_golden_copy
+Q2CCMS6R0AS67HJMBN42,organization,Delta Air Lines,US,GLEIF_golden_copy
+ILUL7B6Z54MRYCF6H308,organization,Dominion Resources,US,GLEIF_golden_copy
+1B4S6S7G0TW5EE83BO58,organization,American Electric Power Company,US,GLEIF_golden_copy
+549300ZFEEJ2IP5VME73,organization,State Street,US,GLEIF_golden_copy
+Y6ZDD9FP4P8JSSJMW954,organization,Boston Scientific,US,GLEIF_golden_copy
+549300BUDHS3LRWBE814,organization,VMware,US,GLEIF_golden_copy
+LGJNMI9GH8XIDG5RCM61,organization,Xcel Energy,US,GLEIF_golden_copy
+549300YX8JIID70NFS41,organization,Waste Management,US,GLEIF_golden_copy
+5493004JF0SDFLM8GD76,organization,DuPont,US,GLEIF_golden_copy
+ZUNI8PYC725B6H8JU438,organization,Cummins,US,GLEIF_golden_copy
+549300VFZ8XJ9NUPU221,organization,Estee Lauder Companies,US,GLEIF_golden_copy
+THRNG6BD57P9QWTQLG42,organization,Fifth Third Bancorp,US,GLEIF_golden_copy
+MP3J6QPYPGN75NVW2S34,organization,Kimberly-Clark,US,GLEIF_golden_copy
+PUSS41EMO3E6XXNV3U28,organization,Public Service Enterprise,US,GLEIF_golden_copy
+BUCRF72VH5RBN7X3VL35,organization,Entergy,US,GLEIF_golden_copy
+549300IX8SD6XXD71I78,organization,DTE Energy,US,GLEIF_golden_copy
+5493003S21INSLK2IP73,organization,Dow,US,GLEIF_golden_copy
+RCGZFPDMRW58VJ54VR07,organization,salesforce.com,US,GLEIF_golden_copy
+SJ7XXD41SQU3ZNWUJ746,organization,Eversource Energy,US,GLEIF_golden_copy
+549300IGLYTZUK3PVP70,organization,WEC Energy,US,GLEIF_golden_copy
+549300DJ09SMTO561131,organization,Stanley Black & Decker,US,GLEIF_golden_copy
+529900F60CID3NCZM330,organization,Carmax,US,GLEIF_golden_copy
+IM7X0T3ECJW4C1T7ON55,organization,Occidental Petroleum,US,GLEIF_golden_copy
+549300KP43CPCUJOOG15,organization,Vistra Energy,US,GLEIF_golden_copy
+549300T065Z4KJ686G75,organization,Voya Financial,US,GLEIF_golden_copy
+XRZQ5S7HYJFPHJ78L959,organization,Ameren,US,GLEIF_golden_copy
+549300IA9XFBAGNIBW29,organization,CMS Energy,US,GLEIF_golden_copy
+549300XU3XH6F05YEQ93,organization,Baker Hughes,US,GLEIF_golden_copy
+K9G90K85RBWD2LAGQX17,organization,AvalonBay Communities,US,GLEIF_golden_copy
+8YQ2GSDWYZXO2EDN3511,organization,PG&E,US,GLEIF_golden_copy
+549300OF70FSEUQBT254,organization,Boston Properties,US,GLEIF_golden_copy
+549300BMOJ05INE4YK86,organization,Vornado Realty,US,GLEIF_golden_copy
+3PPKBHUG1HD6BO7RNR87,organization,Textron,US,GLEIF_golden_copy
+I9Q57JVPWHHZ3ZGBW498,organization,Comerica,US,GLEIF_golden_copy
+54930073LBBH6ZCBE225,organization,Molson Coors Brewing Company,US,GLEIF_golden_copy
+549300L8X1Q78ERXFD06,organization,Nasdaq,US,GLEIF_golden_copy
+549300JQQA6MQ4OJP259,organization,McCormick & Co,US,GLEIF_golden_copy
+6SYKCME112RT8TQUO411,organization,Jones Lang LaSalle,US,GLEIF_golden_copy
+POOXSI30AWAQGYJZC921,organization,Church & Dwight Co,US,GLEIF_golden_copy
+5493009ML300G373MZ12,organization,Alliant Energy,US,GLEIF_golden_copy
+549300CZ8QS1GE53O776,organization,Jacobs Engineering,US,GLEIF_golden_copy
+QG7T915N9S0NY5UKNE63,organization,Synopsys,US,GLEIF_golden_copy
+5493000BD5GJNUDIUG10,organization,Mettler-Toledo International,US,GLEIF_golden_copy
+549300D8GOWWH0SJB189,organization,NiSource,US,GLEIF_golden_copy
+TWSEY0NEDUDCKS27AH81,organization,Pinnacle West Capital,US,GLEIF_golden_copy
+0EEB8GF0W0NPCIHZX097,organization,AECOM Technology,US,GLEIF_golden_copy
+BZLRL03D3GPGMOGFO832,organization,International Flavors & Fragrances,US,GLEIF_golden_copy
+5493007B9BM9ZXJINO78,organization,Live Nation Entertainment,US,GLEIF_golden_copy
+OC1LZNN2LF5WTJ5RIL89,organization,Akamai Technologies,US,GLEIF_golden_copy
+549300MIX43II8JLN536,organization,Liberty Broadband,US,GLEIF_golden_copy
+549300NUB6D2R1ITYR45,organization,Hasbro,US,GLEIF_golden_copy
+549300VIZRB02KN4IJ45,organization,Slack Technologies,US,GLEIF_golden_copy
+5493000C01ZX7D35SD85,organization,Berkshire Hathaway,US,GLEIF_golden_copy
+J3WHBG0MTS7O8ZVMDC91,organization,Exxon Mobil,US,GLEIF_golden_copy
+PBLD0EJDB5FWOLXP3B76,organization,Wells Fargo,US,GLEIF_golden_copy
+6SHGI4ZSSLCXXQSBB395,organization,Citigroup,US,GLEIF_golden_copy
+549300GHBMY8T5GXDE41,organization,UnitedHealth,US,GLEIF_golden_copy
+KNX4USFCNGPY45LOCE31,organization,Intel,US,GLEIF_golden_copy
+765LHXWGK1KXCLTFYQ30,organization,Pfizer,US,GLEIF_golden_copy
+549300VIWYMSIGT1U456,organization,Cigna,US,GLEIF_golden_copy
+549300LKFJ962MZ46593,organization,Cisco Systems,US,GLEIF_golden_copy
+I07WOS4YJ0N7YRFE7309,organization,Raytheon Technologies,US,GLEIF_golden_copy
+MZK1AT00SJV4XB7WNL71,organization,Merck & Co,US,GLEIF_golden_copy
+1Z4GXXU7ZHVWFCD8TV52,organization,Oracle,US,GLEIF_golden_copy
+UWJKFUJFZ02DKWI3RY53,organization,Coca-Cola Company,US,GLEIF_golden_copy
+N1GZ7BBF3NP8GI976H15,organization,U.S. Bancorp,US,GLEIF_golden_copy
+8MYN82XMYQH89CTMTH67,organization,Anthem,US,GLEIF_golden_copy
+5493001Z3ZE83NGK8Y12,organization,Prudential,US,GLEIF_golden_copy
+FR5LCKFTG8054YNNRU85,organization,AbbVie,US,GLEIF_golden_copy
+WRJR7GS4GTRECRRTVX92,organization,Caterpillar,US,GLEIF_golden_copy
+549300RPTUOIXG4LIH86,organization,Walgreens Boots Alliance,US,GLEIF_golden_copy
+HLYYNH7UQUORYSJQCN42,organization,Bristol-Myers Squibb,US,GLEIF_golden_copy
+29DX7H14B9S6O3FD6V18,organization,Costco,US,GLEIF_golden_copy
+D01LMJZU09ULLNCY6Z23,organization,UPS,US,GLEIF_golden_copy
+DPRBOZP0K5RM2YE8UU08,organization,Lockheed Martin,US,GLEIF_golden_copy
+OBT0W1ED8G0NWVOLOJ77,organization,Allstate,US,GLEIF_golden_copy
+0J0XRGZE3PBRFEZ7MV65,organization,Charter Communications,US,GLEIF_golden_copy
+ISRPG12PN4EIEOEMW547,organization,Honeywell International,US,GLEIF_golden_copy
+ODVCVCQG2BP6VHV36M30,organization,American International Group,US,GLEIF_golden_copy
+HQD377W2YR662HK5JX27,organization,Abbott Laboratories,US,GLEIF_golden_copy
+62QBXGPJ34PQ72Z12S66,organization,Amgen,US,GLEIF_golden_copy
+549300DRQQI75D2JP341,organization,Truist Financial,US,GLEIF_golden_copy
+3SOUA6IRML7435B56G12,organization,Exelon,US,GLEIF_golden_copy
+WAFCR4OKGSC504WU3E95,organization,Lowe's,US,GLEIF_golden_copy
+PWFTNG3EI0Y73OXWDH08,organization,Deere & Company,US,GLEIF_golden_copy
+HCHV7422L5HDJZCRFL38,organization,Thermo Fisher Scientific,US,GLEIF_golden_copy
+549300WTZWR07K8MNV44,organization,Gilead Sciences,US,GLEIF_golden_copy
+5493005JBO5YSIGK1814,organization,Phillips 66,US,GLEIF_golden_copy
+549300DV9GIB88LZ5P30,organization,Mondelez International,US,GLEIF_golden_copy
+549300WV6GIDOZJTV909,organization,Broadcom,US,GLEIF_golden_copy
+LUZQVYP4VS22CLWDAR65,organization,3M Co,US,GLEIF_golden_copy
+3BNYRYQHD39K4LCKQF12,organization,Marathon Petroleum,US,GLEIF_golden_copy
+529900TACNVLY9DCR586,organization,Progressive,US,GLEIF_golden_copy
+UE2136O97NLB5BYP9H04,organization,McDonald's,US,GLEIF_golden_copy
+9C1X8XOOTYY2FNYTVH06,organization,General Dynamics,US,GLEIF_golden_copy
+549300N0B7DOGLXWPP39,organization,Aflac,US,GLEIF_golden_copy
+549300Y650407RU8B149,organization,Travelers,US,GLEIF_golden_copy
+FRDRIPF3EKNDJ2CQJL29,organization,Eli Lilly & Co.,US,GLEIF_golden_copy
+549300VSGCJ7E698NM85,organization,Charles Schwab,US,GLEIF_golden_copy
+529900PH4ZGUH2MNEU89,organization,HCA Healthcare,US,GLEIF_golden_copy
+S4BKK9OTCEWQ3YHPFM11,organization,Danaher,US,GLEIF_golden_copy
+529900YLDW34GJAO4J06,organization,Humana,US,GLEIF_golden_copy
+RIMU48P07456QXSO0R61,organization,Northrop Grumman,US,GLEIF_golden_copy
+H1J8DDZKZP6H7RWC0H53,organization,QUALCOMM,US,GLEIF_golden_copy
+6CPEOKI6OYJ13Q6O7870,organization,Kroger,US,GLEIF_golden_copy
+AR5L2ODV9HN37376R084,organization,MasterCard Incorporated,US,GLEIF_golden_copy
+B3DXGBC8GAIYWI2Z0172,organization,Micron Technology,US,GLEIF_golden_copy
+549300Z7JJ4TQSQGT333,organization,Centene,US,GLEIF_golden_copy
+V167QI9I69W364E2DY52,organization,TJX Companies,US,GLEIF_golden_copy
+HGBOLILQXWER4SAL2I23,organization,Automatic Data Processing,US,GLEIF_golden_copy
+549300LO13MQ9HYSTR83,organization,Archer Daniels Midland,US,GLEIF_golden_copy
+B1V7KEBTPIMZEU4LTD58,organization,Fannie Mae,US,GLEIF_golden_copy
+WD6L6041MNRW1JE49D58,organization,Tyson Foods,US,GLEIF_golden_copy
+549300JVQR4N1MMP3Q88,organization,CSX,US,GLEIF_golden_copy
+PBBKGKLRK5S5C0Y4T545,organization,Sempra Energy,US,GLEIF_golden_copy
+549300B5KDM3X3M4QY33,organization,Freddie Mac,US,GLEIF_golden_copy
+ICE2EP6D98PQUILVRZ91,organization,Becton Dickinson,US,GLEIF_golden_copy
+5493002F0SC4JTBU5137,organization,Stryker,US,GLEIF_golden_copy
+549300WR7IX8XE0TBO16,organization,Kinder Morgan,US,GLEIF_golden_copy
+FGLT0EWZSUIRRITFOA30,organization,Emerson Electric Co.,US,GLEIF_golden_copy
+549300XMP3KDCKJXIU47,organization,Marsh & McLennan,US,GLEIF_golden_copy
+6ZLKQF7QB6JAEKQS5388,organization,Ameriprise Financial,US,GLEIF_golden_copy
+OPX52SQVOZI8IVSWYU66,organization,Dollar General,US,GLEIF_golden_copy
+FXM8FAOHMYDIPD38UZ17,organization,Booking Holdings,US,GLEIF_golden_copy
+Z1YLO2USPORE63VVUL20,organization,Discover Financial Services,US,GLEIF_golden_copy
+549300RS7EWPM9MA6C78,organization,Synchrony Financial,US,GLEIF_golden_copy
+KDTEY8BWE486IKZ3CC07,organization,PACCAR,US,GLEIF_golden_copy
+5493000F4ZO33MV32P92,organization,IntercontinentalExchange,US,GLEIF_golden_copy
+54930036C8MWP850MI84,organization,Norfolk Southern,US,GLEIF_golden_copy
+5RGWIFLMGH3YS7KWI652,organization,Sysco,US,GLEIF_golden_copy
+549300VSP3RIX7FGDZ51,organization,Newmont Mining,US,GLEIF_golden_copy
+54930033SBW53OO8T749,organization,Consolidated Edison,US,GLEIF_golden_copy
+GI7UBEJLXYLGR2C7GV83,organization,Fiserv,US,GLEIF_golden_copy
+RVHJWBXLJ1RFUBSY1F30,organization,Boeing Co,US,GLEIF_golden_copy
+WDJNR2L6D8RWOEB8T652,organization,Texas Instruments,US,GLEIF_golden_copy
+549300UTE50ZMDBG8A20,organization,L3Harris Technologies,US,GLEIF_golden_copy
+DYTQ8KRTKO7Y2BVU5K74,organization,Keurig Dr Pepper,US,GLEIF_golden_copy
+549300I7ROF15MAEVP56,organization,Edison International,US,GLEIF_golden_copy
+CUMYEZJOAF02RYZ1JJ85,organization,Principal Financial Group,US,GLEIF_golden_copy
+LCZ7XYGSLJUHFXXNXD88,organization,CME,US,GLEIF_golden_copy
+AI8GXW8LG5WK7E9UD086,organization,AmerisourceBergen,US,GLEIF_golden_copy
+Z15BMIOX8DDH0X2OBP21,organization,Sherwin-Williams,US,GLEIF_golden_copy
+529900G61XVRLX5TJX09,organization,Lennar,US,GLEIF_golden_copy
+225YDZ14ZO8E1TXUSU86,organization,Marriott International,US,GLEIF_golden_copy
+4DR1VPDQMHD3N3QW8W95,organization,Carnival,US,GLEIF_golden_copy
+5KYC8KF17ROCY24M3H09,organization,ViacomCBS,US,GLEIF_golden_copy
+UDTZ87G0STFETI6HGH41,organization,Southwest Airlines Co.,US,GLEIF_golden_copy
+549300S4KLFTLO7GSQ80,organization,NVIDIA,US,GLEIF_golden_copy
+549300XTO5VR8SKV1V74,organization,Valero Energy,US,GLEIF_golden_copy
+549300DUOO1KXOHPM605,organization,Las Vegas Sands,US,GLEIF_golden_copy
+76NA4I14SZCFAYMNSV04,organization,Illinois Tool Works,US,GLEIF_golden_copy
+549300E707U7WNPZN687,organization,FedEx,US,GLEIF_golden_copy
+OML71K8X303XQONU6T67,organization,eBay,US,GLEIF_golden_copy
+549300JE3W6CWY2NAN77,organization,Carrier Global,US,GLEIF_golden_copy
+98450079DA0B78DD6764,organization,United Airlines Holdings,US,GLEIF_golden_copy
+549300GLF98S992BC502,organization,Northern Trust,US,GLEIF_golden_copy
+5493006IEVQEFQO40L83,organization,Cognizant Technology,US,GLEIF_golden_copy
+549300WZWOM80UCFSF54,organization,McKesson,US,GLEIF_golden_copy
+549300WYXDDBYRASEG81,organization,M&T Bank,US,GLEIF_golden_copy
+R8V1FN4M5ITGZOG7BS19,organization,Loews,US,GLEIF_golden_copy
+7QEON6Y1RL5XR3R1W237,organization,Air Products & Chemicals,US,GLEIF_golden_copy
+9N3UAJSNOUXFKQLF3V18,organization,PPL,US,GLEIF_golden_copy
+EFQMQROEDSNBRIP7LE47,organization,Lincoln National,US,GLEIF_golden_copy
+RKPI3RZGV1V1FJTH5T61,organization,KeyCorp,US,GLEIF_golden_copy
+529900U350CWHH15G169,organization,DISH Network,US,GLEIF_golden_copy
+XSGZFLO9YTNO9VCQV219,organization,Altria,US,GLEIF_golden_copy
+5493002CONDB4N2HKI23,organization,Parker-Hannifin,US,GLEIF_golden_copy
+5493006ZCRFWKF6B1K26,organization,Discovery,US,GLEIF_golden_copy
+54930043XZGB27CTOV49,organization,Tesla Motors,US,GLEIF_golden_copy
+ZI85ER3E6RXD4HPHW309,organization,TD Ameritrade Holding,US,GLEIF_golden_copy
+J5OIVXX3P24RJRW5CK77,organization,Baxter International,US,GLEIF_golden_copy
+D71FAKCBLFS2O0RBPG08,organization,Williams,US,GLEIF_golden_copy
+549300PMSTQITB1WHR43,organization,Dollar Tree,US,GLEIF_golden_copy
+54930066VBP7DZEGGJ87,organization,MGM Resorts,US,GLEIF_golden_copy
+824LMFJDH41EY779Q875,organization,International Paper Company,US,GLEIF_golden_copy
+549300BKPEP01R3V6C59,organization,PPG Industries,US,GLEIF_golden_copy
+549300DDU6FDRBIELS05,organization,Fox,US,GLEIF_golden_copy
+54930012H97VSM0I2R19,organization,Crown Castle International,US,GLEIF_golden_copy
+NKNQHM6BLECKVOQP7O46,organization,Republic Services,US,GLEIF_golden_copy
+52990016II9MJ2OSWA10,organization,CBRE,US,GLEIF_golden_copy
+HKUPACFHSSASQK8HLS17,organization,Omnicom,US,GLEIF_golden_copy
+549300ENZFLPGRDFZQ60,organization,Ross Stores,US,GLEIF_golden_copy
+LONOZNOJYIBXOHXWDB86,organization,Kellogg Company,US,GLEIF_golden_copy
+6WQI0GK1PRFVBA061U48,organization,Fidelity National Information,US,GLEIF_golden_copy
+CW05CS5KW59QTC0DG824,organization,Regions Financial,US,GLEIF_golden_copy
+549300RCBFWIRX3HYQ56,organization,Regeneron Pharmaceuticals,US,GLEIF_golden_copy
+K2NEH8QNVW44JIWK7Z55,organization,Royal Caribbean Cruises,US,GLEIF_golden_copy
+549300SVYJS666PQJH88,organization,FirstEnergy,US,GLEIF_golden_copy
+549300JBN1OSM8YNAI90,organization,Ally Financial,US,GLEIF_golden_copy
+2P2YLDVPES3BXQ1FRB91,organization,Zimmer Biomet Holdings,US,GLEIF_golden_copy
+549300I4GMO6D34U1T02,organization,Lam Research,US,GLEIF_golden_copy
+CCU46N3GJMF4OK4N7U60,organization,Cardinal Health,US,GLEIF_golden_copy
+549300TPQQDBP9GNOF40,organization,Activision Blizzard,US,GLEIF_golden_copy
+LORM1GNEU1DKEW527V90,organization,Reinsurance  of America,US,GLEIF_golden_copy
+GA3JGKJ41LJKXDN23E90,organization,Autozone,US,GLEIF_golden_copy
+YWC0TIKBQM2JV8L4IV08,organization,First Republic Bank,US,GLEIF_golden_copy
+549300JEB576INN13W07,organization,WestRock,US,GLEIF_golden_copy
+549300GGJCRSI2TIEJ46,organization,Nucor,US,GLEIF_golden_copy
+RGUZHJ05YTITL6D76949,organization,Raymond James Financial,US,GLEIF_golden_copy
+54930035UDEIH090K650,organization,ConAgra Foods,US,GLEIF_golden_copy
+549300K2RLMQL149Q332,organization,O'Reilly Automotive,US,GLEIF_golden_copy
+549300WZN9I2QKLS0O94,organization,Corteva,US,GLEIF_golden_copy
+549300XTVCVV9I7B5T19,organization,Huntington Bank,US,GLEIF_golden_copy
+54930003T4SXCIWVXY35,organization,Roper Technologies,US,GLEIF_golden_copy
+549300ZLBKR8VSU25153,organization,Otis Worldwide,US,GLEIF_golden_copy
+549300E32YFDO6TZ8R31,organization,Unum,US,GLEIF_golden_copy
+MIHC87W9WTYSYZWV1J40,organization,Cheniere Energy,US,GLEIF_golden_copy
+FY8JBF7CCL2VE4F1B628,organization,Pioneer Natural Resources Co,US,GLEIF_golden_copy
+549300HVGPK36ICB0B89,organization,Hilton Worldwide Holdings,US,GLEIF_golden_copy
+M1YXUUZR0EIMU8T0EM75,organization,Alexion Pharmaceuticals,US,GLEIF_golden_copy
+0BGI85ALH27ZJP15DY16,organization,Ball,US,GLEIF_golden_copy
+549300HD9Q1LOC9KLJ48,organization,Zoetis,US,GLEIF_golden_copy
+2T3D6M0JSY48PSZI1Q41,organization,ONEOK,US,GLEIF_golden_copy
+549300FIBAKMNHPZ4009,organization,Equitable Holdings,US,GLEIF_golden_copy
+MSD54751OJP1FS2ND863,organization,Hormel Foods,US,GLEIF_golden_copy
+WHENKOULSSK7WUM60H03,organization,Whirlpool,US,GLEIF_golden_copy
+549300D3L3G0R4U4VT04,organization,Amphenol TCS,US,GLEIF_golden_copy
+549300D2KJ20JMXE7542,organization,SVB Financial,US,GLEIF_golden_copy
+21X2CX66SU2BR6QTAD08,organization,Hershey Company,US,GLEIF_golden_copy
+549300O7A67PUEYKDL45,organization,Electronic Arts,US,GLEIF_golden_copy
+549300AFOM7IVKIU1G39,organization,American Financial,US,GLEIF_golden_copy
+549300D46DQVEU651W04,organization,Genuine Parts Co,US,GLEIF_golden_copy
+549300NOMHGVQBX6S778,organization,Global Payments,US,GLEIF_golden_copy
+549300MU9YQJYHDQEF63,organization,Fortive,US,GLEIF_golden_copy
+549300EVUN2BTLJ3GT74,organization,EQUINIX,US,GLEIF_golden_copy
+549300IRDTHJQ1PVET45,organization,Freeport-McMoRan Copper,US,GLEIF_golden_copy
+M2XHYMU3TZNEZURC6H66,organization,DaVita,US,GLEIF_golden_copy
+254900U6E39J1MQCCY14,organization,Medical Properties Trust,US,GLEIF_golden_copy
+549300X2937PB0CJ7I56,organization,Corning,US,GLEIF_golden_copy
+549300SIV6FPS9Y7IH33,organization,T Rowe Price,US,GLEIF_golden_copy
+DS830JTTZQN6GK0I2E41,organization,LKQ,US,GLEIF_golden_copy
+YF6ZV0M6AU4FY94MK914,organization,NortonLifeLock,US,GLEIF_golden_copy
+549300W3R20NM4KQPH86,organization,IQVIA,US,GLEIF_golden_copy
+549300LYE2HSVYJFJD24,organization,E-Trade Financial,US,GLEIF_golden_copy
+6S552MUG6KGJVEBSEC55,organization,Motorola Solutions,US,GLEIF_golden_copy
+54930015RAQRRZ5ZGJ91,organization,Vertex Pharmaceuticals,US,GLEIF_golden_copy
+54930049QLLMPART6V29,organization,Gallagher,US,GLEIF_golden_copy
+549300QQXOOYEF89IC56,organization,Western Digital,US,GLEIF_golden_copy
+549300DCJE6AYX159479,organization,Alleghany,US,GLEIF_golden_copy
+549300TWZSP6O1IH2V34,organization,WW Grainger,US,GLEIF_golden_copy
+5493005GKEG8QCVY7037,organization,Constellation Brands,US,GLEIF_golden_copy
+549300HKCZ31D08NEI41,organization,Digital Realty,US,GLEIF_golden_copy
+54930052SRG011710797,organization,Intuitive Surgical,US,GLEIF_golden_copy
+54930064K3612MGCER95,organization,Altice USA,US,GLEIF_golden_copy
+IWUQB36BXD6OWD6X4T14,organization,American Airlines,US,GLEIF_golden_copy
+549300NQQCEQ46YHZ591,organization,Molina Healthcare,US,GLEIF_golden_copy
+T6IZ0MBEG5ACZDTR7D06,organization,Welltower,US,GLEIF_golden_copy
+549300FEKNPCFSA2B506,organization,Oshkosh,US,GLEIF_golden_copy
+549300IUTGTP6EJP8124,organization,Leidos,US,GLEIF_golden_copy
+529900NZQ81TIOW3CW52,organization,Macy's,US,GLEIF_golden_copy
+YA13X31F3V31L8TMPR58,organization,Edwards Lifesciences,US,GLEIF_golden_copy
+549300DXHIJQMD5WFW18,organization,American Water Works,US,GLEIF_golden_copy
+ENYF8GB5SMQZ25S06U51,organization,Halliburton Company,US,GLEIF_golden_copy
+549300H0BF5JCG96TJ81,organization,KLA,US,GLEIF_golden_copy
+549300PGTHDQY6PSUI61,organization,Evergy,US,GLEIF_golden_copy
+5493000WDH6A0LHDJD55,organization,JM Smucker,US,GLEIF_golden_copy
+SQOAGCLKBDWNVYV1OV80,organization,W R Berkley,US,GLEIF_golden_copy
+SQ95QG8SR5Q56LSNF682,organization,Illumina,US,GLEIF_golden_copy
+R2I72C950HOYXII45366,organization,Advanced Micro Devices,US,GLEIF_golden_copy
+5493007PTFULNYZJ1R12,organization,Microchip Technology,US,GLEIF_golden_copy
+54930044KVSC06Z79I06,organization,Clorox,US,GLEIF_golden_copy
+52990090AP0E7HCB6F33,organization,Monster Beverage,US,GLEIF_golden_copy
+549300EMCG286BDNKJ33,organization,Genworth Financial,US,GLEIF_golden_copy
+FDPVHDGJ1IQZFK9KH630,organization,Eastman Chemical,US,GLEIF_golden_copy
+549300HOF34RGOJ5YL07,organization,Jefferies Financial,US,GLEIF_golden_copy
+VH3R4HHBHH12O0EXZJ88,organization,Rockwell Automation,US,GLEIF_golden_copy
+549300N5YSE0U3LCP840,organization,Align Technology,US,GLEIF_golden_copy
+OZ7UA8IXAIFILY2VZH07,organization,LabCorp,US,GLEIF_golden_copy
+5GCSNMQXHEYA1JO8QN11,organization,Masco,US,GLEIF_golden_copy
+549300HJTQM36M0E1G39,organization,ServiceNow,US,GLEIF_golden_copy
+549300UPNBTXA1SYTQ33,organization,Lear,US,GLEIF_golden_copy
+549300SCNO12JLWIK605,organization,Markel,US,GLEIF_golden_copy
+549300YGMGQDO0NMJD09,organization,Universal Health Services,US,GLEIF_golden_copy
+549300873K3LXF7ARU34,organization,Brown-Forman,US,GLEIF_golden_copy
+H3F39CAXWQRVWURFXL38,organization,Assurant,US,GLEIF_golden_copy
+549300E3VEW8SMS5XW09,organization,OneMain Holdings,US,GLEIF_golden_copy
+2NUNNB7D43COUIRE5295,organization,AES,US,GLEIF_golden_copy
+GCT7RXJOGLXPV0NXZY22,organization,Cadence Design,US,GLEIF_golden_copy
+549300JF6LPRTRJ0FH50,organization,Kohl's,US,GLEIF_golden_copy
+QUIX8Y7A2WP0XRMW7G29,organization,Agilent Technologies,US,GLEIF_golden_copy
+529900PP0C7H2HHPSJ32,organization,Fastenal Co,US,GLEIF_golden_copy
+529900WNWN5L0OVDHA79,organization,C.H. Robinson,US,GLEIF_golden_copy
+549300FMC2ALGA7N9E80,organization,Dover,US,GLEIF_golden_copy
+5493008IUOJ5VWTRC333,organization,Interpublic,US,GLEIF_golden_copy
+CY1NFSCCB5GUXC7WZC70,organization,Darden Restaurants,US,GLEIF_golden_copy
+529900RWXR4JI3JYTV70,organization,NVR,US,GLEIF_golden_copy
+549300ZC1GPV35XYDK53,organization,Bio-Rad Laboratories,US,GLEIF_golden_copy
+549300DG6RR0NQSFLN74,organization,Fleetcor Technologies,US,GLEIF_golden_copy
+5493008C12PZMWP3WY03,organization,Kansas City Southern,US,GLEIF_golden_copy
+549300WZDEF9KKE40E98,organization,Ametek,US,GLEIF_golden_copy
+LMPL4N8ZOJRMF0KOF759,organization,Verisign,US,GLEIF_golden_copy
+529900CIV6HN8M28YM82,organization,Ulta Beauty,US,GLEIF_golden_copy
+5493001JFHKQOPP6XA71,organization,Globe Life,US,GLEIF_golden_copy
+5493003T8SZSHOGGAW52,organization,Brighthouse Financial,US,GLEIF_golden_copy
+5493007JDSMX8Z5Z1902,organization,Campbell Soup,US,GLEIF_golden_copy
+549300EI6OKH5K5Q2G38,organization,Moderna,US,GLEIF_golden_copy
+RIFQSET379FOGTEFKS80,organization,Franklin Resources,US,GLEIF_golden_copy
+984500B055A804AB6E40,organization,Expeditors International,US,GLEIF_golden_copy
+6EY4K7ZMF9UX1CU6KC79,organization,Xilinx,US,GLEIF_golden_copy
+549300OJ9VZHZRO6I137,organization,Tractor Supply Co,US,GLEIF_golden_copy
+ECPGFXU8A2SHKVVGJI15,organization,Invesco,US,GLEIF_golden_copy
+549300DOVZ3EDJB7O259,organization,DXC Technology,US,GLEIF_golden_copy
+549300HO5WFZUT5N2T22,organization,Howmet Aerospace,US,GLEIF_golden_copy
+5493007M0RIN8HY3MM77,organization,Bunge,US,GLEIF_golden_copy
+549300WZ3ORQ2BVKBD96,organization,Skyworks Solutions,US,GLEIF_golden_copy
+635400H1WKBLOQERUU95,organization,Arista Networks,US,GLEIF_golden_copy
+54930067J0ZNOEBRW338,organization,Navient,US,GLEIF_golden_copy
+549300JI1115MG3Q6322,organization,Mohawk Industries,US,GLEIF_golden_copy
+549300XCD1MPI1C5GK90,organization,J.B. Hunt Transport Services,US,GLEIF_golden_copy
+UASVRYNXNK17ULIGK870,organization,Hess,US,GLEIF_golden_copy
+2DTL0G3FPRYUT58TI025,organization,Annaly Capital Management,US,GLEIF_golden_copy
+549300CUWDAUZSH43859,organization,Realty Income,US,GLEIF_golden_copy
+HCTKJGUQOPZ5NBK7NP58,organization,Citrix Systems,US,GLEIF_golden_copy
+549300KVYX3JWMYEHU61,organization,Copart,US,GLEIF_golden_copy
+549300L4UJ40IEVVI304,organization,Cerner,US,GLEIF_golden_copy
+549300CAZYIH39SYQ287,organization,Fidelity National Financial,US,GLEIF_golden_copy
+QTX3D84DZDD5JYOCYH15,organization,NetApp,US,GLEIF_golden_copy
+SO0H5YEO14Y4PVKQH532,organization,Maxim Integrated Products,US,GLEIF_golden_copy
+VLP5AP0XK2GM6GKD1007,organization,Signature Bank,US,GLEIF_golden_copy
+549300W7UTQ0M4C7LB15,organization,Penske Automotive,US,GLEIF_golden_copy
+549300HTIN2PD78UB763,organization,MSCI,US,GLEIF_golden_copy
+549300GLKVIO8YRCYN02,organization,Keysight Technologies,US,GLEIF_golden_copy
+ORQTRC074CWLT3DKHT41,organization,Ventas,US,GLEIF_golden_copy
+5493004HI6PFLF46NS53,organization,SYNNEX,US,GLEIF_golden_copy
+06BTX5UWZD0GQ5N5Y745,organization,Westinghouse Air Brake Technologies,US,GLEIF_golden_copy
+0W9AIBT6U6ADJ2I8HK17,organization,Tenet Healthcare,US,GLEIF_golden_copy
+BUGSFQZERKRBFWIG5267,organization,Starwood Property Trust,US,GLEIF_golden_copy
+549300WYXDDBYRASEG81,organization,People's United Financial,US,GLEIF_golden_copy
+549300FHJQTDPPN41627,organization,Celanese,US,GLEIF_golden_copy
+254900Q4WEDMZBOZ0002,organization,Cincinnati Financial,US,GLEIF_golden_copy
+549300DSFX2IE88NSX47,organization,BorgWarner,US,GLEIF_golden_copy
+N6EL63S0K3PB1YFTDI24,organization,Host Hotels & Resorts,US,GLEIF_golden_copy
+08IRJODWFYBI7QWRGS31,organization,Weyerhaeuser Company,US,GLEIF_golden_copy
+5299009TWK32WE417T96,organization,Old Dominion Freight Line,US,GLEIF_golden_copy
+549300XZP8MFZFY8TJ84,organization,Packaging of America,US,GLEIF_golden_copy
+549300BIJKT86CPCKK96,organization,Match,US,GLEIF_golden_copy
+54930067J0ZNOEBRW338,organization,SLM,US,GLEIF_golden_copy
+549300EK847TAWPJWF34,organization,Tech Data,US,GLEIF_golden_copy
+549300MR6PG2DWZUIL39,organization,Aramark,US,GLEIF_golden_copy
+529900T3QE5253CCXF22,organization,ResMed,US,GLEIF_golden_copy
+VGO3WGL8H45T73F4RR92,organization,Henry Schein,US,GLEIF_golden_copy
+529900UCNQ5H9FSL0Y70,organization,Advance Auto Parts,US,GLEIF_golden_copy
+5299003Z37DVGKKC1W09,organization,Burlington Stores,US,GLEIF_golden_copy
+549300Q8LSNHAVWBNI21,organization,Vulcan Materials,US,GLEIF_golden_copy
+529900G48RT4KWLC6C27,organization,Alaska Air,US,GLEIF_golden_copy
+54930096DB9LCLPN7H13,organization,XPO Logistics,US,GLEIF_golden_copy
+5TZLZ6WJTBVJ0QWBG121,organization,Huntington Ingalls Industries,US,GLEIF_golden_copy
+549300PW7VPFCYKLIV37,organization,Avery Dennison,US,GLEIF_golden_copy
+549300KY09TR3J12JU49,organization,SS&C Technologies,US,GLEIF_golden_copy
+5TRACI5HRMELWV32OF39,organization,AGNC Investment,US,GLEIF_golden_copy
+5E2UPK5SW04M13XY7I38,organization,New Residential Investment,US,GLEIF_golden_copy
+549300I1YSWNIRKBWP67,organization,Verisk Analytics,US,GLEIF_golden_copy
+MGCJBT4MKTQBVLNUIS88,organization,Alexandria Real Estate Equities,US,GLEIF_golden_copy
+549300YNNLBXT8N8R512,organization,Arrow Electronics,US,GLEIF_golden_copy
+549300FA4CTCW903Y781,organization,Caesars Entertainment,US,GLEIF_golden_copy
+28ID94QU1140NC23S047,organization,Western Union,US,GLEIF_golden_copy
+QVLWEGTD2S8GJMO8D383,organization,Atmos Energy,US,GLEIF_golden_copy
+5493003JDENERRDYFN86,organization,GCI Liberty,US,GLEIF_golden_copy
+UUL85LWXB4NGSWWXIQ25,organization,Teleflex,US,GLEIF_golden_copy
+549300VJV8H15Z5FJ571,organization,ANSYS,US,GLEIF_golden_copy
+OGMTXK0LUU1HKV2P0J84,organization,IDEXX Laboratories,US,GLEIF_golden_copy
+549300S3IZB5P35KNV16,organization,Nordstrom,US,GLEIF_golden_copy
+549300EIUS8UN5JTLE54,organization,Synovus Financial,US,GLEIF_golden_copy
+549300DYP6F5ZJL0LB74,organization,Hologic,US,GLEIF_golden_copy
+549300LWGYFM1TVO1Z12,organization,Newell Rubbermaid,US,GLEIF_golden_copy
+549300E287ZOFT3C5Z56,organization,Reliance Steel,US,GLEIF_golden_copy
+549300Z4WN6JVZ3T4680,organization,Incyte,US,GLEIF_golden_copy
+549300HGGKEL4FYTTQ83,organization,Steel Dynamics,US,GLEIF_golden_copy
+549300UGOZSO64CFPR97,organization,US Foods Holding,US,GLEIF_golden_copy
+529900JPV47PIUWMA015,organization,Booz Allen Hamilton Holding,US,GLEIF_golden_copy
+ERO1WSFOSR0JJ6CRQ987,organization,ManpowerGroup,US,GLEIF_golden_copy
+549300OHIIUWSTIZME52,organization,Square,US,GLEIF_golden_copy
+54930027N9ZAVYFDHK53,organization,Wayfair,US,GLEIF_golden_copy
+5299005MZ4WZECVATV08,organization,Martin Marietta Materials,US,GLEIF_golden_copy
+549300I1RRC5M591MY93,organization,American National Insurance,US,GLEIF_golden_copy
+549300TR2H2VEFX0NC60,organization,Essex Property Trust,US,GLEIF_golden_copy
+GRI2NT5QHYW751NMR949,organization,BOK Financial,US,GLEIF_golden_copy
+5493000CGCQY2OQU7669,organization,Jabil Circuit,US,GLEIF_golden_copy
+549300TO56L57RP6P031,organization,IAC/InterActiveCorp,US,GLEIF_golden_copy
+D3W7PCXCBRQLL17DZ313,organization,World Fuel Services,US,GLEIF_golden_copy
+5493002BI0S2ZQUY3437,organization,Goodyear,US,GLEIF_golden_copy
+549300PSXEKU4PHLCR04,organization,Qurate Retail Group,US,GLEIF_golden_copy
+549300T9GCHU0ODOM055,organization,Zoom Video Communications,US,GLEIF_golden_copy
+QJKMVPIGLH7530PCUE20,organization,Cooper Companies,US,GLEIF_golden_copy
+529900HVXOTLY61GL030,organization,New York Community Bancorp,US,GLEIF_golden_copy
+CZ72ZHBVKZXQRV3XFE26,organization,Ovintiv,US,GLEIF_golden_copy
+XXRTID9RYWOZ0UPIVR53,organization,Continental Resources,US,GLEIF_golden_copy
+529900E95812SYWMCE44,organization,Avis Budget,US,GLEIF_golden_copy
+5299001HX8ZN8Y8QIT49,organization,SBA Communications,US,GLEIF_golden_copy
+5T547R1474YC9HOD8Q74,organization,Waters,US,GLEIF_golden_copy
+549300YSK3QDSFR5EU59,organization,DexCom,US,GLEIF_golden_copy
+549300YZEXPDB92M2F02,organization,Veeva Systems,US,GLEIF_golden_copy
+C3X4YJ278QNZHRJULN75,organization,Teradyne,US,GLEIF_golden_copy
+549300GKGW6WPZ282D40,organization,United Natural Foods,US,GLEIF_golden_copy
+2549003PBEDCSZMZIY02,organization,PBF Energy,US,GLEIF_golden_copy
+CKDHZ2X64EEBQCSP7013,organization,FMC,US,GLEIF_golden_copy
+5493004DT6DCDUZNDM53,organization,Interactive Brokers,US,GLEIF_golden_copy
+549300U0EXXFAQFAD785,organization,Tenneco,US,GLEIF_golden_copy
+549300EUK8GR9IT1YK57,organization,Performance Food Group,US,GLEIF_golden_copy
+25490005ZWM1IF9UXU57,organization,Domino's Pizza,US,GLEIF_golden_copy
+PO0I32GKZ3HZMMDPZZ08,organization,Zebra Technologies,US,GLEIF_golden_copy
+529900W353T1JY1DKT44,organization,Rite Aid,US,GLEIF_golden_copy
+549300DF5MV96DRYLQ48,organization,Xylem,US,GLEIF_golden_copy
+5493004NW4M4P8TMMK63,organization,Air Lease,US,GLEIF_golden_copy
+54930070J9H97ZO93T57,organization,JetBlue Airways,US,GLEIF_golden_copy
+5493003VJXZ5JXT9S762,organization,Western Alliance Bancorp.,US,GLEIF_golden_copy
+549300KZDJZQ2YIHRC28,organization,Broadridge Financial Solutions,US,GLEIF_golden_copy
+549300XGDSGBP6UEI867,organization,Splunk,US,GLEIF_golden_copy
+WEQ82666OJYSI5GUAB47,organization,Ares Capital,US,GLEIF_golden_copy
+N8O96ZZJQRFYQUJY7K79,organization,CIT,US,GLEIF_golden_copy
+SHVRXXEACT60MMH07S24,organization,Quanta Services,US,GLEIF_golden_copy
+2YD5STGSJNMUB7H76907,organization,Mosaic Company,US,GLEIF_golden_copy
+5493003QENHHS261UR94,organization,Targa Resources,US,GLEIF_golden_copy
+11XPYHB76MPM4Y4P2897,organization,CNO Financial,US,GLEIF_golden_copy
+XJI53DCPL7QABOWK4Z75,organization,Avnet,US,GLEIF_golden_copy
+254900CEKKWIHTEAB172,organization,Wynn Resorts,US,GLEIF_golden_copy
+549300N8J06I8MRHU620,organization,Okta,US,GLEIF_golden_copy
+TF3RXI1ZB1TQ30H9JV10,organization,First Horizon National,US,GLEIF_golden_copy
+DX6GCWD4Q1JO9CRE5I40,organization,UGI,US,GLEIF_golden_copy
+549300C8EH0H1614VE84,organization,RingCentral,US,GLEIF_golden_copy
+CQ7WZ4NOFWT7FAE6Q943,organization,Fluor,US,GLEIF_golden_copy
+529900CI5YANWVE54N57,organization,Core-Mark Holding,US,GLEIF_golden_copy
+5299000V56320A7RIQ67,organization,Huntsman,US,GLEIF_golden_copy
+549300QXR2YVZV231H43,organization,Palo Alto Networks,US,GLEIF_golden_copy
+549300O0QJWDBAS0QX03,organization,Fortinet,US,GLEIF_golden_copy
+549300Q7PVDWRZ39JG09,organization,DocuSign,US,GLEIF_golden_copy
+549300B6VEZK3N0A1P55,organization,First American Financial,US,GLEIF_golden_copy
+549300Y081F8XIKQIO72,organization,Murphy Oil,US,GLEIF_golden_copy
+549300Y081F8XIKQIO72,organization,Murphy USA,US,GLEIF_golden_copy
+529900V2E9G9AY665O34,organization,Cullen/Frost Bankers,US,GLEIF_golden_copy
+HHWAT5TDOYZMM26KKQ73,organization,Snap-On,US,GLEIF_golden_copy
+549300U5Y5EL6PHYLF13,organization,IDEX,US,GLEIF_golden_copy
+549300VSMO9KYQWDND94,organization,Teledyne Technologies,US,GLEIF_golden_copy
+PZ9HF5U52KPF0MH0QN75,organization,Healthpeak Properties,US,GLEIF_golden_copy
+549300E5F07FE5GHJX84,organization,Stifel Financial,US,GLEIF_golden_copy
+549300ZCZ76HYCS0H445,organization,Frontier Communications,US,GLEIF_golden_copy
+549300ZS772LUNUMRB03,organization,TransUnion,US,GLEIF_golden_copy
+GOXNEVUM0LL78B1OS344,organization,Westlake Chemical,US,GLEIF_golden_copy
+549300E2MI7NSZFQWS19,organization,Trimble,US,GLEIF_golden_copy
+549300X383CBNP6MTV94,organization,Foot Locker,US,GLEIF_golden_copy
+1FRVQX2CRLGC1XLP5727,organization,Marathon Oil,US,GLEIF_golden_copy
+5493002U1CA1XJOVID83,organization,Marketaxess Holdings,US,GLEIF_golden_copy
+5493004MCF8JDC86VS77,organization,Equifax,US,GLEIF_golden_copy
+2JBBQFJOL123LOUBE657,organization,Chimera Investment,US,GLEIF_golden_copy
+NSLL8ITTRR0J5HEMR848,organization,Biomarin Pharmaceutical,US,GLEIF_golden_copy
+5493005SMYID1D2OY946,organization,Lamb Weston Holdings,US,GLEIF_golden_copy
+549300BO9IWPF3S48F93,organization,Coty,US,GLEIF_golden_copy
+529900JB6IS9MSZGVR44,organization,Toll Brothers,US,GLEIF_golden_copy
+T27JQIMTYSH41TCD5186,organization,Hyatt Hotels,US,GLEIF_golden_copy
+5493004W8TRGD63APX93,organization,Twilio,US,GLEIF_golden_copy
+549300PC8KTJ71XKFY89,organization,Brown & Brown,US,GLEIF_golden_copy
+549300YKTY8JX1DV2R67,organization,NCR,US,GLEIF_golden_copy
+549300KR6ITU0YIR1T71,organization,Roku,US,GLEIF_golden_copy
+Q774KI4AW80FHFW33O61,organization,Wintrust Financial,US,GLEIF_golden_copy
+JNLUVFYJT1OZSIQ24U47,organization,US Steel,US,GLEIF_golden_copy
+PCYSKIGYNYFDTBLVZU83,organization,F.N.B.,US,GLEIF_golden_copy
+549300KWWR4P1RYUVG65,organization,Sears Holdings,US,GLEIF_golden_copy
+549300FQZKFR5YNSHZ21,organization,Mid-America Apartment Communities,US,GLEIF_golden_copy
+254900LSB0HNJUDC6Q18,organization,Paycom,US,GLEIF_golden_copy
+BOMSTHHJK882EWYX3334,organization,Take-Two Interactive Software,US,GLEIF_golden_copy
+549300ET52S1UBIB9762,organization,Valley Natl Bancorp,US,GLEIF_golden_copy
+X2MT1W32SPAZ9WSKLE78,organization,Chesapeake Energy,US,GLEIF_golden_copy
+529900S3ZI14OWRJII50,organization,Alnylam Pharmaceuticals,US,GLEIF_golden_copy
+FCNMH6O7VWU7LHXMK351,organization,Cabot Oil & Gas,US,GLEIF_golden_copy
+549300R22LSX6OHWEN64,organization,Diamondback Energy,US,GLEIF_golden_copy
+529900O1DTDLCJ7L0I14,organization,Heico,US,GLEIF_golden_copy
+54930042CRNE713E3Q67,organization,W.P. Carey,US,GLEIF_golden_copy
+815600354DEDBD0BA991,organization,Poste Italiane,IT,GLEIF_golden_copy
+8156008DEC771409C487,organization,Atlantia,IT,GLEIF_golden_copy
+LAXUQCHT4FH58LRZDY46,organization,Eni SpA,IT,GLEIF_golden_copy
+2W8N8UU78PMDQKZENC08,organization,Intesa Sanpaolo,IT,GLEIF_golden_copy
+549300TRUWO2CD2G5692,organization,UniCredit,IT,GLEIF_golden_copy
+549300W384M3RI3VXU42,organization,Telecom Italia SpA,IT,GLEIF_golden_copy
+8156005CE5E7340CCA86,organization,Unipol Gruppo,IT,GLEIF_golden_copy
+8156002278562044AF79,organization,Snam,IT,GLEIF_golden_copy
+815600E4E6DCD2D25E30,organization,Banco BPM,IT,GLEIF_golden_copy
+353800PJDODZEA4NP730,organization,Mediobanca,IT,GLEIF_golden_copy
+8156009E94ED54DE7C31,organization,Terna,IT,GLEIF_golden_copy
+7LVZJ6XRIE7VNZ4UBX81,organization,Banca Mediolanum,IT,GLEIF_golden_copy
+549300HTIN2PD78UB763,organization,Banca MPS,IT,GLEIF_golden_copy
+N747OI7JINV7RUUH6190,organization,BPER Banca,IT,GLEIF_golden_copy
+549300L7YCATGO57ZE10,organization,FinecoBank,IT,GLEIF_golden_copy
+8156004B244AA70DE787,organization,Credito Emiliano,IT,GLEIF_golden_copy
+J48C8PCSJVUBR8KCW529,organization,Banca Popolare di Sondrio,IT,GLEIF_golden_copy
+549300PHV8MBDHWB8X12,organization,Saipem,IT,GLEIF_golden_copy
+353800W25FCOFE32EM73,organization,Asahi  Holdings,JP,GLEIF_golden_copy
+549300T6IPOCDWLKC615,organization,Hitachi,JP,GLEIF_golden_copy
+353800UT0TLROREPIC92,organization,Ajinomoto,JP,GLEIF_golden_copy
+549300FONLMVK7YYYH41,organization,Suntory Beverage & Food,JP,GLEIF_golden_copy
+353800GBVL72LLMTYM96,organization,Kirin Holdings,JP,GLEIF_golden_copy
+5299005F1HCVF4M4QN79,organization,Nomura Research Institute,JP,GLEIF_golden_copy
+529900R5WX9N2OI2N910,organization,Sony,JP,GLEIF_golden_copy
+3538001KQ5SAOZSQTT44,organization,JXTG Holdings,JP,GLEIF_golden_copy
+5493006W3QUS5LMH6R84,organization,Toyota Motor,JP,GLEIF_golden_copy
+5299009QN2NZ191KLS29,organization,Tokio Marine Holdings,JP,GLEIF_golden_copy
+254900GE1G59KGWPHX32,organization,Panasonic,JP,GLEIF_golden_copy
+353800Z0ENYBQO0XRJ31,organization,Japan Tobacco,JP,GLEIF_golden_copy
+V82KK8NH1P0JS71FJC05,organization,Sumitomo,JP,GLEIF_golden_copy
+WOCMU6HCI0OJWNPRZS33,organization,JX Holdings,JP,GLEIF_golden_copy
+549300DHPOF90OYYD780,organization,Bridgestone,JP,GLEIF_golden_copy
+529900JH1GSC035SSP77,organization,Canon,JP,GLEIF_golden_copy
+549300Y7FWSTSHMW5Y57,organization,Daikin Industries,JP,GLEIF_golden_copy
+3538000246DHJLRTUZ24,organization,Fujitsu,JP,GLEIF_golden_copy
+529900UBKMFM0ST6H474,organization,Fujifilm Holdings,JP,GLEIF_golden_copy
+549300N244BVAEE6HH86,organization,Subaru,JP,GLEIF_golden_copy
+549300ZLMVP4X0OGR454,organization,Takeda Pharmaceutical Co,JP,GLEIF_golden_copy
+353800DRBDH1LUTNAY26,organization,Nissan Motor Co,JP,GLEIF_golden_copy
+529900IB708DY2HBBB35,organization,Astellas Pharma,JP,GLEIF_golden_copy
+5299009MXFL34SA71416,organization,Aeon Co,JP,GLEIF_golden_copy
+529900GMNDOYQSAJAE76,organization,Sekisui House,JP,GLEIF_golden_copy
+5493000QYMPFRTEY4K28,organization,NEC,JP,GLEIF_golden_copy
+3538005O8WNU39U8NX03,organization,TDK,JP,GLEIF_golden_copy
+529900YT4O5S0LCXWD54,organization,Obayashi,JP,GLEIF_golden_copy
+5299008QCD0YDT5OF506,organization,Shiseido Co,JP,GLEIF_golden_copy
+3538004IOK08PDY6I723,organization,Aisin Seiki Co,JP,GLEIF_golden_copy
+529900C0QSXVCC7AR494,organization,Isuzu Motors,JP,GLEIF_golden_copy
+3538002MH5L1QZZ93477,organization,Japan Airlines,JP,GLEIF_golden_copy
+353800YEPK9PD7QO3449,organization,Sharp,JP,GLEIF_golden_copy
+3538005PGNIBTZYXAE45,organization,Tokyu,JP,GLEIF_golden_copy
+353800JX1R4582QVK932,organization,Terumo,JP,GLEIF_golden_copy
+353800HDEE0ZYEX4QV91,organization,Eisai Co,JP,GLEIF_golden_copy
+529900LVC9GIIYUGE243,organization,Oji Holdings,JP,GLEIF_golden_copy
+5299002D52YIP6DWMV49,organization,Meiji Holdings,JP,GLEIF_golden_copy
+353800QQ4DRI3KXS3038,organization,Daito Trust Construction,JP,GLEIF_golden_copy
+549300ZHW0TR2QZ0NY83,organization,OMRON,JP,GLEIF_golden_copy
+353800UQ4BZIJTAQEG85,organization,Uni-Charm,JP,GLEIF_golden_copy
+529900RYRJUN78A7PL87,organization,Nippon Paint,JP,GLEIF_golden_copy
+353800CF81IXL9974H84,organization,Sumitomo Metal Mining Co,JP,GLEIF_golden_copy
+5493008FFSI8SQ74AT93,organization,Kawasaki Heavy Industries,JP,GLEIF_golden_copy
+529900S7NFNQ4FT6OP83,organization,Dai Nippon Printing Co,JP,GLEIF_golden_copy
+529900KQIVT7NWFNMI70,organization,Sekisui Chemical Co,JP,GLEIF_golden_copy
+353800EMK32PDKS9XR54,organization,Advantest,JP,GLEIF_golden_copy
+353800V2V8PUY9TK3E06,organization,Mitsubishi UFJ Financial,JP,GLEIF_golden_copy
+5493003BZYYYCDIO0R13,organization,SoftBank,JP,GLEIF_golden_copy
+5299003D9N4JBS256X18,organization,Japan Post Holdings Co,JP,GLEIF_golden_copy
+35380028MYWPB6AUO129,organization,Sumitomo Mitsui Financial,JP,GLEIF_golden_copy
+549300P7ZYCQJ36CCS16,organization,Honda Motor Company,JP,GLEIF_golden_copy
+KVIPTY4PULAPGC1VVD26,organization,Mitsubishi,JP,GLEIF_golden_copy
+5299003FU7V4I45FU310,organization,KDDI,JP,GLEIF_golden_copy
+J48DJYXDTLHM30UMYI18,organization,Itochu,JP,GLEIF_golden_copy
+529900CXROT5S2HMMP26,organization,MS&AD Insurance  Holdings,JP,GLEIF_golden_copy
+52990037G8JRM3TWGY86,organization,Seven & I Holdings,JP,GLEIF_golden_copy
+353800YAR3OVUITHTG64,organization,Central Japan Railway Co,JP,GLEIF_golden_copy
+353800SENYJ2DSM6PS44,organization,East Japan Railway Co,JP,GLEIF_golden_copy
+35380016EMHNBOVYE123,organization,ORIX,JP,GLEIF_golden_copy
+549300TRXM9Y6561AX39,organization,Mitsubishi Electric,JP,GLEIF_golden_copy
+353800PX8Q64N86H5W41,organization,Shin-Etsu Chemical Co,JP,GLEIF_golden_copy
+353800CWW4SRGEYEB512,organization,SOMPO Holdings,JP,GLEIF_golden_copy
+353800ND4ZKNZDYKMF33,organization,Mitsui Fudosan Co,JP,GLEIF_golden_copy
+353800P843RLCDBLNT17,organization,Sumitomo Mitsui Trust Holdings,JP,GLEIF_golden_copy
+549300RYPA10CQM3QK38,organization,Denso,JP,GLEIF_golden_copy
+5493004LQ0B4T7QPQV17,organization,Komatsu,JP,GLEIF_golden_copy
+5299004EMJ3R4RVR5Y75,organization,Tokyo Electric Power,JP,GLEIF_golden_copy
+35380000WKGEAHEMW830,organization,Toyota Industries,JP,GLEIF_golden_copy
+353800R2LRSMVVC4I806,organization,Recruit Holdings,JP,GLEIF_golden_copy
+4P4N3ORD02UGQT1T1W12,organization,Marubeni,JP,GLEIF_golden_copy
+353800PFUKP5ONPJNZ86,organization,Kansai Electric Power Co,JP,GLEIF_golden_copy
+529900A76GOP0PGNHT63,organization,Chubu Electric Power Co,JP,GLEIF_golden_copy
+353800D83H0V3ZV1SV24,organization,Suzuki Motor,JP,GLEIF_golden_copy
+353800TJ98PCAZROVE69,organization,Mitsubishi Heavy Industries,JP,GLEIF_golden_copy
+353800KOFMRGOXSJ5Z65,organization,Mitsubishi Estate Co,JP,GLEIF_golden_copy
+529900QZG6DL8ZRI7140,organization,Murata Manufacturing,JP,GLEIF_golden_copy
+549300CEE2ENIUJNXB84,organization,Toyota Tsusho,JP,GLEIF_golden_copy
+549300CSY4INHEHQQT13,organization,Kubota,JP,GLEIF_golden_copy
+353800FEEXU6I9M0ZF27,organization,Nintendo Co,JP,GLEIF_golden_copy
+353800VHYYADPR6MXQ47,organization,Inpex,JP,GLEIF_golden_copy
+353800YNKX4RQUGAR072,organization,Mitsubishi Chemical Holdings,JP,GLEIF_golden_copy
+353800HM38HFCB8RGL63,organization,KAO,JP,GLEIF_golden_copy
+353800XGIU2IHQGC9504,organization,Daiichi Sankyo Co,JP,GLEIF_golden_copy
+353800GPI4Z3MGDGN142,organization,Asahi Kasei,JP,GLEIF_golden_copy
+52990067JE75XZCYYT81,organization,Resona Holdings,JP,GLEIF_golden_copy
+353800QGUXHZ7EBCR121,organization,West Japan Railway Co,JP,GLEIF_golden_copy
+5493005SP87FL5TOS202,organization,Sumitomo Electric,JP,GLEIF_golden_copy
+353800IF171MZTNL6Y31,organization,Nidec,JP,GLEIF_golden_copy
+549300H5LSF8DP3RIJ34,organization,Tokyo Electron,JP,GLEIF_golden_copy
+529900M7PQBS7A89DZ11,organization,Keyence,JP,GLEIF_golden_copy
+3538008ARJ1MACEWA242,organization,T&D Holdings,JP,GLEIF_golden_copy
+549300P0R46FF6DUA630,organization,Idemitsu Kosan Co,JP,GLEIF_golden_copy
+549300LBHTST91VKHO68,organization,Toshiba,JP,GLEIF_golden_copy
+35380099TCYR5FHT0A11,organization,Toray Industries,JP,GLEIF_golden_copy
+529900IMXUCQKUL1H943,organization,Rakuten,JP,GLEIF_golden_copy
+353800KTF7EYIIYHY088,organization,Tohoku Electric Power Co,JP,GLEIF_golden_copy
+YF6ZV0M6AU4FY94MK914,organization,North Pacific Bank,JP,GLEIF_golden_copy
+529900TF7XJKIOWMLQ79,organization,Taisei,JP,GLEIF_golden_copy
+353800678EIJLOQSWZ83,organization,Tokyo Gas Co,JP,GLEIF_golden_copy
+353800BRAE0QFP3ZLY22,organization,Shimizu,JP,GLEIF_golden_copy
+353800K1RXV3E3JAE812,organization,Mazda Motor,JP,GLEIF_golden_copy
+353800MV866ELME96Q46,organization,Chugoku Electric Power Co,JP,GLEIF_golden_copy
+353800X4VR3BHEUCJB42,organization,Hoya,JP,GLEIF_golden_copy
+3538003H9W4KIDODQY20,organization,Toppan Printing Co,JP,GLEIF_golden_copy
+35380076QOBOSOUBRT89,organization,Mitsubishi UFJ Lease,JP,GLEIF_golden_copy
+549300FEKNPCFSA2B506,organization,Osaka Gas Co,JP,GLEIF_golden_copy
+529900NZQ81TIOW3CW52,organization,M3,JP,GLEIF_golden_copy
+549300H0BF5JCG96TJ81,organization,Kiyo Bank,JP,GLEIF_golden_copy
+353800O40V08DOZ70X62,organization,SMC,JP,GLEIF_golden_copy
+35380096ZLHOF84DXR74,organization,Tokyo Century,JP,GLEIF_golden_copy
+529900QTSW745LOKW705,organization,Fanuc,JP,GLEIF_golden_copy
+5493004SE33MRLPB1W98,organization,Sojitz,JP,GLEIF_golden_copy
+549300E3VEW8SMS5XW09,organization,Olympus,JP,GLEIF_golden_copy
+5493008IRKIY0G3TE305,organization,All Nippon Airways,JP,GLEIF_golden_copy
+353800H2UB5ZEZRZQC02,organization,Mitsubishi Motors,JP,GLEIF_golden_copy
+3538009GX5P09USH2J25,organization,Nitori Holdings Co,JP,GLEIF_golden_copy
+3538004LR5NXILJDHY88,organization,Yamaha Motor Co,JP,GLEIF_golden_copy
+353800024KMNOPQRWZ02,organization,Oriental Land Co,JP,GLEIF_golden_copy
+213800WQD8ECPZP9PH98,organization,NEXON,JP,GLEIF_golden_copy
+JE4WFFEELMVPFZ0G1E77,organization,AGC,JP,GLEIF_golden_copy
+353800Y4GZ7KR5X7L150,organization,Cosmo Energy Holdings,JP,GLEIF_golden_copy
+5299005KY91C4C6U9H17,organization,Kintetsu,JP,GLEIF_golden_copy
+549300PZYOQ2NW83V760,organization,Shinsei Bank,JP,GLEIF_golden_copy
+FGJPAKKCTZVSKZXNBS63,organization,Chiba Bank,JP,GLEIF_golden_copy
+7890005U0H950VH19H45,organization,Kobe Steel,JP,GLEIF_golden_copy
+35380051BV8PV1I4S949,organization,Iida Group Holdings,JP,GLEIF_golden_copy
+549300S3IZB5P35KNV16,organization,Nitto Denko,JP,GLEIF_golden_copy
+549300KMHPUAQI8VEH90,organization,Electric Power Development Co,JP,GLEIF_golden_copy
+529900L32YT3P9DECR10,organization,Shimano,JP,GLEIF_golden_copy
+ERO1WSFOSR0JJ6CRQ987,organization,Makita,JP,GLEIF_golden_copy
+5299006ZTN6MO1N5BR16,organization,Mitsubishi Materials,JP,GLEIF_golden_copy
+353800P8O843TMAZ6S09,organization,Mitsui Chemicals,JP,GLEIF_golden_copy
+353800YPW4XM0ZN5I149,organization,Nippon Express Co,JP,GLEIF_golden_copy
+CZ72ZHBVKZXQRV3XFE26,organization,Otsuka,JP,GLEIF_golden_copy
+5493006AIPA1V92YPP18,organization,Showa Denko,JP,GLEIF_golden_copy
+529900BPSFZS6O3A9R04,organization,Kyushu Financial Group,JP,GLEIF_golden_copy
+FE70I3MHDCWOZWK19W48,organization,Hachijuni Bank,JP,GLEIF_golden_copy
+353800898JPV95YSY548,organization,Yamaguchi Financial,JP,GLEIF_golden_copy
+549300LRPVT8N6FNFC04,organization,Bank of Kyoto,JP,GLEIF_golden_copy
+5299000EPC47VJQOFB81,organization,Renesas Electronics,JP,GLEIF_golden_copy
+549300U6CT3EHB9XS980,organization,77 Bank,JP,GLEIF_golden_copy
+54930054A69VC4I5BP89,organization,Gunma Bank,JP,GLEIF_golden_copy
+529900EH7TSG348O4045,organization,Haseko,JP,GLEIF_golden_copy
+353800L6LMHYIPSMRQ17,organization,SBI Holdings,JP,GLEIF_golden_copy
+549300BYCCERC5EKUX15,organization,Hyakugo Bank,JP,GLEIF_golden_copy
+549300RFU3D1M30ZZA20,organization,Juroku Bank,JP,GLEIF_golden_copy
+529900YSLFVJF2MDBX02,organization,Tosoh,JP,GLEIF_golden_copy
+3538001SOIIV8U3OXH94,organization,Hikari Tsushin,JP,GLEIF_golden_copy
+3538002NUIQ8JFEJNS94,organization,Shiga Bank,JP,GLEIF_golden_copy
+353800I3C5900CEME762,organization,San-In Godo Bank,JP,GLEIF_golden_copy
+8EUP1TJYZFX3T1E5AJ33,organization,Hanwa,JP,GLEIF_golden_copy
+X0XUGKC9FD2CYUQNC010,organization,Aozora Bank,JP,GLEIF_golden_copy
+549300N8J06I8MRHU620,organization,Ogaki Kyoritsu Bank,JP,GLEIF_golden_copy
+35380078ABDFHIKLTV03,organization,Toho Bank,JP,GLEIF_golden_copy
+353800923E4YW3IDES52,organization,Nanto Bank,JP,GLEIF_golden_copy
+5299001ZO4CKWACMZI55,organization,Sysmex,JP,GLEIF_golden_copy
+353800HBJ702X2J5OX58,organization,Keiyo Bank,JP,GLEIF_golden_copy
+5493009ZQOZS8JYRQN62,organization,Hyakujushi Bank,JP,GLEIF_golden_copy
+549300KZ8RU11X0L9455,organization,Hokkoku Bank,JP,GLEIF_golden_copy
+353800IE82QJT7UQJK58,organization,Fuyo General Lease,JP,GLEIF_golden_copy
+724500FVZIBSSQ7SHI95,organization,JTEKT,JP,GLEIF_golden_copy
+529900TYCL9N3E9PGE47,organization,Secom,JP,GLEIF_golden_copy
+549300UCKT2UK88AG251,organization,Alfa Laval AB,SE,GLEIF_golden_copy
+549300HGV012CNC8JD22,organization,Volvo,SE,GLEIF_golden_copy
+213800FSR9RNDUOTXO25,organization,Telia Company AB,SE,GLEIF_golden_copy
+529900O5RR7R39FRDM42,organization,H&M; Hennes & Mauritz AB,SE,GLEIF_golden_copy
+549300YECS8HKCIMMB67,organization,Assa Abloy,SE,GLEIF_golden_copy
+549300UINV5RINHGMG07,organization,Skanska AB,SE,GLEIF_golden_copy
+M312WZV08Y7LYUC71685,organization,Swedbank,SE,GLEIF_golden_copy
+549300M3VH1A3ER1TB49,organization,Essity Ab,SE,GLEIF_golden_copy
+549300B6HWYEE57O8J84,organization,SKF,SE,GLEIF_golden_copy
+549300IULC8F8IGXKI15,organization,Lundin Petroleum,SE,GLEIF_golden_copy
+NHBDILHZTYCNBV5UYZ31,organization,Svenska Handelsbanken,SE,GLEIF_golden_copy
+213800T8PC8Q4FYJZR07,organization,Atlas Copco,SE,GLEIF_golden_copy
+5299008ZUAXN43LVZF54,organization,Sandvik AB,SE,GLEIF_golden_copy
+549300DYP6F5ZJL0LB74,organization,Holmen,SE,GLEIF_golden_copy
+635400TTYKE8EIWDS617,organization,Securitas AB,SE,GLEIF_golden_copy
+549300VZCL1HTH4O4Y49,organization,Henkel,DE,GLEIF_golden_copy
+529900R27DL06UVNT076,organization,Daimler AG,DE,GLEIF_golden_copy
+W38RGI023J3WT1HWRP32,organization,Siemens AG,DE,GLEIF_golden_copy
+549300JSX0Z4CW0V5023,organization,adidas AG,DE,GLEIF_golden_copy
+549300J4U55H3WP1XT59,organization,Bayer AG,DE,GLEIF_golden_copy
+L47NHHI0Z9X22DV46U41,organization,Beiersdorf,DE,GLEIF_golden_copy
+529900D6BF99LW9R2E68,organization,SAP,DE,GLEIF_golden_copy
+549300V9QSIG4WX4GJ96,organization,Deutsche Telekom AG,DE,GLEIF_golden_copy
+Q9MAIUP40P25UFBFG033,organization,E.ON,DE,GLEIF_golden_copy
+529900NNUPAGGOMPXZ31,organization,Volkswagen,DE,GLEIF_golden_copy
+529900K9B0N5BT694847,organization,Allianz,DE,GLEIF_golden_copy
+529900MUF4C20K50JS49,organization,Munich Re,DE,GLEIF_golden_copy
+529900GB7KCA94ACC940,organization,RWE AG,DE,GLEIF_golden_copy
+5299006ZIILJ6VJVSJ32,organization,Talanx,DE,GLEIF_golden_copy
+7LTWFZYICNSX8D621K86,organization,Deutsche Bank,DE,GLEIF_golden_copy
+SJ7XXD41SQU3ZNWUJ746,organization,Evonik,DE,GLEIF_golden_copy
+529900G3SW56SHYNPR95,organization,Deutsche Börse AG,DE,GLEIF_golden_copy
+529900A7YD9C0LLXM621,organization,Continental AG,DE,GLEIF_golden_copy
+52990053Z17ZYM1KFV27,organization,Porsche Automobil Holding SE,DE,GLEIF_golden_copy
+LZ2C6E0W5W7LQMX5ZI37,organization,HeidelbergCement,DE,GLEIF_golden_copy
+851WYGNLUQLFZBSYGB56,organization,Commerzbank,DE,GLEIF_golden_copy
+TSI2PJM6EPETEQ4X1U25,organization,Infineon Technologies AG,DE,GLEIF_golden_copy
+549300UDG16DOYUPR330,organization,ThyssenKrupp,DE,GLEIF_golden_copy
+529900SL2WSPV293B552,organization,TUI,DE,GLEIF_golden_copy
+5299001GRRO0Z25YZT52,organization,KNORR-BREMSE,DE,GLEIF_golden_copy
+529900YRFFGH5AXU4S86,organization,Zalando,DE,GLEIF_golden_copy
+529900SM0FDLLYATXU36,organization,BayWa,DE,GLEIF_golden_copy
+529900C3EX1FZGE48X78,organization,Delivery Hero,DE,GLEIF_golden_copy
+YEH5ZCD6E441RHVHD759,organization,BMW AG,DE,GLEIF_golden_copy
+529900PM64WH8AF1E917,organization,BASF,DE,GLEIF_golden_copy
+XDFJ0CYCOO1FXRFTQS51,organization,Fresenius,DE,GLEIF_golden_copy
+529900OAREIS0MOPTW25,organization,EMD Group,DE,GLEIF_golden_copy
+5299005A2ZEP6AP7KM81,organization,Vonovia,DE,GLEIF_golden_copy
+529900QE24Q67I3FWZ10,organization,Deutsche Wohnen,DE,GLEIF_golden_copy
+529900RWXR4JI3JYTV70,organization,Nuernberger Beteiligungs,DE,GLEIF_golden_copy
+NNROIXVWJ7CPSR27SV97,organization,Brenntag AG,DE,GLEIF_golden_copy
+549300Q7E782X7GC1P43,organization,Schaeffler,DE,GLEIF_golden_copy
+5299003H07ZT0Z5ZNN35,organization,Wuestenrot & Wuerttembergische,DE,GLEIF_golden_copy
+3912005AWHKLQ1CPLV11,organization,Covestro,DE,GLEIF_golden_copy
+5299001X9L42HXEBCZ51,organization,Ceconomy,DE,GLEIF_golden_copy
+529900A8LX4KL0YUTH71,organization,Wirecard,DE,GLEIF_golden_copy
+529900EQV2DY4FOAMU38,organization,Sartorius,DE,GLEIF_golden_copy
+EZKODONU5TYHW4PP1R34,organization,Aareal Bank,DE,GLEIF_golden_copy
+QBKYQD0ODE7DC7PDIN91,organization,MTU Aero Engines AG,DE,GLEIF_golden_copy
+549300TTCXZOGZM2EY83,organization,Inditex,ES,GLEIF_golden_copy
+5493008T4YG3AQUI7P67,organization,Cellnex Telecom,ES,GLEIF_golden_copy
+549300EEJH4FEPDBBR25,organization,Telefonica,ES,GLEIF_golden_copy
+5QK37QC7NWOJ8D7WVQ45,organization,Iberdrola,ES,GLEIF_golden_copy
+54930002KP75TLLLNO21,organization,ACCIONA S.A.,ES,GLEIF_golden_copy
+5493006QMFDDMYWIAM13,organization,Banco Santander,ES,GLEIF_golden_copy
+TL2N6M87CW970S5SV098,organization,Naturgy Energy Group,ES,GLEIF_golden_copy
+7CUNS533WID6K7DGFI87,organization,CaixaBank,ES,GLEIF_golden_copy
+BSYCX13Y0NOTV14V9N85,organization,Repsol,ES,GLEIF_golden_copy
+9598004A3FTY3TEHHN09,organization,Amadeus It,ES,GLEIF_golden_copy
+95980020140005558665,organization,Grupo ACS,ES,GLEIF_golden_copy
+95980020140005693107,organization,MAPFRE,ES,GLEIF_golden_copy
+SI5RG2M0WQQLZCXKRM20,organization,Banco Sabadell,ES,GLEIF_golden_copy
+959800R7QMXKF0NFMT29,organization,Aena,ES,GLEIF_golden_copy
+959800HSSNXWRKBK4N60,organization,Grifols,ES,GLEIF_golden_copy
+95980020140005757903,organization,FERROVIAL,ES,GLEIF_golden_copy
+VWMYAEQSTOPNV0SUGU82,organization,Bankinter,ES,GLEIF_golden_copy
+5493009HMD0C90GUV498,organization,Red Eléctrica,ES,GLEIF_golden_copy
+5493007SJLLCTM6J6M37,organization,Unicaja Banco,ES,GLEIF_golden_copy
+549300BSGXG3QLIQYT84,organization,Liberbank,ES,GLEIF_golden_copy
+8ZQH7RR6DBQZIX8PEQ84,organization,Abengoa,ES,GLEIF_golden_copy
+95980020140005007414,organization,Inmobiliaria Colonial,ES,GLEIF_golden_copy
+5299006EQ03K3SSUYS12,organization,Merlin Properties SOCIMI,ES,GLEIF_golden_copy
+20S05OYHG0MQM4VUIC57,organization,Formosa Chemicals & Fibre,TW,GLEIF_golden_copy
+254900U6E39J1MQCCY14,organization,MediaTek,TW,GLEIF_golden_copy
+549300UPNBTXA1SYTQ33,organization,LARGAN Precision,TW,GLEIF_golden_copy
+MSFSBD3QN1GSN7Q6C537,organization,Commonwealth Bank of Australia,AU,GLEIF_golden_copy
+F8SB4JFBSYQFRQEH3Z21,organization,National Australia Bank (NAB),AU,GLEIF_golden_copy
+5493003L32ZX9557ST85,organization,Wesfarmers,AU,GLEIF_golden_copy
+5299000D93LTLU0UJR35,organization,AMP,AU,GLEIF_golden_copy
+549300LWGYFM1TVO1Z12,organization,Newcrest Mining,AU,GLEIF_golden_copy
+XWTZDRYZPBUHIQBKDB46,organization,Equinor,NO,GLEIF_golden_copy
+549300A1ZLTL4KX3DZ92,organization,Norsk Hydro,NO,GLEIF_golden_copy
+213800X3Q9LSAKRUWY91,organization,KBC,BE,GLEIF_golden_copy
+2138008J191VLSGY5A09,organization,UCB,BE,GLEIF_golden_copy
+549300MMVL80RTBP3O28,organization,Solvay S.A.,BE,GLEIF_golden_copy
+5493008H3828EMEXB082,organization,Anheuser-Busch InBev,BE,GLEIF_golden_copy
+5493005DJBML6LY3RV36,organization,Ageas,BE,GLEIF_golden_copy
+529900F3AIQECS8ZSV61,organization,Umicore,BE,GLEIF_golden_copy
+5493000GMVR38VUO5D39,organization,Sofina,BE,GLEIF_golden_copy
+5493000O0NZ1BCXO8K39,organization,Colruyt,BE,GLEIF_golden_copy
+THRNG6BD57P9QWTQLG42,organization,First Abu Dhabi Bank,AE,GLEIF_golden_copy
+FGLT0EWZSUIRRITFOA30,organization,Emirates NBD,AE,GLEIF_golden_copy
+9ZHRYM6F437SQJ6OUG95,organization,Raiffeisen Bank International,AT,GLEIF_golden_copy
+5299006UDSEJCTTEJS30,organization,Verbund AG,AT,GLEIF_golden_copy
+549300V62YJ9HTLRI486,organization,OMV AG,AT,GLEIF_golden_copy
+549300JCRU23I1THU176,organization,Vienna Insurance,AT,GLEIF_golden_copy
+529900S9YO2JHTIIDG38,organization,Bawag Group,AT,GLEIF_golden_copy
+529900TYYSRJH2VJSP60,organization,Strabag SE,AT,GLEIF_golden_copy
+529900ZAXBMQDIWPNB72,organization,voestalpine AG,AT,GLEIF_golden_copy
+529900OOW8ELHOXWZP82,organization,Uniqa,AT,GLEIF_golden_copy
+259400VVMM70CQREJT74,organization,PKN Orlen,PL,GLEIF_golden_copy
+QLPCKOOKVX32FUELX240,organization,Grupa PZU,PL,GLEIF_golden_copy
+5493000LKS7B3UTF7H35,organization,Bank Pekao,PL,GLEIF_golden_copy
+37890014418406D9FC23,organization,Sanlam,ZA,GLEIF_golden_copy
+5493003HK03UVPUSUP12,organization,Firstrand,ZA,GLEIF_golden_copy
+2549003PEZXUT7MDBU41,organization,Standard Bank Group,ZA,GLEIF_golden_copy
+21380044BQ8812EEKT59,organization,Naspers,ZA,GLEIF_golden_copy
+2138006IPPRD4N6XLT30,organization,Absa Group,ZA,GLEIF_golden_copy
+5299000Y52IFDI1I2A21,organization,Old Mutual,ZA,GLEIF_golden_copy
+52990090AP0E7HCB6F33,organization,Momentum Metropolitan Holdings,ZA,GLEIF_golden_copy
+549300EI6OKH5K5Q2G38,organization,MTN,ZA,GLEIF_golden_copy
+378900F4544561A97588,organization,Sasol,ZA,GLEIF_golden_copy
+5493002ENHZ6NYET7405,organization,Experian,IE,GLEIF_golden_copy
+254900QJ68UH8GKNGI69,organization,Ayala,PH,GLEIF_golden_copy
+254900YB8UATFP21AF80,organization,SM Investments,PH,GLEIF_golden_copy
+3FGIIBS1PEI1FYQBGN97,organization,BDO Unibank,PH,GLEIF_golden_copy
+5493007PTFULNYZJ1R12,organization,Metropolitan Bank & Trust,PH,GLEIF_golden_copy
+8945008FXJ2QCVCRJM25,organization,JG Summit Holdings,PH,GLEIF_golden_copy
+J3WHBG0MTS7O8ZVMDC91,organization,Fairfax Financial Holdings,CA,GLEIF_golden_copy
+549300SQYI82RVWFN715,organization,Metro,CA,GLEIF_golden_copy
+3538002347FGLMNPVY63,organization,Kirkland Lake Gold,CA,GLEIF_golden_copy
+549300I3IVVWZWDHI788,organization,Parkland Fuel,CA,GLEIF_golden_copy
+GI7UBEJLXYLGR2C7GV83,organization,Femsa,MX,GLEIF_golden_copy
+549300H316CT32FQXI76,organization,Athene Holding,BM,GLEIF_golden_copy
+549300AYR4P8AFKDCE43,organization,Arch Capital,BM,GLEIF_golden_copy
+5GCSNMQXHEYA1JO8QN11,organization,Marvell Technology Group,BM,GLEIF_golden_copy
+EK6GB9U3U58PDI411C94,organization,Renaissancere Holdings,BM,GLEIF_golden_copy
+213800AMAL5QFXVUCN04,organization,Enstar Group,BM,GLEIF_golden_copy
+789000FIRX9MDN0KTM91,organization,Isbank,TR,GLEIF_golden_copy
+789000TUMN63Z28TJ497,organization,Akbank TAS,TR,GLEIF_golden_copy
+789000EV8M3BL7ZPFB03,organization,Turkish Airlines,TR,GLEIF_golden_copy
+MSD54751OJP1FS2ND863,organization,Hopson Development Holdings,HK,GLEIF_golden_copy
+549300BYNZPLKQVQH430,organization,KWG Group Holdings,HK,GLEIF_golden_copy
+549300GLKVIO8YRCYN02,organization,Kerry Properties,HK,GLEIF_golden_copy
+5493008CARDZMVQ3LO89,organization,Poly Property Group Co.,HK,GLEIF_golden_copy
+529900RG9DJ58J3UIE72,organization,OTP Bank Nyrt,HU,GLEIF_golden_copy
+549300NQQCEQ46YHZ591,organization,MOL Hungarian Oil & Gas,HU,GLEIF_golden_copy
+549300C2XKS86VQDGV41,organization,Luxshare Precision Industry,CN,GLEIF_golden_copy
+549300WNTHGEO5LP2G31,organization,New Hope Liuhe,CN,GLEIF_golden_copy
+5493008C12PZMWP3WY03,organization,Kaisa  Holdings,CN,GLEIF_golden_copy
+M6AD1Y1KW32H8THQ6F76,organization,Pinduoduo,CN,GLEIF_golden_copy
+529900X4EEX1U9LN3U39,organization,Lens Technology,CN,GLEIF_golden_copy
+549300M5X5T6C27W3H96,organization,Offcn Education Technology,CN,GLEIF_golden_copy
+2YD5STGSJNMUB7H76907,organization,Montage Technology,CN,GLEIF_golden_copy
+353800WRC7Y23PWFJG38,organization,Dali Foods Group,CN,GLEIF_golden_copy
+353800PIFKBZ6KTU5994,organization,Orient Securities,CN,GLEIF_golden_copy
+M2XHYMU3TZNEZURC6H66,organization,Dongbu Insurance,KR,GLEIF_golden_copy
+54930067J0ZNOEBRW338,organization,Naver,KR,GLEIF_golden_copy
+353800MZ3QX9RLMH7B09,organization,Mirae Asset Daewoo Co,KR,GLEIF_golden_copy
+959800L8KD863DP30X04,organization,Meritz Securities,KR,GLEIF_golden_copy
+549300YSK3QDSFR5EU59,organization,DGB Financial,KR,GLEIF_golden_copy
+529900S5R9YHJHYKKG94,organization,CEZ,CZ,GLEIF_golden_copy
+529900SL3K21WAN6X611,organization,Bank of Greece,GR,GLEIF_golden_copy
+JEUVK5RWVJEN8W0C9M24,organization,Eurobank Ergasias,GR,GLEIF_golden_copy
+5299009N55YRQC69CN08,organization,Alpha Bank,GR,GLEIF_golden_copy
+213800BAPPINC7OHL696,organization,Ahli United Bank,BH,GLEIF_golden_copy
+353800CCB0CZ75YZ4010,organization,Migdal Insurance,IL,GLEIF_golden_copy
+213800NYDTVQM4SDUD67,organization,Halyk Bank,KZ,GLEIF_golden_copy
+549300ERAZEQ2KEJ8L86,organization,Blom Bank,LB,GLEIF_golden_copy
+029200268F8M5YI5I629,organization,Zenith Bank,NG,GLEIF_golden_copy
+529900CDR9E94BCM6294,organization,Magazine Luiza,BR,GLEIF_golden_copy

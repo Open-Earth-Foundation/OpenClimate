@@ -112,6 +112,7 @@ router.get(
         publisher: ds.publisher,
         published: ds.published,
         URL: ds.URL,
+        citation: ds.citation,
         tags: dataSourceTags
           .filter((dst) => dst.datasource_id == ds.datasource_id)
           .map((dst) => tags.find((tag) => tag.tag_id == dst.tag_id)),

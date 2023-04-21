@@ -621,7 +621,7 @@ def get_company_actors(df=None, fl_isin_to_lei=None):
         df_out.loc[:, output_columns]
         .rename(columns={'iso2': 'is_part_of'})
         .assign(
-            type='organizaton',
+            type='organization',
             namespace='LEI',
             datasource_id='GLEIF_golden_copy',
             language='en',
