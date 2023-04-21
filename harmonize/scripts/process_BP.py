@@ -58,7 +58,8 @@ if __name__ == '__main__':
         'name': 'Statistical Review of World Energy all data, 1965-2021',
         'publisher': f"{publisherDict['id']}",
         'published': '2022-06-01',
-        'URL': 'https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy/co2-emissions.html'
+        'URL': 'https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy',
+        'citation': 'BP. (2022). Statistical Review of World Energy 2022 [Data set]. BP. https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy'
     }
 
     simple_write_csv(outputDir, "DataSource", datasourceDict)
