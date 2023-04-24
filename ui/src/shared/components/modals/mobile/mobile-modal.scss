@@ -24,7 +24,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 16px 28px;
+        padding: 28px 16px;
         height: 80px;
     }
 
@@ -61,5 +61,61 @@
 
     .select-text {
         font-size: 14px;
+    }
+
+    .filters-dropdown-container {
+        height: 436px;
+        padding-left: 16px;
+    }
+
+    .source-filter-container {
+        margin-bottom: 24px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 76px;
+        gap: 68px;
+
+    }
+
+    .reset-text {
+        color: #008600;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        padding-left: 72px;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    .button{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 16px 24px;
+        width: 158px;
+        height: 48px;
+        background: #008600;
+        border-radius: 50px;
+        border: none;
+        font-family: 'Poppins';
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .button span{
+        font-size: 14px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 1.25px;
+        text-transform: uppercase;
     }
 }

@@ -39,7 +39,6 @@ interface Props {
   hasDownload?: boolean;
   titleText?: string;
   subtitleText?: string;
-  toggleScroll: () => void;
 }
 
 const EmissionsWidget: FunctionComponent<Props> = (props) => {
@@ -49,17 +48,40 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     hasFilter,
     hasDownload,
     titleText,
-    subtitleText,
-    toggleScroll
+    subtitleText
   } = props;
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const [mobileDownloadModal, toggleMobileDownloadModal] = useState<boolean>(false);
+  const [mobileFilterModal, toggleMobileFilterModal] = useState<boolean>(false);
+
+  const [tempYear, setTempYear] = useState<string>('');
+  const [tempSource, setTempSource] = useState<string>('');
   // Uncomment when adding Export As
   // const [toggleDownloadAsMenu, setToggleDownloadAsMenu] =
   //   useState<boolean>(false);
   // const [toggleExportAsMenu, setToggleExportAsMenu] = useState<boolean>(false);
 
   const history = useHistory();
+
+  const toggleScroll = () => {
+     if (document.body.style.overflow !== "hidden") {
+      document.body.style.overflow = "hidden";
+     }
+     else {
+      document.body.style.overflow = "initial";
+     }
+  }
+
+  const sourcesToNameValue = (sources: Array<string>) => {
+
+    const sourceNameValue: Record<string, string> = {}
+  
+    sources.map(source => {
+      sourceNameValue[current.emissions[source].publisher] = source;
+    })
+
+    return sourceNameValue;
+  }
 
   const setMenuState = (event: any) => {
     event.preventDefault();
@@ -104,6 +126,8 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
   const sources =
     current && current.emissions ? Object.keys(current.emissions) : [];
+
+  const sourceToName = sources && sourcesToNameValue(sources);
 
   sources.sort();
 
@@ -162,10 +186,10 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     setCurrentYear(value);
   };
 
-  const sourceChangeHandler = (e: SelectChangeEvent<number>) => {
-    const source = e.target.value as number;
-    // Find the year closest to the current year
-    const closest = current.emissions[source].data
+  const yearOnClick = (year: string) => setCurrentYear(parseInt(year));
+
+  const sourceToClosestYear = (source: any) =>
+    current.emissions[source].data
       .slice() // make a copy
       .sort(
         (
@@ -174,16 +198,41 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
         ) => Math.abs(a.year - currentYear) - Math.abs(b.year - currentYear)
       )
       .shift().year; // pop off the first // and get its year
+
+  const sourceChangeHandler = (e: SelectChangeEvent<number>) => {
+    const source = e.target.value as number;
+    // Find the year closest to the current year
+    const closest = sourceToClosestYear(source);
     setCurrentSource(source);
     setCurrentYear(closest);
   };
 
+  const sourceOnClick = (source: string) => {
+    const sourceKey = sourceToName[source];
+    const closest = sourceToClosestYear(sourceKey);
+    setCurrentSource(sourceKey);
+    setCurrentYear(closest);
+  }
+
+  const onApply = () => {
+    tempSource && sourceOnClick(tempSource);
+    tempYear && yearOnClick(tempYear);
+    toggleModalMode('filter');
+  }
+
+  const onReset = () => {
+    defaultSource && sourceOnClick(defaultSource);
+    defaultYear && yearOnClick(defaultYear);
+    toggleModalMode('filter');
+  }
+
   const onCitationClick = () => window.open(current.emissions?.[currentSource]?.URL);
 
-  const toggleModalMode = () => {
-    toggleMobileDownloadModal(!mobileDownloadModal);
+  const toggleModalMode = (type: string) => {
+    type === "download" ? toggleMobileDownloadModal(!mobileDownloadModal) : toggleMobileFilterModal(!mobileFilterModal);
     toggleScroll();
   }
+
 
   const onDownloadOptionClick = (option: string) => {
     switch(option) {
@@ -196,6 +245,8 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     }
   }
 
+  
+
 
   return (
     <>
@@ -206,7 +257,23 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
           options={["Download as CSV", "Download as JSON"]}
           selectIcon={<DownloadIcon fontSize="inherit"/>}
           getOptionHref={onDownloadOptionClick}
-          onClose={() => toggleModalMode()} />
+          onClose={() => toggleModalMode("download")}
+          modalType="download" />
+      }
+      {
+        mobileFilterModal &&
+        <MobileModalDropdown 
+          headerText="Filter by"
+          currentSource={tempSource || current.emissions[currentSource].publisher}
+          sources={Object.keys(sourceToName)}
+          sourceOnClick={(source: string) => setTempSource(source)}
+          currentYear={tempYear || currentYear}
+          yearOnClick={(year: string) => setTempYear(year)}
+          onApply={onApply}
+          onReset={onReset}
+          years={years.map(year => `${year}`)}
+          onClose={() => toggleModalMode("filter")}
+          modalType="filter" />
       }
       <div
         className={isMobile ? "emissions-widget-mobile" : "emissions-widget"}
@@ -244,13 +311,13 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
               </div>
               <div className="emissions-widget__metadata-right">
                 { isMobile && hasFilter &&
-                    <div className="emissions-widget-mobile__filter-icon">
+                    <div className="emissions-widget-mobile__filter-icon" onClick={() => toggleModalMode("filter")}>
                       <FilterListIcon/>
                     </div>
                 }
 
                 { isMobile && hasDownload &&
-                    <div className="emissions-widget-mobile__download-icon" onClick={() => toggleModalMode()}>
+                    <div className="emissions-widget-mobile__download-icon" onClick={() => toggleModalMode("download")}>
                       <DownloadIcon />
                     </div>
                 }

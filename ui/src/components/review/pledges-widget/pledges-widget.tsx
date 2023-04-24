@@ -213,7 +213,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                         }
                         isLabelVisible={false}
                         height="7px"
-                        width={`${Math.floor(currentWidth * .90)}px`}
+                        width={ currentWidth < 600 ? '296px' : '504px' }
                         borderRadius="20px"
                         bgColor="#4BD300"
                         baseBgColor="#E6E7FF"
