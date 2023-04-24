@@ -1,2 +1,2 @@
-datasource_id,name,publisher,published,URL
-WRI:climate_watch_historical_ghg:2022,Climate Watch Historical GHG Emissions,WRI,2022-01-01,https://www.climatewatchdata.org/ghg-emissions
+datasource_id,name,publisher,published,URL,citation
+WRI:climate_watch_historical_ghg:2022,Climate Watch Historical GHG Emissions,WRI,2022-01-01,https://www.climatewatchdata.org/ghg-emissions,World Resources Institute. (2022). Climate Watch Historical GHG Emissions [Data set]. World Resources Institute. https://www.climatewatchdata.org/ghg-emissions

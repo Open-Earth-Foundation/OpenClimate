@@ -134,7 +134,8 @@ if __name__ == "__main__":
         "name": "A comprehensive and synthetic dataset for global, regional and national greenhouse gas emissions by sector 1970-2018 with an extension to 2019",
         "publisher": f"{publisherDict['id']}",
         "published": "2022-04-25",
-        "URL": "https://zenodo.org/record/6483002",
+        "URL": "https://doi.org/10.5281/zenodo.6483002",
+        "citation": "Minx, J., et al. (2022). A comprehensive and synthetic dataset for global, regional and national greenhouse gas emissions by sector 1970-2018 with an extension to 2019 [Data set]. Zenodo. doi:10.5281/zenodo.6483002"
     }
 
     simple_write_csv(outputDir, "DataSource", datasourceDict)

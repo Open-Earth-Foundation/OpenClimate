@@ -97,7 +97,8 @@ if __name__ == "__main__":
         'name': 'UNFCCC GHG total without LULUCF, ANNEX I countries',
         'publisher': 'UNFCCC',
         'published': '2019-11-08',
-        'URL': 'https://di.unfccc.int/time_series'
+        'URL': 'https://di.unfccc.int/time_series',
+        'citation': 'UNFCCC. (2021). Time Series - Annex I [Data set]. UNFCCC. https://di.unfccc.int/time_series'
     }
 
     simple_write_csv(

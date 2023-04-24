@@ -1,2 +1,2 @@
-datasource_id,name,publisher,published,URL
-GCB2022:national_fossil_emissions:v1.0,Data supplement to the Global Carbon Budget 2022: National Fossil Carbon Emissions 2022 v1.0,GCP,2022-11-04,https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2022
+datasource_id,name,publisher,published,URL,citation
+GCB2022:national_fossil_emissions:v1.0,Data supplement to the Global Carbon Budget 2022: National Fossil Carbon Emissions 2022 v1.0,GCP,2022-11-04,https://doi.org/10.18160/gcp-2022,Global Carbon Project. (2022). Supplemental data of Global Carbon Budget 2022 (Version 1.0) [Data set]. Global Carbon Project. doi:10.18160/gcp-2022
