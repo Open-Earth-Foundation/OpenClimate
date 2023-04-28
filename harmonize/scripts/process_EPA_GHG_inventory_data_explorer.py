@@ -1,3 +1,13 @@
+##############################################################
+#
+# DEPRECATED
+#
+# on April 27 2023
+# this is replaced with process_EPA_state_GHG_inventory
+# using data from https://www.epa.gov/ghgemissions/state-ghg-emissions-and-removals
+# instead of the data explorer: https://cfpub.epa.gov/ghgdata/inventoryexplorer/
+# LG
+##############################################################
 import asyncio
 import csv
 from functools import wraps

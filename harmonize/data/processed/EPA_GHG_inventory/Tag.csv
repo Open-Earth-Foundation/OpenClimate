@@ -1,6 +1,6 @@
 tag_id,tag_name
 GHGs_included_CO2_CH4_N2O_F_gases,"GHGs included: CO2, CH4, N2O, and F-gases"
-sectors_energy_IPPU_ag_waste_LULUCF,"Sectors: energy, industrial processes, agriculture, waste, and LULUCF"
-Includes_LULUCF,Includes LULUCF
-GWP_100_AR5,Uses GWP100 from IPCC AR5
+sectors_ag_energy_IPPU_waste,"Sectors: agriculture, energy, industrial processes, and waste"
+excludes_LULUCF,Excludes LULUCF
+GWP_100_AR4,Uses GWP100 from IPCC AR4
 country_reported_data,Country-reported data
