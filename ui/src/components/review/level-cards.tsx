@@ -4,7 +4,7 @@ import { ArrowForwardIos } from "@mui/icons-material";
 import { DropdownOption } from "../../shared/interfaces/dropdown/dropdown-option";
 import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
 import IndicatorCard from "./indicator-card";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
+import { useMatomo } from "@jonkoops/matomo-tracker-react";
 import { MdArrowBack } from "react-icons/md";
 import { HiOutlineSearch } from "react-icons/hi";
 

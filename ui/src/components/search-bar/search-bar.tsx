@@ -6,7 +6,7 @@ import { Search } from "@mui/icons-material";
 import { useHistory, useLocation } from "react-router-dom";
 import { renderHighlightedName } from "../util/strings";
 import { renderDataMissingDropdown } from "../util/showDataMissingDropdown";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
+import { useMatomo } from "@jonkoops/matomo-tracker-react";
 
 let controller: AbortController | null = null;
 

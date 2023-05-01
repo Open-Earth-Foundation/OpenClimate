@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import store, { Persistor } from "./store/index";
 import "react-datepicker/dist/react-datepicker.css";
 import { PersistGate } from "redux-persist/integration/react";
-import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
+import { MatomoProvider, createInstance } from "@jonkoops/matomo-tracker-react";
 
 let matomoCredentials;
 
