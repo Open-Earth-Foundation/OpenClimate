@@ -25,11 +25,9 @@ fetch(`/config.json`).then((res) => {
 });
 
 const instance =
-  matomoCredentials?.trackerURL &&
-  matomoCredentials?.siteID &&
   createInstance({
-    urlBase: matomoCredentials.trackerURL,
-    siteId: parseInt(matomoCredentials.siteID),
+    urlBase: "https://matomo.openearth.foundation/",
+    siteId: 1,
   });
 
 ReactDOM.render(
