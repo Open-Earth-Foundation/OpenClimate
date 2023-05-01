@@ -371,7 +371,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                   <div className="pledges-widget__links-wr">
                                     <LinkOutlined className="pledges-widget__links-icon" />
                                     <span className="pledges-widget__popover-srctxt">
-                                      {target.datasource.name}
+                                      <a href={target.datasource.URL}>{target.datasource.name}</a>
                                     </span>
                                   </div>
 
