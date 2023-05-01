@@ -29,11 +29,11 @@ const instance =
   matomoCredentials?.siteID &&
   createInstance({
     urlBase: matomoCredentials.trackerURL,
-    siteId: matomoCredentials.siteID,
+    siteId: parseInt(matomoCredentials.siteID),
   });
 
 ReactDOM.render(
-  <MatomoProvider instance={instance}>
+  <MatomoProvider value={instance}>
     <Provider store={store}>
       <PersistGate Loading={null} persistor={Persistor}>
         <React.StrictMode>
