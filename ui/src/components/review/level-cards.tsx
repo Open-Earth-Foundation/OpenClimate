@@ -303,7 +303,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
         <h1>Explore</h1>
       </div>
       <IndicatorCard
-        label={"Globe"}
+        label={"Our Planet"}
         current={actors[0]}
         parent={null}
         isActive={actors.length === 1}

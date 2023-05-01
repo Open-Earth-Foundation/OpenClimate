@@ -56,7 +56,7 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
               {user ? (
                 <ToolbarAuthorized user={user} doLogout={handleLogout} />
               ) : (
-                <div className="toolbar__login">
+                <div className="toolbar__login" hidden>
                   <button
                     className="toolbar__login-btn"
                     onClick={showLoginModal}
