@@ -13,12 +13,23 @@ import "react-datepicker/dist/react-datepicker.css";
 import { PersistGate } from "redux-persist/integration/react";
 import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
 
+let matomoCredentials;
+
+fetch(`/config.json`).then((res) => {
+  return res.json();
+}).then((data) => {
+  matomoCredentials = {
+    trackerURL: data.matomoServer,
+    siteID: data.matomoSiteID
+  }
+});
+
 const instance =
-  process.env.MATOMO_DOMAIN_URL &&
-  process.env.MATOMO_SITE_ID &&
+  matomoCredentials?.trackerURL &&
+  matomoCredentials?.siteID &&
   createInstance({
-    urlBase: process.env.MATOMO_DOMAIN_URL,
-    siteId: process.env.MATOMO_SITE_ID,
+    urlBase: matomoCredentials.trackerURL,
+    siteId: matomoCredentials.siteID,
   });
 
 ReactDOM.render(

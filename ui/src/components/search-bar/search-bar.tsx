@@ -6,6 +6,7 @@ import { Search } from "@mui/icons-material";
 import { useHistory, useLocation } from "react-router-dom";
 import { renderHighlightedName } from "../util/strings";
 import { renderDataMissingDropdown } from "../util/showDataMissingDropdown";
+import { useMatomo } from "@datapunt/matomo-tracker-react";
 
 let controller: AbortController | null = null;
 
@@ -18,6 +19,9 @@ const SearchBar: FunctionComponent = () => {
   const location = useLocation();
   const inputComponentRef = useRef<any>(null);
 
+  const { trackEvent } = useMatomo();
+    
+
   const handleClickOutside = (event: MouseEvent) => {
     inputComponentRef.current &&
       !inputComponentRef.current.contains(event.target) &&
@@ -27,6 +31,11 @@ const SearchBar: FunctionComponent = () => {
   const onActorClick = (actor: any) => {
     setCardExpanded(false);
     setInputString("");
+    trackEvent({
+      category: "Search Bar",
+      action: `search-select-${actor.name.toLowerCase()}`,
+      name: `${actor.actorId}`,
+    });
     history.push(`/actor/${actor.actorId}/${actor.name}_emissions`);
   };
 
