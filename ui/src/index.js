@@ -11,27 +11,10 @@ import { Provider } from "react-redux";
 import store, { Persistor } from "./store/index";
 import "react-datepicker/dist/react-datepicker.css";
 import { PersistGate } from "redux-persist/integration/react";
-import { MatomoProvider, createInstance } from "@jonkoops/matomo-tracker-react";
-
-let matomoCredentials;
-
-fetch(`/config.json`).then((res) => {
-  return res.json();
-}).then((data) => {
-  matomoCredentials = {
-    trackerURL: data.matomoServer,
-    siteID: data.matomoSiteID
-  }
-});
-
-const instance =
-  createInstance({
-    urlBase: "https://matomo.openearth.foundation/",
-    siteId: 1,
-  });
+import { MatomoWrapper } from "./MatomoWrapper";
 
 ReactDOM.render(
-  <MatomoProvider value={instance}>
+  <MatomoWrapper>
     <Provider store={store}>
       <PersistGate Loading={null} persistor={Persistor}>
         <React.StrictMode>
@@ -39,7 +22,7 @@ ReactDOM.render(
         </React.StrictMode>
       </PersistGate>
     </Provider>
-  </MatomoProvider>,
+  </MatomoWrapper>,
   document.getElementById("root")
 );
 
