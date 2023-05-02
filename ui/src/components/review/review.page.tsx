@@ -13,7 +13,7 @@ import CollaborateFAB from "./CollaborateFab";
 import CollaborationCardHint from "./CollaborateCardHint";
 import ActorFlag from "./actor-flag/actor-flag";
 import { Helmet } from "react-helmet";
-import { useMatomo } from "@jonkoops/matomo-tracker-react";
+import { useMatomo } from "@jonkoops/matomo-tracker-react"; 
 
 type ReviewPageParams = {
   actorID: string;
@@ -27,7 +27,7 @@ const ReviewPage: FunctionComponent = () => {
   const [dashboardState, setDashboardState] = useState<boolean>(false);
   const [screenSize, setScreenSize] =  useState<number>(0);
 
-  const { trackPageView, trackEvent } = useMatomo();
+  const { trackPageView } = useMatomo();
  
 
   const [actors, setActors] = useState<any>([]);
@@ -45,11 +45,6 @@ const ReviewPage: FunctionComponent = () => {
         actors.length === 1 ||
         (actors.length > 1 && actorID !== current.actor_id)
       ) {
-        trackEvent({
-          category: "Link Direct",
-          action: `link-direct`,
-          name: `${actorID}`,
-        });
         insertActor(actorID, []);
       }
     }

@@ -226,8 +226,6 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     toggleModalMode('filter');
   }
 
-  const onCitationClick = () => window.open(current.emissions?.[currentSource]?.URL);
-
   const toggleModalMode = (type: string) => {
     type === "download" ? toggleMobileDownloadModal(!mobileDownloadModal) : toggleMobileFilterModal(!mobileFilterModal);
     toggleScroll();
@@ -697,7 +695,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
               {
                   current.emissions[currentSource].citation && current.emissions[currentSource].URL &&
                   <div className="citation-container">
-                    <div className="citation-icon" onClick={onCitationClick}><OpenInNew fontSize="inherit"/></div>
+                    <a className="citation-icon" href={current.emissions?.[currentSource]?.URL} target="_blank" rel="noopener noreferrer"><OpenInNew fontSize="inherit"/></a>
                     <div className="citation-text">Source detail: {current.emissions[currentSource].citation}</div>
                   </div>
               }
