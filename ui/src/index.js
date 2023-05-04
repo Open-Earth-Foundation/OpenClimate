@@ -11,18 +11,10 @@ import { Provider } from "react-redux";
 import store, { Persistor } from "./store/index";
 import "react-datepicker/dist/react-datepicker.css";
 import { PersistGate } from "redux-persist/integration/react";
-import { MatomoProvider, createInstance } from "@datapunt/matomo-tracker-react";
-
-const instance =
-  process.env.MATOMO_DOMAIN_URL &&
-  process.env.MATOMO_SITE_ID &&
-  createInstance({
-    urlBase: process.env.MATOMO_DOMAIN_URL,
-    siteId: process.env.MATOMO_SITE_ID,
-  });
+import { MatomoWrapper } from "./MatomoWrapper";
 
 ReactDOM.render(
-  <MatomoProvider instance={instance}>
+  <MatomoWrapper>
     <Provider store={store}>
       <PersistGate Loading={null} persistor={Persistor}>
         <React.StrictMode>
@@ -30,7 +22,7 @@ ReactDOM.render(
         </React.StrictMode>
       </PersistGate>
     </Provider>
-  </MatomoProvider>,
+  </MatomoWrapper>,
   document.getElementById("root")
 );
 
