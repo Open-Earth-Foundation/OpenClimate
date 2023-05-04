@@ -1,0 +1,4 @@
+tag_id,tag_name
+CO2_only,CO2 only
+following_ipcc_2006,Following IPCC (2006) Guidelines for National Greenhouse Gas Inventories
+Combined_scope_1_and_scope_2,Combined accounting approach of scope 1 (IPCC territorial emissions from 17 types of fossil fuel combustion and cement production) and scope 2 (emissions from purchased electricity and heat consumption)

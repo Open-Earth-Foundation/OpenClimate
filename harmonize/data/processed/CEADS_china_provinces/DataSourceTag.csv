@@ -1,0 +1,4 @@
+datasource_id,tag_id
+CEADS:guan_etal_2021:china_provinces,CO2_only
+CEADS:guan_etal_2021:china_provinces,following_ipcc_2006
+CEADS:guan_etal_2021:china_provinces,Combined_scope_1_and_scope_2
