@@ -125,6 +125,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
     <div
       className={isMobile ? "pledges-widget-mobile" : "pledges-widget"}
       style={{ height: targets.length ? "" : "268px" }}
+      role="pledges-widget"
     >
       {targets?.length ? (
         <div className={`pledges-widget${isMobile ? `-mobile` : ``}__wrapper`}>
@@ -256,7 +257,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                   </TableHead>
                   <TableBody>
                     {targets.map((target: any) => (
-                      <StyledTableRow key={target.target_id}>
+                      <StyledTableRow key={target.target_id} role="targetitem" data-testid={`target-${target.target_id}`}>
                         <StyledTableCell component="th" scope="row" width="20%">
                           <div>
                             <span className="pledges-widget__target-percent">
@@ -337,10 +338,12 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                               handleClick(e, target.target_id)
                             }
                             aria-describedby="simple-popover"
+                            role="popover-button"
                           >
                             <InfoOutlined className="pledges-widget__target-info" />
                           </button>
                           <Popover
+                            role="popover-content"
                             id="simple-popover"
                             open={openedPopoverId === target.target_id}
                             anchorEl={anchorEl}
@@ -361,7 +364,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                             <div className="pledges-widget__popover">
                               <div className="pledges-widget__popover-header">
                                 <InfoOutlined className="pledges-widget__target-info" />
-                                <span>{target.target_type}</span>
+                                <span role="popover-header-title">{target.target_type}</span>
                               </div>
                               <div className="pledges-widget__popover-body">
                                 <div>
@@ -370,7 +373,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                   </span>
                                   <div className="pledges-widget__links-wr">
                                     <LinkOutlined className="pledges-widget__links-icon" />
-                                    <span className="pledges-widget__popover-srctxt">
+                                    <span className="pledges-widget__popover-srctxt" role="data-source-name">
                                       {target.datasource.name}
                                     </span>
                                   </div>
@@ -393,7 +396,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                       <div className="pledges-widget__popover-bl-value">
                                         BASELINE VALUE
                                       </div>
-                                      <div className="pledges-widget__popover-tns-value">
+                                      <div className="pledges-widget__popover-tns-value" role="baseline-value">
                                         {target.percent_achieved_reason
                                           ? readableEmissions(
                                               target.percent_achieved_reason
@@ -401,7 +404,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                             ) + " CO2e"
                                           : "N/A"}
                                       </div>
-                                      <div className="pledges-widget__popover-tgt-value">
+                                      <div className="pledges-widget__popover-tgt-value" role="baseline-year">
                                         {target.percent_achieved_reason
                                           ? "in " + target.baseline_year
                                           : ""}
@@ -411,7 +414,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                       <div className="pledges-widget__popover-bl-value">
                                         CURRENT EMISSIONS VALUE
                                       </div>
-                                      <div className="pledges-widget__popover-tns-value">
+                                      <div className="pledges-widget__popover-tns-value" role="current-emissions-value">
                                         {target.percent_achieved_reason
                                           ? readableEmissions(
                                               target.percent_achieved_reason
@@ -419,7 +422,7 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                             ) + " CO2e"
                                           : "N/A"}
                                       </div>
-                                      <div className="pledges-widget__popover-tgt-value">
+                                      <div className="pledges-widget__popover-tgt-value" role="data-src-name">
                                         {target.percent_achieved_reason
                                           ? target.percent_achieved_reason
                                               .current.datasource.name
@@ -430,13 +433,13 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
                                       <div className="pledges-widget__popover-bl-value">
                                         TARGET VALUE
                                       </div>
-                                      <div className="pledges-widget__popover-tns-value">
+                                      <div className="pledges-widget__popover-tns-value" role="target-value">
                                         {target.percent_achieved_reason
                                           ? readableEmissions(target.percent_achieved_reason.target.value)
                                            
                                           : `N/A`}
                                       </div>
-                                      <div className="pledges-widget__popover-tgt-value">
+                                      <div className="pledges-widget__popover-tgt-value" role="target-value-year">
                                         in {target.target_year}
                                       </div>
                                     </div>
@@ -483,14 +486,14 @@ const PledgesWidget: FunctionComponent<Props> = (props) => {
           </div>
           <div className="pledges-widget__pledges-data no-data">
             <div className="pledges-widget__pledges-empty-state">
-              <p>
+              <p role="no-data-text">
                 There's no data available, if you have any suggested <br /> data
                 sources or you are a provider please
               </p>
 
               <button className="collaborate-cta-btn">
                 <Diversity3Icon className="collaborate-cta-icon" />
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfL2_FpZZr_SfT0eFs_v4T5BsZnrNBbQ4pkbZ51JhJBCcud6A/viewform?pli=1&pli=1">
+                <a role="collaborate-text" href="https://docs.google.com/forms/d/e/1FAIpQLSfL2_FpZZr_SfT0eFs_v4T5BsZnrNBbQ4pkbZ51JhJBCcud6A/viewform?pli=1&pli=1">
                   COLLABORATE WITH DATA
                 </a>
               </button>
