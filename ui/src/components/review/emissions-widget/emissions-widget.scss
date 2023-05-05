@@ -338,18 +338,23 @@
         margin-top: 8px;
         display: flex;
     }
+    .tooltip{
+        max-width: 150px;
+    }
     .methodologies-tag{
+        display: block;
         background: #e8eafb;
         border-radius: 15px;
         margin-right: 2px;
         max-width: 150px;
-        white-space: nowrap;
+        height: 25px;
         overflow: hidden;
-        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
         padding-left: 10px;
         padding-right: 10px;
         color: #001ea7;
-
     }
     .methodologies-text{
         position: relative;
