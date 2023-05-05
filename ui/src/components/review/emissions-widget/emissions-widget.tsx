@@ -669,13 +669,14 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                   >
                     {tag.tag_name.length > 24 ? (
                       <Tooltip
+                        sx={{left: "0px"}}
                         classes={{
                           tooltip: classes.customTooltip,
                           arrow: classes.customArrow,
                         }}
                         title={<div className="tooltip">{tag.tag_name}</div>}
                         arrow
-                        placement="bottom"
+                        placement="top"
                       >
                         <span className="methodologies-text">{tag.tag_name}</span>
                       </Tooltip>
@@ -685,11 +686,27 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                   </div>
                 ))}
                 {tags.slice(3).length > 0 && (
-                  <div className="methodologies-tag overflow-handler">
-                    <span className="methodologies-text">
-                      +{tags.slice(3).length}
-                    </span>
-                  </div>
+                  <Tooltip
+                    classes={{
+                      tooltip: classes.customTooltip,
+                      arrow: classes.customArrow,
+                    }}
+                    title={<div className="tooltip">
+                      <ul className="methodologies-tooltip-tagname">
+                        {
+                          tags.slice(3).map((tag:any) => <li style={{marginLeft:"-20px"}}>{tag.tag_name}</li>)
+                        }
+                      </ul>
+                    </div>}
+                    arrow
+                    placement="right"
+                  >
+                    <div className="methodologies-tag overflow-handler">
+                      <span className="methodologies-text">
+                        +{tags.slice(3).length}
+                      </span>
+                    </div>
+                  </Tooltip>
                 )}
               </div>
               {
