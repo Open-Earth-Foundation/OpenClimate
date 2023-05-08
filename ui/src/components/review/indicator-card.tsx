@@ -140,7 +140,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
 
   return (
     <div className="review__earth-card-wrapper">
-      <div className="review__actor-type">{label || ""}</div>
+      <div className="review__actor-type" data-testid="label">{label || ""}</div>
       <div
         className={
           isActive ? "review__earth-card-active" : "review__earth-card-inactive"
@@ -164,7 +164,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
               )
             }
           </div>
-          <span className="review__earth-card-item-head-text-span">
+          <span className="review__earth-card-item-head-text-span" data-testid="title">
             {cardData?.name ?? ""}
           </span>
           {onDeSelect && (
