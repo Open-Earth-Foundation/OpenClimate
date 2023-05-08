@@ -139,7 +139,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
   }, [cardData, emsData, current, parent]);
 
   function isEarth() {
-    return cardData.type === 'planet'
+    return current?.type === 'planet'
   }
 
   return (
@@ -154,7 +154,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
         <div className="review__earth-card-head">
           <div className="review__earth-flag">
             {
-              current?.actor_id === "EARTH" ? (
+              isEarth() ? (
                 <>
                   <img src={Bg} alt="Earth Icon" className="review__earth-icon"/>
                 </>

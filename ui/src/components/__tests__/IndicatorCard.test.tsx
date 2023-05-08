@@ -1000,3 +1000,24 @@ describe('active indicator card widget with orphan data', () => {
         expect(div.textContent).toMatch(/N\/A\s*in N\/A/)
     })
 })
+
+describe('active indicator card widget with empty data', () => {
+
+    beforeEach(() => {
+        render(<IndicatorCard current={null} parent={null} label={"Region/Province"} isActive={false} />);
+    })
+
+    afterEach(cleanup)
+
+    it("has the correct CSS class", () => {
+        const div = screen.getByTestId('activity-wrapper');
+        expect(div).toBeInTheDocument();
+        expect(div.className).toMatch(/review__earth-card-inactive/)
+    })
+
+    it("has the Region/Province label", () => {
+        const div = screen.getByTestId('label');
+        expect(div).toBeInTheDocument();
+        expect(div.textContent).toMatch(/Region\/Province/)
+    })
+})
