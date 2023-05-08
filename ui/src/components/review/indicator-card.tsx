@@ -138,6 +138,10 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
     }
   }, [cardData, emsData, current, parent]);
 
+  function isEarth() {
+    return cardData.type === 'planet'
+  }
+
   return (
     <div className="review__earth-card-wrapper">
       <div className="review__actor-type" data-testid="label">{label || ""}</div>
@@ -180,7 +184,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
               <MdArrowUpward
                 className="review__earth-card-item-icon"
                 style={
-                  !emsData && parent !== null
+                  !emsData && !isEarth()
                     ? { color: "#7A7B9A" }
                     : { color: "#F23D33" }
                 }
@@ -188,21 +192,21 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
               <span
                 className="review__earth-card-item-large-text"
                 style={
-                  !emsData && parent !== null
+                  !emsData && !isEarth()
                     ? { color: "#7A7B9A" }
                     : { color: "#00001F" }
                 }
               >
-                {!emsData && parent !== null
+                {!emsData && !isEarth()
                   ? "N/A"
                   : (emsData && readableEmissions(emsData, "array")[0]) ||
                     "49.8"}
               </span>
-              {!emsData && parent !== null ? (
+              {!emsData && !isEarth() ? (
                 <></>
               ) : (
                 <span className="review__earth-card-item-small-text">
-                  {parent === null
+                  {isEarth()
                     ? "GtCO"
                     : `${readableEmissions(emsData, "array")[1]}CO`}
                   <sub>2</sub>e
@@ -212,14 +216,14 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
             <div
               className="review__earth-card-item-normal-text earth-card-normal-text"
               style={
-                !emsData && parent !== null
+                !emsData && !isEarth()
                   ? { color: "#7A7B9A" }
                   : { color: "#00001F" }
               }
             >
               {!emsData && parent
                 ? "No data available"
-                : `in ${parent !== null ? year || "N/A" : "2019"}`}
+                : `in ${!isEarth() ? year || "N/A" : "2019"}`}
             </div>
           </div>
           {parent ? (

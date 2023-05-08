@@ -997,6 +997,6 @@ describe('active indicator card widget with orphan data', () => {
     it("has the emissions info", () => {
         const div = screen.getByTestId('emissions-info');
         expect(div).toBeInTheDocument();
-        expect(div.textContent).toMatch(/\d+\.\d\s*[M|G]tCO2e\s*in \d\d\d\d/)
+        expect(div.textContent).toMatch(/N\/A\s*in N\/A/)
     })
 })
