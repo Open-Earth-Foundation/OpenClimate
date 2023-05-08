@@ -145,6 +145,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
         className={
           isActive ? "review__earth-card-active" : "review__earth-card-inactive"
         }
+        data-testid="activity-wrapper"
       >
         <div className="review__earth-card-head">
           <div className="review__earth-flag">
@@ -154,7 +155,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
                   <img src={Bg} alt="Earth Icon" className="review__earth-icon"/>
                 </>
               ) : (
-                <ActorFlag 
+                <ActorFlag
                   currentActorId={current?.actor_id}
                   currentActorType={current?.type}
                   parentActorId={parent?.actor_id}
@@ -174,7 +175,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
           )}
         </div>
         <div className="review__earth-card-body">
-          <div className="review__earth-card-content">
+          <div className="review__earth-card-content"  data-testid="emissions-info">
             <div className="review__earth-card-emissions-info">
               <MdArrowUpward
                 className="review__earth-card-item-icon"
@@ -224,7 +225,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
           {parent ? (
             ""
           ) : (
-            <div className="review__earth-card-content donut-card hdn-xsm">
+            <div className="review__earth-card-content donut-card hdn-xsm" data-testid='carbon-budget'>
               <div className="donut">
                 <DonutChart
                   items={items}
@@ -299,7 +300,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
                 </div>
               </>
             ) : (
-              <div className="co2-history ">
+              <div className="co2-history" data-testid="co2-history">
                 <MdArrowUpward className="review__earth-card-item-icon" />
                 <div>
                   <span className="review__earth-card-item-large-text">
@@ -378,7 +379,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
                 </div>
               </>
             ) : (
-              <div className="co2-concentration-content">
+              <div className="co2-concentration-content" data-testid="co2-concentration-content">
                 <MdArrowUpward className="review__earth-card-item-icon-b" />
                 <div className="">
                   <div>
