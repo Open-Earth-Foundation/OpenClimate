@@ -28,6 +28,10 @@ The API is built with NodeJS and Express.
 * [NodeJS](https://nodejs.org/en/)
 * [Express](https://expressjs.com/)
 
+The extract-transform-load (ETL) stack uses Python.
+
+* [Python](https://python.org/)
+
 ### Debugging
 
 To emit debugging messages from an API route, use the `req.logger` element, like this:
