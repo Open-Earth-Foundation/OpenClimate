@@ -14,7 +14,7 @@ Please note that all contributors and maintainers of this project are subject to
 
 ### Quick Links
 
-This project is built with React.
+The UI is built with React.
 
 - [React documentation](https://reactjs.org/)
 - [Code Splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
@@ -22,6 +22,39 @@ This project is built with React.
 - [Advanced Configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 - [Deployment](https://facebook.github.io/create-react-app/docs/deployment)
 - [Minification Troubleshooting](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+The API is built with NodeJS and Express.
+
+* [NodeJS](https://nodejs.org/en/)
+* [Express](https://expressjs.com/)
+
+### Debugging
+
+To emit debugging messages from an API route, use the `req.logger` element, like this:
+
+```javascript
+    req.logger.debug('A thing happened here')
+```
+
+The logger element is a [winston](https://www.npmjs.com/package/winston) object; you can use the full API of that package
+to emit more complicated debugging info.
+
+If you're writing code in a context where the `req` isn't available, you can just include the
+global logger in your module like so:
+
+```javascript
+const logger = require('logger')
+
+// ...
+
+logger.debug({message: "Doing something", what: "Debugging"})
+```
+
+If you have output that should be shown in server logs in production, use the `info()`, `warn()` or `error()` methods
+as appropriate.
+
+Using the logger lets us filter, sort and search output when debugging or in production. Please don't use `console.log`
+for debugging.
 
 ### Pull Requests
 
