@@ -28,10 +28,10 @@ limitations under the License.
 
 ## Quick links
 
-* [Code of Conduct](./CODE_OF_CONDUCT)
-* [Contributing code](./CONTRIBUTING)
-* [Contributing data](./CONTRIBUTING_DATA)
-* [Running OpenClimate in Kubernetes](./k8s/README)
-* [API documentation](./api/API)
-* [Schema documentation](./api/schema/README)
+* [Code of Conduct](./CODE_OF_CONDUCT.md)
+* [Contributing code](./CONTRIBUTING.md)
+* [Contributing data](./CONTRIBUTING_DATA.md)
+* [Running OpenClimate in Kubernetes](./k8s/README.md)
+* [API documentation](./api/API.md)
+* [Schema documentation](./api/schema/README.md)
 * [Issues](https://github.com/Open-Earth-Foundation/OpenClimate/issues) ([good first issues](https://github.com/Open-Earth-Foundation/OpenClimate/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22))
