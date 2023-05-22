@@ -17,7 +17,7 @@ from typing import Dict
 
 def simple_write_csv(output_dir: str = None,
                      name: str = None,
-                     rows: List[Dict] | Dict = None) -> None:
+                     rows = None):
 
     if isinstance(rows, dict):
         rows = [rows]

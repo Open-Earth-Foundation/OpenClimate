@@ -7,7 +7,21 @@ import pandas as pd
 import re
 from typing import List
 from typing import Dict
-from utils import make_dir
+#from utils import make_dir
+
+def make_dir(path=None):
+    """Create a new directory at this given path.
+
+    path = None
+    """
+    assert isinstance(path, str), (
+        f"Path must be a string; you passed a {type(path)}"
+    )
+
+    # parents = True creates missing parent paths
+    # exist_ok = True igores FileExistsError exceptions
+    # these settings mimick the POSIX mkdir -p command
+    Path(path).mkdir(parents=True, exist_ok=True)
 
 # start client
 client = oc.Client()
@@ -309,7 +323,7 @@ city_dict = [
 def simple_write_csv(
     output_dir: str = None,
     name: str = None,
-    data: List[Dict] | Dict = None,
+    data = None,
     mode: str = "w",
     extension: str = "csv",
 ) -> None:
