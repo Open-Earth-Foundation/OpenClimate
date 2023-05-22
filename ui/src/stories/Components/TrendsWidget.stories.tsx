@@ -4,7 +4,7 @@ export default {
     title: 'Components / Widgets / Trends Widget',
     component: TrendsWidget,
     parameters: {
-        componentSubtitle: "Explore Widget Component",
+        componentSubtitle: "Trends Widget Component",
     }
 
 }
