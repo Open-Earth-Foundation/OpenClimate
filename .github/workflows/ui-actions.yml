@@ -10,7 +10,20 @@ on:
 
 jobs:
 
+  runTests:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v3
+
+    - name: Running tests
+      run: |
+        cd ui
+        npm ci --legacy-peer-deps
+        npm run test
+
   pushToECR:
+    needs: runTests
     runs-on: ubuntu-latest
     steps:
 
