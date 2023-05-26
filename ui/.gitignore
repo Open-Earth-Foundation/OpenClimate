@@ -32,3 +32,6 @@ yarn-error.log*
 
 # Production Output
 /build
+
+# Storybook build output
+storybook-static
