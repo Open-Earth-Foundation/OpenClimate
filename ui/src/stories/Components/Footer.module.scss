@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.root{
+    display: flex;
+    width: 1440px;
+    font-family: 'Poppins';
+    height: 320px;
+    background: #00001F;
+}
+
+.container{
+    width: 100%;
+    padding-left: 75px;
+    padding-right: 75px;
+    padding-top: 56px;
+}
+
+.content{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    
+}
+
+.ocLogoContainer{
+
+}
+
+.ocLogo{
+    width: 143.33px;
+    height: 20px;
+}
+
+.footerLinks a{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+}
+
+.quickAccessLinks{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    row-gap: 24px;
+}
+
+.cta{
+    display: flex;
+    justify-content: end;
+}
+
+.ctaBtnA{
+    width: 150px;
+    height: 48px;
+    border: 2px solid #5FE500;
+    border-radius: 50px;
+    background: transparent;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #5FE500;
+}
+
+
+.ctaBtnB{
+    width: 150px;
+    height: 48px;
+    border: none;
+    border-radius: 50px;
+    background: #008600;;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-left: 20px;
+}
+
+.hr{
+    border: 1px solid #232640;
+    width: 1312px;
+    margin-top: 43px;
+}
+
+.content2{
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 54px;
+}
+
+.betaBadge{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 61px;
+    height: 20px;
+    background: #D7D8FA;
+    border-radius: 10.4644px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 16px;
+    color: #00001F;
+    margin-right: 16px;
+}
+
+.versionInfo{
+    display: flex;
+}
+
+.versionText{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-right: 16px;
+}
+
+.feedBackText{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration-line: underline;
+}

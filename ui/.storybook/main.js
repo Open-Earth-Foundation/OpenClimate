@@ -8,8 +8,6 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-postcss",
-    "@storybook/addon-viewport",
-    "storybook/addon-postcss",
     "@storybook/preset-create-react-app",
     "storybook-zeplin/register"    
   ],
