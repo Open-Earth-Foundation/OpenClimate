@@ -1,0 +1,11 @@
+actor_name,actor_id,baseline_year,target_year,target_value,target_unit,target_type,URL
+British Columbia,CA-BC,2007,2030,40,percent,Absolute emission reduction,https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/00_07042_01#section2
+Manitoba,CA-MB,2005,2030,33,percent,Absolute emission reduction,https://www.gov.mb.ca/sd/annual-reports/sdif/mb-climate-change-green-economy-action-plan.pdf
+New Brunswick,CA-NB,2005,2030,46,percent,Absolute emission reduction,https://www2.gnb.ca/content/dam/gnb/Corporate/Promo/climate/climate-change-action-plan.pdf
+Newfoundland and Labrador,CA-NL,2001,2030,30,percent,Absolute emission reduction,https://www.gov.nl.ca/ecc/files/publications-the-way-forward-climate-change.pdf
+Northwest Territories,CA-NT,2005,2030,30,percent,Absolute emission reduction,https://www.ecc.gov.nt.ca/sites/ecc/files/resources/128-climate_change_strategic_framework_web.pdf
+Nova Scotia,CA-NS,2005,2030,53,percent,Absolute emission reduction,https://nslegislature.ca/sites/default/files/legc/PDFs/annual%20statutes/2019%20Fall/c026.pdf
+Ontario,CA-ON,2005,2030,30,percent,Absolute emission reduction,https://prod-environmental-registry.s3.amazonaws.com/2018-11/EnvironmentPlan.pdf
+Prince Edward Island,CA-PE,2030,2030,1200000,tCO2e,Fixed level,https://www.princeedwardisland.ca/sites/default/files/legislation/n-03-01-net-zero_carbon_act.pdf
+Quebec,CA-QC,1990,2030,37,percent,Absolute emission reduction,https://cdn-contenu.quebec.ca/cdn-contenu/adm/min/environnement/publications-adm/plan-economie-verte/plan-economie-verte-2030-en.pdf
+Yukon,CA-YT,2010,2030,30,percent,Absolute emission reduction,https://yukon.ca/sites/yukon.ca/files/env/env-our-clean-future.pdf
