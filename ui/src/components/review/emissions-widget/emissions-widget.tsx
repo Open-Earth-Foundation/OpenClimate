@@ -276,13 +276,14 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
       <div
         className={isMobile ? "emissions-widget-mobile" : "emissions-widget"}
         style={{ height: currentEmissions ? "" : "268px" }}
+        data-testid="emissions-widget"
       >
         {currentEmissions ? (
           <div className={isMobile ? "emissions-widget-mobile__wrapper" : "emissions-widget__wrapper"}>
             <div className="emissions-widget__metadata">
               <div>
                 <div className="emissions-widget__metadata-inner">
-                  <span className={isMobile ? "emissions-widget-mobile__title" : "emissions-widget__title"}>{ titleText || 'Total emissions'}</span>
+                  <span data-testid="title" className={isMobile ? "emissions-widget-mobile__title" : "emissions-widget__title"}>{ titleText || 'Total emissions'}</span>
                   { !isMobile && <span>
                     <Tooltip
                       classes={{
@@ -339,6 +340,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                           value={currentSource}
                           onChange={sourceChangeHandler}
                           id="demo-simple-select-standard"
+                          role="data-source-select"
                           sx={{
                             border: "0px",
                             fontFamily: "Poppins",
@@ -380,6 +382,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                       >
                         <Select
                           value={currentYear}
+                          role="year-select"
                           onChange={yearChangeHandler}
                           id="demo-simple-select-standard"
                           sx={{
@@ -427,13 +430,14 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                         <IconButton
                           onClick={setMenuState}
                           className="download_data-button"
+                          role="icon-button"
                         >
                           <MoreVert className="download_data-icon" />
                         </IconButton>
                       </Tooltip>
                       {toggleMenu && (
                         <>
-                          <div className="download_data-menu">
+                          <div data-testid="download-menu" className="download_data-menu">
                             <ul className="menu-item">
                               <a
                                 className="download-link"
@@ -490,7 +494,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
               <div className="emissions-widget__emissions-data">
                 <div className="emissions-widget__col-1">
                   <div>
-                    <span className={isMobile ? "emissions-widget-mobile__total-emissions" : "emissions-widget__total-emissions"}>
+                    <span data-testid="emissions-value" className={isMobile ? "emissions-widget-mobile__total-emissions" : "emissions-widget__total-emissions"}>
                       {(currentEmissions.total_emissions / 1000000.0).toPrecision(
                         5
                       )}{" "}
@@ -543,10 +547,10 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                   </div>
                   <div>
                     <div className="emissions-widget__col-1">
-                      <div className="emissions-widget__row">
+                      <div data-testid="percapita" className="emissions-widget__row">
                         {perCapita ? (
                           <div>
-                            <span className="emissions-widget__total-tonnes-pc">
+                            <span data-testid="percapita-value"  className="emissions-widget__total-tonnes-pc">
                               {perCapita.toPrecision(3)}
                             </span>
                             <span className="emissions-widget__emissions-pc-unit">
@@ -599,7 +603,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                 </div>
               )}
             </div>
-            <div className={isMobile ? "emissions-widget-mobile__methodologies" :  "emissions-widget__methodologies"}>
+            <div role="methodologies" className={isMobile ? "emissions-widget-mobile__methodologies" :  "emissions-widget__methodologies"}>
               { isMobile && 
                 <div className="emissions-widget-mobile__emissions-data data-per-capita">
                   <div className="icon-wrapper">
@@ -678,7 +682,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                         arrow
                         placement="top"
                       >
-                        <span className="methodologies-text">{tag.tag_name}</span>
+                        <span  data-testid="methodology-tag" className="methodologies-text">{tag.tag_name}</span>
                       </Tooltip>
                     ) : (
                       <span className="methodologies-text">{tag.tag_name}</span>
@@ -694,7 +698,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                     title={<div className="tooltip">
                       <ul className="methodologies-tooltip-tagname">
                         {
-                          tags.slice(3).map((tag:any) => <li style={{marginLeft:"-20px"}}>{tag.tag_name}</li>)
+                          tags.slice(3).map((tag:any) => <li key={tag.tag_id} style={{marginLeft:"-20px"}}>{tag.tag_name}</li>)
                         }
                       </ul>
                     </div>}
@@ -712,8 +716,8 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
               {
                   current.emissions[currentSource].citation && current.emissions[currentSource].URL &&
                   <div className="citation-container">
-                    <a className="citation-icon" href={current.emissions?.[currentSource]?.URL} target="_blank" rel="noopener noreferrer"><OpenInNew fontSize="inherit"/></a>
-                    <div className="citation-text">Source detail: {current.emissions[currentSource].citation}</div>
+                    <a data-testid="citation-url" className="citation-icon" href={current.emissions?.[currentSource]?.URL} target="_blank" rel="noopener noreferrer"><OpenInNew fontSize="inherit"/></a>
+                    <div data-testid="citation-text" className="citation-text">Source detail: {current.emissions[currentSource].citation}</div>
                   </div>
               }
             </div>
@@ -748,14 +752,14 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                 <div className="emissions-widget__metadata-right-inner">
                   <div className="emissions-widget__source-label">Source</div>
                   <div className="emissions-widget__source-title">
-                    <span>N/A</span>
+                    <span data-testid="select-source">N/A</span>
                     <MdArrowDropDown className="emissions-widget__icon arrow" />
                   </div>
                 </div>
                 <div className="emissions-widget__metadata-right-inner">
                   <div className="emissions-widget__source-label">Year</div>
                   <div className="emissions-widget__source-title">
-                    <span>N/A</span>
+                    <span data-testid="select-year">N/A</span>
                     <MdArrowDropDown className="emissions-widget__icon arrow" />
                   </div>
                 </div>
@@ -768,7 +772,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                   sources or you are a provider please
                 </p>
 
-                <button className="collaborate-cta-btn">
+                <button data-testid="collab-btn" className="collaborate-cta-btn">
                   <Diversity3Icon className="collaborate-cta-icon" />
                   <a href="https://docs.google.com/forms/d/e/1FAIpQLSfL2_FpZZr_SfT0eFs_v4T5BsZnrNBbQ4pkbZ51JhJBCcud6A/viewform?pli=1&pli=1">
                     COLLABORATE WITH DATA
