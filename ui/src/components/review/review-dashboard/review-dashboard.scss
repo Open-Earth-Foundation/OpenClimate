@@ -18,6 +18,10 @@
 
 }
 
+.tr-wrapper{
+    width: 100%;
+}
+
 @include respond(mobile){
     .review__dashboard-layout {
         display: flex;
