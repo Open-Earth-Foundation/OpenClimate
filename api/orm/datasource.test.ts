@@ -18,6 +18,7 @@ const props = {
   URL: "https://fake.example/datasource",
   publisher: publisher.id,
   published: new Date(2022, 10, 12),
+  citation: 'Person, A.; Person, B.; Person, C. (2021): The PRIMAP-hist national historical emissions time series (1750-2019). v2.3.1. zenodo. '
 };
 
 const URL2 = "https://fake.example/datasource2";
@@ -46,8 +47,11 @@ it("can create, read, update and delete a DataSource", async () => {
   let createDS = await DataSource.create(props);
   expect(createDS.name).toEqual(props.name);
 
+  expect(createDS.citation).toEqual(props.citation);
+
   let readDS = await DataSource.findByPk(props.datasource_id);
   expect(readDS.URL).toEqual(props.URL);
+  expect(readDS.citation).toEqual(props.citation);
 
   expect(readDS.published.getFullYear()).toEqual(2022);
   expect(readDS.published.getMonth()).toEqual(10);
@@ -67,4 +71,6 @@ it("can create, read, update and delete a DataSource", async () => {
     where: { datasource_id: props.datasource_id },
   });
   expect(allMatch.length).toEqual(0);
+
+
 });

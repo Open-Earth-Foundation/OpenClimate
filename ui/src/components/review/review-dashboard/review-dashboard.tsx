@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Dashboard: FunctionComponent<Props> = (props) => {
-  const { current, parent } = props;
+  const { current, parent} = props;
 
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -31,9 +31,12 @@ const Dashboard: FunctionComponent<Props> = (props) => {
           <EmissionsWidget
             key={`emissions-${current.actor_id}`}
             current={current}
+            isMobile={width < 900}
             parent={parent}
+            hasFilter={true}
+            hasDownload={true}
           />
-          {current.type !== "site" && (
+          {current.type !== "site" && width > 480 && (
             <ContextualDataWidget
               key={`contextual-${current.actor_id}`}
               current={current}
@@ -44,11 +47,20 @@ const Dashboard: FunctionComponent<Props> = (props) => {
         <div>
           <PledgesWidget
             key={`pledges-${current.actor_id}`}
-            isMobile={ width < 900 }
+            isMobile={width < 900}
+            currentWidth={width}
             current={current}
-            parent={parent}
           />
         </div>
+        { 
+          current.type !== "site" && width < 480 && (
+            <ContextualDataWidget
+              key={`contextual-${current.actor_id}`}
+              current={current}
+              parent={parent}
+            />
+          )
+        }
       </div>
     </div>
   );

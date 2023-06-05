@@ -59,7 +59,8 @@ if __name__ == '__main__':
         'name': 'climate TRACE: country inventory',
         'publisher': 'climate TRACE',
         'published': '2022-12-02',
-        'URL': 'https://climatetrace.org/inventory'
+        'URL': 'https://climatetrace.org/inventory',
+        'citation': 'Climate TRACE. (2022). Climate TRACE Emissions Inventory [Data set]. Climate TRACE. https://climatetrace.org/inventory'
     }
 
     simple_write_csv(outputDir, "DataSource", datasourceDict)

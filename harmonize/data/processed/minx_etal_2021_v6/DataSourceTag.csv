@@ -1,0 +1,6 @@
+datasource_id,tag_id
+minx_etal_2021:v6,GHGs_included_fossil_CO2_CH4_N2O_F_gases
+minx_etal_2021:v6,GWP_100_AR4
+minx_etal_2021:v6,Sectors_buildings_energy_industry_transport_AFOLU
+minx_etal_2021:v6,built_using_EDGARv6
+minx_etal_2021:v6,excludes_LULUCF

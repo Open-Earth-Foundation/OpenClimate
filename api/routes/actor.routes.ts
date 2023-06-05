@@ -112,6 +112,7 @@ router.get(
         publisher: ds.publisher,
         published: ds.published,
         URL: ds.URL,
+        citation: ds.citation,
         tags: dataSourceTags
           .filter((dst) => dst.datasource_id == ds.datasource_id)
           .map((dst) => tags.find((tag) => tag.tag_id == dst.tag_id)),
@@ -144,8 +145,8 @@ router.get(
 
     let achieved = await Promise.all(
       targets.map(async (t) => {
-        let [pct, baseline, current] = await t.getPercentComplete(emissions, dsq);
-        return [t.target_id, pct, baseline, current];
+        let [pct, baseline, current, targetValue] = await t.getPercentComplete(emissions, dsq);
+        return [t.target_id, pct, baseline, current, targetValue];
       })
     );
 
@@ -217,7 +218,10 @@ router.get(
                 year: ach[3].year,
                 value: Number(ach[3].total_emissions),
                 datasource: datasource(ach[3].datasource_id)
-              }
+              },
+              target: (ach[4]) ? {
+                value: ach[4]
+              } : null,
             },
             datasource_id: t.datasource_id,
             datasource: {

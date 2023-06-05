@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
+@import './mixins.scss';
+
 .pledges-widget-mobile{
     min-height: 350px;
+
     width: 536px;
+    
+    @include respond(mobile){
+        width: 328px;
+    }
+
     border: 1px solid #E6E7E8;
     display: relative;
     border-radius: 4px;

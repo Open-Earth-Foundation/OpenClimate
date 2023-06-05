@@ -4,12 +4,15 @@ import { ArrowForwardIos } from "@mui/icons-material";
 import { DropdownOption } from "../../shared/interfaces/dropdown/dropdown-option";
 import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
 import IndicatorCard from "./indicator-card";
-import { useMatomo } from "@datapunt/matomo-tracker-react";
+import { useMatomo } from "@jonkoops/matomo-tracker-react";
+import { MdArrowBack } from "react-icons/md";
+import { HiOutlineSearch } from "react-icons/hi";
 
 interface IProps {
   selectFilter: (filterType: FilterTypes, option: DropdownOption) => void;
   deselectFilter: (filterType: FilterTypes) => void;
   actors: Array<any>;
+  dashboardState: Dispatch<SetStateAction<boolean>>
 }
 
 interface ICardProps {
@@ -25,27 +28,27 @@ const cardsTemplate: Array<ICardProps> = [
     label: "Country",
     type: FilterTypes.National,
     selectedValue: "",
-    placeholder: "Search for a country...",
+    placeholder: "Search by country",
     options: [],
   },
   {
     label: "Region/Province",
     type: FilterTypes.SubNational,
     selectedValue: "",
-    placeholder: "Regions, states, provinces...",
+    placeholder: "Search by region or province",
     options: [],
   },
   {
     label: "City",
     type: FilterTypes.City,
     selectedValue: "",
-    placeholder: "Cities...",
+    placeholder: "Search by city",
     options: [],
   },
 ];
 
 const LevelCards: FunctionComponent<IProps> = (props) => {
-  const { selectFilter, deselectFilter, actors } = props;
+  const { selectFilter, deselectFilter, actors, dashboardState } = props;
 
   const [isCity, setIsCity] = useState<boolean>(true);
 
@@ -295,8 +298,12 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
 
   return (
     <div className="review__earth-main">
+      <div className="review__explore-title">
+        <MdArrowBack className="review__explore-arrow-back"/>
+        <h1>Explore</h1>
+      </div>
       <IndicatorCard
-        label={"Globe"}
+        label={"Our Planet"}
         current={actors[0]}
         parent={null}
         isActive={actors.length === 1}
@@ -351,6 +358,15 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
           )}
         </React.Fragment>
       ))}
+
+      <div className="review__filter-button-wrapper">
+          <button className="review__filter-button" onClick={()=>{
+            dashboardState(true)
+          }}>
+            <HiOutlineSearch className="review__icon" />
+            <span>Explore actor</span>
+          </button>
+      </div>
     </div>
   );
 };

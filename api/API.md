@@ -113,6 +113,7 @@ Standard output. `data` is an object representing the actor, with the following 
   - `published`: Date this data source was published.
   - `URL`: URL to retrieve the data source or learn more about it. For humans,
     not computers.
+  - `citation`: Bibliographic citation for this dataset in [American Meteorological Society format](https://www.ametsoc.org/index.cfm/ams/publications/author-information/formatting-and-manuscript-components/references/).
   - `tags`: an array of tags for this data source. Each tag is an object with
     the following properties:
     - `tag_id`: short tag.
@@ -160,6 +161,8 @@ Standard output. `data` is an object representing the actor, with the following 
         - `name`: name for the data source.
         - `published`: Date this data source was published.
         - `URL`: URL to retrieve the data source or learn more about it.
+    - `target`: the target value used for the calculation, including the following info:
+      - `value`: the emissions value in tonnes of CO2E.
   - `datasource_id`: data source for the target.
   - `datasource`: an object representing the data source for this target, with the following properties:
     - `datasource_id`: ID code for the datasource; should be identical to the key.

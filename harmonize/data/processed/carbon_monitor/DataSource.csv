@@ -1,2 +1,2 @@
-datasource_id,name,publisher,published,URL
-carbon_monitor:2022_12_14,Carbon Monitor country CO2 emissions by sector,Carbon Monitor,2022-12-14,https://carbonmonitor.org/
+datasource_id,name,publisher,published,URL,citation
+carbon_monitor:2022_12_14,Carbon Monitor country CO2 emissions by sector,Carbon Monitor,2022-12-14,https://carbonmonitor.org/,"Liu, Z., Ciais, P., Deng, Z. et al. (2020). Carbon Monitor, a near-real-time daily dataset of global CO2 emission from fossil fuel and cement production. Scientific data, 7(1), 392. doi:10.1038/s41597-020-00708-7"

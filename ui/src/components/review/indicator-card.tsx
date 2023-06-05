@@ -6,6 +6,8 @@ import { FilterTypes } from "../../api/models/review/dashboard/filterTypes";
 import { deselectFilter } from "../../store/review/review.actions";
 import { readableEmissions, readablePercentagePopulation } from "../util/units";
 import { showPopulationParent } from "../util/population";
+import Bg from "./img/Flag.png";
+import ActorFlag from "./actor-flag/actor-flag";
 
 interface IProps {
   parent: any;
@@ -46,7 +48,6 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
   useEffect(() => {
     if (winSize.innerWidth > 1550) {
       setDonutSize(30);
-      console.log(winSize.innerWidth);
     } else {
       setDonutSize(22);
     }
@@ -137,32 +138,53 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
     }
   }, [cardData, emsData, current, parent]);
 
+  function isEarth() {
+    return current?.type === 'planet'
+  }
+
   return (
-    <div>
-      <span className="review__actor-type">{label || ""}</span>
+    <div className="review__earth-card-wrapper">
+      <div className="review__actor-type" data-testid="label">{label || ""}</div>
       <div
         className={
           isActive ? "review__earth-card-active" : "review__earth-card-inactive"
         }
+        data-testid="activity-wrapper"
       >
         <div className="review__earth-card-head">
-          <span className="review__earth-card-item-head-text-span">
+          <div className="review__earth-flag">
+            {
+              isEarth() ? (
+                <>
+                  <img src={Bg} alt="Earth Icon" className="review__earth-icon"/>
+                </>
+              ) : (
+                <ActorFlag
+                  currentActorId={current?.actor_id}
+                  currentActorType={current?.type}
+                  parentActorId={parent?.actor_id}
+                  icon={current?.icon}
+                />
+              )
+            }
+          </div>
+          <span className="review__earth-card-item-head-text-span" data-testid="title">
             {cardData?.name ?? ""}
           </span>
           {onDeSelect && (
             <Close
-              className="review__earth-card-close-icon"
+              className="review__earth-card-close-icon hdn-xsm"
               onClick={onDeSelect}
             />
           )}
         </div>
         <div className="review__earth-card-body">
-          <div className="review__earth-card-content">
+          <div className="review__earth-card-content"  data-testid="emissions-info">
             <div className="review__earth-card-emissions-info">
               <MdArrowUpward
                 className="review__earth-card-item-icon"
                 style={
-                  !emsData && parent !== null
+                  !emsData && !isEarth()
                     ? { color: "#7A7B9A" }
                     : { color: "#F23D33" }
                 }
@@ -170,21 +192,21 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
               <span
                 className="review__earth-card-item-large-text"
                 style={
-                  !emsData && parent !== null
+                  !emsData && !isEarth()
                     ? { color: "#7A7B9A" }
                     : { color: "#00001F" }
                 }
               >
-                {!emsData && parent !== null
+                {!emsData && !isEarth()
                   ? "N/A"
                   : (emsData && readableEmissions(emsData, "array")[0]) ||
                     "49.8"}
               </span>
-              {!emsData && parent !== null ? (
+              {!emsData && !isEarth() ? (
                 <></>
               ) : (
                 <span className="review__earth-card-item-small-text">
-                  {parent === null
+                  {isEarth()
                     ? "GtCO"
                     : `${readableEmissions(emsData, "array")[1]}CO`}
                   <sub>2</sub>e
@@ -194,20 +216,20 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
             <div
               className="review__earth-card-item-normal-text earth-card-normal-text"
               style={
-                !emsData && parent !== null
+                !emsData && !isEarth()
                   ? { color: "#7A7B9A" }
                   : { color: "#00001F" }
               }
             >
               {!emsData && parent
                 ? "No data available"
-                : `in ${parent !== null ? year || "N/A" : "2019"}`}
+                : `in ${!isEarth() ? year || "N/A" : "2019"}`}
             </div>
           </div>
           {parent ? (
             ""
           ) : (
-            <div className="review__earth-card-content donut-card">
+            <div className="review__earth-card-content donut-card hdn-xsm" data-testid='carbon-budget'>
               <div className="donut">
                 <DonutChart
                   items={items}
@@ -233,7 +255,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
             </div>
           )}
           <div
-            className="review__earth-card-content"
+            className="review__earth-card-content hdn-xsm"
             style={{ position: "relative", top: parent ? "85px" : "0px" }}
           >
             {parent ? (
@@ -282,7 +304,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
                 </div>
               </>
             ) : (
-              <div className="co2-history">
+              <div className="co2-history" data-testid="co2-history">
                 <MdArrowUpward className="review__earth-card-item-icon" />
                 <div>
                   <span className="review__earth-card-item-large-text">
@@ -296,7 +318,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
             )}
           </div>
           <div
-            className="review__earth-card-content donut-card co2concentration"
+            className="review__earth-card-content donut-card co2concentration hdn-xsm"
             style={{ position: "relative", left: parent ? "-10px" : "0px" }}
           >
             {parent ? (
@@ -361,7 +383,7 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
                 </div>
               </>
             ) : (
-              <div className="co2-concentration-content">
+              <div className="co2-concentration-content" data-testid="co2-concentration-content">
                 <MdArrowUpward className="review__earth-card-item-icon-b" />
                 <div className="">
                   <div>
@@ -379,6 +401,12 @@ const IndicatorCard: FunctionComponent<IProps> = (props) => {
               </div>
             )}
           </div>
+          {onDeSelect && (
+            <Close
+              className="review__earth-card-close-icon mobile-close-icon"
+              onClick={onDeSelect}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 .emissions-widget{
-    height: 300px;
     width: calc(1/2*90vw);
     border: 1px solid #E6E7E8;
     display: relative;
@@ -339,18 +338,23 @@
         margin-top: 8px;
         display: flex;
     }
+    .tooltip{
+        max-width: 150px;
+    }
     .methodologies-tag{
+        display: block;
         background: #e8eafb;
         border-radius: 15px;
         margin-right: 2px;
         max-width: 150px;
-        white-space: nowrap;
+        height: 25px;
         overflow: hidden;
-        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
         padding-left: 10px;
         padding-right: 10px;
         color: #001ea7;
-
     }
     .methodologies-text{
         position: relative;
@@ -360,6 +364,26 @@
         letter-spacing: 0.02em;
         color: #001ea7;
     }
+
+    .citation-container{
+        display: flex;
+        flex-direction: row;
+        padding-top: 24px;
+    }
+
+    .citation-icon {
+        font-size: 16px;
+        color: #2351DC;
+        padding-right: 18px;
+        cursor: pointer;
+    }
+
+    .citation-text {
+        font-size: 11px;
+        color: #7A7B9A;
+        text-decoration-line: underline;
+    }
+
     .overflow-handler{
         width: 32px;
     }
@@ -441,11 +465,13 @@
         font-size: 16px;
         padding-right: 16px;
         color: #7a7b9a;
+        cursor: pointer;
     }
 
     &__download-icon{
         font-size: 16px;
         color: #7a7b9a;
+        cursor: pointer;
     }
 
     .download_data-btn{
@@ -762,6 +788,23 @@
         color: #001ea7;
     }
     
+    .citation-container{
+        display: flex;
+        flex-direction: row;
+        padding-top: 24px;
+    }
+
+    .citation-icon {
+        font-size: 16px;
+        color: #2351DC;
+        padding-right: 8px;
+    }
+
+    .citation-text {
+        font-size: 11px;
+        color: #7A7B9A;
+        text-decoration-line: underline;
+    }
     .overflow-handler{
         width: 32px;
     }

@@ -21,6 +21,7 @@ export class DataSource extends Model<
   declare publisher: string;
   declare published: Date;
   declare URL: string;
+  declare citation: string;
   declare created: CreationOptional<Date>;
   declare last_updated: CreationOptional<Date>;
 }
@@ -46,6 +47,9 @@ DataSource.init(
     },
     URL: {
       type: DataTypes.STRING,
+    },
+    citation: {
+      type: DataTypes.STRING(511),
     },
     created: {
       type: DataTypes.DATE,

@@ -6,6 +6,7 @@ CREATE TABLE "DataSource" (
   "URL" varchar(255),
   "created" timestamp,
   "last_updated" timestamp,
+  "citation" varchar(511),
   PRIMARY KEY ("datasource_id"),
   CONSTRAINT "FK_DataSource.publisher"
     FOREIGN KEY ("publisher")

@@ -84,6 +84,7 @@ if __name__ == "__main__":
         "publisher": publisherDict["id"],
         "published": "2022-09-27",
         "URL": "https://di.unfccc.int/ghg_profile_non_annex1",
+        'citation': 'UNFCCC. (2022). GHG Profiles - Non-Annex I [Data set]. UNFCCC. https://di.unfccc.int/ghg_profile_non_annex1'
     }
 
     simple_write_csv(outputDir, "DataSource", datasourceDict)

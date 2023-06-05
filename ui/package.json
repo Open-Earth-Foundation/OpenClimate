@@ -1,12 +1,13 @@
 {
   "name": "open-climate-ui",
-  "version": "1.8.0",
+  "version": "1.9.0-rc0",
   "private": true,
   "dependencies": {
     "-": "0.0.1",
-    "@datapunt/matomo-tracker-react": "^0.5.1",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.10.4",
+    "@jonkoops/matomo-tracker": "^0.7.0",
+    "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@material-ui/core": "^4.12.3",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.2",
@@ -18,11 +19,11 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.24",
     "@types/node": "^18.15.3",
     "@types/react": "^17.0.15",
     "@types/react-datepicker": "^4.4.2",
     "@types/react-dom": "^17.0.9",
+    "@types/react-test-renderer": "^18.0.0",
     "axios": "^1.3.4",
     "caniuse-lite": "^1.0.30001466",
     "jwt-decode": "^3.1.2",
@@ -49,6 +50,7 @@
     "react-toastify": "^9.0.3",
     "react-tooltip": "^4.4.3",
     "reactjs-popup": "^2.0.4",
+    "recharts": "^2.6.2",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^2.1.3",
@@ -72,9 +74,12 @@
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
     "@types/google.maps": "^3.50.4",
+    "@types/jest": "^29.5.1",
     "@types/react-router-dom": "^5.1.8",
     "prettier": "^2.8.3",
-    "sass": "^1.58.1"
+    "react-test-renderer": "^18.2.0",
+    "sass": "^1.58.1",
+    "ts-jest": "^29.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -117,5 +122,27 @@
   "engines": {
     "node": "^18.5.0"
   },
-  "readme": "ERROR: No README data found!"
+  "readme": "ERROR: No README data found!",
+  "jest": {
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/index.tsx",
+      "!src/setupTests.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    }
+  }
 }

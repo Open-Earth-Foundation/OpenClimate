@@ -1,0 +1,121 @@
+.mobile-modal {
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--dark-gray-color);
+    z-index: var(--modal-z-index);
+    width: 100%;
+    
+
+    .wrapper {
+        position: absolute;
+        bottom: 0;
+        padding-bottom: 24px;
+        background-color: var(--white-color);
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        width: 100%;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 28px 16px;
+        height: 80px;
+    }
+
+    .header-text {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #00001F;
+    }
+
+    .header-icon {
+        font-size: 24px;
+        color: #7A7B9A;
+        cursor: pointer;
+    }
+
+    .select-container {
+        padding: 22px 20px 22px 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: #00001F;
+        gap: 16px;
+        cursor: pointer;
+        &:hover {
+            background-color: var(--secondary-blue-color);
+            color: var(--white-color);
+        }
+    }
+
+    .select-icon {
+        font-size: 24px;
+    }
+
+    .select-text {
+        font-size: 14px;
+    }
+
+    .filters-dropdown-container {
+        height: 436px;
+        padding-left: 16px;
+    }
+
+    .source-filter-container {
+        margin-bottom: 24px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 76px;
+        gap: 68px;
+
+    }
+
+    .reset-text {
+        color: #008600;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        padding-left: 72px;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    .button{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 16px 24px;
+        width: 158px;
+        height: 48px;
+        background: #008600;
+        border-radius: 50px;
+        border: none;
+        font-family: 'Poppins';
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .button span{
+        font-size: 14px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 1.25px;
+        text-transform: uppercase;
+    }
+}

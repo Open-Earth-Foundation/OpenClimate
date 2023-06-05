@@ -95,7 +95,8 @@ if __name__ == '__main__':
         'name': 'Climate Watch Historical GHG Emissions',
         'publisher': f"{publisherDict['id']}",
         'published': '2022-01-01',
-        'URL': 'https://www.climatewatchdata.org/ghg-emissions'
+        'URL': 'https://www.climatewatchdata.org/ghg-emissions',
+        'citation': 'World Resources Institute. (2022). Climate Watch Historical GHG Emissions [Data set]. World Resources Institute. https://www.climatewatchdata.org/ghg-emissions'
     }
 
 

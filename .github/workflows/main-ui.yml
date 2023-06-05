@@ -62,4 +62,7 @@ jobs:
     - name: Deploying service
       run: |
         kubectl apply -f k8s/prod/openclimate-ui-deployment.yml -n default
+        kubectl set env deployment/openclimate-ui-deployment WEB_ROOT=https://openclimate.network
+        kubectl set env deployment/openclimate-ui-deployment MATOMO_SITE_ID=3
+        kubectl set env deployment/openclimate-ui-deployment MATOMO_SERVER=https://matomo.openearth.foundation/
         kubectl rollout restart deployment openclimate-ui-deployment -n default

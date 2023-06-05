@@ -1,2 +1,2 @@
-datasource_id,name,publisher,published,URL
-EPA:state_GHG_inventory:2022-08-31,Inventory of U.S. Greenhouse Gas Emissions and Sinks by State,EPA,2022-08-31,https://cfpub.epa.gov/ghgdata/inventoryexplorer/
+datasource_id,name,publisher,published,URL,citation
+EPA:state_GHG_inventory:2023-04-26,Inventory of U.S. Greenhouse Gas Emissions and Sinks by State,EPA,2023-04-26,https://www.epa.gov/ghgemissions/methodology-report-inventory-us-greenhouse-gas-emissions-and-sinks-state-1990-2020,"EPA. (2022). Methodology Report: Inventory of U.S. Greenhouse Gas Emissions and Sinks by State: 1990–2020. U.S. Environmental Protection Agency, EPA 430-R-22-005. https://www.epa.gov/ghgemissions/state-ghg-emissions-and-removals"

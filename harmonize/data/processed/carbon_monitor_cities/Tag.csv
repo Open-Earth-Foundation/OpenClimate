@@ -1,0 +1,5 @@
+tag_id,tag_name
+ghgs_included_fossil_CO2,GHGs included: Fossil CO2
+includes_cement,Includes emissions from cement production
+sectors_power_residential_industry_ground_transport_aviation,"Sectors: power generation, residential and commercial buildings, industry, ground transportation, and aviation"
+disaggregates_national_emissions_using_GRACED,Disaggregates the Carbon Monitor national emissions to cities using the Global Gridded Daily CO2 Emissions Dataset (GRACED)

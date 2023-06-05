@@ -61,7 +61,8 @@ if __name__ == '__main__':
         'name': 'Emissions Database for Global Atmospheric Research version 7.0',
         'publisher': f"{publisherDict['id']}",
         'published': '2022-01-01',
-        'URL': 'https://edgar.jrc.ec.europa.eu/dataset_ghg70'
+        'URL': 'https://edgar.jrc.ec.europa.eu/dataset_ghg70',
+        'citation': "Joint Research Centre. (2022). Global Greenhouse Gas Emissions EDGAR v7.0 [Data set]. Joint Research Centre. https://edgar.jrc.ec.europa.eu/dataset_ghg70"
     }
 
     simple_write_csv(outputDir, "DataSource", datasourceDict)

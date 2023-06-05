@@ -61,7 +61,8 @@ if __name__ == '__main__':
         'name': 'Data supplement to the Global Carbon Budget 2022: National Fossil Carbon Emissions 2022 v1.0',
         'publisher': 'GCP',
         'published': '2022-11-04',
-        'URL': 'https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2022'
+        'URL': 'https://doi.org/10.18160/gcp-2022',
+        'citation': 'Global Carbon Project. (2022). Supplemental data of Global Carbon Budget 2022 (Version 1.0) [Data set]. Global Carbon Project. doi:10.18160/gcp-2022'
     }
 
     simple_write_csv(outputDir, "DataSource", datasourceDict)

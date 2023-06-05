@@ -31,6 +31,8 @@ const MainFooter: FunctionComponent<{}> = (props) => {
                 <a
                   className="footer__menu__link"
                   href="https://github.com/Open-Earth-Foundation/OpenClimate"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Go to GitHub
                 </a>
@@ -39,6 +41,8 @@ const MainFooter: FunctionComponent<{}> = (props) => {
                 <a
                   className="footer__menu__link"
                   href="https://wiki.climatedata.network/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   CAD 2.0 Community
                 </a>
@@ -47,6 +51,8 @@ const MainFooter: FunctionComponent<{}> = (props) => {
                 <a
                   className="footer__menu__link"
                   href="https://www.openearth.org/projects/openclimate"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   About OpenClimate
                 </a>

@@ -75,7 +75,8 @@ if __name__ == '__main__':
         'name': 'Greenhouse Gas Emissions from Energy Highlights',
         'publisher': f"{publisherDict['id']}",
         'published': '2022-09-01',
-        'URL': "https://www.iea.org/data-and-statistics/data-product/greenhouse-gas-emissions-from-energy-highlights"
+        'URL': "https://www.iea.org/data-and-statistics/data-product/greenhouse-gas-emissions-from-energy-highlights",
+        'citation': 'IEA. (2022). Greenhouse Gas Emissions from Energy Highlights [Data set]. IEA. https://www.iea.org/data-and-statistics/data-product/greenhouse-gas-emissions-from-energy-highlights'
     }
 
     simple_write_csv(outputDir, "DataSource", datasourceDict)
