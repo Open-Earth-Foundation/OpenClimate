@@ -1,10 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 import style from "./TrendsWidget.module.scss"
-import {MdArrowDropDown, MdFilterList, MdLink, MdOpenInNew, MdOutlineFileDownload} from "react-icons/md";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, ResponsiveContainer } from 'recharts';
+import {MdArrowDropDown, MdFilterList, MdOpenInNew, MdOutlineFileDownload} from "react-icons/md";
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, ResponsiveContainer } from 'recharts';
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
-import { readableEmissions } from "../../util/units";
-
+import { convertToGigaTonnes, readableEmissions } from "../../util/units";
 
 interface TrendsWidgetProps {
     actor: object [];
@@ -19,7 +18,6 @@ const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
 
     useEffect(()=> {
         const screenSize = window.innerWidth
-        console.log(screenSize)
         setChartWidth(screenSize-OFFSET_WIDTH)
         
     }, [chartWidth])
@@ -32,8 +30,10 @@ const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
         }
     }
 
+    // get emissions datasource keys
     const emk = Object.keys(actor.emissions);
 
+    // Sort by year
     emk.forEach((key)=> {
         const emOb = actor.emissions[key];
         const sd = emOb.data.sort((a, b)=> a.year - b.year);
@@ -42,22 +42,24 @@ const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
 
     const mk = Object.keys(actor.emissions);
 
+    // filter emissions years
+
     mk.forEach((key:any)=> {
-        const fd = actor.emissions[key].data.filter((item)=> item.year >= 1990);
+        const filterEmissionYears = actor.emissions[key].data.filter((item)=> item.year >= 1990);
         actor.emissions[key] = {
-            data: fd,
+            data: filterEmissionYears,
             tags: actor.emissions[key].tags
         }
     })
 
-    const dt = {
+    const transformedData = {
         "emissions": actor.emissions,
         "targets": actor.targets
     }
     
     const data = [];
 
-    const {emissions, targets} = dt
+    const {emissions, targets} = transformedData
 
     for (const sourceKey in emissions) {
         if (emissions.hasOwnProperty(sourceKey)) {            
@@ -88,7 +90,6 @@ const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
                         total_emissions: total_emissions,
                         tags
                     }
-        
                     },
                 };
                 
@@ -163,12 +164,6 @@ const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
 
     const ToolTipContent:FC<TooltipProps> = ({active, payload, label}) => {
         if(active && payload && payload.length){
-            const tooltipData = data.find((entry) => entry.year === label);
-            const tooltipSources = Object.keys(tooltipData);
-            const filteredSources = sources.filter((source) => {
-                const dataKey = `emissions.${source}`;
-                return payload.some((entry) => entry.dataKey === dataKey);
-            });
          
             let src = payload[0].dataKey.split(".")
             src = src[1]
@@ -283,11 +278,22 @@ const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
                             </div>
                         </div>
                         <ResponsiveContainer width="94%" height={400}>
-                            <LineChart height={400} width={chartWidth} data={data}>
+                            <LineChart height={400} width={chartWidth} data={data} margin={{
+                                left: 50
+                            }}>
                                 <CartesianGrid stroke="#E6E7FF" height={1}/>
                                 <XAxis dataKey="year" capHeight={30}/>
                                 
-                                <YAxis widths={10} stroke="E6E7FF" />
+                                <YAxis tickMargin={5} tick={(props)=>(
+                                    <text {...props} style={{
+                                        position: "relative",
+                                        marginLeft: "10px",
+                                        fontSize: "14px",
+                                                                                
+                                    }}>
+                                        {convertToGigaTonnes(props.payload.value)}
+                                    </text>
+                                )} widths={10} stroke="E6E7FF" />
                                 <Tooltip cursor={false} content={<ToolTipContent />} isAnimationActive={true} shared={false}/>
                                 <Legend content={<LegendContent />}/>
                                 {lines}

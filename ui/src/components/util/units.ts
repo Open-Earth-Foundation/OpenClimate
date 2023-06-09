@@ -22,3 +22,10 @@ export function readablePercentagePopulation(current: number, parent: number) {
   );
   return precisePercentage / 1;
 }
+
+// convert to giga tonnes
+export function convertToGigaTonnes(value: number, type?: string) {
+  return type === "array"
+  ? [`${(value / 1000000000.0).toPrecision(3)}`, "Gt"]
+  : `${(value / 1000000000.0).toPrecision(3)}GT`;
+}
