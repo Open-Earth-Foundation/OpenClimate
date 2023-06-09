@@ -1,7 +1,7 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import style from "./TrendsWidget.module.scss"
 import {MdArrowDropDown, MdFilterList, MdLink, MdOpenInNew, MdOutlineFileDownload} from "react-icons/md";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, ResponsiveContainer } from 'recharts';
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { readableEmissions } from "../../util/units";
 
@@ -13,6 +13,16 @@ interface TrendsWidgetProps {
 const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
     
     const [openFilterDropdown, setOpenFilterDropdown] = useState<boolean>(false);
+    const [chartWidth, setChartWidth] = useState<number>(1350)
+
+    const OFFSET_WIDTH=248
+
+    useEffect(()=> {
+        const screenSize = window.innerWidth
+        console.log(screenSize)
+        setChartWidth(screenSize-OFFSET_WIDTH)
+        
+    }, [chartWidth])
     
     const handleFrilterDropdown = () => {
         if(!openFilterDropdown){
@@ -75,7 +85,7 @@ const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
                     year: year,
                     emissions: {
                     [sourceKey]: {
-                        total_emissions,
+                        total_emissions: total_emissions,
                         tags
                     }
         
@@ -158,7 +168,7 @@ const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
             const filteredSources = sources.filter((source) => {
                 const dataKey = `emissions.${source}`;
                 return payload.some((entry) => entry.dataKey === dataKey);
-              });
+            });
          
             let src = payload[0].dataKey.split(".")
             src = src[1]
@@ -272,16 +282,18 @@ const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
                                 Emissions Targets
                             </div>
                         </div>
-                        <LineChart height={400} width={1350} data={data}>
-                            <CartesianGrid stroke="#E6E7FF" height={1}/>
-                            <XAxis dataKey="year" capHeight={30}/>
-                            
-                            <YAxis widths={10} stroke="E6E7FF" />
-                            <Tooltip content={<ToolTipContent />} isAnimationActive={true} shared={false}/>
-                            <Legend content={<LegendContent />}/>
-                            {lines}
-                            {targetLine}
-                        </LineChart>
+                        <ResponsiveContainer width="94%" height={400}>
+                            <LineChart height={400} width={chartWidth} data={data}>
+                                <CartesianGrid stroke="#E6E7FF" height={1}/>
+                                <XAxis dataKey="year" capHeight={30}/>
+                                
+                                <YAxis widths={10} stroke="E6E7FF" />
+                                <Tooltip cursor={false} content={<ToolTipContent />} isAnimationActive={true} shared={false}/>
+                                <Legend content={<LegendContent />}/>
+                                {lines}
+                                {targetLine}
+                            </LineChart>
+                        </ResponsiveContainer>
                     </div>
                 </div>
                 

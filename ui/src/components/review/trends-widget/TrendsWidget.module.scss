@@ -1,6 +1,8 @@
+@import '../mixins.scss';
+
 .root {
     height: 736px;
-    width: 100%;
+    width: 91.9vw;
     margin-top: 40px;
     display: flex;
     flex-direction: column;
@@ -131,7 +133,7 @@
 
 .histTitle{
     display: flex;
-    width: 100%;
+    width: 80%;
     justify-content: center;
     height: 50px;
     font-weight: 700;
@@ -144,7 +146,7 @@
 }
 .targetTitle{
     display: flex;
-    width: 11%;
+    width: 15%;
     justify-content: center;
     height: 50px;
     font-weight: 700;
@@ -503,4 +505,26 @@
     background: #E8EAFB;
     border-radius: 50px;
     color: #001EA7;
+}
+
+.chart{
+    padding-left: 300px;
+}
+
+@include respond(largeScreen){
+    .histTitle{
+        width: 100%;
+    }
+    .targetTitle{
+        width: 10%;
+    }
+}
+
+@include respond(tablet){
+    .histTitle{
+        width: 80%;
+    }
+    .targetTitle{
+        width: 10%;
+    }
 }
