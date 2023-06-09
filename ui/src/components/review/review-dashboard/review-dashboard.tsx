@@ -65,7 +65,7 @@ const Dashboard: FunctionComponent<Props> = (props) => {
         <div className="tr-wrapper">
           {
             current.type !== "site" &&(
-              <TrendsWidget actor={current}/>
+              <TrendsWidget current={current}/>
             )
           }
         </div>

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import style from "./TrendsWidget.module.scss"
 import {MdArrowDropDown, MdFilterList, MdOpenInNew, MdOutlineFileDownload} from "react-icons/md";
 import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, ResponsiveContainer } from 'recharts';
@@ -6,11 +6,15 @@ import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { convertToGigaTonnes, readableEmissions } from "../../util/units";
 
 interface TrendsWidgetProps {
-    actor: object [];
+    current: any
 }
 
-const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
-    
+const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
+    const { current } = props
+
+    const emissionsData = current && current.emissions ? current.emissions : [];
+    const targetsData = current && current.targets ? current.targets : [];
+       
     const [openFilterDropdown, setOpenFilterDropdown] = useState<boolean>(false);
     const [chartWidth, setChartWidth] = useState<number>(1350)
 
@@ -30,31 +34,30 @@ const TrendsWidget:FC<TrendsWidgetProps> = ({actor}) => {
         }
     }
 
-    // get emissions datasource keys
-    const emk = Object.keys(actor.emissions);
+      // get emissions datasource keys
+    const emk = Object.keys(emissionsData);
 
     // Sort by year
     emk.forEach((key)=> {
-        const emOb = actor.emissions[key];
+        const emOb = emissionsData[key];
         const sd = emOb.data.sort((a, b)=> a.year - b.year);
         emOb.data = sd
     })
 
-    const mk = Object.keys(actor.emissions);
+    const mk = Object.keys(emissionsData);
 
     // filter emissions years
 
     mk.forEach((key:any)=> {
-        const filterEmissionYears = actor.emissions[key].data.filter((item)=> item.year >= 1990);
-        actor.emissions[key] = {
-            data: filterEmissionYears,
-            tags: actor.emissions[key].tags
+        const filterEmissionYears = emissionsData[key].data.filter((item)=> item.year >= 1990);
+        emissionsData[key] = {
+            ...emissionsData[key], data: filterEmissionYears
         }
     })
 
     const transformedData = {
-        "emissions": actor.emissions,
-        "targets": actor.targets
+        "emissions": emissionsData,
+        "targets": targetsData
     }
     
     const data = [];
