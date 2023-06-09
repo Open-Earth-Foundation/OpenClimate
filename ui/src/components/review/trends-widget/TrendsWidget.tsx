@@ -14,7 +14,7 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
 
     const emissionsData = current && current.emissions ? current.emissions : [];
     const targetsData = current && current.targets ? current.targets : [];
-       
+
     const [openFilterDropdown, setOpenFilterDropdown] = useState<boolean>(false);
     const [chartWidth, setChartWidth] = useState<number>(1350)
 
@@ -23,9 +23,9 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
     useEffect(()=> {
         const screenSize = window.innerWidth
         setChartWidth(screenSize-OFFSET_WIDTH)
-        
+
     }, [chartWidth])
-    
+
     const handleFrilterDropdown = () => {
         if(!openFilterDropdown){
             setOpenFilterDropdown(true)
@@ -59,25 +59,25 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
         "emissions": emissionsData,
         "targets": targetsData
     }
-    
+
     const data = [];
 
     const {emissions, targets} = transformedData
 
     for (const sourceKey in emissions) {
-        if (emissions.hasOwnProperty(sourceKey)) {            
+        if (emissions.hasOwnProperty(sourceKey)) {
             const sourceData = emissions[sourceKey].data;
             const tags = emissions[sourceKey].tags
-   
+
           // Iterate over the data points for each source
             sourceData.forEach((dataPoint) => {
                 const { year, total_emissions } = dataPoint;
-        
+
                 // Check if there is an entry for the year in the main data array
                 const yearEntry = data.find((entry) => entry.year === year);
-        
+
                 // If the year entry exists, add the emissions value for the source
-                
+
                 if (yearEntry) {
                     yearEntry.emissions[sourceKey] = {
                         total_emissions,
@@ -95,37 +95,39 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
                     }
                     },
                 };
-                
+
                 data.push(newEntry);
                 }
           });
         }
       }
-    
+
     targets.forEach((target) => {
+
+        const value = target.percent_achieved_reason?.target?.value;
+
+        if (!value) return;
+
         const year = target.target_year;
         const yearEntry = data.find((entry) => entry.year === year);
-        
+
         if (yearEntry) {
-            const baselineValue = target.percent_achieved_reason? target.percent_achieved_reason.baseline.value : null;
-            const targetValue = baselineValue * (target.target_value / 100);
-            yearEntry.target = targetValue;
+            yearEntry.target = value;
         } else {
             const newEntry = {
             year: year,
             emissions: {
                 tags:[]
             },
-            target: target.percent_achieved_reason ? target.percent_achieved_reason.baseline.value * (target.target_value / 100): null,
-            };
+            target: value;
             data.push(newEntry);
         }
     });
- 
+
     const sources = Object.keys(data[0].emissions);
 
     const [selectedSources, setSelectedSources] = useState(sources);
-    
+
     const handleSourceToggle = (source) => {
         const updatedSources = selectedSources.includes(source)
           ? selectedSources.filter((selectedSource) => selectedSource !== source)
@@ -138,11 +140,11 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
     }
 
     const lines = selectedSources.map((source) => (
-        <Line 
-            type="monotone" 
-            dataKey={`emissions.${source}.total_emissions`} 
+        <Line
+            type="monotone"
+            dataKey={`emissions.${source}.total_emissions`}
             key={source}
-            fill="#fa7200" 
+            fill="#fa7200"
             stroke="#fa7200"
             unit="Mt"
        />
@@ -167,18 +169,18 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
 
     const ToolTipContent:FC<TooltipProps> = ({active, payload, label}) => {
         if(active && payload && payload.length){
-         
+
             let src = payload[0].dataKey.split(".")
             src = src[1]
-            
+
             let modifiedSrc = null
 
             if(src){
                 modifiedSrc = src.split(":")[0].trim()
             }
-            
+
             let tags = null
-            
+
             if(src){
                 tags = payload[0].payload.emissions[src].tags
             }else{
@@ -202,17 +204,17 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
                     <div className={style.methodologies}>
                         {
                             tags && (tags.map((tag:any)=> <div key={tag.tag_id} className={style.tag}>{tag.tag_name}</div>))
-                        }                  
+                        }
                     </div>
                     <div>
                         <p className={style.methodologiesText}>Methodologies Used</p>
                     </div>
                 </div>
             </div>
-            
+
           )
         }
-      
+
         return null;
     }
 
@@ -259,9 +261,9 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
                                         <div className={style.footer}>
                                             <div className={style.footerWrapper}>
                                                 <button
-                                                    onClick={handleResetSelection}                            
+                                                    onClick={handleResetSelection}
                                                     className={style.resetBtn}>Reset</button>
-                                                <button 
+                                                <button
                                                     onClick={handleFrilterDropdown}
                                                     className={style.applyBtn}>Apply</button>
                                             </div>
@@ -286,13 +288,13 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
                             }}>
                                 <CartesianGrid stroke="#E6E7FF" height={1}/>
                                 <XAxis dataKey="year" capHeight={30}/>
-                                
+
                                 <YAxis tickMargin={5} tick={(props)=>(
                                     <text {...props} style={{
                                         position: "relative",
                                         marginLeft: "10px",
                                         fontSize: "14px",
-                                                                                
+
                                     }}>
                                         {convertToGigaTonnes(props.payload.value)}
                                     </text>
@@ -305,7 +307,7 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
                         </ResponsiveContainer>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     );
@@ -334,7 +336,7 @@ export const LegendContent:FC = () => {
 function TrendDot(props) {
     const { cx=0, cy=0, value, trend="increase" } = props;
     const triangleSize = 30; // Adjust this as needed
-  
+
     return (
       <g>
         {/* <circle cx={cx} cy={cy} r={3} fill="green" /> */}
@@ -349,4 +351,3 @@ function TrendDot(props) {
       </g>
     );
   }
-  
