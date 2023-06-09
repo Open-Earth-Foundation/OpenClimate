@@ -115,11 +115,12 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
             yearEntry.target = value;
         } else {
             const newEntry = {
-            year: year,
-            emissions: {
-                tags:[]
-            },
-            target: value;
+                year: year,
+                emissions: {
+                    tags:[]
+                },
+                target: value
+            };
             data.push(newEntry);
         }
     });
