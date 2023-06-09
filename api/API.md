@@ -9,7 +9,7 @@ There are two public OpenClimate API servers:
 
 - https://openclimate.network/ - public, stable, production environment.
   Use this unless you're a core developer!
-- https://dev.openclimate.network/ - unstable, development environment.
+- https://openclimate.openearth.dev/ - unstable, development environment.
   Use this for testing new features.
 
 Web UIs run from the roots of these servers, and should use relative links to

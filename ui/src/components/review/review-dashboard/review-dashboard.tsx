@@ -4,6 +4,7 @@ import Masonry from "react-masonry-css";
 import PledgesWidget from "../pledges-widget/pledges-widget";
 import EmissionsWidget from "../emissions-widget/emissions-widget";
 import ContextualDataWidget from "../../../shared/components/widgets/contextual-data/contextual-data.widget";
+import TrendsWidget from "../trends-widget/TrendsWidget";
 
 interface Props {
   current: any;
@@ -61,6 +62,13 @@ const Dashboard: FunctionComponent<Props> = (props) => {
             />
           )
         }
+        <div className="tr-wrapper">
+          {
+            current.type !== "site" &&(
+              <TrendsWidget current={current}/>
+            )
+          }
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,11 @@
+target_id,actor_id,target_type,baseline_year,target_year,target_value,target_unit,URL,datasource_id
+OEF:CA-BC:2030,CA-BC,Absolute emission reduction,2007,2030,40,percent,https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/00_07042_01#section2,OEF:canadian_targets
+OEF:CA-MB:2030,CA-MB,Absolute emission reduction,2005,2030,33,percent,https://www.gov.mb.ca/sd/annual-reports/sdif/mb-climate-change-green-economy-action-plan.pdf,OEF:canadian_targets
+OEF:CA-NB:2030,CA-NB,Absolute emission reduction,2005,2030,46,percent,https://www2.gnb.ca/content/dam/gnb/Corporate/Promo/climate/climate-change-action-plan.pdf,OEF:canadian_targets
+OEF:CA-NL:2030,CA-NL,Absolute emission reduction,2001,2030,30,percent,https://www.gov.nl.ca/ecc/files/publications-the-way-forward-climate-change.pdf,OEF:canadian_targets
+OEF:CA-NS:2030,CA-NS,Absolute emission reduction,2005,2030,53,percent,https://nslegislature.ca/sites/default/files/legc/PDFs/annual%20statutes/2019%20Fall/c026.pdf,OEF:canadian_targets
+OEF:CA-NT:2030,CA-NT,Absolute emission reduction,2005,2030,30,percent,https://www.ecc.gov.nt.ca/sites/ecc/files/resources/128-climate_change_strategic_framework_web.pdf,OEF:canadian_targets
+OEF:CA-ON:2030,CA-ON,Absolute emission reduction,2005,2030,30,percent,https://prod-environmental-registry.s3.amazonaws.com/2018-11/EnvironmentPlan.pdf,OEF:canadian_targets
+OEF:CA-PE:2030,CA-PE,Fixed level,2030,2030,1200000,tCO2e,https://www.princeedwardisland.ca/sites/default/files/legislation/n-03-01-net-zero_carbon_act.pdf,OEF:canadian_targets
+OEF:CA-QC:2030,CA-QC,Absolute emission reduction,1990,2030,37,percent,https://cdn-contenu.quebec.ca/cdn-contenu/adm/min/environnement/publications-adm/plan-economie-verte/plan-economie-verte-2030-en.pdf,OEF:canadian_targets
+OEF:CA-YT:2030,CA-YT,Absolute emission reduction,2010,2030,30,percent,https://yukon.ca/sites/yukon.ca/files/env/env-our-clean-future.pdf,OEF:canadian_targets
