@@ -1,3 +1,7 @@
+# 1.11.0 (2023-06-09)
+## Fixes
+- Include changelog
+
 # 1.10.0 (2023-06-09)
 ## Features
 - Trends widget
