@@ -1,9 +1,10 @@
 import countryCodesJson from "../../api/data/review/data/country-codes";
 import ICountry from "../../api/models/review/country";
 import { regions } from "../../api/data/review/data/regions";
+import { ServerUrls } from "../../shared/environments/server.environments";
 
 const GetCountryCodes = async () => {
-  let countryParsed = await fetch("/api/v1/actor/EARTH/parts", {
+  let countryParsed = await fetch(`${ServerUrls.api}/v1/actor/EARTH/parts`, {
     method: "GET",
   });
   const jsonData = await countryParsed.json();
@@ -48,7 +49,7 @@ const GetCountryOptionsForSite = async () => {
 };
 
 const GetSubnationalsByCountryCode = async (actor_id: number) => {
-  const res = await fetch(`/api/v1/actor/${actor_id}/parts`, {
+  const res = await fetch(`${ServerUrls.api}/v1/actor/${actor_id}/parts`, {
     method: "GET",
   });
 
@@ -65,7 +66,7 @@ const GetSubnationalsByCountryCode = async (actor_id: number) => {
 };
 
 const GetCitiesBySubnationalId = async (actor_id: number) => {
-  const res = await fetch(`/api/v1/actor/${actor_id}/parts`, {
+  const res = await fetch(`${ServerUrls.api}/v1/actor/${actor_id}/parts`, {
     method: "GET",
   });
 

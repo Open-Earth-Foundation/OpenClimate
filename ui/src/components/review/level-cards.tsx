@@ -7,6 +7,7 @@ import IndicatorCard from "./indicator-card";
 import { useMatomo } from "@jonkoops/matomo-tracker-react";
 import { MdArrowBack } from "react-icons/md";
 import { HiOutlineSearch } from "react-icons/hi";
+import { ServerUrls } from "../../shared/environments/server.environments";
 
 interface IProps {
   selectFilter: (filterType: FilterTypes, option: DropdownOption) => void;
@@ -133,7 +134,7 @@ const LevelCards: FunctionComponent<IProps> = (props) => {
   const getOptions = async (actor_id: string, type: string) => {
     const recursive = type == "city" || type == "site" ? "yes" : "no";
     const res = await fetch(
-      `/api/v1/actor/${actor_id}/parts?type=${type}&recursive=${recursive}`
+      `${ServerUrls.api}/v1/actor/${actor_id}/parts?type=${type}&recursive=${recursive}`
     );
     const json = await res.json();
 
