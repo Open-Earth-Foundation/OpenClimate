@@ -140,10 +140,12 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
         setSelectedSources(sources)
     }
 
+    const [hoveredLineSource, setHoveredLineSource] = useState('');
     const lines = selectedSources.map((source) => (
         <Line
             type="monotone"
             dataKey={`emissions.${source}.total_emissions`}
+            onMouseOver={() => setHoveredLineSource(source)}
             key={source}
             fill="#fa7200"
             stroke="#fa7200"
@@ -163,15 +165,20 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
     );
 
     interface TooltipProps {
-        active: boolean
-        payload: []
-        label: string
+        active: boolean;
+        payload: [];
+        label: string;
     }
 
     const ToolTipContent:FC<TooltipProps> = ({active, payload, label}) => {
         if(active && payload && payload.length){
+            let payloadIndex = 0;
+            if (hoveredLineSource !== '') {
+                payloadIndex = payload.findIndex((entry) => entry.dataKey.split('.')[1] === hoveredLineSource);
+            }
+            const payloadData = payload[payloadIndex];
 
-            let src = payload[0].dataKey.split(".")
+            let src = payloadData.dataKey.split(".")
             src = src[1]
 
             let modifiedSrc = null
@@ -183,9 +190,9 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
             let tags = null
 
             if(src){
-                tags = payload[0].payload.emissions[src].tags
+                tags = payloadData.payload.emissions[src].tags
             }else{
-                tags = payload[0].payload.emissions.tags
+                tags = payloadData.payload.emissions.tags
             }
 
           return(
@@ -195,7 +202,7 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
                 </div>
                 <div className={style.tooltipBody}>
                     <div className={style.emissionsData}>
-                        <p className={style.ttlEmsValue}>{readableEmissions(payload[0].value)}</p>
+                        <p className={style.ttlEmsValue}>{readableEmissions(payloadData.value)}</p>
                         <p className={style.ttlEmsText}>Total emissions in GtCO2eq</p>
                     </div>
                     <div className={style.sourceData}>
