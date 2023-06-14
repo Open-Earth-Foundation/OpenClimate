@@ -145,7 +145,7 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
         <Line
             type="monotone"
             dataKey={`emissions.${source}.total_emissions`}
-            onMouseOver={() => setHoveredLineSource(source)}
+            onMouseMove={() => setHoveredLineSource(source)}
             key={source}
             fill="#fa7200"
             stroke="#fa7200"
