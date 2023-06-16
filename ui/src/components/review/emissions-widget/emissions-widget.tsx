@@ -244,7 +244,7 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
       setToggleMenu(false);
       setOpen(true);
       setSeverity("info");
-      setMessage('Prepering your dataset');
+      setMessage('Preparing your dataset');
       setnotificationBackgroundColor('#001EA7');
       setDownloadError(false);
     fetch(`${ServerUrls.api}/v1/download/${actorID}-emissions.${fileType}`)
