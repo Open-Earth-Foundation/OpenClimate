@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import "./emissions-widget.scss";
 import {
   MdInfoOutline,
@@ -14,6 +14,10 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
+
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 
 import {
@@ -30,6 +34,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { MobileModalDropdown } from "../../../shared/components/modals/mobile/mobile-modal-dropdown";
 import { useHistory } from "react-router-dom";
+import { ServerUrls } from "../../../shared/environments/server.environments";
 
 interface Props {
   current: any;
@@ -40,6 +45,17 @@ interface Props {
   titleText?: string;
   subtitleText?: string;
 }
+
+export interface State extends SnackbarOrigin {
+  open: boolean;
+}
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref,
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const EmissionsWidget: FunctionComponent<Props> = (props) => {
   const {
@@ -56,10 +72,13 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
 
   const [tempYear, setTempYear] = useState<string>('');
   const [tempSource, setTempSource] = useState<string>('');
-  // Uncomment when adding Export As
-  // const [toggleDownloadAsMenu, setToggleDownloadAsMenu] =
-  //   useState<boolean>(false);
-  // const [toggleExportAsMenu, setToggleExportAsMenu] = useState<boolean>(false);
+  
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState('');
+  const [severity, setSeverity] = useState('');
+  const [notificationBackgroundColor, setnotificationBackgroundColor] = useState('');
+  const [downloadError, setDownloadError] = useState(false);
+  const [downloadFileType, setDownloadFileType] = useState('');
 
   const history = useHistory();
 
@@ -86,30 +105,6 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
   const setMenuState = (event: any) => {
     event.preventDefault();
     setToggleMenu((e) => !e);
-
-    //   if (toggleExportAsMenu) {
-    //     setToggleExportAsMenu(false);
-    //   }
-
-    //   if (toggleDownloadAsMenu) {
-    //     setToggleDownloadAsMenu(false);
-    //   }
-    // };
-
-    // const setDownloadMenuState = (event: any) => {
-    //   event.preventDefault();
-    //   setToggleDownloadAsMenu((e) => !e);
-    //   if (toggleExportAsMenu) {
-    //     setToggleExportAsMenu(false);
-    //   }
-    // };
-
-    // const setExportMenuState = (event: any) => {
-    //   event.preventDefault();
-    //   setToggleExportAsMenu((e) => !e);
-    //   if (toggleDownloadAsMenu) {
-    //     setToggleDownloadAsMenu(false);
-    //   }
   };
 
   const useStyles = makeStyles(() => ({
@@ -243,8 +238,42 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
     }
   }
 
+  // handle download notification
   
+  const handleDownload = (actorID: string, fileType: string) => {
+      setToggleMenu(false);
+      setOpen(true);
+      setSeverity("info");
+      setMessage('Prepering your dataset');
+      setnotificationBackgroundColor('#001EA7');
+      setDownloadError(false);
+    fetch(`${ServerUrls.api}/v1/download/${actorID}-emissions.${fileType}`)
+      .then(res=> {
+        return res.blob();
+      })
+      .then(blob=>{
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = `${actorID}-emissions.${fileType}`;
 
+        downloadLink.click();
+
+        setOpen(true);
+        setSeverity("success");
+        setMessage('Dataset download complete');
+        setnotificationBackgroundColor('#008600');
+        setDownloadFileType(fileType);
+        setDownloadError(false)
+      })
+      .catch(error=> {
+        setOpen(true);
+        setSeverity("error");
+        setMessage('Download failed');
+        setnotificationBackgroundColor('#F23D33');
+        setDownloadFileType(fileType);
+        setDownloadError(true);
+      })
+  }
 
   return (
     <>
@@ -439,48 +468,19 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
                         <>
                           <div data-testid="download-menu" className="download_data-menu">
                             <ul className="menu-item">
-                              <a
+                              <button
                                 className="download-link"
-                                href={`/api/v1/download/${actor_id}-emissions.csv`}
-                                download
+                                onClick={()=>handleDownload(actor_id, 'csv')}
                               >
                                 Download as CSV
-                              </a>
-                              <a
+                              </button>
+                              <button
                                 className="download-link"
-                                href={`/api/v1/download/${actor_id}-emissions.json`}
-                                download
+                                onClick={()=>handleDownload(actor_id, 'json')}
                               >
                                 Download as JSON
-                              </a>
-                              {/* Add back when exporting is added
-                              <li onClick={setDownloadMenuState}>
-                                <span>Download as...</span>
-                                <div className="menu-item-arrow">
-                                  <ArrowForwardIos className="menu-item-arrow-icon" />
-                                </div>
-                              </li>
-
-                               <li onClick={setExportMenuState}>
-                                <span>Export as...</span>
-                                <div className="menu-item-arrow">
-                                  <ArrowForwardIos className="menu-item-arrow-icon" />
-                                </div>
-                              </li> */}
+                              </button>
                             </ul>
-
-                            {/* <ul className="menu-item sub-menu">
-                                  <li>Download as CSV</li>
-                                   <li>Download as PDF</li>
-                                  <li>Download as XML</li> 
-                                  <li>Download as JSON</li>
-                                </ul>
-                            
-                            
-                                <ul className="menu-item sub-menu exportAs">
-                                  <li>.JPG</li>
-                                  <li>.PNG</li>
-                                </ul> */}
                           </div>
                         </>
                       )}
@@ -783,6 +783,40 @@ const EmissionsWidget: FunctionComponent<Props> = (props) => {
           </div>
         )}
       </div>
+      <Snackbar
+        anchorOrigin={{
+            horizontal:"center", 
+            vertical: "bottom"
+        }}
+        open={open}
+        autoHideDuration={3000}
+        message= {message}
+      >
+        <Alert severity={severity} onClose={() => setOpen(false)} sx={{ width: '600px', backgroundColor:  notificationBackgroundColor}}>
+          <div className="snackbar-message-body" style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent:'space-between',
+            width: "490px"
+          }}>
+            <div>{message}</div>
+            {
+              downloadError && (
+                <button 
+                  onClick={()=>handleDownload(actor_id, downloadFileType)}
+                  className="snackbar-button" style={{
+                    color: 'white',
+                    background: 'none',
+                    border: 'none',
+                    fontWeight: '600'
+                  }}>
+                    TRY AGAIN
+                </button>
+              )
+            }
+          </div>
+        </Alert>
+      </Snackbar>
     </>
   );
 };
