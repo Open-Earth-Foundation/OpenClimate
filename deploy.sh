@@ -1,6 +1,5 @@
 #!/bin/sh
 
-set -x
 set -e
 
 export PLATFORM=$1
