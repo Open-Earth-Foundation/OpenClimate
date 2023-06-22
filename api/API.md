@@ -278,3 +278,29 @@ Standard output. `data` is an object representing the list of matching actors, e
   - `name`: default name for the actor; an OK fallback if no language
   match
   - `type`: type of the actor
+
+## Coverage endpoints
+
+### Coverage statistics /api/v1/coverage/stats
+
+Returns overall statistics on data coverage.
+
+#### Output
+
+Standard output. `data` is an object with fields representing the different statistics.
+
+- `number_of_data_sources`: how many different data sources are part of OpenClimate
+- `number_of_countries`: how many actors of type `country` are present in the database
+- `number_of_regions`: how many actors of type `adm1` or `adm2` are present in the database
+- `number_of_cities`: count of actors of type `city`
+- `number_of_companies`: count of actors of type `company`
+- `number_of_facilities`: count of actors of type `facility`
+- `total_emissions_records`: count of emissions data records
+- `total_target_records`: count of target records
+- `total_contextual_data`: sum of counts of population, GDP, territory and organization attributes
+- `number_of_countries_with_emissions`: count of countries that have at least one emissions record present
+- `number_of_regions_with_emissions`: count of regions (adm1 or adm2) with at least one emissions record present
+- `number_of_regions_with_targets`: count of regions (adm1 or adm2) with at least one targets record
+- `number_of_cities_with_emissions`: count of cities with at least one emissions record
+- `number_of_cities_with_targets`: count of cities with at least one emissions record
+
