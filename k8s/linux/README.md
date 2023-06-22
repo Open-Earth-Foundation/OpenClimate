@@ -32,7 +32,7 @@ Edit `k8s/openclimate-api-deployment.yml` and `k8s/openclimate-ui-deployment.yml
 
 ## Forward ports
 `kubectl -n openclimate port-forward service/openclimate-ui-service 3000:80`  
-(optional, if you want to connect manually to the DB to execute queries):
+(optional, if you want to connect manually to the DB to execute queries):  
 `kubectl -n openclimate port-forward service/postgresql-service 5432`
 
 ## Connect Docker to minikube
