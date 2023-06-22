@@ -295,9 +295,9 @@ Standard output. `data` is an object with fields representing the different stat
 - `number_of_cities`: count of actors of type `city`
 - `number_of_companies`: count of actors of type `company`
 - `number_of_facilities`: count of actors of type `facility`
-- `total_emissions_records`: count of emissions data records
-- `total_target_records`: count of target records
-- `total_contextual_data`: sum of counts of population, GDP, territory and organization attributes
+- `number_of_emissions_records`: count of emissions data records
+- `number_of_target_records`: count of target records
+- `number_of_contextual_records`: sum of counts of population, GDP, territory and organization records
 - `number_of_countries_with_emissions`: count of countries that have at least one emissions record present
 - `number_of_regions_with_emissions`: count of regions (adm1 or adm2) with at least one emissions record present
 - `number_of_regions_with_targets`: count of regions (adm1 or adm2) with at least one targets record
