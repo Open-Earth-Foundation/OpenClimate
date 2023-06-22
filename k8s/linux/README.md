@@ -17,6 +17,11 @@ sudo pacman -Syu postgresql
 minikube start
 ```
 
+## Setup nginx ingress for minikube
+```sh
+minikube addons enable ingress
+```
+
 ## Set default namespace
 ```sh
 kubectl config set-context --current --namespace=openclimate
