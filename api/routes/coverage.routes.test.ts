@@ -28,10 +28,38 @@ const countryProps = {
   actor_id: "coverage_routes_test_country_1",
   type: "country",
   name: "Test Country",
-  datasource_id: datasourceProps.datasource_id, 
+  datasource_id: datasourceProps.datasource_id,
 };
 
-const actors = [countryProps];
+const cityProps = {
+  actor_id: "coverage_routes_test_city_1",
+  type: "city",
+  name: "Test City",
+  datasource_id: datasourceProps.datasource_id,
+};
+
+const region1Props = {
+  actor_id: "coverage_routes_test_region_1",
+  type: "adm1",
+  name: "Test Region",
+  datasource_id: datasourceProps.datasource_id,
+};
+
+const region2Props = {
+  actor_id: "coverage_routes_test_region_2",
+  type: "adm2",
+  name: "Test Sub Region",
+  datasource_id: datasourceProps.datasource_id,
+};
+
+const companyProps = {
+  actor_id: "coverage_routes_test_company_1",
+  type: "company",
+  name: "Test Company",
+  datasource_id: datasourceProps.datasource_id,
+};
+
+const actors = [countryProps, cityProps, region1Props, region2Props, companyProps];
 
 async function cleanup() {
   await Actor.destroy({
@@ -63,9 +91,10 @@ it("returns overall coverage statistics for the data set", async () => {
     .expect(200)
     .expect("Content-Type", /json/)
     .expect((res: any) => {
-      expect(typeof res.body).toEqual(Object);
+      expect(typeof res.body).toEqual("object");
       expect(res.body).toEqual({
-        number_of_cities: 1,
+        number_of_countries: 1,
+        number_of_data_sources: 1,
       });
     });
 })
