@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { Actor } from "../orm/actor";
-import { fn } from "sequelize";
+import { fn, Op } from "sequelize";
 import { DataSource } from "../orm/datasource";
 import { EmissionsAgg } from "../orm/emissionsagg";
 import { Target } from "../orm/target";
@@ -23,9 +23,9 @@ router.get(
       attributes: ["type", [fn("COUNT", "type"), "count"]],
     });
 
-    // transform list of [key, value] tuples to object
-    const actorCounts = groupedActorCounts.reduce<Record<string, number>>((res, entry) => {
-      res[entry[0]] = entry[1];
+    // transform list of database responses to dictionary object
+    const actorCounts = groupedActorCounts.reduce<Record<string, number>>((res, entry: Actor & { dataValues: { count: string } }) => {
+      res[entry.dataValues.type] = Number(entry.dataValues.count);
       return res;
     }, {});
 
@@ -37,8 +37,48 @@ router.get(
     const populationRecordsCount = await Population.count();
     const gdpRecordsCount = await GDP.count();
     const territoryRecordsCount = await Territory.count();
-    const organizationRecordsCount = groupedActorCounts["organization"]; // TODO use this or the Organization model? (can't import)
+    const organizationRecordsCount = groupedActorCounts["organization"]; // TODO use this or the Organization model? (can"t import)
     const contextualRecordsCount = populationRecordsCount + gdpRecordsCount + territoryRecordsCount + organizationRecordsCount;
+
+    const countriesWithEmissionsCount = await Actor.count({
+      distinct: true,
+      col: "Actor.actor_id",
+      include: [{ model: EmissionsAgg, required: true }],
+      where: { type: "country" },
+    });
+    const regionsWithEmissionsCount = await Actor.count({
+      distinct: true,
+      col: "Actor.actor_id",
+      include: { model: EmissionsAgg, required: true },
+      where: { type: { [Op.or]: ["adm1", "adm1"] } },
+    });
+    const citiesWithEmissionsCount = await Actor.count({
+      distinct: true,
+      col: "Actor.actor_id",
+      include: { model: EmissionsAgg, required: true },
+      where: { type: "city" },
+    });
+
+    const countriesWithTargetsCount = await Actor.count({
+      distinct: true,
+      col: "Actor.actor_id",
+      include: { model: Target, required: true },
+      where: { type: "country" },
+    });
+    const regionsWithTargetsCount = await Actor.count({
+      distinct: true,
+      col: "Actor.actor_id",
+      include: { model: Target, required: true },
+      where: { type: { [Op.or]: ["adm1", "adm1"] } },
+    });
+    const citiesWithTargetsCount = await Actor.count({
+      distinct: true,
+      col: "Actor.actor_id",
+      include: { model: Target, required: true },
+      where: { type: "city" },
+    });
+
+    console.dir(actorCounts);
 
     res.status(200).json({
       "number_of_data_sources": dataSourceCount,
@@ -46,16 +86,16 @@ router.get(
       "number_of_regions": actorCounts["adm1"] + actorCounts["adm2"],
       "number_of_cities": actorCounts["city"],
       "number_of_companies": actorCounts["company"],
-      "number_of_facilities": actorCounts["facility"],
+      "number_of_facilities": actorCounts["site"],
       "number_of_emissions_records": emissionsRecordsCount,
       "number_of_target_records": targetRecordsCount,
       "number_of_contextual_records": contextualRecordsCount,
-      "number_of_countries_with_emissions": 0, // TODO
-      "number_of_countries_with_targets": 0, // TODO
-      "number_of_regions_with_emissions": 0, // TODO
-      "number_of_regions_with_targets": 0, // TODO
-      "number_of_cities_with_emissions": 0, // TODO
-      "number_of_cities_with_targets": 0, // TODO
+      "number_of_countries_with_emissions": countriesWithEmissionsCount,
+      "number_of_countries_with_targets": countriesWithTargetsCount,
+      "number_of_regions_with_emissions": regionsWithEmissionsCount,
+      "number_of_regions_with_targets": countriesWithTargetsCount,
+      "number_of_cities_with_emissions": citiesWithEmissionsCount,
+      "number_of_cities_with_targets": citiesWithTargetsCount,
     });
   }),
 );
