@@ -294,7 +294,7 @@ Standard output. `data` is an object with fields representing the different stat
 - `number_of_regions`: how many actors of type `adm1` or `adm2` are present in the database
 - `number_of_cities`: count of actors of type `city`
 - `number_of_companies`: count of actors of type `company`
-- `number_of_facilities`: count of actors of type `facility`
+- `number_of_facilities`: count of actors of type `site`
 - `number_of_emissions_records`: count of emissions data records
 - `number_of_target_records`: count of target records
 - `number_of_contextual_records`: sum of counts of population, GDP, territory and organization records
