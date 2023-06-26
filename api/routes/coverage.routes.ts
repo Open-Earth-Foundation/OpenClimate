@@ -11,12 +11,12 @@ import { Territory } from "../orm/territory";
 const router = Router();
 export default router;
 
-const wrap = (fn) => (req, res, next) =>
-  fn(req, res, next).catch((err) => next(err));
+const wrap = (func) => (req, res, next) =>
+  func(req, res, next).catch((err) => next(err));
 
 router.get(
   "/api/v1/coverage/stats",
-  wrap(async (req: any, res: any) => {
+  wrap(async (_req: any, res: any) => {
     // instead of querying a bunch of counts, group by type to get them all at once
     const groupedActorCounts = await Actor.findAll({
       group: ["type"],
@@ -42,38 +42,38 @@ router.get(
 
     const countriesWithEmissionsCount = await Actor.count({
       distinct: true,
-      col: "Actor.actor_id",
+      col: "actor_id",
       include: [{ model: EmissionsAgg, required: true }],
       where: { type: "country" },
     });
     const regionsWithEmissionsCount = await Actor.count({
       distinct: true,
-      col: "Actor.actor_id",
+      col: "actor_id",
       include: { model: EmissionsAgg, required: true },
       where: { type: { [Op.or]: ["adm1", "adm1"] } },
     });
     const citiesWithEmissionsCount = await Actor.count({
       distinct: true,
-      col: "Actor.actor_id",
+      col: "actor_id",
       include: { model: EmissionsAgg, required: true },
       where: { type: "city" },
     });
 
     const countriesWithTargetsCount = await Actor.count({
       distinct: true,
-      col: "Actor.actor_id",
+      col: "actor_id",
       include: { model: Target, required: true },
       where: { type: "country" },
     });
     const regionsWithTargetsCount = await Actor.count({
       distinct: true,
-      col: "Actor.actor_id",
+      col: "actor_id",
       include: { model: Target, required: true },
       where: { type: { [Op.or]: ["adm1", "adm1"] } },
     });
     const citiesWithTargetsCount = await Actor.count({
       distinct: true,
-      col: "Actor.actor_id",
+      col: "actor_id",
       include: { model: Target, required: true },
       where: { type: "city" },
     });
