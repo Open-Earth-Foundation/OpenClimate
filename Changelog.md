@@ -1,3 +1,13 @@
+# 1.11.0 (2023-06-26)
+## Features
+- Hover over points in trends widget
+- Download notification for files
+## Fixes
+- Improve deploy script for Linux development environments
+- Better use of server URLs for API calls
+- Type-ahead stems for search work correctly
+- More responsive updates of pages with onMouseMove
+
 # 1.10.1 (2023-06-09)
 ## Fixes
 - Include changelog
