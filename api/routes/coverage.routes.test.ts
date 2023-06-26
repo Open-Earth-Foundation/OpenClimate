@@ -87,11 +87,12 @@ afterAll(async () => {
 
 it("returns overall coverage statistics for the data set", async () => {
   return request(app)
-    .get(`/api/v1/coverage/stats`) 
+    .get(`/api/v1/coverage/stats`)
     .expect("Content-Type", /json/)
     .expect((res: any) => {
       if (res.status !== 200) {
         console.error(JSON.stringify(res.body, null, 2));
+        return;
       }
       expect(typeof res.body).toEqual("object");
       expect(res.body).toEqual({
