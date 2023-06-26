@@ -37,7 +37,7 @@ router.get(
     const populationRecordsCount = await Population.count();
     const gdpRecordsCount = await GDP.count();
     const territoryRecordsCount = await Territory.count();
-    const organizationRecordsCount = groupedActorCounts["organization"]; // TODO use this or the Organization model? (can"t import)
+    const organizationRecordsCount = groupedActorCounts["organization"]; // TODO use this or the Organization model? (can't import)
     const contextualRecordsCount = populationRecordsCount + gdpRecordsCount + territoryRecordsCount + organizationRecordsCount;
 
     const countriesWithEmissionsCount = await Actor.count({
@@ -93,7 +93,7 @@ router.get(
       "number_of_countries_with_emissions": countriesWithEmissionsCount,
       "number_of_countries_with_targets": countriesWithTargetsCount,
       "number_of_regions_with_emissions": regionsWithEmissionsCount,
-      "number_of_regions_with_targets": countriesWithTargetsCount,
+      "number_of_regions_with_targets": regionsWithTargetsCount,
       "number_of_cities_with_emissions": citiesWithEmissionsCount,
       "number_of_cities_with_targets": citiesWithTargetsCount,
     });
