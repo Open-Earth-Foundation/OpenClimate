@@ -18,7 +18,7 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
     const [openFilterDropdown, setOpenFilterDropdown] = useState<boolean>(false);
     const [chartWidth, setChartWidth] = useState<number>(1350)
 
-    const OFFSET_WIDTH=248
+    const OFFSET_WIDTH=250
 
     useEffect(()=> {
         const screenSize = window.innerWidth
@@ -68,6 +68,7 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
         if (emissions.hasOwnProperty(sourceKey)) {
             const sourceData = emissions[sourceKey].data;
             const tags = emissions[sourceKey].tags
+            const publisher = emissions[sourceKey].publisher
 
           // Iterate over the data points for each source
             sourceData.forEach((dataPoint) => {
@@ -81,7 +82,8 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
                 if (yearEntry) {
                     yearEntry.emissions[sourceKey] = {
                         total_emissions,
-                        tags
+                        tags,
+                        publisher
                     }
                 }
                 // Otherwise, create a new entry for the year and add the emissions value
@@ -91,7 +93,8 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
                     emissions: {
                     [sourceKey]: {
                         total_emissions: total_emissions,
-                        tags
+                        tags,
+                        publisher
                     }
                     },
                 };
@@ -100,30 +103,42 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
                 }
           });
         }
-      }
-
-    targets.forEach((target) => {
-
-        const value = target.percent_achieved_reason?.target?.value;
-
-        if (!value) return;
-
-        const year = target.target_year;
-        const yearEntry = data.find((entry) => entry.year === year);
-
-        if (yearEntry) {
-            yearEntry.target = value;
-        } else {
-            const newEntry = {
+    }
+    // Iterate over the sorted targets array
+    for (let i = 1; i < targets.length; i++) {
+        const currentTarget = targets[i];
+        const previousTarget = targets[i - 1];
+        const currentYear = currentTarget.target_year;
+        const previousYear = previousTarget.target_year;
+    
+        // Calculate the difference in years between the current and previous target
+        const yearDifference = currentYear - previousYear;
+    
+        // If there is a gap between the current and previous year, fill in the missing years
+        if (yearDifference > 1) {
+            for (let year = previousYear + 1; year < currentYear; year++) {
+                const newEntry = {
                 year: year,
-                emissions: {
-                    tags:[]
-                },
-                target: value
+                emissions: {},
+                target: null,
+                };
+                data.push(newEntry);
+            }
+        }
+
+        const targetValue = currentTarget.percent_achieved_reason?.target?.value;
+        const currentYearEntry = data.find((entry) => entry.year === currentYear);
+        if (currentYearEntry) {
+            currentYearEntry.target = targetValue;
+        }else {
+            const newEntry = {
+              year: currentYear,
+              emissions: {},
+              target: targetValue,
             };
             data.push(newEntry);
         }
-    });
+    }
 
     const sources = Object.keys(data[0].emissions);
 
@@ -140,14 +155,15 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
         setSelectedSources(sources)
     }
 
+    const [hoveredLineSource, setHoveredLineSource] = useState('');
     const lines = selectedSources.map((source) => (
         <Line
             type="monotone"
             dataKey={`emissions.${source}.total_emissions`}
+            onMouseMove={() => setHoveredLineSource(source)}
             key={source}
             fill="#fa7200"
             stroke="#fa7200"
-            unit="Mt"
        />
     ));
 
@@ -163,29 +179,35 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
     );
 
     interface TooltipProps {
-        active: boolean
-        payload: []
-        label: string
+        active: boolean;
+        payload: [];
+        label: string;
     }
 
     const ToolTipContent:FC<TooltipProps> = ({active, payload, label}) => {
         if(active && payload && payload.length){
+            let payloadIndex = 0;
+            if (hoveredLineSource !== '') {
+                payloadIndex = payload.findIndex((entry) => entry.dataKey.split('.')[1] === hoveredLineSource);
+            }
+            const payloadData = payload[payloadIndex];
 
-            let src = payload[0].dataKey.split(".")
+            let src = payloadData ? payloadData.dataKey.split(".") : "emissions.target:data"
             src = src[1]
 
             let modifiedSrc = null
 
             if(src){
                 modifiedSrc = src.split(":")[0].trim()
+                modifiedSrc = modifiedSrc === "m" ? "": modifiedSrc
             }
 
             let tags = null
 
             if(src){
-                tags = payload[0].payload.emissions[src].tags
+                tags = payloadData ? payloadData.payload.emissions[src].tags : []
             }else{
-                tags = payload[0].payload.emissions.tags
+                tags = payloadData ? payloadData.payload.emissions.tags : []
             }
 
           return(
@@ -283,9 +305,10 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
                                 Emissions Targets
                             </div>
                         </div>
-                        <ResponsiveContainer width="94%" height={400}>
+                        <ResponsiveContainer width="100%" height={400}>
                             <LineChart height={400} width={chartWidth} data={data} margin={{
-                                left: 50
+                                left: 50,
+                                right:50
                             }}>
                                 <CartesianGrid stroke="#E6E7FF" height={1}/>
                                 <XAxis dataKey="year" capHeight={30}/>

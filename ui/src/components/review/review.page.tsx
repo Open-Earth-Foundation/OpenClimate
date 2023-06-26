@@ -14,6 +14,7 @@ import CollaborationCardHint from "./CollaborateCardHint";
 import ActorFlag from "./actor-flag/actor-flag";
 import { Helmet } from "react-helmet";
 import { useMatomo } from "@jonkoops/matomo-tracker-react"; 
+import { ServerUrls } from "../../shared/environments/server.environments";
 
 type ReviewPageParams = {
   actorID: string;
@@ -66,7 +67,7 @@ const ReviewPage: FunctionComponent = () => {
   }, [actors, current]);
 
   const insertActor = (actorID: any, children: Array<any>) => {
-    fetch(`/api/v1/actor/${actorID}`)
+    fetch(`${ServerUrls.api}/v1/actor/${actorID}`)
       .then((res) => res.json())
       .then((json) => json.data)
       .then((actor) => {

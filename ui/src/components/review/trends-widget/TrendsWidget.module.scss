@@ -133,7 +133,7 @@
 
 .histTitle{
     display: flex;
-    width: 80%;
+    width: 64%;
     justify-content: center;
     height: 50px;
     font-weight: 700;
@@ -146,7 +146,7 @@
 }
 .targetTitle{
     display: flex;
-    width: 15%;
+    width: 40%;
     justify-content: center;
     height: 50px;
     font-weight: 700;
@@ -398,7 +398,6 @@
     grid-column: 2;
     grid-template-columns: auto auto;
     row-gap: 5px;
-    height: 80px;
     overflow: hidden;
 }
 

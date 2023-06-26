@@ -73,13 +73,7 @@
         align-items: center;
         justify-content: center;
     }
-    .menu-item .download-link{
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        color: #000;
-    }
+    
     .download_data-icon{
         font-size: 24px;
     }
@@ -93,11 +87,7 @@
         height: 128px;
         left: 40px;
         top: 24px;
-        /* White */
-
         background: #FFFFFF;
-        /* Shadow_Dropdown */
-
         box-shadow: 4px 4px 22px rgba(0, 0, 0, 0.12);
         border-radius: 0px 8px 8px 8px;
     }
@@ -119,6 +109,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        font-size: 14px;
+        font-weight: 400;
         
     }
 
@@ -489,13 +481,7 @@
         align-items: center;
         justify-content: center;
     }
-    .menu-item .download-link{
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        color: #000;
-    }
+ 
     .download_data-icon{
         font-size: 24px;
     }
@@ -535,7 +521,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        
+        font-size: 14px;
+        font-weight: 400;
     }
 
     .menu-item *:hover{
@@ -819,5 +806,16 @@
 
     .marg{
         margin-top: 40px;
+    }
+
+    .MuiAlert-message .snackbar-message-body{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .MuiAlert-message .snackbar-button{
+        color: white;
+        font-weight:400;
     }
 }
