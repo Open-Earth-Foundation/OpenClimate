@@ -87,15 +87,31 @@ afterAll(async () => {
 
 it("returns overall coverage statistics for the data set", async () => {
   return request(app)
-    .get(`/api/v1/coverage/stats`)
-    .expect(200)
+    .get(`/api/v1/coverage/stats`) 
     .expect("Content-Type", /json/)
     .expect((res: any) => {
+      if (res.status !== 200) {
+        console.error(JSON.stringify(res.body, null, 2));
+      }
       expect(typeof res.body).toEqual("object");
       expect(res.body).toEqual({
-        number_of_countries: 1,
-        number_of_data_sources: 1,
+        "number_of_data_sources": 1,
+        "number_of_countries": 2,
+        "number_of_regions": 2,
+        "number_of_cities": 2,
+        "number_of_companies": 1,
+        "number_of_facilities": 1,
+        "number_of_emissions_records": 3,
+        "number_of_target_records": 3,
+        "number_of_contextual_records": 3,
+        "number_of_countries_with_emissions": 1,
+        "number_of_countries_with_targets": 1,
+        "number_of_regions_with_emissions": 1,
+        "number_of_regions_with_targets": 1,
+        "number_of_cities_with_emissions": 1,
+        "number_of_cities_with_targets": 1,
       });
-    });
+    })
+    .expect(200);
 })
 
