@@ -37,7 +37,7 @@ router.get(
     const populationRecordsCount = await Population.count();
     const gdpRecordsCount = await GDP.count();
     const territoryRecordsCount = await Territory.count();
-    const organizationRecordsCount = actorCounts["organization"] || 0;
+    const organizationRecordsCount = actorCounts["organization"] ?? 0;
     const contextualRecordsCount = populationRecordsCount + gdpRecordsCount + territoryRecordsCount + organizationRecordsCount;
 
     const countriesWithEmissionsCount = await Actor.count({
@@ -80,11 +80,11 @@ router.get(
 
     res.status(200).json({
       "number_of_data_sources": dataSourceCount,
-      "number_of_countries": actorCounts["country"] || 0,
-      "number_of_regions": (actorCounts["adm1"] || 0) + (actorCounts["adm2"] || 0),
-      "number_of_cities": actorCounts["city"] || 0,
-      "number_of_companies": actorCounts["company"] || 0,
-      "number_of_facilities": actorCounts["site"] || 0,
+      "number_of_countries": actorCounts["country"] ?? 0,
+      "number_of_regions": (actorCounts["adm1"] ?? 0) + (actorCounts["adm2"] ?? 0),
+      "number_of_cities": actorCounts["city"] ?? 0,
+      "number_of_companies": actorCounts["company"] ?? 0,
+      "number_of_facilities": actorCounts["site"] ?? 0,
       "number_of_emissions_records": emissionsRecordsCount,
       "number_of_target_records": targetRecordsCount,
       "number_of_contextual_records": contextualRecordsCount,
