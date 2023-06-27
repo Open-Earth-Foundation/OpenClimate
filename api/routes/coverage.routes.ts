@@ -78,8 +78,6 @@ router.get(
       where: { type: "city" },
     });
 
-    console.dir(actorCounts);
-
     res.status(200).json({
       "number_of_data_sources": dataSourceCount,
       "number_of_countries": actorCounts["country"] || 0,

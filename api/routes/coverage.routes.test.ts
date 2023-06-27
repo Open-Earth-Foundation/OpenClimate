@@ -86,9 +86,9 @@ const facilityProps = {
 };
 
 const organizationProps = {
-  actor_id: "coverage_routes_test_region_2",
-  type: "adm2",
-  name: "Test Sub Region",
+  actor_id: "coverage_routes_test_organization_1",
+  type: "organization",
+  name: "Test Organization",
   datasource_id: datasourceProps.datasource_id,
 }
 
@@ -173,17 +173,14 @@ const territoryProps = {
 };
 
 async function cleanup() {
-  await Target.destroy({ where: { datasource_id: datasourceProps.datasource_id } });
-  await EmissionsAgg.destroy({ where: { datasource_id: datasourceProps.datasource_id } });
-  await Population.destroy({ where: { datasource_id: datasourceProps.datasource_id } });
-  await GDP.destroy({ where: { datasource_id: datasourceProps.datasource_id } });
-  await Territory.destroy({ where: { datasource_id: datasourceProps.datasource_id } });
-  await Actor.destroy({
-    where: { datasource_id: datasourceProps.datasource_id },
-  });
-  await DataSource.destroy({
-    where: { datasource_id: datasourceProps.datasource_id },
-  });
+  const destroyCondition = { where: { datasource_id: datasourceProps.datasource_id } };
+  await Target.destroy(destroyCondition);
+  await EmissionsAgg.destroy(destroyCondition);
+  await Population.destroy(destroyCondition);
+  await GDP.destroy(destroyCondition);
+  await Territory.destroy(destroyCondition);
+  await Actor.destroy(destroyCondition);
+  await DataSource.destroy(destroyCondition);
   await Publisher.destroy({ where: { id: publisherProps.id } });
 }
 
