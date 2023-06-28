@@ -41,12 +41,13 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
   const areaYear = current?.territory?.datasource?.published.slice(0, 4);
   const populationYear = latestPopulation?.datasource?.published.slice(0, 4);
   const gdpYear = latestGDP?.datasource?.published.slice(0, 4);
-  const lastUpdatedYear = Math.max.apply(
-    null,
-    [areaYear, populationYear, gdpYear]
-      .filter((n) => n !== undefined)
-      .map((n) => parseInt(n))
-  );
+  const validUpdatedYears = [areaYear, populationYear, gdpYear]
+    .filter((n) => n !== undefined)
+    .map((n) => parseInt(n));
+  const lastUpdatedYear =
+    validUpdatedYears.length > 0
+      ? Math.max.apply(null, validUpdatedYears)
+      : null;
 
   const useStyles = makeStyles(() => ({
     customTooltip: {
@@ -151,10 +152,10 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                     : `Of ${parent?.name}'s Population`}
                 </div>
                 <div className="dataSource">
-                    Source: {populationSource ? populationSource : "N/A"}
+                  Source: {populationSource ? populationSource : "N/A"}
                 </div>
                 <div className="year">
-                  Year:{" "} {latestPopulation ? latestPopulation.year : "N/A"}
+                  Year: {latestPopulation ? latestPopulation.year : "N/A"}
                 </div>
               </div>
             </div>
@@ -196,12 +197,10 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                     Total population
                   </div>
                   <div className="dataSource">
-                    Source:{" "}
-                    {populationSource ? populationSource : "N/A"}
+                    Source: {populationSource ? populationSource : "N/A"}
                   </div>
                   <div className="year">
-                    Year:{" "}
-                    {latestPopulation ? latestPopulation.year : "N/A"}
+                    Year: {latestPopulation ? latestPopulation.year : "N/A"}
                   </div>
                 </div>
               </div>
@@ -234,8 +233,12 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                   <div className="contextual-widget__normal-right-text">
                     Total area
                   </div>
-                  <div className="dataSource">Source: {areaSource ? areaSource : "N/A"}</div>
-                  <div className="year">Year: {areaYear ? areaYear : "N/A"}</div>
+                  <div className="dataSource">
+                    Source: {areaSource ? areaSource : "N/A"}
+                  </div>
+                  <div className="year">
+                    Year: {areaYear ? areaYear : "N/A"}
+                  </div>
                 </div>
               </div>
             </div>
@@ -271,8 +274,12 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                 </div>
 
                 <div className="contextual-widget__normal-right-text">GDP</div>
-                <div className="dataSource">Source: {gdpSource ? gdpSource : "N/A"}</div>
-                <div className="year">Year: {latestGDP ? latestGDP.year : "N/A"}</div>
+                <div className="dataSource">
+                  Source: {gdpSource ? gdpSource : "N/A"}
+                </div>
+                <div className="year">
+                  Year: {latestGDP ? latestGDP.year : "N/A"}
+                </div>
               </div>
             </div>
           </div>
