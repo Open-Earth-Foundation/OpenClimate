@@ -50,7 +50,7 @@ router.get(
       distinct: true,
       col: "actor_id",
       include: { model: EmissionsAgg, required: true },
-      where: { type: { [Op.or]: ["adm1", "adm1"] } },
+      where: { type: { [Op.or]: ["adm1", "adm2"] } },
     });
     const citiesWithEmissionsCount = await Actor.count({
       distinct: true,
@@ -69,7 +69,7 @@ router.get(
       distinct: true,
       col: "actor_id",
       include: { model: Target, required: true },
-      where: { type: { [Op.or]: ["adm1", "adm1"] } },
+      where: { type: { [Op.or]: ["adm1", "adm2"] } },
     });
     const citiesWithTargetsCount = await Actor.count({
       distinct: true,
