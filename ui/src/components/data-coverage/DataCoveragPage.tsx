@@ -1,37 +1,78 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import style from './DataCoveragePage.module.scss';
 import Container from './Container/Container';
 import { MdArrowForward } from 'react-icons/md';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label, LabelList } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, ResponsiveContainer, LabelList } from 'recharts';
+import { ServerUrls } from '../../shared/environments/server.environments';
+import { CircularProgress } from '@mui/material';
 
 interface DataCoveragePageProps{
     actor: any
 }
 
-const data = [
-    {
-      name: 'Countries',
-      Emissions: 95,
-      Pledges: 25,
-      amt: 25,
-    },
-    {
-      name: 'Regions',
-      Emissions: 15,
-      Pledges: 57,
-      amt: 15,
-    },
-    {
-      name: 'Cities',
-      Emissions: 50,
-      Pledges: 25,
-      amt: 25,
-    }
-]
+interface CoverageData {
+      number_of_data_sources: number,
+      number_of_countries: number,
+      number_of_regions: number,
+      number_of_cities: number,
+      number_of_companies: number,
+      number_of_facilities: number,
+      number_of_emissions_records: number,
+      number_of_target_records: number,
+      number_of_contextual_records: number,
+      number_of_countries_with_emissions: number,
+      number_of_countries_with_targets: number,
+      number_of_regions_with_emissions: number,
+      number_of_regions_with_targets: number,
+      number_of_cities_with_emissions: number,
+      number_of_cities_with_targets: number,
+}
+
+interface CoverageDiagramEntry {
+    name: string,
+    Emissions: number,
+    Pledges: number,
+}
 
 const DataCoveragePage:FC<DataCoveragePageProps> = ({
     actor
 }) => {
+    const [isLoading, setLoading] = useState(true);
+    const [coverageData, setCoverageData] = useState<CoverageData>();
+    const [diagramData, setDiagramData] = useState<CoverageDiagramEntry[]>([]);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const result = await fetch(
+                  `${ServerUrls.api}/v1/coverage/stats`,
+                );
+                const data = await result.json();
+                setCoverageData(data);
+                setLoading(false);
+                console.log('Coverage data', data);
+                setDiagramData([
+                    {
+                        name: 'Countries',
+                        Emissions: data.number_of_countries_with_emissions,
+                        Pledges: data.number_of_countries_with_targets,
+                    }, {
+                        name: 'Regions',
+                        Emissions: data.number_of_regions_with_emissions,
+                        Pledges: data.number_of_regions_with_targets,
+                    }, {
+                        name: 'Cities',
+                        Emissions: data.number_of_cities_with_emissions,
+                        Pledges: data.number_of_cities_with_targets,
+                    },
+                ]);
+            } catch(err) {
+                console.log('Failed to load coverage data!', err);
+                setLoading(false);
+            }
+        }
+
+        fetchData();
+    }, []);
 
     const customEmissionsLabel = (props:any) => {
         const {value, x, y, width} = props
@@ -108,42 +149,47 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                             </button>
                         </div>
                         <div className={style.dataRecordsRightContent}>
-                            <div>
-                                <p>25</p>
-                                <span>Data Sources</span>
-                            </div>
-                            <div>
-                                <p>194</p>
-                                <span>Countries</span>
-                            </div>
-                            <div>
-                                <p>3.5K</p>
-                                <span>Regions</span>
-                            </div>
-                            <div>
-                                <p>700k</p>
-                                <span>Cities</span>
-                            </div>
-                            <div>
-                                <p>67k</p>
-                                <span>Companies</span>
-                            </div>
-                            <div>
-                                <p>2.5k</p>
-                                <span>Facilities</span>
-                            </div>
-                            <div>
-                                <p>60k</p>
-                                <span>Emissions records</span>
-                            </div>
-                            <div>
-                                <p>2k</p>
-                                <span>Pledges records</span>
-                            </div>
-                            <div>
-                                <p>170k</p>
-                                <span>Contextual data records</span>
-                            </div>
+                            {isLoading && <CircularProgress />}
+                            {!isLoading && coverageData && (
+                                <>
+                                    <div>
+                                        <p>{coverageData.number_of_data_sources}</p>
+                                        <span>Data Sources</span>
+                                    </div>
+                                    <div>
+                                        <p>{coverageData.number_of_countries}</p>
+                                        <span>Countries</span>
+                                    </div>
+                                    <div>
+                                        <p>{coverageData.number_of_regions}</p>
+                                        <span>Regions</span>
+                                    </div>
+                                    <div>
+                                        <p>{coverageData.number_of_cities}</p>
+                                        <span>Cities</span>
+                                    </div>
+                                    <div>
+                                        <p>{coverageData.number_of_companies}</p>
+                                        <span>Companies</span>
+                                    </div>
+                                    <div>
+                                        <p>{coverageData.number_of_facilities}</p>
+                                        <span>Facilities</span>
+                                    </div>
+                                    <div>
+                                        <p>{coverageData.number_of_emissions_records}</p>
+                                        <span>Emissions records</span>
+                                    </div>
+                                    <div>
+                                        <p>{coverageData.number_of_target_records}</p>
+                                        <span>Pledges records</span>
+                                    </div>
+                                    <div>
+                                        <p>{coverageData.number_of_contextual_records}</p>
+                                        <span>Contextual data records</span>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </Container>
@@ -166,7 +212,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                                     <BarChart
                                         width={500}
                                         height={300}
-                                        data={data}
+                                        data={diagramData}
                                         margin={{
                                             top: 30,
                                             right: 50,
