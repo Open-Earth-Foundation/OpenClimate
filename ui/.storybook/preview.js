@@ -1,4 +1,11 @@
 import {INITIAL_VIEWPORTS} from "@storybook/addon-viewport";
+import { configure } from '@storybook/react';
+
+const images = require.context('../src/assets/images', true)
+
+configure(()=>{
+  images.keys().forEach(images)
+}, module)
 
 // Custom viewports
 const MY_VIEWPORTS = {
