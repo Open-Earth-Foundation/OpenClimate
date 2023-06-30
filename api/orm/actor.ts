@@ -9,6 +9,8 @@ import {
   CreationOptional,
 } from "sequelize";
 import { DataSource } from "./datasource";
+import { EmissionsAgg } from "./emissionsagg";
+import { Target } from "./target";
 
 const init = require("./init.ts");
 export const sequelize = init.connect();
@@ -112,3 +114,7 @@ Actor.init(
     updatedAt: "last_updated",
   }
 );
+
+Actor.hasMany(EmissionsAgg, { foreignKey: "actor_id" });
+Actor.hasMany(Target, { foreignKey: "actor_id" });
+
