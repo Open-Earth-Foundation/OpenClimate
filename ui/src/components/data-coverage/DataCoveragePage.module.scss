@@ -93,7 +93,9 @@
 .dataRecordsSection{
     height: 424px;
     width: 100%;
-    background: #008600;
+    background: url("./oc_ptns.png") no-repeat center;
+    background-color: #008600;
+    background-size: cover;
     position: relative;
     top: 0px;
 }
@@ -143,6 +145,7 @@
     background: #008600;
     color: white;
     border: none;
+    background: var(--content-link, #2351DC);
 }
 
 .dataRecordsLeftContent button span {
@@ -187,6 +190,7 @@
     height: 900px;
     background: #FFF;
     padding-top: 100px;
+    
 }
 
 .heading{
@@ -199,7 +203,7 @@
 .title, .subtitle {
     margin: 0px;
     padding: 0px;
-    width: 1312px;
+    width: 100%;
     color: #00001F;
 }
 
@@ -279,6 +283,7 @@
     font-family: Open Sans;
     line-height: 24px;
     letter-spacing: 0.5px;
+    text-align: center;
 }
 
 .collaborateSection{
@@ -294,6 +299,8 @@
     justify-content: center;
     height: 372px;
     width: 100%;
+    position: relative;
+    top: -50px;
  
 }
 
@@ -324,6 +331,7 @@
     border-radius: 50px;
     border: 2px solid var(--interactive-accent, #5FE500);
     margin-top: 30px;
+    cursor: pointer;
 }
 
 

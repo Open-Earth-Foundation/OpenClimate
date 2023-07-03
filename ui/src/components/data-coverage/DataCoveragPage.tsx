@@ -80,7 +80,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
         return(
             <g>
                 <text x={x + width / 2} y={y - radius} fill="#E9750A" style={{fontWeight: 'bold'}} textAnchor="middle" dominantBaseline="middle">
-                    {value}%
+                    {value}
                 </text>
             </g>
         )
@@ -92,10 +92,21 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
         return(
             <g>
                 <text x={x + width / 2} y={y - radius} fill="#24BE00" style={{fontWeight: 'bold'}} textAnchor="middle" dominantBaseline="middle">
-                    {value}%
+                    {value}
                 </text>
             </g>
         )
+    }
+
+    const shortenNumber = (num: number) => {
+        if(num>1000){
+            const units = ["K", "M"]
+            const unit = Math.floor(Math.log10(num) / 3);
+            const shortened = (num / Math.pow(1000, unit)).toFixed(1);
+            return shortened + units[unit - 1];
+        }
+
+        return num.toString();
     }
 
     return(
@@ -123,10 +134,12 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                             You are welcome to collaborate with data for actors 
                             with no emissions and pledges data
                         </p>
-                        <button>
-                            <span>CONTRIBUTIONS&nbsp;GUIDLINES</span>
-                            <MdArrowForward size={24}/>
-                        </button>
+                        <a href="https://github.com/Open-Earth-Foundation/OpenClimate/blob/develop/CONTRIBUTING_DATA.md">
+                            <button>
+                                <span>CONTRIBUTION&nbsp;GUIDLINES</span>
+                                <MdArrowForward size={24}/>
+                            </button>
+                        </a>
                     </div>
                 </Container>
             </section>
@@ -141,12 +154,14 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                                 Open Climate and emissions and pledges records breakdown into <br /> 
                                 countries, regions, cities and companies.
                             </p>
-                            <button>
-                                <span>
-                                    READ&nbsp;THE&nbsp;DOCS
-                                </span>
-                                <MdArrowForward size={24}/>
-                            </button>
+                            <a href="https://github.com/Open-Earth-Foundation/OpenClimate">
+                                <button>
+                                    <span>
+                                        READ&nbsp;THE&nbsp;DOCS
+                                    </span>
+                                    <MdArrowForward size={24}/>
+                                </button>
+                            </a>
                         </div>
                         <div className={style.dataRecordsRightContent}>
                             {isLoading && <CircularProgress />}
@@ -161,11 +176,11 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                                         <span>Countries</span>
                                     </div>
                                     <div>
-                                        <p>{coverageData.number_of_regions}</p>
+                                        <p>{shortenNumber(coverageData.number_of_regions)}</p>
                                         <span>Regions</span>
                                     </div>
                                     <div>
-                                        <p>{coverageData.number_of_cities}</p>
+                                        <p>{shortenNumber(coverageData.number_of_cities)}</p>
                                         <span>Cities</span>
                                     </div>
                                     <div>
@@ -173,19 +188,19 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                                         <span>Companies</span>
                                     </div>
                                     <div>
-                                        <p>{coverageData.number_of_facilities}</p>
+                                        <p>{shortenNumber(coverageData.number_of_facilities)}</p>
                                         <span>Facilities</span>
                                     </div>
                                     <div>
-                                        <p>{coverageData.number_of_emissions_records}</p>
+                                        <p>{shortenNumber(coverageData.number_of_emissions_records)}</p>
                                         <span>Emissions records</span>
                                     </div>
                                     <div>
-                                        <p>{coverageData.number_of_target_records}</p>
+                                        <p>{shortenNumber(coverageData.number_of_target_records)}</p>
                                         <span>Pledges records</span>
                                     </div>
                                     <div>
-                                        <p>{coverageData.number_of_contextual_records}</p>
+                                        <p>{shortenNumber(coverageData.number_of_contextual_records)}</p>
                                         <span>Contextual data records</span>
                                     </div>
                                 </>
@@ -252,7 +267,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                 style={{
                     background: 'url("/images/oc_curve_bg.png") no-repeat center',
                     backgroundSize: 'cover',
-                    width: "100vw",
+                    width: "100%",
                     height: "380px"
                 }}
             />
