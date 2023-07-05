@@ -35,8 +35,18 @@ const NavMenu: FunctionComponent<Props> = (props) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            DOCS
+            Docs
           </a>
+        </li>
+        <li className="toolbar-menu__item">
+          <NavLink
+              exact={true}
+              to="/datacoverage"
+              className="toolbar-menu__link"
+              activeClassName="toolbar-menu__link_active"
+            >
+              Data
+          </NavLink>
         </li>
 
         {showAccount && userAdmin ? (
