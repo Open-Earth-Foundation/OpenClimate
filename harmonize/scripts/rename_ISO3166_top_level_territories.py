@@ -7,6 +7,7 @@
 # this script modifies the hand created processed/ISO-3166-1/Actor.csv
 #
 
+import csv
 import os
 import pandas as pd
 
@@ -31,4 +32,5 @@ if __name__ == "__main__":
     # retain original ordering of the columns
     df_out = df_out[df_iso1.columns]
 
-    df_out.to_csv(FILE_OUT, index=False)
+    df_out.to_csv(FILE_OUT, index=False, quotechar='"', quoting=csv.QUOTE_ALL)
+
