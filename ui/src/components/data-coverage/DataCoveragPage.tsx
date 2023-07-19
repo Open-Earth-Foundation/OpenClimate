@@ -185,7 +185,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                                     </div>
                                     <div>
                                         <p>{shortenNumber(coverageData.number_of_facilities)}</p>
-                                        <span>Facilities</span>
+                                        <span>Company Facilities</span>
                                     </div>
                                     <div>
                                         <p>{shortenNumber(coverageData.number_of_emissions_records)}</p>
