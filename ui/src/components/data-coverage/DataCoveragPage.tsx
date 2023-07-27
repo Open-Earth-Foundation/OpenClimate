@@ -49,7 +49,6 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                 const data = await result.json();
 
                 const calc = (value:number, sum_of_actors:number) => {
-                    console.log(value, sum_of_actors)
                     return Math.round((value/sum_of_actors)*100)
                 }
 
@@ -85,8 +84,6 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                     }
                 }
 
-                console.log(regionalData)
-
                 setCoverageData(data);
                 setLoading(false);
 
@@ -112,7 +109,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
         }
 
         fetchData();
-    }, []);
+    }, [coverageData, isLoading]);
 
     const customEmissionsLabel = (props:any) => {
         const {value, x, y, width} = props
