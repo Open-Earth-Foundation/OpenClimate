@@ -1,0 +1,9 @@
+tag_id,tag_name
+geo,geographical data
+id,id data
+name,name data
+geonames,data extracted from GeoNames
+CC-BY-4.0,Creative Commons Attribution 4.0 International license
+MIT,MIT license
+extract,Dataset extracted from a larger database
+evanp,Dataset by Evan Prodromou

@@ -53,6 +53,7 @@ import "./App.css";
 import * as accountActions from "./store/account/account.actions";
 import * as accountSelectors from "./store/account/account.selectors";
 import { ServerUrls } from "./shared/environments/server.environments";
+import DataCoveragPage from "./components/data-coverage/DataCoveragPage";
 
 const Account = React.lazy(() => import("./UI/Account"));
 const Contact = React.lazy(() => import("./UI/Contact"));
@@ -1283,6 +1284,11 @@ const App: FunctionComponent<Props> = (props) => {
                   <Route path="/actor/:actorID/:actorName?" exact>
                     <Suspense fallback={<div>Loading...</div>}>
                       <ReviewPage />
+                    </Suspense>
+                  </Route>
+                  <Route path="/datacoverage" exact>
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <DataCoveragPage />
                     </Suspense>
                   </Route>
                   <Redirect to={"/"} />

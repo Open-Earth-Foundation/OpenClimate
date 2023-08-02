@@ -4,6 +4,7 @@ import {MdArrowDropDown, MdFilterList, MdOpenInNew, MdOutlineFileDownload} from 
 import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, ResponsiveContainer } from 'recharts';
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { convertToGigaTonnes, readableEmissions } from "../../util/units";
+import Diversity3Icon from "@mui/icons-material/Diversity3";
 
 interface TrendsWidgetProps {
     current: any
@@ -139,8 +140,8 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
             data.push(newEntry);
         }
     }
-
-    const sources = Object.keys(data[0].emissions);
+    
+    const sources = data.length > 0 ? Object.keys(data[0].emissions) : [];
 
     const [selectedSources, setSelectedSources] = useState(sources);
 
@@ -242,96 +243,130 @@ const TrendsWidget:FC<TrendsWidgetProps> = (props) => {
     }
 
     return(
-        <div className={style.root}>
+        <div className={style.root} style={{
+            height: data.length === 0 ? "316px" : ""
+        }}>
             <div className={style.container}>
                 <div className={style.header}>
                     <div className={style.headerRightColumn}>
                         <h1 className={style.title}>Trends</h1>
-                        <p className={style.dateUpdated}>Last updated in 2019</p>
-                    </div>
-                    <div className={style.headerLeftColumn}>
-                        <button className={style.downloadBtn}>
-                            <MdOutlineFileDownload size={24}/>
-                        </button>
-                    </div>
-                </div>
-                <div className={style.body}>
-                    <div className={style.filterWrapper}>
-                        <button onClick={handleFrilterDropdown} className={style.filterButton}>
-                            <MdFilterList className={style.filterIcon} size={24}/>
-                            <span className={style.sourcesText}>Sources</span>
-                            <span className={style.badge}>{sources.length}</span>
-                            <MdArrowDropDown className={style.dropdownIcon} size={16}/>
-                        </button>
                         {
-                            openFilterDropdown && (
-                                <>
-                                    <div className={style.filterDropdown}>
-                                        <div className={style.sourceListWrapper}>
-                                            <FormGroup>
-                                                {
-                                                    sources.map((source) => {
-                                                        return(
-                                                            <div key={source} className={style.sourceItem}>
-                                                                <FormControlLabel control={<Checkbox checked={selectedSources.includes(source)} defaultChecked />} onChange={()=>handleSourceToggle(source)} label={source.split(":")[0].trim()} />
-                                                                <MdOpenInNew size={16}/>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </FormGroup>
-                                        </div>
-                                        <div className={style.footer}>
-                                            <div className={style.footerWrapper}>
-                                                <button
-                                                    onClick={handleResetSelection}
-                                                    className={style.resetBtn}>Reset</button>
-                                                <button
-                                                    onClick={handleFrilterDropdown}
-                                                    className={style.applyBtn}>Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </>
-                            )
+                            data.length === 0 ? "": <p className={style.dateUpdated}>Last updated in 2019</p>
                         }
                     </div>
-                    <div className={style.chartArea}>
-                        <div className={style.chartTitle}>
-                            <div className={style.histTitle}>
-                                Historical Emissions
-                            </div>
-                            <div className={style.targetTitle}>
-                                Emissions Targets
-                            </div>
-                        </div>
-                        <ResponsiveContainer width="100%" height={400}>
-                            <LineChart height={400} width={chartWidth} data={data} margin={{
-                                left: 50,
-                                right:50
-                            }}>
-                                <CartesianGrid stroke="#E6E7FF" height={1}/>
-                                <XAxis dataKey="year" capHeight={30}/>
-
-                                <YAxis tickMargin={5} tick={(props)=>(
-                                    <text {...props} style={{
-                                        position: "relative",
-                                        marginLeft: "10px",
-                                        fontSize: "14px",
-
-                                    }}>
-                                        {convertToGigaTonnes(props.payload.value)}
-                                    </text>
-                                )} widths={10} stroke="E6E7FF" />
-                                <Tooltip cursor={false} content={<ToolTipContent />} isAnimationActive={true} shared={false}/>
-                                <Legend content={<LegendContent />}/>
-                                {lines}
-                                {targetLine}
-                            </LineChart>
-                        </ResponsiveContainer>
+                    <div className={style.headerLeftColumn}>
+                        {
+                            data.length === 0 ? "": 
+                            <button className={style.downloadBtn}>
+                                <MdOutlineFileDownload size={24}/>
+                            </button>
+                        }
                     </div>
                 </div>
+                {
+                    data.length > 0 ? (
+                        <>
+                            <div className={style.body}>
+                                <div className={style.filterWrapper}>
+                                    <button onClick={handleFrilterDropdown} className={style.filterButton}>
+                                        <MdFilterList className={style.filterIcon} size={24}/>
+                                        <span className={style.sourcesText}>Sources</span>
+                                        <span className={style.badge}>{sources.length}</span>
+                                        <MdArrowDropDown className={style.dropdownIcon} size={16}/>
+                                    </button>
+                                    {
+                                        openFilterDropdown && (
+                                            <>
+                                                <div className={style.filterDropdown}>
+                                                    <div className={style.sourceListWrapper}>
+                                                        <FormGroup>
+                                                            {
+                                                                sources.map((source) => {
+                                                                    return(
+                                                                        <div key={source} className={style.sourceItem}>
+                                                                            <FormControlLabel control={<Checkbox checked={selectedSources.includes(source)} defaultChecked />} onChange={()=>handleSourceToggle(source)} label={source.split(":")[0].trim()} />
+                                                                            <MdOpenInNew size={16}/>
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </FormGroup>
+                                                    </div>
+                                                    <div className={style.footer}>
+                                                        <div className={style.footerWrapper}>
+                                                            <button
+                                                                onClick={handleResetSelection}
+                                                                className={style.resetBtn}>Reset</button>
+                                                            <button
+                                                                onClick={handleFrilterDropdown}
+                                                                className={style.applyBtn}>Apply</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </>
+                                        )
+                                    }
+                                </div>
+                                <div className={style.chartArea}>
+                                    <div className={style.chartTitle}>
+                                        <div className={style.histTitle}>
+                                            Historical Emissions
+                                        </div>
+                                        <div className={style.targetTitle}>
+                                            Emissions Targets
+                                        </div>
+                                    </div>
+                                    <ResponsiveContainer width="100%" height={400}>
+                                        <LineChart height={400} width={chartWidth} data={data} margin={{
+                                            left: 50,
+                                            right:50
+                                        }}>
+                                            <CartesianGrid stroke="#E6E7FF" height={1}/>
+                                            <XAxis dataKey="year" capHeight={30}/>
 
+                                            <YAxis tickMargin={5} tick={(props)=>(
+                                                <text {...props} style={{
+                                                    position: "relative",
+                                                    marginLeft: "10px",
+                                                    fontSize: "14px",
+
+                                                }}>
+                                                    {convertToGigaTonnes(props.payload.value)}
+                                                </text>
+                                            )} widths={10} stroke="E6E7FF" />
+                                            <Tooltip cursor={false} content={<ToolTipContent />} isAnimationActive={true} shared={false}/>
+                                            <Legend content={<LegendContent />}/>
+                                            {lines}
+                                            {targetLine}
+                                        </LineChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="trends-empty-state" style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            width: "100%",
+                            height: "250px",
+                            alignItems: "center",
+                            justifyContent: "center"
+                        }}>
+                            <p style={{textAlign: "center", color: "#7A7B9A", fontSize: "14px"}} role="trends-no-data-text">
+                                   There's no data available, if you have any suggested <br /> data
+                                  sources or you are a provider please
+                            </p>
+                            <a style={{
+                                display:"flex", alignItems: "center", gap: "10px",  color: "#2351DC", fontSize: "14px", fontWeight: "bold"
+                            }} href="https://docs.google.com/forms/d/e/1FAIpQLSfL2_FpZZr_SfT0eFs_v4T5BsZnrNBbQ4pkbZ51JhJBCcud6A/viewform?pli=1&pli=1" className="trends-collaborate-cta">
+                                <Diversity3Icon className="trends-icon" />
+                                <span role="collaborate-text">
+                                    COLLABORATE WITH DATA
+                                </span>
+                            </a>
+                        </div>
+                    )
+                }
             </div>
         </div>
     );

@@ -30,6 +30,7 @@ import providerRoutes from "./routes/providers.routes";
 import actorRoutes from "./routes/actor.routes";
 import searchRoutes from "./routes/search.routes";
 import sitemapRoutes from "./routes/sitemap.routes";
+import coverageRoutes from "./routes/coverage.routes";
 
 const Connections = require("./orm/connections.ts");
 const Users = require("./agentLogic/users");
@@ -120,6 +121,7 @@ app.use(trustedRegistryRoutes);
 app.use(actorRoutes);
 app.use(searchRoutes);
 app.use(sitemapRoutes);
+app.use(coverageRoutes);
 
 // Send all cloud agent webhooks posting to the agent webhook router
 app.use("/api/controller-webhook", agentWebhookRouter);

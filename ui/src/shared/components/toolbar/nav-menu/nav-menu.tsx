@@ -28,6 +28,26 @@ const NavMenu: FunctionComponent<Props> = (props) => {
             Explore
           </NavLink>
         </li>
+        <li className="toolbar-menu__item">
+          <a
+            href="https://www.notion.so/openearth/OpenClimate-Contributor-Guide-75276fcc22ce4f47b69fec5ef4fb69c3"
+            className="toolbar-menu__link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Docs
+          </a>
+        </li>
+        <li className="toolbar-menu__item">
+          <NavLink
+              exact={true}
+              to="/datacoverage"
+              className="toolbar-menu__link"
+              activeClassName="toolbar-menu__link_active"
+            >
+              Data
+          </NavLink>
+        </li>
 
         {showAccount && userAdmin ? (
           <li className="toolbar-menu__item">

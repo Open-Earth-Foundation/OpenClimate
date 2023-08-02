@@ -19,9 +19,9 @@ Then, apply all these files:
 For Mac deployments, the commands are:
 
 ```
-kubectl apply -n openclimate -f ./k8s/postgresql-persistentvolume.mac.yml
-kubectl apply -n openclimate -f ./k8s/postgresql-persistentvolumeclaim.mac.yml
-kubectl apply -n openclimate -f ./k8s/postgresql-deployment.yml
+kubectl apply -n openclimate -f ./k8s/mac/postgresql-persistentvolume.mac.yml
+kubectl apply -n openclimate -f ./k8s/mac/postgresql-persistentvolumeclaim.mac.yml
+kubectl apply -n openclimate -f ./k8s/local/postgresql-deployment.yml
 kubectl apply -n openclimate -f ./k8s/postgresql-service.yml
 ```
 

@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  
+  /* search results & dropdown container */
+  #searchResults{
+  	overflow-x: hidden
+  }
+  
+	#dropdown-item{
+  	display: flex;
+    align-items: center;
+    justify-content: space-between;
+  	min-height: 72px;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: #232640;
+    margin-bottom:-20px;
+  }
+  /* icons */
+ .material-symbols-outlined {
+  color:#C5CBF5;
+}
+
+   #geo {
+  	font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    color: #7A7B9A;
+    margin-top:4px;
+  }
+  
+  #dropdown-item:hover{
+  	background: #2351DC;
+    color: #ffffff;
+  }
+  
+  #dropdown-item:hover #geo{
+    color: #ffffff;
+  }
+  
+  #dropdown-item:hover .material-symbols-outlined{
+    color: #ffffff;
+  }  
+  
+  a:link {
+  text-decoration: none;
+    }
+
+.material-symbols-outlined{
+    margin-left: -50px !important;
+    font-size: x-large;
+}
+  
+
+.form {
+    width: 100%;
+    text-align: left;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+
+.form-block {
+    width: 100%;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    display: flex;
+}
+
+#searchResults {
+    overflow-x: hidden;
+}
+
+#searchResults {
+    z-index: 99;
+    width: 100%;
+    height: auto;
+    max-height: 360px;
+    min-height: 0;
+    clear: none;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    object-fit: fill;
+    background-color: #fff;
+    border: 1px solid #008600;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    flex-flow: column;
+    flex: 0 auto;
+    order: 0;
+    align-content: flex-start;
+    align-self: auto;
+    align-items: stretch;
+    margin-bottom: 20px;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    padding-right: 0;
+    transition: transform .2s;
+    display: flex;
+    position: absolute;
+    top: 100%;
+    bottom: auto;
+    left: -4vw;
+    right: auto;
+    overflow: scroll;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+
+#input-wrapper{
+    border-radius: 50px;
+    border: 1px solid rgb(0, 134, 0);
+}
+
+.text-field {
+    width: 100%;
+    height: 32px;
+    color: #7a7b9a;
+    border: 5px #0f2;
+    border-radius: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 35px;
+    padding-left: 16px;
+    padding-right: 20px;
+    font-family: Poppins, sans-serif;
+    font-size: 22px;
+    outline: none;
+}
+
+.image {
+    opacity: 1;
+    mix-blend-mode: normal;
+    background-color: #fff;
+    border: 1px solid #fff;
+}
+
+.button-2 {
+    width: auto;
+    height: 48px;
+    text-align: center;
+    letter-spacing: 1.25px;
+    background-color: #008600;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    padding-left: 36px;
+    padding-right: 36px;
+    font-family: Poppins, sans-serif;
+    display: flex;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.w-button {
+    color: #fff;
+    line-height: inherit;
+    cursor: pointer;
+}
+.div-block-2 {
+    width: 80%;
+    height: 60px;
+    background-color: #fff;
+    border: 1px solid #d7d8fa;
+    border-radius: 50px;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 8px;
+    display: flex;
+    position: relative;
+}
+.div-block-3 {
+    width: 100%;
+    align-self: center;
+    align-items: center;
+    display: flex;
+}
