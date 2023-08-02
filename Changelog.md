@@ -1,3 +1,11 @@
+# 1.12.0 (2023-08-02)
+## Features
+- Data coverage page for countries, regions, and cities
+- Include country and region names from Geonames
+## Fixes
+- Fix for missing data in trends widget that crashed page
+- Fix for hierarchy labels in search bar
+
 # 1.11.0 (2023-06-26)
 ## Features
 - Hover over points in trends widget
