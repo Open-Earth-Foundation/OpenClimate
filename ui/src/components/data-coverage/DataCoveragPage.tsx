@@ -47,22 +47,59 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                   `${ServerUrls.api}/v1/coverage/stats`,
                 );
                 const data = await result.json();
+
+                const calc = (value:number, sum_of_actors:number) => {
+                    return Math.round((value/sum_of_actors)*100)
+                }
+
+                let countryData = {
+                    emissions: 0,
+                    pledges: 0
+                }
+
+                let regionalData = {
+                    emissions: 0,
+                    pledges: 0
+                }
+
+                let cityData = {
+                    emissions: 0,
+                    pledges: 0
+                }
+                
+                if(!isLoading && coverageData){
+                    countryData = {
+                        emissions: calc(data.number_of_countries_with_emissions, coverageData?.number_of_countries),
+                        pledges: calc(data.number_of_countries_with_targets, coverageData?.number_of_countries)
+                    }
+
+                    regionalData = {
+                        emissions: calc(data.number_of_regions_with_emissions , coverageData?.number_of_regions),
+                        pledges: calc(data.number_of_regions_with_targets, coverageData?.number_of_regions)
+                    }
+
+                    cityData = {
+                        emissions: calc(data.number_of_cities_with_emissions , coverageData?.number_of_cities),
+                        pledges: calc(data.number_of_cities_with_targets, coverageData?.number_of_cities)
+                    }
+                }
+
                 setCoverageData(data);
                 setLoading(false);
-                console.log('Coverage data', data);
+
                 setDiagramData([
                     {
                         name: 'Countries',
-                        Emissions: data.number_of_countries_with_emissions,
-                        Pledges: data.number_of_countries_with_targets,
+                        Emissions: countryData.emissions,
+                        Pledges: countryData.pledges,
                     }, {
                         name: 'Regions',
-                        Emissions: data.number_of_regions_with_emissions,
-                        Pledges: data.number_of_regions_with_targets,
+                        Emissions: regionalData.emissions,
+                        Pledges: regionalData.pledges,
                     }, {
                         name: 'Cities',
-                        Emissions: data.number_of_cities_with_emissions,
-                        Pledges: data.number_of_cities_with_targets,
+                        Emissions: cityData.emissions,
+                        Pledges: cityData.pledges,
                     },
                 ]);
             } catch(err) {
@@ -72,7 +109,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
         }
 
         fetchData();
-    }, []);
+    }, [coverageData, isLoading]);
 
     const customEmissionsLabel = (props:any) => {
         const {value, x, y, width} = props
@@ -80,7 +117,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
         return(
             <g>
                 <text x={x + width / 2} y={y - radius} fill="#E9750A" style={{fontWeight: 'bold'}} textAnchor="middle" dominantBaseline="middle">
-                    {value}
+                    {value}%
                 </text>
             </g>
         )
@@ -92,7 +129,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
         return(
             <g>
                 <text x={x + width / 2} y={y - radius} fill="#24BE00" style={{fontWeight: 'bold'}} textAnchor="middle" dominantBaseline="middle">
-                    {value}
+                    {value}%
                 </text>
             </g>
         )
@@ -111,14 +148,6 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
 
     return(
         <div className={style.root}>
-            {/* <header className={style.header}>
-                <Container>
-                    <div className={style.nav}>
-                        <Logo />
-                        <Menu />
-                    </div>
-                </Container>
-            </header> */}
             <section className={style.heroSection} style={{
                 background: 'url("/images/earth_bg.png") no-repeat',
                 backgroundPosition: "right",
