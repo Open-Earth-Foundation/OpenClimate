@@ -2,28 +2,38 @@
 
 .root{
     display: flex;
-    width: 1440px;
+    width: 360px;
+    height: 644px;
+    // width: 1440px;
     font-family: 'Poppins';
-    height: 320px;
+    // height: 320px;
     background: #00001F;
 }
 
 .container{
     width: 100%;
-    padding-left: 75px;
-    padding-right: 75px;
+    padding: 16px;
     padding-top: 56px;
 }
+
+// .container{
+//     width: 100%;
+//     padding-left: 75px;
+//     padding-right: 75px;
+//     padding-top: 56px;
+// }
+
+// .content{
+//     width: 100%;
+//     display: grid;
+//     grid-template-columns: auto auto auto; 
+// }
 
 .content{
     width: 100%;
     display: grid;
-    grid-template-columns: auto auto auto;
-    
-}
-
-.ocLogoContainer{
-
+    grid-template-columns:auto;
+    gap: 36px; 
 }
 
 .ocLogo{
@@ -35,7 +45,8 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    // font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     display: flex;
     align-items: center;
@@ -43,19 +54,28 @@
     color: #FFFFFF;
 }
 
+// .quickAccessLinks{
+//     display: grid;
+//     grid-template-columns: auto auto auto;
+//     row-gap: 24px;
+// }
+
 .quickAccessLinks{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
     row-gap: 24px;
 }
 
 .cta{
     display: flex;
-    justify-content: end;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    gap: 16px;
 }
 
+
 .ctaBtnA{
-    width: 150px;
+    width: 328px;
     height: 48px;
     border: 2px solid #5FE500;
     border-radius: 50px;
@@ -71,7 +91,7 @@
 
 
 .ctaBtnB{
-    width: 150px;
+    width: 328px;
     height: 48px;
     border: none;
     border-radius: 50px;
@@ -83,18 +103,19 @@
     line-height: 16px;
     text-transform: uppercase;
     color: #FFFFFF;
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 .hr{
     border: 1px solid #232640;
-    width: 1312px;
+    width: 100%;
     margin-top: 43px;
 }
 
 .content2{
     color: #FFFFFF;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     margin-top: 54px;
@@ -119,6 +140,8 @@
 
 .versionInfo{
     display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .versionText{
@@ -135,4 +158,186 @@
     font-size: 14px;
     line-height: 20px;
     text-decoration-line: underline;
+}
+
+.OEFLogo{
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+
+.OEFLogo img {
+    width: 107px;
+    position: relative;
+}
+
+@media screen and (min-width: "600px") {
+    .root {
+        width: 628px;
+        height: 644px;
+    }
+
+    .container{
+        width: 100%;
+        padding: 32px;
+        padding-top: 56px;
+    }
+    .content{
+        width: 100%;
+        display: grid;
+        grid-template-columns:auto;
+        gap: 36px; 
+    }
+
+    .quickAccessLinks{
+        display: grid;
+        grid-template-columns: auto auto;
+        row-gap: 24px;
+    }
+
+    .footerLinks a{
+        font-size: 12px;
+    }
+
+    .cta{
+        width: 100%;
+        display: flex;
+    }
+
+    .ctaBtnA {
+        width: 536px;
+    }
+
+    .ctaBtnB {
+        width: 536px;
+        margin-left: 0px !important;
+    }
+    
+    .content2{
+        flex-direction: column;
+        position: relative;
+    }
+}
+
+@media screen and (min-width: "905px") {
+    .root {
+        width: 905px;
+        height: 384px;
+    }
+
+    .container{
+        width: 100%;
+        padding: 48px;
+        padding-top: 56px;
+    }
+    .content{
+        width: 100%;
+        display: grid;
+        grid-template-columns:auto auto auto;
+        gap: 36px; 
+    }
+
+    .quickAccessLinks{
+        display: grid;
+        grid-template-columns: auto auto;
+        row-gap: 24px;
+    }
+
+    .footerLinks a{
+        font-size: 12px;
+    }
+
+    .cta{
+        display: flex;
+        align-items: end;
+    }
+
+    .ctaBtnA {
+        width: 157px;
+    }
+
+    .ctaBtnB {
+        width: 157px;
+        margin-left: 0px !important;
+    }
+    
+    .content2{
+        display: grid;
+        grid-template-columns: 80% 20%;
+        gap:5px;
+    }
+
+    .versionInfo{
+        display: flex !important;
+        flex-direction: row;
+        gap:5px;
+    }
+    
+    .OEFLogo img {
+        width: 158px;
+        position: relative;
+    }
+}
+
+@media screen and (min-width: "1240px") {
+    .root {
+        width: 1240px;
+        height: 320px;
+    }
+
+    .quickAccessLinks{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        row-gap: 24px;
+    }
+
+    .cta{
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        align-items: start;
+    }
+
+    .ctaBtnA {
+        width: 150px;
+        height: 48px;
+    }
+
+    .ctaBtnB {
+        width: 150px;
+        height: 48px;
+        margin-left: 0px !important;
+    }
+}
+
+
+@media screen and (min-width: "1440px") {
+    .root {
+        width: 1440px;
+        height: 320px;
+    }
+
+    .quickAccessLinks{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        row-gap: 24px;
+    }
+
+    .cta{
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        align-items: start;
+    }
+
+    .ctaBtnA {
+        width: 150px;
+        height: 48px;
+    }
+
+    .ctaBtnB {
+        width: 150px;
+        height: 48px;
+        margin-left: 0px !important;
+    }
 }
