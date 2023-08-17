@@ -1,6 +1,30 @@
 .root{
     width: 100%;
-    padding-left: 64px;
-    padding-right: 64px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
+@media screen and (min-width: 360px) {
+    .root{
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .root{
+        width: 100%;
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+}
+
+@media screen and (min-width: 905px) {
+    .root{
+        width: 100%;
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+}

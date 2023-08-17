@@ -154,8 +154,10 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
             }}>
                 <Container>
                     <div className={style.heroText}>
-                        <h1 className={style.h1Black}>Welcome to the </h1>
-                        <h1 className={style.h1Green}>Data Visualization Dashboard</h1>
+                        <div>
+                            <h1 className={style.h1Black}>Welcome to the </h1>
+                            <h1 className={style.h1Green}>Data Visualization Dashboard</h1>
+                        </div>
                         <p>
                             This is where to find emissions and pledges data 
                             we have on Open Climate and the data we still need.
@@ -248,7 +250,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                         <div className={style.chartwrapper}>
                             <div className={style.chart}>
                                 <p className={style.chartDescription}>Percentage of Actors with Emissions and Pledges Data</p>
-                                <ResponsiveContainer width="100%" height="100%">
+                                <ResponsiveContainer className={style.cr}>
                                     <BarChart
                                         width={500}
                                         height={300}
@@ -262,7 +264,10 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                                     >
                                         <CartesianGrid strokeDasharray="3 3" stroke="#E6E7FF" height={1}/>
                                         <XAxis dataKey="name" capHeight={30} />
-                                        <YAxis stroke='eeffee'/>
+                                        <YAxis tick={(props)=>(
+                                                <text {...props} className={style.tickText}>
+                                                    {props.payload.value} %
+                                                </text>)} stroke='eeffee'/>
                                         <Legend content={<LegendContent  />}/>
                                         <Bar barSize={100} style={{marginRight: "10px"}} dataKey="Emissions" fill="#FA7200">
                                             <LabelList
