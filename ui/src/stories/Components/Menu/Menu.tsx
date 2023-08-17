@@ -19,7 +19,7 @@ const Menu = () =>{
                     <div className={style.wrapper}>
                         <div className={style.menu}>
                             <img src="/images/OpenClimateLogoIcon.png" alt="logo" className={style.ocLogoIcon}/>
-                            <img src="/images/OpenClimateLogoText.png" alt="logo" className={style.ocLogoText}/>
+                            <img src="/images/OpenClimateLogoText.svg" alt="logo" className={style.ocLogoText}/>
                             <div className={style.menuIcon}>
                                 {
                                     toggleMenu ?  <MdClose onClick={onToggleMenu} size={24} color="white"/> : <MdMenu onClick={onToggleMenu} size={24} color="white"/>
