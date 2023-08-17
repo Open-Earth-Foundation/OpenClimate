@@ -1,5 +1,4 @@
-import { MdChevronRight, MdClose, MdDiversity3, MdLanguage, MdMenu, MdOutlineAccountTree, MdTravelExplore } from "react-icons/md";
-import Logo from "../Logo/Logo";
+import { MdChevronRight, MdClose, MdDiversity3, MdMenu, MdOutlineAccountTree, MdTravelExplore } from "react-icons/md";
 import style from "./Menu.module.scss";
 import { useState } from "react";
 
@@ -18,7 +17,7 @@ const Menu = () =>{
                 <div className={style.container}>
                     <div className={style.wrapper}>
                         <div className={style.menu}>
-                            <img src="/images/OpenClimateLogoIcon.png" alt="logo" className={style.ocLogoIcon}/>
+                            <img src="/images/OpenClimateLogoIcon.svg" alt="logo" className={style.ocLogoIcon}/>
                             <img src="/images/OpenClimateLogoText.svg" alt="logo" className={style.ocLogoText}/>
                             <div className={style.menuIcon}>
                                 {

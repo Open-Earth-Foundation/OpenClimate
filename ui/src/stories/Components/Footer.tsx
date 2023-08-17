@@ -8,7 +8,7 @@ const Footer:FC = () => {
            <div className={style.container}>
                 <div className={style.content}>
                     <div className={style.ocLogoContainer}>
-                        <img className={style.ocLogo} src="/vector.png" alt="OpenClimate Logo Footer"/>
+                        <img className={style.ocLogo} src="/images/OpenClimateLogoText.svg" alt="OpenClimate Logo Footer"/>
                     </div>
                     <div className={style.quickAccessLinks}>
                         <div className={style.footerLinks}>
@@ -47,7 +47,7 @@ const Footer:FC = () => {
                         <span className={style.feedBackText}>Send Feedback</span>
                     </div>
                     <div className={style.OEFLogo}>
-                        <img src="/poweredBy.png" alt="OEFLogo"/>
+                        <img src="/images/poweredBy.svg" alt="OEFLogo"/>
                     </div>
                 </div>
            </div>

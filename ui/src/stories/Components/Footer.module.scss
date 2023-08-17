@@ -16,19 +16,6 @@
     padding-top: 56px;
 }
 
-// .container{
-//     width: 100%;
-//     padding-left: 75px;
-//     padding-right: 75px;
-//     padding-top: 56px;
-// }
-
-// .content{
-//     width: 100%;
-//     display: grid;
-//     grid-template-columns: auto auto auto; 
-// }
-
 .content{
     width: 100%;
     display: grid;
@@ -53,12 +40,6 @@
     letter-spacing: 0.5px;
     color: #FFFFFF;
 }
-
-// .quickAccessLinks{
-//     display: grid;
-//     grid-template-columns: auto auto auto;
-//     row-gap: 24px;
-// }
 
 .quickAccessLinks{
     display: grid;
@@ -274,8 +255,14 @@
     }
     
     .OEFLogo img {
-        width: 158px;
+        width: 142px;
         position: relative;
+    }
+
+    .ocLogo{
+        width: 162px;
+        height: 20px;
+        margin-left: -20px;
     }
 }
 
