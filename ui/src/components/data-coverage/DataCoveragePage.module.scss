@@ -219,7 +219,7 @@
     font-size: 14px !important;
 }
 .cr{
-    width: 350px !important;
+    width: 400px !important;
     margin-left: -20px;
 }
 .chart{
@@ -324,7 +324,7 @@
 .collaborateContent button{
     display: flex;
     height: 48px;
-    width: 255rpx;
+    width: 255px;
     background: none;
     color: #5FE500;
     padding: 16px 24px;
@@ -341,12 +341,6 @@
     letter-spacing: 1.25px;
     cursor: pointer;
 }
-
-
-@media screen and (min-width: 360px) {
-    // style goes here
-}
-
 
 @media screen and (min-width: 600px){
     .dataRecordsRightContent {

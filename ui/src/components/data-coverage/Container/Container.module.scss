@@ -2,15 +2,7 @@
     width: 100%;
     padding-left: 16px;
     padding-right: 16px;
-}
-
-@media screen and (min-width: 360px) {
-    .root{
-        width: 100%;
-        padding-left: 16px;
-        padding-right: 16px;
-        display: flex;
-    }
+    display: flex;
 }
 
 @media screen and (min-width: 600px) {
