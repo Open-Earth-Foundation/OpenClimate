@@ -1,29 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-.root {
-    font-family: 'Poppins';
-    width: 100%;
-}
-
-.header{
-    width: 100%;
-    height: 84px;
-    display: flex;
-    align-items: center;
-    background: #008600;
-}
-
-.nav{
-    display: flex;
-    height: 100%;
-    width: 1312px;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .heroSection{
-    height: 500px;
-    width: 100%;
+    height: 400px;
+    width: 100vw;
 }
 
 .heroSection::before {
@@ -31,7 +10,7 @@
     position: absolute;
     height: 500px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .heroText{
@@ -39,14 +18,15 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: 542px;
-    position: absolute;
+    height: 400px;
+    position: relative;
+    gap: 24px;
 }
 
 .heroText h1{
-    font-size: 57px;
+    font-size: 28px;
     font-weight: 600;
-    line-height: 64px;
+    line-height: 36px;
     padding: 0px;
     margin: 0px;
 }
@@ -60,17 +40,18 @@
 }
 
 .heroText p{
-    font-size: 16px;
+    font-size: 12px;
     font-family: Open Sans;
-    line-height: 24px;
+    line-height: 16px;
     letter-spacing: 0.5px;
     color: #00001F;
+
 }
 
 .heroText button{
     display: flex;
     height: 48px;
-    width: 300px;
+    width: 100%;
     padding: 16px 24px;
     justify-content: center;
     align-items: center;
@@ -91,32 +72,35 @@
 }
 
 .dataRecordsSection{
-    height: 424px;
+    height: 670px;
     width: 100%;
     background: url("./topography.png") no-repeat center;
     background-color: #008600;
     background-size: cover;
     position: relative;
     top: 0px;
+    padding-top: 36px;
 }
 
 .dataRecordsContent{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .dataRecordsLeftContent{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 424px;
-    width: 500px;
+    width: 100%;
+    align-items: center;
+    gap: 15px;
 }
 
 .dataRecordsLeftContent h2{
     color: #FFF;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: 600;
     line-height: 44px;
 }
@@ -126,17 +110,19 @@
 }
 
 .dataRecordsLeftContent p {
-    font-size: 16px;
+    font-size: 14px;
     font-family: Open Sans;
-    line-height: 24px;
+    font-style: normal;
+    line-height: 20px;
     letter-spacing: 0.5px;
     color: #FFF;
+    text-align: center;
 }
 
 .dataRecordsLeftContent button {
     display: flex;
     height: 48px;
-    width: 300px;
+    width: 205px;
     padding: 16px 24px;
     justify-content: center;
     align-items: center;
@@ -159,10 +145,10 @@
 
 .dataRecordsRightContent {
     position: relative;
-    width: 812px;
+    width: 100%;
     display: grid;
-    grid-template-columns: 200px 200px 200px;
-    gap: 10px;
+    grid-template-columns: 93px 93px 93px;
+    gap: 48px;
     justify-content: center;
     align-items: center;
 }
@@ -171,6 +157,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: start;
     width: auto;
     height: 72px;
     color: #FFF;
@@ -179,17 +166,22 @@
 .dataRecordsRightContent div p{
     margin: 0px;
     padding: 0px;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: 600;
     line-height: 44px;
     position: relative;
+}
+
+.dataRecordsRightContent div span{
+    font-size: 12px;
+    text-align: center;
 }
 
 .chartSection{
     width: 100%;
     height: 900px;
     background: #FFF;
-    padding-top: 100px;
+    padding-top: 64px;
     
 }
 
@@ -209,21 +201,26 @@
 
 .title {
     text-align: center;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: 600;
-    line-height: 44px;
+    line-height: 32px;
     margin-bottom: 30px;
 }
 
 .chartwrapper{
     width: 100%;
-    height: 600px;
+    height: 612px;
     padding: 16px;
     margin-top: 50px;
     border-radius: 8px;
     border: 1px solid var(--border-overlay, #E6E7FF);
     background: var(--background-default, #FFF);
     box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10), 0px 4px 6px -1px rgba(0, 0, 0, 0.10);
+    font-size: 14px !important;
+}
+.cr{
+    width: 400px !important;
+    margin-left: -20px;
 }
 .chart{
     width: 100%;
@@ -232,7 +229,7 @@
 
 .chartDescription{
     color: var(--content-primary, #00001F);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     line-height: 24px;
     border-bottom: 1px solid #D7D8FA;
@@ -247,21 +244,21 @@
     height: 100px;
     display: flex;
     width: 400px;
-    top: 60px;
-    left: 0px;
+    top: 40px;
+    left: 20px;
     position: relative;
-    gap: 15px;
+    gap:8px;
 }
 
 .orangeBar{
     height: 5px;
-    width: 24px;
+    width: 16px;
     background: #E9750A;
 }
 
 .greenBar{
     height: 5px;
-    width: 24px;
+    width: 16px;
     background: #24BE00;
 }
 
@@ -272,24 +269,30 @@
     background-color: #E8EAFB;
     height: 32px;
     color: #001EA7;
-    width: 150px;
+    padding: 8px;
     position: relative;
     justify-content: center;
     border-radius: 50px;
+    font-size: 12px;
 }
 
 .subtitle {
-    font-size: 16px;
+    font-size: 12px;
     font-family: Open Sans;
-    line-height: 24px;
+    line-height: 16px;
     letter-spacing: 0.5px;
-    text-align: center;
+    font-weight: 400;
+    text-align: left;
 }
 
 .collaborateSection{
     width: 100%;
     height: 372px;
     background: linear-gradient(180deg, #2352DC 0%, #00001F 100%);
+}
+
+.circleBg{
+    height: 64px !important;
 }
 
 .collaborateContent{
@@ -307,13 +310,13 @@
 .collaborateContent div{
     display: flex;
     position: relative;
-    width: 592px;
+    width: 328px;
     text-align: center;
 }
 
 .collaborateContent h2{
     color: var(--background-default, #FFF);
-    font-size: 36px;
+    font-size: 24px;
     font-weight: 600;
     line-height: 44px;
 }
@@ -321,7 +324,7 @@
 .collaborateContent button{
     display: flex;
     height: 48px;
-    width: 248px;
+    width: 255px;
     background: none;
     color: #5FE500;
     padding: 16px 24px;
@@ -331,7 +334,401 @@
     border-radius: 50px;
     border: 2px solid var(--interactive-accent, #5FE500);
     margin-top: 30px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px; /* 114.286% */
+    letter-spacing: 1.25px;
     cursor: pointer;
 }
 
+@media screen and (min-width: 600px){
+    .dataRecordsRightContent {
+        position: relative;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 150px 150px 150px;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+    }
 
+    .cr{
+        width: 100% !important;
+        margin-left: -20px;
+    }
+
+    .circleBg{
+        height: 100px !important;
+    }
+
+    .dataRecordsSection{
+        height: 400px;
+    }
+
+    .dataRecordsLeftContent{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .dataRecordsRightContent {
+        position: relative;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 93px 93px 93px;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dataRecordsContent{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+    }
+}
+
+@media screen and (min-width: 905px) {
+    .nav{
+        display: flex;
+        height: 100%;
+        width: 1312px;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .heroSection{
+        height: 500px;
+        width: 100%;
+    }
+    
+    .heroSection::before {
+        content: '';
+        position: absolute;
+        height: 500px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .heroText{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 542px;
+        position: absolute;
+    }
+    
+    .heroText h1{
+        font-size: 57px;
+        font-weight: 600;
+        line-height: 64px;
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    .h1Black{
+        color: #00001F;
+    }
+    
+    .h1Green{
+        color: #008600;
+    }
+    
+    .heroText p{
+        font-size: 16px;
+        font-family: Open Sans;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        color: #00001F;
+    }
+    
+    .heroText button{
+        display: flex;
+        height: 48px;
+        width: 300px;
+        padding: 16px 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 50px;
+        background: #008600;
+        color: white;
+        border: none;
+    }
+    
+    .heroText button span {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 1.25px;
+        text-transform: uppercase;
+    }
+    
+    .dataRecordsSection{
+        height: 524px;
+        width: 100%;
+        background: url("./topography.png") no-repeat center;
+        background-color: #008600;
+        background-size: cover;
+        position: relative;
+        top: 0px;
+    }
+    
+    .dataRecordsContent{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .dataRecordsLeftContent{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 424px;
+        width: 500px;
+    }
+    
+    .dataRecordsLeftContent h2{
+        color: #FFF;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 44px;
+    }
+    
+    .h1GreenB{
+        color: #5FE500;
+    }
+    
+    .dataRecordsLeftContent p {
+        font-size: 16px;
+        font-family: Open Sans;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        color: #FFF;
+        text-align: left;
+    }
+    
+    .dataRecordsLeftContent button {
+        display: flex;
+        height: 48px;
+        width: 300px;
+        padding: 16px 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 50px;
+        background: #008600;
+        color: white;
+        border: none;
+        background: var(--content-link, #2351DC);
+    }
+    
+    .dataRecordsLeftContent button span {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 1.25px;
+        text-transform: uppercase;
+    }
+    
+    .dataRecordsRightContent {
+        position: relative;
+        width: 812px;
+        display: grid;
+        grid-template-columns: 200px 200px 200px;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .dataRecordsRightContent div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        height: 50px;
+        color: #FFF;
+    }
+    
+    .dataRecordsRightContent div p{
+        margin: 0px;
+        padding: 0px;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 44px;
+        position: relative;
+    }
+    
+    .chartSection{
+        width: 100%;
+        height: 900px;
+        background: #FFF;
+        padding-top: 100px;
+        
+    }
+    
+    .heading{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .title, .subtitle {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        color: #00001F;
+    }
+    
+    .title {
+        text-align: center;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 44px;
+        margin-bottom: 30px;
+    }
+    
+    .chartwrapper{
+        width: 100%;
+        height: 600px;
+        padding: 16px;
+        margin-top: 50px;
+        border-radius: 8px;
+        border: 1px solid var(--border-overlay, #E6E7FF);
+        background: var(--background-default, #FFF);
+        box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10), 0px 4px 6px -1px rgba(0, 0, 0, 0.10);
+    }
+    .chart{
+        width: 100%;
+        height: 500px;
+    }
+    
+    .chartDescription{
+        color: var(--content-primary, #00001F);
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        border-bottom: 1px solid #D7D8FA;
+        padding-bottom: 24px;
+    }
+    
+    .chartContent{
+        width: 100%;
+    }
+    
+    .legendContent{
+        height: 100px;
+        display: flex;
+        width: 400px;
+        top: 60px;
+        left: 20px;
+        position: relative;
+        gap: 15px;
+    }
+    
+    .orangeBar{
+        height: 5px;
+        width: 24px;
+        background: #E9750A;
+    }
+    
+    .greenBar{
+        height: 5px;
+        width: 24px;
+        background: #24BE00;
+    }
+    
+    .lgdEms, .lgdPlgs{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background-color: #E8EAFB;
+        height: 32px;
+        color: #001EA7;
+        width: 150px;
+        position: relative;
+        justify-content: center;
+        border-radius: 50px;
+    }
+    
+    .subtitle {
+        font-size: 16px;
+        font-family: Open Sans;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        text-align: center;
+    }
+
+    .circleBg{
+        height: 200px !important;
+    }
+    
+    .collaborateSection{
+        width: 100%;
+        height: 372px;
+        background: linear-gradient(180deg, #2352DC 0%, #00001F 100%);
+    }
+    
+    .collaborateContent{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 372px;
+        width: 100%;
+        position: relative;
+        top: -50px;
+     
+    }
+    
+    .collaborateContent div{
+        display: flex;
+        position: relative;
+        width: 592px;
+        text-align: center;
+    }
+    
+    .collaborateContent h2{
+        color: var(--background-default, #FFF);
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 44px;
+    }    
+}
+
+@media screen and (min-width: "1240px") {
+    .dataRecordsLeftContent button {
+        display: flex;
+        height: 48px;
+        width: 536px;
+    }
+
+    .dataRecordsRightContent div span{
+        font-size: 16px;
+    }
+
+    .dataRecordsLeftContent button {
+        width: 205px;
+    }
+
+    .circleBg{
+        height: 380px !important;
+    }
+
+    .chartwrapper{
+        font-size: 22px !important;
+    }
+
+    .tickText{
+        font-size: 14px !important;
+    }
+}
