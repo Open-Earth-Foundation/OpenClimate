@@ -1,23 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .root{
-    width: 300px;
+    width: 320px;
+    height: 584px;
+    font-family: Poppins;
 }
 
-.root ul{
+.header{
+    width: 100%;
+    height: 56px;
     display: flex;
-    width: auto;
-    font-weight: 400;
-    line-height: 24px;
+    align-items: center;
+    background: #008600;
+}
+
+.nav{
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ocLogoIcon{
+    height: 24px;
+    width: 24px;
+}
+
+.ocLogoText{
+    height: 24px;
+}
+
+.nav a {
     font-size: 16px;
-    color: #fff;
-    gap: 48px
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    color: white;
+    text-decoration: none;
 }
 
-.root ul li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.sideNav{
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    padding-top: 24px;
 }
 
-.active{
-    font-weight: 600 !important;
+.sideNav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: 0.5px; 
+    color: #00001F;
+    padding:16px;
+    text-decoration: none;
 }
+
+.iconText{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.rightIcon {
+    display: flex;
+    align-items: center;
+}
+
+
+.container{
+    margin-left: 16px;
+    margin-right: 16px;
+    width: 100%;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: "360px") {
+    .root {
+        width: 360px;
+    }
+}
+
+@media screen and (min-width: "600px") {
+    .root {
+        width: 600px;
+    }
+    .header{
+        height: 56px;
+    }
+}
+
+@media screen and (min-width: "905px") {
+    .root {
+        width: 905px;
+    }
+
+    .header{
+        height: 84px;
+    }
+
+    .menuIcon{
+        display: none;
+    }
+    .nav {
+        display: flex;
+    }
+
+    .menu {
+        justify-content: left;
+        gap: 56px;
+    }
+
+    .container{
+        margin-left: 48px;
+        margin-right: 48px;
+    }
+
+    .ocLogoIcon{
+        height: 36px;
+        width: 36px;
+    }
+    
+    .ocLogoText{
+        height: 32px;
+    }
+}
+
+@media screen and (min-width: "1240px") {
+    .root {
+        width: 1240px;
+    }
+}
+
+@media screen and (min-width: "1440px") {
+    .root {
+        width: 1440px;
+    }
+
+    .container{
+        margin-left: 64px;
+        margin-right: 64px;
+    }
+}
+
