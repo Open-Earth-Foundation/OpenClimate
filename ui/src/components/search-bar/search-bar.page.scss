@@ -1,9 +1,10 @@
 .search-bar {
-    width: 732px;
-    height: 56px;
+    width: 632px;
+    height: 48px;
+    margin-top: 2px; 
 
     &__disabled {
-        color: #535572;
+        color: var(--white-color);
         opacity: .5;
         cursor: not-allowed;
     }
@@ -11,35 +12,36 @@
     .label {
         font-weight: 500;
         font-size: 14px;
-        color: #535572;
+        color: var(--white-color);
         padding-left: 12px;
     }
     
     .content {
-        padding: 16px;
+        padding: 10px;
     }
 
     .outer-card {
-        width: 732px;
+        width: 632px;
         max-height: 420px;
-        background-color: #03554C;
-        border-radius: 8px;
+        background-color: var(--interactive-tertiary);
+        border-radius: 30px;
         position: absolute;
         z-index: var(--search-dropdown-z-index);
     }
 
     .inner-card {
-        width: 732px;
-        background-color: #03554C;
-        height: 56px;
-        border-radius: 8px;
+        width: 632px;
+        background-color: var(--interactive-tertiary);
+        height: 48px;
+        border-radius: 30px;
+        box-shadow: none;
     }
 
 
     .dropdown {
         display: flex;
         flex-direction: row;
-        color: #378279;
+        color: var(--white-color);
         align-items: center;
         cursor: pointer;
         position: relative;
@@ -48,9 +50,9 @@
     .dropdown-text {
         padding-left: 8px;
         font-size: 16px;
-        background-color: #03554C;
+        background-color: var(--interactive-tertiary);
         color: #FFFFFF;
-        min-width: 732px;
+        min-width:  632px;
         overflow: hidden;
         white-space: nowrap;
     }
@@ -58,12 +60,16 @@
     .dropdown-text-placeholder {
         padding-left: 8px;
         font-size: 16px;
-        background-color: #03554C;
+        background-color: var(--interactive-tertiary);
         color: #FFFFFF;
-        min-width: 732px;
+        min-width:  632px;
         overflow: hidden;
         white-space: nowrap;
-        opacity: .5;
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0.5px; 
     }
 
     .dropdown-select-missing-container {
@@ -108,7 +114,7 @@
     }
 
     .dropdown-select {
-        width: 732px;
+        width:  632px;
         font-family: 'Open Sans';
         cursor: pointer;
         font-weight: 400;
@@ -148,7 +154,7 @@
     }
 
     .search-icon {
-        color: var(--neutral-grey);
+        color: var(--white-color);
     }
 
     .icon-disabled {

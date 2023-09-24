@@ -109,7 +109,20 @@
         }
 
     }
-
+    
+    &__logo-link{
+        display: flex;
+        gap:56px;
+        align-items: center;
+    }
+    &__logo-globe{
+        width: 36px;
+        height: 36px;
+    }
+    &__logo-text{
+        width: 144px;
+        height: 32px;
+    }
     &__icon-menu{
         display: none;
     }
@@ -117,12 +130,12 @@
         display: none;
     }
     
-    height: 80px;
+    height: 84px;
     
     background-color: var(--primary-color);
 
     &__wrapper {
-        padding: 0px 40px 19px 29px;
+        padding: 2px 42px 20px 29px;
         display: flex;
     }
 

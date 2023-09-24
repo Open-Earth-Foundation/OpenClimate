@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from "react";
 import { NavLink } from "react-router-dom";
-import MainLogoIcon from "../../img/toolbar/OpenClimate_Beta_logo.svg";
+import OCGLOBELOGO from "../../img/toolbar/oc_globe_logo.svg";
+import OCTEXTLOGO from "../../img/toolbar/oc_logo.svg";
 import NavMenu from "./nav-menu/nav-menu";
 import ToolbarAuthorized from "./toolbar-authorized/toolbar-authorized";
 import { IUser } from "../../../api/models/User/IUser";
@@ -39,8 +40,13 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
           <div className="toolbar__logo">
             <NavLink exact={true} to="/" className="toolbar__logo-link">
               <img
-                className="toolbar__logo-pic"
-                src={MainLogoIcon}
+                className="toolbar__logo-globe"
+                src={OCGLOBELOGO}
+                alt="Open Climate"
+              />
+              <img
+                className="toolbar__logo-text"
+                src={OCTEXTLOGO}
                 alt="Open Climate"
               />
             </NavLink>
@@ -59,8 +65,7 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
                 <div className="toolbar__login" hidden>
                   <button
                     className="toolbar__login-btn"
-                    onClick={showLoginModal}
-                  >
+                    onClick={showLoginModal}>
                     Log In
                   </button>
                 </div>
@@ -72,8 +77,7 @@ const MainToolbar: FunctionComponent<Props> = (props) => {
           <div className="toolbar__sideNav">
             <div
               onClick={handleCloseSideNav}
-              className="toolbar__sidenav-overlay"
-            ></div>
+              className="toolbar__sidenav-overlay"></div>
             <div className="toolbar__sidenav-content">
               <ul className="toolbar__sidenav-menu-items">
                 <div className="toolbar__sidenav-logo">
