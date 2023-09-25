@@ -3,13 +3,75 @@
 
 
     @include respond(mobile){
-        height: 56px;    
+        height: 56px; 
+        position: relative;
+
+        &__sideNav{
+            display: block !important;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            background-color: white;
+            padding-top: 24px;
+            top: 56px !important;
+        }
+        
+        &__sideNav a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: Poppins;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; /* 142.857% */
+            letter-spacing: 0.5px; 
+            color: #00001F;
+            padding:16px;
+            text-decoration: none;
+        }
+        
+        &__iconText{
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        &__rightIcon {
+            display: flex;
+            align-items: center;
+        }
+        
+        padding-top: 0;
+        &__menu{
+            display: flex;
+            align-items: center !important;
+            justify-content: space-between;
+            width: 100%;
+            position: relative !important;
+            top: 0px !important;
+        } 
+        &__logo-link{
+            display: flex;
+            justify-content: space-between !important;
+            align-items: center;
+            top: -5px;
+            position: relative;
+        }
+        &__logo-globe{
+            width: 24px !important;
+            height: 24px !important;
+        }
+        &__logo-text{
+            width: 112px !important;
+            height: 24px !important;
+        }
+         
         &__icon-menu{
             display: flex !important;
-            // background: white;
-            align-items: top;
+            top: -4px;
             position: relative;
-            top: -16px;
+            
         }
         &__account-button {
             display: flex !important;
@@ -109,6 +171,21 @@
         }
 
     }
+
+    &__sideNav{
+        display: none;
+    }
+
+    &__menu{
+        display: flex;
+        align-items: center !important;
+        justify-content: space-between;
+        gap: 56px;
+        align-items: center;
+        position: relative;
+        top: 8px;
+    } 
+    
     
     &__logo-link{
         display: flex;

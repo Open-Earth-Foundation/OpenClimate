@@ -1,3 +1,4 @@
+
 /* source-sans-pro-regular - latin */
 @font-face {
   font-family: 'Source Sans Pro';
@@ -190,9 +191,17 @@ code {
 }
 
 .content {
-  min-height: calc(100vh - 80px - 80px);
+  min-height: 800px !important;
   margin: 0px;
   padding: 0px;
+}
+
+@media screen and (min-width: "600px") {
+  .content {
+    min-height: calc(100vh - 80px - 80px);
+    margin: 0px;
+    padding: 0px;
+  }
 }
 
 @keyframes App-logo-spin {
@@ -203,3 +212,5 @@ code {
     transform: rotate(360deg);
   }
 }
+
+
