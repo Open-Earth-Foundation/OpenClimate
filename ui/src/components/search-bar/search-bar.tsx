@@ -20,7 +20,6 @@ const SearchBar: FunctionComponent = () => {
   const inputComponentRef = useRef<any>(null);
 
   const { trackEvent } = useMatomo();
-    
 
   const handleClickOutside = (event: MouseEvent) => {
     inputComponentRef.current &&
@@ -59,9 +58,12 @@ const SearchBar: FunctionComponent = () => {
       }
     });
 
-    fetch(`/api/v1/search/actor?q=${modifiedSearchString}`, {
-      signal: controller.signal,
-    })
+    fetch(
+      `https://openclimate.openearth.dev/api/v1/search/actor?q=${modifiedSearchString}`,
+      {
+        signal: controller.signal,
+      }
+    )
       .then((res) => res.json())
       .then((json) => {
         let actorData = json.data;
@@ -174,8 +176,7 @@ const SearchBar: FunctionComponent = () => {
                 key={`dropdown-item-${index}`}
                 onClick={() => onActorClick(option)}
                 onMouseEnter={() => setHoverActorIndex(index)}
-                onMouseLeave={() => setHoverActorIndex(-1)}
-              >
+                onMouseLeave={() => setHoverActorIndex(-1)}>
                 <div>
                   {renderHighlightedName(option.name, inputString)}
                   <div className="dropdown-select-subtitle">

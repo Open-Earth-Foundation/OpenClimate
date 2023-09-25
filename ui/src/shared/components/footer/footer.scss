@@ -1,102 +1,271 @@
 @import './mixins.scss';
 
-.footer {
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-    background: #272727;
-    font-family: Lato;
-    font-size: 14px;
-    font-weight: 400;
-    color: white;
+.footer{
     display: flex;
-    flex-direction: column;
     width: 100%;
-    height: 80px;
-    padding: 16px 40px 16px 40px;
-
-    &__line {
-        display: flex;
-        flex-direction: row;
+    height: 644px;
+    font-family: 'Poppins';
+    background: #00001F;
+    justify-content: center;
+    &__container{
         width: 100%;
-        align-items: center;
-    }
-
-    &__disclaimer {
-        &__text {
-            color: white;
-            font-family: Lato;
-            font-size: 14px;
-            font-weight: 400;
-            margin-right: 8px;
-        }
-    }
-
-    &__beta {
-        vertical-align: middle;
-    }
-
-    &__feedback {
-        color: white;
-        cursor: pointer;
-        text-decoration: underline;
-        font-family: Poppins;
-        font-size: 13px;
-        font-weight: 500;
-    }
-
-    &__poweredby {
-        color: white;
-        font-family: Lato;
-        font-size: 14px;
-        font-weight: 400;
-        margin-left: auto;
-        &__logo {
-            margin-left: 8px;
-            vertical-align: middle;
-        }
-    }
-
-    &__menu {
-
-        display: flex;
-
-        &__items {
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        &__item {
-            margin-right: 20px;
-        }
-
-        &__item:last-child {
-            margin-right: 0;
-        }
-
-        &__link {
-            color: white;
-            font-size: 12px;
-            font-weight: 700;
-            font-family: Lato;
-            cursor: pointer;
-        }
-    }
-
-    &__contactus {
-        margin-left: auto;
-        &__link {
-            font-size: 14px;
-            font-weight: 700;
-            font-family: Lato;
-            color: green;
-            cursor: pointer;
-        }
-    }
-
-    @include respond(mobile){
-        display: none;
+        padding: 16px;
+        padding-top: 56px;
     }
     
+    &__content{
+        width: 100%;
+        display: grid;
+        grid-template-columns:auto;
+        gap: 36px; 
+    }
+    
+    &__ocLogo{
+        width: 143.33px;
+        height: 20px;
+    }
+    
+    &__footerLinks a{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.5px;
+        color: #FFFFFF;
+    }
+        
+    &__quickAccessLinks{
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+        row-gap: 24px;
+        justify-content: space-between;
+    }
+    
+    &__cta{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        gap: 16px;
+    }
+    
+    
+    &__ctaBtnA{
+        width: 100%;
+        height: 48px;
+        border: 2px solid #5FE500;
+        border-radius: 50px;
+        background: transparent;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        text-transform: uppercase;
+        color: #5FE500;
+    }
+    
+    
+    &__ctaBtnB{
+        width: 100%;
+        height: 48px;
+        border: none;
+        border-radius: 50px;
+        background: #008600;;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        margin-left: 0px;
+    }
+    
+    &__hr{
+        border: 1px solid #232640;
+        width: 100%;
+        margin-top: 43px;
+    }
+    
+    &__content2{
+        color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 54px;
+    }
+    
+    &__betaBadge{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 61px;
+        height: 20px;
+        background: #D7D8FA;
+        border-radius: 10.4644px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 16px;
+        color: #00001F;
+        margin-right: 16px;
+    }
+    
+    &__versionInfo{
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    
+    &__versionText{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        margin-right: 16px;
+    }
+    
+    &__feedBackText{
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        text-decoration-line: underline;
+    }
+    
+    &__OEFLogo{
+        display: flex;
+        justify-content: right;
+        width: 100%;
+    }
+    
+    &__OEFLogo img {
+        width: 107px;
+        position: relative;
+    }
+
+    @include respond(mediumScreen){
+
+            height: 444px;
+            &__container{
+                 width: 100%;
+                 padding-left: 64px;
+                 padding-right: 64px;
+                 padding-top: 56px;
+             }
+             
+             &__content{
+                 width: 100%;
+                 display: flex;
+                 justify-content: space-between;
+                 flex-direction: column;
+                 gap: 36px; 
+             }
+             
+             &__quickAccessLinks{
+                 display: grid;
+                 grid-template-columns: 153px 153px 153px;
+                 row-gap: 24px;
+                 column-gap: 48px;
+             }
+         
+             &__cta{
+                 display: flex;
+                 flex-direction: row;
+                 justify-content: end;
+                 align-items: start;
+             }
+         
+             &__ctaBtnA {
+                 width: 150px;
+                 height: 48px;
+             }
+         
+             &__ctaBtnB {
+                 width: 150px;
+                 height: 48px;
+                 margin-left: 0px !important;
+             }
+             &__content2{
+                 display: flex !important;
+                 flex-direction: row;
+                 width: 100%;
+             }
+               
+             &__OEFLogo{
+                 display: flex;
+                 justify-content: right;
+                 width: 20%;
+             }
+             &__versionInfo{
+                 flex-direction: row !important;
+                 width: 80%;
+             }
+         
+    }
+    @include respond(largeScreen){
+       height: 320px;
+       &__container{
+            width: 100%;
+            padding-left: 64px;
+            padding-right: 64px;
+            padding-top: 56px;
+        }
+        
+        &__content{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            gap: 36px; 
+        }
+        
+        &__quickAccessLinks{
+            display: grid;
+            grid-template-columns: 153px 153px 153px;
+            row-gap: 24px;
+            column-gap: 48px;
+        }
+    
+        &__cta{
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            align-items: start;
+        }
+    
+        &__ctaBtnA {
+            width: 150px;
+            height: 48px;
+        }
+    
+        &__ctaBtnB {
+            width: 150px;
+            height: 48px;
+            margin-left: 0px !important;
+        }
+        &__content2{
+            display: flex !important;
+            flex-direction: row;
+            width: 100%;
+        }
+          
+        &__OEFLogo{
+            display: flex;
+            justify-content: right;
+            width: 20%;
+        }
+        &__versionInfo{
+            flex-direction: row !important;
+            width: 80%;
+        }
+    }
 }
+
