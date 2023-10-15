@@ -86,7 +86,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                             with no emissions and pledges data
                         </p>
                         <button>
-                            <span>CONTRIBUTIONS&nbsp;GUIDLINES</span>
+                            <span>CONTRIBUTIONS&nbsp;GUIDELINES</span>
                             <MdArrowForward size={24}/>
                         </button>
                     </div>
