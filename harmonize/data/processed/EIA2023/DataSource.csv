@@ -1,0 +1,2 @@
+datasource_id,name,publisher,published,URL
+EIA:state_energy_co2_emissions:2023,State energy-related carbon dioxide emissions by year,EIA,2023-07-12,https://www.eia.gov/environment/emissions/state/
