@@ -1,0 +1,6 @@
+tag_id,tag_name
+GHGs_included_fossil_CO2_CH4_N2O_F_gases,"GHGs included: Fossil CO2, CH4, N2O, and F-gases"
+GWP_100_AR5,Uses GWP100 from IPCC AR5
+Sectors_included_in_EDGARv8,"Sectors: power, buildings, transport, industrial combustion, industrial process emissions, agricultural soils, and waste"
+excludes_LULUCF_and_biomass_burning,Large scale biomass burning and LULUCF are excluded
+activity_data_and_other_sources,Emissions derived from activity data and other datasets
