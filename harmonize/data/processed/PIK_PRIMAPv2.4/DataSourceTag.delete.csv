@@ -1,0 +1,9 @@
+datasource_id,tag_id
+PRIMAP:10.5281/zenodo.7179775:v2.4,GHGs_included_CO2_CH4_N2O_F_gases
+PRIMAP:10.5281/zenodo.7179775:v2.4,sectors_energy_IPPU_ag_waste_other
+PRIMAP:10.5281/zenodo.7179775:v2.4,excludes_LULUCF
+PRIMAP:10.5281/zenodo.7179775:v2.4,GWP_100_SAR_and_AR4
+PRIMAP:10.5281/zenodo.7179775:v2.4,Excludes_international_aviation_shipping
+PRIMAP:10.5281/zenodo.7179775:v2.4,combined_datasets
+PRIMAP:10.5281/zenodo.7179775:v2.4,country_or_3rd_party
+PRIMAP:10.5281/zenodo.7179775:v2.4,peer_reviewed
