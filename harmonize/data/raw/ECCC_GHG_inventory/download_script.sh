@@ -1,0 +1,14 @@
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_AB.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_BC.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_MB.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_NB.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_NL.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_NS.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_NT\&NU.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_NT.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_NU.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_ON.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_PE.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_QC.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_SK.xlsx
+wget https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/EN_GHG_IPCC_YT.xlsx
