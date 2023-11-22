@@ -119,7 +119,7 @@ if __name__ == "__main__":
     df = df.loc[0:first_row_with_all_NaN-1]
 
     # this is necessary for df_wide_to_long to work
-    df = df.rename(columns={'Last Inventory Year (2020)': '2020'})
+    df = df.rename(columns={'Last Inventory Year (2021)': '2021'})
 
     # filter out European Union
     filt = ~(df['Party'].str.contains('European Union'))
@@ -144,6 +144,9 @@ if __name__ == "__main__":
     df_long = df_wide_to_long(df=df_wide,
                               value_name="emissions",
                               var_name="year")
+
+    # filter out records without emission values
+    df_long = df_long.loc[df_long['emissions'] != '—']
 
     # rename columns
     df = df_long.rename(columns={'iso2': 'actor_id'})
