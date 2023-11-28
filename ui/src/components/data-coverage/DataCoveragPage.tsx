@@ -167,7 +167,7 @@ const DataCoveragePage:FC<DataCoveragePageProps> = ({
                         </p>
                         <a href="https://github.com/Open-Earth-Foundation/OpenClimate/blob/develop/CONTRIBUTING_DATA.md">
                             <button>
-                                <span>CONTRIBUTION&nbsp;GUIDLINES</span>
+                                <span>CONTRIBUTION&nbsp;GUIDELINES</span>
                                 <MdArrowForward size={24}/>
                             </button>
                         </a>
