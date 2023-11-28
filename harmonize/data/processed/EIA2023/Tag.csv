@@ -1,0 +1,7 @@
+tag_id,tag_name
+energy_related_co2,Energy-related CO2
+primary_source,Primary source: emissions derived from activity data
+based_on_SEDS,Based on data in the State Energy Data System (SEDS)
+fuel_types_coal_nat_gas_petro_producs,"Fuel types: coal, natural gas, and petroleum products"
+uses_epa_co2_emissions_factors,Uses U.S. Environmental Protection Agency's CO2 emissions factors
+sectors_included_in_eia,"Includes emissions from direct fuel use across all sectors, including residential, commercial, industrial, and transportation, as well as primary fuels consumed for electricity generation."
