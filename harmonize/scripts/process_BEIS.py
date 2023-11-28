@@ -70,8 +70,8 @@ if __name__ == "__main__":
     outputDir = os.path.abspath(outputDir)
     make_dir(path=Path(outputDir).as_posix())
 
-    # PRIMPAP dataset
-    fl = "../data/raw/UK_BEIS/UK-local-authority-ghg-emissions-2020.xlsx"
+    # BEIS dataset
+    fl = "../data/raw/UK_BEIS/2005-21-uk-local-authority-ghg-emissions-update-060723.xlsx"
     fl = os.path.abspath(fl)
 
     # ------------------------------------------
@@ -91,11 +91,11 @@ if __name__ == "__main__":
     # DataSource table
     # ------------------------------------------
     datasourceDict = {
-        "datasource_id": "BEIS:UK_regional_GHG:2022-06-30",
-        "name": "UK local authority and regional greenhouse gas emissions national statistics, 2005 to 2020",
+        "datasource_id": "BEIS:UK_regional_GHG:2023-07-06",
+        "name": "UK local authority and regional greenhouse gas emissions national statistics, 2005 to 2021",
         "publisher": publisherDict["id"],
-        "published": "2022-06-30",
-        "URL": "https://www.gov.uk/government/statistics/uk-local-authority-and-regional-greenhouse-gas-emissions-national-statistics-2005-to-2020",
+        "published": "2023-07-06",
+        "URL": "https://www.gov.uk/government/statistics/uk-local-authority-and-regional-greenhouse-gas-emissions-national-statistics-2005-to-2021",
     }
     simple_write_csv(
         output_dir=outputDir, name="DataSource", data=datasourceDict, mode="w"
