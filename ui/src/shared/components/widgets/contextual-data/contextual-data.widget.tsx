@@ -121,7 +121,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                         (latestPopulation.population /
                           parentPopulation.population) *
                         100
-                      ).toFixed(3)}%`
+                      ).toPrecision(3)}%`
                     : "N/A"}
                   <Tooltip
                     className="contextual-widget__tooltip"
@@ -166,7 +166,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                 <div className="contextual-widget__mid-text-box">
                   <div className="contextual-widget__mid-header-text">
                     {latestPopulation
-                      ? (latestPopulation.population / 1000000.0).toPrecision(5)
+                      ? (latestPopulation.population / 1000000.0).toPrecision(3)
                       : "N/A"}
                     <div className="contextual-widget__grey-text">M</div>
                     <Tooltip
@@ -208,28 +208,34 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
                 <div className="contextual-widget__icon-padding">
                   <AspectRatio sx={{ color: "#7A7B9A", fontSize: 20 }} />
                 </div>
-                <div className="contextual-widget__left-info-box">
-                  <div className="contextual-widget__mid-header-text">
-                    {area ? area : "N/A"}
-                    <div className="contextual-widget__grey-text">Km2</div>
-                    <Tooltip
-                      className="contextual-widget__tooltip"
-                      classes={{
-                        tooltip: classes.customTooltip,
-                        arrow: classes.customArrow,
-                      }}
-                      title={
-                        <div className="tooltip">
-                          <div>Source: {areaSource ? areaSource : "N/A"}</div>
-                          <div>Year: {areaYear ? areaYear : "N/A"}</div>
-                        </div>
-                      }
-                      arrow
-                      placement="right"
-                    >
-                      <InfoOutlined sx={{ color: "#A3A3A3", fontSize: 13 }} />
-                    </Tooltip>
-                  </div>
+                  <div className="contextual-widget__left-info-box">
+                    <div className="contextual-widget__mid-header-text">
+                      {area 
+                        ? area > 1000000 
+                          ? (area / 1000000).toFixed(3) 
+                          : area 
+                        : "N/A"}
+                      <div className="contextual-widget__grey-text">
+                        {area && area > 1000000 ? "M Km²" : "Km²"}
+                      </div>
+                      <Tooltip
+                        className="contextual-widget__tooltip"
+                        classes={{
+                          tooltip: classes.customTooltip,
+                          arrow: classes.customArrow,
+                        }}
+                        title={
+                          <div className="tooltip">
+                            <div>Source: {areaSource ? areaSource : "N/A"}</div>
+                            <div>Year: {areaYear ? areaYear : "N/A"}</div>
+                          </div>
+                        }
+                        arrow
+                        placement="right"
+                      >
+                        <InfoOutlined sx={{ color: "#A3A3A3", fontSize: 13 }} />
+                      </Tooltip>
+                    </div>
                   <div className="contextual-widget__normal-right-text">
                     Total area
                   </div>
@@ -251,7 +257,7 @@ const ContextualDataWidget: FunctionComponent<Props> = (props) => {
               <div className="contextual-widget__left-info-box">
                 <div className="contextual-widget__right-header-text">
                   {latestGDP
-                    ? (latestGDP.gdp / 1000000000.0).toPrecision(5) + "B"
+                    ? (latestGDP.gdp / 1000000000.0).toPrecision(3) + "B"
                     : "N/A"}
                   <div className="contextual-widget__grey-text">USD</div>
                   <Tooltip
