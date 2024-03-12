@@ -21,7 +21,8 @@ def import_all_data(zipfileurl, processed, host, dbname, user, password):
         "ISO-3166-1",
         "Kosovo",
         "ISO-3166-2",
-        "UNLOCODE"
+        "UNLOCODE",
+        "UNLOCODE-2023-2"
     ]
 
     for prereq in prereqs:
