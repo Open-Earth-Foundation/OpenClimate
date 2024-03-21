@@ -13,7 +13,7 @@ PUBLISHER = {
 }
 
 DATASOURCE = {
-    "datasource_id": "OEF:WD:city-population:20221106",
+    "datasource_id": "OEF:WD:city-population:20240320",
     "name": "Wikidata extract of city objects and their populations",
     "publisher": PUBLISHER["id"],
     "published": "2024-03-20",
