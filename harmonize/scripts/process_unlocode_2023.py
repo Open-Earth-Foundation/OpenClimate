@@ -73,6 +73,13 @@ SUBDIVS_COLUMNS = [
     "type"
 ]
 
+# Known good UNLOCODEs that we want to keep
+
+KNOWN_GOOD = [
+    'GB BPT',
+    'GB ELL'
+    'AU PBN'
+]
 
 def write_csv(name, rows):
     with open(f'{OUTPUT_DIR}/{name}.csv', mode='w') as csvfile:
@@ -138,7 +145,7 @@ def handle_input_row(row, subdivs):
         '|.+Airport'
     )
 
-    if re.search(regex, row["Name"]) or row["ISO 3166-1"].strip() == "XZ":
+    if (re.search(regex, row["Name"]) or row["ISO 3166-1"].strip() == "XZ") and not actor_id in KNOWN_GOOD:
         # We want to delete bad existing rows
 
         write_output_row("Actor.delete", ["actor_id"], {
