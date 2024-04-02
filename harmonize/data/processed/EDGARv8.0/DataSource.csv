@@ -1,0 +1,2 @@
+datasource_id,name,publisher,published,URL,citation
+EDGARv8.0:ghg,Emissions Database for Global Atmospheric Research version 8.0,JRC,2023-01-01,https://edgar.jrc.ec.europa.eu/dataset_ghg80,Joint Research Centre. (2023). Global Greenhouse Gas Emissions EDGAR v8.0 [Data set]. Joint Research Centre. https://edgar.jrc.ec.europa.eu/dataset_ghg80

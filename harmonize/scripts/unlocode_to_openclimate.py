@@ -4,8 +4,8 @@
 import csv
 import re
 
-INPUT_DIR = 'loc221csv'
-OUTPUT_DIR = 'UNLOCODE'
+INPUT_DIR = '../data/raw/unlocode/loc221csv'
+OUTPUT_DIR = '../data/processed/UNLOCODE'
 
 PUBLISHER = {
     "id": "UNECE",
@@ -111,6 +111,7 @@ def coordinates_to_decimal(coords):
 
     return (lat, lng)
 
+seen = {}
 
 def handle_input_row(row, subdivs):
 
@@ -120,6 +121,11 @@ def handle_input_row(row, subdivs):
         return
 
     actor_id = f'{row["ISO 3166-1"].strip()} {row["LOCODE"].strip()}'
+
+    if actor_id in seen:
+        return
+
+    seen[actor_id] = True
 
     # Test for function = road station; not perfect but...
     # Test if name is air, rail, or ferry port with regular expression

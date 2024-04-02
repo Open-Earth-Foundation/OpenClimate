@@ -205,7 +205,7 @@ Standard output. `data` is an object representing the actor's emissions. Each ke
     - `tag_id`: short tag.
     - `tag_name`: description of the tag.
 
-### Actor emissions /api/v1/actor/{actor_id}/emissions.csv
+### Actor emissions /api/v1/download/{actor_id}-emissions.csv
 
 Returns just emissions data for an actor, in CSV format.
 

@@ -37,7 +37,7 @@ router.get(
     }
     // Company sitemaps
     for (let i = 0; i < 100; i++) {
-      items.push({url: [{loc: makeUrl(`/sitemap-company-${String(i).padStart(2, '0')}.xml`)}]})
+      items.push({sitemap: [{loc: makeUrl(`/sitemap-company-${String(i).padStart(2, '0')}.xml`)}]})
     }
     const results = {sitemapindex: items}
     req.logger.debug(`formatted ${items.length} items`)
