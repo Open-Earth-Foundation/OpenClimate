@@ -80,6 +80,8 @@ router.get(
       if (esEnabled) {
         const client = getClient();
         const query = {
+          from : 0, 
+          size : 100,
           query: {
             function_score: {
               query: {
