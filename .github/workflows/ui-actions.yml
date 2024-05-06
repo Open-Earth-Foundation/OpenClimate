@@ -20,7 +20,7 @@ jobs:
       run: |
         cd ui
         npm ci --legacy-peer-deps
-        npm run test
+        SKIP_PREFLIGHT_CHECK=true npm run test -- --watchAll=false
 
   pushToECR:
     needs: runTests
