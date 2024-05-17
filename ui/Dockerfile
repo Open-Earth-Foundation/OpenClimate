@@ -7,7 +7,7 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY . ./
 RUN npm ci --legacy-peer-deps
-RUN npm run build
+RUN SKIP_PREFLIGHT_CHECK=true npm run build
 
 # production environment
 
