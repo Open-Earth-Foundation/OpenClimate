@@ -95,7 +95,7 @@ def check_for_zero_emissions(df):
 
 def process_sheet(actor_name, actor_id, GWP, SECTORS, DATASOURCE_DICT, ASTYPE_DICT):
     return (
-        pd.read_excel(fl, sheet_name=f'{actor_name} By Source_{GWP}', header=16)
+        pd.read_excel(fl, sheet_name=f'{actor_name} By Source', header=15)
         .loc[lambda x: x['NCFormat'].isin(SECTORS)]
         .drop(columns=['Unnamed: 0', 'IPCC_name', 'BaseYear'])
         .pipe(df_wide_to_long, value_name='emissions', var_name='year')
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     make_dir(path=Path(outputDir).as_posix())
 
     # NAEI dataset
-    fl = '../data/raw/NAEI_GB_subnational/2209201114_DA_GHGI_1990-2020_Final_v4.1_AR4_AR5.xlsm'
+    fl = '../data/raw/NAEI_GB_subnational/2306200930_DA_GHGI_1990-2021_Final_v3.1.xlsx'
     fl = os.path.abspath(fl)
 
     # ------------------------------------------
@@ -140,12 +140,12 @@ if __name__ == "__main__":
     # DataSource table
     # ------------------------------------------
     DATASOURCE_DICT = {
-        'datasource_id': 'NAEI:DA_GHGI_1990_2020:v4.1',
-        'name': 'Devolved Administration GHG Inventory 1990-2020',
+        'datasource_id': 'NAEI:DA_GHGI_1990_2021:v3.1',
+        'name': 'Devolved Administration GHG Inventory 1990-2021',
         'publisher': f"{PUBLISHER_DICT['id']}",
-        'published': '2022-09-15',
-        'URL': 'https://naei.beis.gov.uk/reports/reports?section_id=4',
-        'citation': "NAEI. (2022). Greenhouse Gas Inventories for England, Scotland, Wales & Northern Ireland: 1990-2020. National Atmospheric Emissions Inventory, ED11787/2020/CD10375/BR. https://naei.beis.gov.uk/reports/reports?section_id=4"
+        'published': '2023-06-20',
+        'URL': 'https://naei.beis.gov.uk/reports/reports?report_id=1110',
+        'citation': "NAEI. (2023). Greenhouse Gas Inventories for England, Scotland, Wales & Northern Ireland: 1990-2021. National Atmospheric Emissions Inventory, https://naei.beis.gov.uk/reports/reports?report_id=1110"
     }
 
     simple_write_csv(
