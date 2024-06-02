@@ -1,0 +1,6 @@
+datasource_id,tag_id
+ECCC:GHG_inventory:2022-04-13,GHGs_included_CO2_CH4_N2O_F_gases
+ECCC:GHG_inventory:2022-04-13,sectors_energy_IPPU_ag_waste
+ECCC:GHG_inventory:2022-04-13,Excludes_LULUCF
+ECCC:GHG_inventory:2022-04-13,GWP_100_AR4
+ECCC:GHG_inventory:2022-04-13,country_reported_data

@@ -99,10 +99,10 @@ if __name__ == "__main__":
     # DataSource table
     # ------------------------------------------
     datasourceDict = {
-        'datasource_id': 'ECCC:GHG_inventory:2022-04-13',
+        'datasource_id': 'ECCC:GHG_inventory:2023-11-10',
         'name': 'ECCC Greenhouse Gas Inventory',
         'publisher': 'ECCC',
-        'published': '2022-04-13',
+        'published': '2023-11-10',
         'URL': 'https://data.ec.gc.ca/data/substances/monitor/canada-s-official-greenhouse-gas-inventory/A-IPCC-Sector/?lang=en'
     }
 
@@ -139,7 +139,8 @@ if __name__ == "__main__":
         .loc[:, output_columns]
         .astype(astype_dict)
         .sort_values(by=['actor_id', 'year'])
-)
+        )
+
     # save to csv
     df_emissionsAgg.drop_duplicates().to_csv(
         f'{outputDir}/EmissionsAgg.csv', index=False)
