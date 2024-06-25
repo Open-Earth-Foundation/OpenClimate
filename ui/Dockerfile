@@ -2,16 +2,17 @@
 
 # build environment
 
-FROM node:18 as build
+FROM node:18 AS build
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH=/app/node_modules/.bin:$PATH
 COPY . ./
 RUN npm ci --legacy-peer-deps
+ENV SKIP_PREFLIGHT_CHECK=true
 RUN npm run build
 
 # production environment
 
-FROM nginx:1-alpine as web
+FROM nginx:1-alpine AS web
 COPY --from=build /app/build /usr/share/nginx/html
 RUN mkdir /app/
 COPY --from=build /app/startup.sh /app/
