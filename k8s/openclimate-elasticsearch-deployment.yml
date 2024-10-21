@@ -31,7 +31,7 @@ spec:
               name: openclimate-elasticsearch-data
       containers:
         - name: openclimate-elasticsearch
-          image: docker.elastic.co/elasticsearch/elasticsearch:8.14.1
+          image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
           imagePullPolicy: Always
           ports:
             - containerPort: 9200
