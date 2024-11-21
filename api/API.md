@@ -240,6 +240,13 @@ search parameter.
 
 A search with no matches will return a 200 HTTP code, a `success` value of `true`, and a `data` property that is an empty list (see below).
 
+#### Other parameters
+
+Additional parameters for all search types:
+
+- `type`: limit the search to only actors of a certain type. One of 'planet', 'country', 'adm1', 'adm2', 'city', 'organization', 'site'.
+- `order`: how to order the results. Can be 'population'. More in the future.
+
 #### Output
 
 Standard output. `data` is an object representing the list of matching actors, each with the following properties:
@@ -304,4 +311,3 @@ Standard output. `data` is an object with fields representing the different stat
 - `number_of_regions_with_targets`: count of regions (adm1 or adm2) with at least one targets record
 - `number_of_cities_with_emissions`: count of cities with at least one emissions record
 - `number_of_cities_with_targets`: count of cities with at least one emissions record
-
