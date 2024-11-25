@@ -96,7 +96,8 @@ async function showActorResults(res, actor_ids) {
 router.get(
   "/api/v1/search/actor",
   wrap(async (req: any, res: any) => {
-    const { q, namespace, identifier, name, language, ...rest } = req.query;
+    const { q, namespace, identifier, name, language, type, order, ...rest } =
+      req.query;
 
     const rk = Object.keys(rest);
 
@@ -122,6 +123,12 @@ router.get(
 
     if (q && q.length < 2) {
       throw new BadRequest(`Minimum of 2 characters for search`);
+    }
+
+    // This works exactly like search/city
+
+    if (q && type && type !== "city" && order && order === "population") {
+      return await searchCity(res, q);
     }
 
     // First, narrow by identifier
@@ -247,6 +254,39 @@ router.get(
   })
 );
 
+async function searchCity(res, q: string) {
+  const sequelize = connect();
+
+  const result = await sequelize.query(
+    `SELECT a.actor_id, a.name, lp.population
+    FROM "Actor" a LEFT JOIN
+    (
+      SELECT actor_id, year, population
+      FROM "Population" p
+      WHERE p.year = (
+        SELECT MAX(p1.year)
+        FROM "Population" p1
+        where p1.actor_id = p.actor_id
+      )
+    ) as lp ON a.actor_id = lp.actor_id
+    WHERE
+      a.type = 'city'
+      AND (
+        EXISTS (SELECT name from "ActorName" an WHERE an.actor_id = a.actor_id AND an.name ILIKE '${q}%')
+        OR
+      EXISTS (SELECT identifier from "ActorIdentifier" ai WHERE ai.actor_id = a.actor_id AND ai.identifier ILIKE '${q}%')
+      )
+    ORDER BY lp.population DESC NULLS LAST;`,
+    {
+      type: sequelize.QueryTypes.SELECT,
+    }
+  );
+
+  const actor_ids = result.map((row: any) => row.actor_id);
+
+  await showActorResults(res, actor_ids);
+}
+
 router.get(
   "/api/v1/search/city",
   wrap(async (req: any, res: any) => {
@@ -260,35 +300,6 @@ router.get(
       throw new BadRequest(`Minimum of 2 characters for search`);
     }
 
-    const sequelize = connect();
-
-    const result = await sequelize.query(
-      `SELECT a.actor_id, a.name, lp.population
-      FROM "Actor" a LEFT JOIN
-      (
-        SELECT actor_id, year, population
-        FROM "Population" p
-        WHERE p.year = (
-          SELECT MAX(p1.year)
-          FROM "Population" p1
-          where p1.actor_id = p.actor_id
-        )
-      ) as lp ON a.actor_id = lp.actor_id
-      WHERE
-        a.type = 'city'
-        AND (
-          EXISTS (SELECT name from "ActorName" an WHERE an.actor_id = a.actor_id AND an.name ILIKE '${q}%')
-          OR
-        EXISTS (SELECT identifier from "ActorIdentifier" ai WHERE ai.actor_id = a.actor_id AND ai.identifier ILIKE '${q}%')
-        )
-      ORDER BY lp.population DESC NULLS LAST;`,
-      {
-        type: sequelize.QueryTypes.SELECT,
-      }
-    );
-
-    const actor_ids = result.map((row: any) => row.actor_id);
-
-    await showActorResults(res, actor_ids);
+    await searchCity(res, q);
   })
 );
