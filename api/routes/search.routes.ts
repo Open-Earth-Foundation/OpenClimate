@@ -127,7 +127,7 @@ router.get(
 
     // This works exactly like search/city
 
-    if (q && type && type !== "city" && order && order === "population") {
+    if (q && type && type === "city" && order && order === "population") {
       return await searchCity(res, q);
     }
 
