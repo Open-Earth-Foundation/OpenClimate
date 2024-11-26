@@ -64,7 +64,8 @@
     "dev": "nodemon index.ts",
     "first-time-setup": "ts-node ./scripts/firstTimeSetup.ts",
     "test": "jest",
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "latest-population": "ts-node ./scripts/latestPopulation.ts"
   },
   "husky": {
     "hooks": {

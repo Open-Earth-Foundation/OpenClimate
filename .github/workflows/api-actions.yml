@@ -52,6 +52,7 @@ jobs:
 
     - name: Deploying service
       run: |
+        kubectl create -f k8s/latest-population-job.yml -n default
         kubectl apply -f k8s/openclimate-api-deployment.yml -n default
         kubectl set env deployment/openclimate-ui-deployment WEB_ROOT=https://openclimate.openearth.dev
         kubectl set env deployment/openclimate-ui-deployment MATOMO_SITE_ID=1
