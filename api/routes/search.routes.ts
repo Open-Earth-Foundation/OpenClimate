@@ -6,6 +6,7 @@ import { BadRequest } from "http-errors";
 import { Op } from "sequelize";
 import { getClient } from "../elasticsearch/elasticsearch";
 import { ActorDataCoverage } from "../orm/actordatacoverage";
+import { replname } from "../jest.config";
 const { connect } = require("../orm/init");
 
 const indexName = process.env.ELASTIC_SEARCH_INDEX_NAME || "actors";
@@ -254,30 +255,20 @@ router.get(
   })
 );
 
-async function searchCity(res, q: string) {
+async function searchCity(res: any, q: string) {
   const sequelize = connect();
 
   const result = await sequelize.query(
-    `SELECT a.actor_id, a.name, lp.population
-    FROM "Actor" a LEFT JOIN
-    (
-      SELECT actor_id, year, population
-      FROM "Population" p
-      WHERE p.year = (
-        SELECT MAX(p1.year)
-        FROM "Population" p1
-        where p1.actor_id = p.actor_id
-      )
-    ) as lp ON a.actor_id = lp.actor_id
+    `SELECT DISTINCT a.actor_id, an.name, lp.population
+    FROM
+      "Actor" a JOIN "ActorName" an ON a.actor_id = an.actor_id
+      LEFT JOIN "LatestPopulation" lp ON a.actor_id = lp.actor_id
     WHERE
       a.type = 'city'
-      AND (
-        EXISTS (SELECT name from "ActorName" an WHERE an.actor_id = a.actor_id AND an.name ILIKE '${q}%')
-        OR
-      EXISTS (SELECT identifier from "ActorIdentifier" ai WHERE ai.actor_id = a.actor_id AND ai.identifier ILIKE '${q}%')
-      )
+      AND an.name LIKE :search
     ORDER BY lp.population DESC NULLS LAST;`,
     {
+      replacements: { search: `%${q}%` },
       type: sequelize.QueryTypes.SELECT,
     }
   );
