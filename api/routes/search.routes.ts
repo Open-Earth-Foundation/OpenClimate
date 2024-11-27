@@ -6,7 +6,6 @@ import { BadRequest } from "http-errors";
 import { Op } from "sequelize";
 import { getClient } from "../elasticsearch/elasticsearch";
 import { ActorDataCoverage } from "../orm/actordatacoverage";
-import { replname } from "../jest.config";
 const { connect } = require("../orm/init");
 
 const indexName = process.env.ELASTIC_SEARCH_INDEX_NAME || "actors";
