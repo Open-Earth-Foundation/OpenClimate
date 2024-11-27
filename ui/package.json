@@ -1,6 +1,6 @@
 {
   "name": "open-climate-ui",
-  "version": "1.17.2",
+  "version": "1.17.3",
   "private": true,
   "dependencies": {
     "-": "0.0.1",
