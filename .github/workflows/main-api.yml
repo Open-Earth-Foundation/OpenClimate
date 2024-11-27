@@ -62,9 +62,8 @@ jobs:
     - name: Deploying service
       run: |
 
-        kubectl run -i -t latest-population-${{github.sha}} \
-          --restart=Never \
-          --rm \
+        kubectl run latest-population-${{github.sha}} \
+          --restart=OnFailure \
           --image=public.ecr.aws/openearthfoundation/openclimate-api:stable \
           --env POSGRES_ADDRESS=${{secrets.PROD_POSTGRESQL_ADDRESS}} \
           --env POSGRES_DB=${{secrets.PROD_POSTGRESQL_DB}} \
