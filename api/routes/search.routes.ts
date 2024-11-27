@@ -261,7 +261,7 @@ async function searchCity(res: any, q: string) {
   const isLowercase = q[0] === q[0].toLowerCase();
 
   const result = await sequelize.query(
-    `SELECT DISTINCT a.actor_id
+    `SELECT DISTINCT a.actor_id, lp.population
     FROM
       "Actor" a JOIN "ActorName" an ON a.actor_id = an.actor_id
       LEFT JOIN "LatestPopulation" lp ON a.actor_id = lp.actor_id
