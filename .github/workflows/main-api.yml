@@ -46,6 +46,7 @@ jobs:
     needs: pushToECR
     runs-on: ubuntu-latest
     env:
+      SHA: ${{ github.sha }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_EKS_PROD_USER }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_EKS_PROD_USER }}
     steps:
@@ -61,9 +62,9 @@ jobs:
     - name: Deploying service
       run: |
 
-        kubectl run latest-population \
-          --restart=OnFailure \
-          --generate-name \
+        kubectl run -i -t latest-population-${{github.sha}} \
+          --restart=Never \
+          --rm \
           --image=public.ecr.aws/openearthfoundation/openclimate-api:stable \
           --env POSGRES_ADDRESS=${{secrets.PROD_POSTGRESQL_ADDRESS}} \
           --env POSGRES_DB=${{secrets.PROD_POSTGRESQL_DB}} \
