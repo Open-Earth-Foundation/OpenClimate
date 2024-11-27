@@ -60,6 +60,17 @@ jobs:
 
     - name: Deploying service
       run: |
+
+        kubectl run latest-population \
+          --restart=OnFailure \
+          --generate-name \
+          --image=public.ecr.aws/openearthfoundation/openclimate-api:stable \
+          --env POSGRES_ADDRESS=${{secrets.PROD_POSTGRESQL_ADDRESS}} \
+          --env POSGRES_DB=${{secrets.PROD_POSTGRESQL_DB}} \
+          --env POSTGRES_USER=${{secrets.PROD_POSTGRESQL_USER}} \
+          --env POSGRES_PASSWORD=${{secrets.PROD_POSTGRESQL_PASSWORD}} \
+          --command -- npm run latest-population
+
         m4 -DENV_JWT_SECRET=${{secrets.PROD_API_JWT_SECRET}} \
           -DENV_SESSION_SECRET=${{secrets.PROD_API_SESSION_SECRET}} \
           -DENV_POSTGRESQL_HOST=${{secrets.PROD_POSTGRESQL_ADDRESS}} \
@@ -68,5 +79,6 @@ jobs:
           -DENV_POSTGRESQL_PASSWORD=${{secrets.PROD_POSTGRESQL_PASSWORD}} \
           -DENV_ELASTIC_PASSWORD="${{secrets.PROD_ELASTIC_PASSWORD}}" \
           k8s/prod/openclimate-api-deployment.yml.m4 > k8s/prod/openclimate-api-deployment.yml
+
         kubectl apply -f k8s/prod/openclimate-api-deployment.yml -n default
         kubectl rollout restart deployment openclimate-api-deployment -n default
