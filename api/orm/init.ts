@@ -31,7 +31,7 @@ let disconnect = async function () {
   return;
 };
 
-export = {
+export {
   connect,
   disconnect,
 };
