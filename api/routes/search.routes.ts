@@ -258,6 +258,8 @@ router.get(
 async function searchCity(res: any, q: string) {
   const sequelize = connect();
 
+  const isLowercase = q[0] === q[0].toLowerCase();
+
   const result = await sequelize.query(
     `SELECT DISTINCT a.actor_id, an.name, lp.population
     FROM
@@ -265,10 +267,10 @@ async function searchCity(res: any, q: string) {
       LEFT JOIN "LatestPopulation" lp ON a.actor_id = lp.actor_id
     WHERE
       a.type = 'city'
-      AND an.name LIKE :search
+      AND an.name ${isLowercase ? "ILIKE" : "LIKE"} :search
     ORDER BY lp.population DESC NULLS LAST;`,
     {
-      replacements: { search: `%${q}%` },
+      replacements: { search: `${q}%` },
       type: sequelize.QueryTypes.SELECT,
     }
   );
