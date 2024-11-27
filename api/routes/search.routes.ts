@@ -268,7 +268,8 @@ async function searchCity(res: any, q: string) {
     WHERE
       a.type = 'city'
       AND an.name ${isLowercase ? "ILIKE" : "LIKE"} :search
-    ORDER BY lp.population DESC NULLS LAST;`,
+    ORDER BY lp.population DESC NULLS LAST
+    LIMIT 100;`,
     {
       replacements: { search: `${q}%` },
       type: sequelize.QueryTypes.SELECT,
