@@ -1,0 +1,5 @@
+datasource_id,tag_id
+NAEI:DA_GHGI_1990_2020:v4.1,GHGs_included_CO2_CH4_N2O_F_gases
+NAEI:DA_GHGI_1990_2020:v4.1,excludes_international_shipping_aviation
+NAEI:DA_GHGI_1990_2020:v4.1,excludes_LULUCF
+NAEI:DA_GHGI_1990_2020:v4.1,GWP_100_AR5

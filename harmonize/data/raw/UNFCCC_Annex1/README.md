@@ -1,6 +1,6 @@
 # UNFCCC Annex 1 time series (GHG total without LULUCF)
 
-**Date accessed**: 2022-12-05
+**Date accessed**: 2023-11-03
 
 **Data source**: [UNFCCC Annex 1 Time Series](https://di.unfccc.int/time_series)
 
