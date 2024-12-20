@@ -26,6 +26,25 @@ It includes this kind of data, current and historical:
 
 The coverage is global.
 
+### Identifying data needs
+
+The [data coverage](https://app.openclimate.network/datacoverage) page shows area that have high and low data coverage.
+
+Additional information is shown in the database in the `DataCoverage` table.
+
+### Helpful data sources
+
+There are a lot of sources of data:
+
+- Wikidata -- great for contextual data
+- World Bank -- great for contextual data
+- UNFCCC -- great for detailed national inventories
+- International non-profits -- good for pledges
+- National environmental agencies -- especially when emitters must report data.
+- State, provincial and regional environmental agencies -- often have more detailed data.
+- City climate plans -- often include pledges and actions.
+- Corporate disclosure documents -- often include emissions, without a lot of detail.
+
 ### Check data rights
 
 Data rights are tricky! Typically, sharing factual information is not protected by copyright, but some modified data can be, as well as a collection of factual data. OpenClimate appreciates the work that goes into these data sets, and we want to respect the creators.
@@ -38,21 +57,17 @@ When deciding whether it's OK to share a data set, here are some good questions 
 - Did you have to pay for the data?
 - Did you have to log in somewhere to get the data?
 
-If you're in doubt, you can consult with the data publisher or the OpenClimate data team.
+If you're in doubt, you can consult with the data publisher or the OpenClimate maintainers.
 
 ### Check that it hasn't already been included
 
-We have included 30 data sets from various agencies and researchers already, with about 25 more in our queue. If you'd like to check whether the data set you've identified has already been imported, check [OpenClimate](https://openclimate.network/) . You can search for a few example actors, like a city or a region, and check if the relevant data is empty, or if the data source is marked.
+We have included dozens of data sets from various agencies and researchers already, with about 25 more in our queue. If you'd like to check whether the data set you've identified has already been imported, check [OpenClimate](https://openclimate.network/) . You can search for a few example actors, like a city or a region, and check if the relevant data is empty, or if the data source is marked.
 
 In case it's not clear, you can check the [harmonize](https://github.com/Open-Earth-Foundation/OpenClimate/tree/main/harmonize) directory for data sets that have already been imported.
 
-## Sending a link
+## Opening an issue
 
-If you identify data that should be in OpenClimate, and you don't have the skills or time to import it, please send us an email at openclimate-data@openearth.org. We'll queue it up for import.
-
-## Dropping raw/processed data
-
-You may also upload raw or processed data, as well as Python-based analysis scripts, via [Dropbox](https://www.dropbox.com/request/1NT4NbRay4v1cCjDyQZM). If including multiple files, please either upload the entire directory or zip the files. If processing data, please try to conform the data to the [OpenClimate schema](https://github.com/Open-Earth-Foundation/OpenClimate/tree/develop/api/schema).
+If you identify data that should be in OpenClimate, and you don't have the skills or time to import it, add a GitHub issue at https://github.com/Open-Earth-Foundation/OpenClimate/issues .
 
 ## Obtaining the data
 
@@ -112,3 +127,9 @@ You'll still need a [GitHub](https://github.com/) account.
 - Click "Create pull request".
 
 There may be some updates on your changes; you should get notified directly by GitHub.
+
+## Updating data sets
+
+Many of the source datasets in OpenClimate are updated regularly -- monthly, quarterly, annually or less frequently. Keeping these data sources up-to-date is important.
+
+To update a dataset, use the 
