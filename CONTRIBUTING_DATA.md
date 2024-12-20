@@ -132,4 +132,9 @@ There may be some updates on your changes; you should get notified directly by G
 
 Many of the source datasets in OpenClimate are updated regularly -- monthly, quarterly, annually or less frequently. Keeping these data sources up-to-date is important.
 
-To update a dataset, use the 
+To update a dataset, there are two options:
+
+1. Use the new version as a new datasource with a different ID.
+2. Use the new version with the same datasource ID.
+
+Which to use is an open question. Usually, if there are significant changes, or changes in methodology, it makes sense to create a new data source. If the new dataset is presented as an update, use the same datasource ID.
