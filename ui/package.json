@@ -56,7 +56,7 @@
     "semantic-ui-react": "^2.1.3",
     "storybook": "^7.2.3",
     "storybook-css-modules-preset": "^1.1.1",
-    "storybook-zeplin": "^1.7.3",
+    "storybook-zeplin": "^3.0.0",
     "styled-components": "^5.3.6",
     "typescript": "^4.3.5",
     "universal-cookie": "^4.0.4",
