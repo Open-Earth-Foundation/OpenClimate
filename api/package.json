@@ -1,6 +1,6 @@
 {
   "name": "openclimate-hub-controller",
-  "version": "1.18.0",
+  "version": "1.17.3-rc.0",
   "private": true,
   "license": "Apache-2.0",
   "dependencies": {
@@ -19,7 +19,7 @@
     "db-migrate-pg": "^1.2.2",
     "db-migrate-plugin-typescript": "^2.0.0",
     "dotenv": "^16.0.3",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "express-session": "^1.18.1",
     "express-winston": "^4.2.0",
     "jsonwebtoken": "^9.0.0",
