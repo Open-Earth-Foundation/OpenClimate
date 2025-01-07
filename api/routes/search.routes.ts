@@ -254,10 +254,19 @@ router.get(
   })
 );
 
+const caseMatch = (q: string) =>
+  q
+    .trim()
+    .split(/\s+/)
+    .every((word) => {
+      return (
+        word[0] === word[0].toUpperCase() &&
+        word.slice(1) === word.slice(1).toLowerCase()
+      );
+    });
+
 async function searchCity(res: any, q: string) {
   const sequelize = connect();
-
-  const isLowercase = q[0] === q[0].toLowerCase();
 
   const result = await sequelize.query(
     `SELECT DISTINCT a.actor_id, lp.population
@@ -266,7 +275,7 @@ async function searchCity(res: any, q: string) {
       LEFT JOIN "LatestPopulation" lp ON a.actor_id = lp.actor_id
     WHERE
       a.type = 'city'
-      AND an.name ${isLowercase ? "ILIKE" : "LIKE"} :search
+      AND an.name ${caseMatch(q) ? "LIKE" : "ILIKE"} :search
     ORDER BY lp.population DESC NULLS LAST
     LIMIT 100;`,
     {
