@@ -1,13 +1,13 @@
 {
     "publisher" : [
         "id",
-        "name", 
+        "name",
         "URL"
         ],
     "datasource" : [
         "datasource_id",
-        "name", 
-        "publisher", 
+        "name",
+        "publisher",
         "published",
         "URL"
         ],
@@ -16,8 +16,8 @@
         "tag_id"
         ],
     "methodology": [
-        "methodology_id", 
-        "name", 
+        "methodology_id",
+        "name",
         "methodology_link"
         ],
     "emissionsagg": [
@@ -32,7 +32,7 @@
         "actor_id",
         "population",
         "year",
-        "created"
+        "datasource_id"
         ],
     "territory": [
         "actor_id",
@@ -50,12 +50,12 @@
         ],
     "actor": [
         "actor_id",
-        "type", 
-        "name", 
-        "icon", 
-        "hq", 
-        "is_part_of", 
-        "is_owned_by", 
+        "type",
+        "name",
+        "icon",
+        "hq",
+        "is_part_of",
+        "is_owned_by",
         "datasource_id"
         ],
     "initiativepledge": [
