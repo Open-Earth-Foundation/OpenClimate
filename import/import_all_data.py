@@ -24,6 +24,10 @@ def import_all_data(zipfileurl, processed, host, dbname, user, password):
         "UNLOCODE"
     ]
 
+    # Do these overrides last
+
+    postreqs = ["IBGE:agregados-prelimares-por-municipios-br:2024-03-20"]
+
     for prereq in prereqs:
         logger.info(f'Importing {prereq}')
         import_openclimate_data(processed + '/' + prereq, host, dbname, user, password)
@@ -33,12 +37,16 @@ def import_all_data(zipfileurl, processed, host, dbname, user, password):
     logger.info('Beginning import')
 
     for f in pp.iterdir():
-        if f.is_dir() and f.name not in prereqs:
+        if f.is_dir() and f.name not in prereqs and f.name not in postreqs:
             logger.info(f'Importing {f.name}')
             try:
                 import_openclimate_data(str(f), host, dbname, user, password)
             except Exception as err:
                 logger.error('Error importing %s: %s', f.name, err)
+
+    for postreq in postreqs:
+        logger.info(f"Importing {postreq}")
+        import_openclimate_data(processed + "/" + postreq, host, dbname, user, password)
 
     if zipfileurl:
         shutil.rmtree(expand_path)
