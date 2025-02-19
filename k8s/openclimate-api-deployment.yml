@@ -37,7 +37,7 @@ spec:
         - name: SCHEMA_VERIFIED_EMPLOYEE
           value: RSaZ64jxn2NbpH8MgBdy4C:2:Verified_Employee:1.0
         - name: POSGRES_ADDRESS
-          value: postgresql-service
+          value: dev-db-aurora.cluster-c5ipsfxjhb0m.us-east-1.rds.amazonaws.com
         - name: POSGRES_DB
           value: development
         - name: POSTGRES_USER
