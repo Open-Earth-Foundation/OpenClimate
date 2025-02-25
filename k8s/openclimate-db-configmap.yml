@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openclimate-db-configmap
+  namespace: default
+data:
+  POSGRES_ADDRESS: dev-db-aurora.cluster-c5ipsfxjhb0m.us-east-1.rds.amazonaws.com
+  POSGRES_DB: development
+  POSTGRES_USER: development
+  POSGRES_PASSWORD: development

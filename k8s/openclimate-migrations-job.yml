@@ -11,16 +11,11 @@ spec:
       - name: openclimate-migrations
         image: public.ecr.aws/openearthfoundation/openclimate-api:latest
         imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: openclimate-db-configmap
         env:
         - name: NODE_ENV
-          value: development
-        - name: POSGRES_ADDRESS
-          value: postgresql-service
-        - name: POSGRES_DB
-          value: development
-        - name: POSTGRES_USER
-          value: development
-        - name: POSGRES_PASSWORD
           value: development
         command: ["npm",  "run", "migrate_up_all"]
         resources:

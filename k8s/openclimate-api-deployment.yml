@@ -21,6 +21,9 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3100
+        envFrom:
+        - configMapRef:
+            name: openclimate-db-configmap
         env:
         - name: NODE_ENV
           value: development
@@ -36,14 +39,6 @@ spec:
           value: aZj6iXNkrtmLrAT0HsTrp7dRR7r4U7P0
         - name: SCHEMA_VERIFIED_EMPLOYEE
           value: RSaZ64jxn2NbpH8MgBdy4C:2:Verified_Employee:1.0
-        - name: POSGRES_ADDRESS
-          value: dev-db-aurora.cluster-c5ipsfxjhb0m.us-east-1.rds.amazonaws.com
-        - name: POSGRES_DB
-          value: development
-        - name: POSTGRES_USER
-          value: development
-        - name: POSGRES_PASSWORD
-          value: development
         - name: ELASTIC_SEARCH_ENABLED
           value: "yes"
         - name: OPENCLIMATE_LOG_LEVEL

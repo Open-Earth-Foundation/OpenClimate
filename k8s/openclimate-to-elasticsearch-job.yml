@@ -11,13 +11,25 @@ spec:
         image: public.ecr.aws/openearthfoundation/openclimate-to-elasticsearch:latest
         env:
           - name: OPENCLIMATE_DATABASE
-            value: development
+            valueFrom:
+              secretKeyRef:
+                name: openclimate-db-configmap
+                key: POSGRES_DB
           - name: OPENCLIMATE_HOST
-            value: postgresql-service
+            valueFrom:
+              secretKeyRef:
+                name: openclimate-db-configmap
+                key: POSGRES_ADDRESS
           - name: OPENCLIMATE_USER
-            value: development
+            valueFrom:
+              secretKeyRef:
+                name: openclimate-db-configmap
+                key: POSTGRES_USER
           - name: OPENCLIMATE_PASSWORD
-            value: development
+            valueFrom:
+              secretKeyRef:
+                name: openclimate-db-configmap
+                key: POSGRES_PASSWORD
           - name: OPENCLIMATE_ES_NODE
             value: "http://openclimate-elasticsearch-service:9200/"
           - name: OPENCLIMATE_ES_INDEX
