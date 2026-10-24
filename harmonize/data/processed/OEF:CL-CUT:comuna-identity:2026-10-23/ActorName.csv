@@ -1,0 +1,347 @@
+actor_id,name,language,preferred,datasource_id
+CL IQQ,Iquique,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL AHP,Alto Hospicio,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL POZ,Pozo Almonte,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CMA,Camiña,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CNE,Colchane,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL HUA,Huara,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PIC,Pica,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ANF,Antofagasta,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MJS,Mejillones,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SIG,Sierra Gorda,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TTC,Taltal,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CJC,Calama,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL OLL,Ollagüe,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SPA,San Pedro de Atacama,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TOQ,Tocopilla,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MAE,María Elena,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CPO,Copiapó,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CLD,Caldera,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TAM,Tierra Amarilla,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CNR,Chañaral,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL DDA,Diego de Almagro,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL VLR,Vallenar,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ADC,Alto del Carmen,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL FRN,Freirina,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL HSO,Huasco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LSC,La Serena,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CQQ,Coquimbo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL AND,Andacollo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LAH,La Higuera,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PAI,Paihuano,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL VIC,Vicuña,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ILL,Illapel,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CAN,Canela,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LOS,Los Vilos,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SAL,Salamanca,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL OVL,Ovalle,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CBB,Combarbalá,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MTP,Monte Patria,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PUN,Punitaqui,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RHU,Río Hurtado,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL VAP,Valparaíso,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CAS,Casablanca,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CON,Concón,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL JFZ,Juan Fernández,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PCI,Puchuncaví,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QTV,Quintero,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL KNA,Viña del Mar,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL IPC,Isla de Pascua,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LND,Los Andes,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CLL,Calle Larga,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RIN,Rinconada,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SES,San Esteban,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LIG,La Ligua,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CBD,Cabildo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PAP,Papudo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PET,Petorca,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ZAP,Zapallar,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QTA,Quillota,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LCL,Calera,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL HIJ,Hijuelas,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LCZ,La Cruz,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL NOG,Nogales,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SAI,San Antonio,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ALG,Algarrobo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CGN,Cartagena,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ELQ,El Quisco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ELT,El Tabo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SDO,Santo Domingo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SFP,San Felipe,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CAT,Catemu,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LLA,Llaillay,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PQH,Panquehue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PTO,Putaendo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SMA,Santa María,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QIL,Quilpué,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LIM,Limache,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL OLM,Olmué,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL VIA,Villa Alemana,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QRC,Rancagua,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL COD,Codegua,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL COO,Coinco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CTC,Coltauco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL DOH,Doñihue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL GRA,Graneros,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LCB,Las Cabras,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MCI,Machalí,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MAL,Malloa,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MOS,Mostazal,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL OLI,Olivar,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PEU,Peumo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PDH,Pichidegua,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QDT,Quinta de Tilcoco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RGO,Rengo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL REQ,Requínoa,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SVT,San Vicente,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PLM,Pichilemu,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LES,La Estrella,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LIT,Litueche,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MAR,Marchigüe,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL NAV,Navidad,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PAR,Paredones,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SFD,San Fernando,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CHE,Chépica,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CBG,Chimbarongo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LOL,Lolol,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL NCG,Nancagua,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PMA,Palmilla,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PER,Peralillo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PLA,Placilla,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PUM,Pumanque,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SCZ,Santa Cruz,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TLX,Talca,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CST,Constitución,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CRT,Curepto,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL EMP,Empedrado,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MAU,Maule,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PEL,Pelarco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PEN,Pencahue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RCL,Río Claro,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SCT,San Clemente,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SRA,San Rafael,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CAU,Cauquenes,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CHA,Chanco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PLH,Pelluhue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CUR,Curicó,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL HLE,Hualañé,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LIC,Licantén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MOL,Molina,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RAU,Rauco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ROM,Romeral,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SAF,Sagrada Familia,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TEN,Teno,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL VCQ,Vichuquén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LIN,Linares,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL COB,Colbún,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LON,Longaví,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PRL,Parral,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RET,Retiro,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SJV,San Javier,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL VAG,Villa Alegre,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL YBU,Yerbas Buenas,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CCP,Concepción,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CNL,Coronel,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CHI,Chiguayante,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL FLO,Florida,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL HQI,Hualqui,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LTA,Lota,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PEO,Penco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SPP,San Pedro de la Paz,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SJU,Santa Juana,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TAL,Talcahuano,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TOM,Tomé,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL HPN,Hualpén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LEB,Lebu,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ARA,Arauco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CTE,Cañete,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CTM,Contulmo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CRN,Curanilahue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LAL,Los Alamos,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TIR,Tirúa,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LSQ,Los Angeles,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ANT,Antuco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CAB,Cabrero,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LAJ,Laja,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MUL,Mulchén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL NAC,Nacimiento,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL NEG,Negrete,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QLA,Quilaco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QLO,Quilleco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SRO,San Rosendo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SBA,Santa Bárbara,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TUC,Tucapel,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL YUM,Yumbel,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ABB,Alto Biobío,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ZCO,Temuco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CAR,Carahue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CUN,Cunco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CRE,Curarrehue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL FRE,Freire,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL GAL,Galvarino,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL GOR,Gorbea,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LAU,Lautaro,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LNC,Loncoche,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MLP,Melipeuco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL NIM,Nueva Imperial,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PLC,Padre Las Casas,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PQC,Perquenco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PIT,Pitrufquén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PUC,Pucón,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SAA,Saavedra,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TEO,Teodoro Schmidt,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TOL,Toltén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL VCN,Vilcún,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL VIL,Villarrica,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CHL,Cholchol,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ANG,Angol,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CPI,Collipulli,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CCN,Curacautín,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ERC,Ercilla,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LQY,Lonquimay,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LSA,Los Sauces,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LUM,Lumaco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PUR,Purén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RNO,Renaico,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TRA,Traiguén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ZIC,Victoria,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PMC,Puerto Montt,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CBC,Calbuco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CMO,Cochamó,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL FRS,Fresia,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL FRT,Frutillar,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LMU,Los Muermos,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LIA,Llanquihue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MLL,Maullín,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PVS,Puerto Varas,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL WCA,Castro,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ZUD,Ancud,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CHO,Chonchi,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CDV,Curaco de Vélez,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL DCH,Dalcahue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PQD,Puqueldón,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QLN,Queilén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PTE,Quellón,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QMC,Quemchi,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QCO,Quinchao,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ZOS,Osorno,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL POC,Puerto Octay,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PRQ,Purranque,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PYH,Puyehue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RNE,Río Negro,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SJC,San Juan de la Costa,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SPB,San Pablo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL WCH,Chaitén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL FFU,Futaleufú,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL HUH,Hualaihué,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PAL,Palena,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CXQ,Coyhaique,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LVD,Lago Verde,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PSN,Aysén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CIS,Cisnes,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL GUA,Guaitecas,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL COC,Cochrane,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL OHI,O'Higgins,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TOR,Tortel,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CCH,Chile Chico,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RIB,Río Ibáñez,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PUQ,Punta Arenas,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LBL,Laguna Blanca,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RVE,Río Verde,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SGR,San Gregorio,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CHR,Cabo de Hornos,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ATC,Antártica,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PVR,Porvenir,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PRI,Primavera,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TIM,Timaukel,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PNT,Natales,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TDP,Torres del Paine,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SCL,Santiago,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CER,Cerrillos,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CNV,Cerro Navia,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CLI,Conchalí,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ELB,El Bosque,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ECT,Estación Central,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL HUE,Huechuraba,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL IND,Independencia,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LCI,La Cisterna,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LFL,La Florida,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LGJ,La Granja,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LPI,La Pintana,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL REI,La Reina,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LCO,Las Condes,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LBA,Lo Barnechea,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LEJ,Lo Espejo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LPR,Lo Prado,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MAC,Macul,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MAI,Maipú,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL NUN,Ñuñoa,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PAC,Pedro Aguirre Cerda,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PLN,Peñalolén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PRO,Providencia,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PUD,Pudahuel,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QUI,Quilicura,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QNO,Quinta Normal,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL REC,Recoleta,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL REN,Renca,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SJQ,San Joaquín,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SMG,San Miguel,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SRM,San Ramón,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL VIT,Vitacura,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PTA,Puente Alto,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PIR,Pirque,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SJM,San José de Maipo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CLN,Colina,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LAM,Lampa,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TIL,Tiltil,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SBD,San Bernardo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL BUI,Buin,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CDT,Calera de Tango,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PNE,Paine,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MEL,Melipilla,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ALH,Alhué,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CRV,Curacaví,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MPI,María Pinto,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SPE,San Pedro,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TLG,Talagante,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ELM,El Monte,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL IDM,Isla de Maipo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PHU,Padre Hurtado,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PFL,Peñaflor,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ZAL,Valdivia,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CRR,Corral,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LAN,Lanco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LLG,Los Lagos,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MAF,Máfil,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL MRQ,Mariquina,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PAO,Paillaco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PAN,Panguipulli,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL LUN,La Unión,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL FUT,Futrono,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RNC,Lago Ranco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RBU,Río Bueno,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ARI,Arica,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CAM,Camarones,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PUT,Putre,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL GLG,General Lagos,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL YAI,Chillán,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL BUL,Bulnes,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CHV,Chillán Viejo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL ELC,El Carmen,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PEM,Pemuco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL PIN,Pinto,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QIN,Quillón,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SIN,San Ignacio,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL YUN,Yungay,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL QRH,Quirihue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL CBQ,Cobquecura,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL COE,Coelemu,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL NIN,Ninhue,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL POR,Portezuelo,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL RAN,Ranquil,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL TRE,Treguaco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SCR,San Carlos,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL COI,Coihueco,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL NQN,Ñiquén,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SFN,San Fabián,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
+CL SNI,San Nicolás,es,1,OEF:CL-CUT:comuna-identity:2026-10-23
