@@ -1,0 +1,347 @@
+comuna_code,comuna_name,region_code,region_name,locode,locode_name,locode_status
+CL01101,Iquique,CL01,Región de Tarapacá,CL IQQ,Iquique,official_direct
+CL01107,Alto Hospicio,CL01,Región de Tarapacá,CL AHP,Alto Hospicio,official_direct
+CL01401,Pozo Almonte,CL01,Región de Tarapacá,CL POZ,Pozo Almonte,official_direct
+CL01402,Camiña,CL01,Región de Tarapacá,CL CMA,Camiña,official_direct
+CL01403,Colchane,CL01,Región de Tarapacá,CL CNE,Colchane,official_direct
+CL01404,Huara,CL01,Región de Tarapacá,CL HUA,Huara,official_direct
+CL01405,Pica,CL01,Región de Tarapacá,CL PIC,Pica,official_direct
+CL02101,Antofagasta,CL02,Región de Antofagasta,CL ANF,Antofagasta,official_direct
+CL02102,Mejillones,CL02,Región de Antofagasta,CL MJS,Mejillones,official_direct
+CL02103,Sierra Gorda,CL02,Región de Antofagasta,CL SIG,Sierra Gorda,official_direct
+CL02104,Taltal,CL02,Región de Antofagasta,CL TTC,Taltal,official_direct
+CL02201,Calama,CL02,Región de Antofagasta,CL CJC,Calama,official_direct
+CL02202,Ollagüe,CL02,Región de Antofagasta,CL OLL,Ollagüe,official_direct
+CL02203,San Pedro de Atacama,CL02,Región de Antofagasta,CL SPA,San Pedro de Atacama,official_direct
+CL02301,Tocopilla,CL02,Región de Antofagasta,CL TOQ,Tocopilla,official_direct
+CL02302,María Elena,CL02,Región de Antofagasta,CL MAE,María Elena,official_direct
+CL03101,Copiapó,CL03,Región de Atacama,CL CPO,Copiapó,official_direct
+CL03102,Caldera,CL03,Región de Atacama,CL CLD,Caldera,official_direct
+CL03103,Tierra Amarilla,CL03,Región de Atacama,CL TAM,Tierra Amarilla,official_direct
+CL03201,Chañaral,CL03,Región de Atacama,CL CNR,Chañaral,official_direct
+CL03202,Diego de Almagro,CL03,Región de Atacama,CL DDA,Diego de Almagro,official_direct
+CL03301,Vallenar,CL03,Región de Atacama,CL VLR,Vallenar,official_direct
+CL03302,Alto del Carmen,CL03,Región de Atacama,CL ADC,Alto del Carmen,official_direct
+CL03303,Freirina,CL03,Región de Atacama,CL FRN,Freirina,official_direct
+CL03304,Huasco,CL03,Región de Atacama,CL HSO,Huasco,official_direct
+CL04101,La Serena,CL04,Región de Coquimbo,CL LSC,La Serena,official_direct
+CL04102,Coquimbo,CL04,Región de Coquimbo,CL CQQ,Coquimbo,official_direct
+CL04103,Andacollo,CL04,Región de Coquimbo,CL AND,Andacollo,official_direct
+CL04104,La Higuera,CL04,Región de Coquimbo,CL LAH,La Higuera,official_direct
+CL04105,Paihuano,CL04,Región de Coquimbo,CL PAI,Paiguano,official_name_variant
+CL04106,Vicuña,CL04,Región de Coquimbo,CL VIC,Vicuña,official_direct
+CL04201,Illapel,CL04,Región de Coquimbo,CL ILL,Illapel,official_direct
+CL04202,Canela,CL04,Región de Coquimbo,CL CAN,Canela,official_direct
+CL04203,Los Vilos,CL04,Región de Coquimbo,CL LOS,Los Vilos,official_direct
+CL04204,Salamanca,CL04,Región de Coquimbo,CL SAL,Salamanca,official_direct
+CL04301,Ovalle,CL04,Región de Coquimbo,CL OVL,Ovalle,official_direct
+CL04302,Combarbalá,CL04,Región de Coquimbo,CL CBB,Combarbalá,official_direct
+CL04303,Monte Patria,CL04,Región de Coquimbo,CL MTP,Monte Patria,official_direct
+CL04304,Punitaqui,CL04,Región de Coquimbo,CL PUN,Punitaqui,official_direct
+CL04305,Río Hurtado,CL04,Región de Coquimbo,CL RHU,Hurtado,official_related_location
+CL05101,Valparaíso,CL05,Región de Valparaíso,CL VAP,Valparaiso,official_direct
+CL05102,Casablanca,CL05,Región de Valparaíso,CL CAS,Casablanca,official_direct
+CL05103,Concón,CL05,Región de Valparaíso,CL CON,Concón,official_direct
+CL05104,Juan Fernández,CL05,Región de Valparaíso,CL JFZ,Juan Fernández,official_direct
+CL05105,Puchuncaví,CL05,Región de Valparaíso,CL PCI,Puchuncaví,official_direct
+CL05107,Quintero,CL05,Región de Valparaíso,CL QTV,Quintero,official_direct
+CL05109,Viña del Mar,CL05,Región de Valparaíso,CL KNA,Viña del Mar,official_direct
+CL05201,Isla de Pascua,CL05,Región de Valparaíso,CL IPC,Isla de Pascua,official_direct
+CL05301,Los Andes,CL05,Región de Valparaíso,CL LND,Los Andes,official_direct
+CL05302,Calle Larga,CL05,Región de Valparaíso,CL CLL,Calle Larga,official_direct
+CL05303,Rinconada,CL05,Región de Valparaíso,CL RIN,Rinconada de Los Andes,official_related_location
+CL05304,San Esteban,CL05,Región de Valparaíso,CL SES,San Esteban,official_direct
+CL05401,La Ligua,CL05,Región de Valparaíso,CL LIG,La Ligua,official_direct
+CL05402,Cabildo,CL05,Región de Valparaíso,CL CBD,Cabildo,official_direct
+CL05403,Papudo,CL05,Región de Valparaíso,CL PAP,Papudo,official_direct
+CL05404,Petorca,CL05,Región de Valparaíso,CL PET,Petorca,official_direct
+CL05405,Zapallar,CL05,Región de Valparaíso,CL ZAP,Zapallar,official_direct
+CL05501,Quillota,CL05,Región de Valparaíso,CL QTA,Quillota,official_direct
+CL05502,Calera,CL05,Región de Valparaíso,CL LCL,La Calera,official_name_variant
+CL05503,Hijuelas,CL05,Región de Valparaíso,CL HIJ,Hijuelas,official_direct
+CL05504,La Cruz,CL05,Región de Valparaíso,CL LCZ,La Cruz,official_direct
+CL05506,Nogales,CL05,Región de Valparaíso,CL NOG,Nogales,official_direct
+CL05601,San Antonio,CL05,Región de Valparaíso,CL SAI,San Antonio,official_direct
+CL05602,Algarrobo,CL05,Región de Valparaíso,CL ALG,Algarrobo,official_direct
+CL05603,Cartagena,CL05,Región de Valparaíso,CL CGN,Cartagena,official_direct
+CL05604,El Quisco,CL05,Región de Valparaíso,CL ELQ,El Quisco,official_direct
+CL05605,El Tabo,CL05,Región de Valparaíso,CL ELT,El Tabo,official_direct
+CL05606,Santo Domingo,CL05,Región de Valparaíso,CL SDO,Santo Domingo,official_direct
+CL05701,San Felipe,CL05,Región de Valparaíso,CL SFP,San Felipe,official_direct
+CL05702,Catemu,CL05,Región de Valparaíso,CL CAT,Catemu,official_direct
+CL05703,Llaillay,CL05,Región de Valparaíso,CL LLA,Llaillay,official_direct
+CL05704,Panquehue,CL05,Región de Valparaíso,CL PQH,Panquehue,official_direct
+CL05705,Putaendo,CL05,Región de Valparaíso,CL PTO,Putaendo,official_direct
+CL05706,Santa María,CL05,Región de Valparaíso,CL SMA,Santa María,official_direct
+CL05801,Quilpué,CL05,Región de Valparaíso,CL QIL,Quilpué,official_direct
+CL05802,Limache,CL05,Región de Valparaíso,CL LIM,Limache,official_direct
+CL05803,Olmué,CL05,Región de Valparaíso,CL OLM,Olmué,official_direct
+CL05804,Villa Alemana,CL05,Región de Valparaíso,CL VIA,Villa Alemana,official_direct
+CL06101,Rancagua,CL06,Región del Libertador Bernardo O'Higgins,CL QRC,Rancagua,official_direct
+CL06102,Codegua,CL06,Región del Libertador Bernardo O'Higgins,CL COD,Codegua,official_direct
+CL06103,Coinco,CL06,Región del Libertador Bernardo O'Higgins,CL COO,Coinco,official_direct
+CL06104,Coltauco,CL06,Región del Libertador Bernardo O'Higgins,CL CTC,Coltauco,official_direct
+CL06105,Doñihue,CL06,Región del Libertador Bernardo O'Higgins,CL DOH,Doñihue,official_direct
+CL06106,Graneros,CL06,Región del Libertador Bernardo O'Higgins,CL GRA,Graneros,official_direct
+CL06107,Las Cabras,CL06,Región del Libertador Bernardo O'Higgins,CL LCB,Las Cabras,official_direct
+CL06108,Machalí,CL06,Región del Libertador Bernardo O'Higgins,CL MCI,Machalí,official_direct
+CL06109,Malloa,CL06,Región del Libertador Bernardo O'Higgins,CL MAL,Malloa,official_direct
+CL06110,Mostazal,CL06,Región del Libertador Bernardo O'Higgins,CL MOS,San Francisco de Mostazal,official_related_location
+CL06111,Olivar,CL06,Región del Libertador Bernardo O'Higgins,CL OLI,Olivar,official_direct
+CL06112,Peumo,CL06,Región del Libertador Bernardo O'Higgins,CL PEU,Peumo,official_direct
+CL06113,Pichidegua,CL06,Región del Libertador Bernardo O'Higgins,CL PDH,Pichidegua,official_direct
+CL06114,Quinta de Tilcoco,CL06,Región del Libertador Bernardo O'Higgins,CL QDT,Quinta de Tilcoco,official_direct
+CL06115,Rengo,CL06,Región del Libertador Bernardo O'Higgins,CL RGO,Rengo,official_direct
+CL06116,Requínoa,CL06,Región del Libertador Bernardo O'Higgins,CL REQ,Requínoa,official_direct
+CL06117,San Vicente,CL06,Región del Libertador Bernardo O'Higgins,CL SVT,San Vicente,official_direct
+CL06201,Pichilemu,CL06,Región del Libertador Bernardo O'Higgins,CL PLM,Pichilemu,official_direct
+CL06202,La Estrella,CL06,Región del Libertador Bernardo O'Higgins,CL LES,La Estrella,official_direct
+CL06203,Litueche,CL06,Región del Libertador Bernardo O'Higgins,CL LIT,Litueche,official_direct
+CL06204,Marchigüe,CL06,Región del Libertador Bernardo O'Higgins,CL MAR,Marchihue,official_name_variant
+CL06205,Navidad,CL06,Región del Libertador Bernardo O'Higgins,CL NAV,Navidad,official_direct
+CL06206,Paredones,CL06,Región del Libertador Bernardo O'Higgins,CL PAR,Paredones,official_direct
+CL06301,San Fernando,CL06,Región del Libertador Bernardo O'Higgins,CL SFD,San Fernando,official_direct
+CL06302,Chépica,CL06,Región del Libertador Bernardo O'Higgins,CL CHE,Chépica,official_direct
+CL06303,Chimbarongo,CL06,Región del Libertador Bernardo O'Higgins,CL CBG,Chimbarongo,official_direct
+CL06304,Lolol,CL06,Región del Libertador Bernardo O'Higgins,CL LOL,Lolol,official_direct
+CL06305,Nancagua,CL06,Región del Libertador Bernardo O'Higgins,CL NCG,Nancagua,official_direct
+CL06306,Palmilla,CL06,Región del Libertador Bernardo O'Higgins,CL PMA,Palmilla,official_direct
+CL06307,Peralillo,CL06,Región del Libertador Bernardo O'Higgins,CL PER,Peralillo,official_direct
+CL06308,Placilla,CL06,Región del Libertador Bernardo O'Higgins,CL PLA,Placilla,official_direct
+CL06309,Pumanque,CL06,Región del Libertador Bernardo O'Higgins,CL PUM,Pumanque,official_direct
+CL06310,Santa Cruz,CL06,Región del Libertador Bernardo O'Higgins,CL SCZ,Santa Cruz,official_direct
+CL07101,Talca,CL07,Región del Maule,CL TLX,Talca,official_direct
+CL07102,Constitución,CL07,Región del Maule,CL CST,Constitución,official_direct
+CL07103,Curepto,CL07,Región del Maule,CL CRT,Curepto,official_direct
+CL07104,Empedrado,CL07,Región del Maule,CL EMP,Empedrado,official_direct
+CL07105,Maule,CL07,Región del Maule,CL MAU,Maule,official_direct
+CL07106,Pelarco,CL07,Región del Maule,CL PEL,Pelarco,official_direct
+CL07107,Pencahue,CL07,Región del Maule,CL PEN,Pencahue,official_direct
+CL07108,Río Claro,CL07,Región del Maule,CL RCL,Río Claro,official_direct
+CL07109,San Clemente,CL07,Región del Maule,CL SCT,San Clemente,official_direct
+CL07110,San Rafael,CL07,Región del Maule,CL SRA,San Rafael,official_direct
+CL07201,Cauquenes,CL07,Región del Maule,CL CAU,Cauquenes,official_direct
+CL07202,Chanco,CL07,Región del Maule,CL CHA,Chanco,official_direct
+CL07203,Pelluhue,CL07,Región del Maule,CL PLH,Pelluhue,official_direct
+CL07301,Curicó,CL07,Región del Maule,CL CUR,Curicó,official_direct
+CL07302,Hualañé,CL07,Región del Maule,CL HLE,Hualañé,official_direct
+CL07303,Licantén,CL07,Región del Maule,CL LIC,Licantén,official_direct
+CL07304,Molina,CL07,Región del Maule,CL MOL,Molina,official_direct
+CL07305,Rauco,CL07,Región del Maule,CL RAU,Rauco,official_direct
+CL07306,Romeral,CL07,Región del Maule,CL ROM,Romeral,official_direct
+CL07307,Sagrada Familia,CL07,Región del Maule,CL SAF,Sagrada Familia,official_direct
+CL07308,Teno,CL07,Región del Maule,CL TEN,Teno,official_direct
+CL07309,Vichuquén,CL07,Región del Maule,CL VCQ,Vichuquén,official_direct
+CL07401,Linares,CL07,Región del Maule,CL LIN,Linares,official_direct
+CL07402,Colbún,CL07,Región del Maule,CL COB,Colbún,official_direct
+CL07403,Longaví,CL07,Región del Maule,CL LON,Longaví,official_direct
+CL07404,Parral,CL07,Región del Maule,CL PRL,Parral,official_direct
+CL07405,Retiro,CL07,Región del Maule,CL RET,Retiro,official_direct
+CL07406,San Javier,CL07,Región del Maule,CL SJV,San Javier,official_direct
+CL07407,Villa Alegre,CL07,Región del Maule,CL VAG,Villa Alegre,official_direct
+CL07408,Yerbas Buenas,CL07,Región del Maule,CL YBU,Yerbas Buenas,official_direct
+CL08101,Concepción,CL08,Región del Bío-Bío,CL CCP,Concepción,official_direct
+CL08102,Coronel,CL08,Región del Bío-Bío,CL CNL,Coronel,official_direct
+CL08103,Chiguayante,CL08,Región del Bío-Bío,CL CHI,Chiguayante,official_direct
+CL08104,Florida,CL08,Región del Bío-Bío,CL FLO,Florida,official_direct
+CL08105,Hualqui,CL08,Región del Bío-Bío,CL HQI,Hualqui,official_direct
+CL08106,Lota,CL08,Región del Bío-Bío,CL LTA,Lota,official_direct
+CL08107,Penco,CL08,Región del Bío-Bío,CL PEO,Penco,official_direct
+CL08108,San Pedro de la Paz,CL08,Región del Bío-Bío,CL SPP,San Pedro de la Paz,official_direct
+CL08109,Santa Juana,CL08,Región del Bío-Bío,CL SJU,Santa Juana,official_direct
+CL08110,Talcahuano,CL08,Región del Bío-Bío,CL TAL,Talcahuano,official_direct
+CL08111,Tomé,CL08,Región del Bío-Bío,CL TOM,Tomé,official_direct
+CL08112,Hualpén,CL08,Región del Bío-Bío,CL HPN,Hualpén,official_direct
+CL08201,Lebu,CL08,Región del Bío-Bío,CL LEB,Lebu,official_direct
+CL08202,Arauco,CL08,Región del Bío-Bío,CL ARA,Arauco,official_direct
+CL08203,Cañete,CL08,Región del Bío-Bío,CL CTE,Cañete,official_direct
+CL08204,Contulmo,CL08,Región del Bío-Bío,CL CTM,Contulmo,official_direct
+CL08205,Curanilahue,CL08,Región del Bío-Bío,CL CRN,Curanilahue,official_direct
+CL08206,Los Alamos,CL08,Región del Bío-Bío,CL LAL,Los Álamos,official_direct
+CL08207,Tirúa,CL08,Región del Bío-Bío,CL TIR,Tirúa,official_direct
+CL08301,Los Angeles,CL08,Región del Bío-Bío,CL LSQ,Los Ángeles,official_direct
+CL08302,Antuco,CL08,Región del Bío-Bío,CL ANT,Antuco,official_direct
+CL08303,Cabrero,CL08,Región del Bío-Bío,CL CAB,Cabrero,official_direct
+CL08304,Laja,CL08,Región del Bío-Bío,CL LAJ,La Laja,official_related_location
+CL08305,Mulchén,CL08,Región del Bío-Bío,CL MUL,Mulchén,official_direct
+CL08306,Nacimiento,CL08,Región del Bío-Bío,CL NAC,Nacimiento,official_direct
+CL08307,Negrete,CL08,Región del Bío-Bío,CL NEG,Negrete,official_direct
+CL08308,Quilaco,CL08,Región del Bío-Bío,CL QLA,Quilaco,official_direct
+CL08309,Quilleco,CL08,Región del Bío-Bío,CL QLO,Quilleco,official_direct
+CL08310,San Rosendo,CL08,Región del Bío-Bío,CL SRO,San Rosendo,official_direct
+CL08311,Santa Bárbara,CL08,Región del Bío-Bío,CL SBA,Santa Bárbara,official_direct
+CL08312,Tucapel,CL08,Región del Bío-Bío,CL TUC,Tucapel,official_direct
+CL08313,Yumbel,CL08,Región del Bío-Bío,CL YUM,Yumbel,official_direct
+CL08314,Alto Biobío,CL08,Región del Bío-Bío,CL ABB,Alto Bío Bío,official_direct
+CL09101,Temuco,CL09,Región de La Araucanía,CL ZCO,Temuco,official_direct
+CL09102,Carahue,CL09,Región de La Araucanía,CL CAR,Carahue,official_direct
+CL09103,Cunco,CL09,Región de La Araucanía,CL CUN,Cunco,official_direct
+CL09104,Curarrehue,CL09,Región de La Araucanía,CL CRE,Curarrehue,official_direct
+CL09105,Freire,CL09,Región de La Araucanía,CL FRE,Freire,official_direct
+CL09106,Galvarino,CL09,Región de La Araucanía,CL GAL,Galvarino,official_direct
+CL09107,Gorbea,CL09,Región de La Araucanía,CL GOR,Gorbea,official_direct
+CL09108,Lautaro,CL09,Región de La Araucanía,CL LAU,Lautaro,official_direct
+CL09109,Loncoche,CL09,Región de La Araucanía,CL LNC,Loncoche,official_direct
+CL09110,Melipeuco,CL09,Región de La Araucanía,CL MLP,Melipeuco,official_direct
+CL09111,Nueva Imperial,CL09,Región de La Araucanía,CL NIM,Nueva Imperial,official_direct
+CL09112,Padre Las Casas,CL09,Región de La Araucanía,CL PLC,Padre Las Casas,official_direct
+CL09113,Perquenco,CL09,Región de La Araucanía,CL PQC,Perquenco,official_direct
+CL09114,Pitrufquén,CL09,Región de La Araucanía,CL PIT,Pitrufquén,official_direct
+CL09115,Pucón,CL09,Región de La Araucanía,CL PUC,Pucón,official_direct
+CL09116,Saavedra,CL09,Región de La Araucanía,CL SAA,Saavedra,official_direct
+CL09117,Teodoro Schmidt,CL09,Región de La Araucanía,CL TEO,Teodoro Schmidt,official_direct
+CL09118,Toltén,CL09,Región de La Araucanía,CL TOL,Toltén,official_direct
+CL09119,Vilcún,CL09,Región de La Araucanía,CL VCN,Vilcún,official_direct
+CL09120,Villarrica,CL09,Región de La Araucanía,CL VIL,Villarrica,official_direct
+CL09121,Cholchol,CL09,Región de La Araucanía,CL CHL,Cholchol,official_direct
+CL09201,Angol,CL09,Región de La Araucanía,CL ANG,Angol,official_direct
+CL09202,Collipulli,CL09,Región de La Araucanía,CL CPI,Collipulli,official_direct
+CL09203,Curacautín,CL09,Región de La Araucanía,CL CCN,Curacautín,official_direct
+CL09204,Ercilla,CL09,Región de La Araucanía,CL ERC,Ercilla,official_direct
+CL09205,Lonquimay,CL09,Región de La Araucanía,CL LQY,Lonquimay,official_direct
+CL09206,Los Sauces,CL09,Región de La Araucanía,CL LSA,Los Sauces,official_direct
+CL09207,Lumaco,CL09,Región de La Araucanía,CL LUM,Lumaco,official_direct
+CL09208,Purén,CL09,Región de La Araucanía,CL PUR,Purén,official_direct
+CL09209,Renaico,CL09,Región de La Araucanía,CL RNO,Renaico,official_direct
+CL09210,Traiguén,CL09,Región de La Araucanía,CL TRA,Traiguén,official_direct
+CL09211,Victoria,CL09,Región de La Araucanía,CL ZIC,Victoria,official_direct
+CL10101,Puerto Montt,CL10,Región de Los Lagos,CL PMC,Puerto Montt,official_direct
+CL10102,Calbuco,CL10,Región de Los Lagos,CL CBC,Calbuco,official_direct
+CL10103,Cochamó,CL10,Región de Los Lagos,CL CMO,Cochamó,official_direct
+CL10104,Fresia,CL10,Región de Los Lagos,CL FRS,Fresia,official_direct
+CL10105,Frutillar,CL10,Región de Los Lagos,CL FRT,Frutillar,official_direct
+CL10106,Los Muermos,CL10,Región de Los Lagos,CL LMU,Los Muermos,official_direct
+CL10107,Llanquihue,CL10,Región de Los Lagos,CL LIA,Llanquihue,official_direct
+CL10108,Maullín,CL10,Región de Los Lagos,CL MLL,Maullín,official_direct
+CL10109,Puerto Varas,CL10,Región de Los Lagos,CL PVS,Puerto Varas,official_direct
+CL10201,Castro,CL10,Región de Los Lagos,CL WCA,Castro,official_direct
+CL10202,Ancud,CL10,Región de Los Lagos,CL ZUD,Ancud,official_direct
+CL10203,Chonchi,CL10,Región de Los Lagos,CL CHO,Chonchi,official_direct
+CL10204,Curaco de Vélez,CL10,Región de Los Lagos,CL CDV,Curaco de Vélez,official_direct
+CL10205,Dalcahue,CL10,Región de Los Lagos,CL DCH,Dalcahue,official_direct
+CL10206,Puqueldón,CL10,Región de Los Lagos,CL PQD,Puqueldón,official_direct
+CL10207,Queilén,CL10,Región de Los Lagos,CL QLN,Queilén,official_direct
+CL10208,Quellón,CL10,Región de Los Lagos,CL PTE,Quellón (Puerto Quellón),official_related_location
+CL10209,Quemchi,CL10,Región de Los Lagos,CL QMC,Quemchi,official_direct
+CL10210,Quinchao,CL10,Región de Los Lagos,CL QCO,Quinchao,official_direct
+CL10301,Osorno,CL10,Región de Los Lagos,CL ZOS,Osorno,official_direct
+CL10302,Puerto Octay,CL10,Región de Los Lagos,CL POC,Puerto Octay,official_direct
+CL10303,Purranque,CL10,Región de Los Lagos,CL PRQ,Purranque,official_direct
+CL10304,Puyehue,CL10,Región de Los Lagos,CL PYH,Puyehue,official_direct
+CL10305,Río Negro,CL10,Región de Los Lagos,CL RNE,Río Negro,official_direct
+CL10306,San Juan de la Costa,CL10,Región de Los Lagos,CL SJC,San Juan de la Costa,official_direct
+CL10307,San Pablo,CL10,Región de Los Lagos,CL SPB,San Pablo,official_direct
+CL10401,Chaitén,CL10,Región de Los Lagos,CL WCH,Chaitén,official_direct
+CL10402,Futaleufú,CL10,Región de Los Lagos,CL FFU,Futaleufú,official_direct
+CL10403,Hualaihué,CL10,Región de Los Lagos,CL HUH,Hualaihué,official_direct
+CL10404,Palena,CL10,Región de Los Lagos,CL PAL,Palena,official_direct
+CL11101,Coyhaique,CL11,Región de Aysén del Gral. Ibañez del Campo,CL CXQ,Coyhaique,official_direct
+CL11102,Lago Verde,CL11,Región de Aysén del Gral. Ibañez del Campo,CL LVD,Lago Verde,official_direct
+CL11201,Aysén,CL11,Región de Aysén del Gral. Ibañez del Campo,CL PSN,Puerto Aysen,official_related_location
+CL11202,Cisnes,CL11,Región de Aysén del Gral. Ibañez del Campo,CL CIS,Puerto Cisnes,official_related_location
+CL11203,Guaitecas,CL11,Región de Aysén del Gral. Ibañez del Campo,CL GUA,Guaitecas,official_direct
+CL11301,Cochrane,CL11,Región de Aysén del Gral. Ibañez del Campo,CL COC,Cochrane,official_direct
+CL11302,O'Higgins,CL11,Región de Aysén del Gral. Ibañez del Campo,CL OHI,O'Higgins,official_direct
+CL11303,Tortel,CL11,Región de Aysén del Gral. Ibañez del Campo,CL TOR,Tortel,official_direct
+CL11401,Chile Chico,CL11,Región de Aysén del Gral. Ibañez del Campo,CL CCH,Chile Chico,official_direct
+CL11402,Río Ibáñez,CL11,Región de Aysén del Gral. Ibañez del Campo,CL RIB,Río Ibáñez,official_direct
+CL12101,Punta Arenas,CL12,Región de Magallanes y Antártica Chilena,CL PUQ,Punta Arenas,official_direct
+CL12102,Laguna Blanca,CL12,Región de Magallanes y Antártica Chilena,CL LBL,Laguna Blanca,official_direct
+CL12103,Río Verde,CL12,Región de Magallanes y Antártica Chilena,CL RVE,Río Verde,official_direct
+CL12104,San Gregorio,CL12,Región de Magallanes y Antártica Chilena,CL SGR,San Gregorio,official_direct
+CL12201,Cabo de Hornos,CL12,Región de Magallanes y Antártica Chilena,CL CHR,Cabo de Hornos,official_direct
+CL12202,Antártica,CL12,Región de Magallanes y Antártica Chilena,CL ATC,Antártica,synthetic_transitional
+CL12301,Porvenir,CL12,Región de Magallanes y Antártica Chilena,CL PVR,Porvenir,official_direct
+CL12302,Primavera,CL12,Región de Magallanes y Antártica Chilena,CL PRI,Primavera,official_direct
+CL12303,Timaukel,CL12,Región de Magallanes y Antártica Chilena,CL TIM,Timaukel,official_direct
+CL12401,Natales,CL12,Región de Magallanes y Antártica Chilena,CL PNT,Puerto Natales,official_related_location
+CL12402,Torres del Paine,CL12,Región de Magallanes y Antártica Chilena,CL TDP,Torres del Paine,official_direct
+CL13101,Santiago,CL13,Región Metropolitana de Santiago,CL SCL,Santiago,official_direct
+CL13102,Cerrillos,CL13,Región Metropolitana de Santiago,CL CER,Cerrillos,official_direct
+CL13103,Cerro Navia,CL13,Región Metropolitana de Santiago,CL CNV,Cerro Navia,official_direct
+CL13104,Conchalí,CL13,Región Metropolitana de Santiago,CL CLI,Conchalí,official_direct
+CL13105,El Bosque,CL13,Región Metropolitana de Santiago,CL ELB,El Bosque,official_direct
+CL13106,Estación Central,CL13,Región Metropolitana de Santiago,CL ECT,Estación Central,official_direct
+CL13107,Huechuraba,CL13,Región Metropolitana de Santiago,CL HUE,Huechuraba,official_direct
+CL13108,Independencia,CL13,Región Metropolitana de Santiago,CL IND,Independencia,official_direct
+CL13109,La Cisterna,CL13,Región Metropolitana de Santiago,CL LCI,La Cisterna,official_direct
+CL13110,La Florida,CL13,Región Metropolitana de Santiago,CL LFL,La Florida,official_direct
+CL13111,La Granja,CL13,Región Metropolitana de Santiago,CL LGJ,La Granja,official_direct
+CL13112,La Pintana,CL13,Región Metropolitana de Santiago,CL LPI,La Pintana,official_direct
+CL13113,La Reina,CL13,Región Metropolitana de Santiago,CL REI,La Reina,official_direct
+CL13114,Las Condes,CL13,Región Metropolitana de Santiago,CL LCO,Las Condes,official_direct
+CL13115,Lo Barnechea,CL13,Región Metropolitana de Santiago,CL LBA,Lo Barnechea,official_direct
+CL13116,Lo Espejo,CL13,Región Metropolitana de Santiago,CL LEJ,Lo Espejo,official_direct
+CL13117,Lo Prado,CL13,Región Metropolitana de Santiago,CL LPR,Lo Prado,official_direct
+CL13118,Macul,CL13,Región Metropolitana de Santiago,CL MAC,Macul,official_direct
+CL13119,Maipú,CL13,Región Metropolitana de Santiago,CL MAI,Maipú,official_direct
+CL13120,Ñuñoa,CL13,Región Metropolitana de Santiago,CL NUN,Ñuñoa,official_direct
+CL13121,Pedro Aguirre Cerda,CL13,Región Metropolitana de Santiago,CL PAC,Pedro Aguirre Cerda,official_direct
+CL13122,Peñalolén,CL13,Región Metropolitana de Santiago,CL PLN,Peñalolén,official_direct
+CL13123,Providencia,CL13,Región Metropolitana de Santiago,CL PRO,Providencia,official_direct
+CL13124,Pudahuel,CL13,Región Metropolitana de Santiago,CL PUD,Pudahuel,official_direct
+CL13125,Quilicura,CL13,Región Metropolitana de Santiago,CL QUI,Quilicura,official_direct
+CL13126,Quinta Normal,CL13,Región Metropolitana de Santiago,CL QNO,Quinta Normal,official_direct
+CL13127,Recoleta,CL13,Región Metropolitana de Santiago,CL REC,Recoleta,official_direct
+CL13128,Renca,CL13,Región Metropolitana de Santiago,CL REN,Renca,official_direct
+CL13129,San Joaquín,CL13,Región Metropolitana de Santiago,CL SJQ,San Joaquín,official_direct
+CL13130,San Miguel,CL13,Región Metropolitana de Santiago,CL SMG,San Miguel,official_direct
+CL13131,San Ramón,CL13,Región Metropolitana de Santiago,CL SRM,San Ramón,official_direct
+CL13132,Vitacura,CL13,Región Metropolitana de Santiago,CL VIT,Vitacura,official_direct
+CL13201,Puente Alto,CL13,Región Metropolitana de Santiago,CL PTA,Puente Alto,official_direct
+CL13202,Pirque,CL13,Región Metropolitana de Santiago,CL PIR,Pirque,official_direct
+CL13203,San José de Maipo,CL13,Región Metropolitana de Santiago,CL SJM,San José de Maipo,official_direct
+CL13301,Colina,CL13,Región Metropolitana de Santiago,CL CLN,Colina,official_direct
+CL13302,Lampa,CL13,Región Metropolitana de Santiago,CL LAM,Lampa,official_direct
+CL13303,Tiltil,CL13,Región Metropolitana de Santiago,CL TIL,Tiltil,official_direct
+CL13401,San Bernardo,CL13,Región Metropolitana de Santiago,CL SBD,San Bernardo,official_direct
+CL13402,Buin,CL13,Región Metropolitana de Santiago,CL BUI,Buin,official_direct
+CL13403,Calera de Tango,CL13,Región Metropolitana de Santiago,CL CDT,Calera de Tango,official_direct
+CL13404,Paine,CL13,Región Metropolitana de Santiago,CL PNE,Paine,official_direct
+CL13501,Melipilla,CL13,Región Metropolitana de Santiago,CL MEL,Melipilla,official_direct
+CL13502,Alhué,CL13,Región Metropolitana de Santiago,CL ALH,Alhué,official_direct
+CL13503,Curacaví,CL13,Región Metropolitana de Santiago,CL CRV,Curacaví,official_direct
+CL13504,María Pinto,CL13,Región Metropolitana de Santiago,CL MPI,María Pinto,official_direct
+CL13505,San Pedro,CL13,Región Metropolitana de Santiago,CL SPE,San Pedro,official_direct
+CL13601,Talagante,CL13,Región Metropolitana de Santiago,CL TLG,Talagante,official_direct
+CL13602,El Monte,CL13,Región Metropolitana de Santiago,CL ELM,El Monte,official_direct
+CL13603,Isla de Maipo,CL13,Región Metropolitana de Santiago,CL IDM,Isla de Maipo,official_direct
+CL13604,Padre Hurtado,CL13,Región Metropolitana de Santiago,CL PHU,Padre Hurtado,official_direct
+CL13605,Peñaflor,CL13,Región Metropolitana de Santiago,CL PFL,Peñaflor,official_direct
+CL14101,Valdivia,CL14,Región de Los Ríos,CL ZAL,Valdivia,official_direct
+CL14102,Corral,CL14,Región de Los Ríos,CL CRR,Corral,official_direct
+CL14103,Lanco,CL14,Región de Los Ríos,CL LAN,Lanco,official_direct
+CL14104,Los Lagos,CL14,Región de Los Ríos,CL LLG,Los Lagos,official_direct
+CL14105,Máfil,CL14,Región de Los Ríos,CL MAF,Máfil,official_direct
+CL14106,Mariquina,CL14,Región de Los Ríos,CL MRQ,Mariquina,official_direct
+CL14107,Paillaco,CL14,Región de Los Ríos,CL PAO,Paillaco,official_direct
+CL14108,Panguipulli,CL14,Región de Los Ríos,CL PAN,Panguipulli,official_direct
+CL14201,La Unión,CL14,Región de Los Ríos,CL LUN,La Unión,official_direct
+CL14202,Futrono,CL14,Región de Los Ríos,CL FUT,Futrono,official_direct
+CL14203,Lago Ranco,CL14,Región de Los Ríos,CL RNC,Lago Ranco,official_direct
+CL14204,Río Bueno,CL14,Región de Los Ríos,CL RBU,Río Bueno,official_direct
+CL15101,Arica,CL15,Región de Arica y Parinacota,CL ARI,Arica,official_direct
+CL15102,Camarones,CL15,Región de Arica y Parinacota,CL CAM,Camarones,official_direct
+CL15201,Putre,CL15,Región de Arica y Parinacota,CL PUT,Putre,official_direct
+CL15202,General Lagos,CL15,Región de Arica y Parinacota,CL GLG,General Lagos,official_direct
+CL16101,Chillán,CL16,Región de Ñuble,CL YAI,Chillán,official_direct
+CL16102,Bulnes,CL16,Región de Ñuble,CL BUL,Bulnes,official_direct
+CL16103,Chillán Viejo,CL16,Región de Ñuble,CL CHV,Chillán Viejo,official_direct
+CL16104,El Carmen,CL16,Región de Ñuble,CL ELC,El Carmen,official_direct
+CL16105,Pemuco,CL16,Región de Ñuble,CL PEM,Pemuco,official_direct
+CL16106,Pinto,CL16,Región de Ñuble,CL PIN,Pinto,official_direct
+CL16107,Quillón,CL16,Región de Ñuble,CL QIN,Quillón,official_direct
+CL16108,San Ignacio,CL16,Región de Ñuble,CL SIN,San Ignacio,official_direct
+CL16109,Yungay,CL16,Región de Ñuble,CL YUN,Yungay,official_direct
+CL16201,Quirihue,CL16,Región de Ñuble,CL QRH,Quirihue,official_direct
+CL16202,Cobquecura,CL16,Región de Ñuble,CL CBQ,Cobquecura,official_direct
+CL16203,Coelemu,CL16,Región de Ñuble,CL COE,Coelemu,official_direct
+CL16204,Ninhue,CL16,Región de Ñuble,CL NIN,Ninhue,official_direct
+CL16205,Portezuelo,CL16,Región de Ñuble,CL POR,Portezuelo,official_direct
+CL16206,Ranquil,CL16,Región de Ñuble,CL RAN,Ránquil,official_direct
+CL16207,Treguaco,CL16,Región de Ñuble,CL TRE,Treguaco,official_direct
+CL16301,San Carlos,CL16,Región de Ñuble,CL SCR,San Carlos,official_direct
+CL16302,Coihueco,CL16,Región de Ñuble,CL COI,Coihueco,official_direct
+CL16303,Ñiquén,CL16,Región de Ñuble,CL NQN,Ñiquén,official_direct
+CL16304,San Fabián,CL16,Región de Ñuble,CL SFN,San Fabián,official_direct
+CL16305,San Nicolás,CL16,Región de Ñuble,CL SNI,San Nicolás,official_direct
