@@ -1,0 +1,2 @@
+actor_id,type,name,is_part_of,datasource_id
+CL ATC,city,Antártica,CL-MA,OEF:CL-CUT:comuna-identity:2026-10-23
